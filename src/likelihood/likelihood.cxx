@@ -178,15 +178,14 @@ void likelihood::promptForParameters() {
       m_pars.Prompt("scfile");
       m_pars.Prompt("evfile");
       m_pars.Prompt("exposure_map_file");
-      m_pars.Prompt("ROI_file");
    }
    m_pars.Prompt("source_model_file");
    m_pars.Prompt("source_model_output_file");
-   m_helper->checkOutputFile(m_pars["clobber"], 
-                             m_pars["source_model_output_file"]);
+   AppHelpers::checkOutputFile(m_pars["clobber"], 
+                               m_pars["source_model_output_file"]);
    m_pars.Prompt("flux_style_model_file");
-   m_helper->checkOutputFile(m_pars["clobber"], 
-                             m_pars["flux_style_model_file"]);
+   AppHelpers::checkOutputFile(m_pars["clobber"], 
+                               m_pars["flux_style_model_file"]);
    m_pars.Prompt("rspfunc");
    m_pars.Prompt("use_energy_dispersion");
    m_pars.Prompt("optimizer");
