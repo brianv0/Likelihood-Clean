@@ -15,6 +15,9 @@
 #include <algorithm>
 #include "fitsio.h"
 #include "Likelihood/Mcmc.h"
+#include "CLHEP/Random/RandomEngine.h"
+#include "CLHEP/Random/JamesRandom.h"
+#include "CLHEP/Random/RandFlat.h"
 
 namespace Likelihood {
 
@@ -46,8 +49,9 @@ void Mcmc::generateSamples(std::vector< std::vector<double> > &samples,
          double alpha = transProbRatio*exp(m_stat->value(newParamValues)
                                            - m_stat->value(paramValues));
 // Metropolis rejection criterion (Use CLHEP call here?)
-         double drand = static_cast<double>(rand())
-            /static_cast<double>(RAND_MAX);
+//          double drand = static_cast<double>(rand())
+//             /static_cast<double>(RAND_MAX);
+         double drand = RandFlat::shoot();
          if (drand < alpha) {
 // Accept the new point in Parameter space
             paramValues[i] = newParamValues[i];
@@ -165,7 +169,8 @@ double Mcmc::drawValue(Parameter &param, double dx, double &transProbRatio) {
    double width = std::min(xu, x0 + dx) - std::max(xl, x0 - dx);
 
 // Draw the trial value...
-   double drand = static_cast<double>(rand())/static_cast<double>(RAND_MAX);
+//   double drand = static_cast<double>(rand())/static_cast<double>(RAND_MAX);
+   double drand = RandFlat::shoot();
    double y = drand*width + std::max(xl, x0 - dx);
 
 // and compute the ratio of the transition probability densities
