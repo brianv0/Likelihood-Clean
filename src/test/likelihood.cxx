@@ -85,6 +85,8 @@ int main(int iargc, char* argv[]) {
    } else if (responseFuncs == "FRONT/BACK") {
       ResponseFunctions::addRespPtr(2, irfsFactory.create("Glast25::Front"));
       ResponseFunctions::addRespPtr(3, irfsFactory.create("Glast25::Back"));
+   } else if (responseFuncs == "TESTDC1") {
+      ResponseFunctions::addRespPtr(1, irfsFactory.create("DC1::test"));
    }
 
 // Fill a FunctionFactory with Function object prototypes for source
