@@ -129,7 +129,8 @@ public:
 
    /// Create the source model by reading an XML file.
    virtual void readXml(std::string xmlFile,
-                        optimizers::FunctionFactory &funcFactory);
+                        optimizers::FunctionFactory &funcFactory,
+                        bool requireExposure=true);
 
    /// Re-read an XML file, updating only the Parameters in the
    /// source model.

@@ -117,7 +117,7 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcs,
 // this is still true.
    FitsImage::EquinoxRotation eqRot(m_appDir.ra(), m_appDir.dec());
    if (!s_haveSourceRegionData) {
-      prepareSrData(30);
+      prepareSrData(sr_radius);
    }
 
 // Create a vector of srcDirs looping over the source region locations.

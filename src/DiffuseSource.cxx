@@ -46,9 +46,9 @@ DiffuseSource::DiffuseSource(optimizers::Function* spatialDist,
          throw Exception("The ExposureMap is not defined.");
       } else {
          emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
-         m_srcType = "Diffuse";
       }
    }
+   m_srcType = "Diffuse";
 }
 
 DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
