@@ -19,7 +19,7 @@ def _resolveFileList(files):
     fileList = files.split(',')
     my_list = []
     for file in fileList:
-        my_list.extend(glob.glob(file))
+        my_list.extend(glob.glob(file.strip()))
     return my_list
 
 class Observation(object):
