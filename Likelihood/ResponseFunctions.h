@@ -81,6 +81,10 @@ public:
    std::map<unsigned int, latResponse::Irfs *>::iterator end()
       {return s_respPtrs.end();}
 
+   /// Whether or not energy dispersion is to be considered.
+   static const bool & useEdisp() {return s_useEdisp;}
+
+   static void setEdispFlag(bool useEdisp) {s_useEdisp = useEdisp;}
 
 protected:
 
@@ -91,6 +95,8 @@ private:
    static ResponseFunctions * s_instance;
 
    static std::map<unsigned int, latResponse::Irfs *> s_respPtrs;
+
+   static bool s_useEdisp;
 
 };
 
