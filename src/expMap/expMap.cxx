@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <cstring>
 
+#include <memory>
 #include <stdexcept>
 
 #include "st_app/AppParGroup.h"
@@ -18,6 +19,9 @@
 #include "st_app/StAppFactory.h"
 
 #include "st_facilities/Util.h"
+
+#include "tip/IFileSvc.h"
+#include "tip/Image.h"
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/ExposureCube.h"
@@ -121,4 +125,9 @@ void ExpMap::createExposureMap() {
    }
    std::string exposureFile = m_pars["outfile"];
    ExposureMap::computeMap(exposureFile, m_srRadius, nlong, nlat, nenergies);
+
+   std::auto_ptr<tip::Image> 
+      image(tip::IFileSvc::instance().editImage(exposureFile, ""));
+   Likelihood::RoiCuts::instance()->writeDssKeywords(image->getHeader());
+   Likelihood::RoiCuts::instance()->writeGtiExtension(exposureFile);
 }
