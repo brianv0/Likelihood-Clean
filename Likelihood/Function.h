@@ -20,7 +20,6 @@
 namespace Likelihood {
 
 class Arg;
-class ParameterNotFound;
 
 /** 
  * @class Function
@@ -40,6 +39,8 @@ class ParameterNotFound;
 class Function {
 
 public:
+
+   class ParameterNotFound;
     
    Function() {}
 
@@ -153,6 +154,32 @@ public:
    FuncType funcType() {return m_funcType;}
    std::string &argType() {return m_argType;}
 
+/**
+ * @class ParameterNotFound
+ *
+ * @brief Nested class that returns a standard error message for
+ * Parameters looked for but not found in the desired Function.
+ *
+ * @author J. Chiang
+ *
+ * $Header$
+ */
+   class ParameterNotFound : public LikelihoodException {
+
+   public:
+      ParameterNotFound(const std::string &paramName, 
+                        const std::string &funcName,
+                        const std::string &routineName) {
+         std::ostringstream errorMessage;
+         errorMessage << "Function::" << routineName << ": \n"
+                      << "A Parameter named " << paramName
+                      << " is not a Parameter of Function "
+                      << funcName << "\n";
+         m_what = errorMessage.str();
+         m_code = 0;
+      }
+   };
+
 protected:
 
    FuncType m_funcType;
@@ -185,30 +212,6 @@ protected:
    virtual void fetchDerivs(Arg &x ,std::vector<double> &derivs, 
                             bool getFree) const;
 };
-
-/**
- * @class ParameterNotFound
- * @brief Returns a standard error message for Parameters 
- * looked for but not found in the desired Function.
- * @author J. Chiang
- *
- * $Header$
- */
-class ParameterNotFound : public LikelihoodException {
-
-public:
-   ParameterNotFound(const std::string &paramName, 
-                     const std::string &funcName,
-                     const std::string &routineName) {
-      std::ostringstream errorMessage;
-      errorMessage << "Function::" << routineName << ": \n"
-                   << "A Parameter named " << paramName
-                   << " is not a Parameter of Function "
-                   << funcName << "\n";
-      m_what = errorMessage.str();
-      m_code = 0;
-   }
-};   
 
 } // namespace Likelihood
 
