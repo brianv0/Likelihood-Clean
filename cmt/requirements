@@ -11,8 +11,6 @@ use optimizers v0*
 use cfitsio v1* IExternal
 use f2c v*
 use CLHEP v2* IExternal
-#use CCfits v1r12p4 IExternal
-#use CALDBinterface v*
 
 apply_pattern package_include
 apply_pattern package_linkopts

@@ -29,7 +29,7 @@ namespace Likelihood {
 class ConstantValue : public optimizers::Function {
 public:
 
-   ConstantValue(double value) {
+   ConstantValue(double value=1) {
       setMaxNumParams(1);
       addParam("Value", value, true);
 
