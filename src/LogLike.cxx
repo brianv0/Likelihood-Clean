@@ -151,14 +151,14 @@ void LogLike::getEvents(std::string event_file, int) {
    ScData * scData = ScData::instance();
 
    if (!scData) {
-      std::cout << "LogLike::getEvents: "
+      std::cerr << "LogLike::getEvents: "
                 << "The spacecraft data must be read in first."
                 << std::endl;
       assert(scData);
    }
 
    if (!roiCuts) {
-      std::cout << "LogLike::getEvents: "
+      std::cerr << "LogLike::getEvents: "
                 << "The region-of-interest data must be read in first."
                 << std::endl;
       assert(roiCuts);
@@ -216,7 +216,7 @@ void LogLike::getEvents(std::string event_file, int) {
       }
    }
 
-   std::cout << "LogLike::getEvents:\nOut of " 
+   std::cerr << "LogLike::getEvents:\nOut of " 
              << nTotal << " events in file "
              << event_file << ",\n "
              << nTotal - nReject << " were accepted, and "
@@ -264,7 +264,7 @@ void LogLike::getEvents(std::string event_file, int hdu) {
       }
    }
 
-   std::cout << "LogLike::getEvents:\nOut of " 
+   std::cerr << "LogLike::getEvents:\nOut of " 
              << ra.first << " events in file "
              << event_file << ",\n "
              << m_events.size() - nevents << " were accepted, and "
