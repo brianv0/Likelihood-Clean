@@ -6,7 +6,7 @@
  * $Header$
  */
 
-#include "xml/XmlParser.h"
+#include "xmlBase/XmlParser.h"
 
 #include "optimizers/Dom.h"
 
@@ -15,7 +15,7 @@
 namespace Likelihood {
 
 XmlBuilder::XmlBuilder() {
-   m_parser = new xml::XmlParser();
+   m_parser = new xmlBase::XmlParser();
    m_doc = optimizers::Dom::createDocument();
 }
 

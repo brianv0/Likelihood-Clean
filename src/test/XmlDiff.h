@@ -15,7 +15,7 @@
 
 #include <xercesc/dom/DOM.hpp>
 
-#include "xml/Dom.h"
+#include "xmlBase/Dom.h"
 
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
 

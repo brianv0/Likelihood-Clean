@@ -18,9 +18,6 @@
 
 #include "facilities/Util.h"
 
-#include "xml/Dom.h"
-#include "xml/XmlParser.h"
-
 namespace Likelihood {
 
 /**

@@ -11,7 +11,6 @@
 #endif
 
 #include <cmath>
-#include <cassert>
 #include <cstdio>
 
 #include <fstream>
@@ -609,14 +608,14 @@ void LikelihoodTests::test_CountsMap() {
 }
 
 void LikelihoodTests::test_BinnedLikelihood() {
-   SourceFactory * srcFactory = srcFactoryInstance();
-   (void)(srcFactory);
-
    std::string exposureCubeFile = m_rootPath + "/data/expcube_1_day.fits";
    if (!st_facilities::Util::fileExists(exposureCubeFile)) {
       generate_exposureHyperCube();
    }
    ExposureCube::readExposureCube(exposureCubeFile);
+
+   SourceFactory * srcFactory = srcFactoryInstance();
+   (void)(srcFactory);
 
    CountsMap dataMap(singleSrcMap(21));
 
@@ -702,14 +701,14 @@ void LikelihoodTests::test_BinnedLikelihood() {
 }
 
 void LikelihoodTests::test_MeanPsf() {
-   SourceFactory * srcFactory = srcFactoryInstance();
-   (void)(srcFactory);
-
    std::string exposureCubeFile = m_rootPath + "/data/expcube_1_day.fits";
    if (!st_facilities::Util::fileExists(exposureCubeFile)) {
       generate_exposureHyperCube();
    }
    ExposureCube::readExposureCube(exposureCubeFile);
+
+   SourceFactory * srcFactory = srcFactoryInstance();
+   (void)(srcFactory);
 
    double ee[] = {1e2, 1e3, 1e4};
    std::vector<double> energies(ee, ee+3);
@@ -736,14 +735,14 @@ void LikelihoodTests::test_MeanPsf() {
 }
 
 void LikelihoodTests::test_BinnedExposure() {
-   SourceFactory * srcFactory = srcFactoryInstance();
-   (void)(srcFactory);
-
    std::string exposureCubeFile = m_rootPath + "/data/expcube_1_day.fits";
    if (!st_facilities::Util::fileExists(exposureCubeFile)) {
       generate_exposureHyperCube();
    }
    ExposureCube::readExposureCube(exposureCubeFile);
+
+   SourceFactory * srcFactory = srcFactoryInstance();
+   (void)(srcFactory);
 
    std::vector<double> energies;
    unsigned int npts(20);
