@@ -104,9 +104,18 @@ public:
 
 protected:
 
-   RoiCuts() {}
+   RoiCuts() : m_energyCut(0), m_skyConeCut(0) {}
 
-   ~RoiCuts() {}
+   ~RoiCuts() {
+      for (int i = m_gtiCuts.size()-1; i > -1; i--) {
+         delete m_gtiCuts.at(i);
+      }
+      for (int i = m_timeCuts.size()-1; i > -1; i--) {
+         delete m_timeCuts.at(i);
+      }
+      delete m_skyConeCut;
+      delete m_energyCut;
+   }
 
 private:
 

@@ -95,7 +95,7 @@ void diffuseResponses::run() {
    m_helper->readScData();
    m_srcModel = new SourceModel(true);
    ResponseFunctions::setEdispFlag(m_pars["use_energy_dispersion"]);
-   m_helper->setRoi();
+   m_helper->setRoi(m_pars["evfile"], m_pars["evtable"], false);
    buildSourceModel();
    readEventData();
    computeEventResponses();

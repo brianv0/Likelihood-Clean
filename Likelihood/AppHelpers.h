@@ -48,7 +48,8 @@ public:
 
    void readScData();
    void readExposureMap();
-   void setRoi(const std::string & filename="", const std::string & ext="",
+   void setRoi(const std::string & filename="",
+               const std::string & ext="EVENTS",
                bool strict=true);
 
    static void checkOutputFile(bool clobber, const std::string & filename);
