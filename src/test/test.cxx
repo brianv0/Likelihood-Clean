@@ -100,8 +100,8 @@ namespace {
       for (unsigned int i = 0; i < file1_lines.size(); i++) {
          if (file1_lines[i] != file2_lines[i]) return false;
       }
-      remove(file1name.c_str());
-      remove(file2name.c_str());
+      std::remove(file1name.c_str());
+      std::remove(file2name.c_str());
       return true;
    }
 }
@@ -388,15 +388,44 @@ void LikelihoodTests::test_SourceModel() {
    }
 
 // Test the parameter values contained in srcModel.
+   char * paramNames[] = {"Prefactor", "Index", "Scale"};
    m_srcData.getSrcNames(srcNames);
    for (unsigned int i = 0; i < srcNames.size(); i++) {
       std::string name = srcNames[i];
-      ASSERT_EQUALS(srcModel.getParamValue("Prefactor", "Spectrum", name),
-                    m_srcData.paramObject(name, "Prefactor").getValue());
-      ASSERT_EQUALS(srcModel.getParamValue("Index", "Spectrum", name),
-                    m_srcData.paramObject(name, "Index").getValue());
-      ASSERT_EQUALS(srcModel.getParamValue("Scale", "Spectrum", name),
-                    m_srcData.paramObject(name, "Scale").getValue());
+      for (unsigned int j = 0; j < 3; j++) {
+         ASSERT_EQUALS(srcModel.getParamValue(paramNames[j], "Spectrum", name),
+                       m_srcData.paramObject(name, paramNames[j]).getValue());
+      }
+   }
+
+// Check free Parameters.
+   srcModel.getSrcNames(srcNames);
+   std::vector<double> my_parValues;
+   for (unsigned int i = 0; i < srcNames.size(); i++) {
+      std::string name = srcNames[i];
+      for (unsigned int j = 0; j < 3; j++) {
+         if (m_srcData.paramObject(name, paramNames[j]).isFree()) {
+            my_parValues.push_back(
+               m_srcData.paramObject(name, paramNames[j]).getValue());
+         }
+      }
+   }
+   std::vector<double> freeParValues;
+   srcModel.getFreeParamValues(freeParValues);
+   assert(my_parValues.size() == freeParValues.size());
+   for (unsigned int i = 0; i < my_parValues.size(); i++) {
+      ASSERT_EQUALS(my_parValues[i], freeParValues[i]);
+   }
+
+   std::vector<double> newFreeParams;
+   for (unsigned int i = 0; i < freeParValues.size(); i++) {
+      newFreeParams.push_back(freeParValues[i]*1.1);
+   }
+   srcModel.setFreeParamValues(newFreeParams);
+   srcModel.getFreeParamValues(freeParValues);
+   assert(newFreeParams.size() == freeParValues.size());
+   for (unsigned int i = 0; i < newFreeParams.size(); i++) {
+      ASSERT_EQUALS(newFreeParams[i], freeParValues[i]);
    }
 
    std::cout << ".";
