@@ -276,12 +276,19 @@ void likelihood::writeCountsSpectra() {
    }
    outputFile.close();
 
-// // plot the data
-//    EasyPlot plot;
-//    for (unsigned int i = 0; i < npred.size(); i++) {
-//       plot.histogram(evals, npred[i]);
-//    }
-//    EasyPlot::run();
+// plot the data
+   try {
+      EasyPlot plot;
+      for (unsigned int i = 0; i < npred.size(); i++) {
+         plot.histogram(evals, npred[i]);
+      }
+      EasyPlot::run();
+   } catch (std::exception &eObj) {
+      std::string message = "RootEngine could not create";
+      if (!st_facilities::Util::expectedException(eObj, message) {
+         throw;
+      }
+   }
 }
 
 void likelihood::writeCountsMap() {
