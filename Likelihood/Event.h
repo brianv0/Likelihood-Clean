@@ -130,8 +130,7 @@ private:
    /// @todo Find a rational way of defining the source region radius.
    /// For now, use the default values passed from
    /// computeResponse(...)
-//   void prepareSrData(double sr_region, int nmu=70, int nphi=40);
-   void prepareSrData(double sr_region, int nmu=150, int nphi=100);
+   void prepareSrData(double sr_region, int nmu=100, int nphi=50);
 
    void getNewDiffuseSrcs(const std::vector<DiffuseSource *> & srcList,
                           std::vector<DiffuseSource *> & srcs) const;

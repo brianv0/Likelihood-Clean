@@ -140,6 +140,7 @@ astro::SkyDir &ScData::zAxis(double time) {
 
 astro::SkyDir &ScData::xAxis(double time) {
    int indx = static_cast<int>((time - vec[0].time)/s_tstep);
+   indx = std::min(static_cast<unsigned int>(indx), vec.size()-2);
    double frac = (time - vec[indx].time)/s_tstep;
    Hep3Vector xDir = frac*(vec[indx+1].xAxis.dir() - vec[indx].xAxis.dir())
       + vec[indx].xAxis.dir();
