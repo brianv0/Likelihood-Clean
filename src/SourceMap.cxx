@@ -226,6 +226,7 @@ void SourceMap::computeSrcDirs(const Pixel & pixel) {
 // Rotation matrix from Equatorial coords to local coord system
    FitsImage::EquinoxRotation eqRot(pixel.dir().ra(), pixel.dir().dec());
 
+   m_srcDirs.clear();
 // Loop over source region locations.
    for (unsigned int i = 0; i < s_mu.size(); i++) {
       for (unsigned int j = 0; j < s_phi.size(); j++) {
