@@ -8,6 +8,8 @@
  * $Header$
  */
 
+#include "optimizers/ParameterNotFound.h"
+
 #include "Likelihood/SkyDirFunction.h"
 
 namespace Likelihood {
@@ -37,8 +39,7 @@ void SkyDirFunction::m_init(double ra, double dec) {
 }
 
 void SkyDirFunction::update_m_dir(const std::string paramName, 
-                                  double paramValue) 
-   throw(optimizers::ParameterNotFound) {
+                                  double paramValue) {
    if (paramName == "RA") {
       m_ra = paramValue;
    } else if (paramName == "DEC") {
