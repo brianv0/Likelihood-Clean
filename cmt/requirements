@@ -19,7 +19,7 @@ use cppunit v1* IExternal
 use irfLoader v0* irfs
 use st_facilities v0*
 
-apply_pattern ST_library option="-no_share *.c "
+apply_pattern ST_library option="-no_share *.c -DHAVE_ST_GRAPH "
 apply_pattern ST_pfiles
 
 apply_pattern ST_app name=likelihood
