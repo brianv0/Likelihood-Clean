@@ -7,6 +7,7 @@
  */
 
 #include "Likelihood/SpectrumFactory.h"
+#include <assert.h>
 
 namespace Likelihood {
 
