@@ -75,11 +75,7 @@ public:
    virtual double NpredDeriv(const std::string &paramName);
 
    /// Predicted number of counts within a specified energy range
-   virtual double Npred(double emin, double emax) {
-      throw std::out_of_range("DiffuseSource::Npred(emin, emax) "
-                              + std::string("is not yet implemented."));
-      return 0;
-   }
+   virtual double Npred(double emin, double emax);
 
    /// Return the spatial distribution of the gamma-ray emission
    double spatialDist(astro::SkyDir &dir) {

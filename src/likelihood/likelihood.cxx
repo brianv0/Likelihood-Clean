@@ -240,18 +240,22 @@ void likelihood::writeCountsSpectra() {
    m_logLike->getSrcNames(srcNames);
    std::ofstream outputFile("counts.dat");
    for (int k = 0; k < nee - 1; k++) {
-      outputFile << sqrt(energies[k]*energies[k+1]) << "   ";
+      bool writeLine(true);
+      std::ostringstream line;
+      line << sqrt(energies[k]*energies[k+1]) << "   ";
       for (unsigned int i = 0; i < srcNames.size(); i++) {
          Source * src = m_logLike->getSource(srcNames[i]);
          double Npred;
          try {
             Npred = src->Npred(energies[k], energies[k+1]);
-            outputFile << Npred << "  ";
+            line << Npred << "  ";
          } catch (std::out_of_range & eObj) {
-            // skip this one because of range error or it's DiffuseSource
+            writeLine = false;
          }
       }
-      outputFile << std::endl;
+      if (writeLine) {
+         outputFile << line.str() << std::endl;
+      }
    }
    outputFile.close();
 }
