@@ -180,8 +180,8 @@ int main(int iargc, char* argv[]) {
 // Write the model to the output xml file.
       std::string xmlFile;
       params.getParam("Source_model_output_file", xmlFile);
-      std::string funcFileName;
-      params.getParam("Function_models_file_name", funcFileName);
+      std::string funcFileName("");
+//      params.getParam("Function_models_file_name", funcFileName);
 
       if (xmlFile != "none") {
          std::cout << "Writing fitted model to " << xmlFile << std::endl;
