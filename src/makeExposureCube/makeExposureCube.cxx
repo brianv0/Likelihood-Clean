@@ -9,13 +9,12 @@
 #include <sstream>
 
 #include "tip/IFileSvc.h"
-#include "st_app/IApp.h"
-#include "hoops/hoops_prompt_group.h"
 
 #include "map_tools/ExposureHyperCube.h"
 
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/LikeExposure.h"
+#include "Likelihood/StApp.h"
 
 /**
  * @class ExposureCube
@@ -40,23 +39,7 @@ private:
    void addRoiHistory(map_tools::ExposureHyperCube & cube);
 };
 
-/**
- * @class app
- * @brief Class (and object declaration) of boiler-plate code expected 
- * by st_app.
- */
-class app : public st_app::IApp {
-public:
-   app() : st_app::IApp("makeExposureCube") {}
-   virtual ~app() throw() {}
-   virtual void run() {
-      hoopsPrompt();
-      hoopsSave();
-      hoops::IParGroup & pars = hoopsGetParGroup();
-      ExposureCube my_cube(pars);
-      my_cube.run();
-   }
-} my_app;
+Likelihood::StApp<ExposureCube> my_application("makeExposureCube");
 
 void ExposureCube::run() {
    createDataCube();
