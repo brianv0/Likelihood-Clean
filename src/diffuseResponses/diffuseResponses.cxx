@@ -134,8 +134,6 @@ void diffuseResponses::readEventData() {
    double dec;
    double energy;
    double time;
-   double raSCZ;
-   double decSCZ;
    double zenAngle;
    int convLayer;
    int eventType;
@@ -149,8 +147,6 @@ void diffuseResponses::readEventData() {
       event["dec"].get(dec);
       event["energy"].get(energy);
       event["time"].get(time);
-      raSCZ = scData->zAxis(time).ra();
-      decSCZ = scData->zAxis(time).dec();
       event["zenith_angle"].get(zenAngle);
       event["conversion_layer"].get(convLayer);
       if (convLayer < 12) { // Front
@@ -158,8 +154,8 @@ void diffuseResponses::readEventData() {
       } else {
          eventType = 1;
       }
-      Event thisEvent(ra, dec, energy, time, raSCZ, decSCZ, 
-                      cos(zenAngle*M_PI/180.), eventType);
+      Event thisEvent(ra, dec, energy, time, scData->zAxis(time), 
+                      scData->xAxis(time), cos(zenAngle*M_PI/180.), eventType);
       m_events.push_back(thisEvent);
    }
    delete events;

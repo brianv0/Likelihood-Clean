@@ -149,7 +149,9 @@ void likelihood::run() {
                       << eObj.what() << std::endl;
          }
       }
-      if (Likelihood::print_output()) printFitResults(errors);
+      if (Likelihood::print_output()) {
+         printFitResults(errors);
+      }
       writeSourceXml();
    } while (queryLoop && prompt("Refit? [y] "));
    writeFluxXml();

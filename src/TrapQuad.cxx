@@ -78,4 +78,8 @@ double TrapQuad::compute_integral() {
    return sum;
 }
 
+// double TrapQuad::compute_log_integral() {
+
+// }
+
 } // namespace Likelihood
