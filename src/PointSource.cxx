@@ -50,7 +50,6 @@ namespace {
          double aeff_val = aeff->value(energy, srcDir, zAxis, xAxis);
          myResponse += psf_val*aeff_val;
       }
-
       return myResponse;
    }
 }
