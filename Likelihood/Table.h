@@ -58,6 +58,19 @@ public:
          ::strncpy(colname, name.c_str(), sizeof(colname));
       }
       Column():val(0){}
+
+//       Column(const Column &rhs) {
+//          for (int i=0; i < 32; i++)
+//             colname[i] = rhs.colname[i];
+//          colnum = rhs.colnum;
+//          typecode = rhs.typecode;
+//          dim = rhs.dim;
+//          width = rhs.width;
+//          val = new double[rhs.dim];
+//          for (int i=0; i < dim; i++)
+//             val[i] = rhs.val[i];
+//       }
+
       ~Column(){delete[] val;}
       
       char   colname[32]; // name of the Ntuple column
