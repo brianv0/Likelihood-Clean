@@ -19,7 +19,7 @@ namespace Likelihood {
 
 LikeExposure::LikeExposure(double skybin, double costhetabin, 
                            const std::string & roiFile) 
-   : Exposure(skybin, costhetabin) {
+   : map_tools::Exposure(skybin, costhetabin) {
 
    RoiCuts::setCuts(roiFile);
    RoiCuts::instance()->getTimeCuts(m_timeCuts);
