@@ -53,6 +53,7 @@ private:
    DomElement * srcDirection(optimizers::Function &dir);
    DomElement * solidAngle(double mincos, double maxcos);
    DomElement * galDiffuse(Source & src);
+   DomElement * mapCubeSource(Source & src);
 
    std::vector<double> m_energies;
    void makeEnergyGrid(unsigned int nee=200);

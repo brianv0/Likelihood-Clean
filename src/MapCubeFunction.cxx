@@ -166,4 +166,41 @@ void MapCubeFunction::readEnergyVector(const std::string & fitsFile) {
    FitsImage::fitsReportError(status, routineName);
 }
 
+double MapCubeFunction::mapIntegral() const {
+   FitsImage fitsImage(m_fitsFile);
+   std::vector<double> solidAngles;
+
+   fitsImage.getSolidAngles(solidAngles);
+
+   unsigned int nlon(m_lon.size()-1);
+   unsigned int nlat(m_lat.size()-1);
+
+   double map_integral(0);
+   for (unsigned int j = 0; j < nlat; j++) {
+      for (unsigned int i = 0; i < nlon; i++) {
+         for (unsigned int k = 1; k < m_energies.size(); k++) {
+            unsigned int indx = k*nlon*nlat + j*nlon + i;
+            map_integral += solidAngles.at(j*nlon + i)*
+               powerLawIntegral(m_energies.at(k-1), m_energies.at(k),
+                                m_image.at(indx-nlon*nlat), m_image.at(indx));
+         }
+      }
+   }
+   return map_integral;
+}
+
+double MapCubeFunction::powerLawIntegral(double x1, double x2,
+                                         double y1, double y2) const {
+   double gamma = std::log(y2/y1)/std::log(x2/x1);
+   double n0 = y1/std::pow(x1, gamma);
+   double integral;
+   if (gamma != 1.) {
+      double gp1 = gamma + 1.;
+      integral = n0/gp1*(std::pow(x2, gp1) - std::pow(x1, gp1));
+   } else {
+      integral = n0*std::log(x2/x1);
+   }
+   return integral;
+}
+
 }

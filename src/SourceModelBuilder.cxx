@@ -65,7 +65,7 @@ DOMElement * SourceModelBuilder::spectralPart(Source & src) {
 
    DOMElement * specElt = optimizers::Dom::createElement(m_doc, "spectrum");
    xmlBase::Dom::addAttribute(specElt, "type",
-                          srcFuncs["Spectrum"]->genericName());
+                              srcFuncs["Spectrum"]->genericName());
    srcFuncs["Spectrum"]->appendParamDomElements(m_doc, specElt);
    return specElt;
 }
@@ -90,7 +90,7 @@ void SourceModelBuilder::addSpatialPart(DOMElement * srcElt, Source & src) {
          xmlBase::Dom::addAttribute(spatialElt, "file", file);
       } else if (type == "MapCubeFunction") {
          std::string file = 
-            dynamic_cast<MapCubeFunction *>(srcFuncs["SpatialDist"])->fitsFile();
+           dynamic_cast<MapCubeFunction*>(srcFuncs["SpatialDist"])->fitsFile();
          xmlBase::Dom::addAttribute(spatialElt, "file", file);
       }
       srcFuncs["SpatialDist"]->appendParamDomElements(m_doc, spatialElt);
