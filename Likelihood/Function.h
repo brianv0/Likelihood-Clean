@@ -34,11 +34,20 @@ public:
    virtual ~Function(){};
 
    //! parameter access
-   unsigned int getMaxNumParams() const {return m_maxNumParams;};
-   void setParam(const std::string &paramName, double paramValue, bool isFree);
-   void setParam(const std::string &paramName, double paramValue);
+   unsigned int getMaxNumParams() const {return m_maxNumParams;}
+
+   //! set Parameter value and free flag
+   void setParam(const std::string &paramName, double paramValue, bool isFree)
+      {setParameter(paramName, paramValue, isFree);}
+
+   //! just set Parameter value, preserving current free state
+   void setParam(const std::string &paramName, double paramValue) 
+      {setParameter(paramName, paramValue);}
+
+   //! set Parameter using Parameter object
    void setParam(const Parameter &param) 
-      {setParam(param.getName(), param.getValue(), param.isFree());};
+      {setParameter(param.getName(), param.getValue(), param.isFree());}
+
    double getParamValue(const std::string &paramName) const;
    Parameter* getParam(const std::string &paramName);
    
@@ -88,7 +97,10 @@ public:
 
 protected:
 
-   void setMaxNumParams(int nParams) {m_maxNumParams = nParams;};
+   void setMaxNumParams(int nParams) {m_maxNumParams = nParams;}
+
+   void setParameter(const std::string &paramName, double paramValue, 
+		     int isFree = -1);
 
    void addParam(const std::string &paramName, double paramValue, bool isFree);
    void addParam(const std::string &paramName, double paramValue)
