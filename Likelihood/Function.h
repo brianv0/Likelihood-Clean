@@ -70,10 +70,10 @@ public:
    //! set Parameter using a Parameter object
    virtual void setParam(const Parameter &param) throw(ParameterNotFound);
 
-   double getParamValue(const std::string &paramName) const
+   virtual double getParamValue(const std::string &paramName) const
       throw(ParameterNotFound);
 
-   Parameter getParam(const std::string &paramName) const
+   virtual Parameter getParam(const std::string &paramName) const
       throw(ParameterNotFound);
    
    virtual void setParamBounds(const std::string &paramName, double lower,
