@@ -172,7 +172,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
          delete src;
       }
    }
-   delete parser;
+//   delete parser;
 }
 
 void SourceFactory::fetchSrcNames(std::vector<std::string> &srcNames) {
