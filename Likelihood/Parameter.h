@@ -1,6 +1,6 @@
 /** @file Parameter.h
  * @brief Declaration of Parameter class
- * $Header$
+ * $Header:
  */
 
 #ifndef Parameter_h
@@ -50,6 +50,13 @@ public:
    void setValue(double value) {m_value = value;}
    double getValue() const {return m_value;}
 
+   //! scale access
+   void setScale(double scale) {m_scale = scale;}
+   double getScale() const {return m_scale;}
+
+   //! "true" value access
+   double getTrueValue() const {return m_value*m_scale;}
+
    //! bounds access
    void setBounds(double minValue, double maxValue)
       {m_minValue = minValue; m_maxValue = maxValue;};
@@ -67,13 +74,16 @@ private:
    void m_init(const std::string &paramName, double paramValue, 
                double minValue, double maxValue, bool isFree = true)
       {m_name = paramName; m_value = paramValue; m_minValue = minValue;
-      m_maxValue = maxValue; m_free = isFree;}
+      m_maxValue = maxValue; m_free = isFree; m_scale = 1;}
 
    //! parameter name
    std::string m_name;
 
    //! its value
    double m_value;
+
+   //! its scale factor
+   double m_scale;
 
    //! lower bound
    double m_minValue;
