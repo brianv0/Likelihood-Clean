@@ -39,8 +39,6 @@ class Observation {
 
 public:
 
-//   Observation(st_app::AppParGroup & pars);
-
    Observation() : m_respFuncs(0), m_scData(0), m_roiCuts(0), m_expCube(0),
       m_expMap(0) {}
 
