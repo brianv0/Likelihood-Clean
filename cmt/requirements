@@ -1,5 +1,5 @@
 package Likelihood
-version v2r4
+version v2r5
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
@@ -9,6 +9,7 @@ author Pat Nolan <pln@razzle.stanford.edu>
 use xml v*
 use facilities v2*
 use astro  v*
+use Goodi v*
 use latResponse v1*
 use optimizers v0*
 use cfitsio v1* IExternal
@@ -26,7 +27,8 @@ use hoops v*
 
 # allow use of internal path
 macro Likelihood_cppflags "" \
-Linux "-I ../src -g -O -pedantic -D TRAP_FPE " \
+Linux "-I ../src -g -O -pedantic -D TRAP_FPE -D USE_GOODI " \
+#Linux "-I ../src -g -O -pedantic -D TRAP_FPE " \
 WIN32 "/I..\src  /wd4290"
 
 # make sure test applications get built when library changes
