@@ -574,8 +574,6 @@ void SourceModel::write_fluxXml(std::string xmlFile) {
          std::string fitsFile 
             = dynamic_cast<SpatialMap *>(srcFuncs["SpatialDist"])->fitsFile();
          std::string basefilename = ::basename(fitsFile.c_str());
-         std::cout << fitsFile << " "
-                   << basefilename << std::endl;
          isGalDiffuse = (basefilename == "gas.cel");
       }
 
