@@ -22,6 +22,7 @@ namespace dataSubselector {
 
 namespace Likelihood {
 
+   class ExposureCube;
    class Observation;
    class ScData;
 
@@ -86,6 +87,7 @@ protected:
    Observation * m_observation;
 
    ScData * m_scData;
+   ExposureCube * m_expCube;
 
    void prepareFunctionFactory();
    void createResponseFuncs();

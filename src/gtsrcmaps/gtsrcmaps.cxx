@@ -38,6 +38,7 @@
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedLikelihood.h"
+#include "Likelihood/ExposureCube.h"
 #include "Likelihood/SourceMap.h"
 #include "Likelihood/RoiCuts.h"
 
@@ -100,7 +101,9 @@ void gtsrcmaps::run() {
                            m_pars["exposure_cube_file"], "");
 
    std::string expCubeFile = m_pars["exposure_cube_file"];
-   m_helper->observation().expCube().readExposureCube(expCubeFile);
+   ExposureCube & expCube = 
+      const_cast<ExposureCube &>(m_helper->observation().expCube());
+   expCube.readExposureCube(expCubeFile);
 
    std::string cntsMapFile = m_pars["counts_map_file"];
    dataSubselector::Cuts my_cuts(cntsMapFile, "", false);

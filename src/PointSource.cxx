@@ -26,7 +26,6 @@
 #include "Likelihood/PointSource.h"
 #include "Likelihood/TrapQuad.h"
 
-#include "Likelihood/ExposureCube.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
@@ -278,14 +277,14 @@ void PointSource::computeExposure(bool verbose) {
    const std::vector<double> & energies = m_observation->roiCuts().energies();
 
    astro::SkyDir srcDir = getDir();
-   if (m_observation->expCube().instance() == 0) {
+   if (m_observation->expCube().haveFile()) {
+      computeExposureWithHyperCube(srcDir, energies, *m_observation,
+                                   m_exposure, verbose);
+   } else {
 // Exposure time hypercube is not available, so perform sums using
 // ScData.
       computeExposure(srcDir, energies, *m_observation,
                       m_exposure, verbose);
-   } else {
-      computeExposureWithHyperCube(srcDir, energies, *m_observation,
-                                   m_exposure, verbose);
    }
    if (print_output() && verbose) {
       for (unsigned int i = 0; i < energies.size(); i++) {

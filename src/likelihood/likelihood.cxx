@@ -33,6 +33,7 @@
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
+#include "Likelihood/ExposureCube.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/MapShape.h"
 #include "Likelihood/OptEM.h"
@@ -206,7 +207,9 @@ void likelihood::createStatistic() {
       if (expcube_file == "none") {
          throw std::runtime_error("Please specify an exposure cube file.");
       }
-      m_helper->observation().expCube().readExposureCube(expcube_file);
+      ExposureCube & expCube = 
+         const_cast<ExposureCube &>(m_helper->observation().expCube());
+      expCube.readExposureCube(expcube_file);
       std::string countsMapFile = m_pars["counts_map_file"];
       st_facilities::Util::file_ok(countsMapFile);
       m_dataMap = new CountsMap(countsMapFile);
@@ -391,7 +394,9 @@ void likelihood::writeCountsMap() {
    if (expcube_file == "none") {
       return;
    }
-   m_helper->observation().expCube().readExposureCube(expcube_file);
+   ExposureCube & expCube = 
+      const_cast<ExposureCube &>(m_helper->observation().expCube());
+   expCube.readExposureCube(expcube_file);
    m_dataMap->writeOutput("likelihood", "data_map.fits");
    try {
       CountsMap * modelMap;

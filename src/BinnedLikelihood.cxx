@@ -17,7 +17,6 @@
 
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
-#include "Likelihood/ExposureCube.h"
 #include "Likelihood/SourceMap.h"
 #include "Likelihood/SourceModel.h"
 

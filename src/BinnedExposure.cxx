@@ -19,7 +19,6 @@
 
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/CountsMap.h"
-#include "Likelihood/ExposureCube.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/ResponseFunctions.h"
 
