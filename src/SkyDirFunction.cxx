@@ -15,6 +15,7 @@ namespace Likelihood {
 SkyDirFunction::SkyDirFunction(const astro::SkyDir &dir) :
    m_lon(dir.ra()), m_lat(dir.dec()), m_dir(dir) {
    m_maxNumParams = 2;
+   m_genericName = "SkyDirFunction";
    addParam("longitude", m_lon, false);
    addParam("latitude", m_lat, false);
 }   
@@ -23,6 +24,7 @@ void SkyDirFunction::m_init(double lon, double lat) {
    m_lon = lon; 
    m_lat = lat; 
    m_maxNumParams = 2;
+   m_genericName = "SkyDirFunction";
 
    m_dir = astro::SkyDir(lon, lat);
 

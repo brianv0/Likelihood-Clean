@@ -21,6 +21,7 @@ void SpatialMap::init() {
 // but set it to be unit constant.
    int nParams = 1;
    setMaxNumParams(nParams);
+   m_genericName = "SpatialMap";
    addParam("Prefactor", 1, false);
 }
 
