@@ -1,29 +1,33 @@
-#ifndef SciTools_Optimizer_h
-#define SciTools_Optimizer_h
+#ifndef Optimizer_h
+#define Optimizer_h
 
-#include <vector>
-#include <string>
+#include "../Likelihood/Statistic.h"
+
+namespace Likelihood {
 
 /** 
  * @class Optimizer
  *
- * @brief Base class for Science Tools Optimizers, e.g., variable metric
- * methods, Powell, Nelder-Mead, etc.
+ * @brief Abstract base class for objective function optimizers.
  *
  * @author J. Chiang
  *    
- * $Header$
+ * $Header:
  */
 
 class Optimizer {
     
 public:
     
-   virtual Optimizer();
-   virtual ~Optimizer();
+   Optimizer() {}
+   virtual ~Optimizer() {}
+
+   virtual void find_min(int verbose, double tol) = 0;
     
-private:
-        
+protected:
+
 };
 
-#endif // SciTools_Optimizer_h
+} // namespace Likelhood
+
+#endif // Optimizer_h
