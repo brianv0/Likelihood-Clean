@@ -138,9 +138,9 @@ void LikelihoodTests::setUp() {
    m_expMapFile = m_rootPath + "/data/anticenter_expMap.fits";
    m_sourceXmlFile = m_rootPath + "/data/anticenter_model.xml";
 
-// Use exposure hypercube for PointSource exposure calculations.
-   std::string expCube = m_rootPath + "/data/expcube_1_day.fits";
-   PointSource::readExposureCube(expCube);
+// // Use exposure hypercube for PointSource exposure calculations.
+//    std::string expCube = m_rootPath + "/data/expcube_1_day.fits";
+//    PointSource::readExposureCube(expCube);
 
 }
 
