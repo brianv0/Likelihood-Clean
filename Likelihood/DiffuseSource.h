@@ -68,6 +68,16 @@ public:
    virtual double fluxDensityDeriv(const Event &evt, 
                                    const std::string &paramName) const;
 
+   virtual double fluxDensity(double inclination, double phi, double energy,
+                              double separation, int evtType) const {
+      (void)(inclination);
+      (void)(phi);
+      (void)(energy);
+      (void)(separation);
+      (void)(evtType);
+      return 0;
+   }
+
    /// Predicted number of photons given RoiCuts and ScData
    virtual double Npred();
    
