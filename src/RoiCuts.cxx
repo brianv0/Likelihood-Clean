@@ -173,7 +173,8 @@ bool RoiCuts::accept(const Event &event) const {
       return s_cuts->accept(params);
    } else {
       bool acceptEvent = true;
-      
+
+/// @todo treat RangeCuts in time differently from GTIs.      
       for (unsigned int i = 0; i < s_timeCuts.size(); i++) {
          if (event.getArrTime() < s_timeCuts[i].first ||
              event.getArrTime() > s_timeCuts[i].second) {

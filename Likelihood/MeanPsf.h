@@ -40,7 +40,7 @@ public:
       init();
    }
 
-   MeanPsf() : m_observation(Observation()) {}
+//   MeanPsf() : m_observation(Observation()) {}
 
    /// @return The value of the psf.
    /// @param energy True photon energy (MeV)
