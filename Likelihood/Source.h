@@ -61,6 +61,8 @@ public:
    virtual void setDir(double ra, double dec, bool updateExposure = true) = 0;
    virtual void setDir(const astro::SkyDir &dir, 
                        bool updateExposure = true) = 0;
+
+   virtual void setSpectrum(optimizers::Function *) = 0;
                        
    //! clone function, with default
    virtual Source *clone() const {return 0;}

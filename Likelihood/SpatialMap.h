@@ -11,7 +11,7 @@
 #define Likelihood_SpatialMap_h
 
 #include "optimizers/Function.h"
-#include "Likelihood/SkyDirArg.h"
+
 #include "Likelihood/FitsImage.h"
 
 namespace Likelihood {
@@ -27,13 +27,23 @@ namespace Likelihood {
  *
  */
     
-class SpatialMap : public optimizers::Function, public FitsImage {
+class SpatialMap : public optimizers::Function {
+
 public:
 
-   SpatialMap(std::string fitsfile);
-   SpatialMap(const SpatialMap &rhs) : optimizers::Function(rhs), FitsImage(rhs) {
+   SpatialMap() {init();}
+
+   SpatialMap(const std::string &fitsFile) {
+      init();
+      readFitsFile(fitsFile);
+   }
+
+   SpatialMap(const SpatialMap &rhs) : optimizers::Function(rhs) {
       m_ra = rhs.m_ra;
       m_dec = rhs.m_dec;
+      m_image.resize(rhs.m_image.size());
+      m_image = rhs.m_image;
+      m_fitsFile = rhs.m_fitsFile;
    }
 
    virtual ~SpatialMap() {}
@@ -43,14 +53,20 @@ public:
    double derivByParam(optimizers::Arg &, const std::string &) const
       {return 0;}
 
+   void readFitsFile(const std::string &fitsFile);
+
    virtual optimizers::Function *clone() const {
       return new SpatialMap(*this);
    }
 
 private:
 
+   std::string m_fitsFile;
    std::vector<double> m_ra;
    std::vector<double> m_dec;
+   std::valarray<double> m_image;
+
+   void init();
 
    // disable this
    double integral(optimizers::Arg &, optimizers::Arg &) const {return 0;}

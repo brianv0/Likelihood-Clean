@@ -12,7 +12,15 @@
 #include <string>
 #include <map>
 #include "Likelihood/Source.h"
-#include "optimizers/Exception.h"
+#include "Likelihood/Exception.h"
+
+class DOM_Element;
+
+namespace optimizers {
+
+class FunctionFactory;
+
+}
 
 namespace Likelihood {
 
@@ -32,27 +40,41 @@ namespace Likelihood {
  */
     
 class SourceFactory {
+
 public:
 
    SourceFactory();
 
    virtual ~SourceFactory();
 
-   //! Clients should almost always have fromClone = true; 
-   //! otherwise, the destructor will delete their Source, rather than 
-   //! a clone.
+   Source *create(const std::string &name) throw(Exception);
+
+   /// Clients should almost always have fromClone = true; otherwise,
+   /// the destructor will delete their Source, rather than a clone.
    void addSource(const std::string &name, Source* src, 
-                  bool fromClone = true) throw(optimizers::Exception);
+                  bool fromClone = true) throw(Exception);
 
    void replaceSource(Source* src, bool fromClone = true);
 
-   Source *makeSource(const std::string &name);
+   void readXml(const std::string &xmlFile,
+                optimizers::FunctionFactory&) throw(Exception);
 
    void fetchSrcNames(std::vector<std::string> &srcNames);
 
 private:
 
    std::map<std::string, Source *> m_prototypes;
+
+   Source *makePointSource(const DOM_Element &spectrum,
+                           const DOM_Element &spatialModel,
+                           optimizers::FunctionFactory &funcFactory);
+
+   Source *makeDiffuseSource(const DOM_Element &spectrum,
+                             const DOM_Element &spatialModel,
+                             optimizers::FunctionFactory &funcFactory);
+
+   void setSpectrum(Source *src, const DOM_Element &spectrum,
+                    optimizers::FunctionFactory &funcFactory);
 
 };
 

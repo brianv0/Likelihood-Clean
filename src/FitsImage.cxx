@@ -23,10 +23,10 @@
 
 namespace Likelihood {
 
-FitsImage::FitsImage(std::string &fitsfile) {
+FitsImage::FitsImage(const std::string &fitsfile) {
 
    m_filename = fitsfile;
-   read_fits_image(fitsfile, m_axes, m_image);
+   read_fits_image(m_filename, m_axes, m_image);
    for (unsigned int i = 0; i < m_axes.size(); i++) {
       std::vector<double> axisVector;
       m_axes[i].computeAxisVector(axisVector);

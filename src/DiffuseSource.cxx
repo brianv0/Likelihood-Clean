@@ -26,7 +26,7 @@ bool DiffuseSource::s_haveStaticMembers = false;
 std::vector<double> DiffuseSource::s_energies;
 
 DiffuseSource::DiffuseSource(optimizers::Function* spatialDist) 
-   throw(optimizers::Exception) : m_spectrum(0) {
+   throw(Exception) : m_spectrum(0) {
 // The spatial distribution of emission is required for instantiation.
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
@@ -41,7 +41,7 @@ DiffuseSource::DiffuseSource(optimizers::Function* spatialDist)
 // instantiated.
    ExposureMap *emap = ExposureMap::instance();
    if (emap == 0) {
-      throw optimizers::Exception("The ExposureMap is not defined.");
+      throw Exception("The ExposureMap is not defined.");
    } else {
       emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
       m_srcType = "Diffuse";
