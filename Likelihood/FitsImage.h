@@ -6,7 +6,7 @@
  * $Header$
  *
  */
-
+#pragma warning(disable:4290)
 #ifndef FitsImage_h
 #define FitsImage_h
 

@@ -5,7 +5,7 @@
  *
  * $Header$
  */
-
+#pragma warning(disable:4290)
 #ifndef Parameter_h
 #define Parameter_h
 
