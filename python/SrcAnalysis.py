@@ -23,10 +23,11 @@ class SrcAnalysis(object):
         if expMap is not None:
             self.expMap.readExposureFile(expMap)
         self.scData = pyLike.ScData()
+        self.roiCuts = pyLike.RoiCuts()
         self.expCube = pyLike.ExposureCube()
         observation = pyLike.Observation(self.respFuncs,
                                          self.scData,
-                                         pyLike.RoiCuts_instance(),
+                                         self.roiCuts,
                                          self.expCube,
                                          self.expMap)
         self.observation = observation
@@ -36,7 +37,7 @@ class SrcAnalysis(object):
         self.logLike.readXml(srcModel, _funcFactory)
         self.logLike.computeEventResponses()
         self.model = SourceModel(self.logLike)
-        eMin, eMax = pyLike.RoiCuts_instance().getEnergyCuts()
+        eMin, eMax = self.roiCuts.getEnergyCuts()
         nee = 21
         estep = num.log(eMax/eMin)/(nee-1)
         self.energies = eMin*num.exp(estep*num.arange(nee, type=num.Float))
@@ -59,7 +60,7 @@ class SrcAnalysis(object):
             self.scData.readData(scFile)
     def _readEvents(self, eventFile):
         eventFiles = self._fileList(eventFile)
-        pyLike.RoiCuts_instance().readCuts(eventFiles[0])
+        self.roiCuts.readCuts(eventFiles[0])
         for file in eventFiles:
             self.logLike.getEvents(file)
     def _Nobs(self, emin, emax):

@@ -46,6 +46,7 @@ public:
    virtual ~ExposureCube() throw() {
       try {
          delete m_exposure;
+         delete m_roiCuts;
       } catch (std::exception &eObj) {
          std::cerr << eObj.what() << std::endl;
       } catch (...) {
@@ -99,7 +100,7 @@ void ExposureCube::promptForParameters() {
 
 void ExposureCube::readRoiCuts() {
    std::string event_file = m_pars["evfile"];
-   m_roiCuts = Likelihood::RoiCuts::instance();
+   m_roiCuts = new Likelihood::RoiCuts();
    m_roiCuts->readCuts(m_pars["evfile"], "EVENTS", false);
 }
 
