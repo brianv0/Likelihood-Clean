@@ -97,14 +97,26 @@ double MeanPsf::Psf::s_phi(0);
 
 double MeanPsf::Psf::operator()(double cosTheta) const {
    double inclination = acos(cosTheta)*180./M_PI;
+   if (inclination > 70.) {
+      return 0;
+   }
    std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
       = ResponseFunctions::instance()->begin();
    for ( ; respIt != ResponseFunctions::instance()->end(); ++respIt) {
       if (respIt->second->irfID() == m_evtType) {  
          irfInterface::IAeff * aeff = respIt->second->aeff();
          irfInterface::IPsf * psf = respIt->second->psf();
-         double psf_val = aeff->value(m_energy, inclination, s_phi)
-            *psf->value(m_separation, m_energy, inclination, s_phi);
+         double aeffValue = aeff->value(m_energy, inclination, s_phi);
+         double psfValue = psf->value(m_separation, m_energy, inclination, 
+                                      s_phi);
+         double psf_val = aeffValue*psfValue;
+         if (psf_val < 0) {
+//             std::cout << m_separation << "  "
+//                       << m_energy << "  "
+//                       << inclination << "  "
+//                       << s_phi << std::endl;
+            throw std::runtime_error("MeanPsf::Psf::operator(): psf_val < 0");
+         }
          return psf_val;
       }
    }
