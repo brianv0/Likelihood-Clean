@@ -16,6 +16,7 @@
 #include "hoops/hoops_exception.h"
 
 #include <string>
+#include <iostream>
 
 namespace Likelihood {
 

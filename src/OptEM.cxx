@@ -76,8 +76,8 @@ namespace Likelihood {
       }
       iteration++;
       if (verbose != 0)
-	cout << "Iteration #" << iteration << ", logL = " << logL << 
-	  ", old logL = " << oldLogL  << " params " << nPar << endl;
+	std::cout << "Iteration #" << iteration << ", logL = " << logL << 
+	  ", old logL = " << oldLogL  << " params " << nPar << std::endl;
     } while (abs(logL-oldLogL) > 0.11 * nPar || oldLogL == 0.);
 
     //! Clean up before exit
