@@ -310,7 +310,7 @@ void likelihood::writeCountsMap() {
 
    MapShape mapShape(ras, decs, energies);
 
-   m_logLike->makeCountsMap("counts_map.fits", mapShape);
+//   m_logLike->makeCountsMap("counts_map.fits", mapShape);
 }
 
 void likelihood::printFitResults(const std::vector<double> &errors) {

@@ -26,6 +26,8 @@ namespace optimizers {
 
 namespace Likelihood {
 
+   class CountsMap;
+
 /** 
  * @class SourceModel
  *
@@ -148,9 +150,13 @@ public:
    /// Write a flux-style xml file for the current source model.
    virtual void write_fluxXml(std::string xmlFile);
 
+//    /// Create a counts map based on the current model.
+//    void makeCountsMap(const std::string & filename,
+//                       const MapShape & mapShape) const;
+
    /// Create a counts map based on the current model.
-   void makeCountsMap(const std::string & filename,
-                      const MapShape & mapShape) const;
+   void makeCountsMap(const CountsMap & dataMap,
+                      const std::string & filename) const;
 
    class Aeff : public map_tools::Exposure::Aeff {
    public:
