@@ -75,10 +75,10 @@ private:
    static std::string s_scFile;
    static int s_scHdu;
 
+   static double s_tstep;
+
    astro::SkyDir m_zAxis;
    astro::SkyDir m_xAxis;
-
-   double m_tstep;
 
 };
 

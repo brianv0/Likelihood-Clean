@@ -11,6 +11,8 @@
 
 #include <map>
 
+#include "latResponse/Irfs.h"
+
 namespace Likelihood {
 
 /** 
@@ -34,10 +36,16 @@ public:
 
    static ResponseFunctions * instance();
 
-   void setRespPtrs(std::map<unsigned int, latResponse::Irfs *> &respPtrs)
-      {m_respPtrs = respPtrs;}
+   static void setRespPtrs(std::map<unsigned int, latResponse::Irfs *> 
+                           &respPtrs) {s_respPtrs = respPtrs;}
 
    latResponse::Irfs * respPtr(unsigned int eventType);
+
+   std::map<unsigned int, latResponse::Irfs *>::iterator begin()
+      {return s_respPtrs.begin();}
+
+   std::map<unsigned int, latResponse::Irfs *>::iterator end()
+      {return s_respPtrs.end();}
 
 protected:
 
@@ -47,7 +55,7 @@ private:
 
    static ResponseFunctions * s_instance;
 
-   std::map<unsigned int, latResponse::Irfs *> m_respPtrs;
+   static std::map<unsigned int, latResponse::Irfs *> s_respPtrs;
 
 };
 

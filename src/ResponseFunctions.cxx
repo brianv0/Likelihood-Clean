@@ -12,9 +12,11 @@ namespace Likelihood {
 
 ResponseFunctions * ResponseFunctions::s_instance = 0;
 
+std::map<unsigned int, latResponse::Irfs *> ResponseFunctions::s_respPtrs;
+
 latResponse::Irfs * ResponseFunctions::respPtr(unsigned int i) {
-   if (m_respPtrs.count(i)) {
-      return m_respPtrs[i];
+   if (s_respPtrs.count(i)) {
+      return s_respPtrs[i];
    } else {
       return 0;
    }
