@@ -109,6 +109,8 @@ void RoiCuts::setCuts(const std::string &xmlFile) {
 
 // Do not apply zenith angle cut for now.
    s_muZenMax = -1.;
+
+   delete parser;
 }
 
 bool RoiCuts::accept(const Event &event) {
