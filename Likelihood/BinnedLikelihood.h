@@ -68,7 +68,7 @@ public:
       return m_srcMaps.find(name)->second;
    }
 
-   void saveSourceMaps(const std::string & filename) const;
+   void saveSourceMaps(const std::string & filename="");
 
    virtual std::vector<double>::const_iterator setParamValues_(
       std::vector<double>::const_iterator);
@@ -99,7 +99,7 @@ private:
 
    void computeModelMap(std::vector<double> & modelMap) const;
 
-   /// Implement some rune-like tip arcana.
+   // Implement some rune-like tip arcana.
    void setImageDimensions(tip::Image * image, long * dims) const;
 
    void identifyFilledPixels();
@@ -113,7 +113,7 @@ private:
                          const std::string & fitsFile) const;
 
    void addSourceMap(const std::string & srcName, 
-                     std::string fitsFile="") const;
+                     const std::string & fitsFile) const;
 };
 
 }
