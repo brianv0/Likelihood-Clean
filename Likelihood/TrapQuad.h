@@ -1,4 +1,5 @@
-/** @file TrapQuad.h
+/** 
+ * @file TrapQuad.h
  * @brief Declaration of the TrapQuad class
  * @author J. Chiang
  *
@@ -39,9 +40,10 @@ public:
    }
    ~TrapQuad() {}
 
-   double integral();
-   double integral(double xmin, double xmax, int npts = 100);
-   double integral(std::vector<double> &xvals);
+   double integral() throw(LikelihoodException);
+   double integral(double xmin, double xmax, int npts = 100) 
+      throw(LikelihoodException);
+   double integral(std::vector<double> &xvals) throw(LikelihoodException);
 
 private:
 

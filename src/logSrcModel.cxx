@@ -1,4 +1,5 @@
-/** @file logSrcModel.cxx
+/** 
+ * @file logSrcModel.cxx
  * @brief logSrcModel class implementation
  * @author J. Chiang
  *
@@ -21,7 +22,6 @@ double logSrcModel::value(Arg &xarg) const {
    if (my_value > 0) {
       return log(my_value);
    } else {
-//      std::cerr << "logSrcModel::value: my_value < 0" << std::endl;
       return 0;
    }
 }
