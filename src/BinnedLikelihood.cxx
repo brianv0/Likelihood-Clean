@@ -128,10 +128,6 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
 }
 
 CountsMap * BinnedLikelihood::createCountsMap() const {
-//    if (ExposureCube::instance() == 0) {
-//       std::runtime_error("BinnedLikelihood::createCountsMap:\n"
-//                          + std::string("Exposure cube not available."));
-//    }
    std::vector<double> map;
    computeModelMap(map);
 

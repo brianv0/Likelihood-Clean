@@ -207,7 +207,7 @@ double SourceMap::sourceRegionIntegral(double energy,
    if (s_meanPsf == 0) {
       double ra = m_dataMap->mapCenter().ra();
       double dec = m_dataMap->mapCenter().dec();
-      s_meanPsf = new MeanPsf(ra, dec, energies);
+      s_meanPsf = new MeanPsf(ra, dec, energies, observation);
       s_meanPsf->write("mean_psf.dat");
    }
    if (s_binnedExposure == 0) {
