@@ -153,8 +153,8 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
             double inc = m_scDir.SkyDir::difference(srcDir)*180./M_PI;
             if (inc < 90.) {
                double totalResp 
-                  = ResponseFunctions::totalResponse(m_arrTime, 
-                                                     *trueEnergy, m_energy,
+                  = ResponseFunctions::totalResponse(*trueEnergy, m_energy,
+                                                     m_scDir, m_scXDir,
                                                      srcDir, m_appDir, m_type);
                for (unsigned int k = 0; k < srcs.size(); k++) {
                   double srcDist_val 

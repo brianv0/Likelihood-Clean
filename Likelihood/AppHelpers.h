@@ -23,6 +23,7 @@ namespace dataSubselector {
 namespace Likelihood {
 
    class Observation;
+   class ScData;
 
 /**
  * @class AppHelpers
@@ -83,6 +84,8 @@ protected:
    std::vector<std::string> m_scFiles;
 
    Observation * m_observation;
+
+   ScData * m_scData;
 
    void prepareFunctionFactory();
    void createResponseFuncs();
