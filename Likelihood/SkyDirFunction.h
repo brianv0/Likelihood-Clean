@@ -8,12 +8,13 @@
 #ifndef Likelihood_SkyDirFunction_h
 #define Likelihood_SkyDirFunction_h
 
-#include "optimizers/Function.h"
-#include "optimizers/Arg.h"
-
 #include "astro/SkyDir.h"
 
+#include "optimizers/Arg.h"
+#include "optimizers/Function.h"
+
 namespace Likelihood {
+
 /** 
  * @class SkyDirFunction
  *
@@ -27,7 +28,6 @@ namespace Likelihood {
  * $Header$
  */
     
-//class SkyDirFunction : public optimizers::Function, public astro::SkyDir {
 class SkyDirFunction : public optimizers::Function {
 
 public:
@@ -40,14 +40,8 @@ public:
 
    double value(optimizers::Arg &) const {return 0;}
 
-   /// overloaded setParam methods to include updating of m_dir
-   void setParam(const std::string &paramName, double paramValue, 
-                 bool isFree) {
-      setParameter(paramName, paramValue, isFree);
-      update_m_dir(paramName, paramValue);
-   }
    void setParam(const std::string &paramName, double paramValue) {
-      setParameter(paramName, paramValue);
+      setParam(paramName, paramValue);
       update_m_dir(paramName, paramValue);
    }
 

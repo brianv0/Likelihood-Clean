@@ -145,26 +145,6 @@ optimizers::Parameter SourceModel::getParam(const std::string &paramName,
    throw optimizers::Exception(errorMessage);
 }
 
-void SourceModel::setParamBounds(const std::string &paramName,
-                                 const std::string &funcName,
-                                 const std::string &srcName,
-                                 double lower, double upper) {
-   optimizers::Parameter my_param = getParam(paramName, funcName, srcName);
-   my_param.setBounds(lower, upper);
-   setParam(my_param, funcName, srcName);
-   syncParams();
-}
-
-void SourceModel::setParamScale(const std::string &paramName,
-                                const std::string &funcName,
-                                const std::string &srcName,
-                                double scale) {
-   optimizers::Parameter my_param = getParam(paramName, funcName, srcName);
-   my_param.setScale(scale);
-   setParam(my_param, funcName, srcName);
-   syncParams();
-}
-
 void SourceModel::setParamTrueValue(const std::string &paramName,
                                     const std::string &funcName,
                                     const std::string &srcName,

@@ -78,16 +78,6 @@ public:
                                           const std::string &funcName,
                                           const std::string &srcName) const;
 
-   virtual void setParamBounds(const std::string &paramName,
-                               const std::string &funcName,
-                               const std::string &srcName,
-                               double lower, double upper);
-
-   virtual void setParamScale(const std::string &paramName,
-                              const std::string &funcName,
-                              const std::string &srcName,
-                              double scale);
-
    virtual void setParamTrueValue(const std::string &paramName,
                                   const std::string &funcName,
                                   const std::string &srcName,

@@ -21,7 +21,6 @@ use st_facilities v0*
 use dataSubselector v3*
 
 apply_pattern ST_library option="-no_share *.c "
-macro_append Likelihood_cppflags " -DHAVE_ST_GRAPH "
 apply_pattern ST_pfiles
 
 apply_pattern ST_app name=likelihood
