@@ -1,5 +1,5 @@
 /** 
- *@file Table.cxx
+ * @file Table.cxx
  * @brief Implementation of Table member functions
  * @authors T. Burnett, J. Chiang using code from Y. Ikebe
  *
@@ -110,8 +110,10 @@ void Table::read_FITS_colnames(std::string &filename, int hdu,
    fits_open_file(&fp, filename.c_str(), READONLY, &status);
    fits_report_error(stderr, status);
    if( status != 0) {
-      std::cerr << "Could not open FITS file " << filename << std::endl;
-      return;
+      std::ostringstream errorMessage;
+      errorMessage << "Table::read_FITS_colnames:\n "
+                   << "Could not open FITS file " << filename << "\n";
+      throw LikelihoodException(errorMessage.str());
    }
    
    int hdutype = 0;
