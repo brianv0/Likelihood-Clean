@@ -70,7 +70,7 @@ clean:
 	/bin/rm -f *wrap*
 	/bin/rm -f *.so
 	/bin/rm -f ${module_base}.py*
-	/bin/rm -f ${module_base}.cxx
+	/bin/rm -f ${module_base}_wrap.cxx
 
 very_clean:
 	make clean

@@ -64,6 +64,16 @@ public:
    /// Returns the Singleton object pointer.
    static ScData * instance();
 
+   /// Return a pair of iterators to the ScData intervals enclosing
+   /// the desired start and end times.
+   typedef std::vector<ScNtuple>::iterator Iterator;
+   static std::pair<Iterator, Iterator> bracketInterval(double startTime,
+                                                        double stopTime);
+   static std::pair<Iterator, Iterator> 
+   bracketInterval(const std::pair<double, double> & interval) {
+      return bracketInterval(interval.first, interval.second);
+   }
+
 protected:
 
    ScData(){}
@@ -79,6 +89,9 @@ private:
 
    astro::SkyDir m_zAxis;
    astro::SkyDir m_xAxis;
+
+   static bool less_than_time(const ScNtuple & scDatum1,
+                              const ScNtuple & scDatum2);
 
 };
 
