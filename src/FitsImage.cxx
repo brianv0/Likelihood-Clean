@@ -25,9 +25,9 @@ FitsImage::FitsImage(const std::string &fitsfile)
    }
    std::vector<std::string> axisNames;
    getAxisNames(axisNames);
-   if (axisNames[0].find_first_of("RA") != std::string::npos) {
+   if (axisNames[0].find("RA") != std::string::npos) {
       m_coordSys = "Equatorial";
-   } else if (axisNames[0].find_first_of("GLON") != std::string::npos) {
+   } else if (axisNames[0].find("GLON") != std::string::npos) {
       m_coordSys = "Galactic";
    } else {
       std::ostringstream message;
