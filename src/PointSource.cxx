@@ -29,32 +29,16 @@
 namespace {
    double sourceEffArea(double energy, double time,
                         const astro::SkyDir &srcDir) {
-      Likelihood::ResponseFunctions * respFuncs 
-         = Likelihood::ResponseFunctions::instance();
       Likelihood::ScData * scData = Likelihood::ScData::instance();
    
       astro::SkyDir zAxis = scData->zAxis(time);
       astro::SkyDir xAxis = scData->xAxis(time);
 
-      Likelihood::RoiCuts *roiCuts = Likelihood::RoiCuts::instance();
-      std::vector<latResponse::AcceptanceCone *> cones;
-      cones.push_back(const_cast<latResponse::AcceptanceCone *>
-                      (&(roiCuts->extractionRegion())));
+      Likelihood::PointSource::Aeff aeff(energy, srcDir);
 
-      double myEffArea = 0;
-      std::map<unsigned int, latResponse::Irfs *>::iterator respIt
-         = respFuncs->begin();
-      for ( ; respIt != respFuncs->end(); respIt++) {
-         
-         latResponse::IPsf *psf = respIt->second->psf();
-         latResponse::IAeff *aeff = respIt->second->aeff();
+      double cos_theta = zAxis()*const_cast<astro::SkyDir&>(srcDir)();
 
-         double psf_val = psf->angularIntegral(energy, srcDir, 
-                                               zAxis, xAxis, cones);
-         double aeff_val = aeff->value(energy, srcDir, zAxis, xAxis);
-         myEffArea += psf_val*aeff_val;
-      }
-      return myEffArea;
+      return aeff(cos_theta);
    }
 }
 
@@ -158,12 +142,36 @@ void PointSource::computeExposure(bool verbose) {
    } else {
       computeExposureWithHyperCube(s_energies, m_exposure, verbose);
    }
+   if (verbose) {
+      for (unsigned int i = 0; i < s_energies.size(); i++) {
+         std::cout << s_energies[i] << "  " << m_exposure[i] << std::endl;
+      }
+   }
 }
 
 void PointSource::computeExposureWithHyperCube(std::vector<double> &energies, 
                                                std::vector<double> &exposure, 
                                                bool verbose) {
+   if (!s_haveStaticMembers) {
+      makeEnergyVector();
+      s_haveStaticMembers = true;
+   }
+   exposure.clear();
 
+   astro::SkyDir srcDir = getDir();
+   if (verbose) {
+      std::cerr << "Computing exposure at (" 
+                << srcDir.ra() << ", " 
+                << srcDir.dec() << ")";
+   }
+   for (std::vector<double>::const_iterator it = energies.begin();
+        it != energies.end(); it++) {
+      if (verbose) std::cerr << ".";
+      PointSource::Aeff aeff(*it, srcDir);
+      double exposure_value = (*s_exposure)(srcDir, aeff);
+      exposure.push_back(exposure_value);
+   }
+   if (verbose) std::cerr << "!" << std::endl;
 }
 
 void PointSource::computeExposure(std::vector<double> &energies,
@@ -239,6 +247,36 @@ void PointSource::makeEnergyVector(int nee) {
    s_energies.reserve(nee);
    for (int i = 0; i < nee; i++)
       s_energies.push_back(emin*exp(i*estep));
+}
+
+double PointSource::Aeff::operator()(double cos_theta) const {
+   double theta = acos(cos_theta)*180./M_PI;
+   static double phi;
+
+   Likelihood::RoiCuts *roiCuts = Likelihood::RoiCuts::instance();
+   std::vector<latResponse::AcceptanceCone *> cones;
+   cones.push_back(const_cast<latResponse::AcceptanceCone *>
+                   (&(roiCuts->extractionRegion())));
+
+   Likelihood::ResponseFunctions * respFuncs 
+      = Likelihood::ResponseFunctions::instance();
+
+   double myEffArea = 0;
+   std::map<unsigned int, latResponse::Irfs *>::iterator respIt
+      = respFuncs->begin();
+
+   for ( ; respIt != respFuncs->end(); respIt++) {
+      latResponse::IPsf *psf = respIt->second->psf();
+      latResponse::IAeff *aeff = respIt->second->aeff();
+
+//       double psf_val = psf->angularIntegral(m_energy, m_srcDir,
+//                                             theta, phi, cones);
+      double psf_val = 1.;
+      double aeff_val = aeff->value(m_energy, theta, phi);
+
+      myEffArea += psf_val*aeff_val;
+   }
+   return myEffArea;
 }
 
 } // namespace Likelihood
