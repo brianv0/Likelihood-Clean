@@ -70,6 +70,8 @@ public:
    std::pair<long, double*> getEventColumn(const std::string &colname) const
       {return getColumn(*m_eventData, colname);}
 
+   unsigned long nEvents() const {return m_events.size();}
+
 protected:
 
    //! generalized column access

@@ -21,8 +21,8 @@ private
 
 use facilities v2*
 
-#use python v2* IExternal
-#macro pydir ../python/
+use python v2* IExternal
+macro pydir ../python/
 
 # allow use of internal path
 macro Likelihood_cppflags "" Linux "-I ../src -g -pedantic " WIN32 "/I..\src  /wd4290"
