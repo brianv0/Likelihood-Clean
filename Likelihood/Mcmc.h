@@ -12,7 +12,7 @@
 #include <string>
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Statistic.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -65,7 +65,7 @@ public:
    //! write samples to a FITS binary table
    static void writeSamples(std::string filename, 
                             std::vector< std::vector<double> > &samples)
-      throw(LikelihoodException);
+      throw(Exception);
 
 private:
 

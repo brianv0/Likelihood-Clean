@@ -85,14 +85,14 @@ public:
    unsigned int getNumParams() const {return m_parameter.size();}
 
    void setParamValues(const std::vector<double> &paramVec)
-      throw(LikelihoodException);
+      throw(Exception);
 
    //! do a bit of name mangling to allow for inheritance of setParamValues
    virtual std::vector<double>::const_iterator setParamValues_(
       std::vector<double>::const_iterator);
    
    virtual void setParams(std::vector<Parameter> &params) 
-      throw(LikelihoodException);
+      throw(Exception);
 
    void getParamNames(std::vector<std::string> &names) const
       {fetchParamNames(names, false);}
@@ -105,7 +105,7 @@ public:
    unsigned int getNumFreeParams() const;
 
    void setFreeParamValues(const std::vector<double> &paramVec)
-      throw(LikelihoodException);
+      throw(Exception);
 
    //! note name mangling here too
    virtual std::vector<double>::const_iterator setFreeParamValues_(
@@ -118,7 +118,7 @@ public:
    void getFreeParams(std::vector<Parameter> &) const;
 
    virtual void setFreeParams(std::vector<Parameter> &) 
-      throw(LikelihoodException);
+      throw(Exception);
    
    /////////////////////////////////////
    //! Arg-dependent member functions 
@@ -164,12 +164,12 @@ protected:
 
    //! for subclass constructor use
    void addParam(const std::string &paramName, 
-                 double paramValue, bool isFree) throw(LikelihoodException);
+                 double paramValue, bool isFree) throw(Exception);
 
    void addParam(const std::string &paramName, double paramValue)
-      throw(LikelihoodException) {addParam(paramName, paramValue, true);}
+      throw(Exception) {addParam(paramName, paramValue, true);}
 
-   void addParam(const Parameter &param) throw(LikelihoodException);
+   void addParam(const Parameter &param) throw(Exception);
 
    void fetchParamValues(std::vector<double> &values, bool getFree) const;
    void fetchParamNames(std::vector<std::string> &names, bool getFree) const;

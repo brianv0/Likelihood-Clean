@@ -16,7 +16,7 @@
 #include "PowerLaw.h"
 #include "Gaussian.h"
 #include "AbsEdge.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -54,7 +54,7 @@ public:
    //! they explicitly pass a new Function pointer; otherwise,
    //! the destructor will delete their Function.
    void addFunc(const std::string &name, Function* func, 
-                bool fromClone = true) throw(LikelihoodException);
+                bool fromClone = true) throw(Exception);
 
    Function *makeFunction(const std::string &name);
 

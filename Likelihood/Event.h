@@ -16,7 +16,7 @@
 
 #include "astro/SkyDir.h"
 #include "Likelihood/FitsImage.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -58,7 +58,7 @@ public:
    //! for the named diffuse component
    double diffuseResponse(double energy, 
                           const std::string &diffuseComponent) const
-      throw(LikelihoodException);
+      throw(Exception);
     
    //! This method takes the spatial distribution of the emission for
    //! the DiffuseSource src and computes the event-specific response.

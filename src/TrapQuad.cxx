@@ -10,31 +10,31 @@
 
 #include "Likelihood/TrapQuad.h"
 #include "Likelihood/dArg.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 #include <sstream>
 
 namespace Likelihood {
 
-double TrapQuad::integral() throw(LikelihoodException) {
+double TrapQuad::integral() throw(Exception) {
    if (m_haveFunc) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"
                    << "This operation requires "
                    << "instantiation with abscissa and ordinate vectors.\n";
-      throw LikelihoodException(errorMessage.str());
+      throw Exception(errorMessage.str());
    }
    return compute_integral();
 }
 
 double TrapQuad::integral(double xmin, double xmax, int npts) 
-   throw(LikelihoodException) {
+   throw(Exception) {
    if (!m_haveFunc) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"
                    << "This operation requires "
                    << "instantiation with a pointer to a Function object.\n";
-      throw LikelihoodException(errorMessage.str());
+      throw Exception(errorMessage.str());
    }
    m_x.clear();
    m_y.clear();
@@ -50,13 +50,13 @@ double TrapQuad::integral(double xmin, double xmax, int npts)
 }
 
 double TrapQuad::integral(std::vector<double> &xvals) 
-   throw(LikelihoodException) {
+   throw(Exception) {
    if (!m_haveFunc) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"
                    << "This operation requires "
                    << "instantiation with a pointer to a Function object.\n";
-      throw LikelihoodException(errorMessage.str());
+      throw Exception(errorMessage.str());
    }
    m_x = xvals;
    int npts = m_x.size();
