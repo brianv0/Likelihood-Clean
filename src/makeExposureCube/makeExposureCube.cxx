@@ -11,7 +11,8 @@
 
 #include "facilities/Util.h"
 
-#include "tuple/ITable.h"
+//#include "tuple/ITable.h"
+#include "tip/IFileSvc.h"
 
 #include "hoops/hoops.h"
 #include "hoops/hoops_prompt_group.h"
@@ -32,9 +33,13 @@ int main(int argc, char * argv[]) {
                                      pars["cos_theta step"], 
                                      pars["ROI_file"]);
 
-// Access the Spacecraft data using as an ITable object.
-   tuple::ITable::Factory & factory = *tuple::ITable::Factory::instance();
-   tuple::ITable & scData = *factory(pars["Spacecraft file"], "Ext1");
+// // Access the Spacecraft data using as an ITable object.
+//    tuple::ITable::Factory & factory = *tuple::ITable::Factory::instance();
+//    tuple::ITable & scData = *factory(pars["Spacecraft file"], "Ext1");
+
+// Access the Spacecraft data using a tip::Table object.
+   tip::Table * scData = 
+      tip::IFileSvc::instance().editTable(pars["Spacecraft file"], "Ext1");
 
 // This performs the sums over the scData rows.
    exposure.load(scData);
