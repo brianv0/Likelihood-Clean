@@ -12,6 +12,7 @@
 #include "optimizers/dArg.h"
 
 #include "Likelihood/CountsMap.h"
+#include "Likelihood/Pixel.h"
 #include "Likelihood/SourceModel.h"
 
 namespace Likelihood {
@@ -50,6 +51,7 @@ private:
 
    std::vector<astro::SkyDir> m_pixelDirs;
    std::vector<double> m_pixelSolidAngles;
+   std::vector<Pixel> m_pixels;
    std::vector<double> m_energies;
 
 };

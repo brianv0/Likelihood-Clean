@@ -86,6 +86,11 @@ public:
                            const astro::SkyDir &dir, int eventType,
                            const std::string &paramName) const;
 
+   virtual double fluxDensityDeriv(double inclination, double phi, 
+                                   double energy, double separation, 
+                                   int evtType, const std::string & paramName)
+      const;
+
    /// Predicted number of photons given RoiCuts and ScData
    virtual double Npred();
 
