@@ -150,6 +150,8 @@ int main(int iargc, char* argv[]) {
       responseIds["BACK"].push_back("DC1::Back");
       responseIds["FRONT/BACK"].push_back("DC1::Front");
       responseIds["FRONT/BACK"].push_back("DC1::Back");
+      responseIds["GLAST25"].push_back("Glast25::Front");
+      responseIds["GLAST25"].push_back("Glast25::Back");
 
       if (responseIds.count(responseFuncs)) {
          std::vector<std::string> &resps = responseIds[responseFuncs];
@@ -315,9 +317,18 @@ void print_fit_results(LogLike &logLike, const std::vector<double> &errors) {
    for (unsigned int i = 0; i < srcNames.size(); i++) {
       if (srcNames[i].find("Diffuse") == std::string::npos) {
          Source * src = logLike.deleteSource(srcNames[i]);
-         optimizers::Drmngb opt(logLike);
-         opt.find_min(verbose, tol);
-         TsValues[srcNames[i]] = 2.*(logLike_value - logLike.value());
+         if (logLike.getNumFreeParams() > 0) {
+// Don't fit if there are no free parameters remaining.
+            optimizers::Drmngb opt(logLike);
+            opt.find_min(verbose, tol);
+            TsValues[srcNames[i]] = 2.*(logLike_value - logLike.value());
+         } else {
+// // Not sure this is correct in the case where the model for the null
+// // hypothesis is truly empty.
+//             TsValues[srcNames[i]] = 2.*logLike_value;
+// A better default value?
+            TsValues[srcNames[i]] = 0.;
+         }            
          logLike.addSource(src);
       }
    }
