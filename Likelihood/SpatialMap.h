@@ -60,6 +60,9 @@ private:
    double m_raMin, m_raMax;
    std::vector<double> m_dec;
    double m_decMin, m_decMax;
+
+   std::string m_coordSys;
+
    std::vector<double> m_image;
 
    void init();
