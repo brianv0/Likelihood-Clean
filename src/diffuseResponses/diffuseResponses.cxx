@@ -235,7 +235,7 @@ void diffuseResponses::setGaussianParams(const Event & event,
    }
    params[0] = integral;
    params[1] = eavg/integral;   // mean value
-   params[2] = sqrt(e2avg/integral - params[1]*params[1]);  // sigma
+   params[2] = sqrt(e2avg/integral - eavg*eavg/integral/integral);  // sigma
 }
 
 void diffuseResponses::getDiffuseSources() {
