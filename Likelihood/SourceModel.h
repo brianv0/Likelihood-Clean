@@ -66,7 +66,7 @@ public:
                                const std::string &funcName,
                                const std::string &srcName,
                                double lower, double upper)
-      throw(ParameterNotFound, OutOfBounds);
+      throw(ParameterNotFound, Parameter::OutOfBounds);
 
    virtual void setParamScale(const std::string &paramName,
                               const std::string &funcName,
@@ -77,7 +77,7 @@ public:
                                   const std::string &funcName,
                                   const std::string &srcName,
                                   double paramValue) 
-      throw(ParameterNotFound, OutOfBounds);
+      throw(ParameterNotFound, Parameter::OutOfBounds);
 
    virtual void setParams(std::vector<Parameter> &params) 
       throw(LikelihoodException, ParameterNotFound) 
