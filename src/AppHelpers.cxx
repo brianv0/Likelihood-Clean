@@ -46,7 +46,8 @@ void AppHelpers::prepareFunctionFactory() {
 }
 
 void AppHelpers::setRoi() {
-   if (m_pars["evfile"] == "none" || m_pars["evfile"] == "") {
+   std::string event_file = m_pars["evfile"];
+   if (event_file == "none" || event_file == "") {
       std::string roi_file = m_pars["ROI_file"];
       st_facilities::Util::file_ok(roi_file);
       RoiCuts::setCuts(roi_file);
