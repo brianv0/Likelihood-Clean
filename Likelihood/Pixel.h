@@ -29,7 +29,7 @@ namespace Likelihood {
  * predictions for numbers of counts and derivatives of the counts
  * prediction wrt model parameters.  The extrinsic quantities passed
  * to the public methods are the bounds of the energy band of interest
- * (see GOF, p. 195)
+ * (GOF, p. 195).
  *
  * @author J. Chiang
  *

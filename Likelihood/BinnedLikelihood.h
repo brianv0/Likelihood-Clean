@@ -28,14 +28,7 @@ public:
 
    BinnedLikelihood(const CountsMap & dataMap);
                  
-   virtual ~BinnedLikelihood() throw() {
-      try {
-         delete m_modelMap;
-      } catch (std::exception & eObj) {
-         std::cerr << eObj.what() << std::endl;
-      } catch (...) {
-      }
-   }
+   virtual ~BinnedLikelihood() throw() {}
 
    virtual double value(optimizers::Arg &) const;
 
@@ -44,15 +37,22 @@ public:
       return value(dummy);
    }
 
+   virtual void getFreeDerivs(std::vector<double> & derivs) const;
+
+   virtual std::vector<double>::const_iterator setParamValues_(
+      std::vector<double>::const_iterator);
+   virtual std::vector<double>::const_iterator setFreeParamValues_(
+      std::vector<double>::const_iterator);
+
 private:
 
    const CountsMap & m_dataMap;
-   CountsMap * m_modelMap;
 
-   std::vector<astro::SkyDir> m_pixelDirs;
-   std::vector<double> m_pixelSolidAngles;
    std::vector<Pixel> m_pixels;
    std::vector<double> m_energies;
+
+   mutable std::vector<double> m_model;
+   mutable bool m_modelIsCurrent;
 
 };
 
