@@ -108,6 +108,10 @@ void likelihood::run() {
    m_helper->setRoi();
    if (m_statistic == "BINNED") {
    } else {
+      std::string exposureFile = m_pars["exposure_map_file"];
+      if (exposureFile != "none") {
+         m_helper->checkCuts(m_pars["evfile"], "EVENTS", exposureFile, "");
+      }
       m_helper->readScData();
       m_helper->readExposureMap();
       std::string eventFile = m_pars["evfile"];

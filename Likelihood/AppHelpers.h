@@ -53,6 +53,9 @@ public:
 
    const std::vector<std::string> & scFiles() const {return m_scFiles;}
 
+   static void checkCuts(const std::string & file1, const std::string ext1,
+                         const std::string & file2, const std::string ext2);
+
 protected:
 
    st_app::AppParGroup & m_pars;
