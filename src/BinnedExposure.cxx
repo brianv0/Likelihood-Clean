@@ -20,7 +20,6 @@
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/Observation.h"
-#include "Likelihood/ResponseFunctions.h"
 
 #include "Verbosity.h"
 

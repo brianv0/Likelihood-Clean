@@ -20,8 +20,6 @@
 
 #include "irfInterface/Irfs.h"
 
-#include "map_tools/Exposure.h"
-
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/TrapQuad.h"
@@ -442,7 +440,7 @@ double PointSource::Aeff::operator()(double cos_theta) const {
                                             theta, phi, s_cones);
       double aeff_val = aeff->value(m_energy, theta, phi);
 
-      if (ResponseFunctions::useEdisp()) {
+      if (m_respFuncs.useEdisp()) {
          irfInterface::IEdisp *edisp = respIt->second->edisp();
          double edisp_val = edisp->integral(s_emin, s_emax, m_energy, 
                                             theta, phi);
