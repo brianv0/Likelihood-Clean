@@ -32,7 +32,9 @@ DiffuseSource::DiffuseSource(optimizers::Function* spatialDist,
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
 
-   if (!s_haveStaticMembers) {
+   if (!s_haveStaticMembers 
+       || RoiCuts::instance()->getEnergyCuts().first != s_energies.front()
+       || RoiCuts::instance()->getEnergyCuts().second != s_energies.back()) {
       makeEnergyVector();
       s_haveStaticMembers = true;
    }
@@ -137,9 +139,11 @@ void DiffuseSource::makeEnergyVector(int nee) {
    double emax = (roiCuts->getEnergyCuts()).second;
    double estep = log(emax/emin)/(nee-1);
    
+   s_energies.clear();
    s_energies.reserve(nee);
-   for (int i = 0; i < nee; i++)
+   for (int i = 0; i < nee; i++) {
       s_energies.push_back(emin*exp(i*estep));
+   }
 }
 
 } // namespace Likelihood
