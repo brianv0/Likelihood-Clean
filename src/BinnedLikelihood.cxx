@@ -217,7 +217,7 @@ void BinnedLikelihood::readSourceMaps(std::string filename) {
          m_srcMaps[*name] = new SourceMap(m_srcMapsFile, *name);
       }
    }
-// Generate needed maps that not available in the file.
+// Generate needed maps that are not available in the file.
    for (name = srcNames.begin() ; name != srcNames.end(); ++name) {
       if (!m_srcMaps.count(*name)) {
          Source * src = getSource(*name);

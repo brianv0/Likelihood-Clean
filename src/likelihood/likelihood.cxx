@@ -218,7 +218,7 @@ void likelihood::readSourceModel() {
       if (m_statistic != "BINNED") {
          m_logLike->computeEventResponses();
       } else {
-         dynamic_cast<BinnedLikelihood *>(m_logLike)->saveSourceMaps();
+//         dynamic_cast<BinnedLikelihood *>(m_logLike)->saveSourceMaps();
       }
    } else {
 // Re-read the Source model from the xml file, allowing only for 
