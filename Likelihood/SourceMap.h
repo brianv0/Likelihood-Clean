@@ -77,6 +77,8 @@ private:
 /// sourceRegionIntegral for diffuse sources
    std::vector<astro::SkyDir> m_srcDirs;
 
+   std::vector<double> m_srcStrengths;
+
    class Aeff : public Pixel::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir,
@@ -95,7 +97,7 @@ private:
 
    double sourceRegionIntegral(Source * src, double energy) const;
 
-   void computeSrcDirs(const Pixel & pixel);
+   void computeSrcDirs(const Pixel & pixel, Source * src);
 
    void prepareAngleArrays(int nmu=100, int nphi=50);
 
