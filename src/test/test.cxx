@@ -63,6 +63,8 @@
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/TrapQuad.h"
 
+#include "Verbosity.h"
+
 #include "SourceData.h"
 #include "XmlDiff.h"
 
@@ -147,6 +149,7 @@ private:
 #define ASSERT_EQUALS(X, Y) CPPUNIT_ASSERT(fabs( (X - Y)/Y ) < m_fracTol)
 
 void LikelihoodTests::setUp() {
+   Verbosity::instance(0);
 // Get root path to test data.
    const char * root = std::getenv("LIKELIHOODROOT");
    if (!root) {  //use relative path from cmt directory
