@@ -11,6 +11,9 @@
 
 #include <vector>
 #include <string>
+#include <valarray>
+#include "Likelihood/Function.h"
+#include "Likelihood/FitsImage.h"
 
 namespace Likelihood {
 
@@ -22,8 +25,8 @@ namespace Likelihood {
  * class for integrating the response functions over the spatial
  * distributions of those Sources.
  *
- * The exposure map can be read in from an existing file or computed
- * ab initio given the ROI cuts and spacecraft data.
+ * The exposure map can be read in from an existing file (or perhaps 
+ * computed ab initio given the ROI cuts and spacecraft data).
  *
  * @author J. Chiang
  *
@@ -35,15 +38,23 @@ class ExposureMap {
 
 public:
 
-   ~ExposureMap() {}
-
-   void fetchRA(std::vector<double> &ra) {ra = s_ra;}
-   void fetchDec(std::vector<double> &dec) {dec = s_dec;}
-   void fetchExposure(std::vector<double> &exposure) {exposure = s_exposure;}
-
-   static void readExposureFile(std::string exposureFile);
+   ~ExposureMap() {} //{delete s_mapData;}
 
    static ExposureMap * instance();
+
+   //! Read exposure map FITS file and compute the static data members.
+   static void readExposureFile(std::string exposureFile);
+
+   void integrateSpatialDist(std::vector<double> &energies, 
+                             Function * spatialDist, 
+                             std::vector<double> &exposure);
+
+   void fetchRA(std::valarray<double> &ra) 
+      {ra.resize(s_ra.size()); ra = s_ra;}
+   void fetchDec(std::valarray<double> &dec) 
+      {dec.resize(s_ra.size()); dec = s_dec;}
+   void fetchEnergies(std::vector<double> &energies) {energies = s_energies;}
+   void fetchExposure(std::vector< std::valarray<double> > &exposure);
 
 protected:
 
@@ -53,9 +64,21 @@ private:
 
    static ExposureMap * s_instance;
 
-   static std::vector<double> s_ra;
-   static std::vector<double> s_dec;
-   static std::vector<double> s_exposure;
+   //! s_ra and s_dec are valarrays of size NAXIS1*NAXIS2.
+   //! Traversing these valarrays in tandem yields all coordinate pairs
+   //! of the image plane.
+   static std::valarray<double> s_ra;
+   static std::valarray<double> s_dec;
+
+   //! True photon energies associated with each image plane.
+   static std::vector<double> s_energies;
+
+   //! s_exposure is a vector of size NAXIS3, corresponding to the
+   //! number of true energy values identified with each plane in the
+   //! exposure data cube.
+   static std::vector< std::valarray<double> > s_exposure;
+
+   static FitsImage *s_mapData;
 };
 
 } // namespace Likelihood

@@ -70,12 +70,11 @@ Source *SourceFactory::makeSource(const std::string &name) {
    return m_prototypes[name]->clone();
 }
 
-void SourceFactory::listSources() {
-   std::cout << "SourceFactory Sources: " << std::endl;
-   std::map<std::string, Source *>::const_iterator 
-      it = m_prototypes.begin();
+void SourceFactory::fetchSrcNames(std::vector<std::string> &srcNames) {
+   if (!srcNames.empty()) srcNames.clear();
+   std::map<std::string, Source *>::const_iterator it = m_prototypes.begin();
    for (; it != m_prototypes.end(); it++)
-      std::cout << it->first << std::endl;
+      srcNames.push_back(it->first);
 }
 
 } // namespace Likelihood
