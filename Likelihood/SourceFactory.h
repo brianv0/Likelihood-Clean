@@ -25,7 +25,9 @@ namespace optimizers {
 
 namespace Likelihood {
 
+#ifndef SWIG
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
+#endif
 
 /** 
  * @class SourceFactory
@@ -73,6 +75,7 @@ private:
 
    bool m_requireExposure;
 
+#ifndef SWIG
    Source *makePointSource(const DOMElement * spectrum,
                            const DOMElement * spatialModel,
                            optimizers::FunctionFactory & funcFactory);
@@ -83,6 +86,7 @@ private:
 
    void setSpectrum(Source *src, const DOMElement *spectrum,
                     optimizers::FunctionFactory & funcFactory);
+#endif
 
 };
 

@@ -111,10 +111,13 @@ double MeanPsf::Psf::operator()(double cosTheta) const {
                                       s_phi);
          double psf_val = aeffValue*psfValue;
          if (psf_val < 0) {
-//             std::cout << m_separation << "  "
-//                       << m_energy << "  "
-//                       << inclination << "  "
-//                       << s_phi << std::endl;
+            if (inclination > 69.) {  // ugly kluge
+               return 0;
+            }
+            std::cerr << "separation: " << m_separation << "  "
+                      << "energy: " << m_energy << "  "
+                      << "inclination: " <<inclination << "  "
+                      << "phi: " << s_phi << std::endl;
             throw std::runtime_error("MeanPsf::Psf::operator(): psf_val < 0");
          }
          return psf_val;
