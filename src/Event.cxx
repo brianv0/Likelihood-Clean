@@ -60,7 +60,6 @@ namespace {
       return myResponse;
    }
 
-
 }
 
 namespace Likelihood {
