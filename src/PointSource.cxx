@@ -164,13 +164,13 @@ double PointSource::NpredDeriv(const std::string &paramName) {
    }
 }
 
-void PointSource::computeExposure(int verbose) {
+void PointSource::computeExposure(bool verbose) {
    computeExposure(s_energies, m_exposure, verbose);
 }
 
 void PointSource::computeExposure(std::vector<double> &energies,
                                   std::vector<double> &exposure,
-                                  int verbose) {
+                                  bool verbose) {
    ScData *scData = ScData::instance();
    RoiCuts *roiCuts = RoiCuts::instance();
 
