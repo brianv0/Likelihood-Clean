@@ -7,9 +7,11 @@
  */
 
 #include <cassert>
-#include <vector>
-#include <string>
 #include <cmath>
+
+#include <algorithm>
+#include <string>
+#include <vector>
 
 #include "facilities/Util.h"
 
@@ -126,6 +128,7 @@ void ScData::readData(std::string file, int hdu, bool clear) {
 
 astro::SkyDir &ScData::zAxis(double time) {
    int indx = static_cast<int>((time - vec[0].time)/s_tstep);
+   indx = std::min(static_cast<unsigned int>(indx), vec.size()-2);
    double frac = (time - vec[indx].time)/s_tstep;
    Hep3Vector zDir = frac*(vec[indx+1].zAxis.dir() - vec[indx].zAxis.dir())
       + vec[indx].zAxis.dir();
