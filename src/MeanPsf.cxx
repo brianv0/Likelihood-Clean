@@ -81,7 +81,7 @@ void MeanPsf::createLogArray(double xmin, double xmax, unsigned int npts,
 double MeanPsf::Psf::s_phi(0);
 
 double MeanPsf::Psf::operator()(double cosTheta) const {
-   double inclination = acos(cosTheta);
+   double inclination = acos(cosTheta)*180./M_PI;
    std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
       = ResponseFunctions::instance()->begin();
    for ( ; respIt != ResponseFunctions::instance()->end(); ++respIt) {
