@@ -18,12 +18,13 @@
 #include "optimizers/Dom.h"
 #include "optimizers/Function.h"
 
-#include "Likelihood/SkyDirFunction.h"
-#include "Likelihood/TrapQuad.h"
-#include "Likelihood/RoiCuts.h"
-#include "Likelihood/SpatialMap.h"
-#include "Likelihood/Source.h"
 #include "Likelihood/FluxBuilder.h"
+#include "Likelihood/MapCubeFunction.h"
+#include "Likelihood/RoiCuts.h"
+#include "Likelihood/SkyDirFunction.h"
+#include "Likelihood/Source.h"
+#include "Likelihood/SpatialMap.h"
+#include "Likelihood/TrapQuad.h"
 
 namespace Likelihood {
 
@@ -116,6 +117,12 @@ void FluxBuilder::getSourceType(Source &src, std::string & srcType) {
       if (basename == "gas.cel") {
          srcType = "GalDiffuse";
       }      
+//    } else if (srcFuncs.count("SpatialDist")
+//               && srcFuncs["SpatialDist"]->genericName() == "MapCubeFunction") {
+//       std::string fitsFile 
+//          = dynamic_cast<MapCubeFunction*>(srcFuncs["SpatialDist"])->fitsFile();
+//       std::string basename = facilities::Util::basename(fitsFile.c_str());
+//       srcType = "MapCubeFunction";
    } else {
       throw Exception(std::string("Likelihood::FluxBuilder::getSourceType:\n")
                       + "unknown source type");
@@ -126,10 +133,12 @@ void FluxBuilder::getSourceType(Source &src, std::string & srcType) {
 DOMElement * FluxBuilder::gammaSpectrum(optimizers::Function & spectrum) {
    
    DOMElement * specElt = optimizers::Dom::createElement(m_doc, "spectrum");
-   xmlBase::Dom::addAttribute(specElt, std::string("escale"), std::string("MeV"));
+   xmlBase::Dom::addAttribute(specElt, std::string("escale"),
+                              std::string("MeV"));
 
    DOMElement * partElt = optimizers::Dom::createElement(m_doc, "particle");
-   xmlBase::Dom::addAttribute(partElt, std::string("name"), std::string("gamma"));
+   xmlBase::Dom::addAttribute(partElt, std::string("name"),
+                              std::string("gamma"));
 
 // Determine spectral type and set parameter values.
    DOMElement * spectralTypeElt 
@@ -181,7 +190,8 @@ DOMElement * FluxBuilder::galDiffuse(Source & src) {
    Source::FuncMap & srcFuncs = src.getSrcFuncs();
 
    DOMElement * specElt = optimizers::Dom::createElement(m_doc, "spectrum");
-   xmlBase::Dom::addAttribute(specElt, std::string("escale"), std::string("MeV"));
+   xmlBase::Dom::addAttribute(specElt, std::string("escale"),
+                              std::string("MeV"));
 
    DOMElement * specClassElt = optimizers::Dom::createElement(m_doc,
                                                               "SpectrumClass");

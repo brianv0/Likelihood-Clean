@@ -59,7 +59,7 @@ public:
       return new SpatialMap(*this);
    }
 
-   std::string &fitsFile() {return m_fitsFile;}
+   const std::string & fitsFile() const {return m_fitsFile;}
 
 private:
 
