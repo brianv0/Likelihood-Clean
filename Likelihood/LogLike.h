@@ -15,7 +15,10 @@
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/logSrcModel.h"
 #include "Likelihood/Npred.h"
-#include "Likelihood/Table.h"
+
+namespace latResponse {
+   class Table;
+}
 
 namespace Likelihood {
 
@@ -75,14 +78,14 @@ public:
 protected:
 
    /// Generalized column access
-   std::pair<long, double*> getColumn(const Table &tableData, 
+   std::pair<long, double*> getColumn(const latResponse::Table &tableData, 
                                       const std::string &colname) const
       throw(optimizers::Exception);
 
    /// Event data; read from m_eventFile, stored in Table form
    std::string m_eventFile;
    int m_eventHdu;
-   Table *m_eventData;
+   latResponse::Table *m_eventData;
 
 private:
 
