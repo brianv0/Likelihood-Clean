@@ -42,5 +42,6 @@ use SwigPolicy v*
 
 path_remove PYTHONPATH Likelihood
 path_append PYTHONPATH $(LIKELIHOODROOT)/$(BINDIR)
+path_append PYTHONPATH $(LIKELIHOODROOT)/python
 
 apply_pattern swig_module name="pyLike"
