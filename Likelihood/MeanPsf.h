@@ -24,12 +24,14 @@ class MeanPsf {
 
 public:
 
-   MeanPsf(double ra, double dec) 
-      : m_srcDir(ra, dec, astro::SkyDir::EQUATORIAL) {
+   MeanPsf(double ra, double dec, const std::vector<double> & energies) 
+      : m_srcDir(ra, dec, astro::SkyDir::EQUATORIAL),
+        m_energies(energies) {
       init();
    }
 
-   MeanPsf(const astro::SkyDir & srcDir) : m_srcDir(srcDir) {
+   MeanPsf(const astro::SkyDir & srcDir, const std::vector<double> & energies) 
+      : m_srcDir(srcDir), m_energies(energies) {
       init();
    }
 
@@ -41,10 +43,12 @@ public:
 
 private:
 
-   static std::vector<double> s_energies;
    static std::vector<double> s_separations;
 
    astro::SkyDir m_srcDir;
+
+   std::vector<double> m_energies;
+
    std::vector<double> m_psfValues;
 
    void init();
