@@ -129,8 +129,8 @@ protected:
    void fetchParamValues(std::vector<double> &values, bool getFree) const;
    void fetchParamNames(std::vector<std::string> &names, bool getFree) const;
 
-   void fetchDerivs(Arg &x , std::vector<double> &derivs, 
-		    bool getFree) const;
+   virtual void fetchDerivs(Arg &x ,std::vector<double> &derivs, 
+                            bool getFree) const;
 
    unsigned int m_maxNumParams;
 
