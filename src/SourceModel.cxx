@@ -30,7 +30,6 @@
 #include "Likelihood/Exception.h"
 #include "Likelihood/ExposureCube.h"
 #include "Likelihood/ExposureMap.h"
-#include "Likelihood/RoiCuts.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SourceFactory.h"
