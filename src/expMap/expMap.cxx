@@ -12,14 +12,12 @@
 
 #include <stdexcept>
 
-#include "st_app/IApp.h"
-#include "hoops/hoops_prompt_group.h"
-
 #include "Likelihood/AppBase.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/Util.h"
+#include "Likelihood/StApp.h"
 
 using namespace Likelihood;
 
@@ -43,22 +41,7 @@ private:
    void createExposureMap();
 };
 
-/**
- * @class app
- * @brief Class (and object declaration) of boiler-plate code expected 
- * by st_app.
- */
-class app : public st_app::IApp {
-public:
-   app() : st_app::IApp("expMap") {}
-   virtual void run() {
-      hoopsPrompt();
-      hoopsSave();
-      hoops::IParGroup & pars = hoopsGetParGroup();
-      ExpMap expMapObject(pars);
-      expMapObject.run();
-   }
-} my_app;
+StApp<ExpMap> my_application("expMap");
 
 void ExpMap::run() {
    setSourceRegion();

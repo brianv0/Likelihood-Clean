@@ -12,9 +12,6 @@
 #include <fstream>
 #include <iostream>
 
-#include "st_app/IApp.h"
-#include "hoops/hoops_prompt_group.h"
-
 #include "optimizers/Drmngb.h"
 #include "optimizers/Lbfgs.h"
 #include "optimizers/Minuit.h"
@@ -24,6 +21,7 @@
 #include "Likelihood/OptEM.h"
 #include "Likelihood/Source.h"
 #include "Likelihood/Util.h"
+#include "Likelihood/StApp.h"
 
 using namespace Likelihood;
 
@@ -67,22 +65,7 @@ private:
 
 };
 
-/**
- * @class app
- * @brief Class (and object declaration) of boiler-plate code expected 
- * by st_app.
- */
-class app : public st_app::IApp {
-public:
-   app() : st_app::IApp("likelihood") {}
-   virtual void run() {
-      hoopsPrompt();
-      hoopsSave();
-      hoops::IParGroup & pars = hoopsGetParGroup();
-      likelihood likelihoodObject(pars);
-      likelihoodObject.run();
-   }
-} my_app;
+StApp<likelihood> my_application("likelihood");
 
 void likelihood::run() {
    readExposureMap();
