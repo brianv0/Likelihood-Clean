@@ -23,7 +23,6 @@
           name       CDATA   #REQUIRED 
           value      CDATA   #REQUIRED 
 	  error      CDATA   " "
-	  unit       CDATA   " "
 	  min        CDATA   #REQUIRED 
 	  max        CDATA   #REQUIRED 
 	  free       CDATA   #REQUIRED 
