@@ -8,6 +8,7 @@
 #ifndef Event_h
 #define Event_h
 
+#include <iostream>
 #include <vector>
 #include <string>
 #include <map>
