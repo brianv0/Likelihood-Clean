@@ -55,8 +55,8 @@ Win32 " $(map_toolsDir)/image.lib "
 # applications
 application test_Likelihood test/test.cxx test/SourceData.cxx test/XmlDiff.cxx
 #application old_tests test/main.cxx
-#application likelihoodApp test/likelihood.cxx
-#application TsMap test/TsMap.cxx
-#application expMap test/expMap.cxx
+application likelihoodApp test/likelihood.cxx
+application TsMap test/TsMap.cxx
+application expMap test/expMap.cxx
 
 application makeExposureCube test/makeExposureCube.cxx

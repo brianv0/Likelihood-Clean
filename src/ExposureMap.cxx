@@ -179,7 +179,11 @@ void ExposureMap::computeMap(std::string filename, double sr_radius,
          ptsrc.setDir(dir.ra(), dir.dec(), updateExposure);
          std::vector<double> exposure;
          int verbose = 0;
-         ptsrc.computeExposure(energies, exposure, verbose);
+         if (PointSource::s_exposure == 0) {
+            ptsrc.computeExposure(energies, exposure, verbose);
+         } else {
+            ptsrc.computeExposureWithHyperCube(energies, exposure, verbose);
+         }
          for (int k = 0; k < nenergies; k++)
             exposureCube[k][indx] = exposure[k];
          indx++;
