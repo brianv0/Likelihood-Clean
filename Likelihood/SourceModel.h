@@ -207,12 +207,10 @@ private:
 
    bool m_verbose;
 
-   void writeFitsFile(const std::string &filename, 
-                      std::vector<double> &ras,
-                      std::vector<double> &decs,
-                      std::vector<double> &energies,
-                      std::vector<double> &map) const;
-      
+   double computeSolidAngle(std::vector<double>::const_iterator lon,
+                            std::vector<double>::const_iterator lat,
+                            const astro::SkyProj & proj) const;
+
 };
 
 } // namespace Likelihood

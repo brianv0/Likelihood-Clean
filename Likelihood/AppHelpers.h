@@ -49,10 +49,13 @@ public:
    void readExposureMap();
    void setRoi();
 
+   const std::vector<std::string> & scFiles() const {return m_scFiles;}
+
 protected:
 
    st_app::AppParGroup & m_pars;
    optimizers::FunctionFactory * m_funcFactory;
+   std::vector<std::string> m_scFiles;
 
    void prepareFunctionFactory();
    void readScData();
