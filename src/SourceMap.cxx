@@ -95,7 +95,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap)
                value += ExposureCube::instance()->value(pixel->dir(), aeff);
             }
          } else if (haveDiffuseSource) {
-            value = sourceRegionIntegral(src, *pixel, *energy);
+            value = sourceRegionIntegral(src, *energy);
          } else {
             value = 0;
          }
@@ -186,8 +186,7 @@ double SourceMap::Aeff::operator()(double costheta) const {
 
 }
 
-double SourceMap::sourceRegionIntegral(Source * src, const Pixel & pixel,
-                                       double energy) const {
+double SourceMap::sourceRegionIntegral(Source * src, double energy) const {
    DiffuseSource * diffuseSrc = dynamic_cast<DiffuseSource *>(src);
    std::vector<double> energies;
    m_dataMap->getAxisVector(2, energies);

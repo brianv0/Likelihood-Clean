@@ -93,8 +93,7 @@ private:
    static std::vector<double> s_mu;
    static std::vector<double> s_theta;
 
-   double sourceRegionIntegral(Source * src, const Pixel & pixel,
-                               double energy) const;
+   double sourceRegionIntegral(Source * src, double energy) const;
 
    void computeSrcDirs(const Pixel & pixel);
 
