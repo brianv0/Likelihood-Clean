@@ -7,6 +7,10 @@
  *  $Header$
  */
 
+#ifdef TRAP_FPE
+#include <fenv.h>
+#endif
+
 #include <sstream>
 
 #include "facilities/Util.h"
@@ -33,7 +37,7 @@ private:
    Likelihood::LikeExposure * m_exposure;
 
    void setUp();
-   void createDataCube(hoops::IParGroup & pars);
+   void createDataCube();
    void addRoiHistory(map_tools::ExposureHyperCube & cube);
    void tearDown();
 
@@ -42,6 +46,9 @@ private:
 st_app::IApp * my_application = new ExposureCube();
 
 void ExposureCube::setUp() {
+#ifdef TRAP_FPE
+   feenableexcept (FE_INVALID|FE_DIVBYZERO|FE_OVERFLOW);
+#endif
    hoopsPrompt();
    hoopsSave();
 }
@@ -50,7 +57,8 @@ void ExposureCube::tearDown() {
    delete m_exposure;
 }
 
-void ExposureCube::createDataCube(hoops::IParGroup & pars) {
+void ExposureCube::createDataCube() {
+   hoops::IParGroup & pars = hoopsGetParGroup();
    m_exposure = new Likelihood::LikeExposure(pars["pixel size"], 
                                              pars["cos_theta step"], 
                                              pars["ROI_file"]);
@@ -67,9 +75,9 @@ void ExposureCube::addRoiHistory(map_tools::ExposureHyperCube & cube) {
 }
 
 void ExposureCube::run() {
-   setUp();
    hoops::IParGroup & pars = hoopsGetParGroup();
-   createDataCube(pars);
+   setUp();
+   createDataCube();
    map_tools::ExposureHyperCube cube(*m_exposure, pars["Output file"]);
    addRoiHistory(cube);
    tearDown();
