@@ -31,7 +31,6 @@
 #endif // HAVE_OPT_PP
 
 #include "Likelihood/AppHelpers.h"
-#include "Likelihood/BinnedExposure.h"
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/ExposureCube.h"
@@ -191,8 +190,8 @@ void likelihood::createStatistic() {
       m_dataMap = new CountsMap(countsMapFile);
       m_logLike = new BinnedLikelihood(*m_dataMap, countsMapFile);
       std::string binnedMap = m_pars["binned_exposure_map"];
-      if (binnedMap != "none" || binnedMap != "") {
-         SourceMap::setBinnedExposure(new BinnedExposure(binnedMap));
+      if (binnedMap != "none" && binnedMap != "") {
+         SourceMap::setBinnedExposure(binnedMap);
       }
       return;
    } else if (m_statistic == "OPTEM") {
