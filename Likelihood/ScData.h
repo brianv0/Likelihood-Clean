@@ -64,6 +64,7 @@ public:
    /// Returns the Singleton object pointer.
    static ScData * instance();
 
+#ifndef SWIG
    /// Return a pair of iterators to the ScData intervals enclosing
    /// the desired start and end times.
    typedef std::vector<ScNtuple>::iterator Iterator;
@@ -73,6 +74,7 @@ public:
    bracketInterval(const std::pair<double, double> & interval) {
       return bracketInterval(interval.first, interval.second);
    }
+#endif // SWIG
 
 protected:
 
