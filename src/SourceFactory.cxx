@@ -9,7 +9,7 @@
 
 #include "Likelihood/SpectrumFactory.h"
 #include "Likelihood/SourceFactory.h"
-
+#include <assert.h>
 namespace Likelihood {
 
 SourceFactory::SourceFactory() {

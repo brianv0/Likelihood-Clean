@@ -9,6 +9,7 @@
 #include "fitsio.h"
 #include <iostream>
 #include "Likelihood/FitsImage.h"
+#include <assert.h>
 
 namespace Likelihood {
 
