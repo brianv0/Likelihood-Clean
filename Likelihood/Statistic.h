@@ -35,6 +35,9 @@ public:
    virtual double operator()(const std::vector<double> &paramVec) 
       {return value(paramVec);};
 
+   //! non-argument version of getFreeDerivs
+   virtual void getFreeDerivs(std::vector<double> &) = 0;
+
    void readEventData(const std::string &eventFile, 
                       const std::string &colnames, int hdu);
 
