@@ -32,7 +32,7 @@ RunParams::RunParams(int iargc, char* argv[]) {
    } catch (hoops::Hexception &eObj) {
       if (eObj.Code() == -3003) {
          std::cout << "Likelihood::RunParams: .par file " << argv[0]
-                   << "is not found.  Check your PFILES directory." 
+                   << " is not found.  Check your PFILES directory." 
                    << std::endl;
          assert(eObj.Code() != -3003);
       }
