@@ -46,6 +46,8 @@ public:
       s_binnedExposure = new BinnedExposure(filename);
    }
 
+   void save(const std::string & filename) const;
+
 private:
 
    std::string m_name;
@@ -83,6 +85,9 @@ private:
    void getCelestialDir(double phi, double mu, 
                         FitsImage::EquinoxRotation & eqRot,
                         astro::SkyDir & dir) const;
+
+   void fitsReportError(FILE *stream, int status) const;
+
 };
 
 } // namespace Likelihood
