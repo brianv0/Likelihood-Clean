@@ -79,7 +79,7 @@ double Event::diffuseResponse(double trueEnergy,
                               const std::string &diffuseComponent) const 
    throw(Exception) {
 
-   int indx;
+   int indx(0);
    if (ResponseFunctions::useEdisp()) {
       indx = static_cast<int>((trueEnergy - m_trueEnergies[0])/m_estep);
       if (indx < 0 || indx >= static_cast<int>(m_trueEnergies.size())) {
