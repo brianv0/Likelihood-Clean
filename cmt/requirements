@@ -7,7 +7,7 @@ author James Chiang <jchiang@slac.stanford.edu>
 
 use astro  v*
 use cfitsio v1* IExternal
-use f2c
+use f2c v*
 # use CALDBinterface v*
 
 apply_pattern package_include
