@@ -10,6 +10,7 @@
 
 #include "optimizers/Function.h"
 #include "optimizers/Arg.h"
+
 #include "astro/SkyDir.h"
 
 namespace Likelihood {
@@ -41,12 +42,11 @@ public:
 
    /// overloaded setParam methods to include updating of m_dir
    void setParam(const std::string &paramName, double paramValue, 
-                 bool isFree) throw(optimizers::ParameterNotFound) {
+                 bool isFree) {
       setParameter(paramName, paramValue, isFree);
       update_m_dir(paramName, paramValue);
    }
-   void setParam(const std::string &paramName, double paramValue) 
-      throw(optimizers::ParameterNotFound) {
+   void setParam(const std::string &paramName, double paramValue) {
       setParameter(paramName, paramValue);
       update_m_dir(paramName, paramValue);
    }
@@ -58,8 +58,7 @@ private:
 
    void m_init(double ra, double dec);
    
-   void update_m_dir(std::string paramName, double paramValue)
-      throw(optimizers::ParameterNotFound);
+   void update_m_dir(std::string paramName, double paramValue);
 
    astro::SkyDir::CoordSystem m_coord_type;
    double m_ra;

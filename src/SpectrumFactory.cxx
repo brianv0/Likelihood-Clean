@@ -8,9 +8,12 @@
  */
 
 #include <cassert>
+
 #include <sstream>
-#include "Likelihood/SpectrumFactory.h"
+
 #include "optimizers/Exception.h"
+
+#include "Likelihood/SpectrumFactory.h"
 
 namespace Likelihood {
 
@@ -23,7 +26,7 @@ SpectrumFactory::~SpectrumFactory() {
 
 void SpectrumFactory::addFunc(const std::string &name, 
                               optimizers::Function* func, 
-                              bool fromClone) throw(optimizers::Exception) {
+                              bool fromClone) {
    if (!m_prototypes.count(name)) {
       if (fromClone) {
          m_prototypes[name] = func->clone();

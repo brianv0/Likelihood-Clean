@@ -40,7 +40,7 @@ private:
 
    void fetchDerivs(optimizers::Arg &, std::vector<double> &derivs, 
                     bool getFree) const;
-   void buildParameterVector(optimizers::Arg &) const;
+   void buildParameterVector(optimizers::Arg &);
 
 };
 

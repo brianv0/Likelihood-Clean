@@ -56,7 +56,7 @@ public:
    //! they explicitly pass a new Function pointer; otherwise,
    //! the destructor will delete their Function.
    void addFunc(const std::string &name, optimizers::Function* func, 
-                bool fromClone = true) throw(optimizers::Exception);
+                bool fromClone = true);
 
    optimizers::Function *makeFunction(const std::string &name);
 
