@@ -5,7 +5,7 @@
  *
  * $Header$
  */
-
+#pragma warning(disable:4290)
 #ifndef Function_h
 #define Function_h
 
