@@ -280,7 +280,7 @@ void LogLike::setFT1_columns() {
 }
 
 void LogLike::get_diffuse_names(tip::Table * events, 
-                                std::vector<std::string> & names) {
+                                std::vector<std::string> & names) const {
    names.clear();
    const std::vector<std::string> & fields = events->getValidFields();
    for (unsigned int i = 0; i < fields.size(); i++) {

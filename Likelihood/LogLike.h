@@ -85,12 +85,7 @@ protected:
       return new LogLike(*this);
    }
 
-   /// Event data, read from m_eventFile, stored in a map
-   std::string m_eventFile;
-
    std::vector<Event> m_events;
-
-   std::map<std::string, std::vector<double> > m_eventColumns;
 
 private:
 
@@ -101,7 +96,7 @@ private:
    static void setFT1_columns();
 
    void get_diffuse_names(tip::Table * events, 
-                          std::vector<std::string> & names);
+                          std::vector<std::string> & names) const;
 
    double logSourceModel(const Event & event) const;
 
