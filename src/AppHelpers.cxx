@@ -47,8 +47,13 @@ void AppHelpers::prepareFunctionFactory() {
 
 void AppHelpers::setRoi() {
    std::string roiCutsFile = m_pars["ROI_file"];
-   st_facilities::Util::file_ok(roiCutsFile);
-   RoiCuts::setCuts(roiCutsFile);
+   if (roiCutsFile == "none" || roiCutsFile == "") {
+      RoiCuts * roiCuts = RoiCuts::instance();
+      roiCuts->readCuts(m_pars["evfile"]);
+   } else {
+      st_facilities::Util::file_ok(roiCutsFile);
+      RoiCuts::setCuts(roiCutsFile);
+   }
 }
 
 void AppHelpers::readScData() {

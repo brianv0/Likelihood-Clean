@@ -21,6 +21,8 @@
 
 #include "irfInterface/AcceptanceCone.h"
 
+#include "dataSubselector/Cuts.h"
+
 namespace Likelihood {
 
 class Event;
@@ -38,8 +40,6 @@ class Event;
 class RoiCuts {
 
 public:
-
-   ~RoiCuts(){}
 
    static RoiCuts * instance();
 
@@ -75,6 +75,10 @@ public:
    /// Read from xml file
    static void setCuts(std::string xmlFile);
 
+   /// Read from the DSS keywords in the eventFile. (Series of event files 
+   /// *must* have the same DSS keywords.)
+   void readCuts(const std::string & eventFile);
+
    /// Write to xml file
    void writeXml(std::string xmlFile, const std::string &roiTitle="");
 
@@ -87,11 +91,15 @@ public:
 
 protected:
 
-   RoiCuts(){}
+   RoiCuts() {}
+
+   ~RoiCuts() {}
 
 private:
 
    static RoiCuts * s_instance;
+
+   static dataSubselector::Cuts * s_cuts;
 
    /// cuts on photon "MET" arrival times in seconds; 
    /// this vector of pairs specify time intervals for event acceptance;
@@ -115,6 +123,13 @@ private:
    rootDomElement(const std::string & roiTitle);
 #endif
 
+   dataSubselector::Cuts::RangeCut * m_energyCut;
+   dataSubselector::Cuts::SkyConeCut * m_skyConeCut;
+   std::vector<dataSubselector::Cuts::RangeCut *> m_timeCuts;
+   std::vector<dataSubselector::Cuts::GtiCut *> m_gtiCuts;
+
+   void sortCuts();
+   void setRoiData();
 };
 
 } // namespace Likelihood

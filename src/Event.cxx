@@ -18,7 +18,6 @@
 
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/Event.h"
-#include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/TrapQuad.h"
