@@ -1,4 +1,5 @@
-/** @file FitsImage.cxx
+/** 
+ * @file FitsImage.cxx
  * @brief Implementation of FitsImage member functions
  * @authors J. Chiang
  *
@@ -10,7 +11,7 @@
 
 //#define HAVE_CCFITS
 #ifdef HAVE_CCFITS
-#include "CCfits/CCfits"
+#include <CCfits>
 #endif
 
 #include <iostream>
@@ -147,7 +148,6 @@ void FitsImage::read_fits_image(std::string &filename,
                                 std::valarray<double> &image) {
 
 //   FITS::setVerboseMode(true);
-//   std::cout << "FitsImage::read_fits_image: Using CCfits..." << std::endl;
 
 // For the "canonical" example of reading a FITS image with CCfits,
 // see the readImage() routine from cookbook.cxx from the CCfits

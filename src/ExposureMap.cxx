@@ -15,7 +15,7 @@
 
 //#define HAVE_CCFITS
 #ifdef HAVE_CCFITS
-#include "CCfits/CCfits"
+#include <CCfits>
 #endif
 
 #include <utility>
