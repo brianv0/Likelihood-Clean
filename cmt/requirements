@@ -15,7 +15,7 @@ apply_pattern package_include
 private
 
 # allow use of internal path
-macro_prepend cppflags "-I ../src -g " WIN32 "/I..\src "
+macro_prepend cppflags Linux "-I ../src -g -pedantic " WIN31 "/I..\src "
 
 apply_pattern package_linkopts
 
