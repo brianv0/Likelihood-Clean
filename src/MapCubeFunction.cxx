@@ -74,7 +74,7 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
    double y2 = m_image.at(indx);
    double value = ::interpolatePowerLaw(energy, m_energies.at(k),
                                         m_energies.at(k+1), y1, y2);
-   return value*getParamValue("Normalization");
+   return value*getParam("Normalization").getTrueValue();
 }
 
 void MapCubeFunction::init() {
