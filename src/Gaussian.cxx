@@ -31,6 +31,8 @@ void Gaussian::init(double Prefactor, double Mean, double Sigma) {
 // set FuncType and ArgType for use with CompositeFunction hierarchy
    m_funcType = Addend;
    m_argType = "dArg";
+
+   m_genericName = "Gaussian";
 }
 
 double Gaussian::integral(optimizers::Arg &xargmin, 
