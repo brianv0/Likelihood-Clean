@@ -79,24 +79,27 @@ public:
    virtual double NpredDeriv(const std::string &paramName);
 
    //! Set source location using J2000 coordinates
-   void setDir(double ra, double dec, bool updateExposure = true) {
+   void setDir(double ra, double dec, bool updateExposure=true, 
+               bool verbose=true) {
       m_dir = SkyDirFunction(astro::SkyDir(ra, dec));
       m_functions["Position"] = &m_dir;
-      if (updateExposure) computeExposure();
+      if (updateExposure) computeExposure(verbose);
    }
 
    //! Set source location using Galactic coordinates
-   void setGalDir(double l, double b, bool updateExposure = true) {
+   void setGalDir(double l, double b, bool updateExposure=true,
+                  bool verbose=true) {
       m_dir = SkyDirFunction(astro::SkyDir(l, b, astro::SkyDir::GALACTIC));
       m_functions["Position"] = &m_dir;
-      if (updateExposure) computeExposure();
+      if (updateExposure) computeExposure(verbose);
    }
 
    //! Set source location via SkyDir class
-   void setDir(const astro::SkyDir &dir, bool updateExposure = true) {
+   void setDir(const astro::SkyDir &dir, bool updateExposure = true,
+               bool verbose=true) {
       m_dir = SkyDirFunction(dir);
       m_functions["Position"] = &m_dir;
-      if (updateExposure) computeExposure();
+      if (updateExposure) computeExposure(verbose);
    }
 
    astro::SkyDir getDir() const {return m_dir.getDir();}
@@ -118,13 +121,13 @@ public:
 
 protected:
    //! Computes the integrated exposure at the PointSource sky location.
-   void computeExposure(int verbose = 1);
+   void computeExposure(bool verbose);
 
    //! Compute the integrated exposure using the provided 
    //! vector of energy values
    void computeExposure(std::vector<double> &energies,
                         std::vector<double> &exposure,
-                        int verbose = 1);
+                        bool verbose);
 
 //    //! provide access to the exposure values
 //    void getExposure(std::vector<double> &exposure) const

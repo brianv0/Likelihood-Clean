@@ -209,7 +209,8 @@ Source * SourceFactory::makePointSource(const DomElement &spectrum,
 
    Source *src = new PointSource();
 //    dynamic_cast<PointSource *>(src)->setDir(ra, dec);
-   src->setDir(ra, dec);
+   bool updateExposure(true);
+   src->setDir(ra, dec, updateExposure, m_verbose);
 
    try {
       setSpectrum(src, spectrum, funcFactory);

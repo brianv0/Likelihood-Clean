@@ -58,9 +58,10 @@ public:
    typedef std::map<std::string, optimizers::Function *> FuncMap;
    FuncMap & getSrcFuncs() {return m_functions;}
 
-   virtual void setDir(double ra, double dec, bool updateExposure = true) = 0;
+   virtual void setDir(double ra, double dec, bool updateExposure=true,
+                       bool verbose=true) = 0;
    virtual void setDir(const astro::SkyDir &dir, 
-                       bool updateExposure = true) = 0;
+                       bool updateExposure=true, bool verbose=true) = 0;
 
    virtual void setSpectrum(optimizers::Function *) = 0;
                        
