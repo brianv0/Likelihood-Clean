@@ -5,7 +5,11 @@
  *
  * $Header$
  */
+
+#ifdef _MCS_VER
 #pragma warning(disable:4290)
+#endif
+
 #ifndef Parameter_h
 #define Parameter_h
 
