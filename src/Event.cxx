@@ -107,6 +107,19 @@ double Event::diffuseResponse(double trueEnergy,
    return 0;
 }
 
+const std::vector<double> & 
+Event::diffuseResponse(const std::string & name) const {
+   std::map<std::string, diffuse_response>::const_iterator it;
+   if ((it = m_respDiffuseSrcs.find(name)) == m_respDiffuseSrcs.end()) {
+      std::string errorMessage 
+         = "Event::diffuseResponse: \nDiffuse component " 
+         + name
+         + " does not have an associated diffuse response.\n";
+      throw Exception(errorMessage);
+   }
+   return it->second;
+}
+
 void Event::computeResponse(std::vector<DiffuseSource *> &srcList, 
                             double sr_radius) {
    std::vector<DiffuseSource *> srcs;
