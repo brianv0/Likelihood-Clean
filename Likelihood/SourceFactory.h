@@ -43,7 +43,7 @@ class SourceFactory {
 
 public:
 
-   SourceFactory();
+   SourceFactory(bool verbose=false);
 
    virtual ~SourceFactory();
 
@@ -62,6 +62,8 @@ public:
    void fetchSrcNames(std::vector<std::string> &srcNames);
 
 private:
+
+   bool m_verbose;
 
    std::map<std::string, Source *> m_prototypes;
 

@@ -37,11 +37,12 @@ class SourceModel : public optimizers::Statistic {
     
 public:
    
-   SourceModel() {
+   SourceModel(bool verbose=false) : m_verbose(verbose) {
       setMaxNumParams(0); 
       m_genericName = "SourceModel";
       s_refCount++;
    }
+
    SourceModel(const SourceModel &rhs) : optimizers::Statistic(rhs) 
       {s_refCount++;}
 
@@ -172,6 +173,10 @@ protected:
    virtual void getFreeDerivs(std::vector<double> &derivs) const {
       derivs.clear();
    }
+
+private:
+
+   bool m_verbose;
 
 };
 

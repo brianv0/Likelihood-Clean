@@ -80,7 +80,7 @@ namespace Likelihood {
       if (verbose != 0)
 	std::cout << "Iteration #" << iteration << ", logL = " << logL << 
 	  ", old logL = " << oldLogL  << " params " << nPar << std::endl;
-    } while (abs(logL-oldLogL) > 0.1*chifunc(nPar) || oldLogL == 0.);
+    } while (fabs(logL-oldLogL) > 0.1*chifunc(nPar) || oldLogL == 0.);
 
     //! Clean up before exit
     for (unsigned int i=0; i < getNumSrcs(); i++) {
