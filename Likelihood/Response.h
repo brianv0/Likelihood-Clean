@@ -13,7 +13,7 @@
 #include <valarray>
 #include "astro/SkyDir.h"
 #include "Likelihood/ScData.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -48,11 +48,11 @@ public:
    static double bilinear(const std::vector<double> &xx, double x,
                           const std::vector<double> &yy, double y, 
                           const std::valarray<double> &z)
-      throw(LikelihoodException);
+      throw(Exception);
 
 protected:
 
-   Response() throw(LikelihoodException);
+   Response() throw(Exception);
 
    //! maximum inclination for response files
    static double s_incMax;

@@ -52,7 +52,7 @@ protected:
    //! generalized column access
    std::pair<long, double*> getColumn(const Table &tableData, 
                                       const std::string &colname) const
-      throw(LikelihoodException);
+      throw(Exception);
 
    //! Event data; read from m_eventFile, stored in Table form
    std::string m_eventFile;

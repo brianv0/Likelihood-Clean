@@ -9,7 +9,7 @@
 #include <sstream>
 #include "Likelihood/Minuit.h"
 #include "Likelihood/Parameter.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -65,12 +65,12 @@ namespace Likelihood {
     int retCode = doCmd(mline.str());  // Minimize fcn
     if (retCode == 4) {
       // Abnormal termination
-      throw LikelihoodException
+      throw Exception
 	("Minuit abnormal termination. (No convergence?)");
     }
     else if (retCode > 0) {
       // Faulty command line
-      throw LikelihoodException("Minuit bad command line");
+      throw Exception("Minuit bad command line");
     }
 
     // Normal termination.  Extract fitted parameters

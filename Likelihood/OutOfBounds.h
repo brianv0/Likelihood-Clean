@@ -8,7 +8,7 @@
 #ifndef Likelihood_OutOfBounds_h
 #define Likelihood_OutOfBounds_h
 
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -24,12 +24,12 @@ namespace Likelihood {
  * $Header$
  */
 
-class OutOfBounds : public LikelihoodException {
+class OutOfBounds : public Exception {
 
 public:
    OutOfBounds(const std::string &errorString, double value, 
                double minValue, double maxValue, int code) : 
-      LikelihoodException(errorString, code), m_value(value), 
+      Exception(errorString, code), m_value(value), 
       m_minValue(minValue), m_maxValue(maxValue) {}
 
    ~OutOfBounds() {}

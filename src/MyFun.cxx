@@ -26,7 +26,7 @@ MyFun::MyFun() {
 // built-in unit test (justifies the existence of MyFun)
    try {
       addParam(std::string("Plain"), 3.14159);
-   } catch (LikelihoodException &eObj) {
+   } catch (Exception &eObj) {
       std::cout << eObj.what() << std::endl;
    }
 }

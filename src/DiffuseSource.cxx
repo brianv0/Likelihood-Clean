@@ -17,7 +17,7 @@
 #include "Likelihood/dArg.h"
 #include "Likelihood/TrapQuad.h"
 #include "Likelihood/ExposureMap.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -25,7 +25,7 @@ bool DiffuseSource::s_haveStaticMembers = false;
 std::vector<double> DiffuseSource::s_energies;
 
 DiffuseSource::DiffuseSource(Function* spatialDist) 
-   throw(LikelihoodException) : m_spectrum(0) {
+   throw(Exception) : m_spectrum(0) {
 // The spatial distribution of emission is required for instantiation.
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
@@ -40,7 +40,7 @@ DiffuseSource::DiffuseSource(Function* spatialDist)
 // instantiated.
    ExposureMap *emap = ExposureMap::instance();
    if (emap == 0) {
-      throw LikelihoodException("The ExposureMap is not defined.");
+      throw Exception("The ExposureMap is not defined.");
    } else {
       emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
       m_srcType = "Diffuse";
