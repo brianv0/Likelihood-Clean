@@ -37,18 +37,6 @@ public:
       init();
       readFitsFile(fitsFile);
    }
-   
-//    MapCubeFunction(const MapCubeFunction & rhs) : optimizers::Function(rhs) {
-//       m_coordSys = rhs.m_coordSys;
-//       m_image = rhs.m_image;
-//       m_lon = rhs.m_lon;
-//       m_lonMin = rhs.m_lonMin;
-//       m_lonMax = rhs.m_lonMax;
-//       m_lat = rhs.m_lat;
-//       m_latMin = rhs.m_latMin;
-//       m_latMax = rhs.m_latMax;
-//       m_energies = rhs.m_energies;
-//    }
 
    virtual ~MapCubeFunction() {}
 
@@ -66,7 +54,13 @@ public:
 
    void readFitsFile(const std::string & fitsFile);
 
+   const std::string & fitsFile() const {
+      return m_fitsFile;
+   }
+
 private:
+
+   std::string m_fitsFile;
 
    std::string m_coordSys;
    std::vector<double> m_image;
