@@ -25,15 +25,18 @@ class SrcAnalysis(object):
         self.scData = pyLike.ScData()
         self.roiCuts = pyLike.RoiCuts()
         self.expCube = pyLike.ExposureCube()
+        self.eventCont = pyLike.EventContainer(self.respFuncs, self.roiCuts,
+                                               self.scData)
         observation = pyLike.Observation(self.respFuncs,
                                          self.scData,
                                          self.roiCuts,
                                          self.expCube,
-                                         self.expMap)
+                                         self.expMap,
+                                         self.eventCont)
         self.observation = observation
         self.logLike = pyLike.LogLike(self.observation)
         self._readData(scFile, eventFile)
-        self.events = self.logLike.events();
+        self.events = self.observation.eventCont().events();
         self.logLike.readXml(srcModel, _funcFactory)
         self.logLike.computeEventResponses()
         self.model = SourceModel(self.logLike)

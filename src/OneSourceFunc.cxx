@@ -17,7 +17,7 @@ namespace Likelihood {
   //! cutoff values for minimum weight and flux
 
   OneSourceFunc::OneSourceFunc(Source * src,
-			       std::vector<Event>& evt,
+			       const std::vector<Event>& evt,
 			       std::vector<double> * weights):
     m_src(src),
     m_events(evt),
