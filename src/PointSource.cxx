@@ -1,4 +1,5 @@
-/** @file PointSource.cxx
+/** 
+ * @file PointSource.cxx
  * @brief PointSource class implementation
  *
  * $Header$
