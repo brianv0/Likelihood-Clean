@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstring>
 #include <cmath>
+#include <cassert>
 
 #include "optimizers/FunctionFactory.h"
 #include "optimizers/Lbfgs.h"
@@ -32,6 +33,7 @@
 #include "Likelihood/LogLike.h"
 #include "Likelihood/OptEM.h"
 #include "Likelihood/RunParams.h"
+#include "Likelihood/Exception.h"
 
 using namespace Likelihood;
 
@@ -148,7 +150,13 @@ int main(int iargc, char* argv[]) {
       params.getParam("Source_model_file", sourceModel);
       if (logLike->getNumSrcs() == 0) {
 // Read in the Source model for the first time.
-         logLike->readXml(sourceModel, funcFactory);
+         try {
+            logLike->readXml(sourceModel, funcFactory);
+         } catch (Likelihood::Exception &eObj) {
+            std::cout << eObj.what();
+            std::cout << "Check your source model file." << std::endl;
+            assert(false);
+         }
          logLike->computeEventResponses();
       } else {
 // Re-read the Source model from the xml file, allowing only for 
