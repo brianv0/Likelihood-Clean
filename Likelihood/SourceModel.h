@@ -60,9 +60,6 @@ public:
 
    double derivByParam(Arg &, const std::string &) const {return 0;}
 
-   void getDerivs(Arg &, std::vector<double>&) const;
-   void getFreeDerivs(Arg &, std::vector<double>&) const;
-
 protected:
 
    std::vector<Source *> m_sources;
@@ -70,6 +67,8 @@ protected:
    //! method to sync the m_parameter vector with those of the 
    //! m_sources' Functions
    void m_syncParams();
+
+   void fetchDerivs(Arg &x, std::vector<double> &derivs, bool getFree) const;
 
 };
 
