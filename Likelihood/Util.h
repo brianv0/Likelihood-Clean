@@ -48,13 +48,15 @@ public:
    }
 
    static void readLines(std::string inputFile, 
-                         std::vector<std::string> &lines) {
+                         std::vector<std::string> &lines,
+                         const std::string &skip = "#") {
       facilities::Util::expandEnvVar(&inputFile);
       std::ifstream file(inputFile.c_str());
       lines.clear();
       std::string line;
       while (std::getline(file, line, '\n')) {
-         if (line != "" && line != " ") { //skip (most) blank lines
+         if (line != "" && line != " "             //skip (most) blank lines 
+             && line.find_first_of(skip) != 0) {   //and commented lines
             lines.push_back(line);
          }
       }
