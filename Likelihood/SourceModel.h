@@ -25,7 +25,8 @@ namespace Likelihood {
  *
  * @authors J. Chiang
  *    
- * $Header$ */
+ * $Header$ 
+ */
 
 class SourceModel : public Function {
     
