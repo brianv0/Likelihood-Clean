@@ -7,7 +7,8 @@ author Pat Nolan <pln@razzle.stanford.edu>
 # $Id$
 
 use GlastPolicy v5r*
-use xml v4r*
+# use xml needs to be commented out in order to link on VC7.0 and VC7.1...
+#use xml v4r*
 use facilities v2r*
 use astro  v*
 use Goodi v*
