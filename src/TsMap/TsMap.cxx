@@ -73,6 +73,7 @@ StApp<TsMap> my_application("TsMap");
 void TsMap::run() {
    readExposureMap();
    readSrcModel();
+   readEventData();
    selectOptimizer();
    setGrid();
    computeMap();
