@@ -508,7 +508,7 @@ void LikelihoodTests::test_PointSource() {
    for (int j = 0; j < 10; j++) {
       double tmin = j*tstep;
       double tmax = tmin + tstep;
-      RoiCuts::setCuts(86.4, 28.9, 25., eminVals[j], 3.16e5, tmin, tmax, -1.);
+      roiCuts->setCuts(86.4, 28.9, 25., eminVals[j], 3.16e5, tmin, tmax, -1.);
 
       dynamic_cast<PointSource *>(src)->setDir(83.57, 22.01, true, false);
 
