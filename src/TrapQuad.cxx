@@ -60,7 +60,7 @@ double TrapQuad::integral(double xmin, double xmax, int npts) {
    return value;
 }
 
-double TrapQuad::integral(std::vector<double> &xvals) {
+double TrapQuad::integral(const std::vector<double> &xvals) {
    if (!m_func) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"

@@ -43,7 +43,7 @@ public:
 
    double integral();
    double integral(double xmin, double xmax, int npts = 100);
-   double integral(std::vector<double> &xvals);
+   double integral(const std::vector<double> &xvals);
 
 private:
 

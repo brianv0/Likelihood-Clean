@@ -73,8 +73,18 @@ public:
       return std::make_pair(m_eMin, m_eMax);
    }
 
+#ifndef SWIG
    const irfInterface::AcceptanceCone & extractionRegion() const {
       return m_roiCone;
+   }
+#endif //SWIG
+
+   std::vector<double> roiCone() const {
+      std::vector<double> my_vec;
+      my_vec.push_back(m_roiCone.center().ra());
+      my_vec.push_back(m_roiCone.center().dec());
+      my_vec.push_back(m_roiCone.radius());
+      return my_vec;
    }
 
    void getRaDec(double & ra, double & dec) const {
