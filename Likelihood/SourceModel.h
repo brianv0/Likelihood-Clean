@@ -121,7 +121,8 @@ public:
                 optimizers::FunctionFactory &funcFactory);
 
    /// Write an XML file for the current source model.
-   void writeXml(const std::string &xmlFile);
+   void writeXml(const std::string &xmlFile,
+                 const std::string &functionLibrary);
 
 protected:
 
