@@ -76,9 +76,12 @@ protected:
    void prepareFunctionFactory();
    void createResponseFuncs();
 
+#ifndef SWIG   
    static void AppHelpers::
    gatherTimeCuts(dataSubselector::Cuts & cuts,
                   std::vector<const dataSubselector::CutBase *> time_cuts);
+#endif // SWIG
+
 };
 
 } // namespace Likelihood

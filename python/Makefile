@@ -21,6 +21,7 @@ INCLUDE = -I$(LIKELIHOODROOT)\
 	-I$(IRFLOADERROOT)\
 	-I$(ASTROROOT)\
 	-I$(OPTIMIZERSROOT)\
+	-I$(DATASUBSELECTORROOT)\
 	-I$(EVTBINROOT)\
 	-I$(TIPROOT)\
 	-I$(MAP_TOOLSROOT)\
@@ -42,6 +43,7 @@ LIBS = -L../$(BINDIR)/ -lLikelihoodLib\
 	-L$(IRFINTERFACEROOT)/$(BINDIR) -lirfInterfaceLib\
 	-L$(MAP_TOOLSROOT)/$(BINDIR) -lmap_toolsLib\
 	-L$(ASTROROOT)/$(BINDIR) -lastro\
+	-L$(DATASUBSELECTORROOT)/$(BINDIR) -ldataSubselectorLib\
 	-L$(OPTIMIZERSROOT)/$(BINDIR) -loptimizersLib\
 	-L$(EVTBINROOT)/$(BINDIR) -levtbinLib\
 	-L$(TIPROOT)/$(BINDIR) -ltipLib\
