@@ -22,7 +22,7 @@ namespace Likelihood {
  *
  * The implementation is based on Hippodraw's FunctionBase class.
  *
- * This class uses the Parameter classe.
+ * This class uses the Parameter and Arg classes.
  *
  * @authors J. Chiang, P. Nolan, T. Burnett 
  *
@@ -43,7 +43,7 @@ public:
    std::string getMyName() const {return m_functionName;};
 
    ///////////////////////
-   //! parameter access //
+   //! parameter access 
    //! set Parameter value and free state
    virtual void setParam(const std::string &paramName, 
                          double paramValue, bool isFree)
@@ -61,7 +61,7 @@ public:
    Parameter* getParam(const std::string &paramName);
    
    /////////////////////////////////
-   //! parameter access in groups //
+   //! parameter access in groups 
    unsigned int getNumParams() const {return m_parameter.size();}
 
    void setParamValues(const std::vector<double> &paramVec);
@@ -70,6 +70,11 @@ public:
    virtual std::vector<double>::const_iterator setParamValues_(
       std::vector<double>::const_iterator);
    
+   void setParams(std::vector<Parameter> &params) {
+      if (params.size() == m_parameter.size()) 
+         m_parameter = params;
+   }
+
    void getParamNames(std::vector<std::string> &names) const
       {fetchParamNames(names, false);}
    void getParamValues(std::vector<double> &values) const
@@ -93,7 +98,7 @@ public:
    void getFreeParams(std::vector<Parameter> &) const;
    
    /////////////////////////////////////
-   //! Arg-dependent member functions //
+   //! Arg-dependent member functions 
    virtual double value(Arg &) const = 0;
    double operator()(Arg &x) const {return value(x);}
    
