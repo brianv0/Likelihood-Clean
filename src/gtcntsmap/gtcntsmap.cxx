@@ -14,13 +14,17 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "st_facilities/Util.h"
+
 #include "tip/IFileSvc.h"
+#include "tip/Image.h"
 #include "tip/Table.h"
 
-#include "st_facilities/Util.h"
+#include "dataSubselector/Cuts.h"
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/CountsMap.h"
+#include "Likelihood/RoiCuts.h"
 
 #include "Verbosity.h"
 
@@ -33,7 +37,7 @@ public:
    virtual void run();
 private:
    st_app::AppParGroup & m_pars;
-   void checkOutputFile();
+   void writeDssCuts(const std::string &) const;
    void logArray(double xmin, double xmax, unsigned int nx,
                  std::vector<double> & xx) const;
 };
@@ -92,6 +96,16 @@ void gtcntsmap::run() {
    }
    std::string output_file = m_pars["outfile"];
    cmap.writeOutput("gtcntsmap", output_file);
+   writeDssCuts(eventFiles[0]);
+}
+
+void gtcntsmap::writeDssCuts(const std::string & eventfile) const {
+   dataSubselector::Cuts my_cuts(eventfile);
+   std::string output_file = m_pars["outfile"];
+   std::auto_ptr<tip::Image> 
+      image(tip::IFileSvc::instance().editImage(output_file, ""));
+   my_cuts.writeDssKeywords(image->getHeader());
+   my_cuts.writeGtiExtension(output_file);
 }
 
 void gtcntsmap::logArray(double xmin, double xmax, unsigned int nx,

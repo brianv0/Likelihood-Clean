@@ -32,6 +32,8 @@
 
 #include "astro/SkyDir.h"
 
+#include "dataSubselector/Cuts.h"
+
 #include "irfInterface/Irfs.h"
 
 #include "Likelihood/AppHelpers.h"
@@ -103,6 +105,7 @@ void gtsrcmaps::run() {
 
    std::string cntsMapFile = m_pars["counts_map_file"];
    st_facilities::Util::file_ok(cntsMapFile);
+   dataSubselector::Cuts my_cuts(cntsMapFile, "", false);
    CountsMap dataMap(cntsMapFile);
    std::vector<double> energies;
    dataMap.getAxisVector(2, energies);
@@ -127,6 +130,11 @@ void gtsrcmaps::run() {
    dataMap.writeOutput("gtsrcmaps", srcMapsFile);
 
    m_binnedLikelihood->saveSourceMaps(srcMapsFile);
+
+   std::auto_ptr<tip::Image>
+      image(tip::IFileSvc::instance().editImage(srcMapsFile, ""));
+   my_cuts.writeDssKeywords(image->getHeader());
+   my_cuts.writeGtiExtension(srcMapsFile);
 }
 
 void gtsrcmaps::getRefCoord(const std::string & countsMapFile, 
