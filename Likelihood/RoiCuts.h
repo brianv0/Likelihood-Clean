@@ -109,9 +109,11 @@ private:
    /// cosine of the maximum Zenith angle
    static double s_muZenMax;
 
+#ifndef SWIG
    /// Create a root DOMElement for the current set of cuts.
    XERCES_CPP_NAMESPACE_QUALIFIER DOMElement * 
    rootDomElement(const std::string & roiTitle);
+#endif
 
 };
 
