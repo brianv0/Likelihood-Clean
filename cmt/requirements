@@ -11,7 +11,7 @@ use facilities v2*
 use astro  v*
 use Goodi v*
 use latResponse v1*
-use optimizers v0*
+use optimizers v*
 use cfitsio v1* IExternal
 use CLHEP v2* IExternal
 
