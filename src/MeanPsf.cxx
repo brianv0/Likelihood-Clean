@@ -102,7 +102,7 @@ double MeanPsf::Psf::operator()(double cosTheta) const {
    if (inclination > 70.) {
       return 0;
    }
-   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = ResponseFunctions::instance()->begin();
    for ( ; respIt != ResponseFunctions::instance()->end(); ++respIt) {
       if (respIt->second->irfID() == m_evtType) {  
@@ -134,7 +134,7 @@ double MeanPsf::Aeff::s_phi(0);
 
 double MeanPsf::Aeff::operator()(double cosTheta) const {
    double inclination = acos(cosTheta)*180./M_PI;
-   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = ResponseFunctions::instance()->begin();
    for ( ; respIt != ResponseFunctions::instance()->end(); ++respIt) {
       if (respIt->second->irfID() == m_evtType) {  

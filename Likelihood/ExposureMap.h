@@ -18,6 +18,8 @@
 
 namespace Likelihood {
 
+   class RoiCuts;
+
 /**
  * @class ExposureMap 
  *
@@ -65,7 +67,7 @@ public:
     */
    void integrateSpatialDist(std::vector<double> &energies, 
                              optimizers::Function * spatialDist, 
-                             std::vector<double> &exposure);
+                             std::vector<double> &exposure) const;
 
    /// Retrieve the RA of each pixel in the image plane
    void getRA(std::vector<double> &ra) 
@@ -92,8 +94,9 @@ public:
     * These are logarithmically spaced with upper and lower bounds
     * given by the RoiCuts.
     */
-   static void computeMap(std::string filename, double sr_radius = 30,
-                          int nlong = 60, int nlat = 60, int nenergies = 10);
+   static void computeMap(std::string filename, const RoiCuts & roiCuts,
+                          double sr_radius=30, int nlong=60, int nlat=60,
+                          int nenergies=10);
 
    /// write the FITS image file produced by computeMap()
    static void writeFitsFile(const std::string &filename,

@@ -128,7 +128,8 @@ void ExpMap::createExposureMap() {
       ExposureCube::readExposureCube(expCubeFile);
    }
    std::string exposureFile = m_pars["outfile"];
-   ExposureMap::computeMap(exposureFile, m_srRadius, nlong, nlat, nenergies);
+   ExposureMap::computeMap(exposureFile, *RoiCuts::instance(), m_srRadius, 
+                           nlong, nlat, nenergies);
 
    std::auto_ptr<tip::Image> 
       image(tip::IFileSvc::instance().editImage(exposureFile, ""));

@@ -29,7 +29,7 @@ double ResponseFunctions::totalResponse(double time,
    astro::SkyDir xAxis = scData->xAxis(time);
    
    double myResponse(0);
-   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = instance()->begin();
    for ( ; respIt != instance()->end(); respIt++) {
       if (respIt->second->irfID() == type) {  
@@ -57,7 +57,7 @@ double ResponseFunctions::totalResponse(double energy, double appEnergy,
                                         const astro::SkyDir & appDir, 
                                         int type) {
    double myResponse(0);
-   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = instance()->begin();
    for ( ; respIt != instance()->end(); respIt++) {
       if (respIt->second->irfID() == type) {  
@@ -82,7 +82,7 @@ double ResponseFunctions::totalResponse(double inclination, double phi,
                                         double energy, double appEnergy,
                                         double separation, int type) {
    double myResponse(0);
-   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = instance()->begin();
    for ( ; respIt != instance()->end(); respIt++) {
       if (respIt->second->irfID() == type) {  

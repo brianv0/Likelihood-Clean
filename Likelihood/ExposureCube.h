@@ -47,7 +47,7 @@ public:
    }
 
    double value(const astro::SkyDir & dir, 
-                const map_tools::Exposure::Aeff & aeff) {
+                const map_tools::Exposure::Aeff & aeff) const {
       return (*s_exposure)(dir, aeff);
    }
 

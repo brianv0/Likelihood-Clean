@@ -21,7 +21,12 @@ class SrcAnalysis(object):
         pyLike.LogLike_loadResponseFunctions(irfs)
         if expMap is not None:
             pyLike.ExposureMap_readExposureFile(expMap)
-        self.logLike = pyLike.LogLike()
+        observation = pyLike.Observation(pyLike.ResponseFunctions_instance(),
+                                         pyLike.ScData_instance(),
+                                         pyLike.RoiCuts_instance(),
+                                         pyLike.ExposureCube_instance(),
+                                         pyLike.ExposureMap_instance())
+        self.logLike = pyLike.LogLike(observation)
         self._readData(scFile, eventFile)
         self.events = self.logLike.events();
         self.logLike.readXml(srcModel, _funcFactory)
@@ -116,6 +121,8 @@ class SrcAnalysis(object):
             self.resids.getDataRep().setSymbol('filled_square', 2)
     def plot(self, srcs=None, oplot=False, yrange=None, color='black'):
         import hippoplotter as plot
+        if oplot:
+            color = 'red'
         if isinstance(srcs, str):
             total = self._plot_model(srcs, yrange=yrange, color=color, 
                                      oplot=oplot, lineStyle='Solid')

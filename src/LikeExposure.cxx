@@ -19,9 +19,10 @@
 
 namespace Likelihood {
 
-LikeExposure::LikeExposure(double skybin, double costhetabin)
-   : map_tools::Exposure(skybin, costhetabin) {
-   RoiCuts::instance()->getTimeCuts(m_timeCuts);
+LikeExposure::
+LikeExposure(double skybin, double costhetabin, 
+             const std::vector< std::pair<double, double> > & timeCuts)
+   : map_tools::Exposure(skybin, costhetabin), m_timeCuts(timeCuts) {
 }
 
 void LikeExposure::load(tip::Table * scData, bool verbose) {

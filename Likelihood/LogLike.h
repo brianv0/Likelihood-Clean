@@ -11,12 +11,12 @@
 
 #include <map>
 
-#include "Likelihood/Event.h"
-#include "Likelihood/RoiCuts.h"
-#include "Likelihood/PointSource.h"
 #include "Likelihood/DiffuseSource.h"
+#include "Likelihood/Event.h"
 #include "Likelihood/logSrcModel.h"
 #include "Likelihood/Npred.h"
+#include "Likelihood/PointSource.h"
+#include "Likelihood/RoiCuts.h"
 
 namespace tip {
    class Table;
@@ -39,7 +39,8 @@ class LogLike : public SourceModel {
     
 public:
 
-   LogLike() {
+   LogLike(const Observation & observation) : SourceModel(observation),
+      m_logSrcModel(logSrcModel(observation)) {
       if (s_FT1_columns.size() == 0) {
          setFT1_columns();
       }

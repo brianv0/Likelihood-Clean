@@ -467,7 +467,7 @@ double PointSource::Aeff::operator()(double cos_theta) const {
    ResponseFunctions * respFuncs = ResponseFunctions::instance();
 
    double myEffArea = 0;
-   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt
       = respFuncs->begin();
 
    for ( ; respIt != respFuncs->end(); respIt++) {

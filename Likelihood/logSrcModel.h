@@ -17,6 +17,8 @@
 
 namespace Likelihood {
 
+   class Observation;
+
 /** 
  * @class logSrcModel
  *
@@ -37,7 +39,10 @@ class logSrcModel : public SourceModel {
     
 public:
    
-   logSrcModel() {setMaxNumParams(0); m_genericName = "logSrcModel";}
+   logSrcModel(const Observation & observation) : SourceModel(observation) {
+      setMaxNumParams(0);
+      m_genericName = "logSrcModel";
+   }
    virtual ~logSrcModel() {}
 
    double value(optimizers::Arg &xarg) const;
