@@ -87,8 +87,10 @@ void SourceFactory::replaceSource(Source* src, bool fromClone) {
 }
 
 void SourceFactory::readXml(const std::string &xmlFile,
-                            optimizers::FunctionFactory &funcFactory)
+                            optimizers::FunctionFactory &funcFactory,
+                            bool requireExposure)
    throw(Exception) {
+   m_requireExposure = requireExposure;
 
    xml::XmlParser *parser = new xml::XmlParser();
 
@@ -249,7 +251,7 @@ Source * SourceFactory::makeDiffuseSource(const DomElement &spectrum,
    }
    Source *src;
    try {
-      src = new DiffuseSource(spatialDist);
+      src = new DiffuseSource(spatialDist, m_requireExposure);
       setSpectrum(src, spectrum, funcFactory);
       return src;
    } catch (optimizers::Exception &eObj) {

@@ -97,6 +97,7 @@ TsMap::TsMap() : st_app::StApp(), m_helper(0),
 }
 
 void TsMap::run() {
+   m_helper->setRoi();
    m_helper->readExposureMap();
    readSrcModel();
    readEventData();

@@ -36,7 +36,6 @@ public:
    AppHelpers(st_app::AppParGroup & pars) : m_pars(pars),
       m_funcFactory(0) {
       prepareFunctionFactory();
-      setRoi();
       readScData();
       createResponseFuncs();
    }
@@ -48,6 +47,7 @@ public:
    optimizers::FunctionFactory & funcFactory();
 
    void readExposureMap();
+   void setRoi();
 
 protected:
 
@@ -55,7 +55,6 @@ protected:
    optimizers::FunctionFactory * m_funcFactory;
 
    void prepareFunctionFactory();
-   void setRoi();
    void readScData();
    void createResponseFuncs();
 };
