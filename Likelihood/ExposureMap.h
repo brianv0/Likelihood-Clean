@@ -18,6 +18,7 @@
 
 namespace Likelihood {
 
+   class ExposureCube;
    class RoiCuts;
 
 /**
@@ -100,7 +101,9 @@ public:
     * These are logarithmically spaced with upper and lower bounds
     * given by the RoiCuts.
     */
-   static void computeMap(std::string filename, const RoiCuts & roiCuts,
+   static void computeMap(std::string filename, 
+                          const ExposureCube & expCube,
+                          const RoiCuts & roiCuts,
                           double sr_radius=30, int nlong=60, int nlat=60,
                           int nenergies=10);
 

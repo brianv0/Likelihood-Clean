@@ -219,7 +219,7 @@ Source * SourceFactory::makePointSource(const DOMElement * spectrum,
 //    bool updateExposure(true);
 //    src->setDir(ra, dec, updateExposure, m_verbose);
 
-   Source * src = new PointSource(ra, dec, m_verbose);
+   Source * src = new PointSource(ra, dec, m_observation, m_verbose);
 
    try {
       setSpectrum(src, spectrum, funcFactory);

@@ -87,7 +87,6 @@ public:
       return 0;
    }
 
-
    virtual double fluxDensityDeriv(double inclination, double phi, 
                                    double energy,
                                    const astro::SkyDir &appDir,
