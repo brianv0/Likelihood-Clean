@@ -13,8 +13,6 @@
 
 #include "optimizers/dArg.h"
 
-#include "latResponse/IPsf.h"
-#include "latResponse/IAeff.h"
 #include "latResponse/Irfs.h"
 #include "latResponse/../src/Glast25.h"
 
