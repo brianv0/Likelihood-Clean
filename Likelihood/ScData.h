@@ -86,6 +86,8 @@ private:
    static bool less_than_time(const ScNtuple & scDatum1,
                               const ScNtuple & scDatum2);
 
+   unsigned int time_index(double time) const;
+
 };
 
 } // namespace Likelihood
