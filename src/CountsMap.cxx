@@ -203,7 +203,6 @@ void CountsMap::setImage(const std::vector<double> & image) {
    m_hist->setData(image);
 }
 
-
 long CountsMap::imageDimension(int i) const {
    const evtbin::Hist::BinnerCont_t & binners = m_hist->getBinners();
    if (i < 0 || i > 2) {
@@ -213,7 +212,7 @@ long CountsMap::imageDimension(int i) const {
    return binners[i]->getNumBins();
 }
 
-void CountsMap::getAxisVector(int i, std::vector<double> axisVector) const {
+void CountsMap::getAxisVector(int i, std::vector<double> & axisVector) const {
    const evtbin::Hist::BinnerCont_t & binners = m_hist->getBinners();
    if (i < 0 || i > 2) {
       throw std::invalid_argument(std::string("CountsMap::getAxisVector:\n")

@@ -37,8 +37,6 @@ namespace Likelihood {
 std::vector<std::string> LogLike::s_FT1_columns;
 
 double LogLike::value(optimizers::Arg&) const {
-// Compute the EML log-likelihood for a single-point source.
-
    double my_value = 0;
    
 // The "data sum"
