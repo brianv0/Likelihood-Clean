@@ -22,6 +22,8 @@
 #include "Likelihood/ExposureCube.h"
 #include "Likelihood/ResponseFunctions.h"
 
+#include "Verbosity.h"
+
 namespace Likelihood {
 
 #include "fitsio.h"
@@ -119,10 +121,11 @@ void BinnedExposure::computeMap() {
 
    m_exposureMap.resize(m_ras.size()*m_decs.size()*m_energies.size(), 0);
    int iter(0);
-   std::cerr << "Computing binned exposure map";
+   if (print_output()) std::cerr << "Computing binned exposure map";
    for (unsigned int j = 0; j < m_decs.size(); j++) {
       for (unsigned int i = 0; i < m_ras.size(); i++) {
-         if ( (iter % ((m_decs.size()*m_ras.size())/20)) == 0 ) {
+         if ( print_output() && 
+              (iter % ((m_decs.size()*m_ras.size())/20)) == 0 ) {
             std::cerr << ".";
          }
          astro::SkyDir dir(m_ras[i], m_decs[j], astro::SkyDir::EQUATORIAL);
@@ -138,7 +141,7 @@ void BinnedExposure::computeMap() {
          iter++;
       }
    }
-   std::cerr << "!" << std::endl;
+   if (print_output()) std::cerr << "!" << std::endl;
 }
 
 void BinnedExposure::linearArray(double xmin, double xmax, unsigned int npts,

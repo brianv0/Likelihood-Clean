@@ -76,6 +76,10 @@ public:
 
    unsigned long nEvents() const {return m_events.size();}
 
+   const std::vector<Event> & events() const {
+      return m_events;
+   }
+
 protected:
 
    /// Event data, read from m_eventFile, stored in a map

@@ -18,6 +18,8 @@
 #include "Likelihood/MeanPsf.h"
 #include "Likelihood/ResponseFunctions.h"
 
+#include "Verbosity.h"
+
 namespace Likelihood {
 
 std::vector<double> MeanPsf::s_separations;
@@ -114,10 +116,12 @@ double MeanPsf::Psf::operator()(double cosTheta) const {
             if (inclination > 69.) {  // ugly kluge
                return 0;
             }
-            std::cerr << "separation: " << m_separation << "  "
-                      << "energy: " << m_energy << "  "
-                      << "inclination: " <<inclination << "  "
-                      << "phi: " << s_phi << std::endl;
+            if (print_output(4)) {
+               std::cerr << "separation: " << m_separation << "  "
+                         << "energy: " << m_energy << "  "
+                         << "inclination: " <<inclination << "  "
+                         << "phi: " << s_phi << std::endl;
+            }
             throw std::runtime_error("MeanPsf::Psf::operator(): psf_val < 0");
          }
          return psf_val;

@@ -57,15 +57,16 @@ void ScData::readData(std::string file, bool clear) {
       tuple.zAxis = astro::SkyDir(raSCZ, decSCZ);
 // Ensure that startTimes are contiguous.
       if (vec.size() > 1 && tuple.time < vec[vec.size()-2].time) {
-         std::cerr << "Likelihood::ScData: "
-                   << "The start times in the spacecraft data are not "
-                   << "contiguous.\n"
-                   << "Previous time: " << vec[vec.size()-2].time << "\n"
-                   << "Current time: " << tuple.time << "\n"
-                   << "Current S/C file: " << s_scFile << "\n"
-                   << "Check the ordering of your S/C files." 
-                   << std::endl;
-         assert(tuple.time > vec[vec.size()-2].time);
+         std::ostringstream message;
+         message << "Likelihood::ScData: "
+                 << "The start times in the spacecraft data are not "
+                 << "contiguous.\n"
+                 << "Previous time: " << vec[vec.size()-2].time << "\n"
+                 << "Current time: " << tuple.time << "\n"
+                 << "Current S/C file: " << s_scFile << "\n"
+                 << "Check the ordering of your S/C files." 
+                 << std::endl;
+         throw std::runtime_error(message.str());
       }
 //       scInterval["lon_geo"].get(lonGeo);
 //       scInterval["lat_geo"].get(latGeo);

@@ -60,9 +60,9 @@ public:
       delete m_spectrum;
    }
 
-   /// Read a FITS image file that contains integrated exposure times
-   /// as a function of ra, dec, and cos(inclination).
-   static void readExposureCube(std::string expCubeFile);
+//    /// Read a FITS image file that contains integrated exposure times
+//    /// as a function of ra, dec, and cos(inclination).
+//    static void readExposureCube(std::string expCubeFile);
 
    /// Returns photons/cm^2-s-sr-MeV having been convolved through
    /// the LAT instrument response
