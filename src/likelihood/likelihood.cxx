@@ -285,7 +285,7 @@ void likelihood::writeCountsSpectra() {
       EasyPlot::run();
    } catch (std::exception &eObj) {
       std::string message = "RootEngine could not create";
-      if (!st_facilities::Util::expectedException(eObj, message) {
+      if (!st_facilities::Util::expectedException(eObj, message)) {
          throw;
       }
    }
