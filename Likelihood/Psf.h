@@ -13,9 +13,9 @@
 #include "Likelihood/Table.h"
 #include "Likelihood/LikelihoodException.h"
 
-namespace Likelihood {
-
 class astro::SkyDir;
+
+namespace Likelihood {
 
 /** 
  * @class Psf
