@@ -60,7 +60,7 @@ acceptInterval(double start, double stop,
       = timeCuts.begin();
 
    for ( ; it != timeCuts.end(); ++it) {
-      if (not overlaps(*it, candidateInterval)) {
+      if (!overlaps(*it, candidateInterval)) {
          fraction = 0;
          return false;
       }
