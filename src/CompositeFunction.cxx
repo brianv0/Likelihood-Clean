@@ -13,6 +13,18 @@
 
 namespace Likelihood {
 
+CompositeFunction::CompositeFunction(const CompositeFunction &rhs) {
+// Make a deep copy since Functions are stored as pointers.
+
+   Function *afuncptr = rhs.m_a->clone();
+   m_a = afuncptr;
+
+   Function *bfuncptr = rhs.m_b->clone();
+   m_b = bfuncptr;
+
+   syncParams();
+}
+
 void CompositeFunction::setParam(const Parameter &param, 
                                  const std::string &funcName) {
    assert(funcName == m_a->getMyName() || funcName == m_b->getMyName());
