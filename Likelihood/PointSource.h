@@ -12,7 +12,7 @@
 #include "Likelihood/Function.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Event.h"
-#include "Likelihood/Arg.h"
+#include "Likelihood/dArg.h"
 
 namespace Likelihood {
 
@@ -161,6 +161,7 @@ private:
    //! integrals
    class Gint : public Function {
    public:
+      Gint() {};
       Gint(double sig, double cr, double cp, double sp) : 
            m_sig(sig), m_cr(cr), m_cp(cp), m_sp(sp) {}
       virtual ~Gint(){};
@@ -172,6 +173,17 @@ private:
       double m_cp;
       double m_sp;
    };
+
+   //! a static object needed to compute the m_gaussFraction integrals
+   //! using the DGAUS8 integrator
+   static Gint s_gfunc;
+
+   //! a static member function to provide the interface to s_gfunc
+   //! that is required by DGAUS8
+   static double gfuncIntegrand(double *mu) {
+      dArg muarg(*mu);
+      return s_gfunc(muarg);
+   }
 };
 
 } //namespace Likelihood
