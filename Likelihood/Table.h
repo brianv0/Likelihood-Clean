@@ -11,7 +11,7 @@
 
 #include <vector>
 #include <string>
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -42,12 +42,12 @@ public:
    
    //! fill the table from the file
    //! expect that the column list is already set
-   void read_FITS_table(std::string file, int hdu) throw(LikelihoodException);
+   void read_FITS_table(std::string file, int hdu) throw(Exception);
    
    //! grab the column names from an existing FITS file
    void read_FITS_colnames(std::string &file, int hdu, 
                            std::vector<std::string> &columnNames)
-      throw(LikelihoodException);
+      throw(Exception);
 
    /** @class Column
     * @brief Nested class represents a column entry

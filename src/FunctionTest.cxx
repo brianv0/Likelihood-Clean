@@ -7,12 +7,12 @@
 
 #include <cassert>
 #include "Likelihood/FunctionTest.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
 void FunctionTest::parameters(const std::vector<Parameter> &params) 
-   throw(LikelihoodException) {
+   throw(Exception) {
 
    std::vector<std::string> paramNames;
    m_func->getParamNames(paramNames);
@@ -71,7 +71,7 @@ void FunctionTest::parameters(const std::vector<Parameter> &params)
 }
 
 void FunctionTest::freeParameters(const std::vector<Parameter> &params) 
-   throw(LikelihoodException) {
+   throw(Exception) {
 
 // Create a local copy of the test Parameters
    std::vector<Parameter> my_params = params;
@@ -134,9 +134,9 @@ void FunctionTest::freeParameters(const std::vector<Parameter> &params)
 
 void FunctionTest::funcEvaluations(const std::vector<Arg*> &arguments,
                                    const std::vector<double> &returnValues) 
-   throw(LikelihoodException) {
+   throw(Exception) {
    if (arguments.size() != returnValues.size()) {
-      throw LikelihoodException(
+      throw Exception(
          std::string("FunctionTest::funcEvaluations:\n") + 
          std::string("Sizes of arguments and (expected) returnValues") + 
          std::string(" do not match."));
@@ -153,7 +153,7 @@ void FunctionTest::funcEvaluations(const std::vector<Arg*> &arguments,
 }
 
 void FunctionTest::derivatives(const std::vector<Arg*> &arguments,
-                               double eps) throw(LikelihoodException) {
+                               double eps) throw(Exception) {
 // loop over all Parameters
    for (unsigned int k = 0; k < arguments.size(); k++) {
       Arg *my_arg = arguments[k];

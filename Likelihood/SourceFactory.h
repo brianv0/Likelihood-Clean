@@ -12,7 +12,7 @@
 #include <string>
 #include <map>
 #include "Likelihood/Source.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -42,7 +42,7 @@ public:
    //! otherwise, the destructor will delete their Source, rather than 
    //! a clone.
    void addSource(const std::string &name, Source* src, 
-                  bool fromClone = true) throw(LikelihoodException);
+                  bool fromClone = true) throw(Exception);
 
    void replaceSource(Source* src, bool fromClone = true);
 

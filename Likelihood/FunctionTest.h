@@ -12,7 +12,7 @@
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Arg.h"
 #include "Likelihood/Function.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -38,17 +38,17 @@ public:
    ~FunctionTest() {}
 
    void parameters(const std::vector<Parameter> &params) 
-      throw(LikelihoodException);
+      throw(Exception);
 
    void freeParameters(const std::vector<Parameter> &params) 
-      throw(LikelihoodException);
+      throw(Exception);
 
    void funcEvaluations(const std::vector<Arg*> &arguments,
                         const std::vector<double> &returnValues)
-      throw(LikelihoodException);
+      throw(Exception);
 
    void derivatives(const std::vector<Arg*> &arguments,
-                    double eps = 1e-5) throw(LikelihoodException);
+                    double eps = 1e-5) throw(Exception);
       
 private:
 

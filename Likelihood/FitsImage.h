@@ -14,7 +14,7 @@
 #include <string>
 #include <valarray>
 #include "astro/SkyDir.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -53,7 +53,7 @@ public:
    //! projection effects, i.e., we assume a "plate-carree" projection, 
    //! as for EGRET maps, for all images).
    void fetchAxisVector(unsigned int naxis, std::vector<double> &axisVector)
-      throw(LikelihoodException);
+      throw(Exception);
 
    //! This method computes arrays of longitude and latitude obtained
    //! by traversing the image plane by column number then row.
@@ -119,7 +119,7 @@ protected:
    //! Interface to cfitsio routines
    void read_fits_image(std::string &filename, std::vector<AxisParams> &axes,
                         std::valarray<double> &image) 
-      throw(LikelihoodException);
+      throw(Exception);
 
    //! FITS file name
    std::string m_filename;

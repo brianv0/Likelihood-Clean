@@ -1,5 +1,5 @@
 /**
- * @file LikelihoodException.h
+ * @file Exception.h
  * @brief Exception class for Likelihood
  * @author P. Nolan
  *
@@ -13,7 +13,7 @@
 
 namespace Likelihood {
 /**
- * @class LikelihoodException
+ * @class Exception
  *
  * @brief Exception class for Likelihood
  *
@@ -22,13 +22,13 @@ namespace Likelihood {
  * $Header$
  */
 
-  class LikelihoodException: public std::exception {
+  class Exception: public std::exception {
   public:
-    LikelihoodException() {}
-    LikelihoodException(std::string errorString, int code=0) : 
+    Exception() {}
+    Exception(std::string errorString, int code=0) : 
       m_what(errorString), m_code(code) 
       {}
-    virtual ~LikelihoodException() throw() {}
+    virtual ~Exception() throw() {}
     virtual const char *what() const throw() {return m_what.c_str();}
     virtual const int code() const {return m_code;}
   protected:

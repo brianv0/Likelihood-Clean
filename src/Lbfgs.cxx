@@ -8,7 +8,7 @@
 
 #include "Likelihood/Lbfgs.h"
 #include "Likelihood/Parameter.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -125,19 +125,19 @@ namespace Likelihood {
 	// Abnormal termination in line search
 	m_retCode = LBFGS_ABNO;
 	m_errorString = taskString;
-	throw LikelihoodException(taskString, LBFGS_ABNO);
+	throw Exception(taskString, LBFGS_ABNO);
       }
       else if (taskString.substr(0, 5) == "ERROR") {
 	// Error in input parameters
 	m_retCode = LBFGS_ERROR;
 	m_errorString = taskString;
-	throw LikelihoodException(taskString, LBFGS_ERROR);
+	throw Exception(taskString, LBFGS_ERROR);
       }
       else {
 	// Something else
 	m_retCode = LBFGS_UNKNOWN;
 	m_errorString = "LBFGS unknown condition";
-	throw LikelihoodException(taskString, LBFGS_UNKNOWN);
+	throw Exception(taskString, LBFGS_UNKNOWN);
       }
     }  // End of infinite loop
 

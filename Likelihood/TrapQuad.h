@@ -40,10 +40,10 @@ public:
    }
    ~TrapQuad() {}
 
-   double integral() throw(LikelihoodException);
+   double integral() throw(Exception);
    double integral(double xmin, double xmax, int npts = 100) 
-      throw(LikelihoodException);
-   double integral(std::vector<double> &xvals) throw(LikelihoodException);
+      throw(Exception);
+   double integral(std::vector<double> &xvals) throw(Exception);
 
 private:
 

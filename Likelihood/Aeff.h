@@ -11,7 +11,7 @@
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 class astro::SkyDir;
 
@@ -48,7 +48,7 @@ public:
 
    //! method to read in the aeff data
    void readAeffData(const std::string &aeffFile, int hdu)
-      throw(LikelihoodException);
+      throw(Exception);
 
 protected:
 

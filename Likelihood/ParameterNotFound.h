@@ -9,7 +9,7 @@
 #define Likelihood_ParameterNotFound_h
 
 #include <sstream>
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -24,7 +24,7 @@ namespace Likelihood {
  * $Header$
  */
 
-class ParameterNotFound : public LikelihoodException {
+class ParameterNotFound : public Exception {
 
 public:
    ParameterNotFound(const std::string &paramName, 

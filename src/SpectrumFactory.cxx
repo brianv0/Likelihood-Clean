@@ -10,7 +10,7 @@
 #include <cassert>
 #include <sstream>
 #include "Likelihood/SpectrumFactory.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
@@ -21,7 +21,7 @@ SpectrumFactory::~SpectrumFactory() {
 }
 
 void SpectrumFactory::addFunc(const std::string &name, Function* func, 
-                              bool fromClone) throw(LikelihoodException) {
+                              bool fromClone) throw(Exception) {
    if (!m_prototypes.count(name)) {
       if (fromClone) {
          m_prototypes[name] = func->clone();
@@ -32,7 +32,7 @@ void SpectrumFactory::addFunc(const std::string &name, Function* func,
       std::ostringstream errorMessage;
       errorMessage << "SpectrumFactory::addFunc: A Function named "
                    << name << " already exists!\n";
-      throw LikelihoodException(errorMessage.str());
+      throw Exception(errorMessage.str());
    }
 }
 
