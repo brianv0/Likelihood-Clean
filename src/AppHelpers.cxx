@@ -72,13 +72,7 @@ void AppHelpers::setRoi(const std::string & filename,
       return;
    }
    std::string event_file = m_pars["evfile"];
-   if (event_file == "none" || event_file == "") {
-      std::string roi_file = m_pars["ROI_file"];
-      st_facilities::Util::file_ok(roi_file);
-      roiCuts.setCuts(roi_file);
-   } else {
-      roiCuts.readCuts(m_pars["evfile"], "EVENTS", strict);
-   }
+   roiCuts.readCuts(event_file, "EVENTS", strict);
 }
 
 void AppHelpers::readScData() {
