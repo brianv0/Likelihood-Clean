@@ -51,7 +51,7 @@ namespace {
    }
 
    void string_split(std::string input, const std::string &delimiters,
-                std::vector<std::string> &components) {
+                     std::vector<std::string> &components) {
 // This routine breaks down a string into its components based on the
 // characters appearing in the delimiters string.
       components.clear();
