@@ -56,7 +56,6 @@ Event::Event(double ra, double dec, double energy,
    m_muZenith = muZenith;
    m_type = type;
 
-
    if (ResponseFunctions::useEdisp()) {
 // For <15% energy resolution, consider true energies over the range
 // (0.55, 1.45)*m_energy, i.e., nominally a >3-sigma range about the
@@ -131,8 +130,8 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
    for (unsigned int i = 0; i < s_mu.size(); i++) {
       for (unsigned int j = 0; j < s_phi.size(); j++) {
          astro::SkyDir srcDir;
-//         getCelestialDir(s_phi[j], s_mu[i], s_eqRot, srcDir);
-         getCelestialDir(s_phi[j], s_mu[i], eqRot, srcDir);
+         getCelestialDir(s_phi[j], s_mu[i], s_eqRot, srcDir);
+//         getCelestialDir(s_phi[j], s_mu[i], eqRot, srcDir);
          srcDirs.push_back(srcDir);
       }
    }
@@ -208,6 +207,11 @@ void Event::prepareSrData(double sr_radius, int nmu, int nphi) {
    for (int i = 0; i < nmu; i++) {
       s_mu.push_back(mustep*i + mumin);
    }
+// // Try sampling more densely near theta = 0:
+//    double nscale = static_cast<double>((nmu-1)*(nmu-1));
+//    for (int i = 0; i < nmu; i++) {
+//       s_mu.push_back(1. - i*i/nscale*(1. - mumin));
+//    }
    double phistep = 2.*M_PI/(nphi - 1.);
    for (int i = 0; i < nphi; i++) {
       s_phi.push_back(phistep*i);

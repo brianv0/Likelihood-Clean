@@ -106,8 +106,8 @@ void diffuseResponses::run() {
 }
 
 void diffuseResponses::setRoi() {
-   RoiCuts * roiCuts = RoiCuts::instance();
-   roiCuts->setCuts();
+   std::string xmlFile = m_pars["ROI_cuts_file"];
+   RoiCuts::setCuts(xmlFile);
 }
 
 void diffuseResponses::buildSourceModel() {
