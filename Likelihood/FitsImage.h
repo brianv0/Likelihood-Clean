@@ -87,6 +87,7 @@ public:
  */
    class EquinoxRotation {
    public:
+      EquinoxRotation() {}
       EquinoxRotation(double alpha0, double delta0);
       ~EquinoxRotation() {}
       void do_rotation(const astro::SkyDir &inDir, astro::SkyDir &outDir);
