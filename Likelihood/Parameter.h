@@ -19,7 +19,7 @@ namespace Likelihood {
  * indicate if its free and with upper and lower bounds.
  *
  * ToDo: Need to check optimizer implementations for unbounded
- * parameters.  Does one simply set bounds at extremal (1e30)
+ * parameters.  Does one simply set bounds at extremal (HUGE)
  * values?  This may be a dangerous default behavior since some
  * optimizers like to evaluate at the bounds. Or can one simply set a
  * flag to indicate an unbounded parameter?
@@ -40,15 +40,15 @@ public:
 	     double minValue, double maxValue, bool isFree = true)
       {m_init(paramName, paramValue, minValue, maxValue, isFree);};
    Parameter(const Parameter&);
-   ~Parameter(){};
+   ~Parameter(){}
 
    //! name access
    void setName(const std::string &paramName) {m_name = paramName;};
-   std::string getName() const {return m_name;};
+   std::string getName() const {return m_name;}
    
    //! value access
-   void setValue(double value) {m_value = value;};
-   double getValue() const {return m_value;};
+   void setValue(double value) {m_value = value;}
+   double getValue() const {return m_value;}
 
    //! bounds access
    void setBounds(double minValue, double maxValue)

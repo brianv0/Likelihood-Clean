@@ -30,8 +30,8 @@ public:
 
    //! return the objective function value taking the free parameters 
    //! as the function argument
-   double value(const std::vector<double> &paramVec);
-   double operator()(const std::vector<double> &paramVec) 
+   virtual double value(const std::vector<double> &paramVec);
+   virtual double operator()(const std::vector<double> &paramVec) 
       {return value(paramVec);};
 
    void readEventData(const std::string &eventFile, 
