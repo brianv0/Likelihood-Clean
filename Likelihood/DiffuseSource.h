@@ -113,8 +113,8 @@ private:
    std::vector<double> m_exposure;
 
    //! disable these pure virtual functions inherited from Source
-   void setDir(double, double, bool) {}
-   void setDir(const astro::SkyDir &, bool) {}
+   void setDir(double, double, bool, bool) {}
+   void setDir(const astro::SkyDir &, bool, bool) {}
 
 };
 
