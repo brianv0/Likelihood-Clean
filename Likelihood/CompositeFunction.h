@@ -1,4 +1,5 @@
-/** @file CompositeFunction.h
+/** 
+ * @file CompositeFunction.h
  * @brief Declaration of CompositeFunction class
  * @author J. Chiang
  * $Header$
