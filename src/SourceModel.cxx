@@ -506,7 +506,7 @@ void SourceModel::makeCountsMap(const CountsMap & dataMap,
             for (src = s_sources.begin(); src != s_sources.end(); ++src) {
                Aeff aeff(src->second, pixelDirs[j], energy, evtType);
                map[indx] += ExposureCube::instance()->value(pixelDirs[j], aeff)
-                  *pixelSolidAngles[j];
+                  *pixelSolidAngles[j]*(energies[k+1] - energies[k]);
             } // src
          } // evtType
       } // k
