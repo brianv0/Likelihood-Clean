@@ -1,4 +1,5 @@
-/** @file DiffuseSource.cxx
+/** 
+ * @file DiffuseSource.cxx
  * @brief DiffuseSource class implementation
  *
  * $Header$
@@ -9,15 +10,12 @@
 #include <string>
 #include <cmath>
 
-#include "astro/SkyDir.h"
 #include "Likelihood/DiffuseSource.h"
-#include "Likelihood/Psf.h"
-#include "Likelihood/Aeff.h"
-#include "Likelihood/ScData.h"
+#include "Likelihood/Function.h"
+#include "Likelihood/Event.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/dArg.h"
 #include "Likelihood/TrapQuad.h"
-#include "Likelihood/SkyDirArg.h"
 #include "Likelihood/ExposureMap.h"
 
 namespace Likelihood {

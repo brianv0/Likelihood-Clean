@@ -1,6 +1,6 @@
 /** 
  * @file Function.h
- * @brief Declaration of Function class
+ * @brief Declaration of Function and ParameterNotFound classes
  * @author J. Chiang
  *
  * $Header$
@@ -19,14 +19,12 @@
 #include <string>
 
 #include "Likelihood/Parameter.h"
-#include "Likelihood/Arg.h"
 #include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
+class Arg;
 class ParameterNotFound;
-class SumFunction;
-class ProductFunction;
 
 /** 
  * @class Function
@@ -55,8 +53,8 @@ public:
    virtual ~Function() {}
 
    //! provide a string identifier
-   void setMyName(std::string functionName) {m_functionName = functionName;}
-   std::string getMyName() const {return m_functionName;}
+   void setName(std::string functionName) {m_functionName = functionName;}
+   std::string getName() const {return m_functionName;}
 
    ///////////////////////
    //! parameter access 
@@ -153,13 +151,6 @@ public:
 
    //! clone function, with default
    virtual Function *clone() const {return 0;}
-
-#if 0 // disable these until assignment operator is provided
-   ////////////////////////////////////////////////////
-   //! +, * operator overloading (and memory leaking)
-   SumFunction &operator+(Function &);
-   ProductFunction &operator*(Function &);
-#endif
 
    enum FuncType {None, Addend, Factor};
 

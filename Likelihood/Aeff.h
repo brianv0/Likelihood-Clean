@@ -1,4 +1,5 @@
-/** @file Aeff.h
+/** 
+ * @file Aeff.h
  * @brief Interface definition for the LAT Effective Area class
  * @author J. Chiang
  * $Header$
@@ -8,11 +9,12 @@
 #ifndef Aeff_h
 #define Aeff_h
 
-#include "astro/SkyDir.h"
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
 
 namespace Likelihood {
+
+class astro::SkyDir;
 
 /** 
  * @class Aeff
@@ -36,8 +38,8 @@ public:
       {return value(energy, inclination);};
 
    //! effective area in sky coordinates
-   double value(double energy, astro::SkyDir srcDir, double time);
-   double operator()(double energy, astro::SkyDir srcDir, double time)
+   double value(double energy, const astro::SkyDir &srcDir, double time);
+   double operator()(double energy, const astro::SkyDir &srcDir, double time)
       {return value(energy, srcDir, time);};
 
    //! returns the Singleton object pointer

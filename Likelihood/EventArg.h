@@ -1,4 +1,5 @@
-/** @file EventArg.h
+/** 
+ * @file EventArg.h
  * @brief Declaration of EventArg class
  * @author J. Chiang
  *

@@ -1,4 +1,5 @@
-/** @file Aeff.cxx
+/** 
+ * @file Aeff.cxx
  * @brief Implementation for LAT effective area class
  * @author J. Chiang
  *
@@ -11,6 +12,7 @@
 #include <algorithm>
 
 #include "Likelihood/Aeff.h"
+#include "astro/SkyDir.h"
 
 namespace Likelihood {
 
@@ -49,7 +51,7 @@ void Aeff::readAeffData(const std::string &file, int hdu) {
       m_aeff[i] = m_aeffData[2].val[i];
 }
 
-double Aeff::value(double energy, astro::SkyDir dir, double time) {
+double Aeff::value(double energy, const astro::SkyDir &dir, double time) {
 // Compute the index corresponding to the desired time.
 // Here we assume the scData->vec[].times are at regular intervals.
    double tstep = scData->vec[1].time - scData->vec[0].time;

@@ -1,4 +1,5 @@
-/** @file Psf.h
+/** 
+ * @file Psf.h
  * @brief Psf class implementation
  * @author J. Chiang
  * 
@@ -8,11 +9,12 @@
 #ifndef Psf_h
 #define Psf_h
 
-#include "astro/SkyDir.h"
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
 
 namespace Likelihood {
+
+class astro::SkyDir;
 
 /** 
  * @class Psf
@@ -36,10 +38,10 @@ public:
       {return value(separation, energy, inc);}
 
    //! PSF in sky coordinates
-   double value(astro::SkyDir appDir, double energy, 
-                astro::SkyDir srcDir, double time);
-   double operator()(astro::SkyDir appDir, double energy, 
-                     astro::SkyDir srcDir, double time)
+   double value(const astro::SkyDir &appDir, double energy, 
+                const astro::SkyDir &srcDir, double time);
+   double operator()(const astro::SkyDir &appDir, double energy, 
+                     const astro::SkyDir &srcDir, double time)
       {return value(appDir, energy, srcDir, time);}
 
    //! retrieve PSF parameters (sig1, sig2, wt) in instrument coordinates

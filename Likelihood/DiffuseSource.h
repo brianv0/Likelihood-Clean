@@ -10,13 +10,13 @@
 #define DiffuseSource_h
 
 #include "Likelihood/Source.h"
-#include "Likelihood/Function.h"
-#include "Likelihood/SkyDirFunction.h"
-#include "Likelihood/Event.h"
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
+
+class Function;
+class Event;
 
 /** 
  * @class DiffuseSource

@@ -1,4 +1,5 @@
-/** @file AbsEdge.h
+/** 
+ * @file AbsEdge.h
  * @brief AbsEdge class declaration
  * @author J. Chiang
  *
@@ -9,9 +10,11 @@
 #define AbsEdge_h
 
 #include "Likelihood/Function.h"
-#include "Likelihood/Arg.h"
 
 namespace Likelihood {
+
+class Arg;
+
 /** 
  * @class AbsEdge
  *
