@@ -30,6 +30,7 @@ apply_pattern ST_app_withDir name=gtlivetimecube dir=makeExposureCube
 apply_pattern ST_app_withDir name=gtdiffresp dir=diffuseResponses
 apply_pattern ST_app name=gtcntsmap
 apply_pattern ST_app name=gtsrcmaps
+apply_pattern ST_app_withDir name=gtpsf dir=meanPsf
 
 private
 
