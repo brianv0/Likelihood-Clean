@@ -36,8 +36,6 @@ macro expMapstamps "expMap.stamp"
 macro my_headers "" WIN32 "../Likelihood/*.h *.h"
 library Likelihood -no_share $(my_headers) *.cxx *.f *.c $(pydir)/*.i
 
-set PFILES "$(LIKELIHOODROOT)/data"
-
 # applications
 application test_Likelihood test/main.cxx
 application likelihood test/likelihood.cxx
