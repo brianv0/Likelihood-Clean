@@ -18,7 +18,8 @@
 
 #include "astro/SkyDir.h"
 
-#include "latResponse/AcceptanceCone.h"
+//#include "latResponse/AcceptanceCone.h"
+#include "irfInterface/AcceptanceCone.h"
 
 namespace Likelihood {
 
@@ -49,7 +50,8 @@ public:
    std::pair<double, double> getEnergyCuts() const
       {return std::make_pair(s_eMin, s_eMax);}
 
-   const latResponse::AcceptanceCone &extractionRegion() const
+//    const latResponse::AcceptanceCone &extractionRegion() const
+   const irfInterface::AcceptanceCone &extractionRegion() const
       {return s_roiCone;}
 
    static void getRaDec(double &ra, double &dec) {
@@ -103,7 +105,8 @@ private:
    static double s_eMax;
 
    /// The acceptance cone or sky extraction region.
-   static latResponse::AcceptanceCone s_roiCone;
+//    static latResponse::AcceptanceCone s_roiCone;
+   static irfInterface::AcceptanceCone s_roiCone;
 
    /// cosine of the maximum Zenith angle
    static double s_muZenMax;

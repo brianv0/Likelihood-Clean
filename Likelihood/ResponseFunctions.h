@@ -11,7 +11,8 @@
 
 #include <map>
 
-#include "latResponse/Irfs.h"
+//#include "latResponse/Irfs.h"
+#include "irfInterface/Irfs.h"
 
 namespace astro {
    class SkyDir;
@@ -59,11 +60,19 @@ public:
                                const astro::SkyDir &appDir,
                                int type);
 
-   static void setRespPtrs(std::map<unsigned int, latResponse::Irfs *> 
+//    static void setRespPtrs(std::map<unsigned int, latResponse::Irfs *> 
+//                            &respPtrs) {s_respPtrs = respPtrs;}
+
+//    static void addRespPtr(unsigned int key,
+//                           latResponse::Irfs *respPtr) {
+//       s_respPtrs[key] = respPtr;
+//    }
+
+   static void setRespPtrs(std::map<unsigned int, irfInterface::Irfs *> 
                            &respPtrs) {s_respPtrs = respPtrs;}
 
    static void addRespPtr(unsigned int key,
-                          latResponse::Irfs *respPtr) {
+                          irfInterface::Irfs *respPtr) {
       s_respPtrs[key] = respPtr;
    }
 
@@ -74,12 +83,19 @@ public:
       }
    }
 
-   latResponse::Irfs * respPtr(unsigned int eventType);
+//    latResponse::Irfs * respPtr(unsigned int eventType);
 
-   std::map<unsigned int, latResponse::Irfs *>::iterator begin()
+//    std::map<unsigned int, latResponse::Irfs *>::iterator begin()
+//       {return s_respPtrs.begin();}
+
+//    std::map<unsigned int, latResponse::Irfs *>::iterator end()
+//       {return s_respPtrs.end();}
+   irfInterface::Irfs * respPtr(unsigned int eventType);
+
+   std::map<unsigned int, irfInterface::Irfs *>::iterator begin()
       {return s_respPtrs.begin();}
 
-   std::map<unsigned int, latResponse::Irfs *>::iterator end()
+   std::map<unsigned int, irfInterface::Irfs *>::iterator end()
       {return s_respPtrs.end();}
 
    /// Whether or not energy dispersion is to be considered.
@@ -95,7 +111,8 @@ private:
 
    static ResponseFunctions * s_instance;
 
-   static std::map<unsigned int, latResponse::Irfs *> s_respPtrs;
+//    static std::map<unsigned int, latResponse::Irfs *> s_respPtrs;
+   static std::map<unsigned int, irfInterface::Irfs *> s_respPtrs;
 
    static bool s_useEdisp;
 
