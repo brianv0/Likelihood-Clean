@@ -32,7 +32,7 @@ void Npred::fetchDerivs(optimizers::Arg &x, std::vector<double> &derivs,
                         bool getFree) const {
    if (!derivs.empty()) derivs.clear();
 
-   buildParameterVector(x);
+   const_cast<Npred *>(this)->buildParameterVector(x);
 
    for (unsigned int i = 0; i < m_parameter.size(); i++) {
       if (!getFree || m_parameter[i].isFree())
@@ -40,7 +40,8 @@ void Npred::fetchDerivs(optimizers::Arg &x, std::vector<double> &derivs,
    }
 }
 
-void Npred::buildParameterVector(optimizers::Arg &x) const {
+//void Npred::buildParameterVector(optimizers::Arg &x) const {
+void Npred::buildParameterVector(optimizers::Arg &x) {
    m_parameter.clear();
    Source *src = dynamic_cast<SrcArg &>(x).getValue();
 
