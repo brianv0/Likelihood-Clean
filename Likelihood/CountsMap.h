@@ -117,6 +117,8 @@ private:
                       std::vector<evtbin::Binner *> & binners);
 
    void setDataDir();
+
+   void deleteBinners(std::vector<evtbin::Binner *> & binners) const;
 };
 
 }
