@@ -29,6 +29,7 @@ void SpatialMap::init() {
    setMaxNumParams(nParams);
    m_genericName = "SpatialMap";
    addParam("Prefactor", 1, false);
+   setParamAlwaysFixed("Prefactor");
 }
 
 void SpatialMap::readFitsFile(const std::string &fitsFile) {
