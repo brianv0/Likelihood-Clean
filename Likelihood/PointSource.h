@@ -15,6 +15,7 @@
 #include "optimizers/dArg.h"
 
 #include "Likelihood/Event.h"
+#include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Source.h"
 
@@ -26,7 +27,9 @@ namespace Likelihood {
 
    class ExposureCube;
    class Observation;
+   class ResponseFunctions;
    class RoiCuts;
+   class ScData;
 
 /** 
  * @class PointSource
@@ -152,6 +155,7 @@ public:
    /// vector of energy values
    static void computeExposure(const astro::SkyDir & dir,
                                const std::vector<double> & energies,
+                               const Observation & observation, 
                                std::vector<double> & exposure,
                                bool verbose);
 
@@ -159,8 +163,7 @@ public:
    static void 
    computeExposureWithHyperCube(const astro::SkyDir & dir, 
                                 const std::vector<double> & energies,
-                                const ExposureCube & expCube,
-                                const RoiCuts & roiCuts,
+                                const Observation & observation, 
                                 std::vector<double> & exposure,
                                 bool verbose);
 
@@ -207,7 +210,10 @@ private:
    /// Method to compute effective area for the computeExposure time
    /// integrals (when exposure time hypercubes are not available.)
    static double sourceEffArea(const astro::SkyDir & srcDir,
-                               double energy, double time);
+                               double energy, double time,
+                               const ScData & scData,
+                               const RoiCuts & roiCuts,
+                               const ResponseFunctions & respFuncs);
 
 #ifndef SWIG
    /**
@@ -222,7 +228,7 @@ private:
    public:
 
       Aeff(double energy, const astro::SkyDir &srcDir,
-           const RoiCuts & roiCuts);
+           const RoiCuts & roiCuts, const ResponseFunctions & respFuncs);
 
       virtual ~Aeff() {}
 
@@ -232,6 +238,8 @@ private:
 
       double m_energy;
       astro::SkyDir m_srcDir;
+
+      const ResponseFunctions & m_respFuncs;
 
       static std::vector<irfInterface::AcceptanceCone *> s_cones;
       static double s_emin, s_emax;
