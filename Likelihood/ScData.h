@@ -18,8 +18,7 @@ namespace Likelihood {
 /** 
  * @class ScData
  *
- * @brief Container for ScNtuple data.  Singleton.  Used by Response
- * and Source hierarchies.
+ * @brief Singleton container for ScNtuple data.
  *
  * @author J. Chiang
  *    
@@ -32,7 +31,7 @@ public:
 
    ~ScData(){}
 
-   //! method to read in the spacecraft data
+   /// Method to read in the spacecraft data.
    static void readData(const std::string &file, int hdu);
    
 #ifndef SWIG
@@ -51,11 +50,18 @@ public:
       int inSaa;
    };
 
-   //! share the spacecraft data itself
+   /// The spacecraft data itself. (This may be moved to the private 
+   /// area and replaced here with access methods.)
    static std::vector<ScNtuple> vec;
 #endif // SWIG
 
-   //! returns the Singleton object pointer
+   /// Return the spacecraft z-axis as a function of MET.
+   astro::SkyDir &zAxis(double time);
+
+   /// Return the spacecraft x-axis as a function of MET.
+   astro::SkyDir &xAxis(double time);
+
+   /// Returns the Singleton object pointer.
    static ScData * instance();
 
 protected:
@@ -68,6 +74,11 @@ private:
    
    static std::string s_scFile;
    static int s_scHdu;
+
+   astro::SkyDir m_zAxis;
+   astro::SkyDir m_xAxis;
+
+   double m_tstep;
 
 };
 
