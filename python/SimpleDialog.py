@@ -59,6 +59,9 @@ class ParamFileEntry:
     def value(self):
         return self.variable.get()
     def getFile(self):
+        pattern = self.variable.get()
+        if pattern.find('*') != -1:
+            self.pattern = pattern
         if self.pattern is None:
             file = LoadFileDialog(self.parent).go()
         else:
