@@ -17,10 +17,10 @@
 
 #include "EasyPlot.h"
 
-typedef std::vector<double> vector;
-typedef st_graph::ValueSpreadSequence<vector::const_iterator> valuesWithErrors;
-typedef st_graph::LowerBoundSequence<vector::const_iterator> lowerBounds;
-typedef st_graph::PointSequence<vector::const_iterator> values;
+typedef std::vector<double> vctr;
+typedef st_graph::ValueSpreadSequence<vctr::const_iterator> valuesWithErrors;
+typedef st_graph::LowerBoundSequence<vctr::const_iterator> lowerBounds;
+typedef st_graph::PointSequence<vctr::const_iterator> values;
 
 EasyPlot::EasyPlot(const std::string & title,
                    unsigned int xsize, unsigned int ysize)
