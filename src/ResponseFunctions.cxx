@@ -48,6 +48,31 @@ double ResponseFunctions::totalResponse(double time,
    return myResponse;
 }
 
+double ResponseFunctions::totalResponse(double inclination, double phi,
+                                        double energy, double appEnergy,
+                                        double separation, int type) {
+   double myResponse(0);
+   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
+      = instance()->begin();
+   for ( ; respIt != instance()->end(); respIt++) {
+      if (respIt->second->irfID() == type) {  
+         irfInterface::IPsf * psf = respIt->second->psf();
+         irfInterface::IAeff * aeff = respIt->second->aeff();
+         double psf_val = psf->value(separation, energy, inclination, phi);
+         double aeff_val = aeff->value(energy, inclination, phi);
+         if (s_useEdisp) {
+            irfInterface::IEdisp * edisp = respIt->second->edisp();
+            double edisp_val = edisp->value(appEnergy, energy, 
+                                            inclination, phi);
+            myResponse += psf_val*aeff_val*edisp_val;
+         } else {
+            myResponse += psf_val*aeff_val;
+         }            
+      }
+   }
+   return myResponse;
+}   
+
 irfInterface::Irfs * ResponseFunctions::respPtr(unsigned int i) {
    if (s_respPtrs.count(i)) {
       return s_respPtrs[i];
