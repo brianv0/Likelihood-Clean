@@ -127,11 +127,10 @@ void ExpMap::createExposureMap() {
       m_helper->observation().expCube().readExposureCube(expCubeFile);
    }
    std::string exposureFile = m_pars["outfile"];
-   const RoiCuts & roiCuts = m_helper->observation().roiCuts();
-   const ExposureCube & expCube = m_helper->observation().expCube();
+   const Observation & observation = m_helper->observation();
+   const RoiCuts & roiCuts = observation.roiCuts();
    m_helper->observation().expMap().ExposureMap::computeMap(exposureFile,
-                                                            expCube,
-                                                            roiCuts,
+                                                            observation,
                                                             m_srRadius,
                                                             nlong, nlat,
                                                             nenergies); 
