@@ -87,6 +87,21 @@ public:
       return 0;
    }
 
+
+   virtual double fluxDensityDeriv(double inclination, double phi, 
+                                   double energy,
+                                   const astro::SkyDir &appDir,
+                                   int evtType,
+                                   const std::string & paramName) const {
+      (void)(inclination);
+      (void)(phi);
+      (void)(energy);
+      (void)(appDir);
+      (void)(evtType);
+      (void)(paramName);
+      return 0;
+   }
+
    /// Predicted number of photons given RoiCuts and ScData
    virtual double Npred();
    
@@ -148,11 +163,6 @@ private:
    /// vector of angle integrated diffuse exposure as as a function of
    /// energy
    std::vector<double> m_exposure;
-
-   /// disable these pure virtual functions inherited from Source
-   void setDir(double, double, bool, bool) {}
-   void setDir(const astro::SkyDir &, bool, bool) {}
-
 };
 
 } //namespace Likelihood

@@ -97,7 +97,6 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
 /// calculation.
             for (int evtType = 0; evtType < 2; evtType++) {
                Aeff aeff(src, pixel->dir(), *energy, evtType);
-//               value += ExposureCube::instance()->value(pixel->dir(), aeff);
                value += observation.expCube().value(pixel->dir(), aeff);
             }
          } else if (haveDiffuseSource) {

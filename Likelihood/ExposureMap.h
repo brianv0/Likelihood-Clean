@@ -70,16 +70,22 @@ public:
                              std::vector<double> &exposure) const;
 
    /// Retrieve the RA of each pixel in the image plane
-   void getRA(std::vector<double> &ra) 
-      {ra.resize(s_ra.size()); ra = s_ra;}
+   void getRA(std::vector<double> & ra) const {
+      ra.resize(s_ra.size());
+      ra = s_ra;
+   }
 
    /// Retrieve the Dec of each pixel in an image plane
-   void getDec(std::vector<double> &dec) 
-      {dec.resize(s_ra.size()); dec = s_dec;}
+   void getDec(std::vector<double> &dec) const {
+      dec.resize(s_ra.size());
+      dec = s_dec;
+   }
 
    /// Retrieve the energies in MeV of each plane in the ExposureMap 
    /// frame stack
-   void getEnergies(std::vector<double> &energies) {energies = s_energies;}
+   void getEnergies(std::vector<double> &energies) const {
+      energies = s_energies;
+   }
 
    /**
     * @brief Compute the exposure map given the current set of

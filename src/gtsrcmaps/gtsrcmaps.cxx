@@ -109,8 +109,8 @@ void gtsrcmaps::run() {
    double ra, dec;
    getRefCoord(cntsMapFile, ra, dec);
 
-   RoiCuts::instance()->setCuts(ra, dec, 20., energies.front(),
-                                energies.back());
+   m_helper->observation().roiCuts().setCuts(ra, dec, 20., energies.front(),
+                                             energies.back());
 
    std::string binnedMap = m_pars["binned_exposure_map"];
    if (binnedMap != "none" && binnedMap != "") {

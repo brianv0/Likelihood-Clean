@@ -13,6 +13,8 @@
 #include <string>
 #include <utility>
 
+#include <xercesc/dom/DOM.hpp>
+
 #include "facilities/Util.h"
 
 #include "optimizers/Dom.h"
