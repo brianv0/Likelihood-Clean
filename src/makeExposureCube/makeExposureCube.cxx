@@ -6,7 +6,13 @@
  *  $Header$
  */
 
+#include <cstdlib>
+
 #include <sstream>
+
+#include "st_app/AppParGroup.h"
+#include "st_app/StApp.h"
+#include "st_app/StAppFactory.h"
 
 #include "tip/IFileSvc.h"
 
@@ -14,7 +20,6 @@
 
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/LikeExposure.h"
-#include "Likelihood/StApp.h"
 
 /**
  * @class ExposureCube
@@ -25,21 +30,41 @@
  *
  * $Header$
  */
-class ExposureCube {
+class ExposureCube : public st_app::StApp {
 public:
-   ExposureCube(hoops::IParGroup & pars) : m_pars(pars), m_exposure(0) {}
-   virtual ~ExposureCube() {
-      delete m_exposure;
+   ExposureCube() : st_app::StApp(), 
+                    m_pars(st_app::StApp::getParGroup("makeExposureCube")), 
+                    m_exposure(0) {
+      try {
+         m_pars.Prompt();
+         m_pars.Save();
+      } catch (std::exception & eObj) {
+         std::cerr << eObj.what() << std::endl;
+         std::exit(1);
+      } catch (...) {
+         std::cerr << "Caught unknown exception in ExposureCube constructor." 
+                   << std::endl;
+         std::exit(1);
+      }
+   }
+
+   virtual ~ExposureCube() throw() {
+      try {
+         delete m_exposure;
+      } catch (std::exception &eObj) {
+         std::cerr << eObj.what() << std::endl;
+      } catch (...) {
+      }
    }
    virtual void run();
 private:
-   hoops::IParGroup & m_pars;
+   st_app::AppParGroup & m_pars;
    Likelihood::LikeExposure * m_exposure;
    void createDataCube();
    void addRoiHistory(map_tools::ExposureHyperCube & cube);
 };
 
-Likelihood::StApp<ExposureCube> my_application("makeExposureCube");
+st_app::StAppFactory<ExposureCube> myAppFactory;
 
 void ExposureCube::run() {
    createDataCube();
