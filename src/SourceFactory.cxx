@@ -234,6 +234,14 @@ Source * SourceFactory::makeDiffuseSource(const DOM_Element &spectrum,
                                           &funcFactory) {
    std::string type = xml::Dom::getAttribute(spatialModel, "type");
    optimizers::Function *spatialDist = funcFactory.create(type);
+   std::vector<DOM_Element> params;
+   optimizers::Dom::getElements(spatialModel, "parameter", params);
+   std::vector<DOM_Element>::const_iterator paramIt = params.begin();
+   for ( ; paramIt != params.end(); paramIt++) {
+      optimizers::Parameter parameter;
+      optimizers::Dom::readParamData(*paramIt, parameter);
+      spatialDist->setParam(parameter);
+   }
    if (type == "SpatialMap") {
       std::string fitsFile 
          = xml::Dom::getAttribute(spatialModel, "file");
