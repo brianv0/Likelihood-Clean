@@ -602,6 +602,7 @@ void LikelihoodTests::generate_exposureHyperCube() {
    exposure.load(scData, false);
    std::string output_file = m_rootPath + "/data/expcube_1_day.fits";
    map_tools::ExposureHyperCube cube(exposure, output_file);
+   cube.save();
 }
 
 CountsMap LikelihoodTests::singleSrcMap(unsigned int nee) const {
@@ -893,7 +894,7 @@ int main() {
 //    try {
 //       LikelihoodTests testObj;
 //       testObj.setUp();
-//       testObj.test_RoiCuts();
+//       testObj.test_BinnedLikelihood();
 //       testObj.tearDown();
 //    } catch (std::exception & eObj) {
 //       std::cout << eObj.what() << std::endl;
