@@ -15,13 +15,6 @@
 
 #include "facilities/Util.h"
 
-// #include <xercesc/dom/DOM_Document.hpp>
-// #include <xercesc/dom/DOM_Element.hpp>
-// #include <xercesc/dom/DOM_NodeList.hpp>
-// #include <xercesc/dom/DOM_DOMException.hpp>
-
-// #include "xml/Dom.h"
-
 #include "optimizers/Function.h"
 
 #include "Likelihood/SkyDirFunction.h"
