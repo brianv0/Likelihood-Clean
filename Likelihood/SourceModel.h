@@ -145,15 +145,15 @@ public:
                              + std::string("reimplemented in this subclass."));
    }
 
+   /// method to sync the m_parameter vector with those of the 
+   /// s_sources' Functions
+   void syncParams();
+
 protected:
 
    static int s_refCount;
 
    static std::map<std::string, Source *> s_sources;
-
-   /// method to sync the m_parameter vector with those of the 
-   /// s_sources' Functions
-   void syncParams();
 
    /// disable this since parameters may no longer have unique names
    double derivByParam(optimizers::Arg &, const std::string &) 
