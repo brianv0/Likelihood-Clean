@@ -20,7 +20,7 @@ XmlBuilder::XmlBuilder() {
 }
 
 XmlBuilder::~XmlBuilder() {
-   delete m_doc;
+   m_doc->release();
    delete m_parser;
 }
 

@@ -40,10 +40,7 @@ FluxBuilder::FluxBuilder() : XmlBuilder() {
    makeEnergyGrid();
 }
 
-FluxBuilder::~FluxBuilder() {
-//    delete m_allSrcsElt;
-//    delete m_srcLib;
-}
+FluxBuilder::~FluxBuilder() {}
 
 void FluxBuilder::addSource(Source & src) {
    DOMElement * srcElt = fluxSource(src);
