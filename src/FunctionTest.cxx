@@ -171,7 +171,7 @@ void FunctionTest::derivatives(const std::vector<Arg*> &arguments,
          m_func->setParamValues(new_params);
          double f1 = m_func->value(*my_arg);
          double my_deriv = (f1 - f0)/delta;
-         assert(abs(my_deriv/derivs[i] - 1.) < eps*10.);
+         assert(fabs(my_deriv/derivs[i] - 1.) < eps*10.);
       }
 
 // Check that the free derivatives are being accessed correctly.

@@ -1,4 +1,5 @@
-/** @file logLike_ptsrc.h
+/** 
+ * @file logLike_ptsrc.h
  * @brief Declaration of logLike_ptsrc class
  * @author J. Chiang
  *

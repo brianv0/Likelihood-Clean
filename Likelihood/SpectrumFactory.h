@@ -16,11 +16,11 @@
 #include "PowerLaw.h"
 #include "Gaussian.h"
 #include "AbsEdge.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
 class Function;
-class LikelihoodException;
 
 /** 
  * @class SpectrumFactory

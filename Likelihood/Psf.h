@@ -11,11 +11,11 @@
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
 class astro::SkyDir;
-class LikelihoodException;
 
 /** 
  * @class Psf

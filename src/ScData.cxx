@@ -1,4 +1,5 @@
-/** @file ScData.cxx
+/** 
+ * @file ScData.cxx
  * @brief Implementation for the LAT spacecraft data class
  * @author J. Chiang
  * 

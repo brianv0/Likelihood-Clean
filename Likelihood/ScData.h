@@ -1,4 +1,5 @@
-/** @file ScData.h
+/** 
+ * @file ScData.h
  * @brief Declaration for ScData class, which contains the spacecraft data
  * @author J. Chiang
  * 

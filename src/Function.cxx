@@ -10,7 +10,6 @@
 #include <sstream>
 
 #include "Likelihood/Function.h"
-#include "ParameterNotFound.h"
 
 namespace Likelihood {
 
