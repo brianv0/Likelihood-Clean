@@ -26,8 +26,7 @@ class SrcAnalysis(object):
         self.events = self.logLike.events();
         self.logLike.readXml(srcModel, _funcFactory)
         self.logLike.computeEventResponses()
-        ebounds = Likelihood.RoiCuts_instance().getEnergyCuts()
-        eMin, eMax = ebounds.first, ebounds.second
+        eMin, eMax = Likelihood.RoiCuts_instance().getEnergyCuts()
         nee = 21
         estep = num.log(eMax/eMin)/(nee-1)
         self.energies = eMin*num.exp(estep*num.arange(nee, type=num.Float))
@@ -116,6 +115,7 @@ class SrcAnalysis(object):
         if optimizer is None:
             optimizer = self.optimizer
         myOpt = eval("self.logLike.%s()" % optimizer)
+        self.logLike.syncParams()
         myOpt.find_min(verbose, tol)
         return -self.logLike.value()
 
