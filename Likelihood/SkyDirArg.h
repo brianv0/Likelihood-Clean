@@ -28,14 +28,26 @@ class SkyDirArg : public optimizers::Arg {
     
 public:
    
-   SkyDirArg(astro::SkyDir dir) : m_val(dir) {}
+   SkyDirArg(astro::SkyDir dir, double energy=100.) : 
+      m_val(dir), m_energy(energy) {}
+
+   SkyDirArg(double ra, double dec, double energy=100.) : 
+      m_val(astro::SkyDir(ra, dec)), m_energy(energy) {}
    virtual ~SkyDirArg() {}
 
    void fetchValue(astro::SkyDir &dir) const {dir = m_val;}
 
+   const astro::SkyDir & operator()() const {
+      return m_val;
+   }
+
+   double energy() const {return m_energy;}
+
 private:
 
    astro::SkyDir m_val;
+
+   double m_energy;
 
 };
 
