@@ -73,6 +73,10 @@ private:
 
    std::vector<double> m_energies;
 
+/// @brief This vector of SkyDir objects is used by
+/// sourceRegionIntegral for diffuse sources
+   std::vector<astro::SkyDir> m_srcDirs;
+
    class Aeff : public Pixel::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir,
@@ -90,6 +94,8 @@ private:
 
    double sourceRegionIntegral(Source * src, const Pixel & pixel,
                                double energy) const;
+
+   void computeSrcDirs(const Pixel & pixel);
 
    void prepareAngleArrays(int nmu, int nphi);
 

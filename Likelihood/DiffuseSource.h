@@ -88,7 +88,7 @@ public:
    virtual double Npred(double emin, double emax);
 
    /// Return the spatial distribution of the gamma-ray emission
-   double spatialDist(astro::SkyDir &dir) {
+   double spatialDist(const astro::SkyDir &dir) {
       SkyDirArg SDarg(dir);
       return (*m_spatialDist)(SDarg);
    }
