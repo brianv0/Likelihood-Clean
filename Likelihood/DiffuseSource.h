@@ -51,7 +51,8 @@ public:
 
    //! A Function describing the spatial distribution of emission is 
    //! required for instantiation.
-   DiffuseSource(optimizers::Function *spatialDist) throw(Exception);
+   DiffuseSource(optimizers::Function *spatialDist,
+                 bool requireExposure = true) throw(Exception);
 
    DiffuseSource(const DiffuseSource &rhs);
 
