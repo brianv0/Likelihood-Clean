@@ -15,7 +15,7 @@
 #include <string>
 
 #include "Likelihood/Parameter.h"
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/ParameterNotFound.h"
 
 namespace Likelihood {
 
@@ -46,33 +46,6 @@ public:
 //   Function(const Function&);
 
    virtual ~Function() {}
-
-   /**
-    * @class Function::ParameterNotFound
-    *
-    * @brief Nested class that returns a standard error message for
-    * Parameters looked for but not found in the desired Function.
-    *
-    * @author J. Chiang
-    *
-    * $Header$
-    */
-
-   class ParameterNotFound : public LikelihoodException {
-
-   public:
-      ParameterNotFound(const std::string &paramName, 
-                        const std::string &funcName,
-                        const std::string &routineName) {
-         std::ostringstream errorMessage;
-         errorMessage << "Function::" << routineName << ": \n"
-                      << "A Parameter named " << paramName
-                      << " is not a Parameter of Function "
-                      << funcName << "\n";
-         m_what = errorMessage.str();
-         m_code = 0;
-      }
-   };
 
    //! provide a string identifier
    void setName(std::string functionName) {m_functionName = functionName;}

@@ -12,7 +12,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
-#include "Likelihood/LikelihoodException.h"
+#include "Likelihood/OutOfBounds.h"
 
 namespace Likelihood {
 
@@ -58,37 +58,6 @@ public:
 //   Parameter(const Parameter&);
 
    ~Parameter(){}
-
-   /**
-    * @class OutOfBounds
-    *
-    * @brief Nested exception class to ensure set[True]Value and setBounds 
-    * methods behave consistently with regard to existing values.
-    *
-    * @author J. Chiang
-    *
-    * $Header$
-    */
-   class OutOfBounds : public LikelihoodException {
-
-   public:
-      OutOfBounds(const std::string &errorString, double value, 
-                  double minValue, double maxValue, int code) : 
-         LikelihoodException(errorString, code), m_value(value), 
-         m_minValue(minValue), m_maxValue(maxValue) {}
-      ~OutOfBounds() throw() {}
-      
-      double value() {return m_value;}
-      double minValue() {return m_minValue;}
-      double maxValue() {return m_maxValue;}
-      
-      enum ERROR_CODES {VALUE_ERROR, BOUNDS_ERROR};
-
-   private:
-      double m_value;
-      double m_minValue;
-      double m_maxValue;
-   };
 
    //! name access
    void setName(const std::string &paramName) {m_name = paramName;}
