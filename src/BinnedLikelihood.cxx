@@ -8,6 +8,7 @@
 
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
+#include "Likelihood/SourceMap.h"
 #include "Likelihood/SourceModel.h"
 
 namespace Likelihood {
@@ -16,6 +17,14 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap)
    : m_dataMap(dataMap), m_modelIsCurrent(false) {
    dataMap.getPixels(m_pixels);
    dataMap.getAxisVector(2, m_energies);
+
+   std::vector<std::string> srcNames;
+   getSrcNames(srcNames);
+   std::vector<std::string>::const_iterator name = srcNames.begin();
+   for ( ; name != srcNames.end(); ++name) {
+      Source * src = getSource(*name);
+      m_srcMaps[*name] = new SourceMap(src, dataMap);
+   }
 }
 
 double BinnedLikelihood::value(optimizers::Arg &dummy) const {

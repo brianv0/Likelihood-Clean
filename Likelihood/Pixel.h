@@ -50,12 +50,14 @@ public:
    void getFreeDerivs(double emin, double emax, SourceModel & srcModel,
                       std::vector<double> & derivs) const;
 
+   const astro::SkyDir & dir() const {return m_dir;}
+
    class Aeff : public map_tools::Exposure::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
            double energy, int type);
       virtual double operator()(double costheta) const;
-   private:
+   protected:
       Source * m_src;
       const astro::SkyDir & m_appDir;
       double m_energy;
@@ -69,7 +71,7 @@ public:
                 const astro::SkyDir & appDir, double energy, int type);
       virtual ~AeffDeriv() {}
       virtual double operator()(double costheta) const;
-   private:
+   protected:
       Source * m_src;
       std::string m_paramName;
       const astro::SkyDir & m_appDir;
