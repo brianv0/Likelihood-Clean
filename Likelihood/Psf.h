@@ -69,10 +69,7 @@ private:
    std::vector<double> m_energy;
    std::vector<double> m_theta;
    std::vector<double> m_wt;
-
-   //! need to find a better way to store the psf width table data
-   //! perhaps with std::valarray....for now, use pointers
-   double *m_sig1, *m_sig2;
+   std::valarray<double> m_sig1, m_sig2;
 
 };
 

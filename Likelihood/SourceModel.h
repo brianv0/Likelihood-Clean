@@ -57,10 +57,10 @@ public:
    void deleteSource(const std::string &srcName);
 
    //! delete all the sources
-   void deleteAllSources() {
-      s_sources.clear();
-      m_parameter.clear();
-   }
+   void deleteAllSources();
+
+   //! return a Source pointer by name
+   Source * getSource(const std::string &srcName);
 
    unsigned int getNumSrcs() const {return s_sources.size();}
    void getSrcNames(std::vector<std::string> &) const;

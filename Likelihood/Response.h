@@ -9,6 +9,7 @@
 #define Response_h
 
 #include <iostream>
+#include <valarray>
 #include "astro/SkyDir.h"
 #include "Likelihood/ScData.h"
 
@@ -41,6 +42,11 @@ public:
    //! the instrument z-axis (in degrees)
    static double incMax() {return s_incMax;}
 
+   //! my own zeroth order bilinear interpolater
+   static double bilinear(const std::vector<double> &xx, double x,
+                          const std::vector<double> &yy, double y, 
+                          const std::valarray<double> &z);
+
 protected:
 
    Response();
@@ -51,10 +57,6 @@ protected:
    //! share the spacecraft data among all response functions
    ScData * scData;
    
-   //! and my own zeroth order bilinear interpolater
-   static double m_bilinear(int nx, double *xx, int i, double x,
-                            int ny, double *yy, int j, double y, double *z);
-
 };
 
 } // namespace Likelihood

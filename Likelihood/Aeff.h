@@ -62,10 +62,7 @@ private:
 
    std::vector<double> m_energy;
    std::vector<double> m_theta;
-
-   //! need to find a better way to store the effective area table,
-   //! perhaps with std::valarray....for now, use a pointer
-   double *m_aeff;
+   std::valarray<double> m_aeff;
 
 };
 

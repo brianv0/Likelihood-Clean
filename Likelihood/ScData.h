@@ -8,6 +8,8 @@
 #ifndef ScData_h
 #define ScData_h
 
+#include <string>
+#include <vector>
 #include "astro/SkyDir.h"
 
 namespace Likelihood {

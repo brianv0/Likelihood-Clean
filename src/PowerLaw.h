@@ -38,7 +38,6 @@ public:
    virtual Function *clone() const {
       return new PowerLaw(*this);
    }
-;
 
 private:
 
