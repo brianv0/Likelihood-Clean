@@ -166,6 +166,10 @@ public:
       return m_exposure;
    }
 
+   /// @return Photon flux integrated over the ROI energy bounds. 
+   /// Units are #/cm^2/s
+   double flux() const;
+
 private:
 
    /// location on the Celestial sphere 
@@ -240,8 +244,8 @@ private:
 
       const ResponseFunctions & m_respFuncs;
 
-      static std::vector<irfInterface::AcceptanceCone *> s_cones;
-      static double s_emin, s_emax;
+      std::vector<irfInterface::AcceptanceCone *> m_cones;
+      double m_emin, m_emax;
    };
 #endif
 
