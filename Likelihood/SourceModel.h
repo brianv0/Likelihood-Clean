@@ -14,6 +14,8 @@
 #include <string>
 
 #include "optimizers/Statistic.h"
+
+#include "Likelihood/MapShape.h"
 #include "Likelihood/Source.h"
 
 namespace optimizers {
@@ -143,6 +145,10 @@ public:
 
    /// Write a flux-style xml file for the current source model.
    virtual void write_fluxXml(std::string xmlFile);
+
+   /// Create a counts map based on the current model.
+   void makeCountsMap(const std::string & filename,
+                      const MapShape & mapShape);
 
 protected:
 
