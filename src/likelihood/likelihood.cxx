@@ -70,6 +70,7 @@ public:
       }
    }
    virtual void run();
+   virtual void banner() const {}
 
 private:
    AppHelpers * m_helper;
@@ -234,7 +235,6 @@ void likelihood::readEventData() {
    std::vector<std::string>::const_iterator evIt = m_eventFiles.begin();
    for ( ; evIt != m_eventFiles.end(); evIt++) {
       st_facilities::Util::file_ok(*evIt);
-//      m_logLike->getEvents(*evIt);
       m_helper->observation().eventCont().getEvents(*evIt);
    }
 }
