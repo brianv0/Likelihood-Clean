@@ -25,7 +25,7 @@ use facilities v2*
 #macro pydir ../python/
 
 # allow use of internal path
-macro Likelihood_cppflags "" Linux "-I ../src -g -pedantic " WIN32 "/I..\src  /wd4290"
+macro Likelihood_cppflags "" Linux "-I ../src -g -pedantic -D TRAP_FPE " WIN32 "/I..\src  /wd4290"
 macro_prepend cflags "" Linux "-g"
 
 # make sure test application gets built when library changes
