@@ -262,6 +262,7 @@ void PointSource::makeEnergyVector(int nee) {
    double trueEmin(18.);
    double trueEmax(3.17e5);
    double trueEstep = log(trueEmax/trueEmin)/(npts-1.);
+   s_trueEnergies.clear();
    s_trueEnergies.reserve(npts);
    for (int i = 0; i < npts; i++) {
       s_trueEnergies.push_back(trueEmin*exp(i*trueEstep));
