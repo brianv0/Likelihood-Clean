@@ -47,14 +47,14 @@ public:
 
    virtual ~SourceModel();
 
-   //! setParam method to include function and source name checking
+   /// setParam method to include function and source name checking
    virtual void setParam(const optimizers::Parameter &param, 
                          const std::string &funcName,
                          const std::string &srcName) 
       throw(optimizers::Exception);
 
-   //! group parameter access (note name mangling for inheritance 
-   //! from Function)
+   /// group parameter access (note name mangling for inheritance 
+   /// from Function)
    virtual std::vector<double>::const_iterator setParamValues_(
       std::vector<double>::const_iterator);
    virtual std::vector<double>::const_iterator setFreeParamValues_(
@@ -98,14 +98,14 @@ public:
       throw(optimizers::Exception, optimizers::ParameterNotFound) 
       {setParams_(params, true);}
 
-   //! add and delete sources by name
+   /// add and delete sources by name
    void addSource(Source *src);
    void deleteSource(const std::string &srcName) throw(optimizers::Exception);
 
-   //! delete all the sources
+   /// delete all the sources
    void deleteAllSources();
 
-   //! return a Source pointer by name
+   /// return a Source pointer by name
    Source * getSource(const std::string &srcName);
 
    unsigned int getNumSrcs() const {return s_sources.size();}
@@ -117,9 +117,13 @@ public:
    virtual void readXml(std::string xmlFile,
                         optimizers::FunctionFactory &funcFactory);
 
+   /// Re-read an XML file, updating only the Parameters in the
+   /// source model.
+   virtual void reReadXml(std::string xmlFile);
+
    /// Write an XML file for the current source model.
    virtual void writeXml(std::string xmlFile,
-                         const std::string &functionLibrary);
+                         const std::string &functionLibrary="");
 
    /// Write a flux-style xml file for the current source model.
    virtual void write_fluxXml(std::string xmlFile);
@@ -130,11 +134,11 @@ protected:
 
    static std::vector<Source *> s_sources;
 
-   //! method to sync the m_parameter vector with those of the 
-   //! s_sources' Functions
+   /// method to sync the m_parameter vector with those of the 
+   /// s_sources' Functions
    void syncParams();
 
-   //! disable this since parameters may no longer have unique names
+   /// disable this since parameters may no longer have unique names
    double derivByParam(optimizers::Arg &, const std::string &) 
       const {return 0;}
 
