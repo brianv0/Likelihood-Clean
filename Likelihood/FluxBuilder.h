@@ -1,17 +1,17 @@
 /**
- * @file FluxModel.h
- * @brief Class to encapsulate xml source models for the flux package.
+ * @file FluxBuilder.h
+ * @brief Builder class for creating flux-style xml files from 
+ * Likelihood::Sources.
+ * the flux package.
  * @author J. Chiang
  *
  * $Header$
  */
 
-#ifndef Likelihood_FluxModel_h
-#define Likelihood_FluxModel_h
+#ifndef Likelihood_FluxBuilder_h
+#define Likelihood_FluxBuilder_h
 
-#include <string>
-
-#include "xml/Dom.h"
+#include "Likelihood/XmlBuilder.h"
 
 namespace optimizers {
    class Function;
@@ -19,35 +19,31 @@ namespace optimizers {
 
 namespace Likelihood {
 
-   class Source;
-
 /**
- * @class FluxModel
+ * @class FluxBuilder
  * @brief This class provides methods for writing the source
- * information from the Likelihood classes, especially SourceModel, as
- * xml output appropriate for the flux package.
+ * information from Source objects as xml output appropriate for the
+ * flux package.
  *
  * @author J. Chiang
  *
  * $Header$
  */
 
-class FluxModel {
+class FluxBuilder : public XmlBuilder {
 
 public:
 
-   FluxModel();
+   FluxBuilder();
 
-   ~FluxModel();
+   virtual ~FluxBuilder();
 
-   void addSource(Source &src);
-
-   void write(std::string xmlFile);
+   virtual void addSource(Source &src);
+   
+   virtual void write(std::string xmlFile);
       
 private:
 
-   xml::XmlParser * m_parser;
-   DomDocument * m_doc;
    DomElement * m_srcLib;
    DomElement * m_allSrcsElt;
 
@@ -66,4 +62,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Likelihood_FluxModel_h
+#endif // Likelihood_FluxBuilder_h
