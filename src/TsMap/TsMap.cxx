@@ -157,8 +157,9 @@ void TsMap::computeMap() {
       
    int verbosity = m_pars["fit_verbosity"];
    double tol = m_pars["fit_tolerance"];
-   m_opt->find_min(verbosity, tol);
-   double logLike0 = m_logLike(dummy);
+//    m_opt->find_min(verbosity, tol);
+//    double logLike0 = m_logLike(dummy);
+   double logLike0 = 0;
    bool computeExposure(true);
    std::string coordSys = m_pars["Coordinate_system"];
 
