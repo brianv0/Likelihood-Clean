@@ -40,8 +40,8 @@ library Likelihood -no_share $(my_headers) *.cxx *.f *.c $(pydir)/*.i
 set PFILES "$(LIKELIHOODROOT)/data"
 
 # applications
-application test_Likelihood test/main.cxx
+#application test_Likelihood test/main.cxx
 #application likelihood test/likelihood.cxx
 #application TsMap test/TsMap.cxx
 #application expMap test/expMap.cxx
-#application like_test test/like_test.cxx
+application like_test test/like_test.cxx

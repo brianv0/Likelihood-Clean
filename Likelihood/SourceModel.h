@@ -124,6 +124,9 @@ public:
    virtual void writeXml(std::string xmlFile,
                          const std::string &functionLibrary);
 
+   /// Write a flux-style xml file for the current source model.
+   virtual void write_fluxXml(std::string xmlFile);
+
 protected:
 
    static int s_refCount;
