@@ -5,8 +5,8 @@
  * $Header$
  */
 
-#ifndef Mcmc_h
-#define Mcmc_h
+#ifndef Likelihood_Mcmc_h
+#define Likelihood_Mcmc_h
 
 #include <vector>
 #include <string>
@@ -84,4 +84,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Mcmc_h
+#endif // Likelihood_Mcmc_h

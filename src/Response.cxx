@@ -13,7 +13,7 @@
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 

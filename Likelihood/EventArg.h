@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef EventArg_h
-#define EventArg_h
+#ifndef Likelihood_EventArg_h
+#define Likelihood_EventArg_h
 
 #include "Likelihood/Arg.h"
 #include "Likelihood/Event.h"
@@ -41,4 +41,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // EventArg_h
+#endif // Likelihood_EventArg_h

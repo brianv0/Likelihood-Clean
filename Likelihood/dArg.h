@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef dArg_h
-#define dArg_h
+#ifndef Likelihood_dArg_h
+#define Likelihood_dArg_h
 
 #include "Likelihood/Arg.h"
 
@@ -40,4 +40,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // dArg_h
+#endif // Likelihood_dArg_h

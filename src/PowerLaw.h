@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef PowerLaw_h
-#define PowerLaw_h
+#ifndef Likelihood_PowerLaw_h
+#define Likelihood_PowerLaw_h
 
 #include "Likelihood/Function.h"
 #include "Likelihood/Arg.h"
@@ -49,4 +49,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // PowerLaw_h
+#endif // Likelihood_PowerLaw_h

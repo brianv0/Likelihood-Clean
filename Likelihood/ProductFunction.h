@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef ProductFunction_h
-#define ProductFunction_h
+#ifndef Likelihood_ProductFunction_h
+#define Likelihood_ProductFunction_h
 
 #include "Likelihood/CompositeFunction.h"
 
@@ -43,4 +43,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // ProductFunction_h
+#endif // Likelihood_ProductFunction_h

@@ -5,8 +5,8 @@
  * $Header$
  */
 
-#ifndef CompositeFunction_h
-#define CompositeFunction_h
+#ifndef Likelihood_CompositeFunction_h
+#define Likelihood_CompositeFunction_h
 
 #include <cassert>
 #include "Likelihood/Function.h"
@@ -84,4 +84,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // CompositeFunction_h
+#endif // Likelihood_CompositeFunction_h

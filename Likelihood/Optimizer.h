@@ -1,4 +1,5 @@
-/** @file Optimizer.h
+/** 
+ * @file Optimizer.h
  * @brief Declaration of Optimizer base class
  *
  * @author J. Chiang
@@ -6,8 +7,8 @@
  * $Header$
  */
 
-#ifndef Optimizer_h
-#define Optimizer_h
+#ifndef Likelihood_Optimizer_h
+#define Likelihood_Optimizer_h
 
 #include <iostream>
 
@@ -40,4 +41,4 @@ protected:
 
 } // namespace Likelhood
 
-#endif // Optimizer_h
+#endif // Likelihood_Optimizer_h

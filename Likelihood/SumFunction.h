@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef SumFunction_h
-#define SumFunction_h
+#ifndef Likelihood_SumFunction_h
+#define Likelihood_SumFunction_h
 
 #include "Likelihood/CompositeFunction.h"
 
@@ -46,4 +46,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // SumFunction_h
+#endif // Likelihood_SumFunction_h

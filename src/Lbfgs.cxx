@@ -8,7 +8,7 @@
 
 #include "Likelihood/Lbfgs.h"
 #include "Likelihood/Parameter.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 #include <vector>
 #include <algorithm>
 #include <iostream>

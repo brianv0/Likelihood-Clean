@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Psf_h
-#define Psf_h
+#ifndef Likelihood_Psf_h
+#define Likelihood_Psf_h
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
@@ -79,4 +79,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Psf_h
+#endif // Likelihood_Psf_h

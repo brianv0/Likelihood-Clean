@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef AbsEdge_h
-#define AbsEdge_h
+#ifndef Likelihood_AbsEdge_h
+#define Likelihood_AbsEdge_h
 
 #include "Likelihood/Function.h"
 
@@ -53,5 +53,5 @@ private:
 
 } // namespace Likelihood
 
-#endif // AbsEdge_h
+#endif // Likelihood_AbsEdge_h
 

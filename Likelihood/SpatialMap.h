@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef SpatialMap_h
-#define SpatialMap_h
+#ifndef Likelihood_SpatialMap_h
+#define Likelihood_SpatialMap_h
 
 #include "Likelihood/Function.h"
 #include "Likelihood/SkyDirArg.h"
@@ -59,4 +59,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // SpatialMap_h
+#endif // Likelihood_SpatialMap_h

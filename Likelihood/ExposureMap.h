@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef ExposureMap_h
-#define ExposureMap_h
+#ifndef Likelihood_ExposureMap_h
+#define Likelihood_ExposureMap_h
 
 #include <vector>
 #include <string>
@@ -135,4 +135,4 @@ private:
 
 } // namespace Likelihood
 
-#endif  // ExposureMap_h
+#endif  // Likelihood_ExposureMap_h

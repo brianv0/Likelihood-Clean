@@ -5,8 +5,8 @@
  * $Header$
  */
 
-#ifndef Arg_h
-#define Arg_h
+#ifndef Likelihood_Arg_h
+#define Likelihood_Arg_h
 
 namespace Likelihood {
 
@@ -38,4 +38,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // Arg_h
+#endif // Likelihood_Arg_h

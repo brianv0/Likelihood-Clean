@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef RoiCuts_h
-#define RoiCuts_h
+#ifndef Likelihood_RoiCuts_h
+#define Likelihood_RoiCuts_h
 
 #include <vector>
 #include <string>
@@ -88,4 +88,4 @@ private:
 };
 
 } // namespace Likelihood
-#endif // RoiCuts_h
+#endif // Likelihood_RoiCuts_h

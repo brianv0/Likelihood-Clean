@@ -6,8 +6,8 @@
  */
 
 
-#ifndef FunctionTest_h
-#define FunctionTest_h
+#ifndef Likelihood_FunctionTest_h
+#define Likelihood_FunctionTest_h
 
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Arg.h"
@@ -59,4 +59,4 @@ private:
 
 } // namespace FunctionTest
 
-#endif // FunctionTest_h
+#endif // Likelihood_FunctionTest_h

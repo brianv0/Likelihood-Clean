@@ -5,8 +5,8 @@
  *
  * $Header$
  */
-#ifndef SkyDirFunction_h
-#define SkyDirFunction_h
+#ifndef Likelihood_SkyDirFunction_h
+#define Likelihood_SkyDirFunction_h
 
 #include "Likelihood/Function.h"
 #include "Likelihood/Arg.h"
@@ -69,4 +69,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // SkyDirFunction_h
+#endif // Likelihood_SkyDirFunction_h

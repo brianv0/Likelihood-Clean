@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef ScData_h
-#define ScData_h
+#ifndef Likelihood_ScData_h
+#define Likelihood_ScData_h
 
 #include <string>
 #include <vector>
@@ -70,4 +70,4 @@ private:
 };
 
 } // namespace Likelihood
-#endif // ScData_h
+#endif // Likelihood_ScData_h

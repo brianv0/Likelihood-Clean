@@ -14,7 +14,7 @@
 
 #include "astro/SkyDir.h"
 #include "Likelihood/Psf.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
