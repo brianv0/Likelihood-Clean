@@ -59,6 +59,13 @@ public:
                                const astro::SkyDir &appDir,
                                int type);
 
+   static double totalResponse(double energy, double appEnergy,
+                               const astro::SkyDir & zAxis,
+                               const astro::SkyDir & xAxis,
+                               const astro::SkyDir & srcDir,
+                               const astro::SkyDir & appDir,
+                               int type);
+
    static double totalResponse(double inclination, double phi, 
                                double energy, double appEnergy, 
                                double separation, int evtType);
