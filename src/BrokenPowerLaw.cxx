@@ -55,6 +55,7 @@ double BrokenPowerLaw::value(optimizers::Arg &xarg) const {
          *pow((x/my_params[BreakValue].getTrueValue()), 
               my_params[Index2].getTrueValue());
    }
+   return 0;
 }
 
 double BrokenPowerLaw::derivByParam(optimizers::Arg &xarg, 

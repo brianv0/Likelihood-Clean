@@ -51,6 +51,7 @@ double AbsEdge::value(optimizers::Arg &xarg) const {
          *pow(x/my_params[E0].getTrueValue(), my_params[Index].getTrueValue());
       return exp(-tau);
    }
+   return 1;
 }
 
 double AbsEdge::derivByParam(optimizers::Arg &xarg, 

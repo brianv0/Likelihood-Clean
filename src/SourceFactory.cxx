@@ -163,7 +163,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
 
 // The processing logic for the spatialModel depends on the source
 // type, so we must consider each case individually:
-      Source *src;
+      Source *src = 0;
       if (srcType == "PointSource") {
          src = makePointSource(spectrum, spatialModel, funcFactory);
       } else if (srcType == "DiffuseSource") {
@@ -208,7 +208,7 @@ Source * SourceFactory::makePointSource(const DOM_Element &spectrum,
 // spacecraft info are not available.
 //
 // Extract the (RA, Dec) from the parameter elements.
-   double ra, dec;
+   double ra(0), dec(0);
    std::vector<DOM_Element> params;
    optimizers::Dom::getElements(spatialModel, "parameter", params);
    std::vector<DOM_Element>::const_iterator paramIt = params.begin();
