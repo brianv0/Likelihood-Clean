@@ -10,10 +10,13 @@
 #ifndef Likelihood_XmlBuilder_h
 #define Likelihood_XmlBuilder_h
 
+#include <xercesc/util/XercesDefs.hpp>
+
 #include <string>
 
-#include "xml/Dom.h"
-#include "xml/XmlParser.h"
+namespace xml {
+   class XmlParser;
+}
 
 namespace Likelihood {
 
@@ -48,7 +51,7 @@ protected:
 
    xml::XmlParser * m_parser;
 
-   DomDocument * m_doc;
+   XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument * m_doc;
 
 };
 

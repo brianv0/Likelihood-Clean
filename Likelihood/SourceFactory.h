@@ -9,8 +9,10 @@
 #ifndef Likelihood_SourceFactory_h
 #define Likelihood_SourceFactory_h
 
-#include <string>
 #include <map>
+#include <string>
+
+#include <xercesc/dom/DOM.hpp>
 
 #include "xml/Dom.h"
 
@@ -22,6 +24,8 @@ namespace optimizers {
 }
 
 namespace Likelihood {
+
+using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
 
 /** 
  * @class SourceFactory
@@ -69,16 +73,16 @@ private:
 
    bool m_requireExposure;
 
-   Source *makePointSource(const DomElement &spectrum,
-                           const DomElement &spatialModel,
-                           optimizers::FunctionFactory &funcFactory);
+   Source *makePointSource(const DOMElement * spectrum,
+                           const DOMElement * spatialModel,
+                           optimizers::FunctionFactory & funcFactory);
 
-   Source *makeDiffuseSource(const DomElement &spectrum,
-                             const DomElement &spatialModel,
-                             optimizers::FunctionFactory &funcFactory);
+   Source *makeDiffuseSource(const DOMElement * spectrum,
+                             const DOMElement * spatialModel,
+                             optimizers::FunctionFactory & funcFactory);
 
-   void setSpectrum(Source *src, const DomElement &spectrum,
-                    optimizers::FunctionFactory &funcFactory);
+   void setSpectrum(Source *src, const DOMElement *spectrum,
+                    optimizers::FunctionFactory & funcFactory);
 
 };
 
