@@ -37,6 +37,7 @@ class SourceModel(object):
                     src.funcs[funcName].appendParId(indx.next())
     def __setitem__(self, indx, value):
         self.params[indx].setValue(value)
+        self.params[indx].setError(0)
     def __getitem__(self, srcName):
         try:
             return self.params[srcName]
@@ -101,10 +102,15 @@ class Parameter(object):
     def __repr__(self):
         par = self.parameter
         desc = ("%10s: %10.3e " % (par.getName(), par.getValue()) +
+                "%10.3e " % par.error() +
                 "%10.3e %10.3e " % par.getBounds() +
                 "(%10.3e)" % par.getScale())
         if not par.isFree():
             desc += " fixed"
         return desc
+    def setFree(self, value):
+        self.parameter.setFree(value)
+        if not value:
+            self.parameter.setError(0)
     def __getattr__(self, attrname):
         return getattr(self.parameter, attrname)
