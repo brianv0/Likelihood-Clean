@@ -35,8 +35,9 @@
 #include "irfInterface/Irfs.h"
 
 #include "Likelihood/AppHelpers.h"
-#include "Likelihood/RoiCuts.h"
 #include "Likelihood/BinnedLikelihood.h"
+#include "Likelihood/SourceMap.h"
+#include "Likelihood/RoiCuts.h"
 
 using namespace Likelihood;
 
@@ -106,6 +107,10 @@ void gtsrcmaps::run() {
    RoiCuts::instance()->setCuts(ra, dec, 20., energies.front(),
                                 energies.back());
 
+   std::string binnedMap = m_pars["binned_exposure_map"];
+   if (binnedMap != "none" && binnedMap != "") {
+      SourceMap::setBinnedExposure(binnedMap);
+   }
    m_binnedLikelihood = new BinnedLikelihood(dataMap, cntsMapFile);
 
    std::string srcModelFile = m_pars["source_model_file"];

@@ -7,6 +7,7 @@
  */
 
 #include <algorithm>
+#include <fstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -66,6 +67,20 @@ double MeanPsf::operator()(double energy, double theta, double phi) const {
    return st_facilities::Util::bilinear(m_energies, energy, 
                                         s_separations, theta, 
                                         m_psfValues);
+}
+
+void MeanPsf::write(const std::string & filename) const {
+   std::ofstream output_file(filename.c_str());
+   std::vector<double>::const_iterator sep = s_separations.begin();
+   for (unsigned int j = 0; sep != s_separations.end(); ++sep, j++) {
+      output_file << *sep << "  ";
+      for (unsigned int k = 0; k < m_energies.size(); k++) {
+         unsigned int indx = k*s_separations.size() + j;
+         output_file << m_psfValues.at(indx) << "  ";
+      }
+      output_file << std::endl;
+   }
+   output_file.close();
 }
 
 void MeanPsf::createLogArray(double xmin, double xmax, unsigned int npts,
