@@ -96,7 +96,8 @@ void ExposureCube::promptForParameters() {
 
 void ExposureCube::readRoiCuts() const {
    std::string event_file = m_pars["evfile"];
-   Likelihood::RoiCuts::instance()->readCuts(m_pars["evfile"]);
+   Likelihood::RoiCuts::instance()->readCuts(m_pars["evfile"],
+                                             "EVENTS", false);
 }
 
 void ExposureCube::createDataCube() {
