@@ -45,7 +45,7 @@ public:
 
    Source *makeSource(const std::string &name);
 
-   void listSources();
+   void fetchSrcNames(std::vector<std::string> &srcNames);
 
 private:
 
