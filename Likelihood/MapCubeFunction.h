@@ -58,6 +58,9 @@ public:
       return m_fitsFile;
    }
 
+   /// @todo Consider moving this method to FitsImage class.
+   double mapIntegral() const;
+
 private:
 
    std::string m_fitsFile;
@@ -76,6 +79,7 @@ private:
 
    static int findIndex(std::vector<double> xx, double x);
 
+   double powerLawIntegral(double x1, double x2, double y1, double y2) const;
 };
 
 } // namespace Likelihood
