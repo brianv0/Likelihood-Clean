@@ -107,6 +107,10 @@ private:
 
    void fitsReportError(FILE *stream, int status) const;
 
+   bool haveMapCubeFunction(DiffuseSource * src) const;
+
+   void recomputeSrcStrengths(DiffuseSource * src, double energy);
+
 };
 
 } // namespace Likelihood

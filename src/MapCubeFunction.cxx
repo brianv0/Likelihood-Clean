@@ -89,6 +89,7 @@ void MapCubeFunction::init() {
 }
 
 void MapCubeFunction::readFitsFile(const std::string & fitsFile) {
+   m_fitsFile = fitsFile;
    FitsImage fitsImage(fitsFile);
 
    std::vector<std::string> axisNames;
