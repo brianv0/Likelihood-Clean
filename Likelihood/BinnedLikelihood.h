@@ -68,6 +68,8 @@ public:
 
    virtual CountsMap * createCountsMap() const;
 
+   double npred();
+
    const SourceMap & sourceMap(const std::string & name) const {
       return *(m_srcMaps.find(name)->second);
    }

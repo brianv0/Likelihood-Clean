@@ -91,6 +91,7 @@ private:
 
    static std::vector<double> s_phi;
    static std::vector<double> s_mu;
+   static std::vector<double> s_theta;
 
    double sourceRegionIntegral(Source * src, const Pixel & pixel,
                                double energy) const;
