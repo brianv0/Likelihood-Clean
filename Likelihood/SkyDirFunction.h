@@ -36,7 +36,7 @@ public:
    SkyDirFunction(double ra, double dec) {m_init(ra, dec);}
    SkyDirFunction(const astro::SkyDir &dir);
 
-   astro::SkyDir getDir() const {return m_dir;}
+   const astro::SkyDir & getDir() const {return m_dir;}
 
    double value(optimizers::Arg &) const {return 0;}
 

@@ -11,17 +11,17 @@
 
 #include <algorithm>
 #include <deque>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <utility>
 
-#include "Likelihood/ResponseFunctions.h"
-#include "Likelihood/Event.h"
-#include "Likelihood/ScData.h"
 #include "Likelihood/DiffuseSource.h"
-#include "Likelihood/TrapQuad.h"
+#include "Likelihood/Event.h"
 #include "Likelihood/Exception.h"
+#include "Likelihood/ResponseFunctions.h"
+#include "Likelihood/ScData.h"
+#include "Likelihood/TrapQuad.h"
 
 namespace {
    double my_acos(double mu) {

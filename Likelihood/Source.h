@@ -88,8 +88,8 @@ public:
    virtual double Npred(double emin, double emax) = 0;
 
    /// access unique source identifier
-   void setName(const std::string &name) {m_name = name;}
-   std::string getName() const {return m_name;}
+   void setName(const std::string & name) {m_name = name;}
+   const std::string & getName() const {return m_name;}
 
    /// @return a reference to the m_functions map (NB: not const!)
    typedef std::map<std::string, optimizers::Function *> FuncMap;
@@ -106,7 +106,7 @@ public:
    virtual Source *clone() const {return 0;}
 
    /// @return the Source type (e.g., Diffuse vs Point)
-   std::string getType() {return m_srcType;}
+   const std::string & getType() const {return m_srcType;}
 
    /// Integrate the product of the source spectrum with the given
    /// SourceMap pixel values.
