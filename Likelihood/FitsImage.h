@@ -56,10 +56,10 @@ public:
    static int findHdu(const std::string & fitsfile,
                       const std::string & extension);
 
+#ifndef SWIG
    static void readColumn(fitsfile * fptr, const std::string & colname,
                           std::vector<double> & coldata);
 
-#ifndef SWIG
    FitsImage &operator=(const FitsImage &rhs);
 
 /**
