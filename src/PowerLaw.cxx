@@ -32,6 +32,8 @@ void PowerLaw::init(double Prefactor, double Index, double Scale) {
 // set FuncType and ArgType for use with CompositeFunction hierarchy
    m_funcType = Addend;
    m_argType = "dArg";
+
+   m_genericName = "PowerLaw";
 }
 
 double PowerLaw::value(optimizers::Arg &xarg) const {

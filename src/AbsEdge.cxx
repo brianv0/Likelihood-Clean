@@ -32,6 +32,8 @@ void AbsEdge::init(double Tau0, double E0, double Index) {
 // set FuncType and ArgType for use with CompositeFunction hierarchy
    m_funcType = Factor;
    m_argType = "dArg";
+
+   m_genericName = "AbsEdge";
 }
 
 double AbsEdge::value(optimizers::Arg &xarg) const {
