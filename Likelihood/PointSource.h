@@ -9,6 +9,8 @@
 #ifndef Likelihood_PointSource_h
 #define Likelihood_PointSource_h
 
+#include <utility>
+
 #include "optimizers/Function.h"
 #include "optimizers/dArg.h"
 
@@ -124,6 +126,9 @@ public:
    virtual Source *clone() const {
       return new PointSource(*this);
    }
+
+   static bool overlapInterval(const std::pair<double, double> & interval1,
+                               std::pair<double, double> & interval2);
 
 private:
 
