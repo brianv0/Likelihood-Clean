@@ -31,19 +31,16 @@ public:
 
    ~SourceMap() {}
 
-   const std::vector<double> & model(int evtType) const {
-      return m_models.at(evtType);
-   }
+   const std::vector<double> & model() const {return m_model;}
 
 private:
 
-// Each vector in m_models has the same size as the data in the
-// dataMap plus one energy plane.  These vectors of vectors are
-// indexed by event types.
-//
-// @todo Ensure this implementation can accommodate the possible
-// representations of event types
-   std::vector< std::vector<double> > m_models;
+/// m_models has the same size as the data in the dataMap plus one
+/// energy plane.
+///
+/// @todo Keep track of event types included in a given SourceMap.
+
+   std::vector<double> m_model;
 
    std::string m_name;
 
