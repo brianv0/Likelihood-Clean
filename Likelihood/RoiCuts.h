@@ -23,6 +23,10 @@
 
 #include "dataSubselector/Cuts.h"
 
+namespace tip {
+   class Header;
+}
+
 namespace Likelihood {
 
 class Event;
@@ -88,6 +92,10 @@ public:
 
    /// Apply these cuts to an Event
    bool accept(const Event &);
+
+   /// Write DSS keywords to a FITS header
+   void writeDssKeywords(tip::Header & header) const;
+   void writeGtiExtension(const std::string & filename);
 
 protected:
 
