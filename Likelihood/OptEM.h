@@ -35,6 +35,9 @@ namespace Likelihood {
   private:
 
   }; //class OptEM
+
+  double chifunc(int);
+
 } // namespace Likelihood
 
 #endif // Likelihood_OptEM_h
