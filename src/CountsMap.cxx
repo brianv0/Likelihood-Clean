@@ -22,6 +22,7 @@
 #include "tip/Table.h"
 #include "tip/tip_types.h"
 
+#include "evtbin/Gti.h"
 #include "evtbin/LinearBinner.h"
 #include "evtbin/LogBinner.h"
 #include "evtbin/OrderedBinner.h"
@@ -39,7 +40,8 @@ CountsMap::CountsMap(const std::string & event_file,
                      const std::string & ra_field, 
                      const std::string & dec_field, 
                      double emin, double emax, unsigned long nenergies) 
-   : DataProduct(event_file), m_hist(0), m_proj_name(proj), 
+   : DataProduct(event_file, "EVENTS", evtbin::Gti(event_file)), m_hist(0), 
+     m_proj_name(proj), 
      m_crpix(), m_crval(), m_cdelt(), m_axis_rot(axis_rot), 
      m_use_lb(use_lb), m_proj(0) {
 
@@ -70,7 +72,8 @@ CountsMap::CountsMap(const std::string & event_file,
                      const std::string & ra_field, 
                      const std::string & dec_field, 
                      const std::vector<double> & energies)
-   : DataProduct(event_file), m_hist(0), m_proj_name(proj), 
+   : DataProduct(event_file, "EVENTS", evtbin::Gti(event_file)), 
+     m_hist(0), m_proj_name(proj), 
      m_crpix(), m_crval(), m_cdelt(), m_axis_rot(axis_rot), 
      m_use_lb(use_lb), m_proj(0) {
 
@@ -99,7 +102,8 @@ CountsMap::CountsMap(const std::string & event_file,
 }
 
 CountsMap::CountsMap(const std::string & countsMapFile) 
-   : DataProduct(countsMapFile), m_use_lb(false) {
+   : DataProduct(countsMapFile, "", evtbin::Gti(countsMapFile)),
+     m_use_lb(false) {
    readKeywords(countsMapFile);
    std::vector<evtbin::Binner *> binners;
    binners.push_back(new evtbin::LinearBinner(0.5, m_naxes[0]+0.5, 1., "RA"));
