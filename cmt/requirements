@@ -34,6 +34,8 @@ WIN32 '/I..\src /D"USE_GOODI" /wd4290'
 
 macro_append ROOT_libs ""  WIN32 " libHisT.lib "
 
+macro_append ROOT_linkopts " $(ROOT_GUI_libs)"
+
 # make sure test applications get built when library changes
 macro test_Likelihoodstamps "Likelihood.stamp"
 macro likelihoodAppstamps "likelihoodApp.stamp"
