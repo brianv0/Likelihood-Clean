@@ -119,7 +119,7 @@ void Psf::fillPsfParams(double energy, double inc,
    } else if (energy >= *(m_energy.end() - 1)) {
       ie = m_energy.end() - 1;
    } else {
-      ie = upper_bound(m_energy.begin(), m_energy.end(), energy);
+	   ie = std::upper_bound(m_energy.begin(), m_energy.end(), energy);
    }
    double wt = m_wt[ie - m_energy.begin()];
 

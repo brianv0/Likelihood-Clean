@@ -11,6 +11,7 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/TrapQuad.h"
+#include <assert.h>
 
 extern double my_acos(double mu);
 
