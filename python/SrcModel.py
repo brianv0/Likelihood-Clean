@@ -35,6 +35,8 @@ class SourceModel(object):
                 for param in func.paramNames:
                     self.params.append(func.getParam(param))
                     src.funcs[funcName].appendParId(indx.next())
+    def __setitem__(self, indx, value):
+        self.params[indx].setValue(value)
     def __getitem__(self, srcName):
         try:
             return self.params[srcName]
