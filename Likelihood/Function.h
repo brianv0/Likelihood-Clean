@@ -1,4 +1,5 @@
-/** @file Function.h
+/** 
+ * @file Function.h
  * @brief Declaration of Function class
  * @author J. Chiang
  *
@@ -14,6 +15,7 @@
 
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Arg.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
@@ -85,9 +87,13 @@ public:
    virtual std::vector<double>::const_iterator setParamValues_(
       std::vector<double>::const_iterator);
    
-   void setParams(std::vector<Parameter> &params) {
-      if (params.size() == m_parameter.size()) 
+   void setParams(std::vector<Parameter> &params) throw(LikelihoodException) {
+      if (params.size() == m_parameter.size()) {
          m_parameter = params;
+      } else {
+         throw LikelihoodException
+            ("Function::setParams: incompatible number of parameters.");
+      }
    }
 
    void getParamNames(std::vector<std::string> &names) const
@@ -111,6 +117,8 @@ public:
    void getFreeParamValues(std::vector<double> &values) const
       {fetchParamValues(values, true);}
    void getFreeParams(std::vector<Parameter> &) const;
+
+   void setFreeParams(std::vector<Parameter> &) throw(LikelihoodException);
    
    /////////////////////////////////////
    //! Arg-dependent member functions 

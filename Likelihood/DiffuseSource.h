@@ -1,4 +1,5 @@
-/** @file DiffuseSource.h
+/** 
+ * @file DiffuseSource.h
  * @brief DiffuseSource class declaration
  * @author J. Chiang
  *
@@ -13,6 +14,7 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Event.h"
 #include "Likelihood/SkyDirArg.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
@@ -46,7 +48,7 @@ public:
 
    //! A Function describing the spatial distribution of emission is 
    //! required for instantiation.
-   DiffuseSource(Function *spatialDist);
+   DiffuseSource(Function *spatialDist) throw(LikelihoodException);
 
    DiffuseSource(const DiffuseSource &rhs);
 

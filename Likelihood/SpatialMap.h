@@ -30,6 +30,11 @@ class SpatialMap : public Function, public FitsImage {
 public:
 
    SpatialMap(std::string fitsfile);
+   SpatialMap(const SpatialMap &rhs) : Function(rhs), FitsImage(rhs) {
+      m_ra = rhs.m_ra;
+      m_dec = rhs.m_dec;
+   }
+
    virtual ~SpatialMap() {}
 
    double value(Arg&) const;
