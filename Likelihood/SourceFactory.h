@@ -14,7 +14,7 @@
 
 #include <xercesc/dom/DOM.hpp>
 
-#include "xml/Dom.h"
+#include "xmlBase/Dom.h"
 
 #include "Likelihood/Source.h"
 #include "Likelihood/Exception.h"

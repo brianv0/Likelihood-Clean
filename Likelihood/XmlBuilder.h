@@ -14,7 +14,7 @@
 
 #include <string>
 
-namespace xml {
+namespace xmlBase {
    class XmlParser;
 }
 
@@ -49,7 +49,7 @@ protected:
 
    XmlBuilder();
 
-   xml::XmlParser * m_parser;
+   xmlBase::XmlParser * m_parser;
 
    XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument * m_doc;
 
