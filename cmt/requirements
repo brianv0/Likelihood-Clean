@@ -28,7 +28,7 @@ use hoopsUtil v*
 
 # allow use of internal path
 macro Likelihood_cppflags "" \
-Linux "-I ../src -g -O -pedantic -D TRAP_FPE -D USE_GOODI " \
+Linux "-I ../src -g -pedantic -D TRAP_FPE -D USE_GOODI " \
 #Linux "-I ../src -g -O -pedantic -D TRAP_FPE " \
 WIN32 '/I..\src /D"USE_GOODI" /wd4290'
 
