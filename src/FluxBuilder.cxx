@@ -156,7 +156,7 @@ DomElement * FluxBuilder::gammaSpectrum(optimizers::Function & spectrum) {
       xml::Dom::addAttribute(*spectralTypeElt, std::string("gamma2"), 
                              -spectrum.getParamValue("Index2"));
       xml::Dom::addAttribute(*spectralTypeElt, std::string("ebreak"), 
-                             -spectrum.getParamValue("BreakValue"));
+                             spectrum.getParamValue("BreakValue"));
    }
    partElt->appendChild(*spectralTypeElt);
    specElt->appendChild(*partElt);
