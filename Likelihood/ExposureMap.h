@@ -63,6 +63,9 @@ public:
    void fetchEnergies(std::vector<double> &energies) {energies = s_energies;}
    void fetchExposure(std::vector< std::valarray<double> > &exposure);
 
+   static void computeMap(const std::string &filename, double sr_radius = 30,
+                          int nlong = 60, int nlat = 60, int nenergies = 10);
+
 protected:
 
    ExposureMap() {}
@@ -86,6 +89,15 @@ private:
    static std::vector< std::valarray<double> > s_exposure;
 
    static FitsImage *s_mapData;
+
+   //! write the FITS image file produced by computeMap()
+   static void writeFitsFile(const std::string &filename,
+                             std::vector<double> &lon,
+                             std::vector<double> &lat,
+                             std::vector<double> &energies,
+                             std::vector< std::valarray<double> > &dataCube,
+                             double ra0, double dec0);
+
 };
 
 } // namespace Likelihood
