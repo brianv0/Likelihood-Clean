@@ -46,7 +46,7 @@ namespace Likelihood {
       double w = (m_weights == NULL) ? 1.0 : (*m_weights)[i];
       if (w > m_epsw) {
 	double q = m_src->fluxDensity(m_events[i]);
-	if (abs(q) > m_epsf) {
+	if (fabs(q) > m_epsf) {
 	  val += w * log(q);
 	  //	  wtot += w;
 	  //	  nused++;
@@ -71,7 +71,7 @@ namespace Likelihood {
       if (w > m_epsw) {
 	//	wtot += w;
 	double q = m_src->fluxDensity(m_events[i]);
-	if (abs(q) > m_epsf) {
+	if (fabs(q) > m_epsf) {
 	  double v = m_src->fluxDensityDeriv(m_events[i], paramName);
 	  deriv += w * v / q;
 	}
