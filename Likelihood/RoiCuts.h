@@ -22,6 +22,9 @@
 #include "irfInterface/AcceptanceCone.h"
 
 #include "dataSubselector/Cuts.h"
+#include "dataSubselector/GtiCut.h"
+#include "dataSubselector/RangeCut.h"
+#include "dataSubselector/SkyConeCut.h"
 
 namespace tip {
    class Header;
@@ -133,10 +136,10 @@ private:
    rootDomElement(const std::string & roiTitle);
 #endif
 
-   dataSubselector::Cuts::RangeCut * m_energyCut;
-   dataSubselector::Cuts::SkyConeCut * m_skyConeCut;
-   std::vector<dataSubselector::Cuts::RangeCut *> m_timeCuts;
-   std::vector<dataSubselector::Cuts::GtiCut *> m_gtiCuts;
+   dataSubselector::RangeCut * m_energyCut;
+   dataSubselector::SkyConeCut * m_skyConeCut;
+   std::vector<dataSubselector::RangeCut *> m_timeCuts;
+   std::vector<dataSubselector::GtiCut *> m_gtiCuts;
 
    void sortCuts(bool strict=true);
    void setRoiData();
