@@ -335,8 +335,9 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
                 << srcDir.ra() << ", " 
                 << srcDir.dec() << ")";
    }
-   unsigned int npts = scData.vec.size() - 1;
-   for (unsigned int it = 0; it < npts; it++) {
+//   unsigned int npts = scData.vec.size() - 1;
+   unsigned int npts = scData.time_index(roiCuts.maxTime()) + 1;
+   for (unsigned int it = 0; it < npts && it < scData.vec.size(); it++) {
       if (print_output() && 
           npts/20 > 0 && ((it % (npts/20)) == 0) && verbose) std::cerr << ".";
       double start(scData.vec[it].time);
