@@ -93,7 +93,7 @@ protected:
 
 private:
 
-   CountsMap & operator=(const CountsMap & rhs) {}
+   CountsMap & operator=(const CountsMap & rhs) {return *this;}
 
    void init(std::vector<evtbin::Binner *> & binners, 
              const std::string & event_file, 
