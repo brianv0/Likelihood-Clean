@@ -13,6 +13,7 @@
 
 #include "Likelihood/dArg.h"
 #include "Gaussian.h"
+#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

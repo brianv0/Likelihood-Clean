@@ -14,6 +14,7 @@
 
 #include "Likelihood/Statistic.h"
 #include "Likelihood/Table.h"
+#include "LikelihoodException.h"
 
 namespace Likelihood {
 

@@ -13,6 +13,7 @@
 #include <cassert>
 #include "Likelihood/SourceModel.h"
 #include "Likelihood/Arg.h"
+#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

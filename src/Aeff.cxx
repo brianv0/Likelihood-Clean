@@ -13,6 +13,7 @@
 
 #include "Likelihood/Aeff.h"
 #include "astro/SkyDir.h"
+#include "LikelihoodException.h"
 
 namespace Likelihood {
 
