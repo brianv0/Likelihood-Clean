@@ -95,12 +95,14 @@ gtsrcmaps::gtsrcmaps()
 void gtsrcmaps::run() {
    m_helper->checkOutputFile();
    std::string expcube_file = m_pars["exposure_cube_file"];
-   if (expcube_file == "none") {
-      throw std::runtime_error("Please specify an exposure cube file.");
+   if (expcube_file == "none" || expcube == "" 
+       || !st_facilities::Util::fileExists(expcube_file)) {
+      throw std::runtime_error("Please specify a valid exposure cube file.");
    }
    ExposureCube::readExposureCube(expcube_file);
-   std::string cntsMapFile = m_pars["counts_map_file"];
 
+   std::string cntsMapFile = m_pars["counts_map_file"];
+   st_facilities::Util::file_ok(cntsMapFile);
    CountsMap dataMap(cntsMapFile);
    std::vector<double> energies;
    dataMap.getAxisVector(2, energies);
