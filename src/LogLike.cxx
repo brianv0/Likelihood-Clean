@@ -106,13 +106,14 @@ void LogLike::computeEventResponses(std::vector<DiffuseSource *> &srcs,
                                     double sr_radius) {
    std::cerr << "Computing Event responses for the DiffuseSources";
    for (unsigned int i = 0; i < m_events.size(); i++) {
-      if ((i % (m_events.size()/20)) == 0) std::cerr << ".";
+      if (m_events.size() > 20 &&
+          (i % (m_events.size()/20)) == 0) std::cerr << ".";
       m_events[i].computeResponse(srcs, sr_radius);
-      if (i < 10) {
-         std::ostringstream filename;
-         filename << "diffuse_response_" << i << ".dat";
-         m_events[i].writeDiffuseResponses(filename.str());
-      }
+//       if (i < 10) {
+//          std::ostringstream filename;
+//          filename << "diffuse_response_" << i << ".dat";
+//          m_events[i].writeDiffuseResponses(filename.str());
+//       }
    }
    std::cerr << "!" << std::endl;
 // // Write out the diffuse responses.
