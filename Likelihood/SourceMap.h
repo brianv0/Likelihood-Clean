@@ -98,7 +98,7 @@ private:
 
    void computeSrcDirs(const Pixel & pixel);
 
-   void prepareAngleArrays(int nmu, int nphi);
+   void prepareAngleArrays(int nmu=100, int nphi=20);
 
    void getCelestialDir(double phi, double mu, 
                         FitsImage::EquinoxRotation & eqRot,
