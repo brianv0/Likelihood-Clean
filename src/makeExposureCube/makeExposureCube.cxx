@@ -74,9 +74,10 @@ st_app::StAppFactory<ExposureCube> myAppFactory;
 
 void ExposureCube::run() {
    std::string output_file = m_pars["outfile"];
-   if (m_pars["clobber"]) {
-      output_file = "!" + output_file;
-   } else if (st_facilities::Util::fileExists(output_file)) {
+   if (m_pars["clobber"] &&
+       st_facilities::Util::fileExists(output_file)) {
+      std::remove(output_file.c_str());
+   } else {
       std::cout << "Output file " << output_file 
                 << " already exists and you have set 'clobber' to 'no'.\n"
                 << "Please provide a different output file name." 
