@@ -16,7 +16,7 @@ use optimizers v*
 use facilities v2r*
 use cfitsio v1* IExternal
 use cppunit v1* IExternal
-use dc1Response v0 irfs
+use dc1Response v0r* irfs
 use g25Response v0 irfs
 
 apply_pattern ST_library option="-no_share *.c "
