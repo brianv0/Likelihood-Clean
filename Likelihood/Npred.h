@@ -30,7 +30,7 @@ class Npred : public optimizers::Function {
     
 public:
 
-   Npred() {}
+   Npred() {m_genericName = "Npred";}
    virtual ~Npred() {}
 
    double value(optimizers::Arg &) const;

@@ -59,6 +59,8 @@ public:
       return new SpatialMap(*this);
    }
 
+   std::string &fitsFile() {return m_fitsFile;}
+
 private:
 
    std::string m_fitsFile;
