@@ -62,7 +62,7 @@ public:
                        double roi_radius = 50);
 
    /// Read from xml file
-   static void setCuts(const std::string &xmlFile);
+   static void setCuts(std::string xmlFile);
 
    //! apply these cuts to an Event
    bool accept(const Event &);

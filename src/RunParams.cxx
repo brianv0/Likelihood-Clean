@@ -22,12 +22,11 @@ RunParams::RunParams(int iargc, char* argv[]) {
    pf->Group() = m_prompter->Group();
    pf->Save();
 
-//   delete pf;
+   delete pf;
 }
 
 RunParams::~RunParams() {
    delete m_prompter;
-//   delete pf;
 }
 
 } // namespace Likelihood

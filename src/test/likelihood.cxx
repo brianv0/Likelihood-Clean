@@ -43,6 +43,10 @@ void print_fit_results(SourceModel &stat, const std::vector<double> &errors);
 
 int main(int iargc, char* argv[]) {
 
+#ifdef TRAP_FPE
+   feenableexcept (FE_INVALID|FE_DIVBYZERO|FE_OVERFLOW);
+#endif
+
 // Read in the command-line parameters using HOOPS
    std::string filename("likelihood.par");
    delete argv[0];

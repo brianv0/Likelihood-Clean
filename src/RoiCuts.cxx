@@ -15,6 +15,8 @@
 #include <xercesc/dom/DOM_Element.hpp>
 #include <xercesc/dom/DOM_NodeList.hpp>
 
+#include "facilities/Util.h"
+
 #include "optimizers/Dom.h"
 
 #include "Likelihood/Exception.h"
@@ -46,7 +48,11 @@ void RoiCuts::setCuts(double ra, double dec, double roi_radius) {
    s_muZenMax = -1.;
 }
 
-void RoiCuts::setCuts(const std::string &xmlFile) {
+void RoiCuts::setCuts(std::string xmlFile) {
+
+// Expand any environment variables in the xmlFile name.
+   facilities::Util::expandEnvVar(&xmlFile);
+
    xml::XmlParser *parser = new xml::XmlParser();
 
    DOM_Document doc = parser->parse(xmlFile.c_str());
