@@ -140,6 +140,10 @@ public:
                                    double wtMin, double wtMax,
                                    const std::string & paramName) const;
 
+   virtual const std::vector<double> & exposure() const {
+      return m_exposure;
+   }
+
 private:
 
    /// spatial model

@@ -108,6 +108,8 @@ public:
       m_respName = respName;
    }
 
+   void load(const std::string & respFuncs);
+
 private:
 
    std::map<unsigned int, irfInterface::Irfs *> m_respPtrs;
