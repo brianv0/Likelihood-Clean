@@ -15,6 +15,11 @@
 
 #include "optimizers/FunctionFactory.h"
 
+namespace dataSubselector {
+   class CutBase;
+   class Cuts;
+}
+
 namespace Likelihood {
 
 /**
@@ -54,8 +59,13 @@ public:
 
    const std::vector<std::string> & scFiles() const {return m_scFiles;}
 
-   static void checkCuts(const std::string & file1, const std::string ext1,
-                         const std::string & file2, const std::string ext2);
+   static void checkCuts(const std::string & file1, const std::string & ext1,
+                         const std::string & file2, const std::string & ext2);
+
+   static void checkTimeCuts(const std::string & file1, 
+                             const std::string & ext1,
+                             const std::string & file2,
+                             const std::string & ext2);
 
 protected:
 
@@ -65,6 +75,10 @@ protected:
 
    void prepareFunctionFactory();
    void createResponseFuncs();
+
+   static void AppHelpers::
+   gatherTimeCuts(dataSubselector::Cuts & cuts,
+                  std::vector<const dataSubselector::CutBase *> time_cuts);
 };
 
 } // namespace Likelihood
