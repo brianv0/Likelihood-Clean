@@ -39,6 +39,10 @@ public:
    static void setRespPtrs(std::map<unsigned int, latResponse::Irfs *> 
                            &respPtrs) {s_respPtrs = respPtrs;}
 
+   static void addRespPtr(unsigned int key,
+                          latResponse::Irfs *respPtr) 
+      {s_respPtrs[key] = respPtr;}
+
    latResponse::Irfs * respPtr(unsigned int eventType);
 
    std::map<unsigned int, latResponse::Irfs *>::iterator begin()
