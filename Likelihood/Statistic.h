@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Statistic_h
-#define Statistic_h
+#ifndef Likelihood_Statistic_h
+#define Likelihood_Statistic_h
 
 #include "Likelihood/SourceModel.h"
 #include "Likelihood/Table.h"
@@ -62,4 +62,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // Statistic_h
+#endif // Likelihood_Statistic_h

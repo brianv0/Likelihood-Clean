@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Parameter_h
-#define Parameter_h
+#ifndef Likelihood_Parameter_h
+#define Likelihood_Parameter_h
 
 #include <vector>
 #include <string>
@@ -122,4 +122,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Parameter_h
+#endif // Likelihood_Parameter_h

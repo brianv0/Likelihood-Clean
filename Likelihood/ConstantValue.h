@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef ConstantValue_h
-#define ConstantValue_h
+#ifndef Likelihood_ConstantValue_h
+#define Likelihood_ConstantValue_h
 
 #include "Likelihood/Function.h"
 
@@ -58,4 +58,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // ConstantValue_h
+#endif // Likelihood_ConstantValue_h

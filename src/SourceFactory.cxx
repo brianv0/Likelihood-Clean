@@ -16,7 +16,7 @@
 #include "Likelihood/ConstantValue.h"
 #include "Likelihood/SpectrumFactory.h"
 #include "Likelihood/SourceFactory.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 

@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef logLike_ptsrc_h
-#define logLike_ptsrc_h
+#ifndef Likelihood_logLike_ptsrc_h
+#define Likelihood_logLike_ptsrc_h
 
 #include "Likelihood/Event.h"
 #include "Likelihood/Statistic.h"
@@ -74,4 +74,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // logLike_ptsrc_h
+#endif // Likelihood_logLike_ptsrc_h

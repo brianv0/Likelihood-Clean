@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef SourceModel_h
-#define SourceModel_h
+#ifndef Likelihood_SourceModel_h
+#define Likelihood_SourceModel_h
 
 #include <vector>
 #include <string>
@@ -127,4 +127,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // SourceModel_h
+#endif // Likelihood_SourceModel_h

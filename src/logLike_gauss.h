@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef logLike_gauss_h
-#define logLike_gauss_h
+#ifndef Likelihood_logLike_gauss_h
+#define Likelihood_logLike_gauss_h
 
 #include "Likelihood/Statistic.h"
 #include "Likelihood/Arg.h"
@@ -43,4 +43,4 @@ public:
 
 } // namespace Likelihood
 
-#endif // logLike_gauss_h
+#endif // Likelihood_logLike_gauss_h

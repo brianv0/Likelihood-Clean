@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef lbfgs_h
-#define lbfgs_h
+#ifndef Likelihood_lbfgs_h
+#define Likelihood_lbfgs_h
 
 #include "Likelihood/Optimizer.h"
 #include "Likelihood/Statistic.h"
@@ -115,6 +115,6 @@ namespace Likelihood {
   
 } // namespace Likelihood
 
-#endif // lbfgs_h
+#endif // Likelihood_lbfgs_h
 
 

@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef OptPP_h
-#define OptPP_h
+#ifndef Likelihood_OptPP_h
+#define Likelihood_OptPP_h
 
 #include "Likelihood/Optimizer.h"
 #include "Likelihood/Statistic.h"
@@ -63,4 +63,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // OptPP_h
+#endif // Likelihood_OptPP_h

@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Function_h
-#define Function_h
+#ifndef Likelihood_Function_h
+#define Likelihood_Function_h
 
 #include <iostream>
 #include <sstream>
@@ -180,4 +180,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // Function_h
+#endif // Likelihood_Function_h

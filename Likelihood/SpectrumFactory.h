@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef SpectrumFactory_h
-#define SpectrumFactory_h
+#ifndef Likelihood_SpectrumFactory_h
+#define Likelihood_SpectrumFactory_h
 
 #include <string>
 #include <map>
@@ -68,4 +68,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // SpectrumFactory_h
+#endif // Likelihood_SpectrumFactory_h

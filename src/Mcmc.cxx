@@ -15,7 +15,7 @@
 #include <algorithm>
 #include "fitsio.h"
 #include "Likelihood/Mcmc.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 #include "CLHEP/Random/RandomEngine.h"
 #include "CLHEP/Random/JamesRandom.h"
 #include "CLHEP/Random/RandFlat.h"

@@ -19,7 +19,7 @@
 #include <memory>
 #include <cassert>
 #include "Likelihood/FitsImage.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 

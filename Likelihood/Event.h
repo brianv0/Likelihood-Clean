@@ -7,8 +7,8 @@
  */
 
 
-#ifndef Event_h
-#define Event_h
+#ifndef Likelihood_Event_h
+#define Likelihood_Event_h
 
 #include <vector>
 #include <string>
@@ -106,4 +106,4 @@ private:
 };
 
 } // namespace Likelihood
-#endif // Event_h
+#endif // Likelihood_Event_h

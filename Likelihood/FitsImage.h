@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef FitsImage_h
-#define FitsImage_h
+#ifndef Likelihood_FitsImage_h
+#define Likelihood_FitsImage_h
 
 #include <vector>
 #include <string>
@@ -146,4 +146,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // FitsImage.h
+#endif // Likelihood_FitsImage.h

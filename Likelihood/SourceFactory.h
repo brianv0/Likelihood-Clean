@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef SourceFactory_h
-#define SourceFactory_h
+#ifndef Likelihood_SourceFactory_h
+#define Likelihood_SourceFactory_h
 
 #include <string>
 #include <map>
@@ -58,4 +58,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // SourceFactory_h
+#endif // Likelihood_SourceFactory_h

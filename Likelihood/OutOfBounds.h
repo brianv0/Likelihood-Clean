@@ -5,8 +5,8 @@
  * $Header$
  */
 
-#ifndef OutOfBounds_h
-#define OutOfBounds_h
+#ifndef Likelihood_OutOfBounds_h
+#define Likelihood_OutOfBounds_h
 
 #include "Likelihood/LikelihoodException.h"
 
@@ -50,4 +50,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // OutOfBounds_h
+#endif // Likelihood_OutOfBounds_h
