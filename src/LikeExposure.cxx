@@ -27,7 +27,7 @@ LikeExposure::LikeExposure(double skybin, double costhetabin,
    RoiCuts::instance()->getTimeCuts(m_timeCuts);
 }
 
-void LikeExposure::load(tip::Table * scData) {
+void LikeExposure::load(tip::Table * scData, bool verbose) {
    
    double ra, dec, start, stop, livetime, latGeo, lonGeo;
 
@@ -35,7 +35,7 @@ void LikeExposure::load(tip::Table * scData) {
    tip::Table::Record & row = *it;
    long nrows = scData->getNumRecords();
    for (long irow = 0; it != scData->end(); ++it, ++irow) {
-      if ( (irow % (nrows/20)) == 0 ) std::cerr << "."; 
+      if (verbose && (irow % (nrows/20)) == 0 ) std::cerr << "."; 
       row["livetime"].get(livetime);
       row["start"].get(start);
       row["stop"].get(stop);
@@ -50,7 +50,7 @@ void LikeExposure::load(tip::Table * scData) {
          add(astro::SkyDir(ra, dec), deltat);
       }
    }
-   std::cerr << "!" << std::endl;
+   if (verbose) std::cerr << "!" << std::endl;
 }
 
 bool LikeExposure::acceptInterval(double start, double stop, 
