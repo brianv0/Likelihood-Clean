@@ -5,6 +5,7 @@
  * $Header$
  */
 
+#include <cassert>
 #include "Likelihood/FunctionTest.h"
 
 namespace Likelihood {
