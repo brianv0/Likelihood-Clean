@@ -51,6 +51,8 @@ public:
              const std::string & ra_field, const std::string & dec_field,
              const std::vector<double> & energies);
 
+   CountsMap(const std::string & countsMapFile);
+
    CountsMap(const CountsMap & counts_map);
 
    virtual ~CountsMap() throw();
@@ -105,6 +107,12 @@ private:
 
    void getPixels(std::vector<astro::SkyDir> & pixelDirs,
                   std::vector<double> & pixelSolidAngles) const;
+
+   void readKeywords(const std::string & countsMapFile);
+   void readEbounds(const std::string & countsMapfile,
+                    std::vector<evtbin::Binner *> & binners);
+   void readImageData(const std::string & countsMapfile,
+                      std::vector<evtbin::Binner *> & binners);
 
 };
 

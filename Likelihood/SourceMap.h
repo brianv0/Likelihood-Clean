@@ -29,6 +29,8 @@ public:
 
    SourceMap(Source * src, const CountsMap & dataMap);
 
+   SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
+
    ~SourceMap() {}
 
    const std::vector<double> & model() const {return m_model;}

@@ -55,7 +55,11 @@ public:
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true) {
       SourceModel::readXml(xmlFile, funcFactory, requireExposure);
-      prepareSourceMaps();
+      if (m_srcMapsFile == "") {
+         createSourceMaps();
+      } else {
+         readSourceMaps();
+      }
    }
 
    virtual CountsMap * createCountsMap() const;
@@ -87,7 +91,9 @@ private:
 
    std::string m_srcMapsFile;
 
-   void prepareSourceMaps();
+   void createSourceMaps();
+
+   void readSourceMaps(std::string filename="");
 
    void computeModelMap(double & npred) const;
 
