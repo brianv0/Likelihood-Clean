@@ -25,7 +25,8 @@ namespace Likelihood {
 bool DiffuseSource::s_haveStaticMembers = false;
 std::vector<double> DiffuseSource::s_energies;
 
-DiffuseSource::DiffuseSource(Function* spatialDist) : m_spectrum(0) {
+DiffuseSource::DiffuseSource(Function* spatialDist) 
+   throw(LikelihoodException) : m_spectrum(0) {
 // The spatial distribution of emission is required for instantiation.
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
@@ -39,9 +40,12 @@ DiffuseSource::DiffuseSource(Function* spatialDist) : m_spectrum(0) {
 // available; furthermore, the ExposureMap object must have been
 // instantiated.
    ExposureMap *emap = ExposureMap::instance();
-   emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
-
-   m_srcType = "Diffuse";
+   if (emap == 0) {
+      throw LikelihoodException("The ExposureMap is not defined.");
+   } else {
+      emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
+      m_srcType = "Diffuse";
+   }
 }
 
 DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
