@@ -9,12 +9,13 @@
 #ifndef Likelihood_RoiCuts_h
 #define Likelihood_RoiCuts_h
 
-#include <vector>
-#include <string>
-#include <utility>
 #include <cmath>
 
-#include "xml/Dom.h"
+#include <string>
+#include <utility>
+#include <vector>
+
+#include <xercesc/dom/DOM.hpp>
 
 #include "astro/SkyDir.h"
 
@@ -108,8 +109,9 @@ private:
    /// cosine of the maximum Zenith angle
    static double s_muZenMax;
 
-   /// Create a root DomElement for the current set of cuts.
-   DomElement * rootDomElement(const std::string & roiTitle);
+   /// Create a root DOMElement for the current set of cuts.
+   XERCES_CPP_NAMESPACE_QUALIFIER DOMElement * 
+   rootDomElement(const std::string & roiTitle);
 
 };
 

@@ -6,21 +6,17 @@
  * $Header$
  */
 
-#include "Likelihood/XmlBuilder.h"
+#include "xml/XmlParser.h"
 
-namespace {
-   DomDocument * createDocument() {
-      DomDocument * doc = new DOM_Document();
-      *doc = DOM_Document::createDocument();
-      return doc;
-   }
-}
+#include "optimizers/Dom.h"
+
+#include "Likelihood/XmlBuilder.h"
 
 namespace Likelihood {
 
 XmlBuilder::XmlBuilder() {
    m_parser = new xml::XmlParser();
-   m_doc = ::createDocument();
+   m_doc = optimizers::Dom::createDocument();
 }
 
 XmlBuilder::~XmlBuilder() {

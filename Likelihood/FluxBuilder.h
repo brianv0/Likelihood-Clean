@@ -44,9 +44,9 @@ public:
       
 private:
 
+   typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMElement DomElement;
    DomElement * m_srcLib;
    DomElement * m_allSrcsElt;
-
    void getSourceType(Source &src, std::string &srcType);
    DomElement * fluxSource(Source & src);
    DomElement * gammaSpectrum(optimizers::Function &spectrum);
