@@ -51,6 +51,11 @@ public:
 
    void write(const std::string & filename) const;
 
+   /// Energy-dependent exposure (cm^2-s) at the selected sky location.
+   const std::vector<double> & exposure() const {
+      return m_exposure;
+   }
+
 private:
 
    static std::vector<double> s_separations;
@@ -62,6 +67,8 @@ private:
    const Observation & m_observation;
 
    std::vector<double> m_psfValues;
+
+   std::vector<double> m_exposure;
 
    void init();
 
