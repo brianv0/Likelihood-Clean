@@ -21,8 +21,10 @@ SkyDirFunction::SkyDirFunction(const astro::SkyDir &dir) :
    m_functionName = "SkyDirFunction";
    addParam("RA", m_ra, false);
    parameter("RA").setBounds(-360., 360.);
+   setParamAlwaysFixed("RA");
    addParam("DEC", m_dec, false);
    parameter("DEC").setBounds(-90., 90.);
+   setParamAlwaysFixed("DEC");
 }   
 
 void SkyDirFunction::m_init(double ra, double dec) {
@@ -38,8 +40,10 @@ void SkyDirFunction::m_init(double ra, double dec) {
    // NB: as usual, the specific ordering of Parameters is assumed throughout
    addParam("RA", m_ra, false);
    parameter("RA").setBounds(-360., 360.);
+   setParamAlwaysFixed("RA");
    addParam("DEC", m_dec, false);
    parameter("DEC").setBounds(-90., 90.);
+   setParamAlwaysFixed("DEC");
 }
 
 void SkyDirFunction::update_m_dir(const std::string paramName, 
