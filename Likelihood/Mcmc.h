@@ -5,10 +5,6 @@
  * $Header$
  */
 
-#ifdef _MSC_VER
-#pragma warning(disable:4290)
-#endif
-
 #ifndef Mcmc_h
 #define Mcmc_h
 

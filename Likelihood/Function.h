@@ -6,10 +6,6 @@
  * $Header$
  */
 
-#ifdef _MSC_VER
-#pragma warning(disable:4290)
-#endif
-
 #ifndef Function_h
 #define Function_h
 

@@ -6,9 +6,6 @@
  *
  */
 
-#ifdef _MSC_VER
-#pragma warning(disable:4290)
-#endif
 
 #ifndef Aeff_h
 #define Aeff_h
