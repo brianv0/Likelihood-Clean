@@ -53,6 +53,12 @@ double BinnedLikelihood::value(optimizers::Arg &dummy) const {
    return my_value;
 }
 
+double BinnedLikelihood::npred() {
+   double npred;
+   computeModelMap(npred);
+   return npred;
+}
+
 std::vector<double>::const_iterator 
 BinnedLikelihood::setParamValues_(std::vector<double>::const_iterator it) {
    m_modelIsCurrent = false;
