@@ -2,7 +2,7 @@
 #define PointSource_h
 
 #include "Source.h"
-#include "astro/Skydir.h"
+#include "astro/SkyDir.h"
 /** 
  * @class PointSource
  *
