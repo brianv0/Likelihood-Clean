@@ -81,8 +81,8 @@ void ExposureCube::run() {
    createDataCube();
    map_tools::ExposureHyperCube cube(*m_exposure, output_file);
    cube.save();
-   tip::Image * image
-      = tip::IFileSvc::instance().editImage(output_file, "hypercube");
+   std::auto_ptr<tip::Image> 
+      image(tip::IFileSvc::instance().editImage(output_file, "hypercube"));
    Likelihood::RoiCuts::instance()->writeDssKeywords(image->getHeader());
    Likelihood::RoiCuts::instance()->writeGtiExtension(output_file);
 }
