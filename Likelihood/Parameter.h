@@ -35,9 +35,9 @@ namespace Likelihood {
 
 class Parameter {
 
-   class OutOfBounds;
-    
 public:
+
+   class OutOfBounds;
    
    Parameter() {init(std::string(""), 0., -HUGE, HUGE, true);}
 
