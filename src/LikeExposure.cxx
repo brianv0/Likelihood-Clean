@@ -35,14 +35,14 @@ void LikeExposure::load(tip::Table * scData) {
       row["livetime"].get(livetime);
       row["start"].get(start);
       row["stop"].get(stop);
-      row["latGeo"].get(latGeo);
-      row["lonGeo"].get(lonGeo);
+      row["lat_Geo"].get(latGeo);
+      row["lon_Geo"].get(lonGeo);
       double deltat = livetime > 0 ? livetime : stop-start;
       double fraction;
       if (acceptInterval(start, stop, latGeo, lonGeo, fraction)) {
          deltat *= fraction;
-         row["ra"].get(ra);
-         row["dec"].get(dec);
+         row["ra_scz"].get(ra);
+         row["dec_scz"].get(dec);
          add(astro::SkyDir(ra, dec), deltat);
       }
    }

@@ -34,6 +34,8 @@ class LikeExposure : public map_tools::Exposure {
 
 public:
 
+   LikeExposure() {}
+
    LikeExposure(double skybin, double costhetabin, const std::string &roiFile);
 
    void load(tip::Table * tuple);
