@@ -53,21 +53,24 @@ void ScData::readData(std::string file, int hdu, bool clear) {
    bool done(false);
    while (!done) {
       const Goodi::SCRow *scRow = scData->nextSCrow(ioService, done);
+      if (!done) {
 
-      ScNtuple tuple;
-      tuple.xAxis = astro::SkyDir(scRow->raSCX()*180./M_PI,
-                                  scRow->decSCX()*180./M_PI);
-      tuple.zAxis = astro::SkyDir(scRow->raSCZ()*180./M_PI,
-                                  scRow->decSCZ()*180./M_PI);
-      tuple.time = scRow->startTime();
-      astro::EarthCoordinate earthCoord(scRow->latGeo()*180./M_PI,
-                                        scRow->lonGeo()*180./M_PI);
-      if (earthCoord.insideSAA()) {
-         tuple.inSaa = 1;
-      } else {
+         ScNtuple tuple;
+         tuple.xAxis = astro::SkyDir(scRow->raSCX()*180./M_PI,
+                                     scRow->decSCX()*180./M_PI);
+         tuple.zAxis = astro::SkyDir(scRow->raSCZ()*180./M_PI,
+                                     scRow->decSCZ()*180./M_PI);
+         tuple.time = scRow->startTime();
+         astro::EarthCoordinate earthCoord(scRow->latGeo()*180./M_PI,
+                                           scRow->lonGeo()*180./M_PI);
+//          if (earthCoord.insideSAA()) {
+//             tuple.inSaa = 1;
+//          } else {
+//             tuple.inSaa = 0;
+//          }
          tuple.inSaa = 0;
+         vec.push_back(tuple);
       }
-      vec.push_back(tuple);
    }
    s_tstep = vec[1].time - vec[0].time;
 

@@ -34,6 +34,8 @@ class RunParams {
 
 public:
 
+   RunParams() : m_prompter(0) {}
+
    RunParams(int iargc, char* argv[]);
 
    ~RunParams();

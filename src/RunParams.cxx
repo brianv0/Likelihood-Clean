@@ -11,6 +11,8 @@
 
 #include "facilities/Util.h"
 
+#include "hoops/hoops_exception.h"
+
 #include "Likelihood/RunParams.h"
 
 namespace Likelihood {
@@ -18,7 +20,16 @@ namespace Likelihood {
 RunParams::RunParams(int iargc, char* argv[]) {
 
    hoops::IParFile * pf = hoops::PILParFileFactory().NewIParFile(argv[0]);
-   pf->Load();
+   try {
+      pf->Load();
+   } catch (hoops::Hexception &eObj) {
+      if (eObj.Code() == -3003) {
+         std::cout << "Likelihood::RunParams: .par file " << argv[0]
+                   << "is not found.  Check your PFILES directory." 
+                   << std::endl;
+         assert(eObj.Code() != -3003);
+      }
+   }
 
    m_prompter = hoops::PILParPromptFactory().NewIParPrompt(iargc, argv);
    m_prompter->Prompt();

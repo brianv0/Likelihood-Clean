@@ -154,24 +154,26 @@ void LogLike::getEvents(std::string event_file, int) {
    bool done = false;
    while (!done) {
       const Goodi::Event *evt = eventData->nextEvent(ioService, done);
-      nTotal++;
-
-      double time = evt->time();
-
-      double raSCZ = scData->zAxis(time).ra();
-      double decSCZ = scData->zAxis(time).dec();
-
-      Event thisEvent( evt->ra()*180./M_PI, 
-                       evt->dec()*180./M_PI,
-                       evt->energy(), 
-                       time,
-                       raSCZ, decSCZ,
-                       cos(evt->zenithAngle()) );
-
-      if (roiCuts->accept(thisEvent)) {
-         m_events.push_back(thisEvent);
-      } else {
-         nReject++;
+      if (!done) {
+         nTotal++;
+         
+         double time = evt->time();
+         
+         double raSCZ = scData->zAxis(time).ra();
+         double decSCZ = scData->zAxis(time).dec();
+         
+         Event thisEvent( evt->ra()*180./M_PI, 
+                          evt->dec()*180./M_PI,
+                          evt->energy()/1e6, 
+                          time,
+                          raSCZ, decSCZ,
+                          cos(evt->zenithAngle()) );
+         
+         if (roiCuts->accept(thisEvent)) {
+            m_events.push_back(thisEvent);
+         } else {
+            nReject++;
+         }
       }
    }
    std::cout << "LogLike::getEvents:\nOut of " 
