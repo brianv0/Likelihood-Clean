@@ -116,7 +116,8 @@ void gtsrcmaps::run() {
    if (binnedMap != "none" && binnedMap != "") {
       SourceMap::setBinnedExposure(binnedMap);
    }
-   m_binnedLikelihood = new BinnedLikelihood(dataMap, cntsMapFile);
+   m_binnedLikelihood = new BinnedLikelihood(dataMap, m_helper->observation(),
+                                             cntsMapFile);
 
    std::string srcModelFile = m_pars["source_model_file"];
    m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false);

@@ -34,7 +34,7 @@ class FluxBuilder : public XmlBuilder {
 
 public:
 
-   FluxBuilder();
+   FluxBuilder(double emin, double emax);
 
    virtual ~FluxBuilder();
 
@@ -56,7 +56,7 @@ private:
    DomElement * mapCubeSource(Source & src);
 
    std::vector<double> m_energies;
-   void makeEnergyGrid(unsigned int nee=200);
+   void makeEnergyGrid(double emin, double emax, unsigned int nee=200);
 
    void addUnderscores(std::string &name);
 };

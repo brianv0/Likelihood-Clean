@@ -83,7 +83,7 @@ void ScData::readData(std::string file, bool clear) {
    delete scData;
 }         
 
-astro::SkyDir &ScData::zAxis(double time) {
+const astro::SkyDir & ScData::zAxis(double time) {
    int indx = static_cast<int>((time - vec[0].time)/s_tstep);
    indx = std::min(static_cast<unsigned int>(indx), vec.size()-2);
    double frac = (time - vec[indx].time)/s_tstep;
@@ -93,7 +93,7 @@ astro::SkyDir &ScData::zAxis(double time) {
    return m_zAxis;
 }
 
-astro::SkyDir &ScData::xAxis(double time) {
+const astro::SkyDir & ScData::xAxis(double time) {
    int indx = static_cast<int>((time - vec[0].time)/s_tstep);
    indx = std::min(static_cast<unsigned int>(indx), vec.size()-2);
    double frac = (time - vec[indx].time)/s_tstep;
