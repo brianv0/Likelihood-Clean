@@ -13,7 +13,8 @@ namespace Likelihood {
 
 ResponseFunctions * ResponseFunctions::s_instance = 0;
 
-std::map<unsigned int, latResponse::Irfs *> ResponseFunctions::s_respPtrs;
+//std::map<unsigned int, latResponse::Irfs *> ResponseFunctions::s_respPtrs;
+std::map<unsigned int, irfInterface::Irfs *> ResponseFunctions::s_respPtrs;
 
 bool ResponseFunctions::s_useEdisp(false);
    
@@ -27,16 +28,20 @@ double ResponseFunctions::totalResponse(double time,
    astro::SkyDir xAxis = scData->xAxis(time);
    
    double myResponse(0);
-   std::map<unsigned int, latResponse::Irfs *>::iterator respIt 
+//    std::map<unsigned int, latResponse::Irfs *>::iterator respIt 
+   std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
       = instance()->begin();
    for ( ; respIt != instance()->end(); respIt++) {
       if (respIt->second->irfID() == type) {  
-         latResponse::IPsf * psf = respIt->second->psf();
-         latResponse::IAeff * aeff = respIt->second->aeff();
+//          latResponse::IPsf * psf = respIt->second->psf();
+//          latResponse::IAeff * aeff = respIt->second->aeff();
+         irfInterface::IPsf * psf = respIt->second->psf();
+         irfInterface::IAeff * aeff = respIt->second->aeff();
          double psf_val = psf->value(appDir, energy, srcDir, zAxis, xAxis);
          double aeff_val = aeff->value(energy, srcDir, zAxis, xAxis);
          if (s_useEdisp) {
-            latResponse::IEdisp * edisp = respIt->second->edisp();
+//             latResponse::IEdisp * edisp = respIt->second->edisp();
+            irfInterface::IEdisp * edisp = respIt->second->edisp();
             double edisp_val = edisp->value(appEnergy, energy, srcDir, 
                                             zAxis, xAxis);
             myResponse += psf_val*aeff_val*edisp_val;
@@ -48,7 +53,8 @@ double ResponseFunctions::totalResponse(double time,
    return myResponse;
 }
 
-latResponse::Irfs * ResponseFunctions::respPtr(unsigned int i) {
+// latResponse::Irfs * ResponseFunctions::respPtr(unsigned int i) {
+irfInterface::Irfs * ResponseFunctions::respPtr(unsigned int i) {
    if (s_respPtrs.count(i)) {
       return s_respPtrs[i];
    } else {
