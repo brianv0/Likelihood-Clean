@@ -40,16 +40,18 @@ AppHelpers::AppHelpers(st_app::AppParGroup & pars)
    createResponseFuncs();
 
    m_scData = new ScData();
+   m_expCube = new ExposureCube();
    m_observation = new Observation(ResponseFunctions::instance(),
                                    m_scData,
                                    RoiCuts::instance(),
-                                   ExposureCube::instance(),
+                                   m_expCube,
                                    ExposureMap::instance());
 }
 
 AppHelpers::~AppHelpers() {
    delete m_funcFactory;
    delete m_scData;
+   delete m_expCube;
    delete m_observation;
 }
 

@@ -167,13 +167,13 @@ void ExposureMap::computeMap(std::string filename,
          eqRot.do_rotation(indir, dir);
          std::vector<double> exposure;
          bool verbose(false);
-         if (observation.expCube().instance() == 0) {
-            PointSource::computeExposure(dir, energies, observation,
-                                         exposure, verbose);
-         } else {
+         if (observation.expCube().haveFile()) {
             PointSource::computeExposureWithHyperCube(dir, energies, 
                                                       observation, 
                                                       exposure, verbose);
+         } else {
+            PointSource::computeExposure(dir, energies, observation,
+                                         exposure, verbose);
          }
          for (int k = 0; k < nenergies; k++)
             exposureCube[k][indx] = exposure[k];

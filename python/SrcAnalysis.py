@@ -22,10 +22,11 @@ class SrcAnalysis(object):
         if expMap is not None:
             pyLike.ExposureMap_readExposureFile(expMap)
         self.scData = pyLike.ScData()
+        self.expCube = pyLike.ExposureCube()
         observation = pyLike.Observation(pyLike.ResponseFunctions_instance(),
                                          self.scData,
                                          pyLike.RoiCuts_instance(),
-                                         pyLike.ExposureCube_instance(),
+                                         self.expCube,
                                          pyLike.ExposureMap_instance())
         self.observation = observation
         self.logLike = pyLike.LogLike(self.observation)
