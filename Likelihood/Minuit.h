@@ -5,8 +5,8 @@
  * $Header$
  */
 
-#ifndef MINUIT_H
-#define MINUIT_H
+#ifndef Likelihood_MINUIT_H
+#define Likelihood_MINUIT_H
 
 #include "Likelihood/Optimizer.h"
 #include "Likelihood/Statistic.h"
@@ -140,6 +140,6 @@ extern "C" {
   logical intrac_(double *);
 }
 
-#endif // MINUIT_H
+#endif // Likelihood_MINUIT_H
 
 

@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Table_h
-#define Table_h
+#ifndef Likelihood_Table_h
+#define Likelihood_Table_h
 
 #include <vector>
 #include <string>
@@ -86,4 +86,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Table.h
+#endif // Likelihood_Table.h

@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef logSrcModel_h
-#define logSrcModel_h
+#ifndef Likelihood_logSrcModel_h
+#define Likelihood_logSrcModel_h
 
 #include <vector>
 #include <string>
@@ -55,4 +55,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // logSrcModel_h
+#endif // Likelihood_logSrcModel_h

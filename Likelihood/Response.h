@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Response_h
-#define Response_h
+#ifndef Likelihood_Response_h
+#define Likelihood_Response_h
 
 #include <iostream>
 #include <valarray>
@@ -64,4 +64,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // Response_h
+#endif // Likelihood_Response_h

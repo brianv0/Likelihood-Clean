@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef SrcArg_h
-#define SrcArg_h
+#ifndef Likelihood_SrcArg_h
+#define Likelihood_SrcArg_h
 
 #include "Likelihood/Arg.h"
 #include "Likelihood/Source.h"
@@ -41,4 +41,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // SrcArg_h
+#endif // Likelihood_SrcArg_h

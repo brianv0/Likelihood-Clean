@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Gaussian_h
-#define Gaussian_h
+#ifndef Likelihood_Gaussian_h
+#define Likelihood_Gaussian_h
 
 #include "Likelihood/Function.h"
 #include "Likelihood/Arg.h"
@@ -50,4 +50,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Gaussian_h
+#endif // Likelihood_Gaussian_h

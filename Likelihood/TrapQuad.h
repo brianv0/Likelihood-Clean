@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef TrapQuad_h
-#define TrapQuad_h
+#ifndef Likelihood_TrapQuad_h
+#define Likelihood_TrapQuad_h
 
 #include "Likelihood/Function.h"
 
@@ -59,4 +59,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // TrapQuad_h
+#endif // Likelihood_TrapQuad_h

@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef SkyDirArg_h
-#define SkyDirArg_h
+#ifndef Likelihood_SkyDirArg_h
+#define Likelihood_SkyDirArg_h
 
 #include "Likelihood/Arg.h"
 #include "astro/SkyDir.h"
@@ -41,4 +41,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // SkyDirArg_h
+#endif // Likelihood_SkyDirArg_h

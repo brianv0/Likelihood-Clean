@@ -7,8 +7,8 @@
  * $Header$
  */
 
-#ifndef Source_h
-#define Source_h
+#ifndef Likelihood_Source_h
+#define Likelihood_Source_h
 
 #include <iostream>
 #include <map>
@@ -83,4 +83,4 @@ protected:
 
 } // namespace Likelihood
 
-#endif // Source_h
+#endif // Likelihood_Source_h

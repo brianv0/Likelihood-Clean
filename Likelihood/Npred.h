@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef Npred_h
-#define Npred_h
+#ifndef Likelihood_Npred_h
+#define Likelihood_Npred_h
 
 #include "Likelihood/Function.h"
 #include "Likelihood/Source.h"
@@ -45,4 +45,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Npred_h
+#endif // Likelihood_Npred_h

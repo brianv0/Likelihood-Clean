@@ -7,7 +7,7 @@
  */
 
 #include "Likelihood/Table.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 #include "fitsio.h"
 
 #include <cstdio>

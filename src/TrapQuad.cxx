@@ -10,7 +10,7 @@
 
 #include "Likelihood/TrapQuad.h"
 #include "Likelihood/dArg.h"
-#include "LikelihoodException.h"
+#include "Likelihood/LikelihoodException.h"
 
 #include <sstream>
 

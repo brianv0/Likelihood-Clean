@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef DiffuseSource_h
-#define DiffuseSource_h
+#ifndef Likelihood_DiffuseSource_h
+#define Likelihood_DiffuseSource_h
 
 #include "Likelihood/Source.h"
 #include "Likelihood/SkyDirArg.h"
@@ -115,4 +115,4 @@ private:
 
 } //namespace Likelihood
 
-#endif // DiffuseSource_h
+#endif // Likelihood_DiffuseSource_h

@@ -5,8 +5,8 @@
  * $Header$
  */
 
-#ifndef ParameterNotFound_h
-#define ParameterNotFound_h
+#ifndef Likelihood_ParameterNotFound_h
+#define Likelihood_ParameterNotFound_h
 
 #include <sstream>
 #include "Likelihood/LikelihoodException.h"
@@ -42,4 +42,4 @@ public:
 
 } // namespace Likelihood
 
-#endif // ParameterNotFound_h
+#endif // Likelihood_ParameterNotFound_h

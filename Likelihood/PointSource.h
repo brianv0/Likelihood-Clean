@@ -6,8 +6,8 @@
  * $Header$
  */
 
-#ifndef PointSource_h
-#define PointSource_h
+#ifndef Likelihood_PointSource_h
+#define Likelihood_PointSource_h
 
 #include "Likelihood/Source.h"
 #include "Likelihood/Function.h"
@@ -189,4 +189,4 @@ private:
 
 } //namespace Likelihood
 
-#endif // PointSource_h
+#endif // Likelihood_PointSource_h

@@ -6,8 +6,8 @@
  *
  */
 
-#ifndef Aeff_h
-#define Aeff_h
+#ifndef Likelihood_Aeff_h
+#define Likelihood_Aeff_h
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
@@ -72,4 +72,4 @@ private:
 
 } // namespace Likelihood
 
-#endif // Aeff_h
+#endif // Likelihood_Aeff_h
