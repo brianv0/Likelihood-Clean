@@ -324,8 +324,8 @@ private:
 void likelihood::writeCountsSpectra() {
    const EventData myData(m_logLike->events());
    std::vector<double> energies;
-   double emin(20);
-   double emax(2e5);
+   double emin = RoiCuts::instance()->getEnergyCuts().first;
+   double emax = RoiCuts::instance()->getEnergyCuts().second;
    int nee(20);
    double estep = log(emax/emin)/(nee-1);
    for (int k = 0; k < nee; k++) {
