@@ -84,7 +84,7 @@ void ExpMap::promptForParameters() {
    m_pars.Prompt("scfile");
    m_pars.Prompt("exposure_cube_file");
    AppHelpers::checkTimeCuts(m_pars["evfile"], "EVENTS",
-                             m_pars["exposure_cube_file"], "hypercube");
+                             m_pars["exposure_cube_file"], "");
    m_pars.Prompt("outfile");
    AppHelpers::checkOutputFile(m_pars["clobber"], m_pars["outfile"]);
    m_pars.Prompt("rspfunc");
