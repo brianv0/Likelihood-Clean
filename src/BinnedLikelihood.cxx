@@ -255,7 +255,7 @@ bool BinnedLikelihood::sourceMapExists(const std::string & srcName,
    try {
       std::auto_ptr<const tip::Image> 
          image(tip::IFileSvc::instance().readImage(fitsFile, srcName));
-   } catch (tip::TipException & eObj) {
+   } catch (tip::TipException &) {
       return false;
    }
    return true;

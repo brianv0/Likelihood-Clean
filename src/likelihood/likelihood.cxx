@@ -349,7 +349,7 @@ void likelihood::writeCountsSpectra() {
             if (i==0) evals.push_back(log10(sqrt(energies[k]*energies[k+1])));
             npred[i].push_back(log10(Npred));
             line << Npred << "  ";
-         } catch (std::out_of_range & eObj) {
+         } catch (std::out_of_range &) {
             writeLine = false;
          }
       }

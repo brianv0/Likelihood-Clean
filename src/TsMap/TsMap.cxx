@@ -194,7 +194,7 @@ void TsMap::computeMap() {
          try {
             m_opt->find_min(verbosity, tol);
             m_tsMap[jj].push_back(2.*(m_logLike(dummy) - logLike0));
-         } catch (optimizers::Exception &eObj) {
+         } catch (optimizers::Exception &) {
             // Default null value.
             m_tsMap[jj].push_back(0);
          }

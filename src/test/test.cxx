@@ -798,7 +798,7 @@ void LikelihoodTests::readEventData(const std::string &eventFile,
    tip::Table * eventTable = 
       tip::IFileSvc::instance().editTable(eventFile, "events");
 
-   double ra, dec, energy, time, zenith_angle;
+   double ra, dec, energy, time(0), zenith_angle;
    int conversion_layer, type;
 
    tip::Table::Iterator it = eventTable->begin();
