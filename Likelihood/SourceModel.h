@@ -195,32 +195,13 @@ protected:
       derivs.clear();
    }
 
-protected:
-
-   static void getPixels(const CountsMap & countsMap,
-                         std::vector<Pixel> & pixels);
-
-   virtual void computeModelMap(const std::vector<Pixel> & pixels,
-                                const std::vector<double> & energies,
-                                std::vector<double> & modelMap) const;
-
-   virtual void computeModelMap(const std::vector<double> &,
-                                std::vector<double> &) const {
-      throw std::runtime_error("computeModelMap must be re-implemented in "
-                               + std::string("the subclass that calls it."));
-   }
-
 private:
 
    bool m_verbose;
 
-   static double computeSolidAngle(std::vector<double>::const_iterator lon,
-                                   std::vector<double>::const_iterator lat,
-                                   const astro::SkyProj & proj);
-
-   static void getPixels(const CountsMap & countsMap, 
-                         std::vector<astro::SkyDir> & pixelDirs,
-                         std::vector<double> & pixelSolidAngles);
+   void computeModelMap(const std::vector<Pixel> & pixels,
+                        const std::vector<double> & energies,
+                        std::vector<double> & modelMap) const;
 
 };
 
