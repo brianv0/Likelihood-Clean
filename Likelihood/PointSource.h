@@ -67,7 +67,7 @@ public:
 
    /// Returns photons/cm^2-s-sr-MeV having been convolved through
    /// the LAT instrument response
-   double fluxDensity(const Event &evt) const
+   virtual double fluxDensity(const Event &evt) const
       {return fluxDensity(evt.getEnergy(), evt.getArrTime(), evt.getDir(),
                           evt.getType());}
 
@@ -75,8 +75,8 @@ public:
                       const astro::SkyDir &dir, int eventType=2) const;
 
    /// Returns the derivative wrt to the named Parameter
-   double fluxDensityDeriv(const Event &evt, 
-                           const std::string &paramName) const
+   virtual double fluxDensityDeriv(const Event &evt, 
+                                   const std::string &paramName) const
       {return fluxDensityDeriv(evt.getEnergy(), evt.getArrTime(), 
                                evt.getDir(), evt.getType(), paramName);}
 
@@ -89,6 +89,9 @@ public:
 
    /// Derivative of Npred wrt named Parameter
    virtual double NpredDeriv(const std::string &paramName);
+
+   /// Predicted number of counts within a given energy range
+   virtual double Npred(double emin, double emax);
 
    /// Set source location using J2000 coordinates
    void setDir(double ra, double dec, bool updateExposure=true, 
