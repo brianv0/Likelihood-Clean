@@ -121,13 +121,15 @@ void SourceFactory::readXml(const std::string &xmlFile,
 // the source_library tag.
    std::string function_library 
       = xml::Dom::getAttribute(source_library, "function_library");
-   facilities::Util::expandEnvVar(&function_library);
-   try {
-      funcFactory.readXml(function_library);
-   } catch(optimizers::Exception &eObj) {
-      std::cout << eObj.what() << std::endl;
+   if (function_library.find("xml") != std::string::npos) {
+      facilities::Util::expandEnvVar(&function_library);
+      try {
+         funcFactory.readXml(function_library);
+      } catch(optimizers::Exception &eObj) {
+         std::cout << eObj.what() << std::endl;
 // // Rethrow as a Likelihood::Exception.
-//       throw Exception(eObj.what());
+//          throw Exception(eObj.what());
+      }
    }
 
 // Loop through source elements, adding each as a Source object prototype.
@@ -281,7 +283,6 @@ void SourceFactory::setSpectrum(Source *src, const DOM_Element &spectrum,
       std::vector<DOM_Element>::const_iterator paramIt = params.begin();
       for ( ; paramIt != params.end(); paramIt++) {
          optimizers::Parameter parameter;
-//         optimizers::Dom::readParamData(*paramIt, parameter);
          parameter.extractDomData(*paramIt);
          spec->setParam(parameter);
       }
