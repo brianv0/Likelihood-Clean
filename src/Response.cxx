@@ -11,8 +11,9 @@
 #include <cmath>
 #include <algorithm>
 
+#include "latResponse/../src/Table.h"
+
 #include "Likelihood/Response.h"
-#include "Likelihood/Table.h"
 #include "Likelihood/Exception.h"
 
 namespace Likelihood {

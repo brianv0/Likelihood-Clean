@@ -9,8 +9,9 @@
 #ifndef Likelihood_Psf_h
 #define Likelihood_Psf_h
 
+#include "latResponse/../src/Table.h"
+
 #include "Likelihood/Response.h"
-#include "Likelihood/Table.h"
 #include "Likelihood/Exception.h"
 
 class astro::SkyDir;
@@ -68,7 +69,7 @@ private:
    //! PSF stored in straw-man CALDB format
    std::string m_psfFile;
    int m_psfHdu;
-   Table m_psfData;
+   latResponse::Table m_psfData;
 
    std::vector<double> m_energy;
    std::vector<double> m_theta;

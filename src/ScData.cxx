@@ -10,8 +10,9 @@
 #include <string>
 #include <cmath>
 
+#include "latResponse/../src/Table.h"
+
 #include "Likelihood/ScData.h"
-#include "Likelihood/Table.h"
 
 namespace Likelihood {
 
@@ -26,7 +27,7 @@ void ScData::readData(const std::string &file, int hdu) {
    s_scHdu = hdu;
 
 // read in the data (should check on file existence, etc., first...)
-   Table scTable;
+   latResponse::Table scTable;
    scTable.add_columns("SC_x0 SC_x1 SC_x2 SC_x SC_y SC_z time SAA_flag");
    scTable.read_FITS_table(file, hdu);
 
