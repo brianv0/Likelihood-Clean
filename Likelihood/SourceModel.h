@@ -31,9 +31,10 @@ class SourceModel : public Function {
     
 public:
    
-   SourceModel(){setMaxNumParams(0);}
-   SourceModel(const SourceModel &rhs);
-   virtual ~SourceModel(){}
+   SourceModel() {setMaxNumParams(0); s_refCount++;}
+   SourceModel(const SourceModel &rhs) : Function(rhs) {s_refCount++;}
+
+   virtual ~SourceModel();
 
    //! setParam method to include function and source name checking
    void setParam(const Parameter &param, const std::string &funcName,
@@ -69,6 +70,8 @@ public:
    virtual double value(Arg &x) const {return evaluate_at(x);}
 
 protected:
+
+   static int s_refCount;
 
    static std::vector<Source *> s_sources;
 

@@ -16,7 +16,7 @@ namespace Likelihood {
 /** 
  * @class Statistic
  *
- * @brief Absract base class for objective functions used for
+ * @brief Abstract base class for objective functions used for
  * parameter estimation.  Augments the SourceModel class by adding
  * facility for reading and storing data.
  *
@@ -28,8 +28,7 @@ class Statistic : public SourceModel {
     
 public:
 
-   Statistic(){}
-   virtual ~Statistic(){}
+   virtual ~Statistic() {}
 
    //! return the objective function value taking the free parameters 
    //! as the function argument
