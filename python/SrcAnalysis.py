@@ -65,7 +65,7 @@ class SrcAnalysis(object):
         eventFiles = self._fileList(eventFile)
         self.roiCuts.readCuts(eventFiles[0])
         for file in eventFiles:
-            self.logLike.getEvents(file)
+            self.observation.eventCont().getEvents(file)
     def _Nobs(self, emin, emax):
         nobs = 0
         for event in self.events:
