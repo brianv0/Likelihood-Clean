@@ -9,6 +9,8 @@
 #include <cassert>
 #include <cctype>
 
+#include <algorithm>
+#include <deque>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -209,10 +211,13 @@ void Event::prepareSrData(double sr_radius, int nmu, int nphi) {
 //       s_mu.push_back(mustep*i + mumin);
 //    }
 // Try sampling more densely near theta = 0:
+   std::deque<double> my_mu;
    double nscale = static_cast<double>((nmu-1)*(nmu-1));
    for (int i = 0; i < nmu; i++) {
-      s_mu.push_back(1. - i*i/nscale*(1. - mumin));
+      my_mu.push_front(1. - i*i/nscale*(1. - mumin));
    }
+   s_mu.resize(my_mu.size());
+   std::copy(my_mu.begin(), my_mu.end(), s_mu.begin());
    double phistep = 2.*M_PI/(nphi - 1.);
    for (int i = 0; i < nphi; i++) {
       s_phi.push_back(phistep*i);

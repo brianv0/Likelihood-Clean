@@ -40,8 +40,6 @@ class LogLike : public SourceModel {
 public:
 
    LogLike() {
-//       logSrcModel m_logSrcModel;
-//       Npred m_Npred;
       if (s_FT1_columns.size() == 0) {
          setFT1_columns();
       }
