@@ -153,7 +153,7 @@ void LogLike::computeEventResponses(double sr_radius) {
          diffuse_srcs.push_back(diffuse_src);
       }
    }
-   computeEventResponses(diffuse_srcs, sr_radius);
+   if (diffuse_srcs.size() > 0) computeEventResponses(diffuse_srcs, sr_radius);
 }
 
 // Methods from the old Likelihood::Statistic class:
