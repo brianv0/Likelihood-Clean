@@ -492,8 +492,9 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
                    << TsValues[srcNames[i]] << std::endl;
          resultsFile << "'TS value': '" << TsValues[srcNames[i]] << "',\n";
       }
-      resultsFile << "}}" << std::endl;
+      resultsFile << "},\n";
    }
+   resultsFile << "}" << std::endl;
    if (m_statistic == "BINNED") {
       const std::vector<double> & data = m_dataMap->data();
       double total_counts(0);
