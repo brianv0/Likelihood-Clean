@@ -110,6 +110,74 @@ Parameter SourceModel::getParam(const std::string &paramName,
    throw LikelihoodException(errorMessage.str());
 }
 
+void SourceModel::setParamBounds(const std::string &paramName,
+                                 const std::string &funcName,
+                                 const std::string &srcName,
+                                 double lower, double upper)
+   throw(ParameterNotFound, OutOfBounds) {
+   Parameter my_param = getParam(paramName, funcName, srcName);
+   my_param.setBounds(lower, upper);
+   setParam(my_param, funcName, srcName);
+   syncParams();
+}
+
+void SourceModel::setParamScale(const std::string &paramName,
+                                const std::string &funcName,
+                                const std::string &srcName,
+                                double scale) throw(ParameterNotFound) {
+   Parameter my_param = getParam(paramName, funcName, srcName);
+   my_param.setScale(scale);
+   setParam(my_param, funcName, srcName);
+   syncParams();
+}
+
+void SourceModel::setParamTrueValue(const std::string &paramName,
+                                    const std::string &funcName,
+                                    const std::string &srcName,
+                                    double paramValue)
+   throw(ParameterNotFound, OutOfBounds) {
+   Parameter my_param = getParam(paramName, funcName, srcName);
+   my_param.setTrueValue(paramValue);
+   setParam(my_param, funcName, srcName);
+   syncParams();
+}
+
+void SourceModel::setParams_(std::vector<Parameter> &params, bool setFree) 
+   throw(LikelihoodException, ParameterNotFound) {
+// ensure the number of Parameters matches
+   unsigned int numParams;
+   if (setFree) {
+      numParams = getNumFreeParams();
+   } else {
+      numParams = getNumParams();
+   }
+   if (params.size() != numParams) {
+      std::string errorMessage = std::string("SourceModel::setParams:\n") 
+         + std::string("Inconsistent number of Parameters.");
+      throw LikelihoodException(errorMessage);
+   }
+// assume ordering of Parameters in params matches that given by the
+// ordering of the Sources and their Functions
+   int k = 0;  // params' index
+   for (unsigned int i = 0; i < s_sources.size(); i++) {
+      Source::FuncMap srcFuncs = (*s_sources[i]).getSrcFuncs();
+      Source::FuncMap::iterator func_it = srcFuncs.begin();
+      for (; func_it != srcFuncs.end(); func_it++) {
+         unsigned int numParams;
+         if (setFree) {
+            numParams = func_it->second->getNumFreeParams();
+         } else { 
+            numParams = func_it->second->getNumParams();
+         }
+         for (unsigned int j = 0; j < numParams; j++) {
+            func_it->second->setParam(params[k]);
+            k++;
+         }
+      }
+   }
+   syncParams();
+}
+
 void SourceModel::addSource(Source *src) {
 // loop over sources to ensure unique names
    for (unsigned int i = 0; i < s_sources.size(); i++) 
