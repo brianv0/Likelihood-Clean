@@ -17,6 +17,10 @@
 #include "Likelihood/LogLike.h"
 #include "Likelihood/Pixel.h"
 
+namespace tip {
+   class Image;
+}
+
 namespace Likelihood {
 
 class SourceMap;
