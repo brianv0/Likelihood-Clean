@@ -15,6 +15,8 @@
 #include <xercesc/dom/DOM_Element.hpp>
 #include <xercesc/dom/DOM_NodeList.hpp>
 
+#include "facilities/Util.h"
+
 #include "optimizers/Exception.h"
 #include "optimizers/Dom.h"
 #include "optimizers/FunctionFactory.h"
@@ -124,8 +126,9 @@ void SourceFactory::readXml(const std::string &xmlFile,
    try {
       funcFactory.readXml(function_library);
    } catch(optimizers::Exception &eObj) {
-// Rethrow as a Likelihood::Exception.
-      throw Exception(eObj.what());
+      std::cout << eObj.what() << std::endl;
+// // Rethrow as a Likelihood::Exception.
+//       throw Exception(eObj.what());
    }
 
 // Loop through source elements, adding each as a Source object prototype.
@@ -251,7 +254,8 @@ Source * SourceFactory::makeDiffuseSource(const DOM_Element &spectrum,
    if (type == "SpatialMap") {
       std::string fitsFile 
          = xml::Dom::getAttribute(spatialModel, "file");
-      fitsFile = ::rootPath() + "/src/test/Data/" + fitsFile;
+      facilities::Util::expandEnvVar(&fitsFile);
+//      fitsFile = ::rootPath() + "/src/test/Data/" + fitsFile;
       dynamic_cast<SpatialMap *>(spatialDist)->readFitsFile(fitsFile);
    }
    Source *src;

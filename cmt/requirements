@@ -19,6 +19,8 @@ apply_pattern package_linkopts
 
 private
 
+use facilities v2*
+
 #use python v2* IExternal
 #macro pydir ../python/
 

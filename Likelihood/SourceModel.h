@@ -15,6 +15,10 @@
 #include "optimizers/Function.h"
 #include "Likelihood/Source.h"
 
+namespace optimizers {
+   class FunctionFactory;
+}
+
 namespace Likelihood {
 
 /** 
@@ -112,7 +116,11 @@ public:
    double evaluate_at(optimizers::Arg &) const;
    virtual double value(optimizers::Arg &x) const {return evaluate_at(x);}
 
-   // Write an XML file for the current source model.
+   /// Create the source model by reading an XML file.
+   void readXml(const std::string &xmlFile,
+                optimizers::FunctionFactory &funcFactory);
+
+   /// Write an XML file for the current source model.
    void writeXml(const std::string &xmlFile);
 
 protected:
