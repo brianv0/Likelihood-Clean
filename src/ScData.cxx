@@ -48,6 +48,27 @@ void ScData::readData(const std::string &file, int hdu) {
 
       vec.push_back(tuple);
    }
+
+// Assume a constant time step.
+   m_tstep = vec[1].time - vec[0].time;
+}
+
+astro::SkyDir &zAxis(double time) {
+   int indx = static_cast<int>((time - vec[0].time)/m_tstep);
+   double frac = (time - vec[indx].time)/m_tstep;
+   Hep3Vector zDir = frac*(vec[indx+1].zAxis.dir() - vec[indx].zAxis.dir())
+      + vec[indx].zAxis.dir();
+   m_zAxis = astro::SkyDir(zDir);
+   return m_zAxis;
+}
+
+astro::SkyDir &xAxis(double time) {
+   int indx = static_cast<int>((time - vec[0].time)/m_tstep);
+   double frac = (time - vec[indx].time)/m_tstep;
+   Hep3Vector xDir = frac*(vec[indx+1].xAxis.dir() - vec[indx].xAxis.dir())
+      + vec[indx].xAxis.dir();
+   m_xAxis = astro::SkyDir(xDir);
+   return m_xAxis;
 }
 
 ScData * ScData::instance() {
