@@ -41,17 +41,19 @@ AppHelpers::AppHelpers(st_app::AppParGroup & pars)
 
    m_scData = new ScData();
    m_expCube = new ExposureCube();
+   m_expMap = new ExposureMap();
    m_observation = new Observation(ResponseFunctions::instance(),
                                    m_scData,
                                    RoiCuts::instance(),
                                    m_expCube,
-                                   ExposureMap::instance());
+                                   m_expMap);
 }
 
 AppHelpers::~AppHelpers() {
    delete m_funcFactory;
    delete m_scData;
    delete m_expCube;
+   delete m_expMap;
    delete m_observation;
 }
 
@@ -94,7 +96,7 @@ void AppHelpers::readExposureMap() {
    std::string exposureFile = m_pars["exposure_map_file"];
    if (exposureFile != "none") {
       st_facilities::Util::file_ok(exposureFile);
-      ExposureMap::readExposureFile(exposureFile);
+      m_expMap->readExposureFile(exposureFile);
    }
 }
 
