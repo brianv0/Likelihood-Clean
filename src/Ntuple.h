@@ -49,10 +49,10 @@ public:
     };
 
     //! external read-write access to column contents
-    Column& operator[](int i) { return m_pars.at(i);}
+    Column& operator[](int i) { return m_pars[i];}
 
     //! read-only access to column contents
-    const Column& operator[](int i)const { return m_pars.at(i);}
+    const Column& operator[](int i)const { return m_pars[i];}
 
     int npar() const { return m_pars.size(); }
 
