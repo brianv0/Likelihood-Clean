@@ -13,6 +13,15 @@
 
 namespace Likelihood {
 
+SumFunction::SumFunction(Function &a, Function &b) : 
+   CompositeFunction(a, b) {
+   assert(a.funcType() == Addend && b.funcType() == Addend);
+   m_funcType = Addend;
+   m_a = &a;
+   m_b = &b;
+   syncParams(); 
+}
+
 void SumFunction::fetchDerivs(Arg &x, std::vector<double> &derivs, 
                               bool getFree) const {
    if (!derivs.empty()) derivs.clear();

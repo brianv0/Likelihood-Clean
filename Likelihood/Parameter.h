@@ -57,6 +57,7 @@ public:
    double getScale() const {return m_scale;}
 
    //! "true" value access
+   void setTrueValue(double trueValue) {m_value = trueValue/m_scale;}
    double getTrueValue() const {return m_value*m_scale;}
 
    //! bounds access

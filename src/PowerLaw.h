@@ -5,6 +5,9 @@
  * $Header$
  */
 
+#ifndef PowerLaw_h
+#define PowerLaw_h
+
 #include "Likelihood/Function.h"
 #include "Likelihood/Arg.h"
 
@@ -32,6 +35,11 @@ public:
 
    double integral(Arg &xmin, Arg &xmax) const;
 
+   virtual Function *clone() const {
+      return new PowerLaw(*this);
+   }
+;
+
 private:
 
    void init(double Prefactor, double Index, double Scale);
@@ -40,3 +48,4 @@ private:
 
 } // namespace Likelihood
 
+#endif // PowerLaw_h

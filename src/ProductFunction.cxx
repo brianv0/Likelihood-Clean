@@ -13,6 +13,21 @@
 
 namespace Likelihood {
 
+ProductFunction::ProductFunction(Function &a, Function &b) :
+   CompositeFunction(a, b) {
+   assert( (a.funcType() == Addend && b.funcType() == Factor) || 
+           (a.funcType() == Factor && b.funcType() == Addend) || 
+           (a.funcType() == Factor && b.funcType() == Factor) );
+   if (a.funcType() == Addend || b.funcType() == Addend) {
+      m_funcType = Addend;
+   } else {
+      m_funcType = Factor;
+   }
+   m_a = &a;
+   m_b = &b;
+   syncParams();
+}
+
 void ProductFunction::fetchDerivs(Arg &x, std::vector<double> &derivs, 
                                   bool getFree) const {
    if (!derivs.empty()) derivs.clear();
