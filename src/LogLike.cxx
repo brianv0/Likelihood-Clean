@@ -15,6 +15,7 @@
 
 #ifdef USE_GOODI
 #include "Goodi/GoodiConstants.h"
+#include "Likelihood/useGoodiNames.h"
 #include "Goodi/DataIOServiceFactory.h"
 #include "Goodi/DataFactory.h"
 #include "Goodi/IDataIOService.h"
