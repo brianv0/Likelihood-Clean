@@ -106,7 +106,7 @@ void ExposureMap::integrateSpatialDist(std::vector<double> &energies,
          expsr = expsr*(s_exposure[kk][j] - s_exposure[kk-1][j])
             + s_exposure[kk-1][j];
          astro::SkyDir skyDir(s_ra[j], s_dec[j]);
-         SkyDirArg dir(skyDir);
+         SkyDirArg dir(skyDir, energies[k]);
          srcExposure += expsr*(*spatialDist)(dir);
       }
       exposure.push_back(srcExposure);
