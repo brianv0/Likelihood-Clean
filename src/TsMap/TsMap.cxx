@@ -163,6 +163,9 @@ void TsMap::computeMap() {
    std::string coordSys = m_pars["Coordinate_system"];
 
    for (unsigned int jj = 0; jj < m_latValues.size(); jj++) {
+      if ( (jj % m_latValues.size()/20) == 0 ) {
+         std::cerr << ".";
+      }
       for (unsigned int ii = 0; ii < m_lonValues.size(); ii++) {
          if (coordSys == "CEL") {
             m_testSrc.setDir(m_lonValues[ii], m_latValues[jj], 
@@ -191,6 +194,7 @@ void TsMap::computeMap() {
          m_logLike.deleteSource(m_testSrc.getName());
       }
    }
+   std::cerr << "!" << std::endl;
 }
 
 void TsMap::makeDoubleVector(double xmin, double xmax, int nx,
