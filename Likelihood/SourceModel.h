@@ -41,7 +41,7 @@ namespace Likelihood {
  */
 
 class SourceModel : public optimizers::Statistic {
-    
+
 public:
    
    SourceModel(bool verbose=false) : m_verbose(verbose) {
@@ -194,9 +194,9 @@ protected:
    static void getPixels(const CountsMap & countsMap,
                          std::vector<Pixel> & pixels);
 
-   static void computeModelMap(const std::vector<Pixel> & pixels,
-                               const std::vector<double> & energies,
-                               std::vector<double> & modelMap);
+   void computeModelMap(const std::vector<Pixel> & pixels,
+                        const std::vector<double> & energies,
+                        std::vector<double> & modelMap) const;
 
 private:
 

@@ -15,7 +15,6 @@
 
 #include "astro/SkyDir.h"
 #include "map_tools/Exposure.h"
-//#include "Likelihood/SourceModel.h"
 
 namespace Likelihood {
 
@@ -29,7 +28,7 @@ namespace Likelihood {
  * predictions for numbers of counts and derivatives of the counts
  * prediction wrt model parameters.  The extrinsic quantities passed
  * to the public methods are the bounds of the energy band of interest
- * (GOF, p. 195).
+ * and the SourceModel object (GOF, p. 195).
  *
  * @author J. Chiang
  *
@@ -46,9 +45,9 @@ public:
    Pixel(const astro::SkyDir & dir, double solidAngle) 
       : m_dir(dir), m_solidAngle(solidAngle) {}
 
-   double modelCounts(double emin, double emax) const;
+   double modelCounts(double emin, double emax, SourceModel & srcModel) const;
 
-   void getFreeDerivs(double emin, double emax, 
+   void getFreeDerivs(double emin, double emax, SourceModel & srcModel,
                       std::vector<double> & derivs) const;
 
    class Aeff : public map_tools::Exposure::Aeff {
@@ -84,8 +83,6 @@ private:
    astro::SkyDir m_dir;
    double m_solidAngle;
 
-   static SourceModel * s_srcModel;
-   
 };
 
 } // namespace Likelihood
