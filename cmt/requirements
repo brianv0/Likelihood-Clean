@@ -8,7 +8,7 @@ author Pat Nolan <pln@razzle.stanford.edu>
 
 use STpolicy v*
 use astro  v*
-use xml v4r*
+use xml v5r*
 use tip v2*
 use evtbin v0r*
 use map_tools v*
