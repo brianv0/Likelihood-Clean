@@ -30,9 +30,9 @@ use tuple v*
 
 # allow use of internal path
 macro Likelihood_cppflags "" \
-Linux "-I ../src -D TRAP_FPE -D USE_TIP " \
+Linux "-I ../src -D TRAP_FPE -D USE_FT1 " \
 #Linux "-I ../src -D TRAP_FPE " \
-WIN32 '/I..\src /D"USE_TIP" /wd4290'
+WIN32 '/I..\src /D"USE_FT1" /wd4290'
 
 macro_append ROOT_libs ""  WIN32 " libHisT.lib "
 
