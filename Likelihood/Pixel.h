@@ -54,6 +54,7 @@ public:
 
    double solidAngle() const {return m_solidAngle;}
 
+#ifndef SWIG
    class Aeff : public map_tools::Exposure::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
@@ -81,6 +82,7 @@ public:
       int m_type;
       double m_separation;
    };
+#endif // SWIG
 
 private:
 

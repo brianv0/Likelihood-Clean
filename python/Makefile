@@ -8,10 +8,10 @@
 #
 
 #PYTHONDIR = $(GLAST_EXT)/python/2.3/Linux
-#PYINCLUDE = -I$(PYTHONDIR)/include
+#PYINCLUDE = $(PYTHONDIR)/include
 #SWIG_DIR = /usr/local
 #SWIG_DIR = /scratch/local
-PYINCLUDE = -I/scratch/local/include/python2.3
+#PYINCLUDE = /scratch/local/include/python2.3
 SWIG = ${SWIG_DIR}/bin/swig -w401 -w402
 
 CFLAGS = -g -w -fPIC
@@ -27,6 +27,7 @@ INCLUDE = -I$(LIKELIHOODROOT)\
 	-I$(XMLROOT)\
 	-I$(ST_FACILITIESROOT)\
 	-I$(FACILITIESROOT)\
+	-I$(ST_FACILITIESROOT)\
 	-I$(F2CROOT)\
 	-I$(GLAST_EXT)/cfitsio/v2470/include\
 	-I$(GLAST_EXT)/CLHEP/1.8.0.0/include\
@@ -62,7 +63,7 @@ ${module_name}: ${module_base}_wrap.o
 	${CXX} -shared $< ${LIBS} -o ${module_name}
 
 ${module_base}_wrap.o: ${module_base}_wrap.cxx
-	${CXX} -c ${CFLAGS} ${INCLUDE} ${PYINCLUDE} $<
+	${CXX} -c ${CFLAGS} ${INCLUDE} -I${PYINCLUDE} $<
 
 ${module_base}_wrap.cxx: ${module_base}.i
 	${SWIG} -runtime -python -c++ ${module_base}.i
