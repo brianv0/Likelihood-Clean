@@ -33,6 +33,7 @@ PointSource::PointSource(const PointSource &rhs) : Source(rhs) {
 
    m_exposure = rhs.m_exposure;
    m_gaussFraction = rhs.m_gaussFraction;
+   m_srcType = rhs.m_srcType;
 }
 
 double PointSource::fluxDensity(double energy, double time,

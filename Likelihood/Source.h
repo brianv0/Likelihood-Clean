@@ -64,10 +64,16 @@ public:
    //! clone function, with default
    virtual Source *clone() const {return 0;}
 
+   //! return the Source type (e.g., Diffuse vs Point)
+   std::string getType() {return m_srcType;}
+
 protected:
 
-   //! source name
+   //! Source name
    std::string m_name;
+
+   //! Source type
+   std::string m_srcType;
 
    //! map of Functions describing this source
    FuncMap m_functions;

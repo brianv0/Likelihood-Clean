@@ -12,7 +12,6 @@
 #include <map>
 
 #include "Likelihood/Source.h"
-#include "Likelihood/PointSource.h"
 
 namespace Likelihood {
 /** 
@@ -42,6 +41,8 @@ public:
    //! a clone.
    void addSource(const std::string &name, Source* src, 
                   bool fromClone = true);
+
+   void replaceSource(Source* src, bool fromClone = true);
 
    Source *makeSource(const std::string &name);
 

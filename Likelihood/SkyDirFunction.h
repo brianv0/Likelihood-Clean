@@ -48,7 +48,7 @@ public:
       update_m_dir(paramName, paramValue);
    }
 
-   double derivByParam(Arg &, const std::string &paramName) const
+   double derivByParam(Arg &, const std::string &) const
       {return 0;}
 
 private:

@@ -35,12 +35,13 @@ public:
    //! that the ROI cuts have not been specified.
    // A later setDir(ra, dec, true) will force the exposure to
    // be computed.
-   PointSource() : m_spectrum(0) {setDir(0., 0., false);}
+   PointSource() : m_spectrum(0) {setDir(0., 0., false); m_srcType = "Point";}
 
    //! This constructor does ask for exposure to be computed and 
    //! therefore *requires* the spacecraft data to be available and the 
    //! ROI cuts to be specified beforehand.
-   PointSource(double ra, double dec) : m_spectrum(0) {setDir(ra, dec);}
+   PointSource(double ra, double dec) : m_spectrum(0) 
+      {setDir(ra, dec);  m_srcType = "Point";}
 
    PointSource(const PointSource &rhs);
 
