@@ -117,12 +117,12 @@ public:
    virtual double value(optimizers::Arg &x) const {return evaluate_at(x);}
 
    /// Create the source model by reading an XML file.
-   void readXml(const std::string &xmlFile,
-                optimizers::FunctionFactory &funcFactory);
+   virtual void readXml(const std::string &xmlFile,
+                        optimizers::FunctionFactory &funcFactory);
 
    /// Write an XML file for the current source model.
-   void writeXml(const std::string &xmlFile,
-                 const std::string &functionLibrary);
+   virtual void writeXml(const std::string &xmlFile,
+                         const std::string &functionLibrary);
 
 protected:
 
