@@ -18,7 +18,7 @@ class SrcAnalysis(object):
     def __init__(self, srcModel, eventFile, scFile, expMap=None, irfs='TEST',
                  optimizer='Minuit'):
         self.optimizer = optimizer
-        Likelihood.LogLike_loadResponseFunctions('TEST')
+        Likelihood.LogLike_loadResponseFunctions(irfs)
         if expMap is not None:
             Likelihood.ExposureMap_readExposureFile(expMap)
         self.logLike = Likelihood.LogLike()
