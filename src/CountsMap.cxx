@@ -222,7 +222,6 @@ void CountsMap::writeOutput(const std::string & creator,
 
    writeEbounds(out_file, binners[2]);
    writeGti(out_file);
-//    std::cout << "Done." << std::endl;
 }
 
 void CountsMap::setImage(const std::vector<double> & image) {
