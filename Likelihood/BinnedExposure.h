@@ -35,7 +35,7 @@ public:
    /// @param dec Declination of desired sky location (degrees)
    double operator()(double energy, double ra, double dec) const;
 
-//   void writeOutput(const std::string & filename) const;
+   void writeOutput(const std::string & filename) const;
 
 private:
 
@@ -52,6 +52,8 @@ private:
 
    void linearArray(double xmin, double xmax, unsigned int npts,
                     std::vector<double> &xx) const;
+
+   void fitsReportError(FILE * stream, int status) const;
 
    class Aeff : public map_tools::Exposure::Aeff {
    public:
