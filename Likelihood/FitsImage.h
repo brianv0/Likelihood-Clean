@@ -36,7 +36,7 @@ class FitsImage : public st_facilities::FitsImage {
     
 public:
 
-   FitsImage() {}
+   FitsImage() : m_eqRot(0) {}
    FitsImage(const std::string &fitsfile);
    FitsImage(const FitsImage &rhs);
    virtual ~FitsImage() {
