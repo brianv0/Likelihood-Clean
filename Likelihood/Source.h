@@ -119,6 +119,8 @@ public:
                                    double wtMin, double wtMax,
                                    const std::string & paramName) const = 0;
 
+   virtual const std::vector<double> & exposure() const = 0;
+
 protected:
 
    /// A unique source name.

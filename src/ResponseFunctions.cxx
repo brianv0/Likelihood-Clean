@@ -6,7 +6,14 @@
  * $Header$
  */
 
+#include <stdexcept>
+
 #include "astro/SkyDir.h"
+
+#include "irfInterface/IrfsFactory.h"
+
+#include "irfLoader/Loader.h"
+
 #include "Likelihood/ResponseFunctions.h"
 
 namespace Likelihood {
@@ -69,6 +76,26 @@ irfInterface::Irfs * ResponseFunctions::respPtr(unsigned int i) const {
       return m_respPtrs.find(i)->second;
    } else {
       return 0;
+   }
+}
+
+void ResponseFunctions::load(const std::string & respFuncs) {
+   irfLoader::Loader::go();
+   irfInterface::IrfsFactory * myFactory 
+      = irfInterface::IrfsFactory::instance();
+      
+   typedef std::map< std::string, std::vector<std::string> > respMap;
+   const respMap & responseIds = irfLoader::Loader::respIds();
+   respMap::const_iterator it;
+   if ( (it = responseIds.find(respFuncs)) != responseIds.end() ) {
+      const std::vector<std::string> & resps = it->second;
+      for (unsigned int i = 0; i < resps.size(); i++) {
+         addRespPtr(i, myFactory->create(resps[i]));
+      }
+      setRespName(respFuncs);
+   } else {
+      throw std::invalid_argument("Invalid response function choice: "
+                                  + respFuncs);
    }
 }
 
