@@ -1,4 +1,5 @@
-/** @file Psf.cxx
+/** 
+ * @file Psf.cxx
  * @brief Implementation for the LAT Point-Spread Function class
  * @author J. Chiang
  * 
@@ -11,6 +12,7 @@
 #include <algorithm>
 #include <valarray>
 
+#include "astro/SkyDir.h"
 #include "Likelihood/Psf.h"
 
 namespace Likelihood {
@@ -59,8 +61,8 @@ void Psf::readPsfData(const std::string &file, int hdu) {
    }
 }
 
-double Psf::value(astro::SkyDir appDir, double energy, 
-                  astro::SkyDir srcDir, double time) {
+double Psf::value(const astro::SkyDir &appDir, double energy, 
+                  const astro::SkyDir &srcDir, double time) {
 // angle between photon and source directions
    double separation = appDir.SkyDir::difference(srcDir);
 

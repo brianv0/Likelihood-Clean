@@ -1,4 +1,5 @@
-/** @file ConstantValue.h
+/** 
+ * @file ConstantValue.h
  * @brief Declaration for the ConstantValue Function class
  * @author J. Chiang
  *
@@ -12,6 +13,7 @@
 #include "Likelihood/Function.h"
 
 namespace Likelihood {
+
 /** 
  * @class ConstantValue
  *

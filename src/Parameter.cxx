@@ -43,7 +43,7 @@ void Parameter::setBounds(double minValue, double maxValue)
 }
 
 // return bounds as a pair
-std::pair<double, double> Parameter::getBounds() {
+std::pair<double, double> Parameter::getBounds() const {
    std::pair<double, double> my_Bounds(m_minValue, m_maxValue);
    return my_Bounds;
 }

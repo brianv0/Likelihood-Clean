@@ -1,4 +1,5 @@
-/** @file MyFun.h
+/** 
+ * @file MyFun.h
  * @brief Test function declaration.
  * @author J. Chiang
  *
@@ -6,9 +7,10 @@
  */
 
 #include "Likelihood/Function.h"
-#include "Likelihood/Arg.h"
 
 namespace Likelihood {
+
+class Arg;
 
 /** 
  * @class MyFun

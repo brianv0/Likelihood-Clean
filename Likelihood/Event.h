@@ -1,4 +1,5 @@
-/** @file Event.h
+/** 
+ * @file Event.h
  * @brief Event class declaration
  * @author J. Chiang
  *
@@ -55,7 +56,8 @@ public:
 
    //! return the Event specific diffuse response function 
    //! for the named diffuse component
-   double diffuseResponse(double energy, std::string diffuseComponent) const;
+   double diffuseResponse(double energy, 
+                          const std::string &diffuseComponent) const;
     
    //! This method takes the spatial distribution of the emission for
    //! the DiffuseSource src and computes the event-specific response.

@@ -1,4 +1,5 @@
-/** @file Event.cxx
+/** 
+ * @file Event.cxx
  * @brief Event class implementation
  * @author J. Chiang
  *
@@ -48,7 +49,7 @@ Event::Event(const Event &event) {
 }
 
 double Event::diffuseResponse(double energy, 
-                              std::string diffuseComponent) const {
+                              const std::string &diffuseComponent) const {
 // Since the energy resolution is presently assumed to be infinite,
 // simply return the (second member of the pair of the) first (and
 // only) element of the diffuse_response vector.
