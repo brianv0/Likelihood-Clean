@@ -87,14 +87,12 @@ public:
    }
 
    static bool isXmlFile(std::string filename) {
-      facilities::Util::expandEnvVar(&filename);
-      xml::XmlParser * parser = new xml::XmlParser();
-      DomDocument doc = parser->parse(filename.c_str());
-      delete parser;
-      if (doc == 0) {
-         return false;
+      std::vector<std::string> tokens;
+      facilities::Util::stringTokenize(filename, ".", tokens);
+      if (*(tokens.end()-1) == "xml") {
+         return true;
       }
-      return true;
+      return false;
    }
 };
 
