@@ -6,6 +6,8 @@
  * $Header$
  */
 
+#include <iostream>
+
 #include "facilities/Util.h"
 
 #include "astro/EarthCoordinate.h"
@@ -31,7 +33,9 @@ void LikeExposure::load(tip::Table * scData) {
 
    tip::Table::Iterator it = scData->begin();
    tip::Table::Record & row = *it;
-   for ( ; it != scData->end(); ++it) {
+   long nrows = scData->getNumRecords();
+   for (long irow = 0; it != scData->end(); ++it, ++irow) {
+      if ( (irow % (nrows/20)) == 0 ) std::cerr << "."; 
       row["livetime"].get(livetime);
       row["start"].get(start);
       row["stop"].get(stop);
@@ -46,6 +50,7 @@ void LikeExposure::load(tip::Table * scData) {
          add(astro::SkyDir(ra, dec), deltat);
       }
    }
+   std::cerr << "!" << std::endl;
 }
 
 bool LikeExposure::acceptInterval(double start, double stop, 
