@@ -13,6 +13,10 @@
 
 #include "map_tools/Exposure.h"
 
+namespace tip {
+   class Table;
+}
+
 namespace Likelihood {
 
 /**
@@ -32,7 +36,7 @@ public:
 
    LikeExposure(double skybin, double costhetabin, const std::string &roiFile);
 
-   void load(tuple::ITable & tuple);
+   void load(tip::Table * tuple);
 
 private:
 
