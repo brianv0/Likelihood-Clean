@@ -327,7 +327,7 @@ private:
 };
 
 void likelihood::writeCountsSpectra() {
-   const EventData myData(m_logLike->events());
+   const EventData myData(m_helper->observation().eventCont().events());
    std::vector<double> energies;
    const RoiCuts & roiCuts = m_helper->observation().roiCuts();
    double emin = roiCuts.getEnergyCuts().first;
