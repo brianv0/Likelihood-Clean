@@ -31,6 +31,9 @@ Linux "-I ../src -g -pedantic -D TRAP_FPE -D USE_GOODI " \
 WIN32 "/I..\src  /wd4290"
 #Linux "-I ../src -g -O -pedantic -D TRAP_FPE " \
 
+# this package uses obsolete C function names, beware	
+macro_append cpplinkflags "" WIN32 " oldnames.lib"
+
 # make sure test applications get built when library changes
 macro test_Likelihoodstamps "Likelihood.stamp"
 macro likelihoodAppstamps "likelihoodApp.stamp"
