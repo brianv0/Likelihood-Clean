@@ -1,6 +1,8 @@
 /** @file Parameter.h
  * @brief Declaration of Parameter class
- * $Header:
+ * @author J. Chiang
+ *
+ * $Header$
  */
 
 #ifndef Parameter_h
@@ -16,13 +18,13 @@ namespace Likelihood {
  * @class Parameter
  *
  * @brief Model parameters are identified by a name with flags to
- * indicate if its free and with upper and lower bounds.
+ * indicate if it's free and with upper and lower bounds.
  *
  * ToDo: Need to check optimizer implementations for unbounded
- * parameters.  Does one simply set bounds at extremal (HUGE)
- * values?  This may be a dangerous default behavior since some
- * optimizers like to evaluate at the bounds. Or can one simply set a
- * flag to indicate an unbounded parameter?
+ * parameters.  Does one simply set bounds at extremal (HUGE) values?
+ * This may be a dangerous default behavior since some optimizers like
+ * to evaluate at the bounds. Or can one simply set a flag to indicate
+ * an unbounded parameter?
  *
  * @authors J. Chiang
  *    
@@ -32,13 +34,13 @@ class Parameter {
     
 public:
    
-   Parameter() {m_init(std::string(""), 0., -HUGE, HUGE, true);};
+   Parameter() {init(std::string(""), 0., -HUGE, HUGE, true);};
    Parameter(const std::string &paramName, double paramValue, 
              bool isFree = true)
-      {m_init(paramName, paramValue, -HUGE, HUGE, isFree);};
+      {init(paramName, paramValue, -HUGE, HUGE, isFree);};
    Parameter(const std::string &paramName, double paramValue, 
              double minValue, double maxValue, bool isFree = true)
-      {m_init(paramName, paramValue, minValue, maxValue, isFree);};
+      {init(paramName, paramValue, minValue, maxValue, isFree);};
    Parameter(const Parameter&);
    ~Parameter(){}
 
@@ -70,9 +72,9 @@ public:
 
 private:
 
-   //! set all the Parameter values
-   void m_init(const std::string &paramName, double paramValue, 
-               double minValue, double maxValue, bool isFree = true)
+   //! set all the Parameter values (with default scaling)
+   void init(const std::string &paramName, double paramValue, 
+             double minValue, double maxValue, bool isFree = true)
       {m_name = paramName; m_value = paramValue; m_minValue = minValue;
       m_maxValue = maxValue; m_free = isFree; m_scale = 1;}
 
