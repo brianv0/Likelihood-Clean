@@ -230,11 +230,11 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
          Source * src = m_logLike->deleteSource(srcNames[i]);
          if (m_logLike->getNumFreeParams() > 0) {
 // Don't fit if there are no free parameters remaining.
-#ifdef HAVE_OPT_PP
-            optimizers::OptPP opt(*m_logLike);
-#else
+// #ifdef HAVE_OPT_PP
+//             optimizers::OptPP opt(*m_logLike);
+// #else
             optimizers::Drmngb opt(*m_logLike);
-#endif
+// #endif
             opt.find_min(verbose, tol);
             null_values.push_back(m_logLike->value());
             TsValues[srcNames[i]] = 2.*(logLike_value - null_values.back());
@@ -250,11 +250,11 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    }
 
 // Restore parameters to their previously fitted values.
-#ifdef HAVE_OPT_PP
-   optimizers::OptPP opt(*m_logLike);
-#else
+// #ifdef HAVE_OPT_PP
+//    optimizers::OptPP opt(*m_logLike);
+// #else
    optimizers::Drmngb opt(*m_logLike);
-#endif
+// #endif
    opt.find_min(verbose, tol);
    double new_logLike = m_logLike->value();
    if (new_logLike < logLike_value) {

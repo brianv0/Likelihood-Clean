@@ -60,7 +60,7 @@ public:
    /// return the Event specific diffuse response function 
    /// for the named diffuse component
    double diffuseResponse(double energy, 
-                          const std::string &diffuseComponent) const
+                          std::string diffuseComponent) const
       throw(Exception);
     
    /// This method takes the spatial distribution of the emission for
@@ -84,6 +84,14 @@ public:
 
    /// Write the diffuse responses for each source to a file.
    void writeDiffuseResponses(const std::string & filename);
+
+   /// Set diffuse response for infinite energy resolution.
+   void setDiffuseResponse(const std::string & srcName, double value) {
+      m_respDiffuseSrcs[srcName].clear();
+      m_respDiffuseSrcs[srcName].push_back(value);
+   }
+
+   static void toLower(std::string & name);
    
 private:
 
@@ -124,6 +132,9 @@ private:
    /// computeResponse(...)
 //   void prepareSrData(double sr_region, int nmu=70, int nphi=40);
    void prepareSrData(double sr_region, int nmu=150, int nphi=100);
+
+   void getNewDiffuseSrcs(const std::vector<DiffuseSource *> & srcList,
+                          std::vector<DiffuseSource *> & srcs) const;
 
 };
 
