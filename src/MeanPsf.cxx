@@ -53,6 +53,10 @@ void MeanPsf::init() {
 
 double MeanPsf::operator()(double energy, double theta, double phi) const {
    (void)(phi);
+   if (m_energies.size() == 0) {
+      throw std::runtime_error("MeanPsf::operator(): Cannot call a " + 
+                               std::string("default object."));
+   }
    if (energy < m_energies.front() || energy > m_energies.back()) {
       return 0;
    }
