@@ -23,7 +23,7 @@ namespace Likelihood {
  * @class LikeExposure
  *
  * @brief Class to aid in computing an exposure time hypercube that
- * includes the ROI time-interval cuts, SAA passages, etc..
+ * includes the ROI time range cuts and GTIs.
  *
  * @author J. Chiang
  *
@@ -34,25 +34,34 @@ class LikeExposure : public map_tools::Exposure {
 
 public:
 
-   LikeExposure() {}
-
    LikeExposure(double skybin, double costhetabin,
-                const std::vector< std::pair<double, double> > & timeCuts);
+                const std::vector< std::pair<double, double> > & timeCuts,
+                const std::vector< std::pair<double, double> > & gtis);
 
    void load(tip::Table * tuple, bool verbose=true);
 
-private:
-
-   std::vector< std::pair<double, double> > m_timeCuts;
-
    /// @param start MET start time of interval (seconds)
    /// @param stop MET stop time of interval (seconds)
-   /// @param latGeo Ground point latitude (degrees)
-   /// @param lonGeo Ground point longitude (degrees)
+   /// @param timeCuts Time range cuts
+   /// @param gtis Good Time Intervals
    /// @param fraction Fraction of the interval to use in exposure
    ///        calculation.  This is a return value.
-   bool acceptInterval(double start, double stop, 
-                       double latGeo, double lonGeo, double & fraction);
+   static bool 
+   acceptInterval(double start, double stop, 
+                  const std::vector< std::pair<double, double> > & timeCuts,
+                  const std::vector< std::pair<double, double> > & gtis,
+                  double & fraction);
+
+private:
+
+   const std::vector< std::pair<double, double> > & m_timeCuts;
+   const std::vector< std::pair<double, double> > & m_gtis;
+
+   static bool overlaps(const std::pair<double, double> & interval1,
+                        std::pair<double, double> & interval2);
+
+   static double overlap(const std::pair<double, double> & interval1,
+                         const std::pair<double, double> & interval2);
 
 };
 

@@ -43,8 +43,6 @@ namespace Likelihood {
 
 class PointSource : public Source {
 
-   friend class ExposureMap;
-
 public:
 
    /// The default constructor does not compute exposure since 
@@ -147,9 +145,6 @@ public:
    virtual double pixelCountsDeriv(double emin, double emax, 
                                    double wtMin, double wtMax,
                                    const std::string & paramName) const;
-
-   static bool overlapInterval(const std::pair<double, double> & interval1,
-                               std::pair<double, double> & interval2);
 
    /// Compute the integrated exposure using the provided 
    /// vector of energy values
