@@ -330,6 +330,8 @@ void SourceModel::readXml(const std::string &xmlFile,
 
 void SourceModel::writeXml(const std::string &xmlFile,
                            const std::string &functionLibrary) {
+   xml::XmlParser *parser = new xml::XmlParser();
+
    DOM_Document doc = DOM_Document::createDocument();
 
    DOM_Element srcLib = doc.createElement("source_library");
@@ -394,6 +396,8 @@ void SourceModel::writeXml(const std::string &xmlFile,
 //    outFile << "<?xml version='1.0' standalone='no'?>\n"
 //            << "<!DOCTYPE source_library SYSTEM \"A1_Sources.dtd\" >\n";
    xml::Dom::prettyPrintElement(srcLib, outFile, "");
+
+   delete parser;
 }
 
 } // namespace Likelihood
