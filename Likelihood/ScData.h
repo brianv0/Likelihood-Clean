@@ -58,10 +58,10 @@ public:
 #endif // SWIG
 
    /// Return the spacecraft z-axis as a function of MET.
-   const astro::SkyDir &zAxis(double time);
+   astro::SkyDir zAxis(double time) const;
 
    /// Return the spacecraft x-axis as a function of MET.
-   const astro::SkyDir &xAxis(double time);
+   astro::SkyDir xAxis(double time) const;
 
 #ifndef SWIG
    /// Return a pair of iterators to the ScData intervals enclosing
@@ -82,9 +82,6 @@ private:
    int m_scHdu;
 
    double m_tstep;
-
-   astro::SkyDir m_zAxis;
-   astro::SkyDir m_xAxis;
 
    static bool less_than_time(const ScNtuple & scDatum1,
                               const ScNtuple & scDatum2);

@@ -223,7 +223,7 @@ void likelihood::createStatistic() {
       }
       return;
    } else if (m_statistic == "OPTEM") {
-      m_logLike = new OptEM();
+      m_logLike = new OptEM(m_helper->observation());
    } else if (m_statistic == "UNBINNED") {
       m_logLike = new LogLike(m_helper->observation());
    }
