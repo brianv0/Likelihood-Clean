@@ -775,10 +775,9 @@ void LikelihoodTests::test_SourceMap() {
    CountsMap dataMap(singleSrcMap(3));
    dataMap.writeOutput("test.cxx", "cntsMap.fits");
 
-   SourceFactory * srcFactory 
-      = srcFactoryInstance("", "", "", "", false);
+   SourceFactory * srcFactory = srcFactoryInstance("", "", "", "", false);
    Source * src = srcFactory->create("Galactic Diffuse");
-//   Source * src =  srcFactory->create("Crab Pulsar");
+//    Source * src =  srcFactory->create("Crab Pulsar");
 
    SourceMap srcMap(src, &dataMap);
 

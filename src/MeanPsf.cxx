@@ -99,7 +99,7 @@ double MeanPsf::Psf::operator()(double cosTheta) const {
 double MeanPsf::Aeff::s_phi(0);
 
 double MeanPsf::Aeff::operator()(double cosTheta) const {
-   double inclination = acos(cosTheta);
+   double inclination = acos(cosTheta)*180./M_PI;
    std::map<unsigned int, irfInterface::Irfs *>::iterator respIt 
       = ResponseFunctions::instance()->begin();
    for ( ; respIt != ResponseFunctions::instance()->end(); ++respIt) {
