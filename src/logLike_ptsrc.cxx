@@ -1,4 +1,5 @@
-/** @file logLike_ptsrc.cxx
+/** 
+ * @file logLike_ptsrc.cxx
  * @brief logLike_ptsrc class implementation
  * @author J. Chiang
  *
@@ -69,7 +70,7 @@ void logLike_ptsrc::getFreeDerivs(std::vector<double> &freeDerivs) {
    freeDerivs.reserve(NpredDerivs.size());
    freeDerivs.clear();
    for (unsigned int i = 0; i < NpredDerivs.size(); i++) 
-      freeDerivs[i] = logSrcModelDerivs[i] - NpredDerivs[i];
+      freeDerivs.push_back(logSrcModelDerivs[i] - NpredDerivs[i]);
 }
 
 void logLike_ptsrc::getEvents(const std::string &event_file, int hdu) {
