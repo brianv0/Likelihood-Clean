@@ -79,9 +79,6 @@ public:
    /// frame stack
    void getEnergies(std::vector<double> &energies) {energies = s_energies;}
 
-   /// Retrieve a vector of image plane exposures
-   void getExposure(std::vector< std::vector<double> > &exposure);
-
    /**
     * @brief Compute the exposure map given the current set of
     * spacecraft data and write to a file.
