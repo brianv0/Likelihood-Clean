@@ -9,6 +9,8 @@
 #ifndef Likelihood_BinnedLikelihood_h
 #define Likelihood_BinnedLikelihood_h
 
+#include <map>
+
 #include "optimizers/dArg.h"
 
 #include "Likelihood/CountsMap.h"
@@ -16,6 +18,8 @@
 #include "Likelihood/SourceModel.h"
 
 namespace Likelihood {
+
+class SourceMap;
 
 /*
  * @class BinnedLikelihood
@@ -50,6 +54,8 @@ private:
 
    std::vector<Pixel> m_pixels;
    std::vector<double> m_energies;
+
+   std::map<std::string, SourceMap *> m_srcMaps;
 
    mutable std::vector<double> m_model;
    mutable bool m_modelIsCurrent;
