@@ -9,6 +9,8 @@
 
 #include <string>
 
+#include "astro/SkyDir.h"
+
 #include "evtbin/DataProduct.h"
 
 #include "Likelihood/HistND.h"
@@ -79,6 +81,8 @@ public:
 
    void getPixels(std::vector<Pixel> & pixels) const;
 
+   const astro::SkyDir & mapCenter() const {return m_center;}
+
 protected:
 
    HistND * m_hist;
@@ -92,6 +96,8 @@ protected:
    astro::SkyProj * m_proj;
 
 private:
+
+   astro::SkyDir m_center;
 
    CountsMap & operator=(const CountsMap & rhs) {return *this;}
 
@@ -115,6 +121,8 @@ private:
                     std::vector<evtbin::Binner *> & binners);
    void readImageData(const std::string & countsMapfile,
                       std::vector<evtbin::Binner *> & binners);
+
+   void setCenter();
 
    void setDataDir();
 
