@@ -25,8 +25,8 @@ namespace Likelihood {
 class SumFunction : public CompositeFunction {
 public:
 
-   SumFunction(Function *a, Function *b) {
-      m_a = a; m_b = b;}
+   SumFunction(Function &a, Function &b) {
+      m_a = &a; m_b = &b;}
 
    double value(Arg &x) const
       {return m_a->value(x) + m_b->value(x);}

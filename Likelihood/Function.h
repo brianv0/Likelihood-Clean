@@ -16,6 +16,9 @@
 
 namespace Likelihood {
 
+class SumFunction;
+class ProductFunction;
+
 /** 
  * @class Function
  *
