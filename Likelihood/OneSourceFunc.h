@@ -46,6 +46,8 @@ namespace Likelihood {
     virtual Function *clone() const {return new OneSourceFunc(*this);}
     virtual void setParams(std::vector<optimizers::Parameter>&)
       throw(optimizers::Exception, optimizers::ParameterNotFound);
+    void setEpsW(double);
+    void setEpsF(double);
 
   protected:
 
@@ -56,6 +58,8 @@ namespace Likelihood {
     Source * m_src;
     std::vector<Event>& m_events;
     std::vector<double> * m_weights;
+    double m_epsw;
+    double m_epsf;
     
   };  // class OneSourceFunc
 } // namespace Likelihood
