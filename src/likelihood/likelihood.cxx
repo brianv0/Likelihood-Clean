@@ -15,6 +15,7 @@
 #include "optimizers/Drmngb.h"
 #include "optimizers/Lbfgs.h"
 #include "optimizers/Minuit.h"
+#include "optimizers/Exception.h"
 
 #include "Likelihood/AppBase.h"
 #include "Likelihood/LogLike.h"
@@ -88,10 +89,14 @@ void likelihood::run() {
       if (m_useOptEM) {
          dynamic_cast<OptEM *>(m_logLike)->findMin(verbose);
       } else {
-// @todo Allow the optimizer to be re-selected here.         
+// @todo Allow the optimizer to be re-selected here by the user.    
          selectOptimizer();
-         m_opt->find_min(verbose, tol);
-         errors = m_opt->getUncertainty();
+         try {
+            m_opt->find_min(verbose, tol);
+            errors = m_opt->getUncertainty();
+         } catch (optimizers::Exception & eObj) {
+            // Allow manual adjustment of fit parameters.
+         }
          delete m_opt;
          m_opt = 0;
       }
