@@ -83,7 +83,8 @@ void ExposureCube::run() {
 
 void ExposureCube::promptForParameters() {
    m_pars.Prompt("evfile");
-   if (m_pars["evfile"] == "none" || m_pars["evfile"] == "") {
+   std::string event_file = m_pars["evfile"];
+   if (event_file == "none" || event_file == "") {
       m_pars.Prompt("ROI_file");
       std::string Roi_file = m_pars["ROI_file"];
       if (!st_facilities::Util::fileExists(Roi_file)) {
@@ -101,7 +102,8 @@ void ExposureCube::promptForParameters() {
 }
 
 void ExposureCube::readRoiCuts() const {
-   if (m_pars["evfile"] == "none" || m_pars["evfile"] == "") {
+   std::string event_file = m_pars["evfile"];
+   if (event_file == "none" || event_file == "") {
       std::string roi_file = m_pars["ROI_file"];
       Likelihood::RoiCuts::setCuts(roi_file);
    } else {
