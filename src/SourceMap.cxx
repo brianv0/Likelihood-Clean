@@ -120,6 +120,11 @@ double SourceMap::sourceRegionIntegral(Source * src, const Pixel & pixel,
    }
    MeanPsf & psf = *s_meanPsf;
    BinnedExposure & exposure = *s_binnedExposure;
+
+   double sr_radius = RoiCuts::instance()->extractionRegion().radius()
+      *sqrt(2.) + 10.;
+//   prepareSrData(
+
    return 0;
 }
 
