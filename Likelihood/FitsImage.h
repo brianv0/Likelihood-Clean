@@ -40,7 +40,7 @@ public:
    FitsImage(const std::string &fitsfile);
    FitsImage(const FitsImage &rhs);
    virtual ~FitsImage() {
-      if (m_haveRefCoord) delete m_eqRot;
+      delete m_eqRot;
    }
 
    virtual void getCelestialArrays(std::vector<double> &lonArray,
@@ -70,11 +70,6 @@ public:
 #endif
 
 private:
-
-   /// Hi-jack the LONPOLE and LATPOLE FITS keywords for use as the 
-   /// true longitude and latitude of the reference pixel...will fix
-   /// this later once we have LAT-specific FITS keywords.
-   bool m_haveRefCoord;
 
    double m_roiRa, m_roiDec;
 

@@ -39,7 +39,7 @@ class ExposureMap {
 
 public:
 
-   ~ExposureMap() {} //{delete s_mapData;}
+   ~ExposureMap() {}
 
    static ExposureMap * instance();
 
