@@ -1,5 +1,6 @@
-/** @file Parameter.h
- * @brief Declaration of Parameter class
+/** 
+ * @file Parameter.h
+ * @brief Declaration of Parameter and OutOfBounds classes
  * @author J. Chiang
  *
  * $Header$
@@ -11,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
@@ -28,7 +30,10 @@ namespace Likelihood {
  *
  * @authors J. Chiang
  *    
- * $Header$ */
+ * $Header$ 
+ */
+
+class OutOfBounds;
 
 class Parameter {
     
@@ -52,7 +57,7 @@ public:
    std::string getName() const {return m_name;}
    
    //! value access
-   void setValue(double value) {m_value = value;}
+   void setValue(double value) throw(OutOfBounds);
    double getValue() const {return m_value;}
 
    //! scale access
@@ -60,14 +65,13 @@ public:
    double getScale() const {return m_scale;}
 
    //! "true" value access
-   void setTrueValue(double trueValue) {m_value = trueValue/m_scale;}
+   void setTrueValue(double trueValue) throw(OutOfBounds);
    double getTrueValue() const {return m_value*m_scale;}
 
    //! bounds access
-   void setBounds(double minValue, double maxValue)
-      {m_minValue = minValue; m_maxValue = maxValue;};
-   void setBounds(const std::pair<double, double> &boundValues)
-      {setBounds(boundValues.first, boundValues.second);};
+   void setBounds(double minValue, double maxValue) throw(OutOfBounds);
+   void setBounds(const std::pair<double, double> &boundValues) 
+      throw(OutOfBounds) {setBounds(boundValues.first, boundValues.second);}
    std::pair<double, double> getBounds();
 
    //! free flag access
@@ -99,6 +103,40 @@ private:
 
    //! flag to indicate free or fixed
    bool m_free;
+
+};
+
+/**
+ * @class OutOfBounds
+ *
+ * @brief Exception class to ensure set[True]Value and setBounds methods
+ * behave consistently with regard to existing values.
+ *
+ * @author J. Chiang
+ *
+ * $Header$
+ */
+
+class OutOfBounds : public LikelihoodException {
+
+public:
+   OutOfBounds(const std::string &errorString, double value, 
+               double minValue, double maxValue, int code) : 
+      LikelihoodException(errorString, code), m_value(value), 
+      m_minValue(minValue), m_maxValue(maxValue) {}
+   ~OutOfBounds() {}
+
+   double value() {return m_value;}
+   double minValue() {return m_minValue;}
+   double maxValue() {return m_maxValue;}
+
+   enum ERROR_CODES {VALUE_ERROR, BOUNDS_ERROR};
+
+private:
+
+   double m_value;
+   double m_minValue;
+   double m_maxValue;
 
 };
 
