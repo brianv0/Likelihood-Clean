@@ -25,6 +25,7 @@
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/OptEM.h"
+#include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/Source.h"
 #include "Likelihood/Util.h"
 
@@ -88,6 +89,7 @@ likelihood::likelihood()
       m_pars.Prompt();
       m_pars.Save();
       m_helper = new AppHelpers(m_pars);
+      ResponseFunctions::setEdispFlag(m_pars["use_energy_dispersion"]);
    } catch (std::exception & eObj) {
       std::cerr << eObj.what() << std::endl;
       std::exit(1);
