@@ -42,7 +42,7 @@ namespace {
 
    void file_ok(std::string filename) {
       facilities::Util::expandEnvVar(&filename);
-      if (::fileExists(filename)) {
+      if (fileExists(filename)) {
          return;
       } else {
          std::cout << "likelihood::main:\n"
@@ -85,7 +85,7 @@ namespace {
          return;
       } else {
 // filename contains a list of fits files.
-         ::readLines(filename, files);
+         readLines(filename, files);
          return;
       }
    }
