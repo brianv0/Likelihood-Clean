@@ -104,6 +104,9 @@ public:
 
    /// Direct access to diffuse responses.
    const std::vector<double> & diffuseResponse(std::string name) const;
+
+   void computeGaussianParams(const std::string & name, double & norm, 
+                              double & mean, double & sigma) const;
    
 private:
 
