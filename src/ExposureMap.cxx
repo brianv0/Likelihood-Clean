@@ -42,7 +42,7 @@ FitsImage ExposureMap::s_mapData;
 
 void ExposureMap::readExposureFile(std::string exposureFile) {
 
-// Expand any environment variables in the xmlFile name.
+// Expand any environment variables in the exposure file name.
    facilities::Util::expandEnvVar(&exposureFile);
 
    s_mapData = FitsImage(exposureFile);
@@ -140,7 +140,7 @@ ExposureMap * ExposureMap::instance() {
 
 void ExposureMap::computeMap(std::string filename, double sr_radius,
                              int nlon, int nlat, int nenergies) {
-// Expand any environment variables in the xmlFile name.
+// Expand any environment variables in the map filename.
    facilities::Util::expandEnvVar(&filename);
 
    RoiCuts *roi_cuts = RoiCuts::instance();
