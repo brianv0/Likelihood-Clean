@@ -81,8 +81,6 @@ private:
    std::string m_scFile;
    int m_scHdu;
 
-   double m_tstep;
-
    static bool less_than_time(const ScNtuple & scDatum1,
                               const ScNtuple & scDatum2);
 
