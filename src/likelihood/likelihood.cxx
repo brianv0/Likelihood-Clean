@@ -117,6 +117,9 @@ void likelihood::run() {
 
 // Set the verbosity level and convergence tolerance.
    long verbose = m_pars["chatter"];
+// ST proclaimed nominal verbosity level is 2, but optimizers expect 1, so
+// we subtract 1.
+   if (verbose > 1) verbose--;
    double tol = m_pars["fit_tolerance"];
    std::vector<double> errors;
 
