@@ -10,6 +10,8 @@
 #include <string>
 #include <cmath>
 
+#include "facilities/Util.h"
+
 #include "latResponse/../src/Table.h"
 
 #include "Likelihood/ScData.h"
@@ -23,7 +25,10 @@ int ScData::s_scHdu = 0;
 ScData * ScData::s_instance = 0;
 double ScData::s_tstep;
 
-void ScData::readData(const std::string &file, int hdu) {
+void ScData::readData(std::string file, int hdu, bool clear) {
+
+   facilities::Util::expandEnvVar(&file);
+
    s_scFile = file;
    s_scHdu = hdu;
 
@@ -33,8 +38,7 @@ void ScData::readData(const std::string &file, int hdu) {
    scTable.read_FITS_table(file, hdu);
 
 // repack into a more useful format
-   vec.clear();
-   vec.reserve(scTable[0].dim);
+   if (clear) vec.clear();
    for (int i = 0; i < scTable[0].dim; i++) {
       ScNtuple tuple;
 
