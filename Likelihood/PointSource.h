@@ -74,7 +74,7 @@ public:
                       const astro::SkyDir &dir, int eventType=2) const;
 
    virtual double fluxDensity(double inclination, double phi, double energy, 
-                              double separation, int evtType) const;
+                              const astro::SkyDir & appDir, int evtType) const;
 
    /// Returns the derivative wrt to the named Parameter
    virtual double fluxDensityDeriv(const Event &evt, 
@@ -87,7 +87,7 @@ public:
                            const std::string &paramName) const;
 
    virtual double fluxDensityDeriv(double inclination, double phi, 
-                                   double energy, double separation, 
+                                   double energy, const astro::SkyDir & appDir,
                                    int evtType, const std::string & paramName)
       const;
 
