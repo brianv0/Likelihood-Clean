@@ -280,7 +280,7 @@ void Event::setDiffuseResponse(const std::string & srcName,
    m_respDiffuseSrcs[srcName].clear();
    for ( ; energy != m_trueEnergies.end(); ++energy) {
       double value = gaussianParams[0]/sqrt2pi/gaussianParams[2]
-         *exp(-(m_energy - gaussianParams[1])*(m_energy - gaussianParams[1])
+         *exp(-(*energy - gaussianParams[1])*(*energy - gaussianParams[1])
               /gaussianParams[2]/gaussianParams[2]/2.);
       m_respDiffuseSrcs[srcName].push_back(value);
    }
