@@ -30,7 +30,7 @@ class Observation(object):
         self._respFuncs = pyLike.ResponseFunctions()
         self._respFuncs.load(irfs)
         self._expMap = pyLike.ExposureMap()
-        if expMap is not None:
+        if expMap is not None and expMap is not "":
             self._expMap.readExposureFile(expMap)
         self._scData = pyLike.ScData()
         self._roiCuts = pyLike.RoiCuts()
