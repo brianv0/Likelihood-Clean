@@ -6,11 +6,16 @@
  *
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
+
 #ifndef Aeff_h
 #define Aeff_h
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
@@ -46,7 +51,8 @@ public:
    static Aeff * instance();
 
    //! method to read in the aeff data
-   void readAeffData(const std::string &aeffFile, int hdu);
+   void readAeffData(const std::string &aeffFile, int hdu)
+      throw(LikelihoodException);
 
 protected:
 

@@ -1,4 +1,5 @@
-/** @file PowerLaw.h
+/** 
+ * @file PowerLaw.h
  * @brief Declaration for the PowerLaw Function class
  * @author J. Chiang
  *
@@ -31,7 +32,8 @@ public:
 
    double value(Arg&) const;
 
-   double derivByParam(Arg &x, const std::string &paramName) const;
+   double derivByParam(Arg &x, const std::string &paramName) const
+      throw(ParameterNotFound);
 
    double integral(Arg &xmin, Arg &xmax) const;
 

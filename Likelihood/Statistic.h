@@ -1,9 +1,14 @@
-/** @file Statistic.h
+/** 
+ * @file Statistic.h
  * @brief Declaration of Statistic class
  * @author J. Chiang
  *
  * $Header$
  */
+
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
 
 #ifndef Statistic_h
 #define Statistic_h
@@ -44,13 +49,14 @@ public:
                       const std::string &colnames, int hdu);
 
    std::pair<long, double*> getEventColumn(const std::string &colname) const
-      {return m_getColumn(m_eventData, colname);}
+      {return getColumn(m_eventData, colname);}
 
 protected:
 
    //! generalized column access
-   std::pair<long, double*> m_getColumn(const Table &tableData, 
-                                        const std::string &colname) const;
+   std::pair<long, double*> getColumn(const Table &tableData, 
+                                      const std::string &colname) const
+      throw(LikelihoodException);
 
    //! Event data; read from m_eventFile, stored in Table form
    std::string m_eventFile;

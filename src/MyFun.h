@@ -30,7 +30,8 @@ public:
 
    double value(Arg &) const;
 
-   double derivByParam(Arg &x, const std::string &paramName) const;
+   double derivByParam(Arg &x, const std::string &paramName) const
+      throw(ParameterNotFound);
 
 private:
 

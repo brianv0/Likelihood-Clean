@@ -1,4 +1,5 @@
-/** @file RoiCuts.cxx
+/** 
+ * @file RoiCuts.cxx
  * @brief Implementation for RoiCuts, a Singleton class that contains
  * the Regoin-of-Interest cuts.
  * @author J. Chiang
@@ -55,7 +56,6 @@ bool RoiCuts::accept(const Event &event) {
 
    double dist = event.getSeparation(s_roiCenter)*180./M_PI;
    if (dist > s_roiRadius) {
-//      std::cerr << dist << std::endl;
       acceptEvent = false;
    }
 

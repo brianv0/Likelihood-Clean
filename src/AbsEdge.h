@@ -35,7 +35,8 @@ public:
 
    double value(Arg &) const;
 
-   double derivByParam(Arg &, const std::string &paramName) const;
+   double derivByParam(Arg &, const std::string &paramName) const
+      throw(ParameterNotFound);
 
    virtual Function *clone() const {
       return new AbsEdge(*this);

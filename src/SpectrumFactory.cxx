@@ -1,4 +1,5 @@
-/** @file SpectrumFactory.cxx
+/** 
+ * @file SpectrumFactory.cxx
  * @brief Implementation for the SpectrumFactory class, which applies the
  * Prototype pattern to return clones of various spectral components 
  * @author J. Chiang
@@ -6,8 +7,9 @@
  * $Header$
  */
 
+#include <cassert>
+#include <sstream>
 #include "Likelihood/SpectrumFactory.h"
-#include <assert.h>
 
 namespace Likelihood {
 
@@ -18,7 +20,7 @@ SpectrumFactory::~SpectrumFactory() {
 }
 
 void SpectrumFactory::addFunc(const std::string &name, Function* func, 
-                              bool fromClone) {
+                              bool fromClone) throw(LikelihoodException) {
    if (!m_prototypes.count(name)) {
       if (fromClone) {
          m_prototypes[name] = func->clone();
@@ -26,9 +28,10 @@ void SpectrumFactory::addFunc(const std::string &name, Function* func,
          m_prototypes[name] = func;
       }
    } else {
-      std::cerr << "SpectrumFactory: A Function named "
-                << name << " already exists!" << std::endl;
-      assert(false);
+      std::ostringstream errorMessage;
+      errorMessage << "SpectrumFactory::addFunc: A Function named "
+                   << name << " already exists!\n";
+      throw LikelihoodException(errorMessage.str());
    }
 }
 

@@ -6,6 +6,10 @@
  * $Header$
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
+
 #ifndef DiffuseSource_h
 #define DiffuseSource_h
 

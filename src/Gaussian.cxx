@@ -1,4 +1,5 @@
-/** @file Gaussian.cxx
+/** 
+ * @file Gaussian.cxx
  * @brief Implementation for the (1D) Gaussian class
  * @author J. Chiang
  *
@@ -78,7 +79,8 @@ double Gaussian::value(Arg &xarg) const {
 }
 
 double Gaussian::derivByParam(Arg &xarg, 
-                              const std::string &paramName) const {
+                              const std::string &paramName) const 
+   throw(ParameterNotFound) {
    double x = dynamic_cast<dArg &>(xarg).getValue();
 
    enum ParamTypes {Prefactor, Mean, Sigma};
@@ -92,11 +94,7 @@ double Gaussian::derivByParam(Arg &xarg,
    }
 
    if (iparam == -1) {
-// should throw an exception here
-      std::cerr << "Gaussian::derivByParam: "
-                << "Parameter " << paramName << " is not found."
-                << std::endl;
-      return 0.;
+      throw ParameterNotFound(paramName, getName(), "Gaussian::derivByParam");
    }
    
    switch (iparam) {

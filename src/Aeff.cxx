@@ -18,7 +18,8 @@ namespace Likelihood {
 
 Aeff * Aeff::s_instance = 0;
 
-void Aeff::readAeffData(const std::string &file, int hdu) {
+void Aeff::readAeffData(const std::string &file, int hdu) 
+   throw(LikelihoodException) {
 
    switch (hdu) {
    case Front:
@@ -31,8 +32,7 @@ void Aeff::readAeffData(const std::string &file, int hdu) {
       m_aeffData.add_columns("ENERGY THETA AEFF_C");
       break;
    default:
-      std::cerr << "Invalid HDU for Aeff data: " << hdu << std::endl;
-      exit(0);
+      throw LikelihoodException("Invalid HDU for Aeff data: ", hdu);
       break;
    }
 

@@ -199,10 +199,10 @@ void ExposureMap::writeFitsFile(const std::string &filename,
    long naxis = 3;
    long naxes[3] = {nlon, nlat, nenergies};
 
-   std::auto_ptr<FITS> pFits(0);
+   std::auto_ptr<CCfits::FITS> pFits(0);
 
    try { // to overwrite a possibly existing file...
-      pFits.reset( new FITS("!"+filename, DOUBLE_IMG, naxis, naxes) );
+      pFits.reset( new CCfits::FITS("!"+filename, DOUBLE_IMG, naxis, naxes) );
    } catch (FITS::CantCreate) {
       std::cerr << "ExposureMap::writeFitsFile: Can't create file "
                 << filename << std::endl;

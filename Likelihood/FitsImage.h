@@ -56,7 +56,8 @@ public:
    //! coordinate (We are perhaps dangerously ignoring header-specified
    //! projection effects, i.e., we assume a "plate-carree" projection, 
    //! as for EGRET maps, for all images).
-   void fetchAxisVector(unsigned int naxis, std::vector<double> &axisVector);
+   void fetchAxisVector(unsigned int naxis, std::vector<double> &axisVector)
+      throw(LikelihoodException);
 
    //! This method computes arrays of longitude and latitude obtained
    //! by traversing the image plane by column number then row.

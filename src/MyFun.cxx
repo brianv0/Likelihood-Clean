@@ -45,7 +45,8 @@ double MyFun::value(Arg &xarg) const {
    return my_val;
 }
 
-double MyFun::derivByParam(Arg &xarg, const std::string &paramName) const {
+double MyFun::derivByParam(Arg &xarg, const std::string &paramName) const 
+   throw(ParameterNotFound) {
    double x = dynamic_cast<dArg &>(xarg).getValue();
 
    std::vector<Parameter> params;
@@ -55,9 +56,7 @@ double MyFun::derivByParam(Arg &xarg, const std::string &paramName) const {
       if (paramName == params[i].getName()) 
          return params[i].getScale()*pow(x, i);
    }
-   std::cerr << "Parameter " << paramName << " is not found."
-             << std::endl;
-   return 0.;
+   throw ParameterNotFound(paramName, getName(), "MyFun::deriveByParam");
 }
 
 } // namespace Likelihood
