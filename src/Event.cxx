@@ -17,17 +17,17 @@
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/TrapQuad.h"
 
-extern double my_acos(double mu);
-
-double my_acos(double mu) {
-   if (mu > 1) {
-      return 0;
-   } else if (mu < -1) {
-      return M_PI;
-   } else {
-      return acos(mu);
+namespace {
+   double my_acos(double mu) {
+      if (mu > 1) {
+         return 0;
+      } else if (mu < -1) {
+         return M_PI;
+      } else {
+         return acos(mu);
+      }
    }
-}   
+}
 
 namespace Likelihood {
 
@@ -51,7 +51,9 @@ Event::Event(const Event &event) {
    m_respDiffuseSrcs = event.m_respDiffuseSrcs;
 }
 
-double Event::diffuseResponse(double energy, 
+// double Event::diffuseResponse(double energy, 
+//                               const std::string &diffuseComponent) const 
+double Event::diffuseResponse(double,
                               const std::string &diffuseComponent) const 
    throw(LikelihoodException) {
 // Since the energy resolution is presently assumed to be infinite,
