@@ -17,7 +17,7 @@ apply_pattern package_include
 private
 
 # allow use of internal path
-macro_prepend cppflags "" Linux "-I ../src -g -pedantic " WIN32 "/I..\src "
+macro Likelihood_cppflags "" Linux "-I ../src -g -pedantic " WIN32 "/I..\src  /wd4290"
 macro_prepend cflags "" Linux "-g"
 
 apply_pattern package_linkopts

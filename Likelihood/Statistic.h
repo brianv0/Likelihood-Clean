@@ -6,10 +6,6 @@
  * $Header$
  */
 
-#ifdef _MSC_VER
-#pragma warning(disable:4290)
-#endif
-
 #ifndef Statistic_h
 #define Statistic_h
 

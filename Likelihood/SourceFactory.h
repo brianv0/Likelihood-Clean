@@ -6,10 +6,6 @@
  * $Header$
  */
 
-#ifdef _MSC_VER
-#pragma warning(disable:4290)
-#endif
-
 #ifndef SourceFactory_h
 #define SourceFactory_h
 

@@ -5,9 +5,6 @@
  * $Header$
  */
 
-#ifdef _MSC_VER
-#pragma warning(disable:4290)
-#endif
 
 #ifndef FunctionTest_h
 #define FunctionTest_h
