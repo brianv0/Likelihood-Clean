@@ -18,6 +18,9 @@
 
 #include "facilities/Util.h"
 
+#include "xml/Dom.h"
+#include "xml/XmlParser.h"
+
 namespace Likelihood {
 
 /**
@@ -81,6 +84,17 @@ public:
          readLines(filename, files);
          return;
       }
+   }
+
+   static bool isXmlFile(std::string filename) {
+      facilities::Util::expandEnvVar(&filename);
+      xml::XmlParser * parser = new xml::XmlParser();
+      DomDocument doc = parser->parse(filename.c_str());
+      delete parser;
+      if (doc == 0) {
+         return false;
+      }
+      return true;
    }
 };
 
