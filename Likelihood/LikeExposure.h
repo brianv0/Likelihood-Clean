@@ -38,7 +38,7 @@ public:
 
    LikeExposure(double skybin, double costhetabin, const std::string &roiFile);
 
-   void load(tip::Table * tuple);
+   void load(tip::Table * tuple, bool verbose=true);
 
 private:
 
