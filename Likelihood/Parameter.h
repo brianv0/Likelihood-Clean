@@ -33,9 +33,9 @@ namespace Likelihood {
  * $Header$ 
  */
 
-class OutOfBounds;
-
 class Parameter {
+
+   class OutOfBounds;
     
 public:
    
@@ -94,39 +94,11 @@ public:
    void setFree(bool free) {m_free = free;}
    bool isFree() const {return m_free;}
 
-private:
-
-   //! set all the Parameter values (with default scaling)
-   void init(const std::string &paramName, double paramValue, 
-             double minValue, double maxValue, bool isFree = true)
-      {m_name = paramName; m_value = paramValue; m_minValue = minValue;
-      m_maxValue = maxValue; m_free = isFree; m_scale = 1;}
-
-   //! parameter name
-   std::string m_name;
-
-   //! its value
-   double m_value;
-
-   //! its scale factor
-   double m_scale;
-
-   //! lower bound
-   double m_minValue;
-
-   //! upper bound
-   double m_maxValue;
-
-   //! flag to indicate free or fixed
-   bool m_free;
-
-};
-
 /**
  * @class OutOfBounds
  *
- * @brief Exception class to ensure set[True]Value and setBounds methods
- * behave consistently with regard to existing values.
+ * @brief Nested exception class to ensure set[True]Value and setBounds 
+ * methods behave consistently with regard to existing values.
  *
  * @author J. Chiang
  *
@@ -155,6 +127,35 @@ private:
    double m_maxValue;
 
 };
+
+private:
+
+   //! set all the Parameter values (with default scaling)
+   void init(const std::string &paramName, double paramValue, 
+             double minValue, double maxValue, bool isFree = true)
+      {m_name = paramName; m_value = paramValue; m_minValue = minValue;
+      m_maxValue = maxValue; m_free = isFree; m_scale = 1;}
+
+   //! parameter name
+   std::string m_name;
+
+   //! its value
+   double m_value;
+
+   //! its scale factor
+   double m_scale;
+
+   //! lower bound
+   double m_minValue;
+
+   //! upper bound
+   double m_maxValue;
+
+   //! flag to indicate free or fixed
+   bool m_free;
+
+};
+
 
 } // namespace Likelihood
 
