@@ -29,7 +29,8 @@ class SourceMap {
 
 public:
 
-   SourceMap(Source * src, const CountsMap * dataMap);
+   SourceMap(Source * src, const CountsMap * dataMap,
+             const Observation & observation);
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
 
@@ -95,7 +96,8 @@ private:
    static std::vector<double> s_mu;
    static std::vector<double> s_theta;
 
-   double sourceRegionIntegral(double energy) const;
+   double sourceRegionIntegral(double energy,
+                               const Observation & observation) const;
 
    void computeSrcDirs(const Pixel & pixel, Source * src);
 

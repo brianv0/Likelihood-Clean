@@ -23,11 +23,14 @@ namespace tip {
 
 namespace Likelihood {
 
-class SourceMap;
+   class SourceMap;
 
 /*
  * @class BinnedLikelihood
+ * @brief Binned version of the log-Likelihood function.
+ * @author J. Chiang
  *
+ * $Header$
  */
 
 class BinnedLikelihood : public LogLike {
@@ -35,6 +38,7 @@ class BinnedLikelihood : public LogLike {
 public:
 
    BinnedLikelihood(const CountsMap & dataMap, 
+                    const Observation & observation,
                     const std::string & srcMapsFile="");
 
 //   BinnedLikelihood(const std::string & dataMapFile);

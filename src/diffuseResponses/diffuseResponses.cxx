@@ -88,7 +88,6 @@ diffuseResponses::diffuseResponses()
    : st_app::StApp(), m_helper(0), m_srcModel(0), m_srRadius(30.),
      m_pars(st_app::StApp::getParGroup("gtdiffresp")) {}
 
-
 void diffuseResponses::run() {
    promptForParameters();
    Likelihood::Verbosity::instance(m_pars["chatter"]);
@@ -96,7 +95,7 @@ void diffuseResponses::run() {
    m_helper = new AppHelpers(m_pars);
    if (clobber || !haveDiffuseColumns()) {
       m_helper->readScData();
-      m_srcModel = new SourceModel(true);
+      m_srcModel = new SourceModel(m_helper->observation(), true);
       ResponseFunctions::setEdispFlag(m_pars["use_energy_dispersion"]);
       buildSourceModel();
       readEventData();

@@ -87,11 +87,13 @@ public:
 
    irfInterface::Irfs * respPtr(unsigned int eventType);
 
-   std::map<unsigned int, irfInterface::Irfs *>::iterator begin()
-      {return s_respPtrs.begin();}
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator begin() const {
+      return s_respPtrs.begin();
+   }
 
-   std::map<unsigned int, irfInterface::Irfs *>::iterator end()
-      {return s_respPtrs.end();}
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator end() const {
+      return s_respPtrs.end();
+   }
 
    /// Whether or not energy dispersion is to be considered.
    static const bool & useEdisp() {return s_useEdisp;}

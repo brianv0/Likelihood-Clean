@@ -96,7 +96,7 @@ public:
                  bool pretty=false);
 
    /// Apply these cuts to an Event
-   bool accept(const Event &);
+   bool accept(const Event &) const;
 
    /// Write DSS keywords to a FITS header
    void writeDssKeywords(tip::Header & header) const;

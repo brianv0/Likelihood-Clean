@@ -36,7 +36,8 @@ public:
 
    LikeExposure() {}
 
-   LikeExposure(double skybin, double costhetabin);
+   LikeExposure(double skybin, double costhetabin,
+                const std::vector< std::pair<double, double> > & timeCuts);
 
    void load(tip::Table * tuple, bool verbose=true);
 

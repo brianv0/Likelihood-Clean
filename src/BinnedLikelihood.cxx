@@ -26,8 +26,10 @@ namespace Likelihood {
 #include "fitsio.h"
 
 BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
+                                   const Observation & observation,
                                    const std::string & srcMapsFile)
-   : m_dataMap(dataMap), m_modelIsCurrent(false), m_srcMapsFile(srcMapsFile) {
+   : LogLike(observation), m_dataMap(dataMap), m_modelIsCurrent(false),
+     m_srcMapsFile(srcMapsFile) {
    dataMap.getPixels(m_pixels);
    dataMap.getAxisVector(2, m_energies);
    identifyFilledPixels();
@@ -126,10 +128,10 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
 }
 
 CountsMap * BinnedLikelihood::createCountsMap() const {
-   if (ExposureCube::instance() == 0) {
-      std::runtime_error("BinnedLikelihood::createCountsMap:\n"
-                         + std::string("Exposure cube not available."));
-   }
+//    if (ExposureCube::instance() == 0) {
+//       std::runtime_error("BinnedLikelihood::createCountsMap:\n"
+//                          + std::string("Exposure cube not available."));
+//    }
    std::vector<double> map;
    computeModelMap(map);
 
@@ -197,7 +199,7 @@ void BinnedLikelihood::createSourceMaps() {
    std::vector<std::string>::const_iterator name = srcNames.begin();
    for ( ; name != srcNames.end(); ++name) {
       Source * src = getSource(*name);
-      m_srcMaps[*name] = new SourceMap(src, &m_dataMap);
+      m_srcMaps[*name] = new SourceMap(src, &m_dataMap, m_observation);
    }
 }
 
@@ -227,7 +229,7 @@ void BinnedLikelihood::readSourceMaps(std::string filename) {
    for (name = srcNames.begin() ; name != srcNames.end(); ++name) {
       if (!m_srcMaps.count(*name)) {
          Source * src = getSource(*name);
-         m_srcMaps[*name] = new SourceMap(src, &m_dataMap);
+         m_srcMaps[*name] = new SourceMap(src, &m_dataMap, m_observation);
       }
    }
 }

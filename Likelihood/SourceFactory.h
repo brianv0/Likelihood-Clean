@@ -16,8 +16,9 @@
 
 #include "xmlBase/Dom.h"
 
-#include "Likelihood/Source.h"
 #include "Likelihood/Exception.h"
+#include "Likelihood/Observation.h"
+#include "Likelihood/Source.h"
 
 namespace optimizers {
    class FunctionFactory;
@@ -48,7 +49,7 @@ class SourceFactory {
 
 public:
 
-   SourceFactory(bool verbose=false);
+   SourceFactory(const Observation & observation, bool verbose=false);
 
    virtual ~SourceFactory();
 
@@ -74,6 +75,8 @@ private:
    std::map<std::string, Source *> m_prototypes;
 
    bool m_requireExposure;
+
+   const Observation & m_observation;
 
 #ifndef SWIG
    Source *makePointSource(const DOMElement * spectrum,

@@ -56,10 +56,10 @@ public:
 #endif // SWIG
 
    /// Return the spacecraft z-axis as a function of MET.
-   astro::SkyDir &zAxis(double time);
+   const astro::SkyDir &zAxis(double time);
 
    /// Return the spacecraft x-axis as a function of MET.
-   astro::SkyDir &xAxis(double time);
+   const astro::SkyDir &xAxis(double time);
 
    /// Returns the Singleton object pointer.
    static ScData * instance();

@@ -9,7 +9,8 @@
 #ifndef Likelihood_OptEM_h
 #define Likelihood_OptEM_h
 
-#include "LogLike.h"
+#include "Likelihood/LogLike.h"
+#include "Likelihood/Observation.h"
 
 namespace Likelihood {
 
@@ -28,8 +29,8 @@ namespace Likelihood {
 
   class OptEM: public LogLike {
   public:
-    OptEM() {};
-    virtual ~OptEM() {};
+    OptEM() : LogLike(Observation()) {}
+    virtual ~OptEM() {}
     void findMin(const int verbose = 0);
 
   protected:

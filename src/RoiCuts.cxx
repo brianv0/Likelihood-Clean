@@ -261,7 +261,7 @@ void RoiCuts::writeXml(std::ostream & ostr, const std::string & roiTitle,
    roiElt->release();
 }
 
-bool RoiCuts::accept(const Event &event) {
+bool RoiCuts::accept(const Event &event) const {
    if (s_cuts) {
       std::map<std::string, double> params;
       params["TIME"] = event.getArrTime();

@@ -211,7 +211,8 @@ void likelihood::createStatistic() {
       std::string countsMapFile = m_pars["counts_map_file"];
       st_facilities::Util::file_ok(countsMapFile);
       m_dataMap = new CountsMap(countsMapFile);
-      m_logLike = new BinnedLikelihood(*m_dataMap, countsMapFile);
+      m_logLike = new BinnedLikelihood(*m_dataMap, m_helper->observation(),
+                                       countsMapFile);
       std::string binnedMap = m_pars["binned_exposure_map"];
       if (binnedMap != "none" && binnedMap != "") {
          SourceMap::setBinnedExposure(binnedMap);
@@ -220,7 +221,7 @@ void likelihood::createStatistic() {
    } else if (m_statistic == "OPTEM") {
       m_logLike = new OptEM();
    } else if (m_statistic == "UNBINNED") {
-      m_logLike = new LogLike();
+      m_logLike = new LogLike(m_helper->observation());
    }
    readEventData();
 }
