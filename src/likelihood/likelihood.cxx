@@ -276,6 +276,7 @@ void likelihood::writeCountsSpectra() {
    }
    outputFile.close();
 
+#ifdef HAVE_ST_GRAPH
 // plot the data
    try {
       EasyPlot plot;
@@ -289,6 +290,7 @@ void likelihood::writeCountsSpectra() {
          throw;
       }
    }
+#endif // HAVE_ST_GRAPH
 }
 
 void likelihood::writeCountsMap() {

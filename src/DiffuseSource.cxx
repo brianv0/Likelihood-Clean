@@ -196,6 +196,24 @@ double DiffuseSource::Npred(double emin, double emax) {
    return trapQuad.integral();
 }
    
+double DiffuseSource::pixelCounts(double emin, double emax,
+                                  double wtMin, double wtMax) const {
+   optimizers::Function & spectrum = *m_spectrum;
+   optimizers::dArg eminArg(emin);
+   optimizers::dArg emaxArg(emax);
+   return (spectrum(emaxArg)*wtMax + spectrum(eminArg)*wtMin)*(emax - emin)/2.;
+}
+
+double DiffuseSource::pixelCountsDeriv(double emin, double emax,
+                                       double wtMin, double wtMax,
+                                       const std::string & paramName) const {
+   optimizers::Function & spectrum = *m_spectrum;
+   optimizers::dArg eminArg(emin);
+   optimizers::dArg emaxArg(emax);
+   return (spectrum.derivByParam(emaxArg, paramName)*wtMax +
+           spectrum.derivByParam(eminArg, paramName)*wtMin)*(emax - emin)/2.;
+}
+
 void DiffuseSource::makeEnergyVector(int nee) {
    RoiCuts *roiCuts = RoiCuts::instance();
    
