@@ -38,8 +38,8 @@ namespace Likelihood {
 XERCES_CPP_NAMESPACE_USE
 
 std::vector<RoiCuts::timeInterval> RoiCuts::s_tLimVec;
-double RoiCuts::s_eMin;
-double RoiCuts::s_eMax;
+double RoiCuts::s_eMin(20.);
+double RoiCuts::s_eMax(2e5);
 irfInterface::AcceptanceCone RoiCuts::s_roiCone;
 double RoiCuts::s_muZenMax;
 

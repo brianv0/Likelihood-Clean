@@ -237,7 +237,7 @@ void LogLike::getEvents(std::string event_file) {
       }
    }
 
-   if (print_output()) {
+   if (print_output(3)) {
       std::cerr << "LogLike::getEvents:\nOut of " 
                 << nTotal << " events in file "
                 << event_file << ",\n "
