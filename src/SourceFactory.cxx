@@ -164,6 +164,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
 
 // Add the source to the vector of prototypes.
       if (src != 0) {
+         src->setName(srcName);
          addSource(srcName, src);
          delete src;
       }
