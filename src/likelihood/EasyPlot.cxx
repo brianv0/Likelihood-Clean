@@ -5,7 +5,7 @@
  *
  * $Header$
  */
-
+#ifdef HAVE_ST_GRAPH
 #include <iostream>
 #include <stdexcept>
 
@@ -163,3 +163,4 @@ void EasyPlot::run() {
    st_graph::Engine & engine(st_graph::Engine::instance());
    engine.run();
 }
+#endif // HAVE_ST_GRAPH
