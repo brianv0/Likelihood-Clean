@@ -18,8 +18,7 @@
 
 namespace Likelihood {
 
-   class ExposureCube;
-   class RoiCuts;
+   class Observation;
 
 /**
  * @class ExposureMap 
@@ -66,7 +65,7 @@ public:
     * @param exposure A vector of exposure values characterizing the
     * DiffuseSource spectral response.
     */
-   void integrateSpatialDist(std::vector<double> &energies, 
+   void integrateSpatialDist(const std::vector<double> &energies, 
                              optimizers::Function * spatialDist, 
                              std::vector<double> &exposure) const;
 
@@ -102,8 +101,7 @@ public:
     * given by the RoiCuts.
     */
    static void computeMap(std::string filename, 
-                          const ExposureCube & expCube,
-                          const RoiCuts & roiCuts,
+                          const Observation & observation,
                           double sr_radius=30, int nlong=60, int nlat=60,
                           int nenergies=10);
 
