@@ -94,7 +94,7 @@ public:
     * These are logarithmically spaced with upper and lower bounds
     * given by the RoiCuts.
     */
-   static void computeMap(const std::string &filename, double sr_radius = 30,
+   static void computeMap(std::string filename, double sr_radius = 30,
                           int nlong = 60, int nlat = 60, int nenergies = 10);
 
 protected:

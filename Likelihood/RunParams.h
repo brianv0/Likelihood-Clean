@@ -99,6 +99,20 @@ public:
       }
    }
 
+   bool bool_par(const std::string &name) const {
+      try {
+         bool value = (m_prompter->Group())[name];
+         return value;
+      } catch (hoops::Hexception &eObj) {
+         std::cout << eObj.Msg() << "\n"
+                   << eObj.Code() << std::endl;
+         assert(false);
+      } catch (...) {
+         std::cout << name << std::endl;
+         assert(false);
+      }
+   }
+
 private:
 
    hoops::IParPrompt * m_prompter;

@@ -32,7 +32,7 @@ public:
    ~ScData(){}
 
    /// Method to read in the spacecraft data.
-   static void readData(const std::string &file, int hdu);
+   static void readData(std::string file, int hdu, bool clear = false);
    
 #ifndef SWIG
 /** 
