@@ -6,17 +6,21 @@
  * $Header$
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
+
 #ifndef Event_h
 #define Event_h
 
-#include <iostream>
 #include <vector>
 #include <string>
 #include <map>
-#include <utility>
+//#include <utility>
 
 #include "astro/SkyDir.h"
 #include "Likelihood/FitsImage.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
@@ -57,7 +61,8 @@ public:
    //! return the Event specific diffuse response function 
    //! for the named diffuse component
    double diffuseResponse(double energy, 
-                          const std::string &diffuseComponent) const;
+                          const std::string &diffuseComponent) const
+      throw(LikelihoodException);
     
    //! This method takes the spatial distribution of the emission for
    //! the DiffuseSource src and computes the event-specific response.

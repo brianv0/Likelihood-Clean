@@ -1,4 +1,5 @@
-/** @file Statistic.cxx
+/** 
+ * @file Statistic.cxx
  * @brief Statistic class implementation
  * @author J. Chiang
  *
@@ -9,6 +10,7 @@
 #include <string>
 #include <cmath>
 #include <cassert>
+#include <sstream>
 
 #include "Likelihood/Statistic.h"
 #include "Likelihood/Table.h"
@@ -35,12 +37,12 @@ void Statistic::readEventData(const std::string &eventFile,
 }
 
 //! return pointer to data columns
-std::pair<long, double*> 
-Statistic::m_getColumn(const Table &tableData, 
-                       const std::string &colname) const{
+std::pair<long, double*> Statistic::getColumn(const Table &tableData, 
+                                              const std::string &colname) const
+   throw(LikelihoodException) {
    std::pair<long, double*> my_column(0, 0);
    std::string colnames;
-
+   
 // loop over column names, return the matching one
    for (int i = 0; i < tableData.npar(); i++) {
       if (colname == std::string(tableData[i].colname)) {
@@ -50,10 +52,11 @@ Statistic::m_getColumn(const Table &tableData,
       }
       colnames += " "; colnames += tableData[i].colname;
    }
-   std::cerr << "Column " << colname << " was not found in event data.\n";
-   std::cerr << "Valid names are \n" << colnames << std::endl;
-   std::cerr << std::endl;
-   return my_column;
+   std::ostringstream errorMessage;
+   errorMessage << "Statistic::m_getColumn:\n"
+                << "Column " << colname << " was not found in event data.\n"
+                << "Valid names are \n" << colnames << "\n";
+   throw LikelihoodException(errorMessage.str());
 }
 
 } // namespace Likelihood

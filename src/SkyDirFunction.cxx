@@ -1,4 +1,5 @@
-/** @file SkyDirFunction.cxx
+/** 
+ * @file SkyDirFunction.cxx
  * @brief Implementation of SkyDirFunction, a class that encapsulates sky
  * location information in a Function context.
  *
@@ -32,15 +33,15 @@ void SkyDirFunction::m_init(double lon, double lat) {
 }
 
 void SkyDirFunction::update_m_dir(const std::string paramName, 
-                                  double paramValue) {
+                                  double paramValue) 
+   throw(ParameterNotFound) {
    if (paramName == "longitude") {
       m_lon = paramValue;
    } else if (paramName == "latitude") {
       m_lat = paramValue;
    } else {
-//       std::cerr << "Sorry, a parameter named " << paramName 
-//                 << " is not part of SkyDirFunction." << std::endl;
-      return;
+      throw ParameterNotFound(paramName, getName(), 
+                              "SkyDirFunction::update_m_dir");
    }
    m_dir = astro::SkyDir(m_lon, m_lat);
 }

@@ -1,4 +1,5 @@
-/** @file PowerLaw.cxx
+/** 
+ * @file PowerLaw.cxx
  * @brief Implementation for the PowerLaw Function class
  * @author J. Chiang
  *
@@ -47,7 +48,8 @@ double PowerLaw::value(Arg &xarg) const {
            my_params[Index].getTrueValue());
 }
 
-double PowerLaw::derivByParam(Arg &xarg, const std::string &paramName) const {
+double PowerLaw::derivByParam(Arg &xarg, const std::string &paramName) const 
+   throw(ParameterNotFound) {
    double x = dynamic_cast<dArg &>(xarg).getValue();
 
    enum ParamTypes {Prefactor, Index, Scale};
@@ -61,11 +63,7 @@ double PowerLaw::derivByParam(Arg &xarg, const std::string &paramName) const {
    }
 
    if (iparam == -1) {
-// should throw an exception here
-      std::cerr << "PowerLaw::derivByParam: "
-                << "Parameter " << paramName << " is not found."
-                << std::endl;
-      return 0.;
+      throw ParameterNotFound(paramName, getName(), "PowerLaw::derivByParam");
    }
    
    switch (iparam) {

@@ -123,7 +123,7 @@ void OptPP::find_min(int verbose, double tol) {
 }
 #else
 
-void OptPP::find_min(int verbose, double tol) {
+void OptPP::find_min(int, double) {
 // do nothing
 }
 

@@ -1,16 +1,20 @@
-/** @file SourceFactory.h
+/** 
+ * @file SourceFactory.h
  * @brief Declaration of SourceFactory class
  * @author J. Chiang
  *
  * $Header$
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
+
 #ifndef SourceFactory_h
 #define SourceFactory_h
 
 #include <string>
 #include <map>
-
 #include "Likelihood/Source.h"
 
 namespace Likelihood {
@@ -40,7 +44,7 @@ public:
    //! otherwise, the destructor will delete their Source, rather than 
    //! a clone.
    void addSource(const std::string &name, Source* src, 
-                  bool fromClone = true);
+                  bool fromClone = true) throw(LikelihoodException);
 
    void replaceSource(Source* src, bool fromClone = true);
 
