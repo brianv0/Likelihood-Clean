@@ -69,11 +69,11 @@ public:
                                    const std::string &paramName) const;
 
    virtual double fluxDensity(double inclination, double phi, double energy,
-                              double separation, int evtType) const {
+                              const astro::SkyDir &appDir, int evtType) const {
       (void)(inclination);
       (void)(phi);
       (void)(energy);
-      (void)(separation);
+      (void)(appDir);
       (void)(evtType);
       return 0;
    }
