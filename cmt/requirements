@@ -8,16 +8,14 @@ author Pat Nolan <pln@razzle.stanford.edu>
 
 use STpolicy v*
 use astro  v*
-#use xml v4r* # use xml needs to be commented out in order to link on VC7.0 and VC7.1..
-use tip v* .
+# use xml needs to be commented out in order to link on VC7.0 and VC7.1..
+#use xml v4r* 
+use tip v* 
 use map_tools v*
 use latResponse v2*
 use optimizers v*
-use cfitsio v1* IExternal
-use hoops v*
 use facilities v2r*
-
-
+use cfitsio v1* IExternal
 
 apply_pattern ST_library option="-no_share *.c "
 apply_pattern ST_pfiles
@@ -28,10 +26,10 @@ apply_pattern ST_app name=TsMap
 apply_pattern ST_app name=makeExposureCube
 
 private
-#--------------------------------------------------------------
 
+use hoops v*
+use st_app v*
 
 macro LikelihoodLib_cppflags "" \
       Linux " -D TRAP_FPE -D USE_FT1 " \
       WIN32 ' /D"USE_FT1" '
-
