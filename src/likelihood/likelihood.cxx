@@ -276,12 +276,12 @@ void likelihood::writeCountsSpectra() {
    }
    outputFile.close();
 
-// plot the data
-   EasyPlot plot;
-   for (unsigned int i = 0; i < npred.size(); i++) {
-      plot.histogram(evals, npred[i]);
-   }
-   EasyPlot::run();
+// // plot the data
+//    EasyPlot plot;
+//    for (unsigned int i = 0; i < npred.size(); i++) {
+//       plot.histogram(evals, npred[i]);
+//    }
+//    EasyPlot::run();
 }
 
 void likelihood::writeCountsMap() {
