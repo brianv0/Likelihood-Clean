@@ -34,7 +34,7 @@ class FitsImage {
 public:
 
    FitsImage() {}
-   FitsImage(std::string &fitsfile);
+   FitsImage(const std::string &fitsfile);
    FitsImage(const FitsImage &rhs);
    virtual ~FitsImage() {
       if (m_haveRefCoord) delete m_eqRot;

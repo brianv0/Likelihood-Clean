@@ -11,7 +11,7 @@
 
 #include "Likelihood/Source.h"
 #include "Likelihood/SkyDirArg.h"
-#include "optimizers/Exception.h"
+#include "Likelihood/Exception.h"
 
 namespace optimizers {
    class Function;
@@ -51,8 +51,7 @@ public:
 
    //! A Function describing the spatial distribution of emission is 
    //! required for instantiation.
-   DiffuseSource(optimizers::Function *spatialDist) 
-      throw(optimizers::Exception);
+   DiffuseSource(optimizers::Function *spatialDist) throw(Exception);
 
    DiffuseSource(const DiffuseSource &rhs);
 
