@@ -9,6 +9,7 @@
 #ifndef Likelihood_SourceModel_h
 #define Likelihood_SourceModel_h
 
+#include <map>
 #include <vector>
 #include <string>
 
@@ -122,6 +123,7 @@ public:
 
    unsigned int getNumSrcs() const {return s_sources.size();}
    void getSrcNames(std::vector<std::string> &) const;
+   bool hasSrcNamed(const std::string & srcName) const;
 
    virtual double value(optimizers::Arg &x) const;
 
@@ -145,7 +147,8 @@ protected:
 
    static int s_refCount;
 
-   static std::vector<Source *> s_sources;
+//   static std::vector<Source *> s_sources;
+   static std::map<std::string, Source *> s_sources;
 
    /// method to sync the m_parameter vector with those of the 
    /// s_sources' Functions
