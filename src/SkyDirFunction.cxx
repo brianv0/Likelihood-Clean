@@ -16,6 +16,7 @@ SkyDirFunction::SkyDirFunction(const astro::SkyDir &dir) :
    m_ra(dir.ra()), m_dec(dir.dec()), m_dir(dir) {
    m_maxNumParams = 2;
    m_genericName = "SkyDirFunction";
+   m_functionName = "SkyDirFunction";
    addParam("RA", m_ra, false);
    addParam("DEC", m_dec, false);
 }   
@@ -25,6 +26,7 @@ void SkyDirFunction::m_init(double ra, double dec) {
    m_dec = dec; 
    m_maxNumParams = 2;
    m_genericName = "SkyDirFunction";
+   m_functionName = "SkyDirFunction";
 
    m_dir = astro::SkyDir(ra, dec);
 
