@@ -172,9 +172,10 @@ void CountsMap::readEbounds(const std::string & countsMapFile,
    energies.back() = emax;
 
    std::vector<evtbin::Binner::Interval> energy_intervals;
+// convert to MeV
    for (unsigned int i = 0; i < energies.size()-1; i++) {
-      energy_intervals.push_back(evtbin::Binner::Interval(energies[i], 
-                                                          energies[i+1]));
+      energy_intervals.push_back(evtbin::Binner::Interval(energies[i]/1e3, 
+                                                          energies[i+1]/1e3));
    }
    binners.push_back(new evtbin::OrderedBinner(energy_intervals,
                                                "photon energy"));
@@ -210,6 +211,7 @@ void CountsMap::init(std::vector<evtbin::Binner *> & binners,
 
    adjustTimeKeywords(sc_file);
 
+   setDataDir();
 }
 
 CountsMap::CountsMap(const CountsMap & rhs) : DataProduct(rhs) {

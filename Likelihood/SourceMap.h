@@ -71,6 +71,8 @@ private:
 /// @brief Each entry is the angular integral over the energy plane.
    std::vector<double> m_npreds;
 
+   std::vector<double> m_energies;
+
    class Aeff : public Pixel::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir,
