@@ -143,8 +143,7 @@ ExposureMap * ExposureMap::instance() {
 void ExposureMap::computeMap(const std::string &filename, double sr_radius,
                              int nlon, int nlat, int nenergies) {
    RoiCuts *roi_cuts = RoiCuts::instance();
-   std::pair<astro::SkyDir, double> roi = roi_cuts->getExtractionRegion();
-   astro::SkyDir roiCenter = roi.first;
+   astro::SkyDir roiCenter = roi_cuts->extractionRegion().center();
    FitsImage::EquinoxRotation eqRot(roiCenter.ra(), roiCenter.dec());
 
    double lonstep = 2.*sr_radius/(nlon-1);

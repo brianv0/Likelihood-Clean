@@ -16,8 +16,7 @@
 
 #include "astro/SkyDir.h"
 
-//#include "Likelihood/Event.h"
-//#include "Likelihood/ScData.h"
+#include "latResponse/AcceptanceCone.h"
 
 namespace Likelihood {
 
@@ -48,12 +47,12 @@ public:
    std::pair<double, double> getEnergyCuts() const
       {return std::make_pair(s_eMin, s_eMax);}
 
-   std::pair<astro::SkyDir, double> getExtractionRegion() const
-      {return std::make_pair(s_roiCenter, s_roiRadius);}
+   const latResponse::AcceptanceCone &extractionRegion() const
+      {return s_roiCone;}
 
    static void getRaDec(double &ra, double &dec) {
-      ra = s_roiCenter.ra();
-      dec = s_roiCenter.dec();
+      ra = s_roiCone.center().ra();
+      dec = s_roiCone.center().dec();
    }
 
    double getMuZenMax() {return s_muZenMax;}
@@ -76,23 +75,20 @@ private:
 
    static RoiCuts * s_instance;
 
-   //! cuts on photon "MET" arrival times in seconds; 
-   //! this vector of pairs specify time intervals for event acceptance;
-   //! the *intersection* of these intervals will be used
+   /// cuts on photon "MET" arrival times in seconds; 
+   /// this vector of pairs specify time intervals for event acceptance;
+   /// the *intersection* of these intervals will be used
    typedef std::pair<double, double> timeInterval; // this will be generalized
    static std::vector<timeInterval> s_tLimVec;
 
-   //! minimum and maximum energies in MeV,
+   /// minimum and maximum energies in MeV,
    static double s_eMin;
    static double s_eMax;
 
-   //! center of the sky extraction region
-   static astro::SkyDir s_roiCenter;
+   /// The acceptance cone or sky extraction region.
+   static latResponse::AcceptanceCone s_roiCone;
 
-   //! acceptance cone half angle in degrees
-   static double s_roiRadius;
-
-   //! cosine of the maximum Zenith angle
+   /// cosine of the maximum Zenith angle
    static double s_muZenMax;
 
 };

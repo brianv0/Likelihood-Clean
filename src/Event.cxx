@@ -84,8 +84,7 @@ void Event::computeResponse(DiffuseSource &src, double sr_radius) {
 // The following instantiates the eqRot object to do the same rotation
 // as performed by my evt_exposr FTOOL
    RoiCuts *roi_cuts = RoiCuts::instance();
-   std::pair<astro::SkyDir, double> roi = roi_cuts->getExtractionRegion();
-   astro::SkyDir roiCenter = roi.first;
+   astro::SkyDir roiCenter = roi_cuts->extractionRegion().center();
    FitsImage::EquinoxRotation eqRot(roiCenter.ra(), roiCenter.dec());
 
 // Do this calculation assuming infinite energy resolution and thus
@@ -143,8 +142,7 @@ void Event::computeResponse(std::vector<DiffuseSource> &srcs,
 // The following instantiates the eqRot object to do the same rotation
 // as performed by my evt_exposr FTOOL
    RoiCuts *roi_cuts = RoiCuts::instance();
-   std::pair<astro::SkyDir, double> roi = roi_cuts->getExtractionRegion();
-   astro::SkyDir roiCenter = roi.first;
+   astro::SkyDir roiCenter = roi_cuts->extractionRegion().center();
    FitsImage::EquinoxRotation eqRot(roiCenter.ra(), roiCenter.dec());
 
 // Do this calculation assuming infinite energy resolution and thus
