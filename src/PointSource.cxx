@@ -67,7 +67,7 @@ double PointSource::fluxDensity(double energy, double time,
 
 double PointSource::fluxDensityDeriv(double energy, double time,
                                      const astro::SkyDir &dir,
-                                     std::string &paramName) const {
+                                     const std::string &paramName) const {
 // For now, just implement for spectral Parameters and neglect
 // the spatial ones, "longitude" and "latitude"
 

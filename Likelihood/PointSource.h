@@ -61,13 +61,13 @@ public:
                       const astro::SkyDir &dir) const;
 
    //! Returns the derivative wrt to the named Parameter
-   double fluxDensityDeriv(const Event &evt, std::string &paramName) const
+   double fluxDensityDeriv(const Event &evt, const std::string &paramName) const
       {return fluxDensityDeriv(evt.getEnergy(), evt.getArrTime(), 
                                evt.getDir(), paramName);}
 
    double fluxDensityDeriv(double energy, double time,
                            const astro::SkyDir &dir,
-                           std::string &paramName) const;
+                           const std::string &paramName) const;
 
    //! Predicted number of photons given RoiCuts and ScData
    virtual double Npred();

@@ -75,7 +75,7 @@ double DiffuseSource::fluxDensity(const Event &evt) const {
 }
 
 double DiffuseSource::fluxDensityDeriv(const Event &evt, 
-                                       std::string &paramName) const {
+                                       const std::string &paramName) const {
                                    
 // For now, just implement for spectral Parameters and neglect
 // the spatial ones, "longitude" and "latitude".
