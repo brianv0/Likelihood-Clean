@@ -45,6 +45,12 @@ public:
    void readExposureMap();
    void setRoi();
 
+   static void checkOutputFile(bool clobber, const std::string & filename);
+
+   void checkOutputFile() {
+      checkOutputFile(m_pars["clobber"], m_pars["outfile"]);
+   }
+
    const std::vector<std::string> & scFiles() const {return m_scFiles;}
 
 protected:

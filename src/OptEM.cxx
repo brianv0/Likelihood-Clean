@@ -6,6 +6,7 @@
  * $Header$
  */
 
+#include "Verbosity.h"
 #include "Likelihood/OptEM.h"
 #include "Likelihood/OneSourceFunc.h"
 #include "optimizers/Lbfgs.h"
@@ -68,10 +69,12 @@ namespace Likelihood {
 	  opt.find_min(verbose, .1 * chifunc(f.getNumFreeParams()),
 		       optimizers::ABSOLUTE);}
 	catch (optimizers::Exception e) {
-	  std::cerr << "Optimizer Exception " << e.code() << std::endl;
-	  std::cerr << "  " << e.what() << std::endl;
-	  std::cerr << " on iteration " << iteration+1
-		    << " source " << i+1 << std::endl;
+           if (print_output()) {
+              std::cerr << "Optimizer Exception " << e.code() << std::endl;
+              std::cerr << "  " << e.what() << std::endl;
+              std::cerr << " on iteration " << iteration+1
+                        << " source " << i+1 << std::endl;
+           }
 	  //	  assert(0);
 	}
 
@@ -79,7 +82,7 @@ namespace Likelihood {
 	//	std::cout << "Function value " << f.value(arg) << endl;
       }
       iteration++;
-      if (verbose != 0)
+      if (print_output() && verbose != 0)
 	std::cout << "Iteration #" << iteration << ", logL = " << logL << 
 	  ", old logL = " << oldLogL  << " params " << nPar << std::endl;
     } while (fabs(logL-oldLogL) > 0.1*chifunc(nPar) || oldLogL == 0.);

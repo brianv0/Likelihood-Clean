@@ -20,6 +20,8 @@
 #include "Likelihood/PointSource.h"
 #include "Likelihood/RoiCuts.h"
 
+#include "Verbosity.h"
+
 namespace {
 
 void fitsReportError(FILE *stream, int status) {
@@ -167,11 +169,13 @@ void ExposureMap::computeMap(std::string filename, double sr_radius,
    for (int k = 0; k < nenergies; k++)
       exposureCube[k].resize(nlon*nlat);
 
-   std::cerr << "Computing the ExposureMap";
+   if (print_output()) std::cerr << "Computing the ExposureMap";
    int indx = 0;
    for (int j = 0; j < nlat; j++) {
       for (int i = 0; i < nlon; i++) {
-         if ((indx % ((nlon*nlat)/20)) == 0) std::cerr << ".";
+         if (print_output() && (indx % ((nlon*nlat)/20)) == 0) {
+            std::cerr << ".";
+         }
          astro::SkyDir indir(lon[i], lat[j]);
          astro::SkyDir dir;
          eqRot.do_rotation(indir, dir);
@@ -190,7 +194,7 @@ void ExposureMap::computeMap(std::string filename, double sr_radius,
          indx++;
       }
    }
-   std::cerr << "!" << std::endl;
+   if (print_output()) std::cerr << "!" << std::endl;
    writeFitsFile(filename, lon, lat, energies, exposureCube, 
                  roiCenter.ra(), roiCenter.dec());
 }
