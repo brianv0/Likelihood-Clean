@@ -201,6 +201,12 @@ private:
 
    bool m_verbose;
 
+   void writeFitsFile(const std::string &filename, 
+                      std::vector<double> &ras,
+                      std::vector<double> &decs,
+                      std::vector<double> &energies,
+                      std::vector< std::valarray<double> > &map);
+      
 };
 
 } // namespace Likelihood
