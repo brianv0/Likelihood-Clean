@@ -59,6 +59,10 @@ public:
                                const astro::SkyDir &appDir,
                                int type);
 
+   static double totalResponse(double inclination, double phi, 
+                               double energy, double appEnergy, 
+                               double separation, int evtType);
+
    static void setRespPtrs(std::map<unsigned int, irfInterface::Irfs *> 
                            &respPtrs) {s_respPtrs = respPtrs;}
 
