@@ -9,8 +9,9 @@
 #ifndef Likelihood_Aeff_h
 #define Likelihood_Aeff_h
 
+#include "latResponse/../src/Table.h"
+
 #include "Likelihood/Response.h"
-#include "Likelihood/Table.h"
 #include "Likelihood/Exception.h"
 
 class astro::SkyDir;
@@ -62,7 +63,7 @@ private:
    //! effective area stored in straw-man CALDB format
    std::string m_aeffFile;
    int m_aeffHdu;
-   Table m_aeffData;
+   latResponse::Table m_aeffData;
 
    std::vector<double> m_energy;
    std::vector<double> m_theta;
