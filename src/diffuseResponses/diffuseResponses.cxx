@@ -89,6 +89,7 @@ diffuseResponses::diffuseResponses()
       m_pars.Prompt();
       m_pars.Save();
       m_helper = new AppHelpers(m_pars);
+      m_helper->readScData();
       m_srcModel = new SourceModel(true);
       ResponseFunctions::setEdispFlag(m_pars["use_energy_dispersion"]);
    } catch (std::exception & eObj) {

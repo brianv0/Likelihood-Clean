@@ -790,7 +790,7 @@ void LikelihoodTests::readEventData(const std::string &eventFile,
                                     const std::string &scDataFile,
                                     std::vector<Event> &events) {
    events.clear();
-   ScData::readData(scDataFile, 2, true);
+   ScData::readData(scDataFile, true);
    ScData * scData = ScData::instance();
 
    tip::Table * eventTable = 
@@ -844,9 +844,9 @@ srcFactoryInstance(const std::string & roiFile,
       }
 
       if (scFile == "") {
-         ScData::readData(m_scFile, 2, true);
+         ScData::readData(m_scFile, true);
       } else {
-         ScData::readData(scFile, 2, true);
+         ScData::readData(scFile, true);
       }
 
       if (expMapFile == "") {

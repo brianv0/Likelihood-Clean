@@ -24,7 +24,6 @@
 #include "Likelihood/PointSource.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
-//#include "Likelihood/Util.h"
 
 using namespace Likelihood;
 
@@ -65,6 +64,7 @@ ExpMap::ExpMap() : st_app::StApp(), m_helper(0),
       m_pars.Prompt();
       m_pars.Save();
       m_helper = new AppHelpers(m_pars);
+      m_helper->readScData();
       ResponseFunctions::setEdispFlag(m_pars["use_energy_dispersion"]);
    } catch (std::exception &eObj) {
       std::cerr << eObj.what() << std::endl;
