@@ -31,4 +31,32 @@ Event::Event(const Event &event) {
    m_respDiffuseSrcs = event.m_respDiffuseSrcs;
 }
 
+double Event::diffuseResponse(double energy, 
+                              std::string diffuseComponent) const {
+   if (m_respDiffuseSrcs.count(diffuseComponent)) {
+
+// Since the energy resolution is presently assumed to be infinite,
+// simply return the (second member of the pair of the) first (and
+// only) element of the diffuse_response vector.
+
+// Attempt to respect const-ness of map
+      std::map<std::string, diffuse_response>::const_iterator it 
+         = m_respDiffuseSrcs.begin();
+      for (; it != m_respDiffuseSrcs.end(); it++) {
+         if (it->first == diffuseComponent) {
+            return (*it).second[0].second;
+         }
+      }
+//      return m_respDiffuseSrcs[diffuseComponent][0].second;
+
+   } else {
+      std::cerr << "Event::diffuseResponse: Diffuse component " 
+                << diffuseComponent 
+                << " does not have an associated diffuse response."
+                << std::endl;
+      assert(false);
+      return 0;
+   }
+}
+
 } // namespace Likelihood

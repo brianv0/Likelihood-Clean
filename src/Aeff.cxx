@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <algorithm>
 
 #include "Likelihood/Aeff.h"
 
@@ -69,7 +70,12 @@ double Aeff::value(double energy, double inc) {
 
 // find the energy index
    int ie;
-   m_hunt(m_aeffData[0].val-1, m_aeffData[0].dim, energy, &ie);
+
+// use upper_bound generic algorithm (still maintaining, for now,
+// unit-offset kludge inherited from use of NR's hunt())
+
+   ie = upper_bound(m_aeffData[0].val, m_aeffData[0].val + m_aeffData[0].dim,
+                    energy) - m_aeffData[0].val;
 
 // kludge to deal with energies outside of the nominal boundaries 
    if (ie == 0) { 
@@ -81,7 +87,10 @@ double Aeff::value(double energy, double inc) {
    
 // find the theta index
    int it;
-   m_hunt(m_aeffData[1].val-1, m_aeffData[1].dim, inc, &it);
+
+   it = upper_bound(m_aeffData[1].val, m_aeffData[1].val + m_aeffData[1].dim,
+                    inc) - m_aeffData[1].val;
+
    if (it == 0) it = 1;
 
    double aeffval 

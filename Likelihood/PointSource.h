@@ -1,5 +1,5 @@
 /** @file PointSource.h
- * @brief PointSourc class declaration
+ * @brief PointSource class declaration
  * @author J. Chiang
  *
  * $Header$
@@ -50,10 +50,17 @@ public:
 
    //! Returns photons/cm^2-s-sr-MeV having been convolved through
    //! the LAT instrument response
+   double fluxDensity(const Event &evt) const
+      {return fluxDensity(evt.getEnergy(), evt.getArrTime(), evt.getDir());}
+
    double fluxDensity(double energy, double time,
                       const astro::SkyDir &dir) const;
 
    //! Returns the derivative wrt to the named Parameter
+   double fluxDensityDeriv(const Event &evt, std::string &paramName) const
+      {return fluxDensityDeriv(evt.getEnergy(), evt.getArrTime(), 
+                               evt.getDir(), paramName);}
+
    double fluxDensityDeriv(double energy, double time,
                            const astro::SkyDir &dir,
                            std::string &paramName) const;
