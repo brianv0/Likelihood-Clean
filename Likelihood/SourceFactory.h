@@ -14,6 +14,9 @@
 #include "Likelihood/Source.h"
 
 namespace Likelihood {
+
+class LikelihoodException;
+
 /** 
  * @class SourceFactory
  *

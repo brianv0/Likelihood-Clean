@@ -13,6 +13,7 @@
 
 #include "Likelihood/dArg.h"
 #include "PowerLaw.h"
+#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

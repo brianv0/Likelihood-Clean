@@ -12,10 +12,10 @@
 
 #include "Likelihood/Response.h"
 #include "Likelihood/Table.h"
-#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
+class LikelihoodException;
 class astro::SkyDir;
 
 /** 

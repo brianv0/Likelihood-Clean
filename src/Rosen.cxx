@@ -9,8 +9,9 @@
 #include <vector>
 #include <string>
 #include <cmath>
-#include "Rosen.h"
 #include "Likelihood/dArg.h"
+#include "Rosen.h"
+#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

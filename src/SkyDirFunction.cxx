@@ -9,6 +9,7 @@
  */
 
 #include "Likelihood/SkyDirFunction.h"
+#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

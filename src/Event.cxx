@@ -16,6 +16,7 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/TrapQuad.h"
+#include "LikelihoodException.h"
 
 namespace {
    double my_acos(double mu) {

@@ -11,12 +11,12 @@
 
 #include "Likelihood/Source.h"
 #include "Likelihood/SkyDirArg.h"
-#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
 class Function;
 class Event;
+class LikelihoodException;
 
 /** 
  * @class DiffuseSource

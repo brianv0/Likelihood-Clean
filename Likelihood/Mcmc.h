@@ -12,9 +12,10 @@
 #include <string>
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Statistic.h"
-#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
+
+class LikelihoodException;
 
 /**
  * @class Mcmc
