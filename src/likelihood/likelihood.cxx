@@ -347,7 +347,9 @@ void likelihood::writeCountsSpectra() {
          try {
             Npred = src->Npred(energies[k], energies[k+1]);
             if (i==0) evals.push_back(log10(sqrt(energies[k]*energies[k+1])));
+#ifdef HAVE_ST_GRAPH
             npred[i].push_back(log10(Npred));
+#endif
             line << Npred << "  ";
          } catch (std::out_of_range &) {
             writeLine = false;
