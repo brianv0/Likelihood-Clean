@@ -20,5 +20,7 @@ apply_pattern package_linkopts
 macro my_headers "" WIN32 "../Likelihood/*.h *.h"
 library Likelihood -no_share $(my_headers) *.cxx
 
+#macro_append cpplinkflags "" Linux "-lg2c "
+
 # test application
 application test_Likelihood test/*.cxx
