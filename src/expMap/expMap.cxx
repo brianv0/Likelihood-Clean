@@ -17,12 +17,14 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "st_facilities/Util.h"
+
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
-#include "Likelihood/Util.h"
+//#include "Likelihood/Util.h"
 
 using namespace Likelihood;
 
@@ -105,7 +107,7 @@ void ExpMap::createExposureMap() {
 // Exposure hypercube file.
    std::string expCubeFile = m_pars["exposure_cube_file"];
    if (expCubeFile != "none") {
-      Util::file_ok(expCubeFile);
+      st_facilities::Util::file_ok(expCubeFile);
       PointSource::readExposureCube(expCubeFile);
    }
    std::string exposureFile = m_pars["Exposure_map_file"];
