@@ -42,8 +42,9 @@ double LogLike::value(optimizers::Arg&) const {
    }
 
 // The "model integral", a sum over Npred for each source
-   for (unsigned int i = 0; i < getNumSrcs(); i++) {
-      SrcArg sArg(s_sources[i]);
+   std::map<std::string, Source *>::iterator srcIt = s_sources.begin();
+   for ( ; srcIt != s_sources.end(); ++srcIt) {
+      SrcArg sArg(srcIt->second);
       my_value -= m_Npred(sArg);
    }
    return my_value;
@@ -68,8 +69,9 @@ void LogLike::getFreeDerivs(optimizers::Arg&,
    std::vector<double> NpredDerivs;
    NpredDerivs.reserve(m_logSrcModel.getNumFreeParams());
 
-   for (unsigned int i = 0; i < s_sources.size(); i++) {
-      SrcArg sArg(s_sources[i]);
+   std::map<std::string, Source *>::iterator srcIt = s_sources.begin();
+   for ( ; srcIt != s_sources.end(); ++srcIt) {
+      SrcArg sArg(srcIt->second);
       std::vector<double> derivs;
       m_Npred.getFreeDerivs(sArg, derivs);
       for (unsigned int i = 0; i < derivs.size(); i++) 
@@ -104,10 +106,11 @@ void LogLike::computeEventResponses(std::vector<DiffuseSource *> &srcs,
 
 void LogLike::computeEventResponses(double sr_radius) {
    std::vector<DiffuseSource *> diffuse_srcs;
-   for (unsigned int i = 0; i < s_sources.size(); i++) {
-      if (s_sources[i]->getType() == std::string("Diffuse")) {
+   std::map<std::string, Source *>::iterator srcIt = s_sources.begin();
+   for ( ; srcIt != s_sources.end(); ++srcIt) {
+      if (srcIt->second->getType() == std::string("Diffuse")) {
          DiffuseSource *diffuse_src = 
-            dynamic_cast<DiffuseSource *>(s_sources[i]);
+            dynamic_cast<DiffuseSource *>(srcIt->second);
          diffuse_srcs.push_back(diffuse_src);
       }
    }
