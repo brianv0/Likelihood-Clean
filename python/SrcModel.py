@@ -18,8 +18,21 @@ def ids(istart=0):
 class SourceModel(object):
     def __init__(self, logLike):
         self.logLike = logLike
+        self._loadSources()
+    def delete(self, source):
+        src = self.logLike.deleteSource(source)
+        self._loadSources()
+        return src
+    def add(self, source):
+        try:
+            print "adding ", source.getName()
+            self.logLike.addSource(source)
+            self._loadSources()
+        except:
+            pass
+    def _loadSources(self):
         srcNames = pyLike.StringVector()
-        logLike.getSrcNames(srcNames)
+        self.logLike.getSrcNames(srcNames)
         self.srcNames = tuple(srcNames)
         self.srcs = {}
         for name in srcNames:
