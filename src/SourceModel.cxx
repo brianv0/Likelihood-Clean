@@ -475,10 +475,10 @@ void SourceModel::makeCountsMap(const std::string & filename,
 
    std::vector<astro::SkyDir> pixelDirs;
    pixelDirs.reserve(longitudes.size()*latitudes.size());
-   std::vector<double>::const_iterator lonIt = longitudes.begin();
-   for ( ; lonIt != longitudes.end(); lonIt++) {
-      std::vector<double>::const_iterator latIt = latitudes.begin();
-      for ( ; latIt != latitudes.end(); latIt++) {
+   std::vector<double>::const_iterator latIt = latitudes.begin();
+   for ( ; latIt != latitudes.end(); latIt++) {
+      std::vector<double>::const_iterator lonIt = longitudes.begin();
+      for ( ; lonIt != longitudes.end(); lonIt++) {
          pixelDirs.push_back(astro::SkyDir(*lonIt, *latIt, 
                                            mapShape.coordType()));
       }
