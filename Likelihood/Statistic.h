@@ -6,8 +6,8 @@
 #ifndef Statistic_h
 #define Statistic_h
 
-#include "Table.h"
-#include "SourceModel.h"
+#include "../Likelihood/SourceModel.h"
+#include "../Likelihood/Table.h"
 
 namespace Likelihood {
 
