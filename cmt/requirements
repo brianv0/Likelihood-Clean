@@ -50,3 +50,5 @@ application test_Likelihood test/main.cxx
 application likelihoodApp test/likelihood.cxx
 application TsMap test/TsMap.cxx
 application expMap test/expMap.cxx
+application test_runParams test/test_runParams.cxx
+
