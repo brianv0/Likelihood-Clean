@@ -17,7 +17,7 @@ PYINCLUDE = -I/usr/local/include/python2.3
 CFLAGS = -w -g -fPIC
 
 INCLUDE = -I$(LIKELIHOODROOT)\
-	-I$(LATRESPONSEROOT)\
+	-I$(IRFINTERFACEROOT)\
 	-I$(ASTROROOT)\
 	-I$(OPTIMIZERSROOT)\
 	-I$(MAP_TOOLSROOT)\
@@ -30,7 +30,7 @@ INCLUDE = -I$(LIKELIHOODROOT)\
 	-I$(GLAST_EXT)/xerces/1.7.0/include/xercesc
 
 LIBS = -L../$(BINDIR)/ -lLikelihoodLib\
-	-L$(LATRESPONSEROOT)/$(BINDIR) -llatResponseLib\
+	-L$(IRFINTERFACEROOT)/$(BINDIR) -lirfInterfaceLib\
 	-L$(MAP_TOOLSROOT)/$(BINDIR) -lmap_toolsLib\
 	-L$(ASTROROOT)/$(BINDIR) -lastro\
 	-L$(OPTIMIZERSROOT)/$(BINDIR) -loptimizersLib\

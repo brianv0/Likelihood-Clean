@@ -47,7 +47,8 @@ namespace Likelihood {
     virtual std::vector<double>::const_iterator
       setParamValues_(std::vector<double>::const_iterator);
 //    virtual Function *clone() const {return new OneSourceFunc(*this);}
-    virtual Statistic *clone() const {return new OneSourceFunc(*this);}
+    virtual optimizers::Statistic *clone() const 
+        {return new OneSourceFunc(*this);}
     virtual void setParams(std::vector<optimizers::Parameter>&)
       throw(optimizers::Exception, optimizers::ParameterNotFound);
     void setEpsW(double);
