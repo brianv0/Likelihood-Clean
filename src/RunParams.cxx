@@ -76,7 +76,9 @@ void RunParams::readLines(std::string inputFile,
    lines.clear();
    std::string line;
    while (std::getline(file, line, '\n')) {
-      lines.push_back(line);
+      if (line != "" && line != " ") { //skip (most) blank lines
+         lines.push_back(line);
+      }
    }
 }
 
