@@ -8,6 +8,7 @@
 
 #include <cstdlib>
 
+#include <iostream>
 #include <sstream>
 
 #include "st_app/AppParGroup.h"
@@ -86,6 +87,7 @@ void ExposureCube::createDataCube() {
    std::vector<std::string>::const_iterator scIt = scFiles.begin();
    for ( ; scIt != scFiles.end(); scIt++) {
       st_facilities::Util::file_ok(*scIt);
+      std::cerr << "Working on file " << *scIt << std::endl;
       tip::Table * scData = 
          tip::IFileSvc::instance().editTable(*scIt, "Ext1");
       m_exposure->load(scData);
