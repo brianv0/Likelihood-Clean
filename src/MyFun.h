@@ -1,5 +1,5 @@
-#include "../Likelihood/Function.h"
-#include "../Likelihood/Arg.h"
+#include "Likelihood/Function.h"
+#include "Likelihood/Arg.h"
 
 namespace Likelihood {
 
