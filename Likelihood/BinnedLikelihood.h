@@ -37,7 +37,7 @@ public:
    BinnedLikelihood(const CountsMap & dataMap, 
                     const std::string & srcMapsFile="");
 
-   BinnedLikelihood(const std::string & dataMapFile);
+//   BinnedLikelihood(const std::string & dataMapFile);
                  
    virtual ~BinnedLikelihood() throw() {}
 

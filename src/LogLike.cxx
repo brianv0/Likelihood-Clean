@@ -139,7 +139,7 @@ void LogLike::computeEventResponses(double sr_radius) {
    }
 }
 
-void LogLike::getEvents(std::string event_file, int) {
+void LogLike::getEvents(std::string event_file) {
 
    facilities::Util::expandEnvVar(&event_file);
 

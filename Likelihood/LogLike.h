@@ -65,7 +65,7 @@ public:
       getFreeDerivs(dummy, freeDerivs);
    }
 
-   void getEvents(std::string event_file, int hdu);
+   void getEvents(std::string event_file);
 
    void computeEventResponses(Source &src, double sr_radius = 30);
 
@@ -74,22 +74,12 @@ public:
 
    void computeEventResponses(double sr_radius = 30);
 
-#ifndef SWIG
-// Methods and data members from old Likelihood::Statistic:
-   void readEventData(const std::string &eventFile, int hdu);
-
-   /// Generalized column access
-   std::pair<long, std::vector<double> > 
-   getEventColumn(const std::string &colname) const;
-#endif
-
    unsigned long nEvents() const {return m_events.size();}
 
 protected:
 
    /// Event data, read from m_eventFile, stored in a map
    std::string m_eventFile;
-   int m_eventHdu;
 
    std::vector<Event> m_events;
 
