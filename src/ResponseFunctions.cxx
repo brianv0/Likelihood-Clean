@@ -15,8 +15,8 @@ ResponseFunctions * ResponseFunctions::s_instance = 0;
 
 std::map<unsigned int, latResponse::Irfs *> ResponseFunctions::s_respPtrs;
 
-//bool ResponseFunctions::s_useEdisp(false);
-bool ResponseFunctions::s_useEdisp(true);
+bool ResponseFunctions::s_useEdisp(false);
+//bool ResponseFunctions::s_useEdisp(true);
    
 double ResponseFunctions::totalResponse(double time, 
                                         double energy, double appEnergy,
@@ -37,6 +37,7 @@ double ResponseFunctions::totalResponse(double time,
       if (respIt->second->irfID() == type) {  
          latResponse::IPsf *psf = respIt->second->psf();
          latResponse::IAeff *aeff = respIt->second->aeff();
+         latResponse::IEdisp *edisp = respIt->second->edisp();
          double psf_val = psf->value(appDir, energy, srcDir, zAxis, xAxis);
          double aeff_val = aeff->value(energy, srcDir, zAxis, xAxis);
          if (s_useEdisp) {
@@ -66,6 +67,5 @@ ResponseFunctions * ResponseFunctions::instance() {
    }
    return s_instance;
 }
-
 
 } // namespace Likelihood

@@ -6,11 +6,13 @@
  * $Header$
  */
 
-#include <vector>
-#include <string>
 #include <cmath>
 #include <cassert>
+
+#include <sstream>
 #include <stdexcept>
+#include <string>
+#include <vector>
 
 #include "facilities/Util.h"
 
@@ -100,6 +102,11 @@ void LogLike::computeEventResponses(std::vector<DiffuseSource *> &srcs,
    for (unsigned int i = 0; i < m_events.size(); i++) {
       if ((i % (m_events.size()/20)) == 0) std::cerr << ".";
       m_events[i].computeResponse(srcs, sr_radius);
+      if (i < 10) {
+         std::ostringstream filename;
+         filename << "diffuse_response_" << i << ".dat";
+         m_events[i].writeDiffuseResponses(filename.str());
+      }
    }
    std::cerr << "!" << std::endl;
 }
