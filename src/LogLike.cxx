@@ -22,8 +22,6 @@
 #include "tip/Table.h"
 #include "tip/TipException.h"
 
-#include "irfUtil/Util.h"
-
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/EventArg.h"
 #include "Likelihood/logSrcModel.h"
