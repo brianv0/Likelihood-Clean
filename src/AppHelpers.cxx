@@ -22,6 +22,7 @@
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BandFunction.h"
 #include "Likelihood/ExposureMap.h"
+#include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
@@ -48,6 +49,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("SkyDirFunction", new SkyDirFunction(), makeClone);
    m_funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
    m_funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
+   m_funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,

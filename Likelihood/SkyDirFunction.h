@@ -48,6 +48,10 @@ public:
    double derivByParam(optimizers::Arg &, const std::string &) const
       {return 0;}
 
+   virtual SkyDirFunction * clone() const {
+      return new SkyDirFunction(*this);
+   }
+
 private:
 
    void m_init(double ra, double dec);

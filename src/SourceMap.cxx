@@ -239,6 +239,7 @@ void SourceMap::computeSrcDirs(const Pixel & pixel, Source * src) {
          astro::SkyDir srcDir;
          getCelestialDir(s_phi[j], s_mu[i], eqRot, srcDir);
          m_srcDirs.push_back(srcDir);
+/// @todo Figure out how to handle MapCubeFunctions.
          m_srcStrengths.push_back(diffuseSrc->spatialDist(srcDir));
       }
    }

@@ -101,7 +101,7 @@ public:
    }
 
 #ifndef SWIG
-   double spatialDist(SkyDirArg & dir) const {
+   double spatialDist(SkyDirArg dir) const {
       return (*m_spatialDist)(dir);
    }
 #endif
