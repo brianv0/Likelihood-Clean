@@ -53,7 +53,7 @@ std::pair<long, double*> Statistic::getColumn(const Table &tableData,
       colnames += " "; colnames += tableData[i].colname;
    }
    std::ostringstream errorMessage;
-   errorMessage << "Statistic::m_getColumn:\n"
+   errorMessage << "Statistic::getColumn:\n"
                 << "Column " << colname << " was not found in event data.\n"
                 << "Valid names are \n" << colnames << "\n";
    throw LikelihoodException(errorMessage.str());
