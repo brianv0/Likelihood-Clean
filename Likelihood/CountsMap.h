@@ -22,6 +22,10 @@ namespace evtbin {
    class Binner;
 }
 
+namespace tip {
+   class Header;
+}
+
 namespace Likelihood {
 
 /**
@@ -68,6 +72,8 @@ public:
    const std::vector<double> & data() const {
       return m_hist->data();
    }
+
+   void setKeywords(tip::Header & header) const;
 
    void getPixels(std::vector<Pixel> & pixels) const;
 

@@ -23,26 +23,26 @@ SourceMap::SourceMap(Source * src, const CountsMap & dataMap)
    std::vector<double> energies;
    dataMap.getAxisVector(2, energies);
 
-// @todo Generalize this for possible future event types, perhaps
-// making EventTypes a Singleton class in irfsInterface. For now, 0 =
-// Front, 1 = Back.
    std::cerr << "Generating SourceMap for " << m_name;
    long npts = 2*energies.size()*pixels.size();
+   m_model.resize(npts, 0);
    long icount(0);
+
+// @todo Ensure the desired event types are correctly included in this
+// calculation.
    for (int evtType = 0; evtType < 2; evtType++) {
-      std::vector<double> model;
       std::vector<double>::const_iterator energy = energies.begin();
-      for ( ; energy != energies.end(); ++energy) {
+      for (int k = 0; energy != energies.end(); ++energy, k++) {
          std::vector<Pixel>::const_iterator pixel = pixels.begin();
-         for ( ; pixel != pixels.end(); ++pixel) {
+         for (int j = 0; pixel != pixels.end(); ++pixel, j++) {
+            unsigned long indx = k*pixels.size() + j;
             if ((icount % (npts/20)) == 0) std::cerr << ".";
             Aeff aeff(src, pixel->dir(), *energy, evtType);
             double value = ExposureCube::instance()->value(pixel->dir(), aeff);
-            model.push_back(value);
+            m_model.at(indx) += value;
             icount++;
          }
       }
-      m_models.push_back(model);
    }
    std::cerr << "!" << std::endl;
 }
