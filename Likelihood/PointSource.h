@@ -131,7 +131,7 @@ public:
       if (updateExposure) computeExposure(verbose);
    }
 
-   astro::SkyDir getDir() const {return m_dir.getDir();}
+   const astro::SkyDir & getDir() const {return m_dir.getDir();}
 
    /// Angular separation between the source direction and dir in radians
    double getSeparation(const astro::SkyDir &dir) 
