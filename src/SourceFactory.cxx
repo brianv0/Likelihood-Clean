@@ -18,9 +18,10 @@
 #include "optimizers/Exception.h"
 #include "optimizers/FunctionFactory.h"
 
-#include "Likelihood/Exception.h"
-#include "Likelihood/PointSource.h"
 #include "Likelihood/DiffuseSource.h"
+#include "Likelihood/Exception.h"
+#include "Likelihood/MapCubeFunction.h"
+#include "Likelihood/PointSource.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/SpectrumFactory.h"
 #include "Likelihood/SourceFactory.h"
@@ -250,6 +251,10 @@ Source * SourceFactory::makeDiffuseSource(const DOMElement * spectrum,
       std::string fitsFile 
          = xmlBase::Dom::getAttribute(spatialModel, "file");
       dynamic_cast<SpatialMap *>(spatialDist)->readFitsFile(fitsFile);
+   } else if (type == "MapCubeFunction") {
+      std::string fitsFile 
+         = xmlBase::Dom::getAttribute(spatialModel, "file");
+      dynamic_cast<MapCubeFunction *>(spatialDist)->readFitsFile(fitsFile);
    }
    Source * src;
    try {

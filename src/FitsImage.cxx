@@ -69,6 +69,21 @@ void FitsImage::getCelestialArrays(std::vector<double> &lonArray,
    }
 }
 
+void FitsImage::getPixelBounds(unsigned int naxis,
+                               std::vector<double> & pixelBounds) const {
+   getAxisVector(naxis, pixelBounds);
+   double pixelSize = std::fabs(pixelBounds.at(1) - pixelBounds.at(0));
+   if (pixelBounds.back() > pixelBounds.front()) {
+      pixelBounds.push_back(pixelBounds.back() + pixelSize);
+      for (unsigned int i = 0; i < pixelBounds.size(); i++) {
+         pixelBounds.at(i) -= pixelSize;
+      }
+   } else {
+      pixelBounds.insert(pixelBounds.begin(),
+                         pixelBounds.front() + pixelSize);
+   }
+}
+
 bool FitsImage::haveRefCoord() {
    s_routineName = "haveRefCoord";
 

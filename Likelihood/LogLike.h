@@ -82,6 +82,10 @@ public:
 
 protected:
 
+   virtual LogLike * clone() const {
+      return new LogLike(*this);
+   }
+
    /// Event data, read from m_eventFile, stored in a map
    std::string m_eventFile;
 

@@ -36,6 +36,12 @@ public:
    double value(optimizers::Arg &) const;
    double derivByParam(optimizers::Arg &, const std::string &) const;
 
+protected:
+
+   Npred * clone() const {
+      return new Npred(*this);
+   }
+
 private:
 
    void fetchDerivs(optimizers::Arg &, std::vector<double> &derivs, 

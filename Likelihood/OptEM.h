@@ -32,6 +32,11 @@ namespace Likelihood {
     virtual ~OptEM() {};
     void findMin(const int verbose = 0);
 
+  protected:
+     virtual OptEM * clone() {
+        return new OptEM(*this);
+     }
+
   private:
 
   }; //class OptEM

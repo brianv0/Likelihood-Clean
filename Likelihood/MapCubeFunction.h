@@ -29,7 +29,26 @@ class MapCubeFunction : public optimizers::Function {
 
 public:
    
-   MapCubeFunction(const std::string & fitsFile);
+   MapCubeFunction() {
+      init();
+   }
+
+   MapCubeFunction(const std::string & fitsFile) {
+      init();
+      readFitsFile(fitsFile);
+   }
+   
+//    MapCubeFunction(const MapCubeFunction & rhs) : optimizers::Function(rhs) {
+//       m_coordSys = rhs.m_coordSys;
+//       m_image = rhs.m_image;
+//       m_lon = rhs.m_lon;
+//       m_lonMin = rhs.m_lonMin;
+//       m_lonMax = rhs.m_lonMax;
+//       m_lat = rhs.m_lat;
+//       m_latMin = rhs.m_latMin;
+//       m_latMax = rhs.m_latMax;
+//       m_energies = rhs.m_energies;
+//    }
 
    virtual ~MapCubeFunction() {}
 
@@ -41,6 +60,12 @@ public:
       return value(dir)/getParamValue(paramName);
    }
 
+   virtual MapCubeFunction * clone() const {
+      return new MapCubeFunction(*this);
+   }
+
+   void readFitsFile(const std::string & fitsFile);
+
 private:
 
    std::string m_coordSys;
@@ -50,6 +75,8 @@ private:
    std::vector<double> m_lat;
    double m_latMin, m_latMax;
    std::vector<double> m_energies;
+
+   void init();
 
    void readEnergyVector(const std::string & fitsFile);
 
