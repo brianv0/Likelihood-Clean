@@ -87,6 +87,8 @@ class Source(object):
                 lines.append(prefix + item + ": " + self[item].genericName())
                 lines.append(self[item].__repr__(prefix, free_only))
         return "\n".join(lines) + "\n"
+    def __getattr__(self, attrname):
+        return getattr(self.src, attrname)
 
 class Function(object):
     def __init__(self, func):
