@@ -14,6 +14,8 @@
 #include <utility>
 #include <cmath>
 
+#include "xml/Dom.h"
+
 #include "astro/SkyDir.h"
 
 #include "latResponse/AcceptanceCone.h"
@@ -73,7 +75,11 @@ public:
    static void setCuts(std::string xmlFile);
 
    /// Write to xml file
-   void writeXml(std::string xmlFile, const std::string &roiTitle);
+   void writeXml(std::string xmlFile, const std::string &roiTitle="");
+
+   /// Write to a stream.
+   void writeXml(std::ostream & ostr, const std::string &roiTitle="",
+                 bool pretty=false);
 
    /// Apply these cuts to an Event
    bool accept(const Event &);
@@ -101,6 +107,9 @@ private:
 
    /// cosine of the maximum Zenith angle
    static double s_muZenMax;
+
+   /// Create a root DomElement for the current set of cuts.
+   DomElement * rootDomElement(const std::string & roiTitle);
 
 };
 

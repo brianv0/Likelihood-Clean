@@ -18,10 +18,6 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Event.h"
 
-namespace map_tools {
-   class Exposure;
-}
-
 namespace Likelihood {
 
 /** 
@@ -129,32 +125,6 @@ public:
       return new PointSource(*this);
    }
 
-   /**
-    * @class Aeff
-    *
-    * @brief Functor class to calculate PointSource exposure using a
-    * map_tools exposure time hypercube.
-    *
-    */
-   class Aeff : public map_tools::Exposure::Aeff {
-
-   public:
-
-      Aeff(double energy, const astro::SkyDir &srcDir) 
-         : m_energy(energy), m_srcDir(srcDir) {}
-
-      virtual ~Aeff() {}
-
-      virtual double operator()(double cos_theta) const;
-
-   private:
-
-      double m_energy;
-
-      astro::SkyDir m_srcDir;
-
-   };
-
 private:
 
    /// Static data member containing the exposure time hypercube object,
@@ -199,6 +169,36 @@ private:
 
    /// method to create a logrithmically spaced grid given RoiCuts
    static void makeEnergyVector(int nee = 100);
+
+   /// Method to compute effective area for the computeExposure time
+   /// integrals (when exposure time hypercubes are not available.)
+   double sourceEffArea(double energy, double time) const;
+
+   /**
+    * @class Aeff
+    *
+    * @brief Functor class to calculate PointSource exposure using a
+    * map_tools exposure time hypercube.
+    *
+    */
+   class Aeff : public map_tools::Exposure::Aeff {
+
+   public:
+
+      Aeff(double energy, const astro::SkyDir &srcDir) 
+         : m_energy(energy), m_srcDir(srcDir) {}
+
+      virtual ~Aeff() {}
+
+      virtual double operator()(double cos_theta) const;
+
+   private:
+
+      double m_energy;
+
+      astro::SkyDir m_srcDir;
+
+   };
 
 };
 
