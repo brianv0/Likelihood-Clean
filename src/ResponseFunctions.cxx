@@ -16,6 +16,8 @@ ResponseFunctions * ResponseFunctions::s_instance = 0;
 std::map<unsigned int, irfInterface::Irfs *> ResponseFunctions::s_respPtrs;
 
 bool ResponseFunctions::s_useEdisp(false);
+
+std::string ResponseFunctions::s_respName("");
    
 double ResponseFunctions::totalResponse(double time, 
                                         double energy, double appEnergy,

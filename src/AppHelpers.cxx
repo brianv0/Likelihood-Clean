@@ -92,6 +92,7 @@ void AppHelpers::createResponseFuncs() {
    IrfsFactory * myFactory = IrfsFactory::instance();
 
    std::string responseFuncs = m_pars["rspfunc"];
+   ResponseFunctions::setRespName(responseFuncs);
 
    typedef std::map< std::string, std::vector<std::string> > respMap;
    const respMap & responseIds = irfLoader::Loader::respIds();

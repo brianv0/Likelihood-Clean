@@ -33,6 +33,14 @@
 
 #include "Verbosity.h"
 
+namespace {
+   std::string sourceName(const std::string & name) {
+      std::vector<std::string> tokens;
+      facilities::Util::stringTokenize(name, "::", tokens);
+      return tokens.at(1);
+   }
+}
+
 namespace Likelihood {
 
 std::vector<std::string> LogLike::s_FT1_columns;
@@ -203,14 +211,18 @@ void LogLike::getEvents(std::string event_file) {
          m_events.push_back(thisEvent);
          for (std::vector<std::string>::iterator name = diffuseNames.begin();
               name != diffuseNames.end(); ++name) {
+// The column name for a diffuse response has the IRF name prepended.
+// Strip the IRF name and use the underlying diffuse component name
+// in setDiffuseResponse.
+            std::string srcName = ::sourceName(*name);
             std::vector<double> gaussianParams;
             if (ResponseFunctions::useEdisp()) {
                try {
                   event[*name].get(gaussianParams);
-                  m_events.back().setDiffuseResponse(*name, gaussianParams);
+                  m_events.back().setDiffuseResponse(srcName, gaussianParams);
                } catch (tip::TipException & eObj) {
                   std::string message(eObj.what());
-                  if (message.find_first_of("FitsColumn::getVector") ==
+                  if (message.find("FitsColumn::getVector") ==
                       std::string::npos) {
                      throw;
                   }
@@ -218,13 +230,14 @@ void LogLike::getEvents(std::string event_file) {
             } else {
                try {
                   event[*name].get(gaussianParams);
-                  m_events.back().setDiffuseResponse(*name, gaussianParams[0]);
+                  m_events.back().setDiffuseResponse(srcName,
+                                                     gaussianParams[0]);
                } catch (tip::TipException &eObj) {
                   std::string message(eObj.what());
-                  if (message.find_first_of("FitsColumn::getVector") !=
+                  if (message.find("FitsColumn::getVector") !=
                       std::string::npos) {
                      event[*name].get(respValue);
-                     m_events.back().setDiffuseResponse(*name, respValue);
+                     m_events.back().setDiffuseResponse(srcName, respValue);
                   } else {
                      throw;
                   }
@@ -253,7 +266,8 @@ void LogLike::setFT1_columns() {
                         + "recon_version calib_version imgoodcalprob "
                         + std::string("imvertexprob imcoreprob impsferrpred ")
                         + "calenergysum caltotrln imgammaprob "
-                        + std::string("conversion_point conversion_layer"));
+                        + std::string("conversion_point conversion_layer ")
+                        + "pulse_phase");
    facilities::Util::stringTokenize(colnames, " ", s_FT1_columns);
 }
 
