@@ -129,6 +129,9 @@ void TsMap::readEventData() {
    std::vector<std::string> eventFiles;
    st_facilities::Util::file_ok(m_pars["evfile"]);
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], eventFiles);
+   for (unsigned int i = 1; i < eventFiles.size(); i++) {
+      AppHelpers::checkCuts(eventFiles[0], "EVENTS", eventFiles[i], "EVENTS");
+   }
    std::vector<std::string>::const_iterator evIt = eventFiles.begin();
    for ( ; evIt != eventFiles.end(); evIt++) {
       st_facilities::Util::file_ok(*evIt);
