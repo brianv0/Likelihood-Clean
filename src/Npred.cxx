@@ -46,7 +46,7 @@ void Npred::buildParameterVector(optimizers::Arg &x) const {
 
    Source::FuncMap srcFuncs = src->getSrcFuncs();
    Source::FuncMap::const_iterator func_it = srcFuncs.begin();
-   for (; func_it != srcFuncs.end(); func_it++) {
+   for (; func_it != srcFuncs.end(); ++func_it) {
       std::vector<optimizers::Parameter> params;
       (*func_it).second->getParams(params);
       for (unsigned int i = 0; i < params.size(); i++)

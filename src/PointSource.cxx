@@ -81,6 +81,7 @@ double PointSource::fluxDensity(double energy, double time,
 
 double PointSource::fluxDensity(double inclination, double phi, double energy, 
                                 double separation, int evtType) const {
+// @todo add implementation for energy dispersion.
    optimizers::dArg energy_arg(energy);
    double spectrum = (*m_spectrum)(energy_arg);
    return ResponseFunctions::totalResponse(inclination, phi, energy, energy, 
@@ -116,6 +117,24 @@ double PointSource::fluxDensityDeriv(double energy, double time,
                                                  eventType)
             *m_spectrum->derivByParam(energy_arg, paramName);
       }
+   }
+}
+
+double PointSource::
+fluxDensityDeriv(double inclination, double phi, double energy,
+                 double separation, int evtType, 
+                 const std::string & paramName) const {
+// For now, just implement for spectral Parameters and neglect
+// the spatial ones, "longitude" and "latitude"
+   if (paramName == "Prefactor") {
+      return fluxDensity(inclination, phi, energy, separation, evtType)
+         /m_spectrum->getParamValue("Prefactor");
+   } else {
+// @todo Implement for finite energy resolution case.
+      optimizers::dArg energy_arg(energy);
+      return ResponseFunctions::totalResponse(inclination, phi, energy, 
+                                              energy, separation, evtType)
+         *m_spectrum->derivByParam(energy_arg, paramName);
    }
 }
 
