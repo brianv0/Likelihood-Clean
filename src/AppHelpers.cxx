@@ -19,14 +19,14 @@
 #include "dataSubselector/CutBase.h"
 #include "dataSubselector/Cuts.h"
 
+#include "Likelihood/AppHelpers.h"
+#include "Likelihood/BandFunction.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SpatialMap.h"
-
-#include "Likelihood/AppHelpers.h"
 
 using irfInterface::IrfsFactory;
 
@@ -47,6 +47,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory = new optimizers::FunctionFactory;
    m_funcFactory->addFunc("SkyDirFunction", new SkyDirFunction(), makeClone);
    m_funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
+   m_funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
