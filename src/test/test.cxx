@@ -69,14 +69,14 @@ class LikelihoodTests : public CppUnit::TestFixture {
 
    CPPUNIT_TEST_SUITE(LikelihoodTests);
 
-//    CPPUNIT_TEST(test_RoiCuts);
-//    CPPUNIT_TEST(test_SourceFactory);
-//    CPPUNIT_TEST(test_XmlBuilders);
-//    CPPUNIT_TEST(test_SourceModel);
-//    CPPUNIT_TEST(test_SourceDerivs);
-//    CPPUNIT_TEST(test_SourceModel);
-//    CPPUNIT_TEST(test_PointSource);
-//    CPPUNIT_TEST(test_DiffuseSource);
+   CPPUNIT_TEST(test_RoiCuts);
+   CPPUNIT_TEST(test_SourceFactory);
+   CPPUNIT_TEST(test_XmlBuilders);
+   CPPUNIT_TEST(test_SourceModel);
+   CPPUNIT_TEST(test_SourceDerivs);
+   CPPUNIT_TEST(test_SourceModel);
+   CPPUNIT_TEST(test_PointSource);
+   CPPUNIT_TEST(test_DiffuseSource);
    CPPUNIT_TEST(test_BinnedLikelihood);
    
    CPPUNIT_TEST_SUITE_END();
