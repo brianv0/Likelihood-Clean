@@ -5,12 +5,18 @@
  * $Header$
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
+
 #ifndef Mcmc_h
 #define Mcmc_h
 
 #include <vector>
+#include <string>
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Statistic.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
@@ -60,6 +66,11 @@ public:
    void getTransitionWidths(std::vector<double> &transitionWidths)
       {transitionWidths = m_transitionWidths;}
 
+   //! write samples to a FITS binary table
+   static void writeSamples(std::string filename, 
+                            std::vector< std::vector<double> > &samples)
+      throw(LikelihoodException);
+
 private:
 
    Statistic *m_stat;
@@ -68,8 +79,7 @@ private:
 
    std::vector<double> m_transitionWidths;
 
-   void estimateTransWidths(Statistic *stat, 
-                            std::vector<double> &transitionWidths);
+   void estimateTransWidths();
 
    double drawValue(Parameter &param, double transitionWidth, 
                     double &transProbRatio);
