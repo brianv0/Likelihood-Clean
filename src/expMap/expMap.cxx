@@ -73,6 +73,7 @@ ExpMap::ExpMap() : st_app::StApp(), m_helper(0),
 }
 
 void ExpMap::run() {
+   m_helper->setRoi();
    setSourceRegion();
    createExposureMap();
 }

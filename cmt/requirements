@@ -24,6 +24,7 @@ apply_pattern ST_app name=likelihood
 apply_pattern ST_app name=expMap
 apply_pattern ST_app name=TsMap
 apply_pattern ST_app name=makeExposureCube
+apply_pattern ST_app name=diffuseResponses
 
 private
 

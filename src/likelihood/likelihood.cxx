@@ -104,6 +104,7 @@ likelihood::likelihood()
 }
 
 void likelihood::run() {
+   m_helper->setRoi();
    m_helper->readExposureMap();
    createStatistic();
    readEventData();
@@ -189,8 +190,8 @@ void likelihood::selectOptimizer() {
 #ifdef HAVE_OPT_PP
    } else if (optimizer == "OPTPP") {
       m_opt = new optimizers::OptPP(*m_logLike);
-   }
 #endif // HAVE_OPT_PP
+   }
    if (m_opt == 0) {
       throw std::invalid_argument("Invalid optimizer choice: " + optimizer);
    }
