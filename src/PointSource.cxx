@@ -142,7 +142,7 @@ void PointSource::computeExposure(std::vector<double> &energies,
    }
    unsigned int npts = scData->vec.size()-1;
    for (unsigned int it = 0; it < npts; it++) {
-      if (((it % (npts/20)) == 0) && verbose) std::cerr << ".";
+      if (npts/20 > 0 && ((it % (npts/20)) == 0) && verbose) std::cerr << ".";
       bool includeInterval = true;
 
 // Check if this interval passes the time cuts

@@ -74,6 +74,8 @@ private:
 
    static ExposureMap * s_instance;
 
+   static bool s_haveExposureMap;
+
    //! s_ra and s_dec are valarrays of size NAXIS1*NAXIS2.
    //! Traversing these valarrays in tandem yields all coordinate pairs
    //! of the image plane.
@@ -88,7 +90,7 @@ private:
    //! exposure data cube.
    static std::vector< std::valarray<double> > s_exposure;
 
-   static FitsImage *s_mapData;
+   static FitsImage s_mapData;
 
    //! write the FITS image file produced by computeMap()
    static void writeFitsFile(const std::string &filename,
