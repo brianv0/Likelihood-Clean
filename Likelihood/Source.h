@@ -128,6 +128,9 @@ protected:
    /// map of Functions describing this source
    FuncMap m_functions;
 
+   /// flag to indicate if energy dispersion is to be used.
+   bool m_useEdisp;
+
 };
 
 } // namespace Likelihood
