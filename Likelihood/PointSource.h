@@ -9,11 +9,12 @@
 #ifndef Likelihood_PointSource_h
 #define Likelihood_PointSource_h
 
-#include "Likelihood/Source.h"
 #include "optimizers/Function.h"
+#include "optimizers/dArg.h"
+
+#include "Likelihood/Source.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Event.h"
-#include "optimizers/dArg.h"
 
 namespace Likelihood {
 
@@ -55,18 +56,20 @@ public:
    //! Returns photons/cm^2-s-sr-MeV having been convolved through
    //! the LAT instrument response
    double fluxDensity(const Event &evt) const
-      {return fluxDensity(evt.getEnergy(), evt.getArrTime(), evt.getDir());}
+      {return fluxDensity(evt.getEnergy(), evt.getArrTime(), evt.getDir(),
+                          evt.getType());}
 
    double fluxDensity(double energy, double time,
-                      const astro::SkyDir &dir) const;
+                      const astro::SkyDir &dir, int eventType=2) const;
 
    //! Returns the derivative wrt to the named Parameter
-   double fluxDensityDeriv(const Event &evt, const std::string &paramName) const
+   double fluxDensityDeriv(const Event &evt, 
+                           const std::string &paramName) const
       {return fluxDensityDeriv(evt.getEnergy(), evt.getArrTime(), 
-                               evt.getDir(), paramName);}
+                               evt.getDir(), evt.getType(), paramName);}
 
    double fluxDensityDeriv(double energy, double time,
-                           const astro::SkyDir &dir,
+                           const astro::SkyDir &dir, int eventType,
                            const std::string &paramName) const;
 
    //! Predicted number of photons given RoiCuts and ScData
