@@ -119,7 +119,7 @@ int main(int iargc, char* argv[]) {
 
 // Select an optimizer.
    std::string optimizer = params.string_par("optimizer");
-   optimizers::Optimizer *myOpt;
+   optimizers::Optimizer *myOpt = 0;
    if (optimizer == "LBFGS") {
       myOpt = new optimizers::Lbfgs(logLike);
    } else if (optimizer == "MINUIT") {
