@@ -51,9 +51,9 @@ public:
    
    long imageDimension(int idim) const;
 
-   void getAxisVector(int idim, std::vector<double> axisVector) const;
+   void getAxisVector(int idim, std::vector<double> & axisVector) const;
 
-   bool use_lb() const {return m_use_lb;}
+   const astro::SkyProj & projection() const {return *m_proj;}
 
 protected:
 
