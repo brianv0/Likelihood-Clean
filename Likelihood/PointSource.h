@@ -179,6 +179,7 @@ private:
    /// integrals (when exposure time hypercubes are not available.)
    double sourceEffArea(double energy, double time) const;
 
+#ifndef SWIG
    /**
     * @class Aeff
     *
@@ -204,6 +205,7 @@ private:
       astro::SkyDir m_srcDir;
 
    };
+#endif
 
 };
 
