@@ -15,6 +15,7 @@
 #include "hoops/hoops_pil.h"
 #include "hoops/hoops_exception.h"
 
+#include <map>
 #include <string>
 #include <iostream>
 
@@ -42,6 +43,9 @@ public:
 
    template <typename T> 
    void getParam(const std::string &name, T &value) const {
+// Failure to return an object of the requested type T is a logic
+// error in the calling routine and is therefore considered
+// unrecoverable in this context, hence the assertions.
       try {
          T my_value = (m_prompter->Group())[name];
          value = my_value;
@@ -73,6 +77,10 @@ public:
 private:
 
    hoops::IParPrompt * m_prompter;
+
+   std::map<int, std::string> m_pil_errors;
+
+   void errorCodes();
 
 };
 
