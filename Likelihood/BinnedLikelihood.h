@@ -68,8 +68,8 @@ public:
 
    virtual CountsMap * createCountsMap() const;
 
-   const SourceMap * sourceMap(const std::string & name) const {
-      return m_srcMaps.find(name)->second;
+   const SourceMap & sourceMap(const std::string & name) const {
+      return *(m_srcMaps.find(name)->second);
    }
 
    void saveSourceMaps(const std::string & filename="");
