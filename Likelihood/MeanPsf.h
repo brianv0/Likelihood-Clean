@@ -44,6 +44,8 @@ public:
    ///        currently unused (degrees)
    double operator()(double energy, double theta, double phi=0) const;
 
+   void write(const std::string & filename) const;
+
 private:
 
    static std::vector<double> s_separations;

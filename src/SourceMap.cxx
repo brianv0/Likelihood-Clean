@@ -195,6 +195,7 @@ double SourceMap::sourceRegionIntegral(Source * src, const Pixel & pixel,
       double ra = m_dataMap->mapCenter().ra();
       double dec = m_dataMap->mapCenter().dec();
       s_meanPsf = new MeanPsf(ra, dec, energies);
+      s_meanPsf->write("mean_psf.dat");
    }
    if (s_binnedExposure == 0) {
       s_binnedExposure = new BinnedExposure(energies);
