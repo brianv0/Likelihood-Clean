@@ -49,7 +49,7 @@ double PointSource::fluxDensity(double energy, double time,
    dArg energy_arg(energy);
    double spectrum = (*m_spectrum)(energy_arg);
    double psf_val = (*psf)(dir, energy, m_dir.getDir(), time);
-   double aeff_val = (*aeff)(energy, dir, time);
+   double aeff_val = (*aeff)(energy, m_dir.getDir(), time);
 
    return spectrum*psf_val*aeff_val;
 }
@@ -69,7 +69,7 @@ double PointSource::fluxDensityDeriv(double energy, double time,
 
       dArg energy_arg(energy);
       double psf_val = (*psf)(dir, energy, m_dir.getDir(), time);
-      double aeff_val = (*aeff)(energy, dir, time);
+      double aeff_val = (*aeff)(energy, m_dir.getDir(), time);
       return psf_val*aeff_val*m_spectrum->derivByParam(energy_arg, paramName);
    }
 }
