@@ -24,6 +24,7 @@
 int main(int argc, char * argv[]) {
    hoops::ParPromptGroup pars(argc, argv);
    pars.Prompt();
+   pars.Save();
 
 // The LikeExposure object is a data cube of exposure times in 
 // (ra, dec, cost_theta):

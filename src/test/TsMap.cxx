@@ -118,6 +118,7 @@ public:
    Parameters(int iargc, char* argv[]) 
       : hoops::ParPromptGroup(iargc, argv) {
       Prompt();
+      Save();
       m_scHdu = (*this)["Spacecraft_file_hdu"];
       m_eventHdu = (*this)["event_file_hdu"];
       m_nlon = (*this)["Number_of_longitude_points"];
@@ -177,6 +178,8 @@ int main(int iargc, char* argv[]) {
       responseIds["BACK"].push_back("DC1::Back");
       responseIds["FRONT/BACK"].push_back("DC1::Front");
       responseIds["FRONT/BACK"].push_back("DC1::Back");
+      responseIds["GLAST25"].push_back("Glast25::Front");
+      responseIds["GLAST25"].push_back("Glast25::Back");
 
       if (responseIds.count(pars.respFuncs())) {
          std::vector<std::string> &resps = responseIds[pars.respFuncs()];

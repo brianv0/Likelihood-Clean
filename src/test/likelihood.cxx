@@ -117,6 +117,7 @@ int main(int iargc, char* argv[]) {
    try {
       hoops::ParPromptGroup pars(iargc, argv);
       pars.Prompt();
+      pars.Save();
 
 // Set the region-of-interest.
       std::string roiCutsFile = pars["ROI_cuts_file"];
