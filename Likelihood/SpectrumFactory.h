@@ -12,9 +12,10 @@
 #include <string>
 #include <map>
 
-#include "PowerLaw.h"
-#include "Gaussian.h"
-#include "AbsEdge.h"
+#include "optimizers/../src/PowerLaw.h"
+#include "optimizers/../src/Gaussian.h"
+#include "optimizers/../src/AbsEdge.h"
+
 #include "Likelihood/Exception.h"
 
 namespace optimizers {
@@ -44,9 +45,9 @@ class SpectrumFactory {
 public:
 
    SpectrumFactory() {
-      addFunc("PowerLaw", new PowerLaw(), false);
-      addFunc("Gaussian", new Gaussian(), false);
-      addFunc("AbsEdge", new AbsEdge(), false);
+      addFunc("PowerLaw", new optimizers::PowerLaw(), false);
+      addFunc("Gaussian", new optimizers::Gaussian(), false);
+      addFunc("AbsEdge", new optimizers::AbsEdge(), false);
    }
 
    virtual ~SpectrumFactory();

@@ -114,6 +114,21 @@ public:
       }
    }
 
+// Static methods for parsing filename parameters.
+
+   /// @param filename This can be a FITS file or a list of FITS
+   ///                 files.  
+   /// @param files On return, this contains the list of FITS files,
+   ///              or the filename itself as its only element.
+   static void resolve_fits_files(std::string filename, 
+                                  std::vector<std::string> &files);
+
+   /// @param inputFile The name of the file containing a list of strings
+   ///                  separated by '\n'.
+   /// @param lines On return, this contains the list of strings.
+   static void readLines(std::string inputFile, 
+                         std::vector<std::string> &lines);
+
 private:
 
    hoops::IParPrompt * m_prompter;
