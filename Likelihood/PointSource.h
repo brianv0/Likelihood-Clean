@@ -82,6 +82,13 @@ public:
       if (updateExposure) computeExposure();
    }
 
+   //! Set source location using Galactic coordinates
+   void setGalDir(double l, double b, bool updateExposure = true) {
+      m_dir = SkyDirFunction(astro::SkyDir(l, b, astro::SkyDir::GALACTIC));
+      m_functions["Position"] = &m_dir;
+      if (updateExposure) computeExposure();
+   }
+
    //! Set source location via SkyDir class
    void setDir(const astro::SkyDir &dir, bool updateExposure = true) {
       m_dir = SkyDirFunction(dir);
