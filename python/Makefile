@@ -25,7 +25,7 @@ INCLUDE = -I$(LIKELIHOODROOT)\
 	-I$(EVTBINROOT)\
 	-I$(TIPROOT)\
 	-I$(MAP_TOOLSROOT)\
-	-I$(XMLROOT)\
+	-I$(XMLBASEROOT)\
 	-I$(ST_FACILITIESROOT)\
 	-I$(FACILITIESROOT)\
 	-I$(ST_FACILITIESROOT)\
@@ -47,7 +47,7 @@ LIBS = -L../$(BINDIR)/ -lLikelihoodLib\
 	-L$(OPTIMIZERSROOT)/$(BINDIR) -loptimizersLib\
 	-L$(EVTBINROOT)/$(BINDIR) -levtbinLib\
 	-L$(TIPROOT)/$(BINDIR) -ltipLib\
-	-L$(XMLROOT)/$(BINDIR) -lxml\
+	-L$(XMLBASEROOT)/$(BINDIR) -lxmlBase\
 	-L$(ST_FACILITIESROOT)/$(BINDIR) -lst_facilitiesLib\
 	-L$(FACILITIESROOT)/$(BINDIR) -lfacilities\
 	-L$(GLAST_EXT)/cfitsio/v2470/lib -lcfitsio\
@@ -68,7 +68,10 @@ ${module_base}_wrap.o: ${module_base}_wrap.cxx
 	${CXX} -c ${CFLAGS} ${INCLUDE} -I${PYINCLUDE} $<
 
 ${module_base}_wrap.cxx: ${module_base}.i
-	${SWIG} -runtime -python -c++ ${module_base}.i
+	${SWIG} -python -c++ ${module_base}.i
+
+${module_base}.i: ${module_base}.in
+	python setup.py $<
 
 anew:
 	make clean
