@@ -244,7 +244,6 @@ Source * SourceFactory::makeDiffuseSource(const DomElement &spectrum,
    if (type == "SpatialMap") {
       std::string fitsFile 
          = xml::Dom::getAttribute(spatialModel, "file");
-      facilities::Util::expandEnvVar(&fitsFile);
       dynamic_cast<SpatialMap *>(spatialDist)->readFitsFile(fitsFile);
    }
    Source *src;
