@@ -10,7 +10,7 @@ import os, sys
 import numarray as num
 sys.path.insert(0, os.path.join(os.environ['LIKELIHOODROOT'], 'python'))
 import pyLike as Likelihood
-#import hippoplotter as plot
+import hippoplotter as plot
 
 _funcFactory = Likelihood.SourceFactory_funcFactory()
 
