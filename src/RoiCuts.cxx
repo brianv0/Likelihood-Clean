@@ -115,7 +115,7 @@ void RoiCuts::setCuts(std::string xmlFile) {
        == std::string("Galactic")) {
       roiCenter = astro::SkyDir(lon, lat, astro::SkyDir::GALACTIC);
    } else {
-      roiCenter = astro::SkyDir(lon, lat, astro::SkyDir::CELESTIAL);
+      roiCenter = astro::SkyDir(lon, lat, astro::SkyDir::EQUATORIAL);
    }
    double roiRadius 
       = atof(xml::Dom::getAttribute(child[0], "radius").c_str());
