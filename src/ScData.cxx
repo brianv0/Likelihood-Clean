@@ -20,8 +20,9 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
-// This include is temporary until tip provides the required access methods.
-#include "latResponse/../src/DC1.h"
+// // This include is temporary until tip provides the required access methods.
+// #include "latResponse/../src/DC1.h"
+#include "irfUtil/Util.h"
 
 #include "astro/EarthCoordinate.h"
 
@@ -97,7 +98,8 @@ void ScData::readData(std::string file, int hdu, bool clear) {
    s_scHdu = hdu;
 
    std::string extName;
-   latResponse::DC1::getFitsHduName(file, hdu, extName);
+//    latResponse::DC1::getFitsHduName(file, hdu, extName);
+   irfUtil::Util::getFitsHduName(file, hdu, extName);
    tip::Table * my_table = tip::IFileSvc::instance().editFile(file, extName);
    tip::Table::Iterator it = my_table->begin();
    tip::Table::Record & row = *it;

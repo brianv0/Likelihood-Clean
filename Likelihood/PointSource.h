@@ -20,7 +20,8 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Event.h"
 
-namespace latResponse {
+// namespace latResponse {
+namespace irfInterface {
    class AcceptanceCone;
 }
 
@@ -210,7 +211,8 @@ private:
       double m_energy;
       astro::SkyDir m_srcDir;
 
-      static std::vector<latResponse::AcceptanceCone *> s_cones;
+//       static std::vector<latResponse::AcceptanceCone *> s_cones;
+      static std::vector<irfInterface::AcceptanceCone *> s_cones;
       static double s_emin, s_emax;
    };
 #endif
