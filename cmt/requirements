@@ -37,3 +37,10 @@ private
 use hoops v*
 use st_app v*
 #use st_graph v*
+
+use SwigPolicy v*
+
+path_remove PYTHONPATH Likelihood
+path_append PYTHONPATH $(LIKELIHOODROOT)/$(BINDIR)
+
+apply_pattern swig_module name="pyLike"
