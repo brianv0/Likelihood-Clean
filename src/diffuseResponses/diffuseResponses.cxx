@@ -106,7 +106,6 @@ void diffuseResponses::promptForParameters() {
    m_pars.Prompt("evfile");
    m_pars.Prompt("scfile");
    m_pars.Prompt("source_model_file");
-   m_pars.Prompt("ROI_file");
    m_pars.Prompt("rspfunc");
    m_pars.Save();
 }

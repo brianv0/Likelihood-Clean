@@ -118,6 +118,10 @@ void likelihood::run() {
       std::string eventFile = m_pars["evfile"];
       st_facilities::Util::file_ok(eventFile);
       st_facilities::Util::resolve_fits_files(eventFile, m_eventFiles);
+      for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
+         AppHelpers::checkCuts(m_eventFiles[0], "EVENTS", m_eventFiles[i],
+                               "EVENTS");
+      }
    }
    createStatistic();
 
