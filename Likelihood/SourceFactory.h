@@ -11,15 +11,14 @@
 
 #include <string>
 #include <map>
+
+#include "xml/Dom.h"
+
 #include "Likelihood/Source.h"
 #include "Likelihood/Exception.h"
 
-class DOM_Element;
-
 namespace optimizers {
-
-class FunctionFactory;
-
+   class FunctionFactory;
 }
 
 namespace Likelihood {
@@ -67,15 +66,15 @@ private:
 
    std::map<std::string, Source *> m_prototypes;
 
-   Source *makePointSource(const DOM_Element &spectrum,
-                           const DOM_Element &spatialModel,
+   Source *makePointSource(const DomElement &spectrum,
+                           const DomElement &spatialModel,
                            optimizers::FunctionFactory &funcFactory);
 
-   Source *makeDiffuseSource(const DOM_Element &spectrum,
-                             const DOM_Element &spatialModel,
+   Source *makeDiffuseSource(const DomElement &spectrum,
+                             const DomElement &spatialModel,
                              optimizers::FunctionFactory &funcFactory);
 
-   void setSpectrum(Source *src, const DOM_Element &spectrum,
+   void setSpectrum(Source *src, const DomElement &spectrum,
                     optimizers::FunctionFactory &funcFactory);
 
 };
