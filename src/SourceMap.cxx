@@ -21,7 +21,6 @@
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/DiffuseSource.h"
-#include "Likelihood/ExposureCube.h"
 #include "Likelihood/FitsImage.h"
 #include "Likelihood/MeanPsf.h"
 #include "Likelihood/PointSource.h"

@@ -24,6 +24,7 @@
 #include "tip/Image.h"
 
 #include "Likelihood/AppHelpers.h"
+#include "Likelihood/ExposureCube.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/RoiCuts.h"
 
@@ -124,16 +125,16 @@ void ExpMap::createExposureMap() {
    std::string expCubeFile = m_pars["exposure_cube_file"];
    if (expCubeFile != "none") {
       st_facilities::Util::file_ok(expCubeFile);
-      m_helper->observation().expCube().readExposureCube(expCubeFile);
+      ExposureCube & expCube = 
+         const_cast<ExposureCube &>(m_helper->observation().expCube());
+      expCube.readExposureCube(expCubeFile);
    }
    std::string exposureFile = m_pars["outfile"];
    const Observation & observation = m_helper->observation();
    const RoiCuts & roiCuts = observation.roiCuts();
-   m_helper->observation().expMap().ExposureMap::computeMap(exposureFile,
-                                                            observation,
-                                                            m_srRadius,
-                                                            nlong, nlat,
-                                                            nenergies); 
+   m_helper->observation().expMap().computeMap(exposureFile, observation,
+                                               m_srRadius, nlong, nlat,
+                                               nenergies); 
 
    std::auto_ptr<tip::Image> 
       image(tip::IFileSvc::instance().editImage(exposureFile, ""));
