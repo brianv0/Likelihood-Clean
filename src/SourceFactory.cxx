@@ -72,7 +72,7 @@ SourceFactory::SourceFactory() {
       ourGalaxy.setSpectrum(&gal_pl);
 
       addSource("Milky Way", &ourGalaxy, true);
-   } catch (Function::ParameterNotFound &eObj) {
+   } catch (ParameterNotFound &eObj) {
       std::cerr << eObj.what() << std::endl;
       throw;
    } catch (LikelihoodException &likeException) {
@@ -98,7 +98,7 @@ SourceFactory::SourceFactory() {
       extragalactic.setSpectrum(&eg_pl);
 
       addSource("EG component", &extragalactic, true);
-   } catch (Function::ParameterNotFound &eObj) {
+   } catch (ParameterNotFound &eObj) {
       std::cerr << eObj.what() << std::endl;
       throw;
    } catch (LikelihoodException &likeException) {
