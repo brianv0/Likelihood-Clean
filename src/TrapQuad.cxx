@@ -1,4 +1,5 @@
-/** @file TrapQuad.cxx
+/** 
+ * @file TrapQuad.cxx
  * @brief Implementation of the TrapQuad class, which performs simple 1D 
  * trapezoidal quadrature.
  *
@@ -10,26 +11,29 @@
 #include "Likelihood/TrapQuad.h"
 #include "Likelihood/dArg.h"
 
-#include <iostream>
+#include <sstream>
 
 namespace Likelihood {
 
-double TrapQuad::integral() {
+double TrapQuad::integral() throw(LikelihoodException) {
    if (m_haveFunc) {
-      std::cerr << "TrapQuad::integral:  This operation requires "
-                << "instantiation with abscissa and ordinate vectors." 
-                << std::endl;
-      return 0;
+      std::ostringstream errorMessage;
+      errorMessage << "TrapQuad::integral:\n"
+                   << "This operation requires "
+                   << "instantiation with abscissa and ordinate vectors.\n";
+      throw LikelihoodException(errorMessage.str());
    }
    return compute_integral();
 }
 
-double TrapQuad::integral(double xmin, double xmax, int npts) {
+double TrapQuad::integral(double xmin, double xmax, int npts) 
+   throw(LikelihoodException) {
    if (!m_haveFunc) {
-      std::cerr << "TrapQuad::integral:  This operation requires "
-                << "instantiation with a pointer to a Function object."
-                << std::endl;
-      return 0;
+      std::ostringstream errorMessage;
+      errorMessage << "TrapQuad::integral:\n"
+                   << "This operation requires "
+                   << "instantiation with a pointer to a Function object.\n";
+      throw LikelihoodException(errorMessage.str());
    }
    m_x.clear();
    m_y.clear();
@@ -44,12 +48,14 @@ double TrapQuad::integral(double xmin, double xmax, int npts) {
    return compute_integral();
 }
 
-double TrapQuad::integral(std::vector<double> &xvals) {
+double TrapQuad::integral(std::vector<double> &xvals) 
+   throw(LikelihoodException) {
    if (!m_haveFunc) {
-      std::cerr << "TrapQuad::integral:  This operation requires "
-                << "instantiation with a pointer to a Function object."
-                << std::endl;
-      return 0;
+      std::ostringstream errorMessage;
+      errorMessage << "TrapQuad::integral:\n"
+                   << "This operation requires "
+                   << "instantiation with a pointer to a Function object.\n";
+      throw LikelihoodException(errorMessage.str());
    }
    m_x = xvals;
    int npts = m_x.size();
