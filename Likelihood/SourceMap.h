@@ -41,6 +41,10 @@ public:
    const std::vector<double> & model() const {return m_model;}
 
    const std::vector<double> & npreds() const {return m_npreds;}
+   
+   static void setBinnedExposure(const std::string & filename) {
+      s_binnedExposure = new BinnedExposure(filename);
+   }
 
 private:
 
