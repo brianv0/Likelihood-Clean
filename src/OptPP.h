@@ -1,4 +1,5 @@
-/** @file OptPP.h
+/** 
+ * @file OptPP.h
  * @brief OptPP declaration
  * @author J. Chiang
  *
@@ -11,7 +12,7 @@
 #include "Likelihood/Optimizer.h"
 #include "Likelihood/Statistic.h"
 
-#ifdef HAVE_OPTIMIZERS
+#ifdef HAVE_OPT_PP
 #include "Opt.h"
 #endif
 
@@ -44,7 +45,7 @@ protected:
 
    static int s_verbose;
 
-#ifdef HAVE_OPTIMIZERS
+#ifdef HAVE_OPT_PP
    //! interface to the objective function that OPT++ expects
    static void statInterface(int mode, int ndim, const ColumnVector &x,
                              double &fx, ColumnVector &gx, int &result);

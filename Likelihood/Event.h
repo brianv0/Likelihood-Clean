@@ -65,7 +65,10 @@ public:
    //! m_respDiffuseSrcs map with the specified name.  sr_radius is the
    //! "source region" radius (in degrees) over which the spatial
    //! distribution of src will be integrated.
-   void computeResponse(DiffuseSource &src, const std::string &name, 
+   void computeResponse(DiffuseSource &src, double sr_radius = 30.);
+
+   //! Compute the reponse integrals for a vector of DiffuseSources
+   void computeResponse(std::vector<DiffuseSource> &srcs, 
                         double sr_radius = 30.);
    
 private:
