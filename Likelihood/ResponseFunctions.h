@@ -98,6 +98,12 @@ public:
 
    static void setEdispFlag(bool useEdisp) {s_useEdisp = useEdisp;}
 
+   static const std::string & respName() {return s_respName;}
+
+   static void setRespName(const std::string & respName) {
+      s_respName = respName;
+   }
+
 protected:
 
    ResponseFunctions() {}
@@ -109,6 +115,8 @@ private:
    static std::map<unsigned int, irfInterface::Irfs *> s_respPtrs;
 
    static bool s_useEdisp;
+
+   static std::string s_respName;
 
 };
 
