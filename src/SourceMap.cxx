@@ -38,8 +38,8 @@ SourceMap::SourceMap(Source * src, const CountsMap & dataMap)
 
    m_npreds.resize(energies.size(), 0);
 
-// @todo Ensure the desired event types are correctly included in this
-// calculation.
+/// @todo Ensure the desired event types are correctly included in this
+/// calculation.
    for (int evtType = 0; evtType < 2; evtType++) {
       std::vector<double>::const_iterator energy = energies.begin();
       for (int k = 0; energy != energies.end(); ++energy, k++) {

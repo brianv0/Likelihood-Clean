@@ -202,8 +202,7 @@ void likelihood::readSourceModel() {
       if (m_statistic != "BINNED") {
          m_logLike->computeEventResponses();
       } else {
-         dynamic_cast<BinnedLikelihood *>(m_logLike)
-            ->saveSourceMaps("srcMaps.fits");
+         dynamic_cast<BinnedLikelihood *>(m_logLike)->saveSourceMaps();
       }
    } else {
 // Re-read the Source model from the xml file, allowing only for 
@@ -343,7 +342,7 @@ void likelihood::createCountsMap() {
    double roi_ra, roi_dec;
    RoiCuts::getRaDec(roi_ra, roi_dec);
 
-   double pixel_size(0.5);
+   double pixel_size(0.25);
    unsigned long npts = static_cast<unsigned long>(2*roi_radius/pixel_size);
    unsigned long nee(21);
 
