@@ -37,7 +37,12 @@ namespace {
    std::string sourceName(const std::string & name) {
       std::vector<std::string> tokens;
       facilities::Util::stringTokenize(name, "::", tokens);
-      return tokens.at(1);
+      if (tokens.size() == 1) {
+         return tokens.at(0);
+      } else {
+         return tokens.at(1);
+      }
+      return std::string();
    }
 }
 

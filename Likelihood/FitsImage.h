@@ -39,8 +39,11 @@ class FitsImage : public st_facilities::FitsImage {
 public:
 
    FitsImage() : m_eqRot(0) {}
+
    FitsImage(const std::string &fitsfile);
-   FitsImage(const FitsImage &rhs);
+
+   FitsImage(const Likelihood::FitsImage &rhs);
+
    virtual ~FitsImage() {
       delete m_eqRot;
    }
