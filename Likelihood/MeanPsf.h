@@ -10,7 +10,6 @@
 #define Likelihood_MeanPsf_h
 
 #include "astro/SkyDir.h"
-#include "map_tools/Exposure.h"
 
 #include "Likelihood/Observation.h"
 
@@ -75,8 +74,7 @@ private:
    void createLogArray(double xmin, double xmax, unsigned int npts,
                        std::vector<double> & xx) const;
 
-
-   class Psf : public map_tools::Exposure::Aeff {
+   class Psf {
    public:
       Psf(double separation, double energy, int evtType,
           const Observation & observation) 
@@ -92,7 +90,7 @@ private:
       static double s_phi;
    };
 
-   class Aeff : public map_tools::Exposure::Aeff {
+   class Aeff {
    public:
       Aeff(double energy, int evtType, const Observation & observation) 
          : m_energy(energy), m_evtType(evtType), m_observation(observation) {}

@@ -14,8 +14,6 @@
 #include "optimizers/Function.h"
 #include "optimizers/dArg.h"
 
-#include "map_tools/Exposure.h"
-
 #include "Likelihood/Event.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/SkyDirFunction.h"
@@ -225,7 +223,7 @@ private:
     * map_tools exposure time hypercube.
     *
     */
-   class Aeff : public map_tools::Exposure::Aeff {
+   class Aeff {
 
    public:
 

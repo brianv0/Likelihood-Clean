@@ -14,7 +14,6 @@
 #include <vector>
 
 #include "astro/SkyDir.h"
-#include "map_tools/Exposure.h"
 
 namespace Likelihood {
 
@@ -55,7 +54,7 @@ public:
    double solidAngle() const {return m_solidAngle;}
 
 #ifndef SWIG
-   class Aeff : public map_tools::Exposure::Aeff {
+   class Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
            double energy, int type);
@@ -68,7 +67,7 @@ public:
       double m_separation;
    };
 
-   class AeffDeriv : public map_tools::Exposure::Aeff {
+   class AeffDeriv {
    public:
       AeffDeriv(Source * src, const std::string & paramName, 
                 const astro::SkyDir & appDir, double energy, int type);

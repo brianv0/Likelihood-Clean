@@ -39,8 +39,6 @@
 #include "dc1Response/loadIrfs.h"
 #include "g25Response/loadIrfs.h"
 
-#include "map_tools/ExposureHyperCube.h"
-
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
@@ -601,8 +599,7 @@ void LikelihoodTests::generate_exposureHyperCube() {
    tip::Table * scData = tip::IFileSvc::instance().editTable(m_scFile, "Ext1");
    exposure.load(scData, false);
    std::string output_file = m_rootPath + "/data/expcube_1_day.fits";
-   map_tools::ExposureHyperCube cube(exposure, output_file);
-   cube.save();
+   exposure.write(output_file);
 }
 
 CountsMap LikelihoodTests::singleSrcMap(unsigned int nee) const {
