@@ -14,10 +14,9 @@
 #include <string>
 #include <valarray>
 #include "astro/SkyDir.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
-
-class LikelihoodException;
 
 /** 
  * @class FitsImage

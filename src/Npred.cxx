@@ -1,4 +1,5 @@
-/** @file Npred.cxx
+/** 
+ * @file Npred.cxx
  * @brief Implementation of the Npred class, which encapsulates the
  * Npred methods of Sources in a Function context.
  *

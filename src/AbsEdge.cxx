@@ -14,7 +14,6 @@
 
 #include "Likelihood/dArg.h"
 #include "AbsEdge.h"
-#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

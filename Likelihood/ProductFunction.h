@@ -1,4 +1,5 @@
-/** @file ProductFunction.h
+/** 
+ * @file ProductFunction.h
  * @brief Declaration of ProductFunction class
  * @author J. Chiang
  *
@@ -14,7 +15,7 @@ namespace Likelihood {
 /** 
  * @class ProductFunction
  *
- * @brief A Function that returns the linear sum of two Functions
+ * @brief A Function that returns the product of two Functions
  *
  * @author J. Chiang
  *    

@@ -39,11 +39,12 @@ public:
 
    //! overloaded setParam methods to include updating of m_dir
    void setParam(const std::string &paramName, double paramValue, 
-                 bool isFree) {
+                 bool isFree) throw(ParameterNotFound) {
       setParameter(paramName, paramValue, isFree);
       update_m_dir(paramName, paramValue);
    }
-   void setParam(const std::string &paramName, double paramValue) {
+   void setParam(const std::string &paramName, double paramValue) 
+      throw(ParameterNotFound) {
       setParameter(paramName, paramValue);
       update_m_dir(paramName, paramValue);
    }

@@ -1,4 +1,5 @@
-/** @file Npred.h
+/** 
+ * @file Npred.h
  * @brief Declaration of Npred class
  * @author J. Chiang
  *

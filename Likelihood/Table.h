@@ -11,10 +11,9 @@
 
 #include <vector>
 #include <string>
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
-
-class LikelihoodException;
 
 /** 
  * @class Table

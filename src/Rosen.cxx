@@ -11,7 +11,6 @@
 #include <cmath>
 #include "Likelihood/dArg.h"
 #include "Rosen.h"
-#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

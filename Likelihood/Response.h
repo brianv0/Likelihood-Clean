@@ -13,10 +13,9 @@
 #include <valarray>
 #include "astro/SkyDir.h"
 #include "Likelihood/ScData.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
-
-class LikelihoodException;
 
 /** 
  * @class Response

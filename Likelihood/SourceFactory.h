@@ -12,10 +12,9 @@
 #include <string>
 #include <map>
 #include "Likelihood/Source.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
-
-class LikelihoodException;
 
 /** 
  * @class SourceFactory
