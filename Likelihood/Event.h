@@ -92,6 +92,14 @@ public:
    }
 
    static void toLower(std::string & name);
+
+   /// Direct access to vector of true energies.
+   const std::vector<double> & trueEnergies() const {
+      return m_trueEnergies;
+   }
+
+   /// Direct access to diffuse responses.
+   const std::vector<double> & diffuseResponse(const std::string & name) const;
    
 private:
 
