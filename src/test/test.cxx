@@ -535,14 +535,14 @@ void LikelihoodTests::test_DiffuseSource() {
       }
       double Npred = src->Npred();
       chi2 += pow((Nobs - Npred), 2)/Nobs;
-      std::cout << i << "  " 
-                << Nobs << "  "
-                << Npred << std::endl;
+//       std::cout << i << "  " 
+//                 << Nobs << "  "
+//                 << Npred << std::endl;
 
       std::remove(roiFile.str().c_str());
    }
-   std::cout << "chi^2 = " << chi2 << std::endl;
-//    CPPUNIT_ASSERT(chi2 < 4.);
+//    std::cout << "chi^2 = " << chi2 << std::endl;
+   CPPUNIT_ASSERT(chi2 < 4.);
 }
 
 void LikelihoodTests::readEventData(const std::string &eventFile,
