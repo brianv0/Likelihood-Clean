@@ -9,6 +9,7 @@
  *
  */
 
+#include <algorithm>
 #include <numeric>
 
 #include "facilities/Util.h"
