@@ -31,6 +31,7 @@
 #include "optimizers/Exception.h"
 
 #include "Likelihood/AppHelpers.h"
+#include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/ExposureCube.h"
 #include "Likelihood/LogLike.h"
@@ -316,7 +317,17 @@ void likelihood::writeCountsMap() {
    }
 
    dataMap.writeOutput("likelihood", "data_map.fits");
-   m_logLike->makeCountsMap(dataMap, "model_map.fits");
+   CountsMap * modelMap = m_logLike->createCountsMap(dataMap);;
+   if (modelMap) {
+      modelMap->writeOutput("likelihood", "model_map.fits");
+      delete modelMap;
+   }
+
+   BinnedLikelihood binnedLogLike(dataMap);
+   std::cout << "Binned log-likelihood: "
+             << binnedLogLike.value()
+             << std::endl;
+
 }
 
 void likelihood::printFitResults(const std::vector<double> &errors) {
@@ -329,8 +340,8 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
 
 // Compute TS for each source.
    std::map<std::string, double> TsValues;
-   int verbose(0);
-   double tol(1e-4);
+//    int verbose(0);
+//    double tol(1e-4);
    double logLike_value = m_logLike->value();
    std::vector<double> null_values;
    std::cerr << "Computing TS values for each source ("

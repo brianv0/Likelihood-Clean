@@ -11,6 +11,8 @@
 
 #include "evtbin/DataProduct.h"
 
+#include "Likelihood/HistND.h"
+
 namespace astro {
    class SkyProj;
 }
@@ -18,8 +20,6 @@ namespace astro {
 namespace Likelihood {
 
 #include "fitsio.h"
-
-class HistND;
 
 /**
  * @class CountsMap
@@ -54,6 +54,10 @@ public:
    void getAxisVector(int idim, std::vector<double> & axisVector) const;
 
    const astro::SkyProj & projection() const {return *m_proj;}
+
+   const std::vector<double> & data() const {
+      return m_hist->data();
+   }
 
 protected:
 
