@@ -14,4 +14,4 @@ macro my_headers "" WIN32 "*.h"
 library Likelihood -no_share $(my_headers) *.cxx
 
 # test application
-application test_Likelihood test/*.cxx
+application test_Likelihood *.cxx test/*.cxx
