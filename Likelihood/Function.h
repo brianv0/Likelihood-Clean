@@ -68,6 +68,13 @@ public:
    double getParamValue(const std::string &paramName) const;
    Parameter* getParam(const std::string &paramName);
    
+   void setParamBounds(const std::string &paramName, double lower,
+                       double upper);
+   
+   void setParamScale(const std::string &paramName, double scale);
+
+   void setParamTrueValue(const std::string &paramName, double paramValue);
+
    /////////////////////////////////
    //! parameter access in groups 
    unsigned int getNumParams() const {return m_parameter.size();}
