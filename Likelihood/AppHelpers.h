@@ -22,6 +22,7 @@ namespace dataSubselector {
 
 namespace Likelihood {
 
+   class EventContainer;
    class ExposureCube;
    class ExposureMap;
    class Observation;
@@ -98,6 +99,7 @@ protected:
    ExposureMap * m_expMap;
    ResponseFunctions * m_respFuncs;
    RoiCuts * m_roiCuts;
+   EventContainer * m_eventCont;
 
    void prepareFunctionFactory();
    void createResponseFuncs();

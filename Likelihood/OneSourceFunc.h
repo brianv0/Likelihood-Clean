@@ -36,7 +36,7 @@ namespace Likelihood {
   public:
 
     OneSourceFunc(Source * src,  // The Source of interest
-		  std::vector<Event>& events, 
+		  const std::vector<Event>& events, 
 		  std::vector<double> * weights = NULL);
 
     virtual double value(optimizers::Arg& arg) const;
@@ -76,7 +76,7 @@ namespace Likelihood {
   private:
     
     Source * m_src;
-    std::vector<Event>& m_events;
+     const std::vector<Event>& m_events;
     std::vector<double> * m_weights;
     double m_epsw;
     double m_epsf;
