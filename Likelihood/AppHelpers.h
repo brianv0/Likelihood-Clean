@@ -25,6 +25,7 @@ namespace Likelihood {
    class ExposureCube;
    class ExposureMap;
    class Observation;
+   class ResponseFunctions;
    class ScData;
 
 /**
@@ -90,6 +91,7 @@ protected:
    ScData * m_scData;
    ExposureCube * m_expCube;
    ExposureMap * m_expMap;
+   ResponseFunctions * m_respFuncs;
 
    void prepareFunctionFactory();
    void createResponseFuncs();

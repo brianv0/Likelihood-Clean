@@ -107,7 +107,9 @@ void likelihood::run() {
    Likelihood::Verbosity::instance(m_pars["chatter"]);
    m_helper = new AppHelpers(m_pars);
    bool useEdisp = m_pars["use_energy_dispersion"];
-   m_helper->observation().respFuncs().setEdispFlag(useEdisp);
+   ResponseFunctions & respFuncs = 
+      const_cast<ResponseFunctions &>(m_helper->observation().respFuncs());
+   respFuncs.setEdispFlag(useEdisp);
    if (m_statistic == "BINNED") {
       m_helper->setRoi(m_pars["counts_map_file"], "", false);
    } else {

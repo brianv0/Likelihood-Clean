@@ -19,7 +19,8 @@
 
 namespace Likelihood {
 
-class DiffuseSource;
+   class DiffuseSource;
+   class ResponseFunctions;
 
 /** 
  * @class Event
@@ -35,13 +36,12 @@ class Event {
     
 public:
 
-   Event() {}
+   Event() : m_respName(0) {}
+
    Event(double ra, double dec, double energy, double time, 
          const astro::SkyDir & scZAxis, const astro::SkyDir & scXAxis, 
-         double muZenith, int type=2);
-
-// The compiler-supplied copy constructor should suffice.
-//   Event(const Event &);
+         double muZenith, bool useEdisp, const std::string & respName,
+         int type=2);
 
    ~Event() {}
 
@@ -75,15 +75,17 @@ public:
    /// "source region" radius (in degrees) over which the spatial
    /// distribution of src will be integrated.
    void computeResponse(DiffuseSource &src, 
-                        double sr_radius = 30.) {
+                        const ResponseFunctions & respFuncs, 
+                        double sr_radius=30.) {
       std::vector<DiffuseSource *> srcs;
       srcs.push_back(&src);
-      computeResponse(srcs, sr_radius);
+      computeResponse(srcs, respFuncs, sr_radius);
    }
 
    /// Compute the reponse integrals for a vector of DiffuseSources
    void computeResponse(std::vector<DiffuseSource *> &srcs, 
-                        double sr_radius = 30.);
+                        const ResponseFunctions & respFuncs, 
+                        double sr_radius=30.);
 
    /// Write the diffuse responses for each source to a file.
    void writeDiffuseResponses(const std::string & filename);
@@ -116,7 +118,7 @@ public:
    ///         NB: Everything is converted to lower-case since that is
    ///         what tip returns when you ask for FITS table column names.
    /// @param srcName The source name.
-   static std::string diffuseSrcName(const std::string & srcName);
+   std::string diffuseSrcName(const std::string & srcName) const;
 
 private:
 
@@ -128,11 +130,14 @@ private:
 
    /// Event type (front vs back for now)
    int m_type;
-   
+
    /// spacecraft info at event arrival time
    astro::SkyDir m_scDir;
    astro::SkyDir m_scXDir;
 
+   bool m_useEdisp;
+   const std::string * m_respName;
+   
    /// Vector of true energies.
    double m_estep;
    std::vector<double> m_trueEnergies;

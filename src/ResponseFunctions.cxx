@@ -6,35 +6,27 @@
  * $Header$
  */
 
-#include "Likelihood/ScData.h"
+#include "astro/SkyDir.h"
 #include "Likelihood/ResponseFunctions.h"
 
 namespace Likelihood {
-
-ResponseFunctions * ResponseFunctions::s_instance = 0;
-
-std::map<unsigned int, irfInterface::Irfs *> ResponseFunctions::s_respPtrs;
-
-bool ResponseFunctions::s_useEdisp(false);
-
-std::string ResponseFunctions::s_respName("");
    
 double ResponseFunctions::totalResponse(double energy, double appEnergy,
                                         const astro::SkyDir & zAxis,
                                         const astro::SkyDir & xAxis,
                                         const astro::SkyDir & srcDir,
                                         const astro::SkyDir & appDir, 
-                                        int type) {
+                                        int type) const {
    double myResponse(0);
    std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
-      = instance()->begin();
-   for ( ; respIt != instance()->end(); respIt++) {
+      = begin();
+   for ( ; respIt != end(); respIt++) {
       if (respIt->second->irfID() == type) {  
          irfInterface::IPsf * psf = respIt->second->psf();
          irfInterface::IAeff * aeff = respIt->second->aeff();
          double psf_val = psf->value(appDir, energy, srcDir, zAxis, xAxis);
          double aeff_val = aeff->value(energy, srcDir, zAxis, xAxis);
-         if (s_useEdisp) {
+         if (m_useEdisp) {
             irfInterface::IEdisp * edisp = respIt->second->edisp();
             double edisp_val = edisp->value(appEnergy, energy, srcDir, 
                                             zAxis, xAxis);
@@ -49,17 +41,17 @@ double ResponseFunctions::totalResponse(double energy, double appEnergy,
 
 double ResponseFunctions::totalResponse(double inclination, double phi,
                                         double energy, double appEnergy,
-                                        double separation, int type) {
+                                        double separation, int type) const {
    double myResponse(0);
    std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
-      = instance()->begin();
-   for ( ; respIt != instance()->end(); respIt++) {
+      = begin();
+   for ( ; respIt != end(); respIt++) {
       if (respIt->second->irfID() == type) {  
          irfInterface::IPsf * psf = respIt->second->psf();
          irfInterface::IAeff * aeff = respIt->second->aeff();
          double psf_val = psf->value(separation, energy, inclination, phi);
          double aeff_val = aeff->value(energy, inclination, phi);
-         if (s_useEdisp) {
+         if (m_useEdisp) {
             irfInterface::IEdisp * edisp = respIt->second->edisp();
             double edisp_val = edisp->value(appEnergy, energy, 
                                             inclination, phi);
@@ -72,19 +64,12 @@ double ResponseFunctions::totalResponse(double inclination, double phi,
    return myResponse;
 }   
 
-irfInterface::Irfs * ResponseFunctions::respPtr(unsigned int i) {
-   if (s_respPtrs.count(i)) {
-      return s_respPtrs[i];
+irfInterface::Irfs * ResponseFunctions::respPtr(unsigned int i) const {
+   if (m_respPtrs.count(i)) {
+      return m_respPtrs.find(i)->second;
    } else {
       return 0;
    }
-}
-
-ResponseFunctions * ResponseFunctions::instance() {
-   if (s_instance == 0) {
-      s_instance = new ResponseFunctions();
-   }
-   return s_instance;
 }
 
 } // namespace Likelihood

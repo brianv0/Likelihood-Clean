@@ -16,8 +16,8 @@
 
 namespace Likelihood {
 
-class Source;
-class CountsMap;
+   class Source;
+   class CountsMap;
 
 /*
  * @class SourceMap
@@ -83,9 +83,12 @@ private:
    class Aeff : public Pixel::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir,
-           double energy, int type)
-         : Pixel::Aeff(src, appDir, energy, type) {}
+           double energy, int type, const Observation & observation)
+         : Pixel::Aeff(src, appDir, energy, type),
+           m_observation(observation) {}
       virtual double operator()(double costheta) const;
+   private:
+      const Observation & m_observation;
    };
 
    static MeanPsf * s_meanPsf;

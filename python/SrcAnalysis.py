@@ -6,9 +6,8 @@ Interface to SWIG-wrapped C++ classes.
 #
 # $Header$
 #
-import os, sys
+import os
 import numarray as num
-sys.path.insert(0, os.path.join(os.environ['LIKELIHOODROOT'], 'python'))
 import pyLike
 from SrcModel import SourceModel
 
@@ -18,13 +17,14 @@ class SrcAnalysis(object):
     def __init__(self, srcModel, eventFile, scFile, expMap=None, irfs='TEST',
                  optimizer='Minuit'):
         self.optimizer = optimizer
-        pyLike.LogLike_loadResponseFunctions(irfs)
+        self.respFuncs = pyLike.ResponseFunctions()
+        self.respFuncs.load(irfs)
         self.expMap = pyLike.ExposureMap()
         if expMap is not None:
             self.expMap.readExposureFile(expMap)
         self.scData = pyLike.ScData()
         self.expCube = pyLike.ExposureCube()
-        observation = pyLike.Observation(pyLike.ResponseFunctions_instance(),
+        observation = pyLike.Observation(self.respFuncs,
                                          self.scData,
                                          pyLike.RoiCuts_instance(),
                                          self.expCube,
