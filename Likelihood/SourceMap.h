@@ -68,9 +68,17 @@ private:
    static MeanPsf * s_meanPsf;
    static BinnedExposure * s_binnedExposure;
 
-   double sourceRegionIntegral(Source * src, const Pixel & pixel,
-                               double energy, int evtType) const;
+   static std::vector<double> s_phi;
+   static std::vector<double> s_mu;
 
+   double sourceRegionIntegral(Source * src, const Pixel & pixel,
+                               double energy) const;
+
+   void prepareAngleArrays(int nmu, int nphi);
+
+   void getCelestialDir(double phi, double mu, 
+                        FitsImage::EquinoxRotation & eqRot,
+                        astro::SkyDir & dir) const;
 };
 
 } // namespace Likelihood
