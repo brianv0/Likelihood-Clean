@@ -13,7 +13,7 @@
 #include "Likelihood/PointSource.h"
 #include "Likelihood/RoiCuts.h"
 
-#define HAVE_CCFITS
+//#define HAVE_CCFITS
 #ifdef HAVE_CCFITS
 #include "CCfits/CCfits"
 #endif

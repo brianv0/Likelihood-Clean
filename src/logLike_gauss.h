@@ -36,7 +36,7 @@ public:
    //! as the function argument
    double value(const std::vector<double> &paramVec);
    
-   void getFreeDerivs(std::vector<double> &freeDerivs){}
+   void getFreeDerivs(std::vector<double> &){}
 
 };
 
