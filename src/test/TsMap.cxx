@@ -114,7 +114,7 @@ int main(int iargc, char* argv[]) {
 // Read in the Event data.
    std::string eventFile;
    params.getParam("event_file", eventFile);
-   int eventFileHdu;
+   long eventFileHdu;
    params.getParam("event_file_hdu", eventFileHdu);
    std::vector<std::string> eventFiles;
    RunParams::resolve_fits_files(eventFile, eventFiles);
