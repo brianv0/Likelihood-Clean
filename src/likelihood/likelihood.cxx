@@ -108,13 +108,7 @@ void likelihood::run() {
    if (m_statistic == "BINNED") {
       m_helper->setRoi(m_pars["counts_map_file"], "", false);
    } else {
-      m_helper->setRoi();
       std::string exposureFile = m_pars["exposure_map_file"];
-      if (exposureFile != "none") {
-         m_helper->checkCuts(m_pars["evfile"], "EVENTS", exposureFile, "");
-      }
-      m_helper->readScData();
-      m_helper->readExposureMap();
       std::string eventFile = m_pars["evfile"];
       st_facilities::Util::file_ok(eventFile);
       st_facilities::Util::resolve_fits_files(eventFile, m_eventFiles);
@@ -122,6 +116,12 @@ void likelihood::run() {
          AppHelpers::checkCuts(m_eventFiles[0], "EVENTS", m_eventFiles[i],
                                "EVENTS");
       }
+      if (exposureFile != "none") {
+         m_helper->checkCuts(m_eventFiles[0], "EVENTS", exposureFile, "");
+      }
+      m_helper->setRoi(m_eventFiles[0]);
+      m_helper->readScData();
+      m_helper->readExposureMap();
    }
    createStatistic();
 
@@ -418,11 +418,11 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
          Source * src = m_logLike->deleteSource(srcNames[i]);
          if (m_logLike->getNumFreeParams() > 0) {
             selectOptimizer();
-            try {
-               m_opt->find_min(verbose, tol);
-            } catch (optimizers::Exception &eObj) {
-               std::cout << eObj.what() << std::endl;
-            }
+//             try {
+//                m_opt->find_min(verbose, tol);
+//             } catch (optimizers::Exception &eObj) {
+//                std::cout << eObj.what() << std::endl;
+//             }
             null_values.push_back(m_logLike->value());
             TsValues[srcNames[i]] = 2.*(logLike_value - null_values.back());
          } else {
