@@ -23,6 +23,8 @@
 
 #include "facilities/Util.h"
 
+#include "tip/Header.h"
+
 #include "optimizers/Dom.h"
 
 #include "dataSubselector/Cuts.h"
@@ -151,6 +153,18 @@ void RoiCuts::readCuts(const std::string & eventFile) {
    s_cuts = new dataSubselector::Cuts(eventFile);
    s_instance->sortCuts();
    s_instance->setRoiData();
+}
+
+void RoiCuts::writeDssKeywords(tip::Header & header) const {
+   if (s_cuts) {
+      s_cuts->writeDssKeywords(header);
+   }
+}
+
+void RoiCuts::writeGtiExtension(const std::string & filename) {
+   if (s_cuts) {
+      s_cuts->writeGtiExtension(filename);
+   }
 }
 
 void RoiCuts::setRoiData() {

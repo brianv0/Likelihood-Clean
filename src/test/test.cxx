@@ -576,7 +576,8 @@ void LikelihoodTests::test_DiffuseSource() {
 
 void LikelihoodTests::generate_exposureHyperCube() {
    std::string RoiFile = m_rootPath + "/data/RoiCuts.xml";
-   LikeExposure exposure(1., 0.025, RoiFile);
+   RoiCuts::instance()->setCuts(RoiFile);
+   LikeExposure exposure(1., 0.025);
    tip::Table * scData = tip::IFileSvc::instance().editTable(m_scFile, "Ext1");
    exposure.load(scData, false);
    std::string output_file = m_rootPath + "/data/expcube_1_day.fits";
