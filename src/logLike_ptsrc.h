@@ -48,6 +48,8 @@ public:
 
    void getEvents(const std::string &event_file, int hdu);
 
+   void computeEventResponses(DiffuseSource &src, double sr_radius=30);
+
 private:
 
    std::vector<Event> m_events;
