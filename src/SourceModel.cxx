@@ -482,11 +482,14 @@ CountsMap * SourceModel::createCountsMap(const CountsMap & dataMap) const {
 
 void SourceModel::computeModelMap(const std::vector<Pixel> & pixels,
                                   const std::vector<double> & energies,
-                                  std::vector<double> & modelMap) {
+                                  std::vector<double> & modelMap) const {
+   modelMap.clear();
    modelMap.reserve(pixels.size()*(energies.size()-1));
    for (unsigned int k = 0; k < energies.size()-1; k++) {
       for (unsigned int j = 0; j < pixels.size(); j++) {
-         modelMap.push_back(pixels[j].modelCounts(energies[k], energies[k+1]));
+         modelMap.push_back(
+            pixels[j].modelCounts(energies[k], energies[k+1],
+                                  *(const_cast<SourceModel *>(this))));
       }
    }
 }
