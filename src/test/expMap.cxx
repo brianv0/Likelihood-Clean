@@ -48,7 +48,12 @@ int main(int iargc, char* argv[]) {
 // Read in the pointing information.
    std::string scFile = params.string_par("Spacecraft_file");
    int scHdu = static_cast<int>(params.long_par("Spacecraft_file_hdu"));
-   ScData::readData(scFile, scHdu);
+   std::vector<std::string> scFiles;
+   RunParams::resolve_fits_files(scFile, scFiles);
+   std::vector<std::string>::const_iterator scIt = scFiles.begin();
+   for ( ; scIt != scFiles.end(); scIt++) {
+      ScData::readData(*scIt, scHdu);
+   }
 
 // Create the response functions.
    std::string responseFuncs = params.string_par("Response_functions");
@@ -67,7 +72,7 @@ int main(int iargc, char* argv[]) {
    RoiCuts *roiCuts = RoiCuts::instance();
    if (sr_radius < roiCuts->extractionRegion().radius() + 10.) {
       std::cerr << "The radius of the source region, " << sr_radius 
-                << ", should be significantly larger (say 10 deg) "
+                << ", should be significantly larger (say by 10 deg) "
                 << "than the ROI radius of " 
                 << roiCuts->extractionRegion().radius() << std::endl;
       assert(sr_radius > roiCuts->extractionRegion().radius());
