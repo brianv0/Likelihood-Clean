@@ -79,24 +79,22 @@ void ScData::readData(std::string file, bool clear) {
    delete scData;
 }         
 
-const astro::SkyDir & ScData::zAxis(double time) {
+astro::SkyDir ScData::zAxis(double time) const {
    int indx = static_cast<int>((time - vec[0].time)/m_tstep);
    indx = std::min(static_cast<unsigned int>(indx), vec.size()-2);
    double frac = (time - vec[indx].time)/m_tstep;
    Hep3Vector zDir = frac*(vec[indx+1].zAxis.dir() - vec[indx].zAxis.dir())
       + vec[indx].zAxis.dir();
-   m_zAxis = astro::SkyDir(zDir.unit());
-   return m_zAxis;
+   return astro::SkyDir(zDir.unit());
 }
 
-const astro::SkyDir & ScData::xAxis(double time) {
+astro::SkyDir ScData::xAxis(double time) const {
    int indx = static_cast<int>((time - vec[0].time)/m_tstep);
    indx = std::min(static_cast<unsigned int>(indx), vec.size()-2);
    double frac = (time - vec[indx].time)/m_tstep;
    Hep3Vector xDir = frac*(vec[indx+1].xAxis.dir() - vec[indx].xAxis.dir())
       + vec[indx].xAxis.dir();
-   m_xAxis = astro::SkyDir(xDir.unit());
-   return m_xAxis;
+   return astro::SkyDir(xDir.unit());
 }
 
 std::pair<ScData::Iterator, ScData::Iterator> 

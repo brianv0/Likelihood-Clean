@@ -42,11 +42,11 @@ public:
    Observation() : m_respFuncs(0), m_scData(0), m_roiCuts(0), m_expCube(0),
       m_expMap(0) {}
 
-   Observation(const ResponseFunctions * respFuncs, 
-               const ScData * scData,
-               const RoiCuts * roiCuts,
-               const ExposureCube * expCube,
-               const ExposureMap * expMap) :
+   Observation(ResponseFunctions * respFuncs, 
+               ScData * scData,
+               RoiCuts * roiCuts,
+               ExposureCube * expCube,
+               ExposureMap * expMap) :
       m_respFuncs(respFuncs), m_scData(scData), m_roiCuts(roiCuts),
       m_expCube(expCube), m_expMap(expMap) {}
 
@@ -54,7 +54,15 @@ public:
       return *m_respFuncs;
    }
 
+   ResponseFunctions & respFuncs() {
+      return *m_respFuncs;
+   }
+
    const ScData & scData() const {
+      return *m_scData;
+   }
+
+   ScData & scData() {
       return *m_scData;
    }
 
@@ -62,7 +70,15 @@ public:
       return *m_roiCuts;
    }
 
+   RoiCuts & roiCuts() {
+      return *m_roiCuts;
+   }
+
    const ExposureCube & expCube() const {
+      return *m_expCube;
+   }
+
+   ExposureCube & expCube() {
       return *m_expCube;
    }
 
@@ -70,15 +86,19 @@ public:
       return *m_expMap;
    }
 
+   ExposureMap & expMap() {
+      return *m_expMap;
+   }
+
 private:
 
    /// @todo Replace all these pointers with objects and convert all
    /// these classes from Singletons to proper classes.
-   const ResponseFunctions * m_respFuncs;
-   const ScData * m_scData;
-   const RoiCuts * m_roiCuts;
-   const ExposureCube * m_expCube;
-   const ExposureMap * m_expMap;
+   ResponseFunctions * m_respFuncs;
+   ScData * m_scData;
+   RoiCuts * m_roiCuts;
+   ExposureCube * m_expCube;
+   ExposureMap * m_expMap;
 
 };
 

@@ -29,7 +29,7 @@ namespace Likelihood {
 
   class OptEM: public LogLike {
   public:
-    OptEM() : LogLike(Observation()) {}
+    OptEM(const Observation & observation) : LogLike(observation) {}
     virtual ~OptEM() {}
     void findMin(const int verbose = 0);
 

@@ -175,7 +175,7 @@ void LogLike::computeEventResponses(double sr_radius) {
 void LogLike::getEvents(std::string event_file) {
 
    facilities::Util::expandEnvVar(&event_file);
-   ScData & scData = const_cast<ScData &>(m_observation.scData());
+   const ScData & scData = m_observation.scData();
 
    unsigned int nTotal(0);
    unsigned int nReject(0);
