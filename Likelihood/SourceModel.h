@@ -150,7 +150,7 @@ public:
 
    /// Create a counts map based on the current model.
    void makeCountsMap(const std::string & filename,
-                      const MapShape & mapShape);
+                      const MapShape & mapShape) const;
 
    class Aeff : public map_tools::Exposure::Aeff {
    public:
@@ -205,7 +205,7 @@ private:
                       std::vector<double> &ras,
                       std::vector<double> &decs,
                       std::vector<double> &energies,
-                      std::vector< std::valarray<double> > &map);
+                      std::vector<double> &map) const;
       
 };
 

@@ -66,7 +66,8 @@ private:
    std::string m_fitsFile;
    std::vector<double> m_ra;
    std::vector<double> m_dec;
-   std::valarray<double> m_image;
+//   std::valarray<double> m_image;
+   std::vector<double> m_image;
 
    void init();
 
