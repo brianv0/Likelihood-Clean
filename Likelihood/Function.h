@@ -209,7 +209,7 @@ public:
    ParameterNotFound(const std::string &paramName, 
                      const std::string &funcName,
                      const std::string &routineName) {
-      ostringstream errorMessage;
+      std::ostringstream errorMessage;
       errorMessage << "Function::" << routineName << ": "
                    << "A Parameter named " << paramName
                    << " is not a Parameter of Function "
