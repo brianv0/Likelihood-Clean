@@ -21,6 +21,8 @@
 
 namespace Likelihood {
 
+#include "fitsio.h"
+
 /** 
  * @class FitsImage
  *
@@ -45,7 +47,15 @@ public:
 
    virtual void getCelestialArrays(std::vector<double> &lonArray,
                                    std::vector<double> &latArray);
-   
+
+   static void fitsReportError(int status, std::string routine="");
+
+   static int findHdu(const std::string & fitsfile,
+                      const std::string & extension);
+
+   static void readColumn(fitsfile * fptr, const std::string & colname,
+                          std::vector<double> & coldata);
+
 #ifndef SWIG
    FitsImage &operator=(const FitsImage &rhs);
 
@@ -77,8 +87,7 @@ private:
 
    bool haveRefCoord();
 
-   void fitsReportError(FILE * stream, int status) const;
-
+   static std::string s_routineName;
 };
 
 } // namespace Likelihood

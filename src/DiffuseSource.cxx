@@ -29,8 +29,7 @@ bool DiffuseSource::s_haveStaticMembers = false;
 std::vector<double> DiffuseSource::s_energies;
 
 DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
-                             bool requireExposure) 
-   throw(Exception) : m_spectrum(0) {
+                             bool requireExposure) : m_spectrum(0) {
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
 
