@@ -10,6 +10,7 @@ use STpolicy v*
 use astro  v*
 use xml v4r*
 use tip v1*
+use evtbin v0r*
 use map_tools v*
 use optimizers v*
 use facilities v2r*

@@ -1,7 +1,7 @@
 /**
  * @file diffuseResponses.cxx
  * @brief Adds diffuse response information for extragalactic and Galactic
- * diffuse emission.  Assumes infinite energy resolution.
+ * diffuse emission.  
  * @author J. Chiang
  *
  * $Header$
@@ -30,7 +30,6 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/SourceModel.h"
-//#include "Likelihood/Util.h"
 
 using namespace Likelihood;
 

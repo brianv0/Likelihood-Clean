@@ -16,6 +16,8 @@
 
 #include "tip/IFileSvc.h"
 
+#include "st_facilities/Util.h"
+
 #include "map_tools/ExposureHyperCube.h"
 
 #include "Likelihood/RoiCuts.h"
@@ -76,9 +78,18 @@ void ExposureCube::createDataCube() {
    m_exposure = new Likelihood::LikeExposure(m_pars["pixel_size"], 
                                              m_pars["cos_theta_step"], 
                                              m_pars["ROI_file"]);
-   tip::Table * scData = 
-      tip::IFileSvc::instance().editTable(m_pars["Spacecraft_file"], "Ext1");
-   m_exposure->load(scData);
+   std::string scFile = m_pars["Spacecraft_file"];
+   st_facilities::Util::file_ok(scFile);
+   std::vector<std::string> scFiles;
+   st_facilities::Util::resolve_fits_files(scFile, scFiles);
+   std::vector<std::string>::const_iterator scIt = scFiles.begin();
+   for ( ; scIt != scFiles.end(); scIt++) {
+      st_facilities::Util::file_ok(*scIt);
+      tip::Table * scData = 
+         tip::IFileSvc::instance().editTable(*scIt, "Ext1");
+      m_exposure->load(scData);
+      delete scData;
+   }
 }
 
 void ExposureCube::addRoiHistory(map_tools::ExposureHyperCube & cube) {
