@@ -44,7 +44,7 @@ void Rosen::getFreeDerivs(std::vector<double> &freeDerivs) {
    }
 }
 
-double Rosen::derivByParam(Arg &xarg, 
+double Rosen::derivByParam(Arg &, 
                            const std::string &paramName) 
    throw(ParameterNotFound) {
    std::vector<double> params;
