@@ -12,6 +12,7 @@
 #include "Likelihood/Statistic.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/PointSource.h"
+#include "Likelihood/DiffuseSource.h"
 #include "Likelihood/logSrcModel.h"
 #include "Likelihood/Npred.h"
 
@@ -48,7 +49,17 @@ public:
 
    void getEvents(const std::string &event_file, int hdu);
 
-   void computeEventResponses(DiffuseSource &src, double sr_radius=30);
+//     void computeEventResponses(DiffuseSource &src, double sr_radius = 30);
+
+//     void computeEventResponses(std::vector<DiffuseSource> &srcs, 
+//                                double sr_radius = 30);
+
+   void computeEventResponses(Source &src, double sr_radius = 30);
+
+   void computeEventResponses(std::vector<DiffuseSource> &srcs, 
+                              double sr_radius = 30);
+
+   void computeEventResponses(double sr_radius = 30);
 
 private:
 

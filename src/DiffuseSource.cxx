@@ -40,6 +40,8 @@ DiffuseSource::DiffuseSource(Function* spatialDist) : m_spectrum(0) {
 // instantiated.
    ExposureMap *emap = ExposureMap::instance();
    emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
+
+   m_srcType = "Diffuse";
 }
 
 DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
@@ -51,6 +53,7 @@ DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
    m_functions["Spectrum"] = m_spectrum;
 
    m_exposure = rhs.m_exposure;
+   m_srcType = rhs.m_srcType;
 }
 
 double DiffuseSource::fluxDensity(const Event &evt) const {

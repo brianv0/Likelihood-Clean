@@ -46,7 +46,7 @@ double Response::bilinear(const std::vector<double> &xx, double x,
    } else if (y >= *(yy.end()-1)) {
       iy = yy.end() - 1;
    } else {
-	   iy = std::upper_bound(yy.begin(), yy.end(), y);
+      iy = std::upper_bound(yy.begin(), yy.end(), y);
    }
    int j = iy - yy.begin();
 

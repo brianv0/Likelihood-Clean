@@ -34,7 +34,7 @@ public:
 
    double value(Arg&) const;
 
-   double derivByParam(Arg &x, const std::string &paramName) const
+   double derivByParam(Arg &, const std::string &) const
       {return 0;}
 
    virtual Function *clone() const {
@@ -47,7 +47,7 @@ private:
    std::vector<double> m_dec;
 
    // disable this
-   double integral(Arg &xmin, Arg &xmax) const {return 0;}
+   double integral(Arg &, Arg &) const {return 0;}
 
 };
 
