@@ -73,6 +73,7 @@ int main(int iargc, char* argv[]) {
    params.getParam("Exposure_map_file", exposureFile);
    if (exposureFile != "none") {
       ExposureMap::readExposureFile(exposureFile);
+
    }
 
 // Create the response functions.
@@ -175,7 +176,18 @@ int main(int iargc, char* argv[]) {
             std::cerr << eObj.what() << std::endl;
          }
 // Evaluate the uncertainties.
-         errors = myOpt->getUncertainty();
+         try {
+            errors = myOpt->getUncertainty();
+         } catch (optimizers::Exception &eObj) {
+            std::cerr << "Error in computing uncertainties: \n"
+                      << eObj.what() << "\n"
+                      << "Bailing..."
+                      << std::endl;
+         } catch (...) {
+            std::cerr << "Unexpected exception in computing uncertainties: \n"
+                      << "Bailing..."
+                      << std::endl;
+         }
          if (optimizer == "DRMNGB") {
             int retCode =
                dynamic_cast<optimizers::Drmngb *>(myOpt)->getRetCode();
