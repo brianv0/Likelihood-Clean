@@ -95,7 +95,7 @@ gtsrcmaps::gtsrcmaps()
 void gtsrcmaps::run() {
    m_helper->checkOutputFile();
    std::string expcube_file = m_pars["exposure_cube_file"];
-   if (expcube_file == "none" || expcube == "" 
+   if (expcube_file == "none" || expcube_file == "" 
        || !st_facilities::Util::fileExists(expcube_file)) {
       throw std::runtime_error("Please specify a valid exposure cube file.");
    }
