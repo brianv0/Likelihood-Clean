@@ -1,3 +1,10 @@
+/** @file MyFun.h
+ * @brief Test function declaration.
+ * @author J. Chiang
+ *
+ * $Header$
+ */
+
 #include "Likelihood/Function.h"
 #include "Likelihood/Arg.h"
 
@@ -6,7 +13,7 @@ namespace Likelihood {
 /** 
  * @class MyFun
  *
- * @brief a simple test function that inherits from Function
+ * @brief A simple test function that inherits from Function
  *
  * @author J. Chiang
  *    
