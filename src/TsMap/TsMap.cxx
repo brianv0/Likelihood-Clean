@@ -136,7 +136,8 @@ void TsMap::readEventData() {
    std::vector<std::string>::const_iterator evIt = eventFiles.begin();
    for ( ; evIt != eventFiles.end(); evIt++) {
       st_facilities::Util::file_ok(*evIt);
-      m_logLike->getEvents(*evIt);
+//      m_logLike->getEvents(*evIt);
+      m_helper->observation().eventCont().getEvents(*evIt);
    }
    m_logLike->computeEventResponses();
 }
