@@ -419,15 +419,19 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
       std::cerr << ".";
       if (m_logLike->getSource(srcNames[i])->getType() == "Point") {
          Source * src = m_logLike->deleteSource(srcNames[i]);
-         RoiDist[srcNames[i]] = dynamic_cast<PointSource *>(src)->getDir().
-            difference(RoiCuts::instance()->extractionRegion().center())
-            *180./M_PI;
+         if (m_statistic != "BINNED") {
+            RoiDist[srcNames[i]] = dynamic_cast<PointSource *>(src)->getDir().
+               difference(RoiCuts::instance()->extractionRegion().center())
+               *180./M_PI;
+         }
          if (m_logLike->getNumFreeParams() > 0) {
             selectOptimizer();
-            try {
-               m_opt->find_min(verbose, tol);
-            } catch (optimizers::Exception &eObj) {
-               std::cout << eObj.what() << std::endl;
+            if (m_pars["find_Ts_mins"]) {
+               try {
+                  m_opt->find_min(verbose, tol);
+               } catch (optimizers::Exception &eObj) {
+                  std::cout << eObj.what() << std::endl;
+               }
             }
             null_values.push_back(m_logLike->value());
             TsValues[srcNames[i]] = 2.*(logLike_value - null_values.back());
@@ -477,9 +481,9 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
       if (RoiDist.count(srcNames[i])) {
          std::cout << "ROI distance: "
                    << RoiDist[srcNames[i]] << std::endl;
-         resultsFile << "ROI distsance  " << RoiDist[srcNames[i]] << std::endl;
+         resultsFile << "ROI distance  " << RoiDist[srcNames[i]] << std::endl;
       } else {
-         resultsFile << "ROI distsance  " << "..." << std::endl;
+         resultsFile << "ROI distance  " << "..." << std::endl;
       }         
       if (TsValues.count(srcNames[i])) {
          std::cout << "TS value: "
