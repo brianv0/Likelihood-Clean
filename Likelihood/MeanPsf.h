@@ -35,10 +35,13 @@ public:
       init();
    }
 
+   MeanPsf() {}
+
    /// @return The value of the psf.
    /// @param energy True photon energy (MeV)
-   /// @param theta Inclination wrt instrument z-axis (degrees)
-   /// @param phi Azimuthal angle wrt instrument x-axis (degrees)
+   /// @param theta Angular distance from true source direction (degrees)
+   /// @param phi Azimuthal angle about true source direction, 
+   ///        currently unused (degrees)
    double operator()(double energy, double theta, double phi=0) const;
 
 private:
