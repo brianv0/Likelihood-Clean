@@ -81,7 +81,9 @@ public:
 
    /// Read from the DSS keywords in the eventFile. (Series of event files 
    /// *must* have the same DSS keywords.)
-   void readCuts(const std::string & eventFile);
+   void readCuts(const std::string & eventFile,
+                 const std::string & ext="EVENTS",
+                 bool strict=true);
 
    /// Write to xml file
    void writeXml(std::string xmlFile, const std::string &roiTitle="");
@@ -136,7 +138,7 @@ private:
    std::vector<dataSubselector::Cuts::RangeCut *> m_timeCuts;
    std::vector<dataSubselector::Cuts::GtiCut *> m_gtiCuts;
 
-   void sortCuts();
+   void sortCuts(bool strict=true);
    void setRoiData();
 };
 

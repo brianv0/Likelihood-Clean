@@ -149,9 +149,10 @@ void RoiCuts::setCuts(std::string xmlFile) {
    delete parser;
 }
 
-void RoiCuts::readCuts(const std::string & eventFile) {
-   s_cuts = new dataSubselector::Cuts(eventFile);
-   s_instance->sortCuts();
+void RoiCuts::readCuts(const std::string & eventFile, 
+                       const std::string & ext, bool strict) {
+   s_cuts = new dataSubselector::Cuts(eventFile, ext, false);
+   s_instance->sortCuts(strict);
    s_instance->setRoiData();
 }
 
@@ -184,7 +185,7 @@ void RoiCuts::setRoiData() {
    }
 }
 
-void RoiCuts::sortCuts() {
+void RoiCuts::sortCuts(bool strict) {
    typedef dataSubselector::Cuts::CutBase CutBase;
    typedef dataSubselector::Cuts::RangeCut RangeCut;
    typedef dataSubselector::Cuts::GtiCut GtiCut;
@@ -213,7 +214,7 @@ void RoiCuts::sortCuts() {
          m_gtiCuts.push_back(reinterpret_cast<GtiCut *>(&cut));
       }
    }
-   if (nenergy != 1 || ncone != 1 || ntime == 0) {
+   if (strict && (nenergy != 1 || ncone != 1 || ntime == 0)) {
       std::ostringstream message;
       message << "RoiCuts::sortCuts:\n"
               << "There should be exactly one energy range cut, "
