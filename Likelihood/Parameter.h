@@ -34,10 +34,10 @@ public:
    
    Parameter() {m_init(std::string(""), 0., -HUGE, HUGE, true);};
    Parameter(const std::string &paramName, double paramValue, 
-	     bool isFree = true)
+             bool isFree = true)
       {m_init(paramName, paramValue, -HUGE, HUGE, isFree);};
    Parameter(const std::string &paramName, double paramValue, 
-	     double minValue, double maxValue, bool isFree = true)
+             double minValue, double maxValue, bool isFree = true)
       {m_init(paramName, paramValue, minValue, maxValue, isFree);};
    Parameter(const Parameter&);
    ~Parameter(){}
