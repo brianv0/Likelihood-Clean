@@ -191,7 +191,7 @@ void BinnedLikelihood::createSourceMaps() {
    std::vector<std::string>::const_iterator name = srcNames.begin();
    for ( ; name != srcNames.end(); ++name) {
       Source * src = getSource(*name);
-      m_srcMaps[*name] = new SourceMap(src, m_dataMap);
+      m_srcMaps[*name] = new SourceMap(src, &m_dataMap);
    }
 }
 
@@ -221,7 +221,7 @@ void BinnedLikelihood::readSourceMaps(std::string filename) {
    for (name = srcNames.begin() ; name != srcNames.end(); ++name) {
       if (!m_srcMaps.count(*name)) {
          Source * src = getSource(*name);
-         m_srcMaps[*name] = new SourceMap(src, m_dataMap);
+         m_srcMaps[*name] = new SourceMap(src, &m_dataMap);
       }
    }
 }
