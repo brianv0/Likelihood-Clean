@@ -14,7 +14,7 @@ namespace Likelihood {
 
 BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap)
    : m_dataMap(dataMap), m_modelIsCurrent(false) {
-   getPixels(dataMap, m_pixels);
+   dataMap.getPixels(m_pixels);
    dataMap.getAxisVector(2, m_energies);
 }
 
