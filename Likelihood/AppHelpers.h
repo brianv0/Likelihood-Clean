@@ -47,14 +47,6 @@ public:
 
    const std::vector<std::string> & scFiles() const {return m_scFiles;}
 
-   template <typename T>
-   T param(const std::string & paramName) {
-      m_pars.Prompt(paramName);
-      m_pars.Save();
-      T value = m_pars[paramName];
-      return value;
-   }
-
 protected:
 
    st_app::AppParGroup & m_pars;
