@@ -22,6 +22,13 @@ RunParams::RunParams(int iargc, char* argv[]) {
    hoops::IParFile * pf = hoops::PILParFileFactory().NewIParFile(argv[0]);
    try {
       pf->Load();
+      m_prompter = hoops::PILParPromptFactory().NewIParPrompt(iargc, argv);
+      m_prompter->Prompt();
+      
+      pf->Group() = m_prompter->Group();
+      pf->Save();
+
+      delete pf;
    } catch (hoops::Hexception &eObj) {
       if (eObj.Code() == -3003) {
          std::cout << "Likelihood::RunParams: .par file " << argv[0]
@@ -29,15 +36,8 @@ RunParams::RunParams(int iargc, char* argv[]) {
                    << std::endl;
          assert(eObj.Code() != -3003);
       }
+      throw;
    }
-
-   m_prompter = hoops::PILParPromptFactory().NewIParPrompt(iargc, argv);
-   m_prompter->Prompt();
-
-   pf->Group() = m_prompter->Group();
-   pf->Save();
-
-   delete pf;
 }
 
 RunParams::~RunParams() {

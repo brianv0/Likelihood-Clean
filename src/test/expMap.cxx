@@ -16,6 +16,8 @@
 #include <cstring>
 #include <cmath>
 
+#include "hoops/hoops_exception.h"
+
 #include "optimizers/Exception.h"
 
 #include "latResponse/IrfsFactory.h"
@@ -25,6 +27,7 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/RunParams.h"
+#include "Likelihood/Exception.h"
 
 using namespace Likelihood;
 
@@ -35,10 +38,9 @@ int main(int iargc, char* argv[]) {
 #endif
 
 // Read in the command-line parameters using HOOPS
-   std::string filename("expMap.par");
-   delete argv[0];
-   argv[0] = strdup(filename.c_str());
+   strcpy(argv[0], "expMap");
 
+   try {
    RunParams params(iargc, argv);
 
 // Set the region-of-interest.
@@ -105,4 +107,10 @@ int main(int iargc, char* argv[]) {
    params.getParam("Exposure_map_file", exposureFile);
    ExposureMap::computeMap(exposureFile, sr_radius, nlong, nlat, nenergies);
 
+   } catch (hoops::Hexception &eObj) {
+      std::cout << "HOOPS exception code: "
+                << eObj.Msg() << std::endl;
+   } catch (Exception &eObj) {
+      std::cout << eObj.what() << std::endl;
+   }
 }
