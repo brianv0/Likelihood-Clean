@@ -349,7 +349,6 @@ void likelihood::writeCountsSpectra() {
    }
    outputFile.close();
 
-#ifdef HAVE_ST_GRAPH
 // plot the data
    if (m_pars["plot"]) {
       try {
@@ -365,7 +364,6 @@ void likelihood::writeCountsSpectra() {
          }
       }
    }
-#endif // HAVE_ST_GRAPH
 }
 
 void likelihood::writeCountsMap() {
