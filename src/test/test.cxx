@@ -120,11 +120,11 @@ void LikelihoodTests::setUp() {
       m_rootPath = std::string(root);
    }
 // Prepare the ResponseFunctions object.
-   latResponse::IrfsFactory irfsFactory;
-   ResponseFunctions::addRespPtr(2, irfsFactory.create("DC1::Front"));
-   ResponseFunctions::addRespPtr(3, irfsFactory.create("DC1::Back"));
-//    ResponseFunctions::addRespPtr(2, irfsFactory.create("Glast25::Front"));
-//    ResponseFunctions::addRespPtr(3, irfsFactory.create("Glast25::Back"));   
+//   latResponse::IrfsFactory irfsFactory;
+   ResponseFunctions::addRespPtr(2, latResponse::irfsFactory().create("DC1::Front"));
+   ResponseFunctions::addRespPtr(3, latResponse::irfsFactory().create("DC1::Back"));
+//    ResponseFunctions::addRespPtr(2, irfsFactory().create("Glast25::Front"));
+//    ResponseFunctions::addRespPtr(3, irfsFactory().create("Glast25::Back"));   
    
 // Fractional tolerance for double comparisons.
    m_fracTol = 1e-4;
