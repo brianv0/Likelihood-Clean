@@ -93,6 +93,8 @@ protected:
 
 private:
 
+   CountsMap & operator=(const CountsMap & rhs) {}
+
    void init(std::vector<evtbin::Binner *> & binners, 
              const std::string & event_file, 
              const std::string & sc_file, unsigned long num_x_pix, 
@@ -114,6 +116,7 @@ private:
    void readImageData(const std::string & countsMapfile,
                       std::vector<evtbin::Binner *> & binners);
 
+   void setDataDir();
 };
 
 }
