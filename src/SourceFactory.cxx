@@ -244,7 +244,8 @@ Source * SourceFactory::makeDiffuseSource(const DOM_Element &spectrum,
    std::vector<DOM_Element>::const_iterator paramIt = params.begin();
    for ( ; paramIt != params.end(); paramIt++) {
       optimizers::Parameter parameter;
-      optimizers::Dom::readParamData(*paramIt, parameter);
+//      optimizers::Dom::readParamData(*paramIt, parameter);
+      parameter.extractDomData(*paramIt);
       spatialDist->setParam(parameter);
    }
    if (type == "SpatialMap") {
@@ -278,7 +279,8 @@ void SourceFactory::setSpectrum(Source *src, const DOM_Element &spectrum,
       std::vector<DOM_Element>::const_iterator paramIt = params.begin();
       for ( ; paramIt != params.end(); paramIt++) {
          optimizers::Parameter parameter;
-         optimizers::Dom::readParamData(*paramIt, parameter);
+//         optimizers::Dom::readParamData(*paramIt, parameter);
+         parameter.extractDomData(*paramIt);
          spec->setParam(parameter);
       }
    }  
