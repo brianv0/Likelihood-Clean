@@ -1,4 +1,5 @@
-/** @file SkyDirArg.h
+/** 
+ * @file SkyDirArg.h
  * @brief Declaration of SkyDirArg class
  * @author J. Chiang
  *

@@ -1,4 +1,5 @@
-/** @file ProductFunction.cxx
+/** 
+ * @file ProductFunction.cxx
  * @brief ProductFunction class implementation
  * @author J. Chiang
  * 

@@ -1,4 +1,5 @@
-/** @file logLike_gauss.cxx
+/** 
+ * @file logLike_gauss.cxx
  * @brief logLike_gauss class implementation
  *
  * @author J. Chiang

@@ -1,4 +1,5 @@
-/** @file SumFunction.cxx
+/** 
+ * @file SumFunction.cxx
  * @brief SumFunction class implementation
  * @author J. Chiang
  *

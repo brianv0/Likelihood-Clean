@@ -1,4 +1,5 @@
-/** @file SpatialMap.cxx
+/** 
+ * @file SpatialMap.cxx
  * @brief Implementation of Function object class that returns interpolated
  * image values of a FITS image file.
  * 

@@ -1,4 +1,5 @@
-/** @file SumFunction.h
+/** 
+ * @file SumFunction.h
  * @brief Declaration of SumFunction class
  * @author J. Chiang
  *

@@ -1,4 +1,5 @@
-/** @file logSrcModel.h
+/** 
+ * @file logSrcModel.h
  * @brief Declaration of logSrcModel class
  * @author J. Chiang
  *

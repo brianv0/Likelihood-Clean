@@ -1,4 +1,5 @@
-/** @file OptPP.cxx
+/** 
+ * @file OptPP.cxx
  * @brief Implementation OptPP class that provides an interface to the
  * OPT++ package
  * @author J. Chiang

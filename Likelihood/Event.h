@@ -16,11 +16,11 @@
 
 #include "astro/SkyDir.h"
 #include "Likelihood/FitsImage.h"
+#include "Likelihood/LikelihoodException.h"
 
 namespace Likelihood {
 
 class DiffuseSource;
-class LikelihoodException;
 
 /** 
  * @class Event

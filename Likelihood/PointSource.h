@@ -1,4 +1,5 @@
-/** @file PointSource.h
+/** 
+ * @file PointSource.h
  * @brief PointSource class declaration
  * @author J. Chiang
  *

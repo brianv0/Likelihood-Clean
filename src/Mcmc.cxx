@@ -155,8 +155,8 @@ void Mcmc::estimateTransWidths() {
       m_stat->value(new_params);
       std::vector<double> new_derivs;
       m_stat->getFreeDerivs(new_derivs);
-      double hessian = (new_derivs[i] - derivs[i])/delta;
-      m_transitionWidths.push_back(sqrt(abs(1./hessian)));
+      double hessian = fabs((new_derivs[i] - derivs[i])/delta);
+      m_transitionWidths.push_back(sqrt(1./hessian));
    }
 }
 

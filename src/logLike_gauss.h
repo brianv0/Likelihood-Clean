@@ -1,4 +1,5 @@
-/** @file logLike_gauss.h
+/** 
+ * @file logLike_gauss.h
  * @brief Declaration of logLike_gauss class
  * @author J. Chiang
  *

@@ -35,7 +35,8 @@ public:
 
    //! must re-implement here since this Statistic does not
    //! comprise individual Sources
-   void setParams(std::vector<Parameter> &params) {
+   void setParams(std::vector<Parameter> &params) 
+      throw(LikelihoodException, ParameterNotFound) {
       Function::setParams(params);
    }
 
