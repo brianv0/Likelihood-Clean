@@ -21,8 +21,8 @@ namespace optimizers {
 
 namespace Likelihood {
 
-class Event;
-class Observation;
+   class Event;
+   class Observation;
 
 /** 
  * @class DiffuseSource

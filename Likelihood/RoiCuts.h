@@ -110,10 +110,7 @@ public:
 
    /// A logrithmically spaced vector of energies from the minimum
    /// energy to the maximum energy.
-   const std::vector<double> & energies() {
-      if (m_energies.size() == 0) {
-         makeEnergyVector();
-      }
+   const std::vector<double> & energies() const {
       return m_energies;
    }
 

@@ -71,6 +71,10 @@ public:
       return *m_observation;
    }
 
+   Observation & observation() {
+      return *m_observation;
+   }
+
    static void checkCuts(const std::string & file1, const std::string & ext1,
                          const std::string & file2, const std::string & ext2);
 
