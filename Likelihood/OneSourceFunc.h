@@ -18,6 +18,8 @@
 #include "optimizers/Exception.h"
 #include "optimizers/ParameterNotFound.h"
 
+#include "optimizers/Statistic.h"
+
 namespace Likelihood {
 
    /**
@@ -28,7 +30,8 @@ namespace Likelihood {
     * $Header$
     */
   
-  class OneSourceFunc: public optimizers::Function {
+//   class OneSourceFunc: public optimizers::Function {
+  class OneSourceFunc: public optimizers::Statistic {
     
   public:
 
@@ -43,11 +46,27 @@ namespace Likelihood {
       setFreeParamValues_(std::vector<double>::const_iterator it);
     virtual std::vector<double>::const_iterator
       setParamValues_(std::vector<double>::const_iterator);
-    virtual Function *clone() const {return new OneSourceFunc(*this);}
+//    virtual Function *clone() const {return new OneSourceFunc(*this);}
+    virtual Statistic *clone() const {return new OneSourceFunc(*this);}
     virtual void setParams(std::vector<optimizers::Parameter>&)
       throw(optimizers::Exception, optimizers::ParameterNotFound);
     void setEpsW(double);
     void setEpsF(double);
+
+     virtual double value() const {
+        optimizers::Arg dummy;
+        return value(dummy);
+     }
+
+     virtual void getFreeDerivs(optimizers::Arg &x, 
+                                std::vector<double> &derivs) const {
+        Function::getFreeDerivs(x, derivs);
+     }
+
+     virtual void getFreeDerivs(std::vector<double> &derivs) const {
+        optimizers::Arg dummy;
+        getFreeDerivs(dummy, derivs);
+     }
 
   protected:
 
