@@ -187,7 +187,8 @@ void PointSource::computeExposure(std::vector<double> &energies,
 // Compute the inclination and check if it's within response matrix
 // cut-off angle
       double inc = getSeparation(scData->vec[it].zAxis)*180/M_PI;
-      if (inc > latResponse::Glast25::incMax()) includeInterval = false;
+//       if (inc > latResponse::Glast25::incMax()) includeInterval = false;
+      if (inc > 90.) includeInterval = false;
 
 // Having checked for relevant constraints, add the exposure
 // contribution for each energy

@@ -66,6 +66,13 @@ public:
                           latResponse::Irfs *respPtr) 
       {s_respPtrs[key] = respPtr;}
 
+   static void deleteRespPtr(unsigned int key) {
+      if (s_respPtrs.count(key)) {
+         delete s_respPtrs[key];
+         s_respPtrs[key] = 0;
+      }
+   }
+
    latResponse::Irfs * respPtr(unsigned int eventType);
 
    std::map<unsigned int, latResponse::Irfs *>::iterator begin()
