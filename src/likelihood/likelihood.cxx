@@ -20,6 +20,7 @@
 #include "optimizers/Drmngb.h"
 #include "optimizers/Lbfgs.h"
 #include "optimizers/Minuit.h"
+#include "optimizers/OptPP.h"
 #include "optimizers/Exception.h"
 
 #include "Likelihood/AppHelpers.h"
@@ -183,6 +184,8 @@ void likelihood::selectOptimizer() {
       m_opt = new optimizers::Minuit(*m_logLike);
    } else if (optimizer == "DRMNGB") {
       m_opt = new optimizers::Drmngb(*m_logLike);
+   } else if (optimizer == "OPTPP") {
+      m_opt = new optimizers::OptPP(*m_logLike);
    }
    if (m_opt == 0) {
       throw std::invalid_argument("Invalid optimizer choice: " + optimizer);

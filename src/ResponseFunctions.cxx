@@ -26,7 +26,7 @@ double ResponseFunctions::totalResponse(double time,
    astro::SkyDir zAxis = scData->zAxis(time);
    astro::SkyDir xAxis = scData->xAxis(time);
    
-   double myResponse = 0;
+   double myResponse(0);
    std::map<unsigned int, latResponse::Irfs *>::iterator respIt 
       = instance()->begin();
    for ( ; respIt != instance()->end(); respIt++) {
