@@ -169,6 +169,10 @@ private:
    /// vector of energy values for Npred spectrum quadrature
    static std::vector<double> s_energies;
 
+   /// True photon energies for convolving the spectrum with
+   /// the energy dispersion.
+   static std::vector<double> s_trueEnergies;
+
    /// integrated exposure at PointSource sky location
    std::vector<double> m_exposure;
 
