@@ -117,7 +117,7 @@ void LogLike::getEvents(const std::string &event_file, int hdu) {
 
    std::cout << "LogLike::getEvents:\nOut of " 
              << ra.first << " events in file "
-             << event_file << ", "
+             << event_file << ",\n "
              << m_events.size() - nevents << " were accepted, and "
              << nReject << " were rejected.\n" << std::endl;
 }
@@ -169,18 +169,18 @@ void LogLike::readEventData(const std::string &eventFile,
    std::vector<std::string> columnNames;
    m_eventData->read_FITS_colnames(m_eventFile, m_eventHdu, columnNames);
    m_eventData->add_columns(columnNames);
-   std::cerr << "Columns in " << m_eventFile 
-             << ", HDU " << m_eventHdu 
-             << ": \n";
-   for (unsigned int i = 0; i < columnNames.size(); i++) {
-      std::cerr << columnNames[i] << "  ";
-   }
-   std::cerr << std::endl;
+//    std::cerr << "Columns in " << m_eventFile 
+//              << ", HDU " << m_eventHdu 
+//              << ": \n";
+//    for (unsigned int i = 0; i < columnNames.size(); i++) {
+//       std::cerr << columnNames[i] << "  ";
+//    }
+//    std::cerr << std::endl;
    m_eventData->read_FITS_table(m_eventFile, m_eventHdu);
 
 }
 
-//! return pointer to data columns
+// return pointer to data columns
 std::pair<long, double*> 
 LogLike::getColumn(const latResponse::Table &tableData, 
                    const std::string &colname) const
