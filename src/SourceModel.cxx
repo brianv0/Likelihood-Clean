@@ -91,7 +91,7 @@ void SourceModel::addSource(Source *src) {
    for (unsigned int i = 0; i < s_sources.size(); i++) 
       assert((*src).getName() != (*s_sources[i]).getName());
 
-// add this one to the vector
+// add this one to the vector (perhaps we should clone this guy first?)
    s_sources.push_back(src);
 
 // add the Parameters to the m_parameter vector 

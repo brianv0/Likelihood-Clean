@@ -8,6 +8,7 @@
 #ifndef Response_h
 #define Response_h
 
+#include <iostream>
 #include "astro/SkyDir.h"
 #include "Likelihood/ScData.h"
 
