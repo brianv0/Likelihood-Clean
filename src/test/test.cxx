@@ -628,5 +628,5 @@ int main() {
    unit.test_DiffuseSource();
 
    std::cout << "all tests ok" << std::endl;
-   return 1;
+   return 0;
 }

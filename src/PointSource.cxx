@@ -9,12 +9,16 @@
 #include <string>
 #include <cmath>
 
+#include "facilities/Util.h"
+
 #include "astro/SkyDir.h"
 
 #include "optimizers/dArg.h"
 
 #include "latResponse/Irfs.h"
 #include "latResponse/../src/Glast25.h"
+
+#include "map_tools/Exposure.h"
 
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/PointSource.h"
@@ -56,6 +60,8 @@ namespace {
 
 namespace Likelihood {
 
+map_tools::Exposure * PointSource::s_exposure = 0;
+
 bool PointSource::s_haveStaticMembers = false;
 std::vector<double> PointSource::s_energies;
 
@@ -69,6 +75,11 @@ PointSource::PointSource(const PointSource &rhs) : Source(rhs) {
 
    m_exposure = rhs.m_exposure;
    m_srcType = rhs.m_srcType;
+}
+
+void PointSource::readExposureCube(std::string expCubeFile) {
+   facilities::Util::expandEnvVar(&expCubeFile);
+   s_exposure = new map_tools::Exposure(expCubeFile);
 }
 
 double PointSource::fluxDensity(double energy, double time,
@@ -140,7 +151,19 @@ double PointSource::NpredDeriv(const std::string &paramName) {
 }
 
 void PointSource::computeExposure(bool verbose) {
-   computeExposure(s_energies, m_exposure, verbose);
+   if (s_exposure == 0) {
+// Exposure time hypercube is not available, so perform sums using
+// ScData.
+      computeExposure(s_energies, m_exposure, verbose);
+   } else {
+      computeExposureWithHyperCube(s_energies, m_exposure, verbose);
+   }
+}
+
+void PointSource::computeExposureWithHyperCube(std::vector<double> &energies, 
+                                               std::vector<double> &exposure, 
+                                               bool verbose) {
+
 }
 
 void PointSource::computeExposure(std::vector<double> &energies,
