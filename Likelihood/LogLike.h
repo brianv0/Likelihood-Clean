@@ -9,16 +9,14 @@
 #ifndef Likelihood_LogLike_h
 #define Likelihood_LogLike_h
 
+#include "latResponse/../src/Table.h"
+
 #include "Likelihood/Event.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/logSrcModel.h"
 #include "Likelihood/Npred.h"
-
-namespace latResponse {
-   class Table;
-}
 
 namespace Likelihood {
 
