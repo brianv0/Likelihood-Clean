@@ -80,6 +80,14 @@ public:
 
    unsigned long nEvents() const {return m_events.size();}
 
+   /// This method writes the diffuse component responses as appended
+   /// columns to the named FITS file.  Almost no checking is
+   /// performed to ensure that the events in the FITS file correspond
+   /// to the data being written.  DO NOT use this method unless you
+   /// understand *exactly* what it does and *why* it does it that
+   /// way.
+   void writeEventResponses(std::string fitsFile);
+
 protected:
 
    /// Event data, read from m_eventFile, stored in a map
