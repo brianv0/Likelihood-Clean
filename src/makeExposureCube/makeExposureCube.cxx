@@ -41,7 +41,7 @@
 class ExposureCube : public st_app::StApp {
 public:
    ExposureCube() : st_app::StApp(), 
-                    m_pars(st_app::StApp::getParGroup("makeExposureCube")), 
+                    m_pars(st_app::StApp::getParGroup("gtlivetimecube")), 
                     m_exposure(0) {}
    virtual ~ExposureCube() throw() {
       try {

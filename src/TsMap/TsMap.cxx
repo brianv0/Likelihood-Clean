@@ -83,7 +83,7 @@ private:
 st_app::StAppFactory<TsMap> myAppFactory;
 
 TsMap::TsMap() : st_app::StApp(), m_helper(0), 
-                 m_pars(st_app::StApp::getParGroup("TsMap")), m_opt(0) {
+                 m_pars(st_app::StApp::getParGroup("gttsmap")), m_opt(0) {
    try {
       m_pars.Prompt();
       m_pars.Save();

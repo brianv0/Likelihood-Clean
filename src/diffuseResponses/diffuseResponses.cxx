@@ -86,7 +86,7 @@ st_app::StAppFactory<diffuseResponses> myAppFactory;
 
 diffuseResponses::diffuseResponses() 
    : st_app::StApp(), m_helper(0), m_srcModel(0), m_srRadius(30.),
-     m_pars(st_app::StApp::getParGroup("diffuseResponses")) {}
+     m_pars(st_app::StApp::getParGroup("gtdiffresp")) {}
 
 
 void diffuseResponses::run() {

@@ -95,11 +95,11 @@ private:
    bool prompt(const std::string &query);
 };
 
-st_app::StAppFactory<likelihood> myAppFactory("likelihood");
+st_app::StAppFactory<likelihood> myAppFactory("gtlikelihood");
 
 likelihood::likelihood() 
    : st_app::StApp(), m_helper(0), 
-     m_pars(st_app::StApp::getParGroup("likelihood")),
+     m_pars(st_app::StApp::getParGroup("gtlikelihood")),
      m_logLike(0), m_opt(0), m_dataMap(0) {
 }
 
