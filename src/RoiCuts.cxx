@@ -102,7 +102,8 @@ void RoiCuts::setCuts(const std::string &xmlFile) {
    optimizers::Dom::getElements(roi, "acceptanceCone", child);
    double lon = ::atof(xml::Dom::getAttribute(child[0], "longitude").c_str());
    double lat = ::atof(xml::Dom::getAttribute(child[0], "latitude").c_str());
-   if (xml::Dom::getAttribute(child[0], "unit") == "Galactic") {
+   if (xml::Dom::getAttribute(child[0], "coordsys") 
+       == std::string("Galactic")) {
       s_roiCenter = astro::SkyDir(lon, lat, astro::SkyDir::GALACTIC);
    } else {
       s_roiCenter = astro::SkyDir(lon, lat, astro::SkyDir::CELESTIAL);
