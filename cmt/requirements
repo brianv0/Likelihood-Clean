@@ -30,7 +30,3 @@ private
 
 use hoops v*
 use st_app v*
-
-macro LikelihoodLib_cppflags "" \
-      Linux " -D USE_FT1 " \
-      WIN32 ' /D"USE_FT1" '
