@@ -91,6 +91,10 @@ public:
       m_respDiffuseSrcs[srcName].push_back(value);
    }
 
+   /// Set diffuse response for finite energy resolution.
+   void setDiffuseResponse(const std::string & srcName, 
+                           const std::vector<double> & gaussianParams);
+
    static void toLower(std::string & name);
 
    /// Direct access to vector of true energies.
@@ -99,7 +103,7 @@ public:
    }
 
    /// Direct access to diffuse responses.
-   const std::vector<double> & diffuseResponse(const std::string & name) const;
+   const std::vector<double> & diffuseResponse(std::string name) const;
    
 private:
 

@@ -108,7 +108,8 @@ double Event::diffuseResponse(double trueEnergy,
 }
 
 const std::vector<double> & 
-Event::diffuseResponse(const std::string & name) const {
+Event::diffuseResponse(std::string name) const {
+   toLower(name);
    std::map<std::string, diffuse_response>::const_iterator it;
    if ((it = m_respDiffuseSrcs.find(name)) == m_respDiffuseSrcs.end()) {
       std::string errorMessage 
@@ -269,6 +270,19 @@ void Event::getNewDiffuseSrcs(const std::vector<DiffuseSource *> & srcList,
 void Event::toLower(std::string & name) {
    for (std::string::iterator it = name.begin(); it != name.end(); ++it) {
       *it = std::tolower(*it);
+   }
+}
+
+void Event::setDiffuseResponse(const std::string & srcName,
+                               const std::vector<double> & gaussianParams) {
+   static double sqrt2pi = sqrt(2.*M_PI);
+   std::vector<double>::const_iterator energy = m_trueEnergies.begin();
+   m_respDiffuseSrcs[srcName].clear();
+   for ( ; energy != m_trueEnergies.end(); ++energy) {
+      double value = gaussianParams[0]/sqrt2pi/gaussianParams[2]
+         *exp(-(m_energy - gaussianParams[1])*(m_energy - gaussianParams[1])
+              /gaussianParams[2]/gaussianParams[2]/2.);
+      m_respDiffuseSrcs[srcName].push_back(value);
    }
 }
 
