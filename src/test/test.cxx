@@ -777,8 +777,8 @@ void LikelihoodTests::test_SourceMap() {
 
    SourceFactory * srcFactory 
       = srcFactoryInstance("", "", "", "", false);
-   Source * src = srcFactory->create("Galactic Diffuse");
-//   Source * src =  srcFactory->create("Crab Pulsar");
+//   Source * src = srcFactory->create("Galactic Diffuse");
+   Source * src =  srcFactory->create("Crab Pulsar");
 
    SourceMap srcMap(src, &dataMap);
 
