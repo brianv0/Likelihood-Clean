@@ -10,22 +10,23 @@
 #include <string>
 #include <cmath>
 
+#include "optimizers/Function.h"
+#include "optimizers/dArg.h"
+#include "optimizers/Exception.h"
+
 #include "Likelihood/DiffuseSource.h"
-#include "Likelihood/Function.h"
 #include "Likelihood/Event.h"
 #include "Likelihood/RoiCuts.h"
-#include "Likelihood/dArg.h"
 #include "Likelihood/TrapQuad.h"
 #include "Likelihood/ExposureMap.h"
-#include "Likelihood/Exception.h"
 
 namespace Likelihood {
 
 bool DiffuseSource::s_haveStaticMembers = false;
 std::vector<double> DiffuseSource::s_energies;
 
-DiffuseSource::DiffuseSource(Function* spatialDist) 
-   throw(Exception) : m_spectrum(0) {
+DiffuseSource::DiffuseSource(optimizers::Function* spatialDist) 
+   throw(optimizers::Exception) : m_spectrum(0) {
 // The spatial distribution of emission is required for instantiation.
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
@@ -40,7 +41,7 @@ DiffuseSource::DiffuseSource(Function* spatialDist)
 // instantiated.
    ExposureMap *emap = ExposureMap::instance();
    if (emap == 0) {
-      throw Exception("The ExposureMap is not defined.");
+      throw optimizers::Exception("The ExposureMap is not defined.");
    } else {
       emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
       m_srcType = "Diffuse";
@@ -69,7 +70,7 @@ double DiffuseSource::fluxDensity(const Event &evt) const {
 
 // Note that the Event-specific diffuseResponses are assumed to
 // be identified by the DiffuseSource name.
-   dArg energy_arg(trueEnergy);
+   optimizers::dArg energy_arg(trueEnergy);
    return (*m_spectrum)(energy_arg)*evt.diffuseResponse(trueEnergy, getName());
 }
 
@@ -86,21 +87,21 @@ double DiffuseSource::fluxDensityDeriv(const Event &evt,
       return fluxDensity(evt)/m_spectrum->getParamValue("Prefactor");
    } else {
       double trueEnergy = evt.getEnergy(); 
-      dArg energy_arg(trueEnergy);
+      optimizers::dArg energy_arg(trueEnergy);
       return m_spectrum->derivByParam(energy_arg, paramName)
          *evt.diffuseResponse(trueEnergy, getName());
    }
 }
 
 double DiffuseSource::Npred() {
-   Function *specFunc = m_functions["Spectrum"];
+   optimizers::Function *specFunc = m_functions["Spectrum"];
 
 // Evaluate the Npred integrand at the abscissa points contained in
 // s_energies.
    
    std::vector<double> NpredIntegrand(s_energies.size());
    for (unsigned int k = 0; k < s_energies.size(); k++) {
-      dArg eArg(s_energies[k]);
+      optimizers::dArg eArg(s_energies[k]);
       NpredIntegrand[k] = (*specFunc)(eArg)*m_exposure[k];
    }
    TrapQuad trapQuad(s_energies, NpredIntegrand);
@@ -108,14 +109,14 @@ double DiffuseSource::Npred() {
 }
 
 double DiffuseSource::NpredDeriv(const std::string &paramName) {
-   Function *specFunc = m_functions["Spectrum"];
+   optimizers::Function *specFunc = m_functions["Spectrum"];
 
    if (paramName == std::string("Prefactor")) {
       return Npred()/specFunc->getParamValue("Prefactor");
    } else {  // loop over energies and fill integrand vector
       std::vector<double> myIntegrand(s_energies.size());
       for (unsigned int k = 0; k < s_energies.size(); k++) {
-         dArg eArg(s_energies[k]);
+         optimizers::dArg eArg(s_energies[k]);
          myIntegrand[k] = specFunc->derivByParam(eArg, paramName)
             *m_exposure[k];
       }

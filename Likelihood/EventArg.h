@@ -9,7 +9,7 @@
 #ifndef Likelihood_EventArg_h
 #define Likelihood_EventArg_h
 
-#include "Likelihood/Arg.h"
+#include "optimizers/Arg.h"
 #include "Likelihood/Event.h"
 
 namespace Likelihood {
@@ -24,11 +24,11 @@ namespace Likelihood {
  * $Header$
  */
 
-class EventArg : public Arg {
+class EventArg : public optimizers::Arg {
     
 public:
    
-   EventArg(Event &evt) : m_val(evt) {}
+   EventArg(const Event &evt) : m_val(evt) {}
    virtual ~EventArg() {}
 
    void fetchValue(Event &evt) const {evt = m_val;}

@@ -12,15 +12,16 @@
 #include <string>
 #include <map>
 
-//#include "Likelihood/Function.h"
 #include "PowerLaw.h"
 #include "Gaussian.h"
 #include "AbsEdge.h"
 #include "Likelihood/Exception.h"
 
-namespace Likelihood {
+namespace optimizers {
+   class Function;
+}
 
-class Function;
+namespace Likelihood {
 
 /** 
  * @class SpectrumFactory
@@ -53,16 +54,16 @@ public:
    //! Clients should almost always have fromClone = true, unless
    //! they explicitly pass a new Function pointer; otherwise,
    //! the destructor will delete their Function.
-   void addFunc(const std::string &name, Function* func, 
-                bool fromClone = true) throw(Exception);
+   void addFunc(const std::string &name, optimizers::Function* func, 
+                bool fromClone = true) throw(optimizers::Exception);
 
-   Function *makeFunction(const std::string &name);
+   optimizers::Function *makeFunction(const std::string &name);
 
    void listFunctions();
 
 private:
 
-   std::map<std::string, Function *> m_prototypes;
+   std::map<std::string, optimizers::Function *> m_prototypes;
 
 };
 

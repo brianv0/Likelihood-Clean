@@ -9,8 +9,8 @@
 #ifndef Likelihood_PowerLaw_h
 #define Likelihood_PowerLaw_h
 
-#include "Likelihood/Function.h"
-#include "Likelihood/Arg.h"
+#include "optimizers/Function.h"
+#include "optimizers/Arg.h"
 
 namespace Likelihood {
 /** 
@@ -23,21 +23,21 @@ namespace Likelihood {
  * $Header$
  */
     
-class PowerLaw : public Function {
+class PowerLaw : public optimizers::Function {
 public:
 
    PowerLaw(){init(0, -2, 1);}
    PowerLaw(double Prefactor, double Index, double Scale)
       {init(Prefactor, Index, Scale);}
 
-   double value(Arg&) const;
+   double value(optimizers::Arg&) const;
 
-   double derivByParam(Arg &x, const std::string &paramName) const
-      throw(ParameterNotFound);
+   double derivByParam(optimizers::Arg &x, const std::string &paramName) const
+      throw(optimizers::ParameterNotFound);
 
-   double integral(Arg &xmin, Arg &xmax) const;
+   double integral(optimizers::Arg &xmin, optimizers::Arg &xmax) const;
 
-   virtual Function *clone() const {
+   virtual optimizers::Function *clone() const {
       return new PowerLaw(*this);
    }
 

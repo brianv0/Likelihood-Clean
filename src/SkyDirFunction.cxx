@@ -34,14 +34,14 @@ void SkyDirFunction::m_init(double lon, double lat) {
 
 void SkyDirFunction::update_m_dir(const std::string paramName, 
                                   double paramValue) 
-   throw(ParameterNotFound) {
+   throw(optimizers::ParameterNotFound) {
    if (paramName == "longitude") {
       m_lon = paramValue;
    } else if (paramName == "latitude") {
       m_lat = paramValue;
    } else {
-      throw ParameterNotFound(paramName, getName(), 
-                              "SkyDirFunction::update_m_dir");
+      throw optimizers::ParameterNotFound(paramName, getName(), 
+                                          "SkyDirFunction::update_m_dir");
    }
    m_dir = astro::SkyDir(m_lon, m_lat);
 }

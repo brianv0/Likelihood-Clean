@@ -8,8 +8,8 @@
 #ifndef Likelihood_SkyDirFunction_h
 #define Likelihood_SkyDirFunction_h
 
-#include "Likelihood/Function.h"
-#include "Likelihood/Arg.h"
+#include "optimizers/Function.h"
+#include "optimizers/Arg.h"
 #include "astro/SkyDir.h"
 
 namespace Likelihood {
@@ -26,7 +26,7 @@ namespace Likelihood {
  * $Header$
  */
     
-class SkyDirFunction : public Function, public astro::SkyDir {
+class SkyDirFunction : public optimizers::Function, public astro::SkyDir {
 public:
 
    SkyDirFunction() {m_init(0., 0.);}
@@ -35,21 +35,21 @@ public:
 
    astro::SkyDir getDir() const {return m_dir;}
 
-   double value(Arg &) const {return 0;}
+   double value(optimizers::Arg &) const {return 0;}
 
    //! overloaded setParam methods to include updating of m_dir
    void setParam(const std::string &paramName, double paramValue, 
-                 bool isFree) throw(ParameterNotFound) {
+                 bool isFree) throw(optimizers::ParameterNotFound) {
       setParameter(paramName, paramValue, isFree);
       update_m_dir(paramName, paramValue);
    }
    void setParam(const std::string &paramName, double paramValue) 
-      throw(ParameterNotFound) {
+      throw(optimizers::ParameterNotFound) {
       setParameter(paramName, paramValue);
       update_m_dir(paramName, paramValue);
    }
 
-   double derivByParam(Arg &, const std::string &) const
+   double derivByParam(optimizers::Arg &, const std::string &) const
       {return 0;}
 
 private:
@@ -57,7 +57,7 @@ private:
    void m_init(double lon, double lat);
    
    void update_m_dir(std::string paramName, double paramValue)
-      throw(ParameterNotFound);
+      throw(optimizers::ParameterNotFound);
 
    astro::SkyDir::CoordSystem m_coord_type;
    double m_lon;

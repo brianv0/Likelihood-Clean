@@ -40,15 +40,15 @@ public:
    logSrcModel() {setMaxNumParams(0);}
    virtual ~logSrcModel() {}
 
-   double value(Arg &xarg) const;
-   double derivByParam(Arg&, std::string &) const {return 0;}
+   double value(optimizers::Arg &xarg) const;
+   double derivByParam(optimizers::Arg&, std::string &) const {return 0;}
 
    // would be nice if this wasn't necessary...
    void mySyncParams() {syncParams();}
 
 protected:
 
-   void fetchDerivs(Arg &x, std::vector<double> &derivs, 
+   void fetchDerivs(optimizers::Arg &x, std::vector<double> &derivs, 
                     bool getFree) const;
 
 };

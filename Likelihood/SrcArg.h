@@ -9,7 +9,7 @@
 #ifndef Likelihood_SrcArg_h
 #define Likelihood_SrcArg_h
 
-#include "Likelihood/Arg.h"
+#include "optimizers/Arg.h"
 #include "Likelihood/Source.h"
 
 namespace Likelihood {
@@ -24,7 +24,7 @@ namespace Likelihood {
  * $Header$
  */
 
-class SrcArg : public Arg {
+class SrcArg : public optimizers::Arg {
     
 public:
    

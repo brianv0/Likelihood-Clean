@@ -9,32 +9,32 @@
  */
 
 #include "Likelihood/TrapQuad.h"
-#include "Likelihood/dArg.h"
-#include "Likelihood/Exception.h"
+#include "optimizers/dArg.h"
+#include "optimizers/Exception.h"
 
 #include <sstream>
 
 namespace Likelihood {
 
-double TrapQuad::integral() throw(Exception) {
+double TrapQuad::integral() throw(optimizers::Exception) {
    if (m_haveFunc) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"
                    << "This operation requires "
                    << "instantiation with abscissa and ordinate vectors.\n";
-      throw Exception(errorMessage.str());
+      throw optimizers::Exception(errorMessage.str());
    }
    return compute_integral();
 }
 
 double TrapQuad::integral(double xmin, double xmax, int npts) 
-   throw(Exception) {
+   throw(optimizers::Exception) {
    if (!m_haveFunc) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"
                    << "This operation requires "
                    << "instantiation with a pointer to a Function object.\n";
-      throw Exception(errorMessage.str());
+      throw optimizers::Exception(errorMessage.str());
    }
    m_x.clear();
    m_y.clear();
@@ -43,27 +43,27 @@ double TrapQuad::integral(double xmin, double xmax, int npts)
    double xstep = (xmax - xmin)/(npts - 1);
    for (int i = 0; i < npts; i++) {
       m_x.push_back(i*xstep + xmin);
-      dArg xarg(m_x[i]);
+      optimizers::dArg xarg(m_x[i]);
       m_y.push_back((*m_func)(xarg));
    }
    return compute_integral();
 }
 
 double TrapQuad::integral(std::vector<double> &xvals) 
-   throw(Exception) {
+   throw(optimizers::Exception) {
    if (!m_haveFunc) {
       std::ostringstream errorMessage;
       errorMessage << "TrapQuad::integral:\n"
                    << "This operation requires "
                    << "instantiation with a pointer to a Function object.\n";
-      throw Exception(errorMessage.str());
+      throw optimizers::Exception(errorMessage.str());
    }
    m_x = xvals;
    int npts = m_x.size();
    m_y.clear();
    m_y.reserve(npts);
    for (int i = 0; i < npts; i++) {
-      dArg xarg(m_x[i]);
+      optimizers::dArg xarg(m_x[i]);
       m_y.push_back((*m_func)(xarg));
    }
    return compute_integral();
