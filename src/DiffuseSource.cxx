@@ -55,7 +55,6 @@ DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
 }
 
 DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
-// make a deep copy
    m_spatialDist = rhs.m_spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
 
@@ -63,7 +62,6 @@ DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
    m_functions["Spectrum"] = m_spectrum;
 
    m_exposure = rhs.m_exposure;
-   m_srcType = rhs.m_srcType;
 }
 
 double DiffuseSource::fluxDensity(const Event &evt) const {
