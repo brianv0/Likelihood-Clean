@@ -13,6 +13,7 @@
 
 #include "facilities/Util.h"
 
+#ifdef USE_GOODI
 #include "Goodi/GoodiConstants.h"
 #include "Goodi/DataIOServiceFactory.h"
 #include "Goodi/DataFactory.h"
@@ -20,6 +21,7 @@
 #include "Goodi/IData.h"
 #include "Goodi/IEventData.h"
 #include "Goodi/../src/Event.h"
+#endif
 
 #include "latResponse/../src/Table.h"
 
@@ -262,11 +264,11 @@ void LogLike::readEventData(const std::string &eventFile, int hdu) {
 
 }
 
-std::pair<long, double*> 
+std::pair<long, std::vector<double> >
 LogLike::getColumn(const latResponse::Table &tableData, 
                    const std::string &colname) const
    throw(optimizers::Exception) {
-   std::pair<long, double*> my_column(0, 0);
+   std::pair<long, std::vector<double> > my_column;
    std::string colnames;
    
 // loop over column names, return the matching one

@@ -13,12 +13,14 @@
 
 #include "facilities/Util.h"
 
+#ifdef USE_GOODI
 #include "Goodi/GoodiConstants.h"
 #include "Goodi/DataIOServiceFactory.h"
 #include "Goodi/DataFactory.h"
 #include "Goodi/IDataIOService.h"
 #include "Goodi/ISpacecraftData.h"
 #include "Goodi/SCRow.h"
+#endif
 
 #include "astro/EarthCoordinate.h"
 
