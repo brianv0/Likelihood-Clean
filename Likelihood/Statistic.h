@@ -22,7 +22,8 @@ namespace Likelihood {
  *
  * @author J. Chiang
  *    
- * $Header$ */
+ * $Header$ 
+ */
 
 class Statistic : public SourceModel {
     
