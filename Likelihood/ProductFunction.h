@@ -25,8 +25,8 @@ namespace Likelihood {
 class ProductFunction : public CompositeFunction {
 public:
 
-   ProductFunction(Function *a, Function *b) {
-      m_a = a; m_b = b;}
+   ProductFunction(Function &a, Function &b) {
+      m_a = &a; m_b = &b;}
 
    double value(Arg &x) const
       {return m_a->value(x)*m_b->value(x);}
