@@ -34,6 +34,8 @@ WIN32 "/I..\src  /wd4290"
 # this package uses obsolete C function names, beware	
 macro_append cpplinkflags "" WIN32 " oldnames.lib"
 
+macro_append ROOT_libs ""  WIN32 " libHisT.lib "
+
 # make sure test applications get built when library changes
 macro test_Likelihoodstamps "Likelihood.stamp"
 macro likelihoodAppstamps "likelihoodApp.stamp"
