@@ -52,6 +52,9 @@ public:
                   const std::vector< std::pair<double, double> > & gtis,
                   double & fraction);
 
+   static double overlap(const std::pair<double, double> & interval1,
+                         const std::pair<double, double> & interval2);
+
 private:
 
    const std::vector< std::pair<double, double> > & m_timeCuts;
@@ -59,9 +62,6 @@ private:
 
    static bool overlaps(const std::pair<double, double> & interval1,
                         std::pair<double, double> & interval2);
-
-   static double overlap(const std::pair<double, double> & interval1,
-                         const std::pair<double, double> & interval2);
 
 };
 
