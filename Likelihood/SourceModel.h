@@ -11,6 +11,7 @@
 
 #include <map>
 #include <vector>
+#include <stdexcept>
 #include <string>
 
 #include "map_tools/Exposure.h"
@@ -128,7 +129,7 @@ public:
    Source * getSource(const std::string &srcName);
 
    /// @return reference to the Source map.
-   const std::map<std::string, Source *> & sources() {return s_sources;}
+   const std::map<std::string, Source *> & sources() const {return s_sources;}
 
    unsigned int getNumSrcs() const {return s_sources.size();}
    void getSrcNames(std::vector<std::string> &) const;
@@ -154,7 +155,12 @@ public:
    virtual void write_fluxXml(std::string xmlFile);
 
    /// Create a counts map based on the current model.
-   CountsMap * createCountsMap(const CountsMap & dataMap) const;
+   virtual CountsMap * createCountsMap(const CountsMap & dataMap) const;
+
+   virtual CountsMap * createCountsMap() const {
+      throw std::runtime_error("SourceModel::createCountsMap needs to be "
+                             + std::string("reimplemented in this subclass."));
+   }
 
 protected:
 
@@ -194,9 +200,15 @@ protected:
    static void getPixels(const CountsMap & countsMap,
                          std::vector<Pixel> & pixels);
 
-   void computeModelMap(const std::vector<Pixel> & pixels,
-                        const std::vector<double> & energies,
-                        std::vector<double> & modelMap) const;
+   virtual void computeModelMap(const std::vector<Pixel> & pixels,
+                                const std::vector<double> & energies,
+                                std::vector<double> & modelMap) const;
+
+   virtual void computeModelMap(const std::vector<double> &,
+                                std::vector<double> &) const {
+      throw std::runtime_error("computeModelMap must be re-implemented in "
+                               + std::string("the subclass that calls it."));
+   }
 
 private:
 

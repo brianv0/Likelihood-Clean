@@ -130,7 +130,7 @@ public:
    double getSeparation(const astro::SkyDir &dir) 
       {return dir.SkyDir::difference(m_dir.getDir());}
 
-   /// Set the spectral model (should also check that the Parameter
+   /// Set the spectral model (@todo Should check that the Parameter
    /// names do not conflict with "longitude" and "latitude" of m_dir)
    void setSpectrum(optimizers::Function *spectrum) {
       m_spectrum = spectrum->clone();
@@ -140,6 +140,13 @@ public:
    virtual Source *clone() const {
       return new PointSource(*this);
    }
+
+   virtual double pixelCounts(double emin, double emax,
+                              double wtMin, double wtMax) const;
+
+   virtual double pixelCountsDeriv(double emin, double emax, 
+                                   double wtMin, double wtMax,
+                                   const std::string & paramName) const;
 
    static bool overlapInterval(const std::pair<double, double> & interval1,
                                std::pair<double, double> & interval2);

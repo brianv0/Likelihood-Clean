@@ -10,6 +10,7 @@
 #include <iostream>
 #include <stdexcept>
 
+#ifdef HAVE_ST_GRAPH
 #include "st_graph/Engine.h"
 #include "st_graph/IEventReceiver.h"
 #include "st_graph/IFrame.h"
@@ -141,3 +142,4 @@ void EasyPlot::run() {
    st_graph::Engine & engine(st_graph::Engine::instance());
    engine.run();
 }
+#endif // HAVE_ST_GRAPH
