@@ -19,7 +19,7 @@ namespace Likelihood {
 
 /**
  * @class AppHelpers
- * @brief The methods in this class calls various static methods for
+ * @brief The methods in this class call various static methods for
  * reading in spacecraft data, defining the region-of-interest, and
  * preparing the response functions --- all standard tasks which must
  * be performed as part of any Likelihood analysis.

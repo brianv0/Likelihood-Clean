@@ -19,6 +19,14 @@
 
 namespace Likelihood {
 
+/**
+ * @class BinnedExposure
+ * @brief This class encapsulates the calculation of and access to 
+ * the integral of the effective area over live time.
+ *
+ * @author J. Chiang
+ */
+
 class BinnedExposure {
 
 public:
