@@ -1,6 +1,6 @@
 /** @file Parameter.h
  * @brief Declaration of Parameter class
- * $Header:
+ * $Header$
  */
 
 #ifndef Parameter_h
