@@ -11,11 +11,14 @@
 
 #include "Likelihood/Source.h"
 #include "Likelihood/SkyDirArg.h"
-#include "Likelihood/Exception.h"
+#include "optimizers/Exception.h"
+
+namespace optimizers {
+   class Function;
+}
 
 namespace Likelihood {
 
-class Function;
 class Event;
 
 /** 
@@ -48,7 +51,8 @@ public:
 
    //! A Function describing the spatial distribution of emission is 
    //! required for instantiation.
-   DiffuseSource(Function *spatialDist) throw(Exception);
+   DiffuseSource(optimizers::Function *spatialDist) 
+      throw(optimizers::Exception);
 
    DiffuseSource(const DiffuseSource &rhs);
 
@@ -75,7 +79,7 @@ public:
 
    //! Set the spectral model (should also check that the Parameter
    //! names do not conflict with "longitude" and "latitude" of m_dir)
-   void setSpectrum(Function *spectrum) {
+   void setSpectrum(optimizers::Function *spectrum) {
       m_spectrum = spectrum->clone();
       m_functions["Spectrum"] = m_spectrum;
    }
@@ -87,10 +91,10 @@ public:
 protected:
 
    //! spatial model
-   Function *m_spatialDist;
+   optimizers::Function *m_spatialDist;
 
    //! spectral model
-   Function *m_spectrum;
+   optimizers::Function *m_spectrum;
 
 private:
 

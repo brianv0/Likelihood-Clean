@@ -11,7 +11,7 @@
 
 namespace Likelihood {
 
-double logSrcModel::value(Arg &xarg) const {
+double logSrcModel::value(optimizers::Arg &xarg) const {
    Event evt;
    dynamic_cast<EventArg &>(xarg).fetchValue(evt);
 
@@ -26,7 +26,8 @@ double logSrcModel::value(Arg &xarg) const {
    }
 }
 
-void logSrcModel::fetchDerivs(Arg &xarg, std::vector<double> &derivs, 
+void logSrcModel::fetchDerivs(optimizers::Arg &xarg, 
+                              std::vector<double> &derivs, 
                               bool getFree) const {
    if (!derivs.empty()) derivs.clear();
 

@@ -13,7 +13,7 @@
 #include <iostream>
 #include <map>
 #include "astro/SkyDir.h"
-#include "Likelihood/Function.h"
+#include "optimizers/Function.h"
 #include "Likelihood/Event.h"
 
 namespace Likelihood {
@@ -55,7 +55,7 @@ public:
    std::string getName() const {return m_name;}
 
    //! return a reference to the m_functions map (NB: not const!)
-   typedef std::map<std::string, Function *> FuncMap;
+   typedef std::map<std::string, optimizers::Function *> FuncMap;
    FuncMap & getSrcFuncs() {return m_functions;}
 
    virtual void setDir(double ra, double dec, bool updateExposure = true) = 0;

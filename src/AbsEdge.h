@@ -9,11 +9,9 @@
 #ifndef Likelihood_AbsEdge_h
 #define Likelihood_AbsEdge_h
 
-#include "Likelihood/Function.h"
+#include "optimizers/Function.h"
 
 namespace Likelihood {
-
-class Arg;
 
 /** 
  * @class AbsEdge
@@ -26,26 +24,26 @@ class Arg;
  * $Header$
  */
     
-class AbsEdge : public Function {
+class AbsEdge : public optimizers::Function {
 public:
 
    AbsEdge() {init(1, 1, -3);}
    AbsEdge(double Tau0, double E0, double Index = -3)
       {init(Tau0, E0, Index);}
 
-   double value(Arg &) const;
+   double value(optimizers::Arg &) const;
 
-   double derivByParam(Arg &, const std::string &paramName) const
-      throw(ParameterNotFound);
+   double derivByParam(optimizers::Arg &, const std::string &paramName) const
+      throw(optimizers::ParameterNotFound);
 
-   virtual Function *clone() const {
+   virtual optimizers::Function *clone() const {
       return new AbsEdge(*this);
    }
 
 private:
 
    // disable this
-   double integral(Arg &, Arg &) const {return 0;}
+   double integral(optimizers::Arg &, optimizers::Arg &) const {return 0;}
 
    void init(double Tau0, double E0, double Index);
 
