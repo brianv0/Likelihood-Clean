@@ -27,7 +27,7 @@ namespace Likelihood {
 
 #ifndef SWIG
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
-#endif
+#endif //SWIG
 
 /** 
  * @class SourceFactory
