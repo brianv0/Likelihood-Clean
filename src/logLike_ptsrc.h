@@ -32,12 +32,12 @@ class logLike_ptsrc : public Statistic {
     
 public:
 
-   logLike_ptsrc(){
+   logLike_ptsrc() {
       logSrcModel m_logSrcModel;
       Npred m_Npred;
       deleteAllSources();
    }
-   virtual ~logLike_ptsrc(){}
+   virtual ~logLike_ptsrc() {}
 
    //! return the objective function value taking the free parameters 
    //! as the function argument
