@@ -36,7 +36,7 @@ SourceModelBuilder::SourceModelBuilder(const std::string &functionLibrary,
 }
 
 SourceModelBuilder::~SourceModelBuilder() {
-   delete m_srcLib;
+//    delete m_srcLib;
 }
 
 void SourceModelBuilder::addSource(Source & src) {

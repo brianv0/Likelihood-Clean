@@ -41,8 +41,8 @@ FluxBuilder::FluxBuilder() : XmlBuilder() {
 }
 
 FluxBuilder::~FluxBuilder() {
-   delete m_allSrcsElt;
-   delete m_srcLib;
+//    delete m_allSrcsElt;
+//    delete m_srcLib;
 }
 
 void FluxBuilder::addSource(Source & src) {
