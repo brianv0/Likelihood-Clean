@@ -83,9 +83,10 @@ void SpatialMap::init() {
 void SpatialMap::readFitsFile(const std::string &fitsFile) {
    m_fitsFile = fitsFile;
 
-   facilities::Util::expandEnvVar(&m_fitsFile);
+   std::string inFile(m_fitsFile);
+   facilities::Util::expandEnvVar(&inFile);
 
-   FitsImage fitsImage(m_fitsFile);
+   FitsImage fitsImage(inFile);
 
 // Assume 0th and 1st axes are RA and DEC.
    fitsImage.fetchAxisVector(0, m_ra);
