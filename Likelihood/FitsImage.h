@@ -51,6 +51,10 @@ public:
    void getPixelBounds(unsigned int naxis,
                        std::vector<double> & pixelBounds) const;
 
+   const std::string & coordSys() const {
+      return m_coordSys;
+   }
+
    static void fitsReportError(int status, std::string routine="");
 
    static int findHdu(const std::string & fitsfile,
@@ -85,6 +89,8 @@ public:
 private:
 
    double m_roiRa, m_roiDec;
+
+   std::string m_coordSys;
 
    EquinoxRotation * m_eqRot;
 
