@@ -294,10 +294,10 @@ void ExposureMap::writeFitsFile(const std::string &filename,
                    "units for log_energy", &status);
    fitsReportError(stderr, status);
 
-   fits_update_key(fptr, TDOUBLE, "LONPOLE", &ra0, "RA of ROI center", 
+   fits_update_key(fptr, TDOUBLE, "ROI_RA", &ra0, "RA of ROI center", 
                    &status);
    fitsReportError(stderr, status);
-   fits_update_key(fptr, TDOUBLE, "LATPOLE", &dec0, "DEC of ROI center",
+   fits_update_key(fptr, TDOUBLE, "ROI_DEC", &dec0, "DEC of ROI center",
                    &status);
    fitsReportError(stderr, status);
    

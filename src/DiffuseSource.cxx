@@ -5,10 +5,12 @@
  * $Header$
  */
 
-#include <vector>
-#include <valarray>
-#include <string>
 #include <cmath>
+
+#include <algorithm>
+#include <string>
+#include <valarray>
+#include <vector>
 
 #include "optimizers/Function.h"
 #include "optimizers/dArg.h"
