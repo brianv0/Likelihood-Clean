@@ -6,7 +6,6 @@
  * $Header$
  */
 
-
 #ifndef Likelihood_Event_h
 #define Likelihood_Event_h
 
@@ -68,10 +67,15 @@ public:
    //! m_respDiffuseSrcs map with the specified name.  sr_radius is the
    //! "source region" radius (in degrees) over which the spatial
    //! distribution of src will be integrated.
-   void computeResponse(DiffuseSource &src, double sr_radius = 30.);
+   void computeResponse(DiffuseSource &src, 
+                        double sr_radius = 30.) {
+      std::vector<DiffuseSource *> srcs;
+      srcs.push_back(&src);
+      computeResponse(srcs, sr_radius);
+   }
 
    //! Compute the reponse integrals for a vector of DiffuseSources
-   void computeResponse(std::vector<DiffuseSource> &srcs, 
+   void computeResponse(std::vector<DiffuseSource *> &srcs, 
                         double sr_radius = 30.);
    
 private:
