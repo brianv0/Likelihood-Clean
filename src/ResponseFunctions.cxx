@@ -16,7 +16,6 @@ ResponseFunctions * ResponseFunctions::s_instance = 0;
 std::map<unsigned int, latResponse::Irfs *> ResponseFunctions::s_respPtrs;
 
 bool ResponseFunctions::s_useEdisp(false);
-//bool ResponseFunctions::s_useEdisp(true);
    
 double ResponseFunctions::totalResponse(double time, 
                                         double energy, double appEnergy,
