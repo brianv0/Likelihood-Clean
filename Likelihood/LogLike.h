@@ -69,12 +69,14 @@ public:
 
    void computeEventResponses(double sr_radius = 30);
 
+#ifndef SWIG
 // Methods and data members from old Likelihood::Statistic:
    void readEventData(const std::string &eventFile, int hdu);
 
    /// Generalized column access
    std::pair<long, std::vector<double> > 
    getEventColumn(const std::string &colname) const;
+#endif
 
    unsigned long nEvents() const {return m_events.size();}
 

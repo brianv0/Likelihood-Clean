@@ -40,7 +40,9 @@ public:
       if (m_haveRefCoord) delete m_eqRot;
    }
 
+#ifndef SWIG
    FitsImage &operator=(const FitsImage &rhs);
+#endif
 
    //! A vector of the image axes dimensions
    void fetchAxisDims(std::vector<int> &axisDims);
@@ -76,6 +78,7 @@ public:
    //! will be indexed by column then row, indx = i + j*NAXIS1.
    void fetchSolidAngles(std::valarray<double> &solidAngles);
 
+#ifndef SWIG
 /**
  * @class EquinoxRotation
  * @brief Nested class to perform the "Equinox Rotation" described in
@@ -93,6 +96,7 @@ public:
    private:
       std::vector< std::vector<double> > rotMatrix;
    };                       
+#endif
 
 protected:
 
