@@ -68,8 +68,8 @@ public:
    }
    
    virtual optimizers::Parameter getParam(const std::string &paramName, 
-                              const std::string &funcName,
-                              const std::string &srcName) const
+                                          const std::string &funcName,
+                                          const std::string &srcName) const
       throw(optimizers::Exception, optimizers::ParameterNotFound);
 
    virtual void setParamBounds(const std::string &paramName,
@@ -123,7 +123,8 @@ public:
 
    /// Write an XML file for the current source model.
    virtual void writeXml(std::string xmlFile,
-                         const std::string &functionLibrary="");
+                         const std::string &functionLibrary="",
+                         const std::string &srcLibTitle="source library");
 
    /// Write a flux-style xml file for the current source model.
    virtual void write_fluxXml(std::string xmlFile);
