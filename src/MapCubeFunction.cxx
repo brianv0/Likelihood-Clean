@@ -92,23 +92,7 @@ void MapCubeFunction::readFitsFile(const std::string & fitsFile) {
    m_fitsFile = fitsFile;
    FitsImage fitsImage(fitsFile);
 
-   std::vector<std::string> axisNames;
-   fitsImage.getAxisNames(axisNames);
-   if (axisNames[0].find_first_of("RA") != std::string::npos) {
-      m_coordSys = "Equatorial";
-   } else if (axisNames[0].find_first_of("GLON") != std::string::npos) {
-      m_coordSys = "Galactic";
-   } else {
-      std::ostringstream message;
-      message << "Likelihood::MapCubeFunction\n"
-              << "Unrecognized coordinate system in " << fitsFile << ".\n"
-              << "Axis names: ";
-      for (unsigned int i = 0; i < axisNames.size(); i++) {
-         message << axisNames.at(i) << "  ";
-      }
-      throw std::runtime_error(message.str());
-   }
-
+   m_coordSys = fitsImage.coordSys();
    fitsImage.getPixelBounds(0, m_lon);
    fitsImage.getPixelBounds(1, m_lat);
    if (m_lon.front() < m_lon.back()) {
