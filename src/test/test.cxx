@@ -659,7 +659,7 @@ void LikelihoodTests::test_BinnedLikelihood() {
    }
 //   std::cout << "Total model counts: " << modelSum << std::endl;
 
-   CPPUNIT_ASSERT(fabs(modelSum - dataSum) < 1e-2);
+   CPPUNIT_ASSERT(fabs(modelSum - dataSum)/dataSum < 1e-3);
 
    unsigned long npts = dataMap.imageDimension(0);
    std::vector<double> energies;
