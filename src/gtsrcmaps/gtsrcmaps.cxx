@@ -97,7 +97,7 @@ gtsrcmaps::gtsrcmaps()
 void gtsrcmaps::run() {
    m_helper->checkOutputFile();
    m_helper->checkTimeCuts(m_pars["counts_map_file"], "",
-                           m_pars["exposure_cube_file"], "hypercube");
+                           m_pars["exposure_cube_file"], "");
    ExposureCube::readExposureCube(m_pars["exposure_cube_file"]);
 
    std::string cntsMapFile = m_pars["counts_map_file"];
