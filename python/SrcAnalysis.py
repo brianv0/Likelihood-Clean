@@ -137,10 +137,12 @@ class SrcAnalysis(object):
                                       yerr='resid_err', xlog=1, color=color,
                                       yrange=(-1, 1))
             self.resids.getDataRep().setSymbol('filled_square', 2)
-    def plot(self, srcs=None, oplot=False, yrange=None, color='black'):
+    def plot(self, srcs=None, oplot=False, yrange=None, color=None):
         import hippoplotter as plot
-        if oplot:
+        if oplot and color is None:
             color = 'red'
+        elif color is None:
+            color = 'black'
         if isinstance(srcs, str):
             total = self._plot_model(srcs, yrange=yrange, color=color, 
                                      oplot=oplot, lineStyle='Solid')
