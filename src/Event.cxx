@@ -148,7 +148,6 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
             int indx = i*s_phi.size() + j;
             astro::SkyDir & srcDir = srcDirs[indx];
             double inc = m_scDir.SkyDir::difference(srcDir)*180./M_PI;
-//             if (inc < latResponse::Glast25::incMax()) {
             if (inc < 90.) {
                double totalResp 
                   = ResponseFunctions::totalResponse(m_arrTime, 

@@ -10,7 +10,6 @@
 #include <stdexcept>
 #include <vector>
 
-//#include "latResponse/IrfsFactory.h"
 #include "dc1Response/loadIrfs.h"
 #include "g25Response/loadIrfs.h"
 #include "irfInterface/IrfsFactory.h"
@@ -25,7 +24,6 @@
 
 #include "Likelihood/AppHelpers.h"
 
-//using latResponse::irfsFactory;
 using irfInterface::IrfsFactory;
 
 namespace Likelihood {
