@@ -8,7 +8,7 @@ author Pat Nolan <pln@razzle.stanford.edu>
 
 use STpolicy v*
 use astro  v*
-#use xml v4r* # This needs to be commented out in order to link on VC7.1
+use xml v4r*
 use tip v* 
 use map_tools v*
 use latResponse v2*
