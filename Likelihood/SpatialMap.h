@@ -38,14 +38,6 @@ public:
       readFitsFile(fitsFile);
    }
 
-   SpatialMap(const SpatialMap &rhs) : optimizers::Function(rhs) {
-      m_ra = rhs.m_ra;
-      m_dec = rhs.m_dec;
-      m_image.resize(rhs.m_image.size());
-      m_image = rhs.m_image;
-      m_fitsFile = rhs.m_fitsFile;
-   }
-
    virtual ~SpatialMap() {}
 
    double value(optimizers::Arg&) const;
@@ -65,7 +57,9 @@ private:
 
    std::string m_fitsFile;
    std::vector<double> m_ra;
+   double m_raMin, m_raMax;
    std::vector<double> m_dec;
+   double m_decMin, m_decMax;
    std::vector<double> m_image;
 
    void init();
