@@ -1,4 +1,5 @@
-/** @file Arg.h
+/** 
+ * @file Arg.h
  * @brief Declaration of Arg class
  * @author J. Chiang
  * $Header$
@@ -24,12 +25,14 @@ namespace Likelihood {
 class Arg {
     
 public:
+
+   Arg() {}
    
    virtual ~Arg() {}
 
 protected:
 
-   Arg() {}
+//   Arg() {}
 
 };
 

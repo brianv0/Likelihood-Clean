@@ -1,4 +1,5 @@
-/** @file AbsEdge.cxx
+/** 
+ * @file AbsEdge.cxx
  * @brief Implementation for the AbsEdge class that models an absorption 
  * edge spectral component
  * @author J. Chiang
