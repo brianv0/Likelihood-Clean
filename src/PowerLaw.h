@@ -1,4 +1,5 @@
 #include "../Likelihood/Function.h"
+#include "../Likelihood/Arg.h"
 
 namespace Likelihood {
 /** 
@@ -18,10 +19,11 @@ public:
    PowerLaw(double Prefactor, double Index, double Scale)
       {m_init(Prefactor, Index, Scale);};
 
-   virtual double value(double) const;
-   virtual double operator()(double x) const {return value(x);};
-   virtual double derivByParam(double, const std::string &paramName) const;
-   virtual double integral(double xmin, double xmax);
+   double value(Arg&) const;
+
+   double derivByParam(Arg &x, const std::string &paramName) const;
+
+   double integral(Arg &xmin, Arg &xmax) const;
 
 private:
 

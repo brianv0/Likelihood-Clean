@@ -1,4 +1,5 @@
 #include "../Likelihood/Function.h"
+#include "../Likelihood/Arg.h"
 
 namespace Likelihood {
 
@@ -16,11 +17,14 @@ class MyFun : public Function {
 public:
 
    MyFun();
-   virtual double value(double) const;
-   virtual double operator()(double x) const {return value(x);};
-   virtual double derivByParam(double, const std::string &paramName) const;
+   ~MyFun(){}
+
+   double value(Arg &) const;
+
+   double derivByParam(Arg &x, const std::string &paramName) const;
 
 private:
+
 };
 
 } // namespace Likelihood
