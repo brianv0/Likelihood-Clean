@@ -251,11 +251,11 @@ void ExposureMap::writeFitsFile(const std::string &filename,
                    "latitude step at ref. pixel", &status);
    fitsReportError(stderr, status);
    
-   float crpix1 = lstep/2.;
+   float crpix1 = 1.0;
    fits_update_key(fptr, TFLOAT, "CRPIX1", &crpix1, 
                    "reference pixel for longitude coordinate", &status);
    fitsReportError(stderr, status);
-   float crpix2 = bstep/2.;
+   float crpix2 = 1.0;
    fits_update_key(fptr, TFLOAT, "CRPIX2", &crpix2, 
                    "reference pixel for latitude coordinate", &status);
    fitsReportError(stderr, status);
