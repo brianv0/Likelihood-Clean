@@ -8,16 +8,20 @@
  */
 
 #include <cmath>
+#include <cstdlib>
 #include <cstring>
 
 #include <stdexcept>
 
-#include "Likelihood/AppBase.h"
+#include "st_app/AppParGroup.h"
+#include "st_app/StApp.h"
+#include "st_app/StAppFactory.h"
+
+#include "Likelihood/AppHelpers.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/Util.h"
-#include "Likelihood/StApp.h"
 
 using namespace Likelihood;
 
@@ -30,18 +34,43 @@ using namespace Likelihood;
  *
  * $Header$
  */
-class ExpMap : public AppBase {
+class ExpMap : public st_app::StApp {
 public:
-   ExpMap(hoops::IParGroup & pars) : AppBase(pars) {}
-   virtual ~ExpMap() {}
+   ExpMap();
+   virtual ~ExpMap() throw() {
+      try {
+         delete m_helper;
+      } catch (std::exception &eObj) {
+         std::cerr << eObj.what() << std::endl;
+      } catch (...) {
+      }
+   }
    virtual void run();
 private:
+   AppHelpers * m_helper;
+   st_app::AppParGroup & m_pars;
    double m_srRadius;
    void setSourceRegion();
    void createExposureMap();
 };
 
-StApp<ExpMap> my_application("expMap");
+st_app::StAppFactory<ExpMap> myAppFactory;
+
+ExpMap::ExpMap() : st_app::StApp(), m_helper(0), 
+                   m_pars(st_app::StApp::getParGroup("expMap")) {
+   try {
+      m_pars.Prompt();
+      m_pars.Save();
+      m_helper = new AppHelpers(m_pars);
+   } catch (std::exception &eObj) {
+      std::cerr << eObj.what() << std::endl;
+      std::exit(1);
+   } catch (...) {
+      std::cerr << "Caught unknown exception in ExpMap constructor." 
+                << std::endl;
+      std::exit(1);
+   }
+}
 
 void ExpMap::run() {
    setSourceRegion();
