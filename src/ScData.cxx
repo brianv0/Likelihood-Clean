@@ -76,8 +76,8 @@ void ScData::readData(std::string file, int hdu, bool clear) {
                       << std::endl;
             assert(tuple.time > vec[vec.size()-2].time);
          }
-         astro::EarthCoordinate earthCoord(scRow->latGeo()*180./M_PI,
-                                           scRow->lonGeo()*180./M_PI);
+//          astro::EarthCoordinate earthCoord(scRow->latGeo()*180./M_PI,
+//                                            scRow->lonGeo()*180./M_PI);
 //          if (earthCoord.insideSAA()) {
 //             tuple.inSaa = 1;
 //          } else {
