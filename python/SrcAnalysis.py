@@ -10,7 +10,7 @@ import os, sys
 import numarray as num
 sys.path.insert(0, os.path.join(os.environ['LIKELIHOODROOT'], 'python'))
 import pyLike as Likelihood
-import hippoplotter as plot
+#import hippoplotter as plot
 
 _funcFactory = Likelihood.SourceFactory_funcFactory()
 
@@ -32,6 +32,8 @@ class SrcAnalysis(object):
         self.energies = eMin*num.exp(estep*num.arange(nee, type=num.Float))
         self.disp = None
         self.resids = None
+    def __call__(self):
+        return -self.logLike.value()
     def _fileList(self, files):
         if isinstance(files, str):
             return [files]
