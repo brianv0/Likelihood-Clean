@@ -21,9 +21,8 @@ double logSrcModel::value(optimizers::Arg &xarg) const {
    }
    if (my_value > 0) {
       return log(my_value);
-   } else {
-      return 0;
    }
+   return 0;
 }
 
 void logSrcModel::fetchDerivs(optimizers::Arg &xarg, 

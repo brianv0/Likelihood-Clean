@@ -111,10 +111,7 @@ public:
    unsigned int getNumSrcs() const {return s_sources.size();}
    void getSrcNames(std::vector<std::string> &) const;
 
-   // this is a bit convoluted, but necessary for some derived classes 
-   // (e.g., logLike_gauss)
-   double evaluate_at(optimizers::Arg &) const;
-   virtual double value(optimizers::Arg &x) const {return evaluate_at(x);}
+   virtual double value(optimizers::Arg &x) const;
 
    /// Create the source model by reading an XML file.
    virtual void readXml(std::string xmlFile,

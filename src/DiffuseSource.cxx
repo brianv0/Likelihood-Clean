@@ -25,7 +25,8 @@ namespace Likelihood {
 bool DiffuseSource::s_haveStaticMembers = false;
 std::vector<double> DiffuseSource::s_energies;
 
-DiffuseSource::DiffuseSource(optimizers::Function* spatialDist) 
+DiffuseSource::DiffuseSource(optimizers::Function* spatialDist,
+                             bool requireExposure) 
    throw(Exception) : m_spectrum(0) {
 // The spatial distribution of emission is required for instantiation.
    m_spatialDist = spatialDist->clone();
@@ -39,12 +40,14 @@ DiffuseSource::DiffuseSource(optimizers::Function* spatialDist)
 // In order to compute exposure, RoiCuts and spacecraft data must be
 // available; furthermore, the ExposureMap object must have been
 // instantiated.
-   ExposureMap *emap = ExposureMap::instance();
-   if (emap == 0) {
-      throw Exception("The ExposureMap is not defined.");
-   } else {
-      emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
-      m_srcType = "Diffuse";
+   if (requireExposure) {
+      ExposureMap *emap = ExposureMap::instance();
+      if (emap == 0) {
+         throw Exception("The ExposureMap is not defined.");
+      } else {
+         emap->integrateSpatialDist(s_energies, spatialDist, m_exposure);
+         m_srcType = "Diffuse";
+      }
    }
 }
 
