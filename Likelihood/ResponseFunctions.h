@@ -63,8 +63,9 @@ public:
                            &respPtrs) {s_respPtrs = respPtrs;}
 
    static void addRespPtr(unsigned int key,
-                          latResponse::Irfs *respPtr) 
-      {s_respPtrs[key] = respPtr;}
+                          latResponse::Irfs *respPtr) {
+      s_respPtrs[key] = respPtr;
+   }
 
    static void deleteRespPtr(unsigned int key) {
       if (s_respPtrs.count(key)) {
