@@ -150,21 +150,17 @@ public:
    /// Write a flux-style xml file for the current source model.
    virtual void write_fluxXml(std::string xmlFile);
 
-//    /// Create a counts map based on the current model.
-//    void makeCountsMap(const std::string & filename,
-//                       const MapShape & mapShape) const;
-
    /// Create a counts map based on the current model.
-   void makeCountsMap(const CountsMap & dataMap,
-                      const std::string & filename) const;
+   CountsMap * createCountsMap(const CountsMap & dataMap) const;
 
    class Aeff : public map_tools::Exposure::Aeff {
    public:
-      Aeff(Source * src, astro::SkyDir & appDir, double energy, int type);
+      Aeff(Source * src, const astro::SkyDir & appDir, 
+           double energy, int type);
       virtual double operator()(double costheta) const;
    private:
       Source * m_src;
-      astro::SkyDir & m_appDir;
+      const astro::SkyDir & m_appDir;
       double m_energy;
       int m_type;
       double m_separation;
@@ -203,13 +199,24 @@ protected:
       derivs.clear();
    }
 
+protected:
+
+   static void getPixels(const CountsMap & countsMap, 
+                         std::vector<astro::SkyDir> & pixelDirs,
+                         std::vector<double> & pixelSolidAngles);
+
+   static void computeModelMap(const std::vector<astro::SkyDir> & pixelDirs,
+                               const std::vector<double> & pixelSolidAngles,
+                               const std::vector<double> & energies,
+                               std::vector<double> & modelMap);
+
 private:
 
    bool m_verbose;
 
-   double computeSolidAngle(std::vector<double>::const_iterator lon,
-                            std::vector<double>::const_iterator lat,
-                            const astro::SkyProj & proj) const;
+   static double computeSolidAngle(std::vector<double>::const_iterator lon,
+                                   std::vector<double>::const_iterator lat,
+                                   const astro::SkyProj & proj);
 
 };
 
