@@ -51,7 +51,6 @@ double LogLike::value(optimizers::Arg&) const {
       SrcArg sArg(s_sources[i]);
       my_value -= m_Npred(sArg);
    }
-   
    return my_value;
 }
 
@@ -202,7 +201,7 @@ void LogLike::getEvents(std::string event_file, int hdu) {
 
    readEventData(event_file, hdu);
 
-   typedef std::pair<long, double*> tableColumn;
+   typedef std::pair<long, std::vector<double> > tableColumn;
    tableColumn ra = getEventColumn("RA");
    tableColumn dec = getEventColumn("DEC");
    tableColumn energy = getEventColumn("energy");

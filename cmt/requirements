@@ -1,5 +1,5 @@
 package Likelihood
-version v2r8
+version v2r9
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
@@ -52,4 +52,3 @@ application test_Likelihood test/main.cxx
 application likelihoodApp test/likelihood.cxx
 application TsMap test/TsMap.cxx
 application expMap test/expMap.cxx
-#application test_runParams test/test_runParams.cxx
