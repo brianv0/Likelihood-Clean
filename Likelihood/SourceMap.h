@@ -33,16 +33,20 @@ public:
 
    const std::vector<double> & model() const {return m_model;}
 
+   const std::vector<double> & npreds() const {return m_npreds;}
+
 private:
 
-/// m_models has the same size as the data in the dataMap plus one
-/// energy plane.
+   std::string m_name;
+
+/// @brief m_models has the same size as the data in the dataMap plus
+/// one energy plane.
 ///
 /// @todo Keep track of event types included in a given SourceMap.
-
    std::vector<double> m_model;
 
-   std::string m_name;
+/// @brief Each entry is the angular integral over the energy plane.
+   std::vector<double> m_npreds;
 
    class Aeff : public Pixel::Aeff {
    public:

@@ -28,6 +28,8 @@ SourceMap::SourceMap(Source * src, const CountsMap & dataMap)
    m_model.resize(npts, 0);
    long icount(0);
 
+   m_npreds.resize(energies.size(), 0);
+
 // @todo Ensure the desired event types are correctly included in this
 // calculation.
    for (int evtType = 0; evtType < 2; evtType++) {
@@ -38,8 +40,10 @@ SourceMap::SourceMap(Source * src, const CountsMap & dataMap)
             unsigned long indx = k*pixels.size() + j;
             if ((icount % (npts/20)) == 0) std::cerr << ".";
             Aeff aeff(src, pixel->dir(), *energy, evtType);
-            double value = ExposureCube::instance()->value(pixel->dir(), aeff);
+            double value = ExposureCube::instance()->value(pixel->dir(), aeff)
+               *pixel->solidAngle();
             m_model.at(indx) += value;
+            m_npreds.at(k) += value;
             icount++;
          }
       }
