@@ -1,4 +1,7 @@
 package Likelihood
+version v0r6
+
+author James Chiang <jchiang@slac.stanford.edu>
 
 # $Id$
 
