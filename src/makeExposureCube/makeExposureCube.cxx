@@ -50,6 +50,7 @@ public:
       }
     }
    virtual void run();
+   virtual void banner() const {}
 private:
    st_app::AppParGroup & m_pars;
    Likelihood::LikeExposure * m_exposure;

@@ -62,6 +62,7 @@ public:
       }
    }
    virtual void run();
+   virtual void banner() const {}
 private:
    AppHelpers * m_helper;
    st_app::AppParGroup & m_pars;

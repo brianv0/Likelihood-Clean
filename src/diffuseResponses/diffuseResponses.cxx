@@ -57,6 +57,7 @@ public:
    virtual ~diffuseResponses() throw() {}
 
    virtual void run();
+   virtual void banner() const {}
 
 private:
 
