@@ -39,6 +39,8 @@
 #include "Likelihood/SourceMap.h"
 #include "Likelihood/RoiCuts.h"
 
+#include "Verbosity.h"
+
 using namespace Likelihood;
 
 class gtsrcmaps : public st_app::StApp {
@@ -77,6 +79,7 @@ gtsrcmaps::gtsrcmaps()
    try {
       m_pars.Prompt();
       m_pars.Save();
+      Likelihood::Verbosity::instance(m_pars["chatter"]);
       m_helper = new AppHelpers(m_pars);
       m_helper->readScData();
    } catch (std::exception & eObj) {
@@ -90,6 +93,7 @@ gtsrcmaps::gtsrcmaps()
 }
 
 void gtsrcmaps::run() {
+   m_helper->checkOutputFile();
    std::string expcube_file = m_pars["exposure_cube_file"];
    if (expcube_file == "none") {
       throw std::runtime_error("Please specify an exposure cube file.");
@@ -116,7 +120,7 @@ void gtsrcmaps::run() {
    std::string srcModelFile = m_pars["source_model_file"];
    m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false);
 
-   std::string srcMapsFile = m_pars["output_file"];
+   std::string srcMapsFile = m_pars["outfile"];
 
    dataMap.writeOutput("gtsrcmaps", srcMapsFile);
 
