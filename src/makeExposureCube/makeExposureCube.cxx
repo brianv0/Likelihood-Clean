@@ -92,6 +92,8 @@ void ExposureCube::promptForParameters() {
    m_pars.Prompt("evfile");
    m_pars.Prompt("scfile");
    m_pars.Prompt("outfile");
+   m_pars.Prompt("cos_theta_step");
+   m_pars.Prompt("pixel_size");
    m_pars.Save();
 }
 
