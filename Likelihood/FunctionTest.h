@@ -9,12 +9,13 @@
 #ifndef FunctionTest_h
 #define FunctionTest_h
 
-#include "Likelihood/LikelihoodException.h"
 #include "Likelihood/Parameter.h"
 #include "Likelihood/Arg.h"
 #include "Likelihood/Function.h"
 
 namespace Likelihood {
+
+class LikelihoodException;
 
 /**
  * @class FunctionTest

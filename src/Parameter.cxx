@@ -10,6 +10,7 @@
 #include <string>
 
 #include "Likelihood/Parameter.h"
+#include "OutOfBounds.h"
 
 namespace Likelihood {
 

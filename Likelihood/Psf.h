@@ -15,6 +15,7 @@
 namespace Likelihood {
 
 class astro::SkyDir;
+class LikelihoodException;
 
 /** 
  * @class Psf

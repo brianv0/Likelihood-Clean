@@ -17,6 +17,7 @@
 #include "Likelihood/dArg.h"
 #include "Likelihood/TrapQuad.h"
 #include "Likelihood/ExposureMap.h"
+#include "LikelihoodException.h"
 
 namespace Likelihood {
 

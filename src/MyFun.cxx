@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Likelihood/dArg.h"
 #include "MyFun.h"
+#include "ParameterNotFound.h"
 
 namespace Likelihood {
 

@@ -7,6 +7,7 @@
 
 #include <cassert>
 #include "Likelihood/FunctionTest.h"
+#include "LikelihoodException.h"
 
 namespace Likelihood {
 

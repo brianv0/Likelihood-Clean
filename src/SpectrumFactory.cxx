@@ -10,6 +10,7 @@
 #include <cassert>
 #include <sstream>
 #include "Likelihood/SpectrumFactory.h"
+#include "LikelihoodException.h"
 
 namespace Likelihood {
 
