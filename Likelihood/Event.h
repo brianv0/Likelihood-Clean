@@ -144,7 +144,6 @@ private:
    /// Angular arrays over the source region for the diffuse integrals.
    static std::vector<double> s_mu;
    static std::vector<double> s_phi;
-   static FitsImage::EquinoxRotation s_eqRot;
    static bool s_haveSourceRegionData;
 
    /// @todo Find a rational way of defining the source region radius.
