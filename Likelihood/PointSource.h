@@ -14,6 +14,8 @@
 #include "optimizers/Function.h"
 #include "optimizers/dArg.h"
 
+#include "map_tools/Exposure.h"
+
 #include "Likelihood/Event.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/SkyDirFunction.h"

@@ -97,6 +97,10 @@ public:
       return m_functions;
    }
 
+   virtual const FuncMap & getSrcFuncs() const {
+      return m_functions;
+   }
+
    virtual Source * clone() const {
       return 0;
    }
