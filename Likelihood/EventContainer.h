@@ -63,6 +63,10 @@ public:
       return m_events;
    }
 
+   void clear() {
+      m_events.clear();
+   }
+
 private:
    
    const ResponseFunctions & m_respFuncs;

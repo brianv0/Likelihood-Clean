@@ -155,7 +155,8 @@ void RoiCuts::sortCuts(bool strict) {
    if (strict && (ncone != 1 || ntime == 0)) {
       std::ostringstream message;
       message << "RoiCuts::sortCuts:\n"
-              << "There should be exactly one energy range cut, "
+//              << "There should be exactly one energy range cut, "
+              << "There should be exactly "
               << "one acceptance cone cut,\n"
               << "and at least one time range and/or GTI cut.\n"
               << "The event file contains the following DSS selections:\n\n";
@@ -165,14 +166,14 @@ void RoiCuts::sortCuts(bool strict) {
 }
 
 bool RoiCuts::accept(const Event &event) const {
-   if (m_cuts) {
-      std::map<std::string, double> params;
-      params["TIME"] = event.getArrTime();
-      params["ENERGY"] = event.getEnergy();
-      params["RA"] = event.getDir().ra();
-      params["DEC"] = event.getDir().dec();
-      return m_cuts->accept(params);
-   } else {
+//    if (m_cuts) {
+//       std::map<std::string, double> params;
+//       params["TIME"] = event.getArrTime();
+//       params["ENERGY"] = event.getEnergy();
+//       params["RA"] = event.getDir().ra();
+//       params["DEC"] = event.getDir().dec();
+//       return m_cuts->accept(params);
+//    } else {
       bool acceptEvent(false);
 
       if (m_gtis.size() == 0) {
@@ -210,8 +211,8 @@ bool RoiCuts::accept(const Event &event) const {
       }
 
       return acceptEvent;
-   }
-   return false;
+//    }
+//    return false;
 }
 
 } // namespace Likelihood
