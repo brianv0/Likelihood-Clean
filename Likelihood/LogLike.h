@@ -79,9 +79,9 @@ protected:
    int m_eventHdu;
    latResponse::Table *m_eventData;
 
-private:
-
    std::vector<Event> m_events;
+
+private:
 
    // A bit of a kludge here making this guy mutable, but unavoidable
    // since getFreeDerivs is const in the base class and the
