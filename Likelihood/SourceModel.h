@@ -106,9 +106,12 @@ public:
       Function::getFreeDerivs(x, derivs);
    }
 
-   /// add and delete sources by name
+   /// Add a source.
    void addSource(Source *src);
-   void deleteSource(const std::string &srcName) throw(optimizers::Exception);
+
+   /// Delete a source by name and return a copy.
+   Source * deleteSource(const std::string &srcName) 
+      throw(optimizers::Exception);
 
    /// delete all the sources
    void deleteAllSources();
