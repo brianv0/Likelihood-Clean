@@ -33,7 +33,11 @@ class SourceModel : public optimizers::Function {
     
 public:
    
-   SourceModel() {setMaxNumParams(0); s_refCount++;}
+   SourceModel() {
+      setMaxNumParams(0); 
+      m_genericName = "SourceModel";
+      s_refCount++;
+   }
    SourceModel(const SourceModel &rhs) : optimizers::Function(rhs) 
       {s_refCount++;}
 
@@ -107,6 +111,9 @@ public:
    // (e.g., logLike_gauss)
    double evaluate_at(optimizers::Arg &) const;
    virtual double value(optimizers::Arg &x) const {return evaluate_at(x);}
+
+   // Write an XML file for the current source model.
+   void writeXml(const std::string &xmlFile);
 
 protected:
 

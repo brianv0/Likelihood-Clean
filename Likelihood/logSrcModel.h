@@ -37,7 +37,7 @@ class logSrcModel : public SourceModel {
     
 public:
    
-   logSrcModel() {setMaxNumParams(0);}
+   logSrcModel() {setMaxNumParams(0); m_genericName = "logSrcModel";}
    virtual ~logSrcModel() {}
 
    double value(optimizers::Arg &xarg) const;

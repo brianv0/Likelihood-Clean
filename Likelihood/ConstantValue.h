@@ -33,9 +33,11 @@ public:
       setMaxNumParams(1);
       addParam("Value", value, true);
 
-// need to double-check these...
+// Need to double-check these...
       m_funcType = Factor;
       m_argType = "";
+
+      m_genericName = "ConstantValue";
    }
 
    virtual ~ConstantValue() {}
