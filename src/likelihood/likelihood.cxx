@@ -206,12 +206,15 @@ void likelihood::readEventData() {
 
 void likelihood::readSourceModel() {
    std::string sourceModel = m_pars["Source_model_file"];
+   bool requireExposure(true);
    if (m_statistic == "BINNED") {
+      requireExposure = false;
    }
    if (m_logLike->getNumSrcs() == 0) {
 // Read in the Source model for the first time.
       st_facilities::Util::file_ok(sourceModel);
-      m_logLike->readXml(sourceModel, m_helper->funcFactory());
+      m_logLike->readXml(sourceModel, m_helper->funcFactory(), 
+                         requireExposure);
       if (m_statistic != "BINNED") {
          m_logLike->computeEventResponses();
       } else {
