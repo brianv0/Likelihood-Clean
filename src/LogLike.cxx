@@ -46,7 +46,7 @@ double LogLike::value(optimizers::Arg&) const {
 }
 
 void LogLike::getFreeDerivs(optimizers::Arg&,
-                                  std::vector<double> &freeDerivs) const {
+                            std::vector<double> &freeDerivs) const {
 
 // retrieve the free derivatives for the log(SourceModel) part
    m_logSrcModel.mySyncParams();
