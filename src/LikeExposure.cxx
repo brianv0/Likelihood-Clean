@@ -45,7 +45,8 @@ void LikeExposure::load(tip::Table * scData, bool verbose) {
          deltat *= fraction;
          row["ra_scz"].get(ra);
          row["dec_scz"].get(dec);
-         add(astro::SkyDir(ra, dec), deltat);
+//         add(astro::SkyDir(ra, dec), deltat);
+         fill(astro::SkyDir(ra, dec), deltat);
       }
    }
    if (verbose) std::cerr << "!" << std::endl;

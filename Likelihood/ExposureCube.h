@@ -43,8 +43,8 @@ public:
       m_haveFile = true;
    }
 
-   double value(const astro::SkyDir & dir, 
-                const map_tools::Exposure::Aeff & aeff) const {
+   template<class T>
+   double value(const astro::SkyDir & dir, const T & aeff) const {
       return (*m_exposure)(dir, aeff);
    }
 

@@ -14,8 +14,6 @@
 #include <stdexcept>
 #include <string>
 
-#include "map_tools/Exposure.h"
-
 #include "optimizers/Statistic.h"
 
 #include "Likelihood/Pixel.h"

@@ -15,8 +15,6 @@
 
 #include "astro/SkyDir.h"
 
-#include "map_tools/Exposure.h"
-
 namespace Likelihood {
 
    class Observation;
@@ -67,7 +65,7 @@ private:
 
    void fitsReportError(FILE * stream, int status) const;
 
-   class Aeff : public map_tools::Exposure::Aeff {
+   class Aeff {
    public:
       Aeff(double energy, int evtType, const Observation & observation) 
          : m_energy(energy), m_evtType(evtType), m_observation(observation) {}
