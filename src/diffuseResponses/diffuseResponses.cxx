@@ -18,6 +18,8 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "st_facilities/Util.h"
+
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
@@ -28,7 +30,7 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/SourceModel.h"
-#include "Likelihood/Util.h"
+//#include "Likelihood/Util.h"
 
 using namespace Likelihood;
 
@@ -115,14 +117,14 @@ void diffuseResponses::setRoi() {
 
 void diffuseResponses::buildSourceModel() {
    std::string sourceModel = m_pars["Source_model_file"];
-   Util::file_ok(sourceModel);
+   st_facilities::Util::file_ok(sourceModel);
    m_srcModel->readXml(sourceModel, m_helper->funcFactory(), false);
 }
 
 void diffuseResponses::readEventData() {
    std::string eventFile = m_pars["event_file"];
    facilities::Util::expandEnvVar(&eventFile);
-   Util::file_ok(eventFile);
+   st_facilities::Util::file_ok(eventFile);
    tip::Table * events 
       = tip::IFileSvc::instance().editTable(eventFile, "events");
 
@@ -175,7 +177,7 @@ void diffuseResponses::writeEventResponses() {
    if (m_srcNames.size() > 0) {
       std::string eventFile = m_pars["event_file"];
       facilities::Util::expandEnvVar(&eventFile);
-      Util::file_ok(eventFile);
+      st_facilities::Util::file_ok(eventFile);
       tip::Table * events 
          = tip::IFileSvc::instance().editTable(eventFile, "events");
       if (static_cast<unsigned int>(events->getNumRecords()) 

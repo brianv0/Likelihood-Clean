@@ -17,6 +17,8 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "st_facilities/Util.h"
+
 #include "optimizers/Drmngb.h"
 #include "optimizers/Lbfgs.h"
 #include "optimizers/Minuit.h"
@@ -32,7 +34,7 @@
 #include "Likelihood/OptEM.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/Source.h"
-#include "Likelihood/Util.h"
+//#include "Likelihood/Util.h"
 
 using namespace Likelihood;
 
@@ -164,11 +166,11 @@ void likelihood::readEventData() {
    std::string eventFile = m_pars["event_file"];
    long eventFileHdu = m_pars["event_file_hdu"];
    std::vector<std::string> eventFiles;
-   Util::file_ok(eventFile);
-   Util::resolve_fits_files(eventFile, eventFiles);
+   st_facilities::Util::file_ok(eventFile);
+   st_facilities::Util::resolve_fits_files(eventFile, eventFiles);
    std::vector<std::string>::const_iterator evIt = eventFiles.begin();
    for ( ; evIt != eventFiles.end(); evIt++) {
-      Util::file_ok(*evIt);
+      st_facilities::Util::file_ok(*evIt);
       m_logLike->getEvents(*evIt, eventFileHdu);
    }
 }
@@ -177,13 +179,13 @@ void likelihood::readSourceModel() {
    std::string sourceModel = m_pars["Source_model_file"];
    if (m_logLike->getNumSrcs() == 0) {
 // Read in the Source model for the first time.
-      Util::file_ok(sourceModel);
+      st_facilities::Util::file_ok(sourceModel);
       m_logLike->readXml(sourceModel, m_helper->funcFactory());
       m_logLike->computeEventResponses();
    } else {
 // Re-read the Source model from the xml file, allowing only for 
 // Parameter adjustments.
-      Util::file_ok(sourceModel);
+      st_facilities::Util::file_ok(sourceModel);
       m_logLike->reReadXml(sourceModel);
    }
 }
@@ -306,8 +308,8 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
 
 // Compute TS for each source.
    std::map<std::string, double> TsValues;
-   int verbose(0);
-   double tol(1e-4);
+//    int verbose(0);
+//    double tol(1e-4);
    double logLike_value = m_logLike->value();
    std::vector<double> null_values;
    std::cerr << "Computing TS values for each source ("

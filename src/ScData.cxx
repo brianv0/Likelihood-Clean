@@ -20,8 +20,6 @@
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
 
-#include "irfUtil/Util.h"
-
 #include "astro/EarthCoordinate.h"
 
 #include "Likelihood/ScData.h"

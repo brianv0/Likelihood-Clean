@@ -17,6 +17,8 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "st_facilities/Util.h"
+
 #include "optimizers/dArg.h"
 #include "optimizers/Drmngb.h"
 #include "optimizers/Lbfgs.h"
@@ -25,7 +27,7 @@
 
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/LogLike.h"
-#include "Likelihood/Util.h"
+//#include "Likelihood/Util.h"
 
 using namespace Likelihood;
 
@@ -109,17 +111,17 @@ void TsMap::run() {
 }
 
 void TsMap::readSrcModel() {
-   Util::file_ok(m_pars["Source_model_file"]);
+   st_facilities::Util::file_ok(m_pars["Source_model_file"]);
    m_logLike.readXml(m_pars["Source_model_file"], m_helper->funcFactory());
 }   
 
 void TsMap::readEventData() {
    std::vector<std::string> eventFiles;
-   Util::file_ok(m_pars["event_file"]);
-   Util::resolve_fits_files(m_pars["event_file"], eventFiles);
+   st_facilities::Util::file_ok(m_pars["event_file"]);
+   st_facilities::Util::resolve_fits_files(m_pars["event_file"], eventFiles);
    std::vector<std::string>::const_iterator evIt = eventFiles.begin();
    for ( ; evIt != eventFiles.end(); evIt++) {
-      Util::file_ok(*evIt);
+      st_facilities::Util::file_ok(*evIt);
       m_logLike.getEvents(*evIt, m_pars["event_file_hdu"]);
    }
    m_logLike.computeEventResponses();
