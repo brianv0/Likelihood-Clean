@@ -243,9 +243,8 @@ Source * SourceFactory::makeDiffuseSource(const DOMElement * spectrum,
    xmlBase::Dom::getChildrenByTagName(spatialModel, "parameter", params);
    std::vector<DOMElement *>::const_iterator paramIt = params.begin();
    for ( ; paramIt != params.end(); paramIt++) {
-      optimizers::Parameter parameter;
-      parameter.extractDomData(*paramIt);
-      spatialDist->setParam(parameter);
+      std::string name = xmlBase::Dom::getAttribute(*paramIt, "name");
+      spatialDist->parameter(name).extractDomData(*paramIt);
    }
    if (type == "SpatialMap") {
       std::string fitsFile 
@@ -276,9 +275,8 @@ void SourceFactory::setSpectrum(Source *src, const DOMElement * spectrum,
    if (params.size() > 0) {
       std::vector<DOMElement *>::const_iterator paramIt = params.begin();
       for ( ; paramIt != params.end(); paramIt++) {
-         optimizers::Parameter parameter;
-         parameter.extractDomData(*paramIt);
-         spec->setParam(parameter);
+         std::string name = xmlBase::Dom::getAttribute(*paramIt, "name");
+         spec->parameter(name).extractDomData(*paramIt);
       }
    }  
    src->setSpectrum(spec);
