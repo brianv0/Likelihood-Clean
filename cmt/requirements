@@ -4,6 +4,7 @@ package Likelihood
 
 use astro  v*
 use cfitsio v1* IExternal
+# use CALDBinterface v*  (yeah, right...)
 
 private
 

@@ -1,4 +1,5 @@
 #include "../Likelihood/Function.h"
+#include "../Likelihood/Arg.h"
 
 namespace Likelihood {
 /** 
@@ -18,15 +19,16 @@ public:
    Gaussian(double Prefactor, double Mean, double Sigma)
       {m_init(Prefactor, Mean, Sigma);};
 
-   virtual double value(double) const;
-   virtual double operator()(double x) const {return value(x);};
-   virtual double derivByParam(double, const std::string &paramName) const;
-   virtual double integral(double xmin, double xmax);
+   double value(Arg &) const;
+
+   double derivByParam(Arg &, const std::string &paramName) const;
+
+   double integral(Arg &xmin, Arg &xmax) const;
 
 private:
 
    void m_init(double Prefactor, double Mean, double Sigma);
-   double m_erfcc(double x);
+   double m_erfcc(double x) const;
 
 };
 
