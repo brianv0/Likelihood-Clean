@@ -33,12 +33,7 @@ class AppHelpers {
 
 public:
 
-   AppHelpers(st_app::AppParGroup & pars) : m_pars(pars),
-      m_funcFactory(0) {
-      prepareFunctionFactory();
-      readScData();
-      createResponseFuncs();
-   }
+   AppHelpers(st_app::AppParGroup & pars);
 
    ~AppHelpers() {
       delete m_funcFactory;
@@ -46,10 +41,19 @@ public:
 
    optimizers::FunctionFactory & funcFactory();
 
+   void readScData();
    void readExposureMap();
    void setRoi();
 
    const std::vector<std::string> & scFiles() const {return m_scFiles;}
+
+   template <typename T>
+   T param(const std::string & paramName) {
+      m_pars.Prompt(paramName);
+      m_pars.Save();
+      T value = m_pars[paramName];
+      return value;
+   }
 
 protected:
 
@@ -58,7 +62,6 @@ protected:
    std::vector<std::string> m_scFiles;
 
    void prepareFunctionFactory();
-   void readScData();
    void createResponseFuncs();
 };
 
