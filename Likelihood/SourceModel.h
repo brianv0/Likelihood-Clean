@@ -151,6 +151,10 @@ public:
 
 protected:
 
+   virtual SourceModel * clone() const {
+      return new SourceModel(*this);
+   }
+
    static int s_refCount;
 
    static std::map<std::string, Source *> s_sources;

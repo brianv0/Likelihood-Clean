@@ -18,6 +18,7 @@
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/Event.h"
 #include "Likelihood/Exception.h"
+#include "Likelihood/SkyDirArg.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/TrapQuad.h"
@@ -158,7 +159,8 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
                                                      *trueEnergy, m_energy,
                                                      srcDir, m_appDir, m_type);
                for (unsigned int k = 0; k < srcs.size(); k++) {
-                  double srcDist_val = srcs[k]->spatialDist(srcDir);
+                  double srcDist_val 
+                     = srcs[k]->spatialDist(SkyDirArg(srcDir, *trueEnergy));
                   phi_integrands[k].push_back(totalResp*srcDist_val);
                }
             } else {

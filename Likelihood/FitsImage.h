@@ -48,6 +48,9 @@ public:
    virtual void getCelestialArrays(std::vector<double> &lonArray,
                                    std::vector<double> &latArray);
 
+   void getPixelBounds(unsigned int naxis,
+                       std::vector<double> & pixelBounds) const;
+
    static void fitsReportError(int status, std::string routine="");
 
    static int findHdu(const std::string & fitsfile,

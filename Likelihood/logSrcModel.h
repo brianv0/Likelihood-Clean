@@ -48,6 +48,10 @@ public:
 
 protected:
 
+   virtual logSrcModel * clone() const {
+      return new logSrcModel(*this);
+   }
+   
    void fetchDerivs(optimizers::Arg &x, std::vector<double> &derivs, 
                     bool getFree) const;
 

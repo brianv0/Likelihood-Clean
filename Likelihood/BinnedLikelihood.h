@@ -81,6 +81,12 @@ public:
    virtual std::vector<double>::const_iterator setFreeParamValues_(
       std::vector<double>::const_iterator);
 
+protected:
+
+   virtual BinnedLikelihood * clone() const {
+      return new BinnedLikelihood(*this);
+   }
+
 private:
 
    const CountsMap & m_dataMap;
