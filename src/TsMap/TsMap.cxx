@@ -16,6 +16,7 @@
 #include "optimizers/Drmngb.h"
 #include "optimizers/Lbfgs.h"
 #include "optimizers/Minuit.h"
+#include "optimizers/Exception.h"
 
 #include "Likelihood/AppBase.h"
 #include "Likelihood/LogLike.h"
@@ -150,6 +151,7 @@ void TsMap::computeMap() {
             m_opt->find_min(verbosity, tol);
             m_tsMap[jj].push_back(2.*(m_logLike(dummy) - logLike0));
          } catch (optimizers::Exception &eObj) {
+            // Default null value.
             m_tsMap[jj].push_back(0);
          }
          if (verbosity > 0) {
