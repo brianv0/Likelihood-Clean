@@ -35,9 +35,7 @@ SourceModelBuilder::SourceModelBuilder(const std::string &functionLibrary,
    xml::Dom::addAttribute(m_srcLib, "title", srcLibTitle);
 }
 
-SourceModelBuilder::~SourceModelBuilder() {
-//    delete m_srcLib;
-}
+SourceModelBuilder::~SourceModelBuilder() {}
 
 void SourceModelBuilder::addSource(Source & src) {
    optimizers::Dom::appendChild(m_srcLib, likelihoodSource(src));

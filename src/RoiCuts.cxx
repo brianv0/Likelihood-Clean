@@ -197,6 +197,7 @@ void RoiCuts::writeXml(std::ostream & ostr, const std::string & roiTitle,
            << "\"$(LIKELIHOODROOT)/xml/RoiCuts.dtd\" >";
       xml::Dom::printElement(roiElt, ostr);
    }
+   roiElt->release();
 }
 
 bool RoiCuts::accept(const Event &event) {
