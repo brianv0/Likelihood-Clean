@@ -227,7 +227,7 @@ void print_fit_results(SourceModel &stat, const std::vector<double> &errors) {
 }
 
 bool prompt(const std::string &query) {
-   std::cout << query;
+   std::cout << query << std::endl;
    char answer[2];
    std::cin.getline(answer, 2);
    if (std::string(answer) == "y" || std::string(answer) == "") {
