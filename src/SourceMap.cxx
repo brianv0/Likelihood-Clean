@@ -95,7 +95,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
 /// @todo Ensure the desired event types are correctly included in this
 /// calculation.
             for (int evtType = 0; evtType < 2; evtType++) {
-               Aeff aeff(src, pixel->dir(), *energy, evtType);
+               Aeff aeff(src, pixel->dir(), *energy, evtType, observation);
                value += observation.expCube().value(pixel->dir(), aeff);
             }
          } else if (haveDiffuseSource) {
@@ -189,8 +189,9 @@ void SourceMap::fitsReportError(FILE *stream, int status) const {
 double SourceMap::Aeff::operator()(double costheta) const {
    double inclination = acos(costheta)*180./M_PI;
    static double phi(0);
-   return ResponseFunctions::totalResponse(inclination, phi, m_energy,
-                                           m_energy, m_separation, m_type);
+   return m_observation.respFuncs().totalResponse(inclination, phi, m_energy,
+                                                  m_energy, m_separation,
+                                                  m_type);
 }
 
 bool SourceMap::haveMapCubeFunction(DiffuseSource * src) const {
