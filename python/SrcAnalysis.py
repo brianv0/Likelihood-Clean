@@ -116,12 +116,34 @@ class SrcAnalysis(object):
                 for src in list(srcs[1:]):
                     self._plot(src, oplot=True, color=color)
     def fit(self, optimizer=None, verbose=3, tol=1e-5):
+        errors = self._errors(optimizer, verbose, tol)
+        self._walk(errors)
+        return -self.logLike.value()
+    def _errors(self, optimizer=None, verbose=0, tol=1e-5):
+        self.logLike.syncParams()
         if optimizer is None:
             optimizer = self.optimizer
         myOpt = eval("self.logLike.%s()" % optimizer)
-        self.logLike.syncParams()
         myOpt.find_min(verbose, tol)
-        return -self.logLike.value()
+        return tuple(myOpt.getUncertainty())
+    def _walk(self, errors=None):
+        if errors is None:
+            errors = self._errors()
+        i = 0
+        srcNames = Likelihood.StringVector()
+        self.logLike.getSrcNames(srcNames)
+        for srcName in srcNames:
+            src = self.logLike.getSource(srcName)
+            srcFuncs = src.getSrcFuncs()
+            for funcName in srcFuncs.keys():
+                func = srcFuncs[funcName]
+                parNames = Likelihood.StringVector()
+                func.getParamNames(parNames)
+                for parName in parNames:
+                    par = func.parameter(parName)
+                    if par.isFree():
+                        par.setError(errors[i])
+                        i += 1
 
 if __name__ == '__main__':
     srcAnalysis = SrcAnalysis('galdiffuse_model.xml',
