@@ -73,6 +73,8 @@ void AppHelpers::createResponseFuncs() {
    responseIds["FRONT/BACK"].push_back("DC1::Back");
    responseIds["GLAST25"].push_back("Glast25::Front");
    responseIds["GLAST25"].push_back("Glast25::Back");
+   responseIds["GLAST25_10"].push_back("Glast25::Front_10");
+   responseIds["GLAST25_10"].push_back("Glast25::Back_10");
    if (responseIds.count(responseFuncs)) {
       std::vector<std::string> &resps = responseIds[responseFuncs];
       for (unsigned int i = 0; i < resps.size(); i++) {
