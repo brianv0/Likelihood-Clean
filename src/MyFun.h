@@ -15,12 +15,10 @@ namespace Likelihood {
 class MyFun : public Function {
 public:
 
-   MyFun(){setMaxNumParams(3);};
-   virtual double value(const double) const;
-   virtual double operator()(const double x) const {return value(x);};
-   virtual double derivByParam(const double, 
-			       const std::string paramName) const;
-   virtual std::vector<double> getDerivs(const double) const;
+   MyFun();
+   virtual double value(double) const;
+   virtual double operator()(double x) const {return value(x);};
+   virtual double derivByParam(double, const std::string &paramName) const;
 
 private:
 };

@@ -2,21 +2,21 @@
 
 namespace Likelihood {
 /** 
- * @class PowerLaw
+ * @class Gaussian
  *
- * @brief A power-law function
+ * @brief A Gaussian function
  *
  * @author J. Chiang
  *    
  * $Header$
  */
     
-class PowerLaw : public Function {
+class Gaussian : public Function {
 public:
 
-   PowerLaw(){m_init(0, -2, 1);};
-   PowerLaw(double Prefactor, double Index, double Scale)
-      {m_init(Prefactor, Index, Scale);};
+   Gaussian(){m_init(0, -2, 1);};
+   Gaussian(double Prefactor, double Mean, double Sigma)
+      {m_init(Prefactor, Mean, Sigma);};
 
    virtual double value(double) const;
    virtual double operator()(double x) const {return value(x);};
@@ -25,7 +25,8 @@ public:
 
 private:
 
-   void m_init(double Prefactor, double Index, double Scale);
+   void m_init(double Prefactor, double Mean, double Sigma);
+   double m_erfcc(double x);
 
 };
 
