@@ -27,7 +27,7 @@ SpatialMap::SpatialMap(std::string fitsfile) : FitsImage(fitsfile) {
    addParam("Prefactor", 1, false);
 }
 
-double SpatialMap::value(Arg& arg) const {
+double SpatialMap::value(optimizers::Arg& arg) const {
    astro::SkyDir dir;
    dynamic_cast<SkyDirArg &>(arg).fetchValue(dir);
 

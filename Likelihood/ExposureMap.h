@@ -12,7 +12,7 @@
 #include <vector>
 #include <string>
 #include <valarray>
-#include "Likelihood/Function.h"
+#include "optimizers/Function.h"
 #include "Likelihood/FitsImage.h"
 
 namespace Likelihood {
@@ -63,7 +63,7 @@ public:
     * DiffuseSource spectral response.
     */
    void integrateSpatialDist(std::vector<double> &energies, 
-                             Function * spatialDist, 
+                             optimizers::Function * spatialDist, 
                              std::vector<double> &exposure);
 
    //! Retrieve the RA of each pixel in the image plane

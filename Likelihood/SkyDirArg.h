@@ -9,7 +9,7 @@
 #ifndef Likelihood_SkyDirArg_h
 #define Likelihood_SkyDirArg_h
 
-#include "Likelihood/Arg.h"
+#include "optimizers/Arg.h"
 #include "astro/SkyDir.h"
 
 namespace Likelihood {
@@ -24,7 +24,7 @@ namespace Likelihood {
  * $Header$
  */
 
-class SkyDirArg : public Arg {
+class SkyDirArg : public optimizers::Arg {
     
 public:
    

@@ -9,7 +9,7 @@
 #ifndef Likelihood_Npred_h
 #define Likelihood_Npred_h
 
-#include "Likelihood/Function.h"
+#include "optimizers/Function.h"
 #include "Likelihood/Source.h"
 #include "Likelihood/SrcArg.h"
 
@@ -26,20 +26,21 @@ namespace Likelihood {
  * $Header$
  */
 
-class Npred : public Function {
+class Npred : public optimizers::Function {
     
 public:
 
    Npred() {}
    virtual ~Npred() {}
 
-   double value(Arg &) const;
-   double derivByParam(Arg &, const std::string &) const;
+   double value(optimizers::Arg &) const;
+   double derivByParam(optimizers::Arg &, const std::string &) const;
 
 private:
 
-   void fetchDerivs(Arg &, std::vector<double> &derivs, bool getFree) const;
-   void buildParameterVector(Arg &) const;
+   void fetchDerivs(optimizers::Arg &, std::vector<double> &derivs, 
+                    bool getFree) const;
+   void buildParameterVector(optimizers::Arg &) const;
 
 };
 

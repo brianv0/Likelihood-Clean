@@ -67,7 +67,7 @@ void ExposureMap::readExposureFile(std::string exposureFile) {
 }
 
 void ExposureMap::integrateSpatialDist(std::vector<double> &energies,
-                                       Function * spatialDist,
+                                       optimizers::Function * spatialDist,
                                        std::vector<double> &exposure) {
 
 // Fetch the exposure multiplied by the solid angle of the associated

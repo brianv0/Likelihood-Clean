@@ -10,12 +10,12 @@
 #define Likelihood_logLike_ptsrc_h
 
 #include "Likelihood/Event.h"
-#include "Likelihood/Statistic.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/logSrcModel.h"
 #include "Likelihood/Npred.h"
+#include "Likelihood/Table.h"
 
 namespace Likelihood {
 
@@ -30,7 +30,7 @@ namespace Likelihood {
  * $Header$
  */
 
-class logLike_ptsrc : public Statistic {
+class logLike_ptsrc : public SourceModel {
     
 public:
 
@@ -41,12 +41,12 @@ public:
    }
    virtual ~logLike_ptsrc() {}
 
-   //! return the objective function value taking the free parameters 
-   //! as the function argument
-   double value(const std::vector<double> &paramVec);
+   virtual double value(optimizers::Arg&) const;
 
-   //! return the derivatives wrt the free parameters
-   void getFreeDerivs(std::vector<double> &freeDerivs);
+   /// Return the derivatives wrt the free parameters, overloading
+   /// the Function method
+   virtual void getFreeDerivs(optimizers::Arg&, 
+                              std::vector<double> &freeDerivs) const;
 
    void getEvents(const std::string &event_file, int hdu);
 
@@ -62,11 +62,34 @@ public:
 
    void computeEventResponses(double sr_radius = 30);
 
+// Methods and data members from old Likelihood::Statistic:
+   void readEventData(const std::string &eventFile, 
+                      const std::string &colnames, int hdu);
+
+   std::pair<long, double*> getEventColumn(const std::string &colname) const
+      {return getColumn(m_eventData, colname);}
+
+protected:
+
+   //! generalized column access
+   std::pair<long, double*> getColumn(const Table &tableData, 
+                                      const std::string &colname) const
+      throw(optimizers::Exception);
+
+   //! Event data; read from m_eventFile, stored in Table form
+   std::string m_eventFile;
+   int m_eventHdu;
+   Table m_eventData;
+
 private:
 
    std::vector<Event> m_events;
 
-   logSrcModel m_logSrcModel;
+   // A bit of a kludge here making this guy mutable, but unavoidable
+   // since getFreeDerivs is const in the base class and the
+   // overloaded version needs to call the logSrcModel::mySyncParams
+   // method.
+   mutable logSrcModel m_logSrcModel;
 
    Npred m_Npred;
 

@@ -10,7 +10,7 @@
 #ifndef Likelihood_SpatialMap_h
 #define Likelihood_SpatialMap_h
 
-#include "Likelihood/Function.h"
+#include "optimizers/Function.h"
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/FitsImage.h"
 
@@ -27,23 +27,23 @@ namespace Likelihood {
  *
  */
     
-class SpatialMap : public Function, public FitsImage {
+class SpatialMap : public optimizers::Function, public FitsImage {
 public:
 
    SpatialMap(std::string fitsfile);
-   SpatialMap(const SpatialMap &rhs) : Function(rhs), FitsImage(rhs) {
+   SpatialMap(const SpatialMap &rhs) : optimizers::Function(rhs), FitsImage(rhs) {
       m_ra = rhs.m_ra;
       m_dec = rhs.m_dec;
    }
 
    virtual ~SpatialMap() {}
 
-   double value(Arg&) const;
+   double value(optimizers::Arg&) const;
 
-   double derivByParam(Arg &, const std::string &) const
+   double derivByParam(optimizers::Arg &, const std::string &) const
       {return 0;}
 
-   virtual Function *clone() const {
+   virtual optimizers::Function *clone() const {
       return new SpatialMap(*this);
    }
 
@@ -53,7 +53,7 @@ private:
    std::vector<double> m_dec;
 
    // disable this
-   double integral(Arg &, Arg &) const {return 0;}
+   double integral(optimizers::Arg &, optimizers::Arg &) const {return 0;}
 
 };
 
