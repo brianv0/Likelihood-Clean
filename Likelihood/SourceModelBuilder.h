@@ -42,6 +42,8 @@ public:
 
 private:
 
+   typedef XERCES_CPP_NAMESPACE_QUALIFIER DOMElement DomElement;
+
    DomElement * m_srcLib;
 
    DomElement * likelihoodSource(Source & src);
