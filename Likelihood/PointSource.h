@@ -162,6 +162,10 @@ public:
                                 std::vector<double> & exposure,
                                 bool verbose);
 
+   virtual const std::vector<double> & exposure() const {
+      return m_exposure;
+   }
+
 private:
 
    /// location on the Celestial sphere 

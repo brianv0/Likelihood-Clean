@@ -327,7 +327,7 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
    }
 
 // Initialize the exposure vector with zeros
-   exposure = std::vector<double>(energies.size(), 0);
+   exposure.resize(energies.size(), 0);
 
    if (print_output() && verbose) {
       std::cerr << "Computing exposure at (" 

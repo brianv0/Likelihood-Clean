@@ -40,7 +40,6 @@ void Npred::fetchDerivs(optimizers::Arg &x, std::vector<double> &derivs,
    }
 }
 
-//void Npred::buildParameterVector(optimizers::Arg &x) const {
 void Npred::buildParameterVector(optimizers::Arg &x) {
    m_parameter.clear();
    Source *src = dynamic_cast<SrcArg &>(x).getValue();
