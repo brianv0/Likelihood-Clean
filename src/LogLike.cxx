@@ -162,12 +162,20 @@ void LogLike::getEvents(std::string event_file, int) {
          double raSCZ = scData->zAxis(time).ra();
          double decSCZ = scData->zAxis(time).dec();
          
+         int eventType;
+         if (evt->convLayer() < 12) { // Front
+            eventType = 0;
+         } else { // Back
+            eventType = 1;
+         }
+         
          Event thisEvent( evt->ra()*180./M_PI, 
                           evt->dec()*180./M_PI,
                           evt->energy()/1e6, 
                           time,
                           raSCZ, decSCZ,
-                          cos(evt->zenithAngle()) );
+                          cos(evt->zenithAngle()),
+                          eventType);
          
          if (roiCuts->accept(thisEvent)) {
             m_events.push_back(thisEvent);

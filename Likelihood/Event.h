@@ -37,7 +37,7 @@ public:
 
    Event() {}
    Event(double ra, double dec, double energy, double time, 
-         double sc_ra, double sc_dec, double muZenith, int type);
+         double sc_ra, double sc_dec, double muZenith, int type=2);
    Event(const Event &);
    virtual ~Event() {}
 
