@@ -8,6 +8,8 @@
 #include <iostream>
 
 #include "Likelihood/Function.h"
+#include "Likelihood/SumFunction.h"
+#include "Likelihood/ProductFunction.h"
 
 namespace Likelihood {
 

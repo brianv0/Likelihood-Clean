@@ -9,6 +9,9 @@
 #include <cassert>
 #include <fstream>
 
+#include "Likelihood/Parameter.h"
+#include "OptPP.h"
+
 #ifdef HAVE_OPTIMIZERS
 
 #include "NLF.h"
@@ -19,9 +22,6 @@
 //#include "OptBCEllipsoid.h"
 
 #endif //HAVE_OPTIMIZERS
-
-#include "Likelihood/Parameter.h"
-#include "OptPP.h"
 
 namespace Likelihood {
 
