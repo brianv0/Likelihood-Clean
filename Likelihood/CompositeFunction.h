@@ -63,8 +63,8 @@ public:
    }
 
    //! Parameter access including Function name specification
-   virtual Parameter* getParam(const std::string &paramName, 
-                               const std::string &funcName) const;
+   virtual Parameter getParam(const std::string &paramName, 
+                              const std::string &funcName) const;
    
 protected:
 

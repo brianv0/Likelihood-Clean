@@ -1,4 +1,5 @@
-/** @file Rosen.h
+/** 
+ * @file Rosen.h
  * @brief Declaration for a 2D Rosenbrock objective function
  * @author J. Chiang
  *
@@ -29,7 +30,8 @@ public:
 
    void getFreeDerivs(std::vector<double> &freeDerivs);
 
-   double derivByParam(Arg &, const std::string &paramName);
+   double derivByParam(Arg &, const std::string &paramName)
+      throw(ParameterNotFound);
 
 private:
 

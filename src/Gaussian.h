@@ -1,4 +1,5 @@
-/** @file Gaussian.h
+/** 
+ * @file Gaussian.h
  * @brief Gaussian class declaration
  * @author J. Chiang
  *
@@ -31,7 +32,8 @@ public:
 
    double value(Arg &) const;
 
-   double derivByParam(Arg &, const std::string &paramName) const;
+   double derivByParam(Arg &, const std::string &paramName) const
+      throw(ParameterNotFound);
 
    double integral(Arg &xmin, Arg &xmax) const;
 

@@ -6,13 +6,16 @@
  * $Header$
  */
 
+#include <cassert>
+#include <iostream>
+#include <sstream>
+#include <utility>
 #include "Likelihood/Event.h"
 #include "Likelihood/Psf.h"
 #include "Likelihood/Aeff.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/TrapQuad.h"
-#include <assert.h>
 
 extern double my_acos(double mu);
 
@@ -49,7 +52,8 @@ Event::Event(const Event &event) {
 }
 
 double Event::diffuseResponse(double energy, 
-                              const std::string &diffuseComponent) const {
+                              const std::string &diffuseComponent) const 
+   throw(LikelihoodException) {
 // Since the energy resolution is presently assumed to be infinite,
 // simply return the (second member of the pair of the) first (and
 // only) element of the diffuse_response vector.
@@ -59,12 +63,11 @@ double Event::diffuseResponse(double energy,
        != m_respDiffuseSrcs.end()) {
       return it->second[0].second;
    } else {
-      std::cerr << "Event::diffuseResponse: Diffuse component " 
-                << diffuseComponent 
-                << " does not have an associated diffuse response."
-                << std::endl;
-      assert(false);
-      return 0;
+      std::ostringstream errorMessage;
+      errorMessage << "Event::diffuseResponse: \nDiffuse component " 
+                   << diffuseComponent 
+                   << " does not have an associated diffuse response.\n";
+      throw LikelihoodException(errorMessage.str());
    }
    return 0;
 }

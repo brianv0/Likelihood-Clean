@@ -1,9 +1,14 @@
-/** @file SkyDirFunction.h
+/** 
+ * @file SkyDirFunction.h
  * @brief Declaration of the SkyDirFunction class
  * @author J. Chiang
  *
  * $Header$
  */
+
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
 
 #ifndef SkyDirFunction_h
 #define SkyDirFunction_h
@@ -55,7 +60,8 @@ private:
 
    void m_init(double lon, double lat);
    
-   void update_m_dir(std::string paramName, double paramValue);
+   void update_m_dir(std::string paramName, double paramValue)
+      throw(ParameterNotFound);
 
    astro::SkyDir::CoordSystem m_coord_type;
    double m_lon;

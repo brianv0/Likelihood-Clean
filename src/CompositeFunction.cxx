@@ -39,8 +39,8 @@ void CompositeFunction::setParam(const Parameter &param,
    syncParams();
 }
 
-Parameter* CompositeFunction::getParam(const std::string &paramName,
-                                       const std::string &funcName) const {
+Parameter CompositeFunction::getParam(const std::string &paramName,
+                                      const std::string &funcName) const {
    assert(funcName == m_a->getName() || funcName == m_b->getName());
 
    if (m_a->getName() == funcName) {

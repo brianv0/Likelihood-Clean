@@ -73,7 +73,7 @@ public:
    double getParamValue(const std::string &paramName) const
       throw(ParameterNotFound);
 
-   Parameter *getParam(const std::string &paramName)
+   Parameter getParam(const std::string &paramName) const
       throw(ParameterNotFound);
    
    virtual void setParamBounds(const std::string &paramName, double lower,
@@ -205,7 +205,7 @@ public:
                      const std::string &funcName,
                      const std::string &routineName) {
       std::ostringstream errorMessage;
-      errorMessage << "Function::" << routineName << ": "
+      errorMessage << "Function::" << routineName << ": \n"
                    << "A Parameter named " << paramName
                    << " is not a Parameter of Function "
                    << funcName << "\n";

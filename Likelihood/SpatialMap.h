@@ -1,4 +1,5 @@
-/** @file SpatialMap.h
+/** 
+ * @file SpatialMap.h
  * @brief Declaration for the SpatialMap Function class
  * @author J. Chiang
  *

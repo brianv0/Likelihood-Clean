@@ -43,7 +43,7 @@ void Npred::buildParameterVector(Arg &x) const {
    Source *src = dynamic_cast<SrcArg &>(x).getValue();
 
    Source::FuncMap srcFuncs = src->getSrcFuncs();
-   Source::FuncMap::iterator func_it = srcFuncs.begin();
+   Source::FuncMap::const_iterator func_it = srcFuncs.begin();
    for (; func_it != srcFuncs.end(); func_it++) {
       std::vector<Parameter> params;
       (*func_it).second->getParams(params);

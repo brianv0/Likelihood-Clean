@@ -6,6 +6,10 @@
  * $Header$
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4290)
+#endif
+
 #ifndef Psf_h
 #define Psf_h
 
@@ -52,7 +56,8 @@ public:
    static Psf * instance();
 
    //! method to read in the psf data
-   void readPsfData(const std::string &psfFile, int hdu);
+   void readPsfData(const std::string &psfFile, int hdu)
+      throw(LikelihoodException);
 
 protected:
 

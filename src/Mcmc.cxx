@@ -72,7 +72,6 @@ void Mcmc::writeSamples(std::string filename,
    fits_create_file(&fptr, filename.c_str(), &status);
    if (status != 0) {
       fits_report_error(stderr, status);
-      std::cerr << status << std::endl;
       throw LikelihoodException("Mcmc::writeSamples: cfitsio errors.");
    }
 
