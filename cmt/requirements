@@ -10,7 +10,8 @@ private
 # allow use of internal path
 macro_prepend cppflags "-I ../src " WIN32 "/I..\src "
 
-library Likelihood -no_share *.h *.cxx
+macro includes "" WIN32 "*.h"
+library Likelihood -no_share $(includes) *.cxx
 
 # test application
 application test_Likelihood test/*.cxx
