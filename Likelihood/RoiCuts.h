@@ -13,11 +13,15 @@
 #include <string>
 #include <utility>
 #include <cmath>
+
 #include "astro/SkyDir.h"
-#include "Likelihood/Event.h"
-#include "Likelihood/ScData.h"
+
+//#include "Likelihood/Event.h"
+//#include "Likelihood/ScData.h"
 
 namespace Likelihood {
+
+class Event;
 
 /** 
  * @class RoiCuts
@@ -37,7 +41,7 @@ public:
 
    static RoiCuts * instance();
 
-   //! access to the cuts
+   /// Access to the cuts
    void getTimeCuts(std::vector< std::pair<double, double> > &tLimVec) const
       {tLimVec = s_tLimVec;}
 
@@ -47,13 +51,19 @@ public:
    std::pair<astro::SkyDir, double> getExtractionRegion() const
       {return std::make_pair(s_roiCenter, s_roiRadius);}
 
+   static void getRaDec(double &ra, double &dec) {
+      ra = s_roiCenter.ra();
+      dec = s_roiCenter.dec();
+   }
+
    double getMuZenMax() {return s_muZenMax;}
 
-   //! methods to allow cuts to be specified
-   // prompt user (or use PIL for defaults)
+   /// Methods to allow cuts to be specified
    static void setCuts(double ra = 193.98, double dec = -5.82, 
                        double roi_radius = 50);
-//   static void setCuts(std::string RoiFile);    // read from (XML?) file
+
+   /// Read from xml file
+   static void setCuts(const std::string &xmlFile);
 
    //! apply these cuts to an Event
    bool accept(const Event &);
