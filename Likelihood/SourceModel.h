@@ -9,8 +9,8 @@
 #include <vector>
 #include <string>
 
-#include "../Likelihood/Function.h"
-#include "../Likelihood/Source.h"
+#include "Likelihood/Function.h"
+#include "Likelihood/Source.h"
 
 namespace Likelihood {
 

@@ -6,13 +6,16 @@ use astro  v*
 use cfitsio v1* IExternal
 # use CALDBinterface v*  (yeah, right...)
 
+apply_pattern package_include
+
 private
 
 # allow use of internal path
 macro_prepend cppflags "-I ../src " WIN32 "/I..\src "
+apply_pattern package_linkopts
 
-macro my_headers "" WIN32 "*.h"
+macro my_headers "" WIN32 "../Likelihood/*.h *.h"
 library Likelihood -no_share $(my_headers) *.cxx
 
 # test application
-application test_Likelihood *.cxx test/*.cxx
+application test_Likelihood test/*.cxx
