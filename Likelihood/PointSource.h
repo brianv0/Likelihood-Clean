@@ -158,6 +158,7 @@ private:
    //! fraction of the psf that is contained within the ROI
    double psfFrac(double energy, double inc);
 
+#ifndef SWIG
    //! nested class that returns the integrand for the m_gaussFraction
    //! integrals
    class Gint : public optimizers::Function {
@@ -174,6 +175,7 @@ private:
       double m_cp;
       double m_sp;
    };
+#endif
 
    //! a static object needed to compute the m_gaussFraction integrals
    //! using the DGAUS8 integrator

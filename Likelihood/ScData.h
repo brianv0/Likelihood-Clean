@@ -35,6 +35,7 @@ public:
    //! method to read in the spacecraft data
    static void readData(const std::string &file, int hdu);
    
+#ifndef SWIG
 /** 
  * @class ScNtuple
  * @brief Nested NTuple class to represent spacecraft data.
@@ -52,6 +53,7 @@ public:
 
    //! share the spacecraft data itself
    static std::vector<ScNtuple> vec;
+#endif // SWIG
 
    //! returns the Singleton object pointer
    static ScData * instance();
