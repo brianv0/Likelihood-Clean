@@ -62,7 +62,8 @@ public:
    double fluxDensity(const Event &evt) const;
 
    //! Returns the derivative wrt to the named Parameter
-   double fluxDensityDeriv(const Event &evt, std::string &paramName) const;
+   double fluxDensityDeriv(const Event &evt, 
+                           const std::string &paramName) const;
 
    //! Predicted number of photons given RoiCuts and ScData
    double Npred();
