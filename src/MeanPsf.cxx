@@ -14,9 +14,7 @@
 
 #include "st_facilities/Util.h"
 
-//#include "Likelihood/ExposureCube.h"
 #include "Likelihood/MeanPsf.h"
-//#include "Likelihood/ResponseFunctions.h"
 
 #include "Verbosity.h"
 

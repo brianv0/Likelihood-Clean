@@ -10,6 +10,8 @@
 
 namespace Likelihood {
 
+Source::Source() {}
+
 Source::Source(const Source &rhs) {
 // Delegate deep copy of m_functions to the subclasses.
    m_name = rhs.m_name;

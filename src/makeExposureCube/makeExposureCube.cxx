@@ -42,7 +42,7 @@ class ExposureCube : public st_app::StApp {
 public:
    ExposureCube() : st_app::StApp(), 
                     m_pars(st_app::StApp::getParGroup("gtlivetimecube")), 
-                    m_exposure(0) {}
+                    m_exposure(0), m_roiCuts(0) {}
    virtual ~ExposureCube() throw() {
       try {
          delete m_exposure;
@@ -55,8 +55,9 @@ public:
 private:
    st_app::AppParGroup & m_pars;
    Likelihood::LikeExposure * m_exposure;
+   Likelihood::RoiCuts * m_roiCuts;
    void promptForParameters();
-   void readRoiCuts() const;
+   void readRoiCuts();
    void createDataCube();
 };
 
@@ -83,8 +84,8 @@ void ExposureCube::run() {
    cube.save();
    std::auto_ptr<tip::Image> 
       image(tip::IFileSvc::instance().editImage(output_file, ""));
-   Likelihood::RoiCuts::instance()->writeDssKeywords(image->getHeader());
-   Likelihood::RoiCuts::instance()->writeGtiExtension(output_file);
+   m_roiCuts->writeDssKeywords(image->getHeader());
+   m_roiCuts->writeGtiExtension(output_file);
 }
 
 void ExposureCube::promptForParameters() {
@@ -96,15 +97,15 @@ void ExposureCube::promptForParameters() {
    m_pars.Save();
 }
 
-void ExposureCube::readRoiCuts() const {
+void ExposureCube::readRoiCuts() {
    std::string event_file = m_pars["evfile"];
-   Likelihood::RoiCuts::instance()->readCuts(m_pars["evfile"],
-                                             "EVENTS", false);
+   m_roiCuts = Likelihood::RoiCuts::instance();
+   m_roiCuts->readCuts(m_pars["evfile"], "EVENTS", false);
 }
 
 void ExposureCube::createDataCube() {
    std::vector<std::pair<double, double> > timeCuts;
-   Likelihood::RoiCuts::instance()->getTimeCuts(timeCuts);
+   m_roiCuts->getTimeCuts(timeCuts);
    m_exposure = new Likelihood::LikeExposure(m_pars["pixel_size"], 
                                              m_pars["cos_theta_step"],
                                              timeCuts);

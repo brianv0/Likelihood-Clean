@@ -21,7 +21,7 @@ namespace Likelihood {
 /** 
  * @class Source
  *
- * @brief Abstract base class for gamma-ray sources.
+ * @brief Base class for gamma-ray sources.
  *
  * @author J. Chiang
  *    
@@ -32,8 +32,10 @@ class Source {
 
 public:
     
-   Source() {m_name = "";}
+   Source();
+
    Source(const Source &rhs);
+
    virtual ~Source() {}
 
    /// @return photons/cm^2-s-sr-MeV having been convolved through
@@ -51,14 +53,7 @@ public:
    ///        0 vs 1
    virtual double fluxDensity(double inclination, double phi, double energy, 
                               const astro::SkyDir & appDir, 
-                              int evtType) const {
-      (void)(inclination);
-      (void)(phi);
-      (void)(energy);
-      (void)(appDir);
-      (void)(evtType);
-      return 0;
-   }
+                              int evtType) const = 0;
 
    /// derivatives of fluxDensity wrt model Parameters
    virtual double fluxDensityDeriv(const Event &evt, 
@@ -68,15 +63,7 @@ public:
                                    double energy, 
                                    const astro::SkyDir & appDir,
                                    int evtType, 
-                                   const std::string & paramName) const {
-      (void)(inclination);
-      (void)(phi);
-      (void)(energy);
-      (void)(appDir);
-      (void)(evtType);
-      (void)(paramName);
-      return 0;
-   }
+                                   const std::string & paramName) const = 0;
 
    /// predicted number of photons given RoiCuts and ScData
    virtual double Npred() = 0;
@@ -88,25 +75,30 @@ public:
    virtual double Npred(double emin, double emax) = 0;
 
    /// access unique source identifier
-   void setName(const std::string & name) {m_name = name;}
-   const std::string & getName() const {return m_name;}
+   void setName(const std::string & name) {
+      m_name = name;
+   }
+
+   const std::string & getName() const {
+      return m_name;
+   }
 
    /// @return a reference to the m_functions map (NB: not const!)
    typedef std::map<std::string, optimizers::Function *> FuncMap;
-   FuncMap & getSrcFuncs() {return m_functions;}
-
-   virtual void setDir(double ra, double dec, bool updateExposure=true,
-                       bool verbose=true) = 0;
-   virtual void setDir(const astro::SkyDir &dir, 
-                       bool updateExposure=true, bool verbose=true) = 0;
+   FuncMap & getSrcFuncs() {
+      return m_functions;
+   }
 
    virtual void setSpectrum(optimizers::Function *) = 0;
                        
-   /// clone function, with default
-   virtual Source *clone() const {return 0;}
+   virtual Source * clone() const {
+      return 0;
+   }
 
    /// @return the Source type (e.g., Diffuse vs Point)
-   const std::string & getType() const {return m_srcType;}
+   const std::string & getType() const {
+      return m_srcType;
+   }
 
    /// Integrate the product of the source spectrum with the given
    /// SourceMap pixel values.
