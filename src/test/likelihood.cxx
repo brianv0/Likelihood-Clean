@@ -279,6 +279,9 @@ int main(int iargc, char* argv[]) {
             delete myOpt;
          } // useOptEM
          print_fit_results(*logLike, errors);
+         std::cout << std::endl 
+                   << "-log(Likelihood): " << -logLike->value()
+                   << std::endl;
          std::cout << std::endl;
          
 // Write the model to the output xml file.
