@@ -175,8 +175,6 @@ void LogLike::getEvents(std::string event_file) {
    double dec;
    double energy;
    double time;
-   double raSCZ;
-   double decSCZ;
    double zenAngle;
    int convLayer;
    int eventType;
@@ -193,8 +191,6 @@ void LogLike::getEvents(std::string event_file) {
       event["dec"].get(dec);
       event["energy"].get(energy);
       event["time"].get(time);
-      raSCZ = scData->zAxis(time).ra();
-      decSCZ = scData->zAxis(time).dec();
       event["zenith_angle"].get(zenAngle);
       event["conversion_layer"].get(convLayer);
       if (convLayer < 12) { // Front
@@ -202,8 +198,8 @@ void LogLike::getEvents(std::string event_file) {
       } else {
          eventType = 1;
       }
-      Event thisEvent(ra, dec, energy, time, raSCZ, decSCZ, 
-                      cos(zenAngle*M_PI/180.), eventType);
+      Event thisEvent(ra, dec, energy, time, scData->zAxis(time),
+                      scData->xAxis(time), cos(zenAngle*M_PI/180.), eventType);
       if (roiCuts->accept(thisEvent)) {
          m_events.push_back(thisEvent);
          for (std::vector<std::string>::iterator name = diffuseNames.begin();
