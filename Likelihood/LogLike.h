@@ -54,14 +54,9 @@ public:
 
    void getEvents(const std::string &event_file, int hdu);
 
-//     void computeEventResponses(DiffuseSource &src, double sr_radius = 30);
-
-//     void computeEventResponses(std::vector<DiffuseSource> &srcs, 
-//                                double sr_radius = 30);
-
    void computeEventResponses(Source &src, double sr_radius = 30);
 
-   void computeEventResponses(std::vector<DiffuseSource> &srcs, 
+   void computeEventResponses(std::vector<DiffuseSource *> &srcs, 
                               double sr_radius = 30);
 
    void computeEventResponses(double sr_radius = 30);
