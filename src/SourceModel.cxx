@@ -474,8 +474,6 @@ CountsMap * SourceModel::createCountsMap(const CountsMap & dataMap) const {
    computeModelMap(pixels, energies, map);
 
    CountsMap * modelMap = new CountsMap(dataMap);
-// @bug This will not work properly until
-// tip::FitsExtensionManager::setImageDimensions is fixed.
    modelMap->setImage(map);
    return modelMap;
 }
