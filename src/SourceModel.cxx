@@ -442,7 +442,7 @@ bool SourceModel::hasSrcNamed(const std::string & srcName) const {
 }
 
 // void SourceModel::makeCountsMap(const std::string &filename, 
-//                                 const fitsUtils::MapShape &mapShape) {
+//                                 const MapShape &mapShape) {
 
 //    std::vector< std::valarray<double> > map(mapShape.nz());
 //    for (unsigned int k = 0; k < mapShape.nz(); k++) {
@@ -466,9 +466,16 @@ bool SourceModel::hasSrcNamed(const std::string & srcName) const {
 //       }
 //    }
 
-// // The outer loop is the spacecraft time.
-//    for (unsigned int it = 0; it < scData.vec.size()-1; it++) {
+//    std::map<std::string, Source *>::const_iterator src;
 
+// // The outer loop is the spacecraft time.
+//    for (unsigned int it = 0; it < scData->vec.size()-1; it++) {
+//       double dt = scData->vec[it+1].time - scData->vec[it].time;
+//       for (unsigned int k = 0; k < energies.size(); k++) {
+//          for (src = s_sources.begin(); src != s_sources.end(); ++src) {
+            
+//          }
+//       }
 //    }
 
 // }
