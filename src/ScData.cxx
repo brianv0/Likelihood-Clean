@@ -35,7 +35,6 @@ int ScData::s_scHdu = 0;
 ScData * ScData::s_instance = 0;
 double ScData::s_tstep;
 
-#ifdef USE_FT1
 void ScData::readData(std::string file, int hdu, bool clear) {
    facilities::Util::expandEnvVar(&file);
 
@@ -87,45 +86,6 @@ void ScData::readData(std::string file, int hdu, bool clear) {
 
    delete scData;
 }         
-#else
-void ScData::readData(std::string file, int hdu, bool clear) {
-
-   facilities::Util::expandEnvVar(&file);
-
-   s_scFile = file;
-   s_scHdu = hdu;
-
-   std::string extName;
-   irfUtil::Util::getFitsHduName(file, hdu, extName);
-   tip::Table * my_table = tip::IFileSvc::instance().editFile(file, extName);
-   tip::Table::Iterator it = my_table->begin();
-   tip::Table::Record & row = *it;
-
-// repack into a more useful format
-   if (clear) vec.clear();
-   for ( ; it != my_table->end(); ++it) {
-      ScNtuple tuple;
-
-      double scx0, scx1, scx2;
-      row["SC_x0"].get(scx0);
-      row["SC_x1"].get(scx1);
-      row["SC_x2"].get(scx2);
-      tuple.xAxis = astro::SkyDir(Hep3Vector(scx0, scx1, scx2));
-      double scx, scy, scz;
-      row["SC_x"].get(scx);
-      row["SC_y"].get(scy);
-      row["SC_z"].get(scz);
-      tuple.zAxis = astro::SkyDir(Hep3Vector(scx, scy, scz));
-      row["time"].get(tuple.time);
-      row["SAA_flag"].get(tuple.inSaa);
-
-      vec.push_back(tuple);
-   }
-
-// Assume a constant time step.
-   s_tstep = vec[1].time - vec[0].time;
-}
-#endif // USE_FT1
 
 astro::SkyDir &ScData::zAxis(double time) {
    int indx = static_cast<int>((time - vec[0].time)/s_tstep);

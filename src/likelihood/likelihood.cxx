@@ -261,8 +261,8 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
       }
    }
    std::cerr << "!" << std::endl;
-   selectOptimizer();
-   m_opt->find_min(verbose, tol);
+//    selectOptimizer();
+//    m_opt->find_min(verbose, tol);
 
 //    double new_logLike = m_logLike->value();
 //    if (new_logLike < logLike_value) {
