@@ -460,7 +460,7 @@ bool SourceModel::hasSrcNamed(const std::string & srcName) const {
 CountsMap * SourceModel::createCountsMap(const CountsMap & dataMap) const {
 
    if (ExposureCube::instance() == 0) {
-      std::runtime_error("SourceModel::makeCountsMap:\n"
+      std::runtime_error("SourceModel::createCountsMap:\n"
                          + std::string("Exposure cube not available."));
    }
 

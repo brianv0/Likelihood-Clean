@@ -104,6 +104,13 @@ public:
       return new DiffuseSource(*this);
    }
 
+   virtual double pixelCounts(double emin, double emax,
+                              double wtMin, double wtMax) const;
+
+   virtual double pixelCountsDeriv(double emin, double emax,
+                                   double wtMin, double wtMax,
+                                   const std::string & paramName) const;
+
 protected:
 
    /// spatial model

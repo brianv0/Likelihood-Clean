@@ -52,6 +52,8 @@ public:
 
    const astro::SkyDir & dir() const {return m_dir;}
 
+   double solidAngle() const {return m_solidAngle;}
+
    class Aeff : public map_tools::Exposure::Aeff {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
