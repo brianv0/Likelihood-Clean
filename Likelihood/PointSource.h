@@ -12,6 +12,8 @@
 #include "optimizers/Function.h"
 #include "optimizers/dArg.h"
 
+#include "map_tools/Exposure.h"
+
 #include "Likelihood/Source.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Event.h"
@@ -126,6 +128,32 @@ public:
    virtual Source *clone() const {
       return new PointSource(*this);
    }
+
+   /**
+    * @class Aeff
+    *
+    * @brief Functor class to calculate PointSource exposure using a
+    * map_tools exposure time hypercube.
+    *
+    */
+   class Aeff : public map_tools::Exposure::Aeff {
+
+   public:
+
+      Aeff(double energy, const astro::SkyDir &srcDir) 
+         : m_energy(energy), m_srcDir(srcDir) {}
+
+      virtual ~Aeff() {}
+
+      virtual double operator()(double cos_theta) const;
+
+   private:
+
+      double m_energy;
+
+      astro::SkyDir m_srcDir;
+
+   };
 
 private:
 
