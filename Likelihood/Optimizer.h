@@ -12,7 +12,7 @@
 #include <iostream>
 
 //#define HAVE_OPT_PP
-//#define HAVE_OPT_LBFGS
+#define HAVE_OPT_LBFGS
 
 namespace Likelihood {
 
