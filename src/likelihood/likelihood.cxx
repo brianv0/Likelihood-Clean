@@ -6,6 +6,10 @@
  * $Header$
  */
 
+#ifdef TRAP_FPE
+#include <fenv.h>
+#endif
+
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
