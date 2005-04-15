@@ -38,8 +38,14 @@ DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
    if (requireExposure) {
       const RoiCuts & roiCuts = observation.roiCuts();
       const std::vector<double> & energies = roiCuts.energies();
-      observation.expMap().integrateSpatialDist(energies, spatialDist,
-                                                m_exposure);
+      if (observation.expMap().haveMap()) {
+         observation.expMap().integrateSpatialDist(energies, spatialDist,
+                                                   m_exposure);
+      } else {
+         std::string what("DiffuseSource: An exposure map must be defined ");
+         what += "if diffuse sources are in the model.";
+         throw std::runtime_error(what);
+      }
    }
    m_srcType = "Diffuse";
 }
