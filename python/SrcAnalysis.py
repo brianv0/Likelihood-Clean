@@ -37,7 +37,7 @@ class Observation(object):
         self._roiCuts = pyLike.RoiCuts()
         self._expCube = pyLike.ExposureCube()
         if expCube is not None and expCube is not "":
-            self._expMap.readExposureCube(expCube)
+            self._expCube.readExposureCube(expCube)
         self._eventCont = pyLike.EventContainer(self._respFuncs, self._roiCuts,
                                                 self._scData)
         self.observation = pyLike.Observation(self._respFuncs, self._scData,
