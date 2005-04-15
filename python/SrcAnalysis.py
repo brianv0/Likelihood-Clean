@@ -23,7 +23,8 @@ def _resolveFileList(files):
     return my_list
 
 class Observation(object):
-    def __init__(self, eventFile=None, scFile=None, expMap=None, irfs='TEST'):
+    def __init__(self, eventFile=None, scFile=None, expMap=None,
+                 expCube=None, irfs='TEST'):
         if eventFile is None and scFile is None:
             eventFile, scFile, expMap, irfs = self._obsDialog()
         self._inputs = eventFile, scFile, expMap, irfs
@@ -35,6 +36,8 @@ class Observation(object):
         self._scData = pyLike.ScData()
         self._roiCuts = pyLike.RoiCuts()
         self._expCube = pyLike.ExposureCube()
+        if expCube is not None and expCube is not "":
+            self._expMap.readExposureCube(expCube)
         self._eventCont = pyLike.EventContainer(self._respFuncs, self._roiCuts,
                                                 self._scData)
         self.observation = pyLike.Observation(self._respFuncs, self._scData,
