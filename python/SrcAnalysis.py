@@ -26,7 +26,8 @@ class Observation(object):
     def __init__(self, eventFile=None, scFile=None, expMap=None,
                  expCube=None, irfs='TEST'):
         if eventFile is None and scFile is None:
-            eventFile, scFile, expMap, irfs = self._obsDialog()
+            eventFile, scFile, expMap, expCube, irfs = self._obsDialog()
+        self._checkCuts(eventFile, expMap, expCube)
         self._inputs = eventFile, scFile, expMap, irfs
         self._respFuncs = pyLike.ResponseFunctions()
         self._respFuncs.load(irfs)
@@ -44,11 +45,22 @@ class Observation(object):
                                               self._roiCuts, self._expCube,
                                               self._expMap, self._eventCont)
         self._readData(scFile, eventFile)
+    def _checkCuts(self, eventFile, expMap=None, expCube=None):
+        eventFiles = self._fileList(eventFile)
+        checkCuts = pyLike.AppHelpers_checkCuts
+        checkTimeCuts = pyLike.AppHelpers_checkTimeCuts
+        for file in eventFiles[1:]:
+            checkCuts(eventFiles[0], 'EVENTS', file, 'EVENTS')
+        if expMap is not None and expMap != '':
+            checkCuts(eventFiles[0], 'EVENTS', expMap, '')
+        if expCube is not None and expCube != '':
+            checkTimeCuts(eventFiles[0], 'EVENTS', expCube, 'Exposure')
     def _obsDialog(self):
         paramDict = map()
         paramDict['eventFile'] = Param('file', '*.fits')
         paramDict['scFile'] = Param('file', '*scData*.fits')
-        paramDict['expMap'] = Param('file', 'expMap.fits')
+        paramDict['expMap'] = Param('file', '')
+        paramDict['expCube'] = Param('file', '')
         paramDict['irfs'] = Param('string', 'TEST')
         root = SimpleDialog(paramDict, title="Observation Elements:")
         root.mainloop()
@@ -56,6 +68,7 @@ class Observation(object):
         scFiles = _resolveFileList(paramDict['scFile'].value())
         output = (eventFiles, scFiles,
                   paramDict['expMap'].value(),
+                  paramDict['expCube'].value(),
                   paramDict['irfs'].value())
         return output
     def __call__(self):
