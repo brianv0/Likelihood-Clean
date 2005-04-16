@@ -53,7 +53,7 @@ exposureMap::exposureMap()
    try {
       m_pars.Prompt();
       m_pars.Save();
-      m_helper = new AppHelpers(m_pars);
+      m_helper = new AppHelpers(&m_pars);
       m_helper->readScData();
    } catch (std::exception & eObj) {
       std::cerr << eObj.what() << std::endl;

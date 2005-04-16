@@ -84,7 +84,7 @@ gtsrcmaps::gtsrcmaps()
       m_pars.Prompt();
       m_pars.Save();
       Likelihood::Verbosity::instance(m_pars["chatter"]);
-      m_helper = new AppHelpers(m_pars);
+      m_helper = new AppHelpers(&m_pars);
       m_helper->readScData();
    } catch (std::exception & eObj) {
       std::cerr << eObj.what() << std::endl;
