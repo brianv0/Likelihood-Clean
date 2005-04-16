@@ -108,7 +108,7 @@ likelihood::likelihood()
 void likelihood::run() {
    promptForParameters();
    Likelihood::Verbosity::instance(m_pars["chatter"]);
-   m_helper = new AppHelpers(m_pars);
+   m_helper = new AppHelpers(&m_pars);
    bool useEdisp = m_pars["use_energy_dispersion"];
    ResponseFunctions & respFuncs = 
       const_cast<ResponseFunctions &>(m_helper->observation().respFuncs());

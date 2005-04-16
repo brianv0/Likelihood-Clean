@@ -72,7 +72,7 @@ ExpMap::ExpMap() : st_app::StApp(), m_helper(0),
 void ExpMap::run() {
    promptForParameters();
    Likelihood::Verbosity::instance(m_pars["chatter"]);
-   m_helper = new AppHelpers(m_pars);
+   m_helper = new AppHelpers(&m_pars);
    m_helper->readScData();
    bool useEdisp = m_pars["use_energy_dispersion"];
    ResponseFunctions & respFuncs =

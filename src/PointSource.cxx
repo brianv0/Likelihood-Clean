@@ -448,6 +448,9 @@ double PointSource::Aeff::operator()(double cos_theta) const {
          myEffArea += psf_val*aeff_val;
       }
    }
+   if (myEffArea < 0) {
+      return 0;
+   }
    return myEffArea;
 }
 
