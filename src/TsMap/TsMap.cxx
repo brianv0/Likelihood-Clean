@@ -96,7 +96,7 @@ void TsMap::run() {
    int chatter = m_pars["chatter"];
    Likelihood::Verbosity::instance(chatter);
 
-   m_helper = new AppHelpers(m_pars);
+   m_helper = new AppHelpers(&m_pars);
    m_helper->checkOutputFile();
    bool use_lb = m_pars["use_lb"];
    if (use_lb) {

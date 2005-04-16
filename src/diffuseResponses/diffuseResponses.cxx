@@ -95,7 +95,7 @@ void diffuseResponses::run() {
    promptForParameters();
    Likelihood::Verbosity::instance(m_pars["chatter"]);
    bool clobber = m_pars["clobber"];
-   m_helper = new AppHelpers(m_pars);
+   m_helper = new AppHelpers(&m_pars);
    if (clobber || !haveDiffuseColumns()) {
       m_helper->readScData();
       m_srcModel = new SourceModel(m_helper->observation(), true);
