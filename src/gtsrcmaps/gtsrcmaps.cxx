@@ -74,7 +74,7 @@ private:
 
 };
 
-st_app::StAppFactory<gtsrcmaps> myAppFactory;
+st_app::StAppFactory<gtsrcmaps> myAppFactory("gtsrcmaps");
 
 gtsrcmaps::gtsrcmaps() 
    : st_app::StApp(), m_helper(0),

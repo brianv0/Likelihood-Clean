@@ -64,7 +64,7 @@ private:
    void createExposureMap();
 };
 
-st_app::StAppFactory<ExpMap> myAppFactory;
+st_app::StAppFactory<ExpMap> myAppFactory("gtexpmap");
 
 ExpMap::ExpMap() : st_app::StApp(), m_helper(0), 
                    m_pars(st_app::StApp::getParGroup("gtexpmap")) {}

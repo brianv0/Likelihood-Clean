@@ -85,7 +85,7 @@ private:
    std::string diffuseSrcName(const std::string & srcName) const;
 };
 
-st_app::StAppFactory<diffuseResponses> myAppFactory;
+st_app::StAppFactory<diffuseResponses> myAppFactory("gtdiffresp");
 
 diffuseResponses::diffuseResponses() 
    : st_app::StApp(), m_helper(0), m_srcModel(0), m_srRadius(30.),
