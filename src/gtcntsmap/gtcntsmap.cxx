@@ -48,7 +48,7 @@ private:
    void checkEnergies(double emin, double emax) const;
 };
 
-st_app::StAppFactory<gtcntsmap> myAppFactory;
+st_app::StAppFactory<gtcntsmap> myAppFactory("gtcntsmap");
 
 gtcntsmap::gtcntsmap() : st_app::StApp(), 
    m_pars(st_app::StApp::getParGroup("gtcntsmap")), m_cuts(0) {

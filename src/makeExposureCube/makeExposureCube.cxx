@@ -60,7 +60,7 @@ private:
    void createDataCube();
 };
 
-st_app::StAppFactory<ExposureCube> myAppFactory;
+st_app::StAppFactory<ExposureCube> myAppFactory("gtlivetimecube");
 
 void ExposureCube::run() {
    promptForParameters();
