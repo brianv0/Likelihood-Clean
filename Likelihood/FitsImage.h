@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+#include "fitsio.h"
+
 #include "astro/SkyDir.h"
 
 #include "st_facilities/FitsImage.h"
@@ -20,8 +22,6 @@
 #include "Likelihood/Exception.h"
 
 namespace Likelihood {
-
-#include "fitsio.h"
 
 /** 
  * @class FitsImage
