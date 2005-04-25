@@ -31,6 +31,7 @@ apply_pattern ST_app_withDir name=gtdiffresp dir=diffuseResponses
 apply_pattern ST_app name=gtcntsmap
 apply_pattern ST_app name=gtsrcmaps
 apply_pattern ST_app_withDir name=gtpsf dir=meanPsf
+apply_pattern ST_app_withDir name=gtbackfile dir=backfile
 
 path_remove PYTHONPATH Likelihood
 path_append PYTHONPATH $(LIKELIHOODROOT)/$(BINDIR)
