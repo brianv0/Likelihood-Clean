@@ -50,11 +50,22 @@ public:
 
    void write(const std::string & filename) const;
 
+   /// Energies (MeV) used for internal representation of psf and
+   /// for exposure calculations.
+   const std::vector<double> & energies() const {
+      return m_energies;
+   }
+
    /// Energy-dependent exposure (cm^2-s) at the selected sky location.
    const std::vector<double> & exposure() const {
       return m_exposure;
    }
 
+   /// @return Exposure at the selected sky location as a function of 
+   ///         energy in units of cm^2-s.
+   /// @param energy True photon energy (MeV).
+   double exposure(double energy) const;
+   
 private:
 
    static std::vector<double> s_separations;

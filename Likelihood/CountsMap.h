@@ -81,6 +81,8 @@ public:
 
    void getPixels(std::vector<Pixel> & pixels) const;
 
+   void getBoundaryPixelDirs(std::vector<astro::SkyDir> & pixelDirs) const;
+
    const astro::SkyDir & mapCenter() const {return m_center;}
 
 protected:
