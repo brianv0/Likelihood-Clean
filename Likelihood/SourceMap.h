@@ -16,8 +16,9 @@
 
 namespace Likelihood {
 
-   class Source;
    class CountsMap;
+   class Source;
+   class PointSource;
 
 /*
  * @class SourceMap
@@ -34,16 +35,7 @@ public:
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
 
-   ~SourceMap() {
-      s_refCount--;
-      if (s_refCount == 0) {
-         delete s_meanPsf;
-         s_meanPsf = 0;
-         delete s_binnedExposure;
-         s_binnedExposure = 0;
-      }
-      if (m_deleteDataMap) delete m_dataMap;
-   }
+   ~SourceMap();
 
    const std::vector<double> & model() const {return m_model;}
 
@@ -54,6 +46,8 @@ public:
    }
 
    void save(const std::string & filename) const;
+   
+   double maxPsfRadius(PointSource * src) const;
 
 private:
 
