@@ -85,6 +85,8 @@ public:
 
    const astro::SkyDir & mapCenter() const {return m_center;}
 
+   bool withinBounds(const astro::SkyDir & dir, double energy) const;
+
 protected:
 
    HistND * m_hist;
