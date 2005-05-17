@@ -100,7 +100,7 @@ double MeanPsf::integral(double angle, double energy) const {
    } else if (sepmax > static_cast<int>(s_separations.size()-1)) {
       return 1;
    }
-   if (k <= 0 || k > static_cast<int>(m_energies.size()-1)) {
+   if (k < 0 || k > static_cast<int>(m_energies.size()-1)) {
       std::ostringstream what;
       what << "MeanPsf::integral: energy " << energy << " out-of-range.";
       throw std::out_of_range(what.str());
