@@ -65,7 +65,13 @@ public:
    ///         energy in units of cm^2-s.
    /// @param energy True photon energy (MeV).
    double exposure(double energy) const;
-   
+
+   /// @return Integral over solid angle for an acceptance cone centered
+   ///         on the psf.
+   /// @param angle Acceptance cone angle (degrees).
+   /// @param energy Energy at which to evaluate the integral (MeV).
+   double integral(double angle, double energy) const;
+
 private:
 
    static std::vector<double> s_separations;
