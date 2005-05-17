@@ -43,6 +43,7 @@ void ScData::readData(std::string file, bool clear) {
    for ( ; it != scData->end(); ++it) {
       ScNtuple tuple;
       scInterval["start"].get(tuple.time);
+      scInterval["livetime"].get(tuple.livetime);
       scInterval["ra_scx"].get(raSCX);
       scInterval["dec_scx"].get(decSCX);
       tuple.xAxis = astro::SkyDir(raSCX, decSCX);

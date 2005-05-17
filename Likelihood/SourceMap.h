@@ -110,6 +110,11 @@ private:
 
    void recomputeSrcStrengths(DiffuseSource * src, double energy);
 
+   void getMapCorrections(PointSource * src, const MeanPsf & meanPsf,
+                          const std::vector<Pixel> & pixels,
+                          const std::vector<double> & energies,
+                          std::vector<double> & mapCorrections) const;
+   
 };
 
 } // namespace Likelihood

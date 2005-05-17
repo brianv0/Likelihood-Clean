@@ -72,9 +72,9 @@ void gtcntsmap::run() {
    std::string event_file = m_pars["evfile"];
    std::vector<std::string> eventFiles;
    st_facilities::Util::resolve_fits_files(event_file, eventFiles);
-   for (unsigned int i = 1; i < eventFiles.size(); i++) {
-      AppHelpers::checkCuts(eventFiles[0], "EVENTS", eventFiles[i], "EVENTS");
-   }
+//    for (unsigned int i = 1; i < eventFiles.size(); i++) {
+//       AppHelpers::checkCuts(eventFiles[0], "EVENTS", eventFiles[i], "EVENTS");
+//    }
 
    m_cuts = new dataSubselector::Cuts(eventFiles[0]);
 

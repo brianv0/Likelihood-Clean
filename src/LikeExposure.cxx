@@ -58,7 +58,7 @@ void LikeExposure::load(tip::Table * scData, bool verbose) {
       if (start > maxTime) {
          break;
       }
-      double deltat = livetime > 0 ? livetime : stop-start;
+      double deltat = livetime;
       double fraction;
       if (acceptInterval(start, stop, m_timeCuts, m_gtis, fraction)) {
          row["ra_scz"].get(ra);

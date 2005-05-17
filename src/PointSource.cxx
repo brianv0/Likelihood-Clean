@@ -353,6 +353,7 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
           npts/20 > 0 && ((it % (npts/20)) == 0) && verbose) std::cerr << ".";
       double start(scData.vec.at(it).time);
       double stop(scData.vec.at(it+1).time);
+      double livetime(scData.vec.at(it).livetime);
       double fraction(0);
 
       bool includeInterval = 
@@ -376,7 +377,7 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
             if (effArea < 0 || fraction < 0 || (stop-start) < 0) {
                std::cout << effArea << std::endl;
             }
-            exposure[k] += effArea*(stop - start)*fraction;
+            exposure[k] += effArea*livetime*fraction;
          }
       }
    }
