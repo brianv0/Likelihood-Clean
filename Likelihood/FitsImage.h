@@ -22,6 +22,8 @@
 #include "Likelihood/Exception.h"
 
 namespace Likelihood {
+   
+   class EquinoxRotation;
 
 /** 
  * @class FitsImage
@@ -44,9 +46,7 @@ public:
 
    FitsImage(const Likelihood::FitsImage &rhs);
 
-   virtual ~FitsImage() {
-      delete m_eqRot;
-   }
+   virtual ~FitsImage();
 
    virtual void getCelestialArrays(std::vector<double> &lonArray,
                                    std::vector<double> &latArray);
@@ -69,24 +69,24 @@ public:
 
    FitsImage &operator=(const FitsImage &rhs);
 
-/**
- * @class EquinoxRotation
- * @brief Nested class to perform the "Equinox Rotation" described in
- * <a href="http://lheawww.gsfc.nasa.gov/~jchiang/SSC/like_3.ps">
- * LikeMemo 3</a>.
- */
-   class EquinoxRotation {
-   public:
-      EquinoxRotation() {}
-      EquinoxRotation(double alpha0, double delta0);
-      ~EquinoxRotation() {}
-      void do_rotation(const astro::SkyDir &inDir, astro::SkyDir &outDir);
-      EquinoxRotation *clone() const {
-         return new EquinoxRotation(*this);
-      }
-   private:
-      std::vector< std::vector<double> > rotMatrix;
-   };                       
+// /**
+//  * @class EquinoxRotation
+//  * @brief Nested class to perform the "Equinox Rotation" described in
+//  * <a href="http://lheawww.gsfc.nasa.gov/~jchiang/SSC/like_3.ps">
+//  * LikeMemo 3</a>.
+//  */
+//    class EquinoxRotation {
+//    public:
+//       EquinoxRotation() {}
+//       EquinoxRotation(double alpha0, double delta0);
+//       ~EquinoxRotation() {}
+//       void do_rotation(const astro::SkyDir &inDir, astro::SkyDir &outDir);
+//       EquinoxRotation *clone() const {
+//          return new EquinoxRotation(*this);
+//       }
+//    private:
+//       std::vector< std::vector<double> > rotMatrix;
+//    };                       
 #endif
 
 private:

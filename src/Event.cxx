@@ -17,6 +17,7 @@
 
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/Event.h"
+#include "Likelihood/EquinoxRotation.h"
 #include "Likelihood/Exception.h"
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/ResponseFunctions.h"
@@ -124,7 +125,7 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
    getNewDiffuseSrcs(srcList, srcs);
    if (srcs.size() == 0) return;
 
-   FitsImage::EquinoxRotation eqRot(m_appDir.ra(), m_appDir.dec());
+   EquinoxRotation eqRot(m_appDir.ra(), m_appDir.dec());
    if (!s_haveSourceRegionData) {
       prepareSrData(sr_radius);
    }
@@ -254,8 +255,8 @@ void Event::prepareSrData(double sr_radius, int nmu, int nphi) {
 }
 
 void Event::getCelestialDir(double phi, double mu, 
-                            FitsImage::EquinoxRotation &eqRot,
-                            astro::SkyDir &dir) {
+                            EquinoxRotation & eqRot,
+                            astro::SkyDir & dir) {
    double sp = sin(phi);
    double arg = mu/sqrt(1 - (1 - mu*mu)*sp*sp);
    double alpha;
