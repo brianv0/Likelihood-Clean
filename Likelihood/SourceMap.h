@@ -17,8 +17,9 @@
 namespace Likelihood {
 
    class CountsMap;
-   class Source;
+   class EquinoxRotation;
    class PointSource;
+   class Source;
 
 /*
  * @class SourceMap
@@ -101,7 +102,7 @@ private:
    void prepareAngleArrays(int nmu=100, int nphi=50);
 
    void getCelestialDir(double phi, double mu, 
-                        FitsImage::EquinoxRotation & eqRot,
+                        EquinoxRotation & eqRot,
                         astro::SkyDir & dir) const;
 
    void fitsReportError(FILE *stream, int status) const;
