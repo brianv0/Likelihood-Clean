@@ -20,6 +20,7 @@
 
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/CountsMap.h"
+#include "Likelihood/EquinoxRotation.h"
 #include "Likelihood/Observation.h"
 
 #include "Verbosity.h"
@@ -108,6 +109,27 @@ double BinnedExposure::operator()(double energy, double ra, double dec) const {
    unsigned int j = findIndex(m_decs.begin(), m_decs.end(), dec);
    unsigned int indx = (k*m_decs.size() + j)*m_ras.size() + i;
    return m_exposureMap.at(indx);
+}
+
+void BinnedExposure::
+getRotatedImage(double energy, 
+                const std::vector<double> & lons, 
+                const std::vector<double> & lats,
+                const EquinoxRotation & rot,
+                std::vector< std::vector<double> > & image) const {
+   image.clear();
+   image.reserve(lons.size());
+   for (unsigned int i = 0; i < lons.size(); i++) {
+      std::vector<double> row;
+      row.reserve(lats.size());
+      for (unsigned int j = 0; j < lats.size(); j++) {
+         astro::SkyDir mapDir(lons.at(i), lats.at(j));
+         astro::SkyDir trueDir;
+         rot.do_rotation(mapDir, trueDir, false);
+         row.push_back((*this)(energy, trueDir.ra(), trueDir.dec()));
+      }
+      image.push_back(row);
+   }
 }
 
 unsigned int 

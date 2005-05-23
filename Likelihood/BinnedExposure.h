@@ -17,6 +17,7 @@
 
 namespace Likelihood {
 
+   class EquinoxRotation;
    class Observation;
 
 /**
@@ -45,6 +46,12 @@ public:
    double operator()(double energy, double ra, double dec) const;
 
    void writeOutput(const std::string & filename) const;
+
+   void getRotatedImage(double energy, 
+                        const std::vector<double> & lons, 
+                        const std::vector<double> & lats, 
+                        const EquinoxRotation & rot,
+                        std::vector< std::vector<double> > & image) const;
 
 private:
 
