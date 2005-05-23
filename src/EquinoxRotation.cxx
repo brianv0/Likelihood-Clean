@@ -49,7 +49,7 @@ EquinoxRotation::EquinoxRotation(double alpha0, double delta0) {
 }
 
 void EquinoxRotation::do_rotation(const astro::SkyDir & inDir,
-                                  astro::SkyDir & outDir, bool reverse) {
+                                  astro::SkyDir & outDir, bool reverse) const {
    std::vector<double> inVec(3), outVec(3);
 
    double alpha = inDir.ra()*M_PI/180;

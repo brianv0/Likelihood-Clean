@@ -94,8 +94,7 @@ private:
    static std::vector<double> s_mu;
    static std::vector<double> s_theta;
 
-   double sourceRegionIntegral(double energy,
-                               const Observation & observation) const;
+   double sourceRegionIntegral(double energy) const;
 
    void computeSrcDirs(const Pixel & pixel, Source * src);
 
@@ -115,7 +114,8 @@ private:
                           const std::vector<Pixel> & pixels,
                           const std::vector<double> & energies,
                           std::vector<double> & mapCorrections) const;
-   
+
+   void computeExposureAndPsf(const Observation & observation);
 };
 
 } // namespace Likelihood
