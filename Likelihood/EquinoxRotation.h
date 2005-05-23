@@ -37,7 +37,7 @@ public:
    ~EquinoxRotation() {}
   
    void do_rotation(const astro::SkyDir & inDir, astro::SkyDir & outDir,
-                    bool reverse=false);
+                    bool toMapCoords=false) const;
   
    EquinoxRotation * clone() const {
       return new EquinoxRotation(*this);
