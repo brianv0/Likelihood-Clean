@@ -144,8 +144,6 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
             if (print_output() && (indx % (npts/20)) == 0) {
                std::cerr << ".";
             }
-/// @todo This is incorrect; need to multiply by solid angle before convolving
-/// with the psf.
             m_model.at(indx) = convolvedMap(pixel->dir())*pixel->solidAngle();
             m_npreds.at(k) += m_model.at(indx);
          }
