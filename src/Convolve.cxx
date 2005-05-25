@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <vector>
 
-#include <fftw3.h>
+#include "fftw/fftw3.h"
 
 #include "Likelihood/Convolve.h"
 
