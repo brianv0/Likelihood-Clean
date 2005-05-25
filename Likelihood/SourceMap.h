@@ -32,7 +32,8 @@ class SourceMap {
 public:
 
    SourceMap(Source * src, const CountsMap * dataMap,
-             const Observation & observation);
+             const Observation & observation,
+             bool applyPsfCorrections=false);
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
 
@@ -96,7 +97,7 @@ private:
 
    double sourceRegionIntegral(double energy) const;
 
-   void computeSrcDirs(const Pixel & pixel, Source * src);
+   void computeSrcDirs(const Pixel & pixel, DiffuseSource * src);
 
    void prepareAngleArrays(int nmu=100, int nphi=50);
 

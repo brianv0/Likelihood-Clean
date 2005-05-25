@@ -226,8 +226,14 @@ void likelihood::createStatistic() {
       std::string countsMapFile = m_pars["counts_map_file"];
       st_facilities::Util::file_ok(countsMapFile);
       m_dataMap = new CountsMap(countsMapFile);
+      bool apply_psf_corrections(false);
+      try {
+         apply_psf_corrections = m_pars["apply_psf_corrections"];
+      } catch (std::exception & eObj) {
+         // assume parameter does not exist, so use default value.
+      }
       m_logLike = new BinnedLikelihood(*m_dataMap, m_helper->observation(),
-                                       countsMapFile);
+                                       countsMapFile, apply_psf_corrections);
       std::string binnedMap = m_pars["binned_exposure_map"];
       if (binnedMap != "none" && binnedMap != "") {
          SourceMap::setBinnedExposure(binnedMap);
