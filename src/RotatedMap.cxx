@@ -7,6 +7,8 @@
  * $Header$
  */
 
+#include <algorithm>
+
 #include "st_facilities/Util.h"
 
 #include "Likelihood/BinnedExposure.h"
