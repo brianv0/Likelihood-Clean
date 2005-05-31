@@ -229,7 +229,7 @@ void likelihood::createStatistic() {
       bool apply_psf_corrections(false);
       try {
          apply_psf_corrections = m_pars["apply_psf_corrections"];
-      } catch (std::exception & eObj) {
+      } catch (...) {
          // assume parameter does not exist, so use default value.
       }
       m_logLike = new BinnedLikelihood(*m_dataMap, m_helper->observation(),
