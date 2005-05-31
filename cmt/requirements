@@ -38,6 +38,9 @@ path_remove PYTHONPATH Likelihood
 path_append PYTHONPATH $(LIKELIHOODROOT)/$(BINDIR)
 path_append PYTHONPATH $(LIKELIHOODROOT)/python
 
+path_remove PATH Likelihood
+path_append PATH $(LIKELIHOODROOT)/$(BINDIR)
+
 private
 
 use hoops v*
