@@ -117,7 +117,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
       facilities::Util::expandEnvVar(&function_library);
       try {
          funcFactory.readXml(function_library);
-      } catch(optimizers::Exception &eObj) {
+      } catch (optimizers::Exception &eObj) {
          if (print_output()) std::cout << eObj.what() << std::endl;
       }
    }
@@ -264,6 +264,12 @@ Source * SourceFactory::makeDiffuseSource(const DOMElement * spectrum,
       if (print_output()) std::cout << eObj.what() << std::endl;
    } catch (Exception &eObj) {
       if (print_output()) std::cout << eObj.what() << std::endl;
+   } catch (std::exception &eObj) {
+      if (print_output()) std::cout << eObj.what() << std::endl;
+   } catch (...) {
+      std::cerr << "Unexpected exception from SourceFactory::setSpectrum" 
+                << std::endl;
+      throw;
    }
    return 0;
 }
