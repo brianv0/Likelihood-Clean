@@ -439,18 +439,20 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
             if (m_pars["find_Ts_mins"]) {
                try {
                   m_opt->find_min(verbose, tol);
-               } catch (optimizers::Exception &eObj) {
+               } catch (std::exception & eObj) {
                   std::cout << eObj.what() << std::endl;
                }
             }
             null_values.push_back(m_logLike->value());
             TsValues[srcNames[i]] = 2.*(logLike_value - null_values.back());
          } else {
-// // Not sure this is correct in the case where the model for the null
-// // hypothesis is empty.
-//             TsValues[srcNames[i]] = 2.*logLike_value;
-// A better default value?
-            TsValues[srcNames[i]] = 0.;
+// Null hypothesis has no remaining free parameters, so skip the fit
+// (and hope that the model isn't empty).
+            try {
+               TsValues[srcNames[i]] = 2.*(logLike_value - m_logLike->value());
+            } catch (std::exception & eObj) {
+               std::cout << eObj.what() << std::endl;
+            }
          }
          m_logLike->addSource(src);
       }
