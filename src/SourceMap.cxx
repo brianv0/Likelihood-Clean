@@ -211,6 +211,7 @@ void SourceMap::getMapCorrections(PointSource * src, const MeanPsf & meanPsf,
          containedPixels.push_back(j);
       }
    }
+   mapCorrections.clear();
    mapCorrections.reserve(energies.size());
    for (unsigned int k = 0; k < energies.size()-1; k++) {
       double map_integral(0);
