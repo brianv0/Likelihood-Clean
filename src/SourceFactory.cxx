@@ -219,10 +219,6 @@ Source * SourceFactory::makePointSource(const DOMElement * spectrum,
    try {
       setSpectrum(src, spectrum, funcFactory);
       return src;
-   } catch (optimizers::Exception &eObj) {
-      if (print_output()) std::cout << eObj.what() << std::endl;
-   } catch (Exception &eObj) {
-      if (print_output()) std::cout << eObj.what() << std::endl;
    } catch (std::exception &eObj) {
       if (print_output()) std::cout << eObj.what() << std::endl;
    } catch (...) {
@@ -260,10 +256,6 @@ Source * SourceFactory::makeDiffuseSource(const DOMElement * spectrum,
       src = new DiffuseSource(spatialDist, m_observation, m_requireExposure);
       setSpectrum(src, spectrum, funcFactory);
       return src;
-   } catch (optimizers::Exception &eObj) {
-      if (print_output()) std::cout << eObj.what() << std::endl;
-   } catch (Exception &eObj) {
-      if (print_output()) std::cout << eObj.what() << std::endl;
    } catch (std::exception &eObj) {
       if (print_output()) std::cout << eObj.what() << std::endl;
    } catch (...) {
