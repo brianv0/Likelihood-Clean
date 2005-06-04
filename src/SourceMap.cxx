@@ -95,8 +95,8 @@ std::vector<double> SourceMap::s_theta;
 SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
                      const Observation & observation, 
                      bool applyPsfCorrections) 
-   : m_name(src->getName()), m_dataMap(dataMap),
-     m_deleteDataMap(false) {
+   : m_name(src->getName()), m_srcType(src->getType()),
+      m_dataMap(dataMap), m_deleteDataMap(false) {
    s_refCount++;
    if (s_mu.size() == 0 || s_phi.size() == 0 || s_theta.size() == 0) {
       prepareAngleArrays();
