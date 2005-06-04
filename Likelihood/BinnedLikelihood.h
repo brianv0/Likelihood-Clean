@@ -40,7 +40,8 @@ public:
    BinnedLikelihood(const CountsMap & dataMap, 
                     const Observation & observation,
                     const std::string & srcMapsFile="",
-                    bool applyPsfCorrections=false);
+                    bool computePointSources=true,
+                    bool applyPsfCorrections=true);
 
 //   BinnedLikelihood(const std::string & dataMapFile);
                  
@@ -108,6 +109,8 @@ private:
 
    std::string m_srcMapsFile;
 
+   bool m_computePointSources;
+
    bool m_applyPsfCorrections;
 
    void createSourceMaps();
@@ -125,8 +128,8 @@ private:
    
    void fitsReportError(FILE *stream, int status) const;
 
-   bool sourceMapExists(const std::string & srcName, 
-                        const std::string & fitsFile) const;
+   bool fileHasSourceMap(const std::string & srcName, 
+                         const std::string & fitsFile) const;
 
    void replaceSourceMap(const std::string & srcName, 
                          const std::string & fitsFile) const;

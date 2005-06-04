@@ -9,6 +9,7 @@
 #ifndef Likelihood_AppHelpers
 #define Likelihood_AppHelpers
 
+#include <iostream>
 #include <string>
 
 #include "st_app/AppParGroup.h"
@@ -80,6 +81,10 @@ public:
    }
 #endif // SWIG
 
+   template<typename T>
+   static T param(st_app::AppParGroup & pars, const std::string & parname,
+                  const T & def_value);
+
    static void checkOutputFile(bool clobber, const std::string & filename);
 
    static void checkCuts(const std::string & file1, const std::string & ext1,
@@ -112,6 +117,20 @@ protected:
    gatherTimeCuts(dataSubselector::Cuts & cuts,
                   std::vector<const dataSubselector::CutBase *> time_cuts);
 };
+
+template<typename T>
+T AppHelpers::param(st_app::AppParGroup & pars, const std::string & parname,
+                    const T & def_value) {
+   try {
+      T value = pars[parname];
+      return value;
+   } catch (std::exception & eObj) {
+      std::cerr << eObj.what() << "\n"
+                << "Using default value of " << def_value
+                << " for parameter " <<  parname << std::endl;
+      return def_value;
+   }
+}
 
 } // namespace Likelihood
 
