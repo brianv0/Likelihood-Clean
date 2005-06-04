@@ -122,15 +122,13 @@ void gtsrcmaps::run() {
    if (binnedMap != "none" && binnedMap != "") {
       SourceMap::setBinnedExposure(binnedMap);
    }
-   bool apply_psf_corrections(false);
-   try {
-      apply_psf_corrections = m_pars["apply_psf_corrections"];
-   } catch (std::exception & eObj) {
-      // assume parameter does not exist, so use default value.
-   }
+   bool computePointSources =
+      AppHelpers::param(m_pars, "compute_point_sources", true);
+   bool psf_corrections =
+      AppHelpers::param(m_pars, "apply_psf_corrections", true);
    m_binnedLikelihood = 
       new BinnedLikelihood(dataMap, m_helper->observation(),
-                           cntsMapFile, apply_psf_corrections);
+                           cntsMapFile, computePointSources, psf_corrections);
 
    std::string srcModelFile = m_pars["source_model_file"];
    m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false);
