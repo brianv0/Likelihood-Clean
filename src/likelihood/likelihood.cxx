@@ -95,6 +95,7 @@ private:
    void writeCountsMap();
    void printFitResults(const std::vector<double> &errors);
    bool prompt(const std::string &query);
+   void setErrors(const std::vector<double> & errors);
 };
 
 st_app::StAppFactory<likelihood> myAppFactory("gtlikelihood");
@@ -162,18 +163,19 @@ void likelihood::run() {
          selectOptimizer();
          try {
             m_opt->find_min(verbose, tol);
+            try {
+               errors = m_opt->getUncertainty();
+               setErrors(errors);
+            } catch (optimizers::Exception & eObj) {
+               std::cerr << "Exception encountered while estimating errors:\n";
+               std::cerr << eObj.what() << std::endl;
+//                throw;
+            }
          } catch (optimizers::Exception & eObj) {
             std::cerr << "Exception encountered while minimizing "
                       << "objective function:\n";
-            throw;
-//            std::cerr << eObj.what() << std::endl;
-         }
-         try {
-            errors = m_opt->getUncertainty();
-         } catch (optimizers::Exception & eObj) {
-            std::cerr << "Exception encountered while estimating errors:\n";
-            throw;
-//                      << eObj.what() << std::endl;
+            std::cerr << eObj.what() << std::endl;
+//            throw;
          }
       }
       if (Likelihood::print_output()) {
@@ -186,6 +188,19 @@ void likelihood::run() {
       writeCountsSpectra();
    }
 //   writeCountsMap();
+}
+
+void likelihood::setErrors(const std::vector<double> & errors) {
+   std::vector<optimizers::Parameter> params;
+   m_logLike->getFreeParams(params);
+   if (errors.size() != params.size()) {
+      throw std::runtime_error("number of error estimates does not "
+                               "match the number of free parameters");
+   }
+   for (unsigned int i = 0; i < errors.size(); i++) {
+      params.at(i).setError(errors.at(i));
+   }
+   m_logLike->setFreeParams(params);
 }
 
 void likelihood::promptForParameters() {
