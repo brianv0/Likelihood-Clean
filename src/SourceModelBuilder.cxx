@@ -31,7 +31,8 @@ SourceModelBuilder::SourceModelBuilder(const std::string &functionLibrary,
    : XmlBuilder() {
    m_srcLib = optimizers::Dom::createElement(m_doc, "source_library");
    if (functionLibrary != "") {
-      xmlBase::Dom::addAttribute(m_srcLib, "function_library", functionLibrary);
+      xmlBase::Dom::addAttribute(m_srcLib, "function_library",
+                                 functionLibrary);
    }
    xmlBase::Dom::addAttribute(m_srcLib, "title", srcLibTitle);
 }

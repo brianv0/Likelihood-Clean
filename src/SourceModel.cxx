@@ -158,7 +158,7 @@ void SourceModel::setParamTrueValue(const std::string &paramName,
 
 void SourceModel::setParams_(std::vector<optimizers::Parameter> &params, 
                              bool setFree) {
-   std::cout << "calling setParams_" << std::endl;
+//   std::cout << "calling setParams_" << std::endl;
 // Ensure the number of Parameters matches.
    unsigned int numParams;
    if (setFree) {
