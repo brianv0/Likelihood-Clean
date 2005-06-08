@@ -91,9 +91,9 @@ derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
       return one_m_gam/x/(pow_x2 - pow_x1);
       break;
    case Index:
-      return ( NN/x*(pow_x1*(1. - one_m_gam*std::log(x1)) -
-                     pow_x2*(1. - one_m_gam*std::log(x2)))
-               /(pow_x2 - pow_x1)/(pow_x2 - pow_x1) );
+      return -( NN/x*(pow_x1*(1. - one_m_gam*std::log(x1)) -
+                      pow_x2*(1. - one_m_gam*std::log(x2)))
+                /(pow_x2 - pow_x1)/(pow_x2 - pow_x1) );
       break;
    case LowerLimit:
    case UpperLimit:
