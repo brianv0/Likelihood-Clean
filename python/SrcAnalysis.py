@@ -237,6 +237,10 @@ class SrcAnalysis(object):
         for item in self._inputs:
             lines.append(item.__repr__().strip("'"))
         return '\n'.join(lines)
+    def thaw(self, i):
+        self.model[i].setFree(1)
+    def freeze(self, i):
+        self.model[i].setFree(0)
 
 if __name__ == '__main__':
     observation = Observation('galdiffuse_events_0000.fits',

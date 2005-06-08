@@ -113,7 +113,7 @@ void FitsImage::getPixelBounds(unsigned int naxis,
 bool FitsImage::haveRefCoord() {
    s_routineName = "haveRefCoord";
 
-   bool have_ref_coord;
+   bool have_ref_coord(false);
 
    fitsfile * fptr = 0;
    char * file = const_cast<char *>(m_filename.c_str());
