@@ -25,6 +25,7 @@
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
+#include "Likelihood/PowerLaw2.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
@@ -75,6 +76,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
    m_funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
    m_funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
+   m_funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
