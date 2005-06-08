@@ -144,7 +144,7 @@ double DiffuseSource::NpredDeriv(const std::string &paramName) {
 
    const std::vector<double> & energies = m_observation->roiCuts().energies();
 
-   double prefactor;
+   double prefactor(1.);
    if (paramName == std::string("Prefactor") &&
        (prefactor = specFunc->getParamValue("Prefactor")) != 0) {
       return Npred()/prefactor;
