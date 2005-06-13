@@ -11,15 +11,13 @@
 
 #include <map>
 
+#include "tip/Image.h"
+
 #include "optimizers/dArg.h"
 
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/Pixel.h"
-
-namespace tip {
-   class Image;
-}
 
 namespace Likelihood {
 
@@ -121,7 +119,6 @@ private:
 
    void computeModelMap(std::vector<double> & modelMap) const;
 
-   // Implement some rune-like tip arcana.
    void setImageDimensions(tip::Image * image, long * dims) const;
 
    void identifyFilledPixels();
