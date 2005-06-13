@@ -11,7 +11,6 @@
 
 #include "tip/Header.h"
 #include "tip/IFileSvc.h"
-#include "tip/Image.h"
 
 #include "st_facilities/Util.h"
 
