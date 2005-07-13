@@ -34,17 +34,7 @@ apply_pattern ST_app name=gtsrcmaps
 apply_pattern ST_app_withDir name=gtpsf dir=meanPsf
 apply_pattern ST_app_withDir name=gtbackfile dir=backfile
 
-path_remove PYTHONPATH Likelihood
-path_append PYTHONPATH $(LIKELIHOODROOT)/$(BINDIR)
-path_append PYTHONPATH $(LIKELIHOODROOT)/python
-
-path_remove PATH Likelihood
-path_append PATH $(LIKELIHOODROOT)/$(BINDIR)
-
 private
 
 use hoops v*
 use st_app v*
-
-use SwigPolicy v*
-apply_pattern swig_module name="pyLike"
