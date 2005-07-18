@@ -23,6 +23,7 @@
 #include "Likelihood/BandFunction.h"
 #include "Likelihood/EventContainer.h"
 #include "Likelihood/ExposureMap.h"
+#include "Likelihood/LogParabola.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PowerLaw2.h"
@@ -75,6 +76,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("SkyDirFunction", new SkyDirFunction(), makeClone);
    m_funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
    m_funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
+   m_funcFactory->addFunc("LogParabola", new LogParabola(), makeClone);
    m_funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
    m_funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
 }
