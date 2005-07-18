@@ -88,13 +88,13 @@ double LogParabola::derivByParam(optimizers::Arg & xarg,
    enum ParamTypes {norm, alpha, beta, Eb};
    switch (iparam) {
    case norm:
-      return dfdnorm;
+      return dfdnorm*m_parameter[norm].getScale();
    case alpha:
-      return -pars[0]*logx*dfdnorm;
+      return -pars[0]*logx*dfdnorm*m_parameter[alpha].getScale();
    case beta:
-      return -pars[0]*logx*logx*dfdnorm;
+      return -pars[0]*logx*logx*dfdnorm*m_parameter[beta].getScale();
    case Eb:
-      return pars[0]*logx*pars[2]/pars[3]*dfdnorm;
+      return pars[0]*logx*pars[2]/pars[3]*dfdnorm*m_parameter[Eb].getScale();
    default:
       break;
    }
