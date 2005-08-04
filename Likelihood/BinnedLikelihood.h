@@ -85,6 +85,14 @@ public:
    virtual std::vector<double>::const_iterator setFreeParamValues_(
       std::vector<double>::const_iterator);
 
+   const std::vector<double> & energies() const {
+      return m_energies;
+   }
+
+   const std::vector<double> & countsSpectrum() const {
+      return m_countsSpectrum;
+   }
+
 protected:
 
    virtual BinnedLikelihood * clone() const {
@@ -97,6 +105,8 @@ private:
 
    std::vector<Pixel> m_pixels;
    std::vector<double> m_energies;
+
+   std::vector<double> m_countsSpectrum;
 
    std::vector<unsigned int> m_filledPixels;
 
@@ -133,6 +143,8 @@ private:
 
    void addSourceMap(const std::string & srcName, 
                      const std::string & fitsFile) const;
+
+   void computeCountsSpectrum();
 };
 
 }

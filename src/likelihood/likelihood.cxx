@@ -13,6 +13,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 #include <fstream>
 #include <iostream>
@@ -66,6 +67,7 @@ public:
    virtual ~likelihood() throw() {
       try {
          delete m_logLike;
+         std::cout << "Elapsed CPU time: " << cputime() << std::endl;
       } catch (std::exception & eObj) {
          std::cout << eObj.what() << std::endl;
       } catch (...) {
@@ -73,6 +75,9 @@ public:
    }
    virtual void run();
    virtual void banner() const {}
+   double cputime() const {
+      return static_cast<double>(std::clock() - m_cpuStart)/1e6;
+   }
 
 private:
    AppHelpers * m_helper;
@@ -83,6 +88,8 @@ private:
    std::vector<std::string> m_eventFiles;
    CountsMap * m_dataMap;
    std::string m_statistic;
+
+   std::clock_t m_cpuStart;
 
    void promptForParameters();
    void createStatistic();
@@ -103,7 +110,7 @@ st_app::StAppFactory<likelihood> myAppFactory("gtlikelihood");
 likelihood::likelihood() 
    : st_app::StApp(), m_helper(0), 
      m_pars(st_app::StApp::getParGroup("gtlikelihood")),
-     m_logLike(0), m_opt(0), m_dataMap(0) {
+     m_logLike(0), m_opt(0), m_dataMap(0), m_cpuStart(std::clock()) {
 }
 
 void likelihood::run() {
