@@ -123,7 +123,7 @@ void AppHelpers::createResponseFuncs() {
 
 void AppHelpers::checkOutputFile(bool clobber, const std::string & file) {
    if (!clobber) {
-      if (st_facilities::Util::fileExists(file)) {
+      if (file != "none" && st_facilities::Util::fileExists(file)) {
          std::cout << "Output file " << file 
                    << " already exists and you have set 'clobber' to 'no'.\n"
                    << "Please provide a different output file name."
