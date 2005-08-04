@@ -7,6 +7,7 @@
  */
 
 #include <cmath>
+#include <ctime>
 
 #include <algorithm>
 #include <fstream>
@@ -23,6 +24,7 @@
 namespace Likelihood {
 
 double LogLike::value(optimizers::Arg&) const {
+   std::clock_t start = std::clock();
    const std::vector<Event> & events = m_observation.eventCont().events();
    double my_value = 0;
    
@@ -37,6 +39,12 @@ double LogLike::value(optimizers::Arg&) const {
       SrcArg sArg(srcIt->second);
       my_value -= m_Npred(sArg);
    }
+   if (print_output()) {
+      std::cout << m_nevals << "  "
+                << my_value << "  "
+                << std::clock() - start << std::endl;
+   }
+   m_nevals++;
    return my_value;
 }
 

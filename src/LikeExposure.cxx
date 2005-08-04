@@ -51,7 +51,9 @@ void LikeExposure::load(tip::Table * scData, bool verbose) {
    }
    
    for (long irow = 0; it != scData->end(); ++it, ++irow) {
-      if (verbose && (irow % (nrows/20)) == 0 ) std::cerr << "."; 
+      if (verbose && (irow % (nrows/20)) == 0 ) {
+         std::cerr << "."; 
+      }
       row["livetime"].get(livetime);
       row["start"].get(start);
       row["stop"].get(stop);

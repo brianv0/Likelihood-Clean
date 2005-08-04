@@ -38,7 +38,8 @@ class LogLike : public SourceModel {
     
 public:
 
-   LogLike(const Observation & observation) : SourceModel(observation) {
+   LogLike(const Observation & observation) : SourceModel(observation),
+      m_nevals(0) {
       deleteAllSources();
    }
 
@@ -70,6 +71,8 @@ protected:
    virtual LogLike * clone() const {
       return new LogLike(*this);
    }
+
+   mutable unsigned long m_nevals;
 
 private:
 
