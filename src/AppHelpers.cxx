@@ -139,7 +139,8 @@ void AppHelpers::checkCuts(const std::string & file1,
                            const std::string & ext2) {
    dataSubselector::Cuts cuts1(file1, ext1, false);
    dataSubselector::Cuts cuts2(file2, ext2, false);
-   if (!(cuts1 == cuts2)) {
+//   if (!(cuts1 == cuts2)) {
+   if (!(cuts1.compareWithoutGtis(cuts2))) {
 // Try comparing output streams.
       std::ostringstream c1, c2;
       cuts1.writeCuts(c1);
