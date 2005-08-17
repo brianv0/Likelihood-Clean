@@ -39,7 +39,7 @@ double LogLike::value(optimizers::Arg&) const {
       SrcArg sArg(srcIt->second);
       my_value -= m_Npred(sArg);
    }
-   if (print_output()) {
+   if (print_output(4)) {
       std::cout << m_nevals << "  "
                 << my_value << "  "
                 << std::clock() - start << std::endl;
