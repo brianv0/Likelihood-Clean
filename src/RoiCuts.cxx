@@ -61,6 +61,13 @@ void RoiCuts::readCuts(const std::string & eventFile,
    setRoiData();
 }
 
+void RoiCuts::readCuts(const std::vector<std::string> & eventFiles, 
+                       const std::string & ext, bool strict) {
+   m_cuts = new dataSubselector::Cuts(eventFiles, ext, false);
+   sortCuts(strict);
+   setRoiData();
+}
+
 void RoiCuts::writeDssKeywords(tip::Header & header) const {
    if (m_cuts) {
       m_cuts->writeDssKeywords(header);

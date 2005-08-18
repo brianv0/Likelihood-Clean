@@ -193,8 +193,14 @@ void AppHelpers::
 gatherTimeCuts(dataSubselector::Cuts & cuts,
                std::vector<const dataSubselector::CutBase *> time_cuts) {
    for (unsigned int i = 0; i < cuts.size(); i++) {
-      if ( cuts[i].type() == "GTI" || 
-           (cuts[i].type() == "range" &&
+// Do not consider GTIs since they will not generally be the same for
+// any group of event files.
+//       if ( cuts[i].type() == "GTI" || 
+//            (cuts[i].type() == "range" &&
+//             dynamic_cast<dataSubselector::RangeCut &>(
+//                const_cast<dataSubselector::CutBase &>(cuts[i])).colname() 
+//             == "TIME") ) {
+      if ( (cuts[i].type() == "range" &&
             dynamic_cast<dataSubselector::RangeCut &>(
                const_cast<dataSubselector::CutBase &>(cuts[i])).colname() 
             == "TIME") ) {
