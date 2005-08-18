@@ -88,12 +88,27 @@ public:
    static void checkOutputFile(bool clobber, const std::string & filename);
 
    static void checkCuts(const std::string & file1, const std::string & ext1,
-                         const std::string & file2, const std::string & ext2);
+                         const std::string & file2, const std::string & ext2,
+                         bool compareGtis=true, bool relyOnStreams=false);
+
+   static void checkCuts(const std::vector<std::string> & files1,
+                         const std::string & ext1,
+                         const std::string & file2,
+                         const std::string & ext2,
+                         bool compareGtis=true,
+                         bool relyOnStreams=false);
 
    static void checkTimeCuts(const std::string & file1, 
                              const std::string & ext1,
                              const std::string & file2,
-                             const std::string & ext2);
+                             const std::string & ext2,
+                             bool compareGtis=true);
+
+   static void checkTimeCuts(const std::vector<std::string> & files1,
+                             const std::string & ext1,
+                             const std::string & file2,
+                             const std::string & ext2,
+                             bool compareGtis=true);
 
 protected:
 
@@ -113,9 +128,21 @@ protected:
    void prepareFunctionFactory();
    void createResponseFuncs();
 
+   static bool AppHelpers::
+   checkTimeCuts(const dataSubselector::Cuts & cuts1,
+                 const dataSubselector::Cuts & cuts2,
+                 bool compareGtis);
+
    static void AppHelpers::
-   gatherTimeCuts(dataSubselector::Cuts & cuts,
-                  std::vector<const dataSubselector::CutBase *> time_cuts);
+   gatherTimeCuts(const dataSubselector::Cuts & cuts,
+                  std::vector<const dataSubselector::CutBase *> time_cuts,
+                  bool compareGtis);
+
+private:
+
+   static bool checkCuts(const dataSubselector::Cuts & cuts1,
+                         const dataSubselector::Cuts & cuts2,
+                         bool compareGtis, bool relyOnStreams);
 };
 
 template<typename T>
