@@ -108,9 +108,11 @@ void TsMap::run() {
    m_helper->observation().expCube().readExposureCube(expCubeFile);
    st_facilities::Util::file_ok(m_pars["evfile"]);
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], m_eventFiles);
+   bool compareGtis(false);
    for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
       AppHelpers::checkCuts(m_eventFiles[0], "EVENTS",
-                            m_eventFiles[i], "EVENTS");
+                            m_eventFiles[i], "EVENTS",
+                            compareGtis);
    }
    m_helper->setRoi(m_eventFiles[0]);
    m_helper->readScData();

@@ -134,12 +134,19 @@ void likelihood::run() {
       std::string eventFile = m_pars["evfile"];
       st_facilities::Util::file_ok(eventFile);
       st_facilities::Util::resolve_fits_files(eventFile, m_eventFiles);
+      bool compareGtis(false);
       for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
          AppHelpers::checkCuts(m_eventFiles[0], "EVENTS", m_eventFiles[i],
-                               "EVENTS");
+                               "EVENTS", compareGtis);
       }
-      if (exposureFile != "none") {
-         m_helper->checkCuts(m_eventFiles[0], "EVENTS", exposureFile, "");
+      compareGtis = true;
+      if (exposureFile != "none" && exposureFile != "") {
+         AppHelpers::checkCuts(m_eventFiles, "EVENTS", exposureFile, "",
+                               compareGtis);
+      }
+      if (expcube_file != "none" && expcube_file != "") {
+         AppHelpers::checkCuts(m_eventFiles, "EVENTS", expcube_file, "",
+                               compareGtis);
       }
       m_helper->setRoi(m_eventFiles[0]);
       m_helper->readScData();
