@@ -89,7 +89,9 @@ void ExpMap::promptForParameters() {
    m_pars.Prompt("exposure_cube_file");
    std::string expCubeFile = m_pars["exposure_cube_file"];
    if (expCubeFile != "none") {
-      AppHelpers::checkTimeCuts(m_pars["evfile"], "EVENTS",
+      std::vector<std::string> eventFiles;
+      st_facilities::Util::resolve_fits_files(m_pars["evfile"], eventFiles);
+      AppHelpers::checkTimeCuts(eventFiles, "EVENTS",
                                 m_pars["exposure_cube_file"], "Exposure");
    }
    m_pars.Prompt("outfile");
