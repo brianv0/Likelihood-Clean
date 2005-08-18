@@ -103,9 +103,16 @@ public:
                 double tmin = 0., double tmax = 1e12,
                 double muZenMax = -1.);
 
-   /// Read from the DSS keywords in the eventFile. (Series of event
-   /// files are required to have the same DSS keywords.)
+   /// Read from the DSS keywords in a single eventFile.
    void readCuts(const std::string & eventFile,
+                 const std::string & ext="EVENTS",
+                 bool strict=true);
+
+   /// Read from the DSS keywords from several eventFiles. These
+   /// files are required to have the same DSS keywords, but the
+   /// GTIs need not be the same. The GTIs from the various files 
+   /// will be concatenated into a single Gti object.
+   void readCuts(const std::vector<std::string> & eventFiles,
                  const std::string & ext="EVENTS",
                  bool strict=true);
 
