@@ -145,10 +145,10 @@ void likelihood::run() {
                                compareGtis);
       }
       if (expcube_file != "none" && expcube_file != "") {
-         AppHelpers::checkCuts(m_eventFiles, "EVENTS", expcube_file, "",
-                               compareGtis);
+         AppHelpers::checkCuts(m_eventFiles, "EVENTS", expcube_file, 
+                               "Exposure", compareGtis);
       }
-      m_helper->setRoi(m_eventFiles[0]);
+      m_helper->setRoi();
       m_helper->readScData();
       m_helper->readExposureMap();
    }
