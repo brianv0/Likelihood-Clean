@@ -299,8 +299,8 @@ void CountsMap::writeOutput(const std::string & creator,
    DimCont_t::size_type num_dims = dims.size();
    if (3 != num_dims) {
       throw std::runtime_error("CountsMap::writeOutput "
-                               + std::string("cannot write a count map ")
-                               + "to an image which is not 3D");
+                               "cannot write a count map "
+                               "to an image which is not 3D");
    }
    
    const evtbin::Hist::BinnerCont_t & binners = m_hist->getBinners();

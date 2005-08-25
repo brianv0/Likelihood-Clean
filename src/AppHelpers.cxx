@@ -38,7 +38,7 @@ using irfInterface::IrfsFactory;
 namespace Likelihood {
 
 AppHelpers::AppHelpers(st_app::AppParGroup * pars)
-   : m_pars(pars), m_funcFactory(0) {
+   : m_pars(pars), m_funcFactory(0), m_respFuncs(0) {
    prepareFunctionFactory();
    createResponseFuncs();
 
