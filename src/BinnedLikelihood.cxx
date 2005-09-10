@@ -56,7 +56,7 @@ double BinnedLikelihood::value(optimizers::Arg &dummy) const {
    }
    my_value -= npred;
 
-   if (print_output(3)) {
+   if (print_output(4)) {
       std::cout << m_nevals << "  "
                 << my_value << std::endl;
    }

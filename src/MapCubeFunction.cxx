@@ -54,6 +54,10 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
       lonValue = dir().l();
       latValue = dir().b();
    }
+// Try to account for maps that have longitude range -180 to 180:
+   if (lonValue > m_lonMax) {
+      lonValue -= 360.;
+   }
    if (lonValue < m_lonMin || lonValue > m_lonMax ||
        latValue < m_latMin || latValue > m_latMax || 
        energy < m_energies.front() || energy > m_energies.back()) {

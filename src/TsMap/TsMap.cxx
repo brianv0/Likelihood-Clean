@@ -105,7 +105,9 @@ void TsMap::run() {
       m_coordSys = "CEL";
    }
    std::string expCubeFile = m_pars["exposure_cube_file"];
-   m_helper->observation().expCube().readExposureCube(expCubeFile);
+   if (expCubeFile != "" && expCubeFile != "none") {
+      m_helper->observation().expCube().readExposureCube(expCubeFile);
+   }
    st_facilities::Util::file_ok(m_pars["evfile"]);
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], m_eventFiles);
    bool compareGtis(false);
