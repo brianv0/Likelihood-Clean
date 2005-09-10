@@ -36,7 +36,7 @@ class RotatedMap {
 public:
 
    RotatedMap(const DiffuseSource & diffuseSource, double ra, double dec,
-              double radius, int npts);
+              double radius, int npts, double energy=100.);
 
    double operator()(const astro::SkyDir & dir) const;
 
