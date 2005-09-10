@@ -134,12 +134,12 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
       double radius = ::maxRadius(pixels, map_center) + 10.;
 /// @todo Replace this hard-wired value for the pixel size.
       unsigned int mapsize(static_cast<unsigned int>(2*radius/0.25));
-      RotatedMap diffuseMap(*diffuseSrc, map_center.ra(),
-                            map_center.dec(), radius, mapsize);
 /// @todo Include energy dependence for MapCubeSource.
       std::vector<double>::const_iterator energy = energies.begin();
       unsigned int indx(0);
       for (int k = 0; energy != energies.end(); ++energy, k++) {
+         RotatedMap diffuseMap(*diffuseSrc, map_center.ra(),
+                               map_center.dec(), radius, mapsize, *energy);
          RotatedMap convolvedMap = diffuseMap.convolve(*energy, *s_meanPsf,
                                                        *s_binnedExposure);
          for (pixel = pixels.begin(); pixel != pixels.end(); ++pixel, indx++) {
