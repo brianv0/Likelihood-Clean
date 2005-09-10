@@ -66,7 +66,7 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
 
    int i = findIndex(m_lon, lonValue) - 1;
    int j = findIndex(m_lat, latValue) - 1;
-   unsigned int k = findIndex(m_energies, energy);
+   unsigned int k = findIndex(m_energies, energy) - 1;
    k = std::min(k, m_energies.size() - 2);
 
    int nlon = m_lon.size() - 1;
@@ -76,6 +76,7 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
    double y1 = m_image.at(indx);
    indx = (k+1)*nlon*nlat + j*nlon + i;
    double y2 = m_image.at(indx);
+
    double value = ::interpolatePowerLaw(energy, m_energies.at(k),
                                         m_energies.at(k+1), y1, y2);
    return value*getParam("Normalization").getTrueValue();
