@@ -90,9 +90,10 @@ void AppHelpers::setRoi(const std::string & filename,
    }
    st_app::AppParGroup & pars(*m_pars);
    std::string event_file = pars["evfile"];
+   std::string evtable = pars["evtable"];
    std::vector<std::string> eventFiles;
    st_facilities::Util::resolve_fits_files(event_file, eventFiles);
-   roiCuts.readCuts(eventFiles, "EVENTS", strict);
+   roiCuts.readCuts(eventFiles, evtable, strict);
 }
 
 void AppHelpers::readScData() {
