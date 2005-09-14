@@ -144,6 +144,10 @@ public:
       return m_exposure;
    }
 
+   virtual const optimizers::Function & spectrum() const {
+      return * m_spectrum;
+   }
+
 private:
 
    /// spatial model
