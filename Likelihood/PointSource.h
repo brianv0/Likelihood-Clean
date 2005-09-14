@@ -166,6 +166,10 @@ public:
       return m_exposure;
    }
 
+   virtual const optimizers::Function & spectrum() const {
+      return * m_spectrum;
+   }
+
    /// @return Photon flux integrated over the ROI energy bounds. 
    /// Units are #/cm^2/s
    double flux() const;
@@ -176,7 +180,7 @@ private:
    SkyDirFunction m_dir;
 
    /// spectral model
-   optimizers::Function *m_spectrum;
+   optimizers::Function * m_spectrum;
 
    /// integrated exposure at PointSource sky location
    std::vector<double> m_exposure;
