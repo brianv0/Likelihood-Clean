@@ -1,8 +1,7 @@
 /**
  * @file ExposureMap.cxx
- * @brief Implementation for the Singleton ExposureMap class. This
- * class encapsulates exposure map information and makes it available
- * for use (primarily) by the DiffuseSource class.
+ * @brief This class encapsulates exposure map information and makes
+ * it available for use (primarily) by the DiffuseSource class.
  * @author J. Chiang
  *
  * $Header$
