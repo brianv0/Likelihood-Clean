@@ -138,6 +138,10 @@ protected:
                   std::vector<const dataSubselector::CutBase *> time_cuts,
                   bool compareGtis);
 
+   static void AppHelpers::
+   gatherGtiCuts(const dataSubselector::Cuts & cuts,
+                 std::vector<const dataSubselector::CutBase *> time_cuts);
+
 private:
 
    static bool checkCuts(const dataSubselector::Cuts & cuts1,

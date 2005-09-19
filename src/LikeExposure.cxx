@@ -40,6 +40,11 @@ void LikeExposure::load(tip::Table * scData, bool verbose) {
          maxTime = m_timeCuts.at(i).second;
       }
    }
+   for (unsigned int i=0; i < m_gtis.size(); i++) {
+      if (m_gtis.at(i).second < maxTime) {
+         maxTime = m_gtis.at(i).second;
+      }
+   }
 // We assume that the time intervals are 30 sec long, even though the
 // time_candle source in flux is hacked to behave incorrectly such
 // that we cannot extract the time interval size from the data; plus
