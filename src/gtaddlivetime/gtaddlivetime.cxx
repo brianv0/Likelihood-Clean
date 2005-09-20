@@ -140,9 +140,7 @@ void AddLivetime::addFiles() {
    delete outtable;
    outtable = tip::IFileSvc::instance().editTable(outfile, table_name);
 
-   my_header = outtable->getHeader();
-
-   new_cuts.writeDssKeywords(my_header);
+   new_cuts.writeDssKeywords(outtable->getHeader());
    delete outtable;
 
    new_cuts.writeGtiExtension(outfile);
