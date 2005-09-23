@@ -94,7 +94,8 @@ double LogParabola::derivByParam(optimizers::Arg & xarg,
    case beta:
       return -pars[0]*logx*logx*dfdnorm*m_parameter[beta].getScale();
    case Eb:
-      return pars[0]*logx*pars[2]/pars[3]*dfdnorm*m_parameter[Eb].getScale();
+      return value(xarg)/pars[3]*(pars[1] + 2.*pars[2]*logx)
+         *m_parameter[Eb].getScale();
    default:
       break;
    }
