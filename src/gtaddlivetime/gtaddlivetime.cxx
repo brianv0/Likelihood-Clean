@@ -130,17 +130,8 @@ void AddLivetime::addFiles() {
    dataSubselector::Cuts new_cuts =
       dataSubselector::Cuts::mergeGtis(my_cuts);
 
-   tip::Header & my_header(outtable->getHeader());
-
-   double ndskeys;
-   my_header["NDSKEYS"].get(ndskeys);
-   dataSubselector::Cuts::removeDssKeywords(outfile, table_name, 
-                                            static_cast<int>(ndskeys));
-
-   delete outtable;
-   outtable = tip::IFileSvc::instance().editTable(outfile, table_name);
-
    new_cuts.writeDssKeywords(outtable->getHeader());
+
    delete outtable;
 
    new_cuts.writeGtiExtension(outfile);
