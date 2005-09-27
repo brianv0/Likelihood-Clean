@@ -32,6 +32,7 @@
 #include "optimizers/FunctionFactory.h"
 
 #include "Likelihood/BandFunction.h"
+#include "Likelihood/BrokenPowerLaw2.h"
 #include "Likelihood/LogParabola.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/PowerLaw2.h"
@@ -285,4 +286,6 @@ void ModelMap::prepareFunctionFactory() {
    m_funcFactory->addFunc("MapCubeFunction", new Likelihood::MapCubeFunction(),
                           makeClone);
    m_funcFactory->addFunc("PowerLaw2", new Likelihood::PowerLaw2(), makeClone);
+   m_funcFactory->addFunc("BrokenPowerLaw2", new Likelihood::BrokenPowerLaw2(),
+                          makeClone);
 }
