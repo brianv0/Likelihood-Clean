@@ -305,7 +305,7 @@ void Event::setDiffuseResponse(std::string srcName,
    static double sqrt2pi = sqrt(2.*M_PI);
    std::vector<double>::const_iterator energy = m_trueEnergies.begin();
    m_respDiffuseSrcs[srcName].clear();
-   std::cout << "setDiffuseResponse: " << srcName << std::endl;
+//   std::cout << "setDiffuseResponse: " << srcName << std::endl;
    for ( ; energy != m_trueEnergies.end(); ++energy) {
       double value = gaussianParams[0]/sqrt2pi/gaussianParams[2]
          *exp(-(*energy - gaussianParams[1])*(*energy - gaussianParams[1])

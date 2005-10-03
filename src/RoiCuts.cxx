@@ -44,11 +44,11 @@ void RoiCuts::setCuts(double ra, double dec, double roi_radius,
    m_maxTime = tmax;
 
    m_gtis.clear();
-    
+
    m_eMin = emin;
    m_eMax = emax;
    makeEnergyVector();
-        
+
    m_roiCone = irfInterface::AcceptanceCone(astro::SkyDir(ra, dec),
                                             roi_radius);
    m_muZenMax = muZenMax;

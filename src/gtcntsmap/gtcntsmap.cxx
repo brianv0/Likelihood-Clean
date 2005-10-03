@@ -101,9 +101,10 @@ void gtcntsmap::run() {
    long nra = m_pars["nra"];
    long ndec = m_pars["ndec"];
    double pixel_size = m_pars["pixel_size"];
+   std::string projection = m_pars["proj"];
    bool use_lb = m_pars["use_lb"];
    CountsMap cmap(eventFiles[0], evtable, scDataFiles[0], sc_table,
-                  ra, dec, "CAR", nra, ndec, pixel_size, 0, use_lb, 
+                  ra, dec, projection, nra, ndec, pixel_size, 0, use_lb, 
                   "RA", "DEC", energies);
    
    for (unsigned int i = 0; i < eventFiles.size(); i++) {
