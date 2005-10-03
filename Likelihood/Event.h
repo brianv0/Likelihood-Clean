@@ -16,7 +16,6 @@
 #include "astro/SkyDir.h"
 
 #include "Likelihood/Exception.h"
-#include "Likelihood/FitsImage.h"
 
 namespace Likelihood {
 

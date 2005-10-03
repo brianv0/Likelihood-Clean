@@ -33,6 +33,7 @@ public:
 
    SkyDirArg(double ra, double dec, double energy=100.) : 
       m_val(astro::SkyDir(ra, dec)), m_energy(energy) {}
+
    virtual ~SkyDirArg() {}
 
    void fetchValue(astro::SkyDir &dir) const {dir = m_val;}

@@ -13,8 +13,6 @@
 #include <string>
 #include <vector>
 
-#include "fitsio.h"
-
 #include "xmlBase/Dom.h"
 #include "xmlBase/XmlParser.h"
 
@@ -38,15 +36,6 @@
 #include "Likelihood/SourceModel.h"
 
 #include "Verbosity.h"
-
-namespace {
-   void fitsReportError(FILE *stream, int status) {
-      fits_report_error(stream, status);
-      if (status != 0) {
-         throw std::runtime_error("writeExposureFile: cfitsio error.");
-      }
-   }
-} // unnamed namespace
 
 namespace Likelihood {
 
