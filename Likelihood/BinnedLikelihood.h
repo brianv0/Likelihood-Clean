@@ -133,7 +133,7 @@ private:
 
    void identifyFilledPixels();
    
-   void fitsReportError(FILE *stream, int status) const;
+//    void fitsReportError(FILE *stream, int status) const;
 
    bool fileHasSourceMap(const std::string & srcName, 
                          const std::string & fitsFile) const;

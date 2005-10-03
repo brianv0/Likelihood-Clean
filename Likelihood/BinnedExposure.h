@@ -56,7 +56,9 @@ public:
 private:
 
    const Observation * m_observation;
-   std::vector<double> m_exposureMap;
+
+   std::vector<float> m_exposureMap;
+
    std::vector<double> m_ras;
    std::vector<double> m_decs;
    std::vector<double> m_energies;
