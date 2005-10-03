@@ -377,7 +377,7 @@ void CountsMap::setKeywords(tip::Header & header) const {
       header["CTYPE2"].set("GLAT-" + m_proj_name);
    } else {
       header["CTYPE1"].set(binners[0]->getName() + "---" + m_proj_name);
-      header["CTYPE2"].set(binners[1]->getName() + "---" + m_proj_name);
+      header["CTYPE2"].set(binners[1]->getName() + "--" + m_proj_name);
    }
    header["CTYPE3"].set(binners[2]->getName());
 }
