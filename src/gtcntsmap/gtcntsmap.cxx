@@ -80,7 +80,7 @@ void gtcntsmap::run() {
                             compareGtis);
    }
 
-   m_cuts = new dataSubselector::Cuts(eventFiles[0], evtable);
+   m_cuts = new dataSubselector::Cuts(eventFiles, evtable);
 
    std::string sc_file = m_pars["scfile"];
    std::string sc_table = m_pars["sctable"];
