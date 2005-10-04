@@ -136,7 +136,8 @@ double DiffuseSource::Npred() {
       NpredIntegrand[k] = (*specFunc)(eArg)*m_exposure[k];
    }
    TrapQuad trapQuad(energies, NpredIntegrand);
-   return trapQuad.integral();
+   double value(trapQuad.integral());
+   return value;
 }
 
 double DiffuseSource::NpredDeriv(const std::string &paramName) {

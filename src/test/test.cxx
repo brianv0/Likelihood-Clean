@@ -619,9 +619,9 @@ void LikelihoodTests::test_DiffuseSource() {
       double Npred = src->Npred();
       chi2 += pow((Nobs - Npred), 2)/Nobs;
       debug_output << i << "  " 
-                   << Nobs << "  "
-                   << Npred << "  " 
-                   << expMapFile.str() << std::endl;
+                << Nobs << "  "
+                << Npred << "  " 
+                << expMapFile.str() << std::endl;
       delete src;
    }
    debug_output << "chi^2 = " << chi2 << std::endl;
