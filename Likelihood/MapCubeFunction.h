@@ -45,6 +45,8 @@ public:
 
    virtual ~MapCubeFunction();
 
+   virtual MapCubeFunction & operator=(const MapCubeFunction &);
+
    virtual double value(optimizers::Arg &) const;
 
    virtual double derivByParam(optimizers::Arg & dir,

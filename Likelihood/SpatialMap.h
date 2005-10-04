@@ -46,6 +46,8 @@ public:
 
    SpatialMap::SpatialMap(const SpatialMap &);
 
+   SpatialMap & operator=(const SpatialMap &);
+
    virtual ~SpatialMap();
 
    double value(optimizers::Arg&) const;
