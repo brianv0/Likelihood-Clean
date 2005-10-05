@@ -303,6 +303,8 @@ void BinnedLikelihood::addSourceMap(const std::string & srcName,
       
    image->set(m_srcMaps.find(srcName)->second->model());
 
+   m_dataMap.setKeywords(image->getHeader());
+
    delete image;
 }
 
