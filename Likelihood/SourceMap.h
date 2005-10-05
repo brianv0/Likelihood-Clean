@@ -17,7 +17,6 @@
 namespace Likelihood {
 
    class CountsMap;
-   class EquinoxRotation;
    class PointSource;
    class Source;
 
@@ -47,8 +46,6 @@ public:
       s_binnedExposure = new BinnedExposure(filename);
    }
 
-//   void save(const std::string & filename) const;
-   
    double maxPsfRadius(PointSource * src) const;
 
    const std::string & srcType() const {
@@ -103,21 +100,9 @@ private:
    static std::vector<double> s_mu;
    static std::vector<double> s_theta;
 
-   double sourceRegionIntegral(double energy) const;
-
-   void computeSrcDirs(const Pixel & pixel, DiffuseSource * src);
-
    void prepareAngleArrays(int nmu=100, int nphi=50);
 
-   void getCelestialDir(double phi, double mu, 
-                        EquinoxRotation & eqRot,
-                        astro::SkyDir & dir) const;
-
-   void fitsReportError(FILE *stream, int status) const;
-
    bool haveMapCubeFunction(DiffuseSource * src) const;
-
-   void recomputeSrcStrengths(DiffuseSource * src, double energy);
 
    void getMapCorrections(PointSource * src, const MeanPsf & meanPsf,
                           const std::vector<Pixel> & pixels,
