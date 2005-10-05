@@ -94,7 +94,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
                      const Observation & observation, 
                      bool applyPsfCorrections) 
    : m_name(src->getName()), m_srcType(src->getType()),
-      m_dataMap(dataMap), m_deleteDataMap(false) {
+     m_dataMap(dataMap), m_deleteDataMap(false) {
    s_refCount++;
    if (s_mu.size() == 0 || s_phi.size() == 0 || s_theta.size() == 0) {
       prepareAngleArrays();
@@ -248,10 +248,6 @@ SourceMap::SourceMap(const std::string & sourceMapsFile,
       image(tip::IFileSvc::instance().readImage(sourceMapsFile, srcName));
    m_model.clear();
    image->get(m_model);
-//    std::vector<float> image_data;
-//    image->get(image_data);
-//    m_model.resize(image_data.size());
-//    std::copy(image_data.begin(), image_data.end(), m_model.begin());
 
    std::vector<Pixel> pixels;
    m_dataMap->getPixels(pixels);

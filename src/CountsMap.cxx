@@ -349,8 +349,8 @@ long CountsMap::imageDimension(int i) const {
 void CountsMap::getAxisVector(int i, std::vector<double> & axisVector) const {
    const evtbin::Hist::BinnerCont_t & binners = m_hist->getBinners();
    if (i < 0 || i > 2) {
-      throw std::invalid_argument(std::string("CountsMap::getAxisVector:\n")
-                                  + "Invalid image dimension value.");
+      throw std::invalid_argument("CountsMap::getAxisVector:\n"
+                                  "Invalid image dimension value.");
    }
    axisVector.clear();
    for (long j = 0; j < binners[i]->getNumBins(); j++) {
