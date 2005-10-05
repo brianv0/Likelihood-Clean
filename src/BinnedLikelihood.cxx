@@ -23,8 +23,6 @@
 
 namespace Likelihood {
 
-//#include "fitsio.h"
-
 BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
                                    const Observation & observation,
                                    const std::string & srcMapsFile,
@@ -307,49 +305,6 @@ void BinnedLikelihood::addSourceMap(const std::string & srcName,
 
    delete image;
 }
-
-// void BinnedLikelihood::addSourceMap(const std::string & srcName,
-//                                     const std::string & fitsFile) const {
-//    if (!m_srcMaps.count(srcName)) {
-//       throw std::runtime_error("BinnedLikelihood::addSourceMap: " +
-//                                std::string("Source ") + srcName 
-//                                + " is not available.");
-//    }
-
-//    fitsfile * fptr;
-//    int status(0);
-
-//    fits_open_file(&fptr, fitsFile.c_str(), READWRITE, &status);
-//    fitsReportError(stderr, status);
-
-//    long naxes[] = {m_dataMap.imageDimension(0),
-//                    m_dataMap.imageDimension(1),
-//                    m_energies.size()};
-//    fits_create_img(fptr, DOUBLE_IMG, 3, naxes, &status);
-//    fitsReportError(stderr, status);
-   
-//    long group(0);
-//    const std::vector<double> & data = m_srcMaps.find(srcName)->second->model();
-//    fits_write_3d_dbl(fptr, group, naxes[0], naxes[1], naxes[0], naxes[1],
-//                      naxes[2], const_cast<double *>(&data[0]), &status);
-//    fitsReportError(stderr, status);
-
-//    fits_update_key(fptr, TSTRING, "EXTNAME", 
-//                    const_cast<char *>(srcName.c_str()), "SourceMap name",
-//                    &status);
-//    fitsReportError(stderr, status);
-
-//    fits_close_file(fptr, &status);
-//    fitsReportError(stderr, status);
-// }
-
-// void BinnedLikelihood::fitsReportError(FILE *stream, int status) const {
-//    if (status != 0) {
-//       fits_report_error(stream, status);
-//       throw std::runtime_error("BinnedLikelihood::addSourceMap: "
-//                                + std::string("cfitsio error."));
-//    }
-// }
 
 void BinnedLikelihood::setImageDimensions(tip::Image * image, 
                                           long * dimensions) const {

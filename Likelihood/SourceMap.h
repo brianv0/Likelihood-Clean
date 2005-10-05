@@ -67,19 +67,10 @@ private:
    /// one energy plane.
    ///
    /// @todo Keep track of event types included in a given SourceMap.
-//   std::vector<double> m_model;
    std::vector<float> m_model;
 
    /// @brief Each entry is the angular integral over the energy plane.
    std::vector<double> m_npreds;
-
-   std::vector<double> m_energies;
-
-   /// @brief This vector of SkyDir objects is used by
-   /// sourceRegionIntegral for diffuse sources
-   std::vector<astro::SkyDir> m_srcDirs;
-
-   std::vector<double> m_srcStrengths;
 
    class Aeff : public Pixel::Aeff {
    public:
