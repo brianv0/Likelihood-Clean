@@ -30,6 +30,22 @@
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/HistND.h"
 
+namespace {
+// Approximation to spherical angle between planes defined by three 
+// unit vectors.
+   double sphericalAngle(const astro::SkyDir & A, 
+                         const astro::SkyDir & B, 
+                         const astro::SkyDir & C) {
+      double arg = 1. - A().dot(C()) - B().dot(A()) + B().dot(C());
+      if (std::fabs(arg) <= 1) {
+         return std::acos(arg);
+      } else if (arg < 0) {
+         return M_PI;
+      }
+      return 0;
+   }
+}
+
 namespace Likelihood {
 
 CountsMap::CountsMap(const std::string & event_file,
@@ -460,26 +476,20 @@ void CountsMap::getPixels(std::vector<astro::SkyDir> & pixelDirs,
 double CountsMap::computeSolidAngle(std::vector<double>::const_iterator lon,
                                     std::vector<double>::const_iterator lat,
                                     const astro::SkyProj & proj) const {
-   astro::SkyDir lower_left(*lon, *lat, proj);
-   astro::SkyDir upper_right(*(lon+1), *(lat+1), proj);
-   std::vector<double> theta(2);
-   std::vector<double> phi(2);
-   if (proj.isGalactic()) {
-      phi[0] = lower_left.l()*M_PI/180.;
-      theta[0] = lower_left.b()*M_PI/180.;
-      phi[1] = upper_right.l()*M_PI/180.;
-      theta[1] = upper_right.b()*M_PI/180.;
-   } else {
-      phi[0] = lower_left.ra()*M_PI/180.;
-      theta[0] = lower_left.dec()*M_PI/180.;
-      phi[1] = upper_right.ra()*M_PI/180.;
-      theta[1] = upper_right.dec()*M_PI/180.;
-   }
-   double dphi = std::fabs(phi[1] - phi[0]);
-   if (dphi > M_PI) {
-      dphi = 2.*M_PI - dphi;
-   }
-   return dphi*std::fabs(sin(theta[1]) - sin(theta[0]));
+
+   astro::SkyDir A(*lon, *lat, proj);
+   astro::SkyDir B(*lon, *(lat+1), proj);
+   astro::SkyDir C(*(lon+1), *(lat+1), proj);
+   astro::SkyDir D(*(lon+1), *lat, proj);
+
+// // Approximation...@todo improve on this.
+//    double dOmega = (::sphericalAngle(A, D, B) + 
+//                     ::sphericalAngle(B, A, C) +
+//                     ::sphericalAngle(C, B, D) +
+//                     ::sphericalAngle(D, C, A) - 2.*M_PI);
+//    return dOmega;
+
+   return A.difference(B)*B.difference(C);
 }
 
 void CountsMap::setCenter() {
