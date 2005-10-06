@@ -36,7 +36,8 @@ namespace {
    double sphericalAngle(const astro::SkyDir & A, 
                          const astro::SkyDir & B, 
                          const astro::SkyDir & C) {
-      double arg = 1. - A().dot(C()) - B().dot(A()) + B().dot(C());
+//      double arg = 1. - A().dot(C()) - B().dot(A()) + B().dot(C());
+      double arg =(A() - B()).dot(A() - C());
       if (std::fabs(arg) <= 1) {
          return std::acos(arg);
       } else if (arg < 0) {
