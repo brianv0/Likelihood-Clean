@@ -483,14 +483,15 @@ double CountsMap::computeSolidAngle(std::vector<double>::const_iterator lon,
    astro::SkyDir C(*(lon+1), *(lat+1), proj);
    astro::SkyDir D(*(lon+1), *lat, proj);
 
-// // Approximation...@todo improve on this.
-//    double dOmega = (::sphericalAngle(A, D, B) + 
-//                     ::sphericalAngle(B, A, C) +
-//                     ::sphericalAngle(C, B, D) +
-//                     ::sphericalAngle(D, C, A) - 2.*M_PI);
-//    return dOmega;
+   double dOmega1 = A.difference(B)*A.difference(D)
+      *((A()-B()).unit().cross((A() - D()).unit())).mag();
 
-   return A.difference(B)*B.difference(C);
+   double dOmega2 = C.difference(B)*C.difference(D)
+      *((C()-B()).unit().cross((C() - D()).unit())).mag();
+
+   return (dOmega1 + dOmega2)/2.;
+
+//    return A.difference(B)*B.difference(C);
 }
 
 void CountsMap::setCenter() {
