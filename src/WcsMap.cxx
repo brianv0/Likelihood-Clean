@@ -47,7 +47,7 @@ namespace {
 namespace Likelihood {
 
 WcsMap::WcsMap(const std::string & filename,
-               const std::string & extension) {
+               const std::string & extension) : m_proj(0) {
 
    m_proj = st_facilities::FitsImage::skyProjCreate(filename, extension);
 
