@@ -101,8 +101,7 @@ public:
 
 private:
 
-   /// @todo Replace all these pointers with objects and convert all
-   /// these classes from Singletons to proper classes.
+   /// @todo Assert ownership of these pointers and delete in destructor.
    ResponseFunctions * m_respFuncs;
    ScData * m_scData;
    RoiCuts * m_roiCuts;

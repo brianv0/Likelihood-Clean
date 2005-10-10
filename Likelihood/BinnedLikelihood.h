@@ -75,8 +75,15 @@ public:
    double npred();
 
    const SourceMap & sourceMap(const std::string & name) const {
-      return *(m_srcMaps.find(name)->second);
+      std::map<std::string, SourceMap *>::const_iterator srcMap
+         = m_srcMaps.find(name);
+      if (srcMap == m_srcMaps.end()) {
+         throw std::runtime_error("Cannot find source map named: " + name);
+      }
+      return *(srcMap->second);
    }
+
+   SourceMap * createSourceMap(const std::string & srcName);
 
    void saveSourceMaps(const std::string & filename="");
 
