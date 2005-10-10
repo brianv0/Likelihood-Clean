@@ -204,10 +204,14 @@ void BinnedLikelihood::createSourceMaps() {
    for ( ; name != srcNames.end(); ++name) {
       Source * src = getSource(*name);
       if (src->getType() == "Diffuse" || m_computePointSources) {
-         m_srcMaps[*name] = new SourceMap(src, &m_dataMap, m_observation,
-                                          m_applyPsfCorrections);
+         m_srcMaps[*name] = createSourceMap(*name);
       }
    }
+}
+
+SourceMap * BinnedLikelihood::createSourceMap(const std::string & srcName) {
+   Source * src = getSource(srcName);
+   return new SourceMap(src, &m_dataMap, m_observation, m_applyPsfCorrections);
 }
 
 void BinnedLikelihood::readSourceMaps(std::string filename) {

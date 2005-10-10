@@ -39,6 +39,8 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SpatialMap.h"
 
+#include "SourceMapRegistry.h"
+
 #include "fitsio.h"
 
 XERCES_CPP_NAMESPACE_USE
@@ -101,6 +103,8 @@ private:
 
    std::map<std::string, optimizers::Function *> m_spectra;
 
+   SourceMapRegistry * m_registry;
+
    std::vector<double> m_emins;
    std::vector<double> m_emaxs;
 
@@ -110,6 +114,7 @@ private:
    void prepareFunctionFactory();
    void readSpectra();
    void readEnergyBounds();
+   void createRegistry();
    void sumOutputMap();
    void writeOutputMap();
    void trimExtensions();
@@ -126,6 +131,7 @@ void ModelMap::run() {
    prepareFunctionFactory();
    readSpectra();
    readEnergyBounds();
+   createRegistry();
    sumOutputMap();
    writeOutputMap();
    trimExtensions();
@@ -221,10 +227,14 @@ void ModelMap::sumOutputMap() {
 }
 
 void ModelMap::getMap(const std::string & srcName) {
-   std::string srcMaps_file = m_pars["srcmaps"];
-   std::auto_ptr<const tip::Image> 
-      image(tip::IFileSvc::instance().readImage(srcMaps_file, srcName));
-   image->get(m_srcmap);
+   if (m_registry) {
+      m_srcmap = m_registry->sourceMap(srcName);
+   } else {
+      std::string srcMaps_file = m_pars["srcmaps"];
+      std::auto_ptr<const tip::Image> 
+         image(tip::IFileSvc::instance().readImage(srcMaps_file, srcName));
+      image->get(m_srcmap);
+   }
 }
 
 void ModelMap::readSpectra() {
@@ -288,4 +298,19 @@ void ModelMap::prepareFunctionFactory() {
    m_funcFactory->addFunc("PowerLaw2", new Likelihood::PowerLaw2(), makeClone);
    m_funcFactory->addFunc("BrokenPowerLaw2", new Likelihood::BrokenPowerLaw2(),
                           makeClone);
+}
+
+void ModelMap::createRegistry() {
+   std::string countsMap = m_pars["srcmaps"];
+   std::string xmlFile = m_pars["source_model_file"];
+   std::string irfs = m_pars["rspfunc"];
+   std::string expCube = m_pars["expcube"];
+   std::string binnedExpMap = m_pars["binned_exposure"];
+
+   if (expCube != "none") {
+      m_registry = new SourceMapRegistry(countsMap, xmlFile, irfs, expCube,
+                                         binnedExpMap, *m_funcFactory);
+   } else {
+      m_registry = 0;
+   }
 }
