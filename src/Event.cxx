@@ -123,9 +123,12 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
                             double sr_radius) {
    std::vector<DiffuseSource *> srcs;
    getNewDiffuseSrcs(srcList, srcs);
-   if (srcs.size() == 0) return;
-
-   EquinoxRotation eqRot(m_appDir.ra(), m_appDir.dec());
+   if (srcs.size() == 0) {
+      return;
+   }
+   double ra0(m_appDir.ra());
+   double dec0(m_appDir.dec());
+   EquinoxRotation eqRot(ra0, dec0);
    if (!s_haveSourceRegionData) {
       prepareSrData(sr_radius);
    }
@@ -239,6 +242,7 @@ void Event::prepareSrData(double sr_radius, int nmu, int nphi) {
 //    for (int i = 0; i < nmu; i++) {
 //       s_mu.push_back(mustep*i + mumin);
 //    }
+
 // Try sampling more densely near theta = 0:
    std::deque<double> my_mu;
    double nscale = static_cast<double>((nmu-1)*(nmu-1));

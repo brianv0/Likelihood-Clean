@@ -77,7 +77,7 @@ public:
    /// distribution of src will be integrated.
    void computeResponse(DiffuseSource &src, 
                         const ResponseFunctions & respFuncs, 
-                        double sr_radius=30.) {
+                        double sr_radius=80.) {
       std::vector<DiffuseSource *> srcs;
       srcs.push_back(&src);
       computeResponse(srcs, respFuncs, sr_radius);
@@ -86,7 +86,7 @@ public:
    /// Compute the reponse integrals for a vector of DiffuseSources
    void computeResponse(std::vector<DiffuseSource *> &srcs, 
                         const ResponseFunctions & respFuncs, 
-                        double sr_radius=30.);
+                        double sr_radius=80.);
 
    /// Write the diffuse responses for each source to a file.
    void writeDiffuseResponses(const std::string & filename);

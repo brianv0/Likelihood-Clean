@@ -97,8 +97,9 @@ double PointSource::fluxDensity(double energy, const astro::SkyDir &zAxis,
    } else {
       optimizers::dArg energy_arg(energy);
       double spectrum = (*m_spectrum)(energy_arg);
-      return spectrum*respFuncs.totalResponse(energy, energy, zAxis, xAxis,
-                                              m_dir.getDir(), dir, eventType);
+      double resp(respFuncs.totalResponse(energy, energy, zAxis, xAxis,
+                                          m_dir.getDir(), dir, eventType));
+      return spectrum*resp;
    }
 }
 

@@ -50,10 +50,10 @@ public:
 
    void getEvents(std::string event_file);
                   
-   void computeEventResponses(Source & src, double sr_radius=30.);
+   void computeEventResponses(Source & src, double sr_radius=80.);
 
    void computeEventResponses(std::vector<DiffuseSource *> &srcs, 
-                              double sr_radius=30.);
+                              double sr_radius=80.);
 
    unsigned long nEvents() const {
       return m_events.size();
