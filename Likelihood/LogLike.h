@@ -64,7 +64,7 @@ public:
 
    void getEvents(std::string event_file);
 
-   void computeEventResponses(double sr_radius=30);
+   void computeEventResponses(double sr_radius=80.);
 
 protected:
 

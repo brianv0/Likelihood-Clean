@@ -52,7 +52,8 @@ double LogLike::logSourceModel(const Event & event) const {
    double my_value(0);
    std::map<std::string, Source *>::const_iterator source = m_sources.begin();
    for ( ; source != m_sources.end(); ++source) {
-      my_value += source->second->fluxDensity(event);
+      double fluxDens = source->second->fluxDensity(event);
+      my_value += fluxDens;
    }
    if (my_value > 0) {
       return std::log(my_value);
