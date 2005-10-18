@@ -11,7 +11,10 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "facilities/Util.h"
+
 #include "st_facilities/FitsImage.h"
+#include "st_facilities/Util.h"
 
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/MapCubeFunction.h"
@@ -118,7 +121,10 @@ void MapCubeFunction::init() {
    m_genericName = "MapCubeFunction";
 }
 
-void MapCubeFunction::readFitsFile(const std::string & fitsFile) {
+void MapCubeFunction::readFitsFile(const std::string & fits_file) {
+   std::string fitsFile(fits_file);
+   facilities::Util::expandEnvVar(&fitsFile);
+   st_facilities::Util::file_ok(fitsFile);
    m_proj = st_facilities::FitsImage::skyProjCreate(fitsFile);
 
    st_facilities::FitsImage fitsImage(fitsFile);
