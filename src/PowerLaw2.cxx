@@ -52,7 +52,10 @@ double PowerLaw2::value(optimizers::Arg & xarg) const {
    double gamma = -m_parameter[Index].getTrueValue();
    double x1 = m_parameter[LowerLimit].getTrueValue();
    double x2 = m_parameter[UpperLimit].getTrueValue();
-
+   
+   if (gamma == 1.) {
+      return NN/x/std::log(x2/x1);
+   }
    double one_m_gam = 1. - gamma;
 
    return (NN*one_m_gam*std::pow(x, -gamma)
