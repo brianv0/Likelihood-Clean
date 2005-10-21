@@ -24,6 +24,7 @@
 #include "Likelihood/BrokenPowerLaw2.h"
 #include "Likelihood/EventContainer.h"
 #include "Likelihood/ExposureMap.h"
+#include "Likelihood/FileFunction.h"
 #include "Likelihood/LogParabola.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
@@ -81,6 +82,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
    m_funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
    m_funcFactory->addFunc("BrokenPowerLaw2", new BrokenPowerLaw2(), makeClone);
+   m_funcFactory->addFunc("FileFunction", new FileFunction(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
