@@ -125,6 +125,7 @@ void MapCubeFunction::readFitsFile(const std::string & fits_file) {
    std::string fitsFile(fits_file);
    facilities::Util::expandEnvVar(&fitsFile);
    st_facilities::Util::file_ok(fitsFile);
+   m_fitsFile = fitsFile;
    m_proj = st_facilities::FitsImage::skyProjCreate(fitsFile);
 
    st_facilities::FitsImage fitsImage(fitsFile);
