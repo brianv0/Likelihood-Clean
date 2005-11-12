@@ -106,10 +106,14 @@ void diffuseResponses::run() {
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], eventFiles);
    std::vector<std::string>::const_iterator evtfile;
    buildSourceModel();
-   std::cerr << "Working on...\n";
+   if (Likelihood::print_output()) {
+      std::cerr << "Working on...\n";
+   }
    for (evtfile = eventFiles.begin(); evtfile != eventFiles.end(); ++evtfile) {
       if (clobber || !haveDiffuseColumns(*evtfile)) {
-         std::cerr << *evtfile;
+         if (Likelihood::print_output()) {
+            std::cerr << *evtfile;
+         }
          readEventData(*evtfile);
          computeEventResponses();
          writeEventResponses(*evtfile);
