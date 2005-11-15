@@ -16,6 +16,7 @@
 #include <ctime>
 
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 
 #include "st_app/AppParGroup.h"
@@ -203,6 +204,7 @@ void likelihood::run() {
    if (Likelihood::print_output()) {
       std::cout << "Elapsed CPU time: " << cputime() << std::endl;
    }
+   delete m_helper;
 }
 
 void likelihood::setErrors(const std::vector<double> & errors) {
@@ -574,9 +576,12 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    resultsFile.close();
    if (Likelihood::print_output()) {
       std::cout << "\n-log(Likelihood): "
+                << std::setprecision(10)
                 << -m_logLike->value()
                 << "\n" << std::endl;
    }
+   delete m_opt;
+   m_opt = 0;
 }
 
 bool likelihood::prompt(const std::string &query) {
