@@ -8,8 +8,6 @@
  * $Header$
  */
 
-#include <memory>
-
 #include <xercesc/util/XercesDefs.hpp>
 
 #include "xmlBase/Dom.h"
@@ -31,6 +29,7 @@
 #include "Likelihood/SourceFactory.h"
 
 #include "Verbosity.h"
+#include "XmlParser.h"
 
 namespace Likelihood {
 
@@ -95,7 +94,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
    throw(Exception) {
    m_requireExposure = requireExposure;
 
-   xmlBase::XmlParser * parser = new xmlBase::XmlParser();
+   xmlBase::XmlParser * parser = XmlParser::instance();
 
    DOMDocument * doc = parser->parse(xmlFile.c_str());
 
@@ -157,7 +156,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
          std::cerr << eObj.what() << std::endl;
          throw;
       }
-
+      
       xmlBase::Dom::getChildrenByTagName(*srcIt, "spatialModel", child);
       DOMElement * spatialModel = child[0];
 
@@ -177,7 +176,8 @@ void SourceFactory::readXml(const std::string &xmlFile,
          delete src;
       }
    }
-   delete parser;
+
+   delete doc;
 }
 
 void SourceFactory::fetchSrcNames(std::vector<std::string> &srcNames) {
