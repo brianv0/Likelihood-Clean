@@ -312,6 +312,7 @@ void SourceModel::readXml(std::string xmlFile,
          std::cout << "adding source " << *nameIt << std::endl;
       }
       addSource(src);
+      delete src;
    }
    syncParams();
 }

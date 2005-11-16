@@ -38,7 +38,7 @@ public:
     
    ResponseFunctions() : m_useEdisp(false), m_respName("") {}
 
-   virtual ~ResponseFunctions() {}
+   ~ResponseFunctions();
 
    /// Return the total instrument response 
    /// (= effective area*PSF*energy dispersion).
