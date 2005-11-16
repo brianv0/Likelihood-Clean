@@ -217,21 +217,21 @@ double PointSource::Npred(double emin, double emax) {
    std::copy(m_exposure.begin() + begin_offset,
              m_exposure.begin() + end_offset,
              exposure.begin());
-   double begin_exposure = (emin - energies[begin_offset - 1])
-      /(energies[begin_offset] - energies[begin_offset - 1])
-      *(m_exposure[begin_offset] - m_exposure[begin_offset - 1])
-      + m_exposure[begin_offset - 1];
-   double end_exposure = (emin - energies[end_offset - 1])
-      /(energies[end_offset] - energies[end_offset - 1])
-      *(m_exposure[end_offset] - m_exposure[end_offset - 1])
-      + m_exposure[end_offset - 1];
+   double begin_exposure = (emin - energies.at(begin_offset - 1))
+      /(energies.at(begin_offset) - energies.at(begin_offset - 1))
+      *(m_exposure.at(begin_offset) - m_exposure.at(begin_offset - 1))
+      + m_exposure.at(begin_offset - 1);
+   double end_exposure = (emin - energies.at(end_offset - 1))
+      /(energies.at(end_offset) - energies.at(end_offset - 1))
+      *(m_exposure.at(end_offset) - m_exposure.at(end_offset - 1))
+      + m_exposure.at(end_offset - 1);
    exposure.insert(exposure.begin(), begin_exposure);
    exposure.push_back(end_exposure);
    optimizers::Function & specFunc = *m_functions["Spectrum"];
    std::vector<double> integrand(my_energies.size());
    for (unsigned int k = 0; k < my_energies.size(); k++) {
-      optimizers::dArg eArg(my_energies[k]);
-      integrand[k] = specFunc(eArg)*exposure[k];
+      optimizers::dArg eArg(my_energies.at(k));
+      integrand.at(k) = specFunc(eArg)*exposure.at(k);
    }
    TrapQuad trapQuad(my_energies, integrand);
    return trapQuad.integral();

@@ -12,16 +12,17 @@
 
 #include "Likelihood/XmlBuilder.h"
 
+#include "XmlParser.h"
+
 namespace Likelihood {
 
 XmlBuilder::XmlBuilder() {
-   m_parser = new xmlBase::XmlParser();
+   m_parser = XmlParser::instance();
    m_doc = optimizers::Dom::createDocument();
 }
 
 XmlBuilder::~XmlBuilder() {
    m_doc->release();
-   delete m_parser;
 }
 
 } //namespace Likelihood

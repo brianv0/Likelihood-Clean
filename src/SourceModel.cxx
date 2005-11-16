@@ -36,6 +36,7 @@
 #include "Likelihood/SourceModel.h"
 
 #include "Verbosity.h"
+#include "XmlParser.h"
 
 namespace Likelihood {
 
@@ -321,7 +322,7 @@ void SourceModel::reReadXml(std::string xmlFile) {
 
    facilities::Util::expandEnvVar(&xmlFile);
 
-   xmlBase::XmlParser *parser = new xmlBase::XmlParser();
+   xmlBase::XmlParser * parser = XmlParser::instance();
 
    DOMDocument * doc = parser->parse(xmlFile.c_str());
 
@@ -395,7 +396,7 @@ void SourceModel::reReadXml(std::string xmlFile) {
       }
    }
    syncParams();
-   delete parser;
+   delete doc;
 }
 
 void SourceModel::writeXml(std::string xmlFile,
