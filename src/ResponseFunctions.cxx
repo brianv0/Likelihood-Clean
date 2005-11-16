@@ -18,6 +18,14 @@
 
 namespace Likelihood {
    
+ResponseFunctions::~ResponseFunctions() {
+   irfInterface::IrfsFactory::delete_instance();
+   std::map<size_t, irfInterface::Irfs *>::iterator it(m_respPtrs.begin());
+   for ( ; it != m_respPtrs.end(); ++it) {
+      deleteRespPtr(it->first);
+   }
+}
+
 double ResponseFunctions::totalResponse(double energy, double appEnergy,
                                         const astro::SkyDir & zAxis,
                                         const astro::SkyDir & xAxis,

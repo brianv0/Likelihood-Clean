@@ -8,6 +8,8 @@
  * $Header$
  */
 
+#include <memory>
+
 #include <xercesc/util/XercesDefs.hpp>
 
 #include "xmlBase/Dom.h"
@@ -259,6 +261,7 @@ Source * SourceFactory::makeDiffuseSource(const DOMElement * spectrum,
    try {
       src = new DiffuseSource(spatialDist, m_observation, m_requireExposure);
       setSpectrum(src, spectrum, funcFactory);
+      delete spatialDist;
       return src;
    } catch (std::exception &eObj) {
       if (print_output()) {
@@ -296,6 +299,7 @@ void SourceFactory::setSpectrum(Source * src, const DOMElement * spectrum,
    }
 
    src->setSpectrum(spec);
+   delete spec;
 }
 
 } // namespace Likelihood
