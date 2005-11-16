@@ -68,6 +68,8 @@ public:
    virtual ~likelihood() throw() {
       try {
          delete m_logLike;
+         delete m_opt;
+         delete m_dataMap;
       } catch (std::exception & eObj) {
          std::cout << eObj.what() << std::endl;
       } catch (...) {
