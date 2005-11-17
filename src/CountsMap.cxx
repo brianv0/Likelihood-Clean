@@ -246,9 +246,9 @@ CountsMap::CountsMap(const CountsMap & rhs) : DataProduct(rhs) {
    }
    m_axis_rot = rhs.m_axis_rot;
    m_use_lb = rhs.m_use_lb;
-//    m_proj = new astro::SkyProj(m_proj_name, m_crpix, m_crval, m_cdelt, 
-//                                m_axis_rot, m_use_lb);
-   m_proj = new astro::SkyProj(*(rhs.m_proj));
+//   m_proj = new astro::SkyProj(*(rhs.m_proj));
+   m_proj = new astro::SkyProj(m_proj_name, m_crpix, m_crval, m_cdelt, 
+                               m_axis_rot, m_use_lb);
    m_center = rhs.m_center;
 }
 
