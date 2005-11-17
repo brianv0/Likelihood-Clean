@@ -37,6 +37,13 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
    computeCountsSpectrum();
 }
 
+BinnedLikelihood::~BinnedLikelihood() throw() {
+   std::map<std::string, SourceMap *>::iterator srcMap(m_srcMaps.begin());
+   for ( ; srcMap != m_srcMaps.end(); ++srcMap) {
+      delete srcMap->second;
+   }
+}
+
 double BinnedLikelihood::value(optimizers::Arg &dummy) const {
    (void)(dummy);
 

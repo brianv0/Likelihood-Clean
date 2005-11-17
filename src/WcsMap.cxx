@@ -121,8 +121,8 @@ WcsMap::WcsMap(const WcsMap & rhs)
 // astro::SkyProj copy constructor is not implemented properly so we
 // must share this pointer, ensure it is not deleted in the destructor,
 // and live with the resulting memory leak when this object is deleted.
-   m_proj = rhs.m_proj;
-//    m_proj = new astro::SkyProj(*(rhs.m_proj));
+//   m_proj = rhs.m_proj;
+   m_proj = new astro::SkyProj(*(rhs.m_proj));
 }
 
 WcsMap & WcsMap::operator=(const WcsMap & rhs) {
@@ -130,9 +130,9 @@ WcsMap & WcsMap::operator=(const WcsMap & rhs) {
 // astro::SkyProj copy constructor is not implemented properly so we
 // must share this pointer, ensure it is not deleted in the destructor,
 // and live with the resulting memory leak when this object is deleted.
-      m_proj = rhs.m_proj;
-//       delete m_proj;
-//       m_proj = new astro::SkyProj(*(rhs.m_proj));
+//      m_proj = rhs.m_proj;
+      delete m_proj;
+      m_proj = new astro::SkyProj(*(rhs.m_proj));
       m_refDir = rhs.m_refDir;
       m_image = rhs.m_image;
       m_naxis1 = rhs.m_naxis1;
