@@ -226,7 +226,9 @@ Source * SourceFactory::makePointSource(const DOMElement * spectrum,
       setSpectrum(src, spectrum, funcFactory);
       return src;
    } catch (std::exception &eObj) {
-      if (print_output()) std::cout << eObj.what() << std::endl;
+      if (print_output()) {
+         std::cout << eObj.what() << std::endl;
+      }
    } catch (...) {
       std::cerr << "Unexpected exception from SourceFactory::setSpectrum" 
                 << std::endl;

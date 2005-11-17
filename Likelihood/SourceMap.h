@@ -42,9 +42,7 @@ public:
 
    const std::vector<double> & npreds() const {return m_npreds;}
    
-   static void setBinnedExposure(const std::string & filename) {
-      s_binnedExposure = new BinnedExposure(filename);
-   }
+   static void setBinnedExposure(const std::string & filename);
 
    double maxPsfRadius(PointSource * src) const;
 
