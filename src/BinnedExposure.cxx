@@ -20,8 +20,6 @@
 
 #include "astro/SkyProj.h"
 
-#include "st_facilities/FitsImage.h"
-
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/Observation.h"
 
@@ -39,7 +37,7 @@ BinnedExposure::BinnedExposure(const std::vector<double> & energies,
 
 BinnedExposure::BinnedExposure(const std::string & filename) 
    : m_observation(0), m_proj(0) {
-   m_proj = st_facilities::FitsImage::skyProjCreate(filename);
+   m_proj = new astro::SkyProj(filename);
 
    std::auto_ptr<const tip::Image> 
       image(tip::IFileSvc::instance().readImage(filename, ""));
