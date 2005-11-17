@@ -62,6 +62,10 @@ BinnedExposure::BinnedExposure(const std::string & filename)
    }
 }
 
+BinnedExposure::~BinnedExposure() {
+   delete m_proj;
+}
+
 double BinnedExposure::operator()(double energy, double ra, double dec) const {
    std::vector<double>::const_iterator ie = std::find(m_energies.begin(),
                                                       m_energies.end(),
