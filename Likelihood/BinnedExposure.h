@@ -40,6 +40,8 @@ public:
 
    BinnedExposure(const std::string & filename);
 
+   ~BinnedExposure();
+
    /// @return Exposure (effective area integrated over time) (cm^2-s)
    /// @param energy True photon energy (MeV)
    /// @param ra Right Ascension of desired sky location (degrees)
