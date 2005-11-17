@@ -169,7 +169,17 @@ SourceMap::~SourceMap() {
       delete s_binnedExposure;
       s_binnedExposure = 0;
    }
-   if (m_deleteDataMap) delete m_dataMap;
+   if (m_deleteDataMap) {
+      delete m_dataMap;
+   }
+}
+
+void SourceMap::setBinnedExposure(const std::string & filename) {
+   if (s_binnedExposure != 0) {
+      delete s_binnedExposure;
+      s_binnedExposure = 0;
+   }
+   s_binnedExposure = new BinnedExposure(filename);
 }
 
 void SourceMap::getMapCorrections(PointSource * src, const MeanPsf & meanPsf,
@@ -270,7 +280,6 @@ void SourceMap::computeExposureAndPsf(const Observation & observation) {
       s_binnedExposure->writeOutput("binned_exposure.fits");
    }
 }
-
 
 void SourceMap::prepareAngleArrays(int nmu, int nphi) {
    double radius = 30.;

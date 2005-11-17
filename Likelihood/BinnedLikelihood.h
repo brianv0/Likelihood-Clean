@@ -43,7 +43,7 @@ public:
 
 //   BinnedLikelihood(const std::string & dataMapFile);
                  
-   virtual ~BinnedLikelihood() throw() {}
+   virtual ~BinnedLikelihood() throw();
 
    virtual double value(optimizers::Arg &) const;
 
@@ -140,8 +140,6 @@ private:
 
    void identifyFilledPixels();
    
-//    void fitsReportError(FILE *stream, int status) const;
-
    bool fileHasSourceMap(const std::string & srcName, 
                          const std::string & fitsFile) const;
 
