@@ -71,6 +71,14 @@ void ScData::readData(std::string file, bool clear) {
 }         
 
 unsigned int ScData::time_index(double time) const {
+   if (time < vec.front().time || time > vec.back().time) {
+      std::ostringstream message;
+      message << "Requested time of " << time << " "
+              << "lies outside the range of valid times in the "
+              << "pointing/livetime history: " 
+              << vec.front().time << " to " << vec.back().time << "MET s";
+      throw std::runtime_error(message.str());
+   }
    ScNtuple my_vec;
    my_vec.time = time;
    std::vector<ScNtuple>::const_iterator it
