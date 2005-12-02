@@ -71,12 +71,15 @@ void ScData::readData(std::string file, bool clear) {
 }         
 
 unsigned int ScData::time_index(double time) const {
-   if (time < vec.front().time || time > vec.back().time) {
+   double tmin(vec.front().time);
+   double tmax(vec.back().time);
+   double tol(1e-5);
+   if (time < tmin - tol || time > tmax + tol) {
       std::ostringstream message;
       message << "Requested time of " << time << " "
               << "lies outside the range of valid times in the "
               << "pointing/livetime history: " 
-              << vec.front().time << " to " << vec.back().time << "MET s";
+              << tmin << " to " << tmax << "MET s";
       throw std::runtime_error(message.str());
    }
    ScNtuple my_vec;
