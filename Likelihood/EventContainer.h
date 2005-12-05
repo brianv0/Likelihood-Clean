@@ -55,6 +55,8 @@ public:
    void computeEventResponses(std::vector<DiffuseSource *> &srcs, 
                               double sr_radius=80.);
 
+   std::vector<double> nobs(const std::vector<double> & ebounds) const;
+
    unsigned long nEvents() const {
       return m_events.size();
    }
