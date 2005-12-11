@@ -122,6 +122,9 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
             }
             m_model.at(indx) = convolvedMap(pixel->dir())*pixel->solidAngle();
             m_npreds.at(k) += m_model.at(indx);
+            if (pixel->solidAngle() == 0) {
+               throw std::runtime_error("pixel solid angle is zero");
+            }
          }
       }
    } else if (havePointSource) {
