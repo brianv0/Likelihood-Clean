@@ -204,12 +204,7 @@ void diffuseResponses::readEventData(std::string eventFile) {
       event["energy"].get(energy);
       event["time"].get(time);
       event["zenith_angle"].get(zenAngle);
-      event["conversion_layer"].get(convLayer);
-      if (convLayer < 12) { // Front
-         eventType = 0;
-      } else {
-         eventType = 1;
-      }
+      event["event_class"].get(eventType);
       Event thisEvent(ra, dec, energy, time, scData.zAxis(time), 
                       scData.xAxis(time), cos(zenAngle*M_PI/180.), 
                       m_helper->observation().respFuncs().useEdisp(),
