@@ -37,7 +37,7 @@ public:
 
    WcsMap(const DiffuseSource & diffuseSource, double ra, double dec,
           double radius, int npts, double energy=100.,
-          const std::string & proj_name="STG");
+          const std::string & proj_name="STG", bool use_lb=false);
 
    ~WcsMap();
 

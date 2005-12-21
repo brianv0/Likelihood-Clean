@@ -191,7 +191,6 @@ void diffuseResponses::readEventData(std::string eventFile) {
    double energy;
    double time;
    double zenAngle;
-   int convLayer;
    int eventType;
 
    ScData & scData = const_cast<ScData &>(m_helper->observation().scData());
