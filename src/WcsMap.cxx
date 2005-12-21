@@ -84,13 +84,13 @@ WcsMap::WcsMap(const std::string & filename,
 
 WcsMap::WcsMap(const DiffuseSource & diffuseSource,
                double ra, double dec, double radius, int npts,
-               double energy, const std::string & proj_name) 
+               double energy, const std::string & proj_name, bool use_lb) 
    : m_refDir(ra, dec) {
    double crpix[] = {npts/2, npts/2};
    double crval[] = {ra, dec};
    double cdelt[] = {2.*radius/(npts-1.), 2.*radius/(npts-1.)};
 
-   m_proj = new astro::SkyProj(proj_name, crpix, crval, cdelt);
+   m_proj = new astro::SkyProj(proj_name, crpix, crval, cdelt, 0, use_lb);
 
    m_image.reserve(npts);
    for (int j = 0; j < npts; j++) {
