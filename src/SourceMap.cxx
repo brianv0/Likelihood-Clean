@@ -113,7 +113,8 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
       unsigned int indx(0);
       for (int k = 0; energy != energies.end(); ++energy, k++) {
          WcsMap diffuseMap(*diffuseSrc, map_center.ra(), map_center.dec(),
-                           radius, mapsize, *energy);
+                           radius, mapsize, *energy, "STG", 
+                           dataMap->projection().isGalactic());
          WcsMap convolvedMap = diffuseMap.convolve(*energy, *s_meanPsf, 
                                                    *s_binnedExposure);
          for (pixel = pixels.begin(); pixel != pixels.end(); ++pixel, indx++) {
