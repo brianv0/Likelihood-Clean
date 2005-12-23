@@ -34,7 +34,8 @@ public:
    ~ScData() {}
 
    /// Method to read in the spacecraft data.
-   void readData(std::string file, bool clear=false);
+   void readData(std::string file, bool clear=false,
+                 const std::string & sctable="SC_DATA");
    
 #ifndef SWIG
 /** 
