@@ -25,12 +25,13 @@
 
 namespace Likelihood {
 
-void ScData::readData(std::string file, bool clear) {
+void ScData::readData(std::string file, bool clear,
+                      const std::string & sctable) {
    facilities::Util::expandEnvVar(&file);
 
    m_scFile = file;
 
-   tip::Table * scData = tip::IFileSvc::instance().editTable(file, "ext1");
+   tip::Table * scData = tip::IFileSvc::instance().editTable(file, sctable);
 
    if (clear) {
       vec.clear();
