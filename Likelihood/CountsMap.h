@@ -89,6 +89,8 @@ public:
 
    bool withinBounds(const astro::SkyDir & dir, double energy) const;
 
+   const std::string & proj_name() const {return m_proj_name;}
+
 protected:
 
    HistND * m_hist;
