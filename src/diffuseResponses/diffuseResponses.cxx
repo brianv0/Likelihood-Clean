@@ -88,7 +88,7 @@ private:
 st_app::StAppFactory<diffuseResponses> myAppFactory("gtdiffresp");
 
 diffuseResponses::diffuseResponses() 
-   : st_app::StApp(), m_helper(0), m_srcModel(0), m_srRadius(80.),
+   : st_app::StApp(), m_helper(0), m_srcModel(0), m_srRadius(30.),
      m_pars(st_app::StApp::getParGroup("gtdiffresp")) {}
 
 void diffuseResponses::run() {
