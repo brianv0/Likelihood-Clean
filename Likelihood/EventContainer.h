@@ -50,10 +50,10 @@ public:
 
    void getEvents(std::string event_file);
                   
-   void computeEventResponses(Source & src, double sr_radius=80.);
+   void computeEventResponses(Source & src, double sr_radius=30.);
 
    void computeEventResponses(std::vector<DiffuseSource *> &srcs, 
-                              double sr_radius=80.);
+                              double sr_radius=30.);
 
    std::vector<double> nobs(const std::vector<double> & ebounds) const;
 
