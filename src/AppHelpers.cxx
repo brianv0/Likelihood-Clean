@@ -23,6 +23,7 @@
 #include "Likelihood/BandFunction.h"
 #include "Likelihood/BrokenPowerLaw2.h"
 #include "Likelihood/EventContainer.h"
+#include "Likelihood/ExpCutoff.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/FileFunction.h"
 #include "Likelihood/LogParabola.h"
@@ -83,6 +84,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
    m_funcFactory->addFunc("BrokenPowerLaw2", new BrokenPowerLaw2(), makeClone);
    m_funcFactory->addFunc("FileFunction", new FileFunction(), makeClone);
+   m_funcFactory->addFunc("ExpCutoff", new ExpCutoff(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
