@@ -139,7 +139,7 @@ void SourceFactory::readXml(const std::string &xmlFile,
 // and its name.
       std::string srcName = xmlBase::Dom::getAttribute(*srcIt, "name");
 
-      if (m_verbose && print_output()) {
+      if (print_output(3)) {
          std::cout << "Creating source named "
                    << srcName << std::endl;
       }

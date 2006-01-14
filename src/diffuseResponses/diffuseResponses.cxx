@@ -96,6 +96,7 @@ void diffuseResponses::run() {
    Likelihood::Verbosity::instance(m_pars["chatter"]);
    bool clobber = m_pars["clobber"];
    m_helper = new AppHelpers(&m_pars);
+   m_helper->setRoi();
    m_helper->readScData();
    m_srcModel = new SourceModel(m_helper->observation(), true);
    m_useEdisp = m_pars["use_energy_dispersion"];
