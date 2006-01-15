@@ -168,7 +168,7 @@ likelihood::likelihood()
    : st_app::StApp(), m_helper(0), 
      m_pars(st_app::StApp::getParGroup("gtlikelihood")),
      m_logLike(0), m_opt(0), m_dataMap(0), m_cpuStart(std::clock()),
-     m_tsSrc(0), m_maxdist(10.) {
+     m_tsSrc(0), m_maxdist(20.) {
 }
 
 void likelihood::run() {
@@ -670,6 +670,13 @@ void likelihood::renormModel() {
 
 double likelihood::observedCounts() {
    if (m_statistic == "Binned") {
+      BinnedLikelihood * logLike = dynamic_cast<BinnedLikelihood *>(m_logLike);
+      const std::vector<double> & counts(logLike->countsSpectrum());
+      double totalCounts(0);
+      for (size_t i = 0; i < counts.size(); i++) {
+         totalCounts += counts.at(i);
+      }
+      return totalCounts;
    }
    return m_helper->observation().eventCont().events().size();
 }
