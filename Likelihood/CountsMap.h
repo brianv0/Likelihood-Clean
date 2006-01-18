@@ -67,7 +67,8 @@ public:
    virtual void writeOutput(const std::string & creator, 
                             const std::string & out_file) const;
 
-   void setImage(const std::vector<double> & image);
+//   void setImage(const std::vector<double> & image);
+   void setImage(const std::vector<float> & image);
    
    long imageDimension(int idim) const;
 
@@ -75,13 +76,17 @@ public:
 
    const astro::SkyProj & projection() const {return *m_proj;}
 
-   const std::vector<double> & data() const {
+//    const std::vector<double> & data() const {
+//       return m_hist->data();
+//    }
+   const std::vector<float> & data() const {
       return m_hist->data();
    }
 
    void setKeywords(tip::Header & header) const;
 
-   void getPixels(std::vector<Pixel> & pixels) const;
+//   void getPixels(std::vector<Pixel> & pixels) const;
+   const std::vector<Pixel> & pixels() const;
 
    void getBoundaryPixelDirs(std::vector<astro::SkyDir> & pixelDirs) const;
 
@@ -106,6 +111,8 @@ protected:
 private:
 
    astro::SkyDir m_center;
+
+   mutable std::vector<Pixel> m_pixels;
 
    CountsMap & operator=(const CountsMap & rhs) {return *this;}
 

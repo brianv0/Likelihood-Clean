@@ -622,7 +622,7 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    }
    resultsFile << "}" << std::endl;
    if (m_statistic == "BINNED") {
-      const std::vector<double> & data = m_dataMap->data();
+      const std::vector<float> & data = m_dataMap->data();
       double total_counts(0);
       for (unsigned int i = 0; i < data.size(); i++) {
             total_counts += data[i];

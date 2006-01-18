@@ -110,7 +110,7 @@ private:
 
    const CountsMap & m_dataMap;
 
-   std::vector<Pixel> m_pixels;
+   const std::vector<Pixel> & m_pixels;
    std::vector<double> m_energies;
 
    std::vector<double> m_countsSpectrum;
@@ -134,7 +134,7 @@ private:
 
    void computeModelMap(double & npred) const;
 
-   void computeModelMap(std::vector<double> & modelMap) const;
+   void computeModelMap(std::vector<float> & modelMap) const;
 
    void setImageDimensions(tip::Image * image, long * dims) const;
 

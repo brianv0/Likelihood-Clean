@@ -79,7 +79,7 @@ private:
 
    std::vector<double> m_energies;
 
-   std::vector<double> m_image;
+   std::vector<float> m_image;
 
    void init();
 
