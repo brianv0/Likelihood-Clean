@@ -131,15 +131,7 @@ void MapCubeFunction::readFitsFile(const std::string & fits_file) {
    m_proj = new astro::SkyProj(fitsFile);
 
    st_facilities::FitsImage fitsImage(fitsFile);
-
-   std::vector<double> my_image;
-      
-   fitsImage.getImageData(my_image);
-
-   m_image.reserve(my_image.size());
-   for (size_t i = 0; i < my_image.size(); i++) {
-      m_image.push_back(my_image.at(i));
-   }
+   m_image = fitsImage.imageData();
 
    std::vector<int> naxes;
    fitsImage.getAxisDims(naxes);
