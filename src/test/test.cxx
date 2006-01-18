@@ -703,14 +703,14 @@ void LikelihoodTests::test_BinnedLikelihood() {
    dataMap.writeOutput("test_Likelihood", "dataMap.fits");
    modelMap->writeOutput("test_Likelihood", "modelMap.fits");
 
-   const std::vector<double> & data = dataMap.data();
+   const std::vector<float> & data = dataMap.data();
    double dataSum(0);
    for (unsigned int i = 0; i < data.size(); i++) {
       dataSum += data[i];
    }
 //   std::cout << "Total counts in data map: " << dataSum << std::endl;
 
-   const std::vector<double> & model = modelMap->data();
+   const std::vector<float> & model = modelMap->data();
    double modelSum(0);
    for (unsigned int i = 0; i < model.size(); i++) {
       modelSum += model[i];

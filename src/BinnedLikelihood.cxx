@@ -32,7 +32,6 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
      m_modelIsCurrent(false), m_srcMapsFile(srcMapsFile),
      m_computePointSources(computePointSources),
      m_applyPsfCorrections(applyPsfCorrections) {
-//   dataMap.getPixels(m_pixels);
    dataMap.getAxisVector(2, m_energies);
    identifyFilledPixels();
    computeCountsSpectrum();
@@ -51,7 +50,6 @@ double BinnedLikelihood::value(optimizers::Arg &dummy) const {
    double npred;
    computeModelMap(npred);
 
-//   const std::vector<double> & data = m_dataMap.data();
    const std::vector<float> & data = m_dataMap.data();
    double my_value(0);
 
@@ -97,7 +95,6 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
    if (!m_modelIsCurrent) {
       computeModelMap(npred);
    }
-//   const std::vector<double> & data = m_dataMap.data();
    const std::vector<float> & data = m_dataMap.data();
    for (unsigned int j = 0; j < m_filledPixels.size(); j++) {
       unsigned long imin = m_filledPixels[j];
@@ -339,7 +336,6 @@ void BinnedLikelihood::setImageDimensions(tip::Image * image,
 }
 
 void BinnedLikelihood::identifyFilledPixels() {
-//   const std::vector<double> & data = m_dataMap.data();
    const std::vector<float> & data = m_dataMap.data();
    m_filledPixels.clear();
    for (unsigned int i = 0; i < data.size(); i++) {
