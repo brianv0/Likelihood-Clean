@@ -132,7 +132,14 @@ void MapCubeFunction::readFitsFile(const std::string & fits_file) {
 
    st_facilities::FitsImage fitsImage(fitsFile);
 
-   fitsImage.getImageData(m_image);
+   std::vector<double> my_image;
+      
+   fitsImage.getImageData(my_image);
+
+   m_image.reserve(my_image.size());
+   for (size_t i = 0; i < my_image.size(); i++) {
+      m_image.push_back(my_image.at(i));
+   }
 
    std::vector<int> naxes;
    fitsImage.getAxisDims(naxes);
