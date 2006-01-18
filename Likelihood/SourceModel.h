@@ -191,7 +191,8 @@ private:
 
    void computeModelMap(const std::vector<Pixel> & pixels,
                         const std::vector<double> & energies,
-                        std::vector<double> & modelMap) const;
+//                        std::vector<double> & modelMap) const;
+                        std::vector<float> & modelMap) const;
 
 };
 
