@@ -89,7 +89,7 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
    SkyDirArg & dir = dynamic_cast<SkyDirArg &>(x);
    double energy = dir.energy();
 
-   unsigned int k = findIndex(m_energies, energy) - 1;
+   size_t k = findIndex(m_energies, energy) - 1;
    k = std::min(k, m_energies.size() - 2);
 
    std::pair<double, double> pixel = dir().project(*m_proj);
