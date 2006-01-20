@@ -92,7 +92,7 @@ unsigned int ScData::time_index(double time) const {
 }
 
 astro::SkyDir ScData::zAxis(double time) const {
-   unsigned int indx = time_index(time);
+   size_t indx = time_index(time);
    indx = std::min(indx, vec.size()-2);
    double frac = (time - vec[indx].time)
       /(vec.at(indx+1).time - vec.at(indx).time);
@@ -102,7 +102,7 @@ astro::SkyDir ScData::zAxis(double time) const {
 }
 
 astro::SkyDir ScData::xAxis(double time) const {
-   unsigned int indx = time_index(time);
+   size_t indx = time_index(time);
    indx = std::min(indx, vec.size()-2);
    double frac = (time - vec[indx].time)
       /(vec.at(indx+1).time - vec.at(indx).time);
