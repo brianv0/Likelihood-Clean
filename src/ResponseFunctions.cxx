@@ -19,7 +19,8 @@
 namespace Likelihood {
    
 ResponseFunctions::~ResponseFunctions() {
-   std::map<size_t, irfInterface::Irfs *>::iterator it(m_respPtrs.begin());
+   std::map<unsigned int, irfInterface::Irfs *>::iterator 
+      it(m_respPtrs.begin());
    for ( ; it != m_respPtrs.end(); ++it) {
       deleteRespPtr(it->first);
    }
