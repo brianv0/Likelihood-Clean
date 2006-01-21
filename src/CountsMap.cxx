@@ -22,6 +22,7 @@
 #include "astro/SkyDir.h"
 #include "astro/SkyProj.h"
 
+#include "st_facilities/Env.h"
 #include "st_facilities/FitsImage.h"
 #include "st_facilities/Util.h"
 
@@ -506,11 +507,12 @@ void CountsMap::setCenter() {
 
 void CountsMap::setDataDir() {
 // Reset data dir for LatCountsMapTemplate
-   char * root_path = std::getenv("LIKELIHOODROOT");
-   if (!root_path) {
-      throw std::runtime_error("LIKELIHOODROOT not set.");
-   }
-   m_data_dir = std::string(root_path) + "/data/";
+//    char * root_path = std::getenv("LIKELIHOODROOT");
+//    if (!root_path) {
+//       throw std::runtime_error("LIKELIHOODROOT not set.");
+//    }
+//    m_data_dir = std::string(root_path) + "/data/";
+   m_data_dir = st_facilities::Env::getDataDir("Likelihood");
 }
 
 void CountsMap::deleteBinners(std::vector<evtbin::Binner *> & binners) const {
