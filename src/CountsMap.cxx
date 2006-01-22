@@ -299,7 +299,9 @@ void CountsMap::binInput(tip::Table::ConstIterator begin,
 void CountsMap::writeOutput(const std::string & creator, 
                             const std::string & out_file) const {
 
-   createFile(creator, out_file, m_data_dir + "LatCountsMapTemplate");
+   createFile(creator, out_file, 
+              st_facilities::Env::appendFileName(m_data_dir,
+                                                 "LatCountsMapTemplate"));
    
    std::auto_ptr<tip::Image> 
        output_image(tip::IFileSvc::instance().editImage(out_file, ""));
