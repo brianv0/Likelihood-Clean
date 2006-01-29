@@ -1,5 +1,5 @@
 package Likelihood
-version v11r1
+version v11r1p1
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
@@ -21,9 +21,7 @@ use irfLoader v* irfs
 use st_facilities v*
 use dataSubselector v*
 
-#apply_pattern ST_library option=" -no_share *.c "
-apply_pattern ST_library option=" *.c "
-apply_pattern shared_st_library
+apply_pattern ST_library option=" -no_share *.c "
 apply_pattern ST_pfiles
 
 apply_pattern ST_app_withDir name=gtlikelihood dir=likelihood
