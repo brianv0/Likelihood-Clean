@@ -54,7 +54,7 @@ public:
       }
    }
    virtual void run();
-   virtual void banner() const {}
+   virtual void banner() const;
 private:
    AppHelpers * m_helper;
    st_app::AppParGroup & m_pars;
@@ -62,12 +62,24 @@ private:
    void promptForParameters();
    void setSourceRegion();
    void createExposureMap();
+   static std::string s_cvs_id;
 };
 
 st_app::StAppFactory<ExpMap> myAppFactory("gtexpmap");
 
+std::string ExpMap::s_cvs_id("$Name$");
+
 ExpMap::ExpMap() : st_app::StApp(), m_helper(0), 
-                   m_pars(st_app::StApp::getParGroup("gtexpmap")) {}
+                   m_pars(st_app::StApp::getParGroup("gtexpmap")) {
+   setVersion(s_cvs_id);
+}
+
+void ExpMap::banner() const {
+   int verbosity = m_pars["chatter"];
+   if (verbosity > 2) {
+      st_app::StApp::banner();
+   }
+}
 
 void ExpMap::run() {
    promptForParameters();
