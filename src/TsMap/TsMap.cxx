@@ -56,7 +56,7 @@ public:
       }
    }
    virtual void run();
-   virtual void banner() const {}
+   virtual void banner() const;
 private:
    AppHelpers * m_helper;
    st_app::AppParGroup & m_pars;
@@ -81,13 +81,26 @@ private:
    void makeDoubleVector(double xmin, double xmax, int nx,
                          std::vector<double> &xVals);
    void setPointSourceSpectrum(PointSource &src);
+
+   static std::string s_cvs_id;
 };
 
 st_app::StAppFactory<TsMap> myAppFactory("gttsmap");
 
 TsMap::TsMap() : st_app::StApp(), m_helper(0), 
                  m_pars(st_app::StApp::getParGroup("gttsmap")),
-                 m_logLike(0), m_opt(0) {}
+                 m_logLike(0), m_opt(0) {
+   setVersion(s_cvs_id);
+}
+
+std::string TsMap::s_cvs_id("$Name$");
+
+void TsMap::banner() const {
+   int verbosity = m_pars["chatter"];
+   if (verbosity > 2) {
+      st_app::StApp::banner();
+   }
+}
 
 void TsMap::run() {
    m_pars.Prompt();
