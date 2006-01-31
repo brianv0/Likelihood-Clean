@@ -636,8 +636,8 @@ void LikelihoodTests::generate_exposureHyperCube() {
    std::vector<std::pair<double, double> > timeCuts;
    m_roiCuts->getTimeCuts(timeCuts);
    LikeExposure exposure(1., 0.025, timeCuts, m_roiCuts->gtis());
-   tip::Table * scData = tip::IFileSvc::instance().editTable(m_scFile,
-                                                             "SC_DATA");
+   const tip::Table * scData = tip::IFileSvc::instance().readTable(m_scFile,
+                                                                   "SC_DATA");
    exposure.load(scData, false);
    std::string output_file = m_rootPath + "/data/expcube_1_day.fits";
    exposure.write(output_file);

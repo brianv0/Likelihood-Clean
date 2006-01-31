@@ -38,7 +38,7 @@ public:
                 const std::vector< std::pair<double, double> > & timeCuts,
                 const std::vector< std::pair<double, double> > & gtis);
 
-   void load(tip::Table * tuple, bool verbose=true);
+   void load(const tip::Table * tuple, bool verbose=true);
 
    /// @param start MET start time of interval (seconds)
    /// @param stop MET stop time of interval (seconds)

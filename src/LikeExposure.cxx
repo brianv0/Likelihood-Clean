@@ -25,12 +25,12 @@ LikeExposure(double skybin, double costhetabin,
    : map_tools::Exposure(skybin, costhetabin), m_timeCuts(timeCuts),
      m_gtis(gtis) {}
 
-void LikeExposure::load(tip::Table * scData, bool verbose) {
+void LikeExposure::load(const tip::Table * scData, bool verbose) {
    
    double ra, dec, start, stop, livetime;
 
-   tip::Table::Iterator it = scData->begin();
-   tip::Table::Record & row = *it;
+   tip::Table::ConstIterator it = scData->begin();
+   tip::ConstTableRecord & row = *it;
    long nrows = scData->getNumRecords();
 
    double maxTime(0);
