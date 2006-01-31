@@ -649,7 +649,9 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
                   std::cout << eObj.what() << std::endl;
                }
             } else {
-               renormModel();
+               if (m_statistic != "BINNED") {
+                  renormModel();
+               }
             }
             null_value = std::max(m_logLike->value(), null_value);
             TsValues[srcNames[i]] = 2.*(logLike_value - null_value);

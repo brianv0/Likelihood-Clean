@@ -31,7 +31,8 @@ void ScData::readData(std::string file, bool clear,
 
    m_scFile = file;
 
-   tip::Table * scData = tip::IFileSvc::instance().editTable(file, sctable);
+   const tip::Table * scData = 
+      tip::IFileSvc::instance().readTable(file, sctable);
 
    if (clear) {
       vec.clear();
@@ -39,8 +40,8 @@ void ScData::readData(std::string file, bool clear,
 
    double raSCX, decSCX;
    double raSCZ, decSCZ;
-   tip::Table::Iterator it = scData->begin();
-   tip::Table::Record & scInterval = *it;
+   tip::Table::ConstIterator it = scData->begin();
+   tip::ConstTableRecord & scInterval = *it;
    for ( ; it != scData->end(); ++it) {
       ScNtuple tuple;
       scInterval["start"].get(tuple.time);
