@@ -33,7 +33,7 @@
 #include "optimizers/Exception.h"
 #include "optimizers/Lbfgs.h"
 #include "optimizers/Minuit.h"
-#include "optimizers/newMinuit.h"
+//#include "optimizers/newMinuit.h"
 #ifdef HAVE_OPT_PP
 #include "optimizers/OptPP.h"
 #endif // HAVE_OPT_PP
@@ -401,8 +401,8 @@ void likelihood::selectOptimizer(std::string optimizer) {
       m_opt = new optimizers::Lbfgs(*m_logLike);
    } else if (optimizer == "MINUIT") {
       m_opt = new optimizers::Minuit(*m_logLike);
-   } else if (optimizer == "NEWMINUIT") {
-      m_opt = new optimizers::newMinuit(*m_logLike);
+//    } else if (optimizer == "NEWMINUIT") {
+//       m_opt = new optimizers::newMinuit(*m_logLike);
    } else if (optimizer == "DRMNGB") {
       m_opt = new optimizers::Drmngb(*m_logLike);
 #ifdef HAVE_OPT_PP
