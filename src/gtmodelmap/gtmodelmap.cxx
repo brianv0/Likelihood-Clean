@@ -325,7 +325,7 @@ void ModelMap::createRegistry() {
    std::string xmlFile = m_pars["source_model_file"];
    std::string irfs = m_pars["rspfunc"];
    std::string expCube = m_pars["expcube"];
-   std::string binnedExpMap = m_pars["binned_exposure"];
+   std::string binnedExpMap = m_pars["binned_exposure_map"];
 
    if (expCube != "none") {
       m_registry = new SourceMapRegistry(countsMap, xmlFile, irfs, expCube,
