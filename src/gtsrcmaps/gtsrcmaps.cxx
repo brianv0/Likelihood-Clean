@@ -122,7 +122,8 @@ void gtsrcmaps::run() {
    roiCuts.setCuts(ra, dec, 20., energies.front(), energies.back());
 
    std::string binnedMap = m_pars["binned_exposure_map"];
-   if (binnedMap != "none" && binnedMap != "") {
+   SourceMap::setBinnedExpMapName(binnedMap);
+   if (st_facilities::Util::fileExists(binnedMap)) {
       SourceMap::setBinnedExposure(binnedMap);
    }
    bool computePointSources =
