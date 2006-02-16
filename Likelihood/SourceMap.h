@@ -50,6 +50,14 @@ public:
       return m_srcType;
    }
 
+   static void setBinnedExpMapName(const std::string & filename) {
+      s_expMapFileName = filename;
+   }
+
+   static const std::string & binnedExpMap() {
+      return s_expMapFileName;
+   }
+
 private:
 
    std::string m_name;
@@ -80,6 +88,9 @@ private:
    private:
       const Observation & m_observation;
    };
+
+/// @bug The binned exposure and mean psf handling is not thread safe.
+   static std::string s_expMapFileName;
 
    static MeanPsf * s_meanPsf;
    static BinnedExposure * s_binnedExposure;
