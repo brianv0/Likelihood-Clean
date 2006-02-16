@@ -120,7 +120,10 @@ void BinnedExposure::computeMap() {
          astro::SkyDir dir(coord.first, coord.second);
          for (unsigned int k = 0; k < m_energies.size(); k++) {
             unsigned int indx = (k*m_naxes.at(1) + j)*m_naxes.at(0) + i;
-            for (int evtType = 0; evtType < 2; evtType++) {
+            std::map<unsigned int, irfInterface::Irfs *>::const_iterator 
+               resp = m_observation->respFuncs().begin();
+            for (; resp != m_observation->respFuncs().end(); ++resp) {
+               int evtType = resp->second->irfID();
                Aeff aeff(m_energies[k], evtType, *m_observation);
                m_exposureMap.at(indx)
                   += m_observation->expCube().value(dir, aeff);
