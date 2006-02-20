@@ -126,7 +126,14 @@ void MapCubeFunction::init() {
 void MapCubeFunction::readFitsFile(const std::string & fits_file) {
    std::string fitsFile(fits_file);
    facilities::Util::expandEnvVar(&fitsFile);
-   st_facilities::Util::file_ok(fitsFile);
+//   st_facilities::Util::file_ok(fitsFile);
+   if (!st_facilities::Util::fileExists(fitsFile)) {
+// The following to stdout is necessary since Xerces seems to corrupt
+// the exception handling when this method is called from
+// SourceFactory::readXml and the program simply aborts.
+      std::cout << "File not found: " << fitsFile << std::endl;
+      throw std::runtime_error("File not found: " + fitsFile);
+   }
    m_fitsFile = fitsFile;
    m_proj = new astro::SkyProj(fitsFile);
 
