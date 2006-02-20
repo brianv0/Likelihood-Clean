@@ -9,7 +9,11 @@
  *
  */
 
+#include <stdexcept>
+
 #include "facilities/Util.h"
+
+#include "st_facilities/Util.h"
 
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/SpatialMap.h"
@@ -70,6 +74,13 @@ void SpatialMap::readFitsFile(const std::string & fitsFile,
 
    facilities::Util::expandEnvVar(&m_fitsFile);
 
+   if (!st_facilities::Util::fileExists(m_fitsFile)) {
+// The following to stdout is necessary since Xerces seems to corrupt
+// the exception handling when this method is called from
+// SourceFactory::readXml and the program simply aborts.
+      std::cout << "File not found: " << m_fitsFile << std::endl;
+      throw std::runtime_error("File not found: " + m_fitsFile);
+   }
    m_wcsmap = new WcsMap(m_fitsFile, extension);
 }
 
