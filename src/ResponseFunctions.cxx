@@ -6,6 +6,7 @@
  * $Header$
  */
 
+#include <sstream>
 #include <stdexcept>
 
 #include "astro/SkyDir.h"
@@ -102,8 +103,14 @@ void ResponseFunctions::load(const std::string & respFuncs) {
       }
       setRespName(respFuncs);
    } else {
-      throw std::invalid_argument("Invalid response function choice: "
-                                  + respFuncs);
+      std::ostringstream message;
+      message << "Invalid response function choice: " << respFuncs << "\n"
+              << "Valid choices are \n";
+      for (respMap::const_iterator resp = responseIds.begin();
+           resp != responseIds.end(); ++resp) {
+         message << resp->first << "\n";
+      }
+      throw std::invalid_argument(message.str());
    }
 }
 
