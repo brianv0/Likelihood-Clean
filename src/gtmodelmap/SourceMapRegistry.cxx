@@ -54,9 +54,13 @@ SourceMapRegistry::SourceMapRegistry(const std::string & countsMap,
    m_observation = new Likelihood::Observation(respFuncs, scData, roiCuts,
                                                expCube, expMap, eventCont);
 
-   if (binnedExpMap != "" && binnedExpMap != "none") {
+   Likelihood::SourceMap::setBinnedExpMapName(binnedExpMap);
+   if (st_facilities::Util::fileExists(binnedExpMap)) {
       Likelihood::SourceMap::setBinnedExposure(binnedExpMap);
    }
+//    if (binnedExpMap != "" && binnedExpMap != "none") {
+//       Likelihood::SourceMap::setBinnedExposure(binnedExpMap);
+//    }
 
    m_countsMap = new Likelihood::CountsMap(countsMap);
 
