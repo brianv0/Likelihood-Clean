@@ -158,7 +158,14 @@ void AppHelpers::createResponseFuncs() {
    m_respFuncs = new ResponseFunctions();
    st_app::AppParGroup & pars(*m_pars);
    std::string respBase = pars["rspfunc"];
-   std::string evfile = pars["evfile"];
+   std::string evfile;
+   try {
+      std::string myfile = pars["evfile"];
+      evfile = myfile;  // sheesh.
+   } catch (...) {
+      std::string myfile = pars["counts_map_file"];
+      evfile = myfile;
+   }
    std::vector<std::string> files;
    st_facilities::Util::resolve_fits_files(evfile, files);
    if (respBase == "DSS") {
