@@ -125,10 +125,13 @@ void TsMap::run() {
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], m_eventFiles);
    std::string ev_table = m_pars["evtable"];
    bool compareGtis(false);
+   bool relyOnStreams(false);
+   std::string respfunc = m_pars["rspfunc"];
+   bool skipEventClassCuts(respfunc != "DSS");
    for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
       AppHelpers::checkCuts(m_eventFiles[0], ev_table,
                             m_eventFiles[i], ev_table,
-                            compareGtis);
+                            compareGtis, relyOnStreams, skipEventClassCuts);
    }
    m_helper->setRoi(m_eventFiles[0]);
    m_helper->readScData();
