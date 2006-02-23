@@ -77,10 +77,14 @@ void gtcntsmap::run() {
    std::vector<std::string> eventFiles;
    st_facilities::Util::resolve_fits_files(event_file, eventFiles);
    bool compareGtis(false);
+   bool relyOnStreams(false);
+   std::string respfunc = m_pars["rspfunc"];
+   bool skipEventClassCuts(respfunc != "DSS");
    for (unsigned int i = 1; i < eventFiles.size(); i++) {
       AppHelpers::checkCuts(eventFiles[0], evtable,
                             eventFiles[i], evtable,
-                            compareGtis);
+                            compareGtis, relyOnStreams, 
+                            skipEventClassCuts);
    }
 
    m_cuts = new dataSubselector::Cuts(eventFiles, evtable);

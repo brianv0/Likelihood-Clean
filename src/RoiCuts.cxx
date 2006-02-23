@@ -63,7 +63,7 @@ void RoiCuts::readCuts(const std::string & eventFile,
 
 void RoiCuts::readCuts(const std::vector<std::string> & eventFiles, 
                        const std::string & ext, bool strict) {
-   m_cuts = new dataSubselector::Cuts(eventFiles, ext, false);
+   m_cuts = new dataSubselector::Cuts(eventFiles, ext, false, false, true);
    sortCuts(strict);
    setRoiData();
 }
