@@ -51,7 +51,8 @@ public:
                   m_scData(0), m_expCube(0), m_expMap(0), m_respFuncs(0),
                   m_roiCuts(0), m_eventCont(0) {}
 #ifndef SWIG
-   AppHelpers(st_app::AppParGroup * pars);
+   AppHelpers(st_app::AppParGroup * pars, 
+              const std::string & analysisType="UNBINNED");
 
    ~AppHelpers();
 
@@ -132,7 +133,7 @@ protected:
    EventContainer * m_eventCont;
 
    void prepareFunctionFactory();
-   void createResponseFuncs();
+   void createResponseFuncs(const std::string & analysisType);
 
    static bool AppHelpers::
    checkTimeCuts(const dataSubselector::Cuts & cuts1,

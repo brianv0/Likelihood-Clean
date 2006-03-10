@@ -63,7 +63,7 @@ void meanPsf::banner() const {
 void meanPsf::run() {
    m_pars.Prompt();
    m_pars.Save();
-   m_helper = new AppHelpers(&m_pars);
+   m_helper = new AppHelpers(&m_pars, "none");
    std::string expcube_file = m_pars["exposure_cube_file"];
    if (expcube_file == "none") {
       throw std::runtime_error("Please specify an exposure cube file.");
