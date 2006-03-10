@@ -98,7 +98,7 @@ void gtsrcmaps::run() {
    m_pars.Prompt();
    m_pars.Save();
    Likelihood::Verbosity::instance(m_pars["chatter"]);
-   m_helper = new AppHelpers(&m_pars);
+   m_helper = new AppHelpers(&m_pars, "BINNED");
    m_helper->readScData();
    m_helper->checkOutputFile();
    m_helper->checkTimeCuts(m_pars["counts_map_file"], "",
