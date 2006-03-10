@@ -77,7 +77,7 @@ void BackFile::banner() const {
 void BackFile::setup() {
    m_pars.Prompt();
    m_pars.Save();
-   m_helper = new Likelihood::AppHelpers(&m_pars);
+   m_helper = new Likelihood::AppHelpers(&m_pars, "none");
    std::string scfile = m_pars["scfile"];
    m_helper->observation().scData().readData(scfile);
    std::string expMap = m_pars["exposure_map_file"];
