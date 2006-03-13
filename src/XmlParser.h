@@ -11,6 +11,8 @@
 
 #include "xmlBase/XmlParser.h"
 
+#include "st_facilities/libStApiExports.h"
+
 namespace Likelihood {
 
 /**
@@ -21,7 +23,7 @@ namespace Likelihood {
  * @author J. Chiang
  */
 
-class XmlParser {
+class SCIENCETOOLS_API XmlParser {
 
 public:
 
