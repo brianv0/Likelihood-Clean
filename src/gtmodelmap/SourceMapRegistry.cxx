@@ -31,7 +31,8 @@ SourceMapRegistry::SourceMapRegistry(const std::string & countsMap,
                                      const std::string & irfs,
                                      const std::string & expCubeFile,
                                      const std::string & binnedExpMap,
-                                     optimizers::FunctionFactory & funcFactory)
+                                     optimizers::FunctionFactory & funcFactory,
+                                     bool performConvolution)
    : m_observation(0), m_countsMap(0), m_logLike(0), m_sourceMap(0) {
 
    Likelihood::ResponseFunctions * respFuncs = 
@@ -68,8 +69,8 @@ SourceMapRegistry::SourceMapRegistry(const std::string & countsMap,
    bool applyPsfCorrections(false);
    m_logLike = new Likelihood::BinnedLikelihood(*m_countsMap, *m_observation,
                                                 countsMap, computePointSources,
-                                                applyPsfCorrections);
-
+                                                applyPsfCorrections,
+                                                performConvolution);
    m_logLike->readXml(xmlFile, funcFactory, false);
 }
 
