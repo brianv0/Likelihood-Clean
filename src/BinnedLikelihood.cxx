@@ -27,11 +27,13 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
                                    const Observation & observation,
                                    const std::string & srcMapsFile,
                                    bool computePointSources,
-                                   bool applyPsfCorrections)
+                                   bool applyPsfCorrections,
+                                   bool performConvolution)
    : LogLike(observation), m_dataMap(dataMap), m_pixels(dataMap.pixels()),
      m_modelIsCurrent(false), m_srcMapsFile(srcMapsFile),
      m_computePointSources(computePointSources),
-     m_applyPsfCorrections(applyPsfCorrections) {
+     m_applyPsfCorrections(applyPsfCorrections),
+     m_performConvolution(performConvolution) {
    dataMap.getAxisVector(2, m_energies);
    identifyFilledPixels();
    computeCountsSpectrum();
@@ -218,7 +220,8 @@ void BinnedLikelihood::createSourceMaps() {
 
 SourceMap * BinnedLikelihood::createSourceMap(const std::string & srcName) {
    Source * src = getSource(srcName);
-   return new SourceMap(src, &m_dataMap, m_observation, m_applyPsfCorrections);
+   return new SourceMap(src, &m_dataMap, m_observation, m_applyPsfCorrections,
+                        m_performConvolution);
 }
 
 void BinnedLikelihood::readSourceMaps(std::string filename) {
@@ -249,7 +252,8 @@ void BinnedLikelihood::readSourceMaps(std::string filename) {
          Source * src = getSource(*name);
          if (src->getType() == "Diffuse" || m_computePointSources) {
             m_srcMaps[*name] = new SourceMap(src, &m_dataMap, m_observation,
-                                             m_applyPsfCorrections);
+                                             m_applyPsfCorrections,
+                                             m_performConvolution);
          }
       }
    }

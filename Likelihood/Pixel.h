@@ -53,6 +53,28 @@ public:
 
    double solidAngle() const {return m_solidAngle;}
 
+   /// @return The iterator to the Pixel object that is closest to the
+   /// input Pixel object in angular distance.
+   template<class InIt>
+   static InIt find(InIt first, InIt last, const Pixel & val) {
+      InIt closest = first;
+      double dist(first->dir().difference(val.dir()));
+      for (InIt candidate = first; candidate != last; ++candidate) {
+         double newdist(candidate->dir().difference(val.dir()));
+         if (newdist < dist) {
+            dist = newdist;
+            closest = candidate;
+         }
+      }
+/// @todo Use wcslib information to determine Pixel shape and whether
+/// the current point is really inside the nearest Pixel. Here we use
+/// a crude approximation.
+      if ((1. - closest->solidAngle()/2./M_PI) < std::cos(dist)) {
+         return closest;
+      }
+      return last;
+   }
+
 #ifndef SWIG
    class Aeff {
    public:

@@ -37,7 +37,8 @@ public:
                      const std::string & irfs,
                      const std::string & expCube,
                      const std::string & binnedExpMap,
-                     optimizers::FunctionFactory & funcFactory);
+                     optimizers::FunctionFactory & funcFactory,
+                     bool performConvolution=true);
 
    ~SourceMapRegistry();
 
