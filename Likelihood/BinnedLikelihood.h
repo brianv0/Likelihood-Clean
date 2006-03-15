@@ -39,7 +39,8 @@ public:
                     const Observation & observation,
                     const std::string & srcMapsFile="",
                     bool computePointSources=true,
-                    bool applyPsfCorrections=true);
+                    bool applyPsfCorrections=true,
+                    bool performConvolution=true);
 
 //   BinnedLikelihood(const std::string & dataMapFile);
                  
@@ -127,6 +128,8 @@ private:
    bool m_computePointSources;
 
    bool m_applyPsfCorrections;
+
+   bool m_performConvolution;
 
    void createSourceMaps();
 

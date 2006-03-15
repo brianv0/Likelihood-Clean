@@ -32,7 +32,8 @@ public:
 
    SourceMap(Source * src, const CountsMap * dataMap,
              const Observation & observation,
-             bool applyPsfCorrections=false);
+             bool applyPsfCorrections=false,
+             bool performConvolution=true);
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
 

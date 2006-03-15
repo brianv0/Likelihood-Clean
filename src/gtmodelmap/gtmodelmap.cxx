@@ -326,10 +326,12 @@ void ModelMap::createRegistry() {
    std::string irfs = m_pars["rspfunc"];
    std::string expCube = m_pars["expcube"];
    std::string binnedExpMap = m_pars["binned_exposure_map"];
+   bool performConvolution = m_pars["perform_convolution"];
 
    if (expCube != "none") {
       m_registry = new SourceMapRegistry(countsMap, xmlFile, irfs, expCube,
-                                         binnedExpMap, *m_funcFactory);
+                                         binnedExpMap, *m_funcFactory,
+                                         performConvolution);
    } else {
       m_registry = 0;
    }
