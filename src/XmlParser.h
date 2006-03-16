@@ -11,7 +11,7 @@
 
 #include "xmlBase/XmlParser.h"
 
-//#include "st_facilities/libStApiExports.h"
+#include "st_facilities/libStApiExports.h"
 
 namespace Likelihood {
 
@@ -23,8 +23,7 @@ namespace Likelihood {
  * @author J. Chiang
  */
 
-//class SCIENCETOOLS_API XmlParser {
-class XmlParser {
+class SCIENCETOOLS_API XmlParser {
 
 public:
 
@@ -41,6 +40,10 @@ private:
    static xmlBase::XmlParser * s_instance;
 
 };
+
+// Opaque wrapper since linkage of exported symbols from windows dlls is
+// all fouled up.
+xmlBase::XmlParser * XmlParser_instance();
 
 } // namespace Likelihood
 
