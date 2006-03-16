@@ -14,4 +14,8 @@ namespace Likelihood {
 
 xmlBase::XmlParser * XmlParser::s_instance(0);
 
+xmlBase::XmlParser * XmlParser_instance() {
+   return XmlParser::instance();
+}
+
 } // namespace Likelihood

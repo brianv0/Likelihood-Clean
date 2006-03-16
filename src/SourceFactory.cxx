@@ -94,7 +94,8 @@ void SourceFactory::readXml(const std::string &xmlFile,
    throw(Exception) {
    m_requireExposure = requireExposure;
 
-   xmlBase::XmlParser * parser = XmlParser::instance();
+//   xmlBase::XmlParser * parser = XmlParser::instance();
+   xmlBase::XmlParser * parser = XmlParser_instance();
 
    DOMDocument * doc = parser->parse(xmlFile.c_str());
 

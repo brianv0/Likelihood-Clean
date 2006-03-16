@@ -13,6 +13,7 @@
 
 #include "irfInterface/IrfsFactory.h"
 
+#undef ST_API_EXPORTS
 #include "irfLoader/Loader.h"
 
 #include "Likelihood/ResponseFunctions.h"
@@ -101,12 +102,14 @@ irfInterface::Irfs * ResponseFunctions::respPtr(unsigned int i) const {
 }
 
 void ResponseFunctions::load(const std::string & respFuncs) {
-   irfLoader::Loader::go();
+//   irfLoader::Loader::go();
+   irfLoader::Loader_go();
    irfInterface::IrfsFactory * myFactory 
       = irfInterface::IrfsFactory::instance();
       
    typedef std::map< std::string, std::vector<std::string> > respMap;
-   const respMap & responseIds = irfLoader::Loader::respIds();
+//   const respMap & responseIds = irfLoader::Loader::respIds();
+   const respMap & responseIds = irfLoader::Loader_respIds();
    respMap::const_iterator it;
    if ( (it = responseIds.find(respFuncs)) != responseIds.end() ) {
       const std::vector<std::string> & resps = it->second;

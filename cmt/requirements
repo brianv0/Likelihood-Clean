@@ -23,10 +23,10 @@ use dataSubselector v*
 use hoops v*
 use st_app v*
 
-apply_pattern ST_library option=" -no_share *.c "
-#apply_pattern ST_library option=" *.c "
-#apply_pattern shared_st_library
-#apply_pattern ST_pfiles
+#apply_pattern ST_library option=" -no_share *.c "
+apply_pattern ST_library option=" *.c "
+apply_pattern shared_st_library
+apply_pattern ST_pfiles
 
 apply_pattern ST_app_withDir name=gtlikelihood dir=likelihood
 apply_pattern ST_app_withDir name=gtexpmap dir=expMap
@@ -39,3 +39,4 @@ apply_pattern ST_app_withDir name=gtpsf dir=meanPsf
 apply_pattern ST_app_withDir name=gtbackfile dir=backfile
 apply_pattern ST_app name=gtmodelmap
 apply_pattern ST_app name=gtaddlivetime
+

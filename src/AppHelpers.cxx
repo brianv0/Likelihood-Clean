@@ -11,7 +11,8 @@
 #include <stdexcept>
 #include <vector>
 
-#include "irfLoader/Loader.h"
+// #undef ST_API_EXPORTS
+// #include "irfLoader/Loader.h"
 #include "irfInterface/IrfsFactory.h"
 
 #include "st_facilities/Util.h"
