@@ -9,12 +9,11 @@
 #ifndef Likelihood_Verbosity_h
 #define Likelihood_Verbosity_h
 
-//#include "st_facilities/libStApiExports.h"
+#include "st_facilities/libStApiExports.h"
 
 namespace Likelihood {
 
-//class SCIENCETOOLS_API Verbosity {
-class Verbosity {
+class SCIENCETOOLS_API Verbosity {
 
 public:
    static Verbosity * instance(unsigned int verbosity=2, bool clobber=true) {
