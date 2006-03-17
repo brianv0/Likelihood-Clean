@@ -142,12 +142,12 @@ protected:
 
    static void AppHelpers::
    gatherTimeCuts(const dataSubselector::Cuts & cuts,
-                  std::vector<const dataSubselector::CutBase *> time_cuts,
+                  std::vector<const dataSubselector::CutBase *> & time_cuts,
                   bool compareGtis);
 
    static void AppHelpers::
    gatherGtiCuts(const dataSubselector::Cuts & cuts,
-                 std::vector<const dataSubselector::CutBase *> time_cuts);
+                 std::vector<const dataSubselector::CutBase *> & time_cuts);
 
 private:
 
