@@ -29,7 +29,9 @@
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/Source.h"
+#define ST_DLL_EXPORTS
 #include "Likelihood/SourceMap.h"
+#undef ST_DLL_EXPORTS
 #include "Likelihood/TrapQuad.h"
 
 #include "Likelihood/WcsMap.h"

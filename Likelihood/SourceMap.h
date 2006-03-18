@@ -10,6 +10,8 @@
 #ifndef Likelihood_SourceMap_h
 #define Likelihood_SourceMap_h
 
+#include "st_facilities/libStApiExports.h"
+
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/MeanPsf.h"
 #include "Likelihood/Pixel.h"
@@ -26,7 +28,11 @@ namespace Likelihood {
  * $Header$
  */
 
+#ifdef SWIG
 class SourceMap {
+#else
+class SCIENCETOOLS_API SourceMap {
+#endif
 
 public:
 

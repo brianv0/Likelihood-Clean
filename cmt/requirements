@@ -26,6 +26,7 @@ use st_app v*
 #apply_pattern ST_library option=" -no_share *.c "
 apply_pattern ST_library option=" *.c "
 apply_pattern shared_st_library
+macro Likelihood_linkops ""
 apply_pattern ST_pfiles
 
 apply_pattern ST_app_withDir name=gtlikelihood dir=likelihood
