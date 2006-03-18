@@ -85,11 +85,11 @@ void AddLivetime::promptForParameters() {
 }
 
 void AddLivetime::checkGtis() {
-   std::string infile1 = m_pars["infile1"];
-   std::string infile2 = m_pars["infile2"];
-   std::string table_name = m_pars["table"];
-   Likelihood::AppHelpers::checkTimeCuts(infile1, table_name,
-                                         infile2, table_name);
+//    std::string infile1 = m_pars["infile1"];
+//    std::string infile2 = m_pars["infile2"];
+//    std::string table_name = m_pars["table"];
+//    Likelihood::AppHelpers::checkTimeCuts(infile1, table_name,
+//                                          infile2, table_name);
 }
 
 void AddLivetime::addFiles() {
