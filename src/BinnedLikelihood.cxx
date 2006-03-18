@@ -16,7 +16,9 @@
 
 #include "Likelihood/BinnedLikelihood.h"
 #include "Likelihood/CountsMap.h"
+#define ST_DLL_EXPORTS
 #include "Likelihood/SourceMap.h"
+#undef ST_DLL_EXPORTS
 #include "Likelihood/SourceModel.h"
 
 #include "Verbosity.h"
