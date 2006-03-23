@@ -169,7 +169,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
       } else {
          const std::vector<Pixel>::const_iterator targetPixel = 
             Pixel::find(pixels.begin(), pixels.end(),
-                        Pixel(dir.ra(), dir.dec(), 1));
+                        Pixel(dir.ra(), dir.dec(), 1), 2.);
          if (targetPixel != pixels.end()) {
             size_t ipix = targetPixel - pixels.begin();
             std::vector<double>::const_iterator energy = energies.begin();
