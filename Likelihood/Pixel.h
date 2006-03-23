@@ -56,7 +56,8 @@ public:
    /// @return The iterator to the Pixel object that is closest to the
    /// input Pixel object in angular distance.
    template<class InIt>
-   static InIt find(InIt first, InIt last, const Pixel & val) {
+   static InIt find(InIt first, InIt last, const Pixel & val, 
+                    double fudgeFactor=1) {
       InIt closest = first;
       double dist(first->dir().difference(val.dir()));
       for (InIt candidate = first; candidate != last; ++candidate) {
@@ -69,7 +70,7 @@ public:
 /// @todo Use wcslib information to determine Pixel shape and whether
 /// the current point is really inside the nearest Pixel. Here we use
 /// a crude approximation.
-      if ((1. - closest->solidAngle()/2./M_PI) < std::cos(dist)) {
+      if ((1. - closest->solidAngle()/2./M_PI) < std::cos(dist/fudgeFactor)) {
          return closest;
       }
       return last;
