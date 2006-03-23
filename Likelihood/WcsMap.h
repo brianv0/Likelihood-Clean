@@ -50,6 +50,10 @@ public:
    WcsMap convolve(double energy, const MeanPsf & psf,
                    const BinnedExposure & exposure) const;
 
+   const std::vector< std::vector<double> > & image() const {
+      return m_image;
+   }
+
 private:
 
    astro::SkyDir m_refDir;
