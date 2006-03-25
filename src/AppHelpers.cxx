@@ -86,10 +86,10 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
    m_funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
    m_funcFactory->addFunc("BrokenPowerLaw2", new BrokenPowerLaw2(), makeClone);
-   m_funcFactory->addFunc("BrokenPowerLawExpCutoff", 
-                          new BrokenPowerLawExpCutoff(), makeClone);
    m_funcFactory->addFunc("FileFunction", new FileFunction(), makeClone);
    m_funcFactory->addFunc("ExpCutoff", new ExpCutoff(), makeClone);
+   m_funcFactory->addFunc("BPLExpCutoff", new BrokenPowerLawExpCutoff(),
+                          makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,

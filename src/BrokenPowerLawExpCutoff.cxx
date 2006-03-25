@@ -41,7 +41,7 @@ void BrokenPowerLawExpCutoff::init(double Prefactor, double Index1,
    m_funcType = Addend;
    m_argType = "dArg";
 
-   m_genericName = "BrokenPowerLawExpCutoff";
+   m_genericName = "BPLExpCutoff";
 }
 
 double BrokenPowerLawExpCutoff::value(optimizers::Arg &xarg) const {
