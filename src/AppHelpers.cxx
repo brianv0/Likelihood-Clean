@@ -11,8 +11,6 @@
 #include <stdexcept>
 #include <vector>
 
-// #undef ST_API_EXPORTS
-// #include "irfLoader/Loader.h"
 #include "irfInterface/IrfsFactory.h"
 
 #include "st_facilities/Util.h"
@@ -352,24 +350,9 @@ void AppHelpers::checkTimeCuts(const std::vector<std::string> & files1,
 bool AppHelpers::checkTimeCuts(const dataSubselector::Cuts & cuts1,
                                const dataSubselector::Cuts & cuts2,
                                bool compareGtis) {
-// // This is a bit fragile as one must assume the ordering of the 
-// // cuts is the same for both Cuts objects.
-//    std::vector<const dataSubselector::CutBase *> time_cuts1;
-//    std::vector<const dataSubselector::CutBase *> time_cuts2;
-//    gatherTimeCuts(cuts1, time_cuts1, compareGtis);
-//    gatherTimeCuts(cuts2, time_cuts2, compareGtis);
-//    bool ok(true);
-//    if (time_cuts1.size() == time_cuts2.size()) {
-//       for (unsigned int i = 0; i < time_cuts1.size(); i++) {
-//          ok = ok && *(time_cuts1[i]) == *(time_cuts2[i]);
-//       }
-//    } else {
-//       ok = false;
-//    }
-//    return ok;
-
 // Assume GTIs encapsulate all of the time range information, so that
 // individual time range cuts need not be checked.
+
    (void)(compareGtis);
    std::vector<const dataSubselector::CutBase *> time_cuts1;
    std::vector<const dataSubselector::CutBase *> time_cuts2;
