@@ -210,7 +210,7 @@ WcsMap WcsMap::convolve(double energy, const MeanPsf & psf,
    }
 
    for (int j = 0; j < m_naxis2; j++) {
-      counts.at(j).resize(m_naxis1);
+      counts.at(j).resize(m_naxis1, 0);
       psf_image.at(j).resize(m_naxis1);
       for (int i = 0; i < m_naxis1; i++) {
          std::pair<double, double> coord = m_proj->pix2sph(i+1, j+1);
