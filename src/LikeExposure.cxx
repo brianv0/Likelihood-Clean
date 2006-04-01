@@ -16,6 +16,17 @@
 #include "Likelihood/LikeExposure.h"
 #include "Likelihood/RoiCuts.h"
 
+namespace {
+   bool compareFirst(const std::pair<double, double> & a, 
+                     const std::pair<double, double> & b) {
+      return a.first < b.first;
+   }
+   bool compareSecond(const std::pair<double, double> & a, 
+                      const std::pair<double, double> & b) {
+      return a.second < b.second;
+   }
+}
+
 namespace Likelihood {
 
 LikeExposure::
@@ -84,10 +95,10 @@ acceptInterval(double start, double stop,
                                   
    std::pair<double, double> candidateInterval(start, stop);
 
-   std::vector< std::pair<double, double> >::const_iterator it 
-      = timeCuts.begin();
+   typedef std::vector< std::pair<double, double> > IntervalCont_t;
+   IntervalCont_t::const_iterator it;
 
-   for ( ; it != timeCuts.end(); ++it) {
+   for (it = timeCuts.begin(); it != timeCuts.end(); ++it) {
       if (!overlaps(*it, candidateInterval)) {
          fraction = 0;
          return false;
@@ -96,8 +107,25 @@ acceptInterval(double start, double stop,
    
    double total(0);
    double maxTotal(candidateInterval.second - candidateInterval.first);
-   for (it = gtis.begin(); it != gtis.end(); ++it) {
-      total += overlap(*it, candidateInterval);
+   
+   IntervalCont_t::const_iterator gti_first = 
+      std::upper_bound(gtis.begin(), gtis.end(), candidateInterval,
+                       ::compareFirst);
+   if (gti_first != gtis.begin()) {
+      --gti_first;
+   }
+
+   IntervalCont_t::const_iterator gti_last = 
+      std::upper_bound(gti_first, gtis.end(), candidateInterval,
+                       ::compareSecond);
+
+   if (gti_last != gtis.end()) {
+      ++gti_last;
+   }
+
+   for (it = gti_first; it != gti_last; ++it) {
+      double dt(overlap(*it, candidateInterval));
+      total += dt;
    }
    if (total > maxTotal || gtis.size() == 0) {
       total = maxTotal;

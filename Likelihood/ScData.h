@@ -47,6 +47,7 @@ public:
       ScNtuple(){}
       ~ScNtuple(){}
       double time;
+      double stoptime;
       double livetime;
       astro::SkyDir zenDir;
       astro::SkyDir xAxis;
