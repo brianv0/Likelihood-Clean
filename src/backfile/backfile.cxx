@@ -15,6 +15,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "st_stream/StreamFormatter.h"
+
 #include "st_app/AppParGroup.h"
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
@@ -52,6 +54,7 @@ public:
 private:
    st_app::AppParGroup & m_pars;
    Likelihood::AppHelpers * m_helper;
+
    void setup();
    void getEbounds(std::vector<double> & emin,
                    std::vector<double> & emax) const;
@@ -97,17 +100,17 @@ void BackFile::run() {
    logLike.getSrcNames(srcNames);
 
    std::string target = m_pars["target_source"];
-   unsigned int chatter = m_pars["chatter"];
-   if (chatter > 1) {
-      if (std::find(srcNames.begin(), srcNames.end(), target)
-          != srcNames.end()) {
-         std::cout << "Excluding source " << target 
-                   << " from background model." << std::endl;
-      } else if (target != "none" && target != "") {
-         std::cout << "Source named '" << target << "' not found.\n"
-                   << "Using all sources in input model for "
-                   << "background estimate." << std::endl;
-      }
+
+   st_stream::StreamFormatter formatter("gtbackfile", "run", 2);
+
+   if (std::find(srcNames.begin(), srcNames.end(), target)
+       != srcNames.end()) {
+      formatter.info() << "Excluding source " << target 
+                       << " from background model." << std::endl;
+   } else if (target != "none" && target != "") {
+      formatter.info() << "Source named '" << target << "' not found.\n"
+                       << "Using all sources in input model for "
+                       << "background estimate." << std::endl;
    }         
 
    std::vector<double> emin;

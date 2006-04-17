@@ -11,6 +11,8 @@
 
 #include "facilities/Util.h"
 
+#include "st_stream/StreamFormatter.h"
+
 #include "tip/Table.h"
 
 #include "Likelihood/LikeExposure.h"
@@ -66,9 +68,10 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
       nrows = static_cast<long>(maxTime/30.);
    }
    
+   st_stream::StreamFormatter formatter("LikeExposure", "load", 2);
    for (long irow = 0; it != scData->end(); ++it, ++irow) {
       if (verbose && (irow % (nrows/20)) == 0 ) {
-         std::cerr << "."; 
+         formatter.info() << "."; 
       }
       row["livetime"].get(livetime);
       row["start"].get(start);
@@ -84,7 +87,9 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
          fill(astro::SkyDir(ra, dec), deltat*fraction);
       }
    }
-   if (verbose) std::cerr << "!" << std::endl;
+   if (verbose) {
+      formatter.info() << "!" << std::endl;
+   }
 }
 
 bool LikeExposure::
