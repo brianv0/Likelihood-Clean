@@ -14,6 +14,8 @@
 #include <memory>
 #include <stdexcept>
 
+#include "st_stream/StreamFormatter.h"
+
 #include "st_app/AppParGroup.h"
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
@@ -28,8 +30,6 @@
 #include "Likelihood/Observation.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
-
-#include "Verbosity.h"
 
 using namespace Likelihood;
 
@@ -83,7 +83,6 @@ void ExpMap::banner() const {
 
 void ExpMap::run() {
    promptForParameters();
-   Likelihood::Verbosity::instance(m_pars["chatter"]);
    m_helper = new AppHelpers(&m_pars, "UNBINNED");
    m_helper->readScData();
    bool useEdisp = m_pars["use_energy_dispersion"];
@@ -120,12 +119,13 @@ void ExpMap::promptForParameters() {
 void ExpMap::setSourceRegion() {
    m_srRadius = m_pars["source_region_radius"];
    const RoiCuts & roiCuts = m_helper->observation().roiCuts();
-   if (Likelihood::print_output() &&
-       m_srRadius < roiCuts.extractionRegion().radius() + 10.) {
-      std::cerr << "The radius of the source region, " << m_srRadius 
-                << ", should be significantly larger (say by 10 deg) "
-                << "than the ROI radius of " 
-                << roiCuts.extractionRegion().radius() << std::endl;
+   if (m_srRadius < roiCuts.extractionRegion().radius() + 10.) {
+      st_stream::StreamFormatter formatter("gtexpmap", "setSourceRegion", 2);
+      formatter.info() << "The radius of the source region, " << m_srRadius 
+                       << ", should be significantly larger (say by 10 deg) "
+                       << "than the ROI radius of " 
+                       << roiCuts.extractionRegion().radius() 
+                       << std::endl;
       if (m_srRadius < roiCuts.extractionRegion().radius()) {
          std::ostringstream message;
          message << "The source region radius, " << m_srRadius 

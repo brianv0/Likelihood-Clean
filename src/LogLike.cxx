@@ -14,6 +14,8 @@
 #include <string>
 #include <vector>
 
+#include "st_stream/StreamFormatter.h"
+
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/Npred.h"
@@ -39,11 +41,10 @@ double LogLike::value(optimizers::Arg&) const {
       SrcArg sArg(srcIt->second);
       my_value -= m_Npred(sArg);
    }
-   if (print_output(4)) {
-      std::cout << m_nevals << "  "
-                << my_value << "  "
-                << std::clock() - start << std::endl;
-   }
+   st_stream::StreamFormatter formatter("LogLike", "value", 4);
+   formatter.info() << m_nevals << "  "
+                    << my_value << "  "
+                    << std::clock() - start << std::endl;
    m_nevals++;
    return my_value;
 }
