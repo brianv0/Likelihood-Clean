@@ -20,6 +20,10 @@
 #include "Likelihood/Observation.h"
 #include "Likelihood/Source.h"
 
+namespace st_stream {
+   class StreamFormatter;
+}
+
 namespace optimizers {
    class FunctionFactory;
 }
@@ -188,6 +192,8 @@ protected:
 private:
 
    bool m_verbose;
+
+   st_stream::StreamFormatter * m_formatter;
 
    void computeModelMap(const std::vector<Pixel> & pixels,
                         const std::vector<double> & energies,

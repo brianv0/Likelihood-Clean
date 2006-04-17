@@ -20,6 +20,10 @@
 #include "Likelihood/Observation.h"
 #include "Likelihood/Source.h"
 
+namespace st_stream {
+   class StreamFormatter;
+}
+
 namespace optimizers {
    class FunctionFactory;
 }
@@ -77,6 +81,8 @@ private:
    bool m_requireExposure;
 
    const Observation & m_observation;
+
+   st_stream::StreamFormatter * m_formatter;
 
 #ifndef SWIG
    Source *makePointSource(const DOMElement * spectrum,
