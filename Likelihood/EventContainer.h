@@ -14,6 +14,10 @@
 
 #include "Likelihood/Event.h"
 
+namespace st_stream {
+   class StreamFormatter;
+}
+
 namespace tip {
    class Table;
 }
@@ -39,14 +43,9 @@ class EventContainer {
 public:
 
    EventContainer(const ResponseFunctions & respFuncs, 
-                  const RoiCuts & roiCuts, const ScData & scData) 
-      : m_respFuncs(respFuncs), m_roiCuts(roiCuts), m_scData(scData) {
-      if (s_FT1_columns.size() == 0) {
-         setFT1_columns();
-      }
-   }
+                  const RoiCuts & roiCuts, const ScData & scData);
 
-   ~EventContainer() {}
+   ~EventContainer();
 
    void getEvents(std::string event_file);
                   
@@ -74,6 +73,8 @@ private:
    const ResponseFunctions & m_respFuncs;
    const RoiCuts & m_roiCuts;
    const ScData & m_scData;
+
+   st_stream::StreamFormatter * m_formatter;
 
    std::vector<Event> m_events;
 
