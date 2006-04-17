@@ -91,7 +91,6 @@ void ExposureCube::run() {
          std::exit(1);
       }
    }
-   Likelihood::Verbosity::instance(m_pars["chatter"]);
    createDataCube();
    m_exposure->write(output_file);
    std::auto_ptr<tip::Table> 
@@ -123,9 +122,9 @@ void ExposureCube::createDataCube() {
    std::vector<std::string>::const_iterator scIt = scFiles.begin();
    for ( ; scIt != scFiles.end(); scIt++) {
       st_facilities::Util::file_ok(*scIt);
-      st_stream::StreamFormatter formatter("gtlivetimecube", "createDataCube",
-                                           2);
-      formatter->err() << "Working on file " << *scIt << std::endl;
+      st_stream::StreamFormatter formatter("gtlivetimecube", 
+                                           "createDataCube", 2);
+      formatter.err() << "Working on file " << *scIt << std::endl;
       tip::Table * scData = 
          tip::IFileSvc::instance().editTable(*scIt, m_pars["sctable"]);
       int chatter = m_pars["chatter"];

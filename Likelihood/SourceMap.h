@@ -16,6 +16,10 @@
 #include "Likelihood/MeanPsf.h"
 #include "Likelihood/Pixel.h"
 
+namespace st_stream {
+   class StreamFormatter;
+}
+
 namespace Likelihood {
 
    class CountsMap;
@@ -73,6 +77,8 @@ private:
    std::string m_srcType;
 
    const CountsMap * m_dataMap;
+
+   st_stream::StreamFormatter * m_formatter;
 
    bool m_deleteDataMap;
 

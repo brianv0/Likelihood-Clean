@@ -15,11 +15,11 @@
 #include <string>
 #include <vector>
 
+#include "st_stream/StreamFormatter.h"
+
 #include "st_facilities/Util.h"
 
 #include "Likelihood/MeanPsf.h"
-
-#include "Verbosity.h"
 
 namespace Likelihood {
 
@@ -190,12 +190,11 @@ double MeanPsf::Psf::operator()(double cosTheta) const {
             if (inclination > 69.) {  // ugly kluge
                return 0;
             }
-            if (print_output(4)) {
-               std::cerr << "separation: " << m_separation << "  "
-                         << "energy: " << m_energy << "  "
-                         << "inclination: " <<inclination << "  "
-                         << "phi: " << s_phi << std::endl;
-            }
+            st_stream::StreamFormatter formatter("MeanPsf", "operator()", 4);
+            formatter.info() << "separation: " << m_separation << "  "
+                             << "energy: " << m_energy << "  "
+                             << "inclination: " <<inclination << "  "
+                             << "phi: " << s_phi << std::endl;
             throw std::runtime_error("MeanPsf::Psf::operator(): psf_val < 0");
          }
          return psf_val;
