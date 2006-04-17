@@ -24,8 +24,6 @@
 
 #include "Likelihood/AppHelpers.h"
 
-#include "Verbosity.h"
-
 /**
  * @class AddLivetime
  * @brief For two exposure hypercube files, add the livetimes and merge the
