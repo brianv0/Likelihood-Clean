@@ -21,8 +21,6 @@
 #include "Likelihood/Npred.h"
 #include "Likelihood/SrcArg.h"
 
-#include "Verbosity.h"
-
 namespace Likelihood {
 
 double LogLike::value(optimizers::Arg&) const {

@@ -28,8 +28,6 @@
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/RoiCuts.h"
 
-#include "Verbosity.h"
-
 using namespace Likelihood;
 
 class gtcntsmap : public st_app::StApp {
@@ -69,7 +67,6 @@ void gtcntsmap::banner() const {
 void gtcntsmap::run() {
    m_pars.Prompt();
    m_pars.Save();
-   Likelihood::Verbosity::instance(m_pars["chatter"]);
    AppHelpers::checkOutputFile(m_pars["clobber"], m_pars["outfile"]);
                                
    std::string event_file = m_pars["evfile"];
