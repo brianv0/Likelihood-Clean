@@ -13,6 +13,8 @@
 
 #include "facilities/Util.h"
 
+#include "st_stream/StreamFormatter.h"
+
 #include "st_facilities/Util.h"
 
 #include "Likelihood/SkyDirArg.h"
@@ -78,7 +80,8 @@ void SpatialMap::readFitsFile(const std::string & fitsFile,
 // The following to stdout is necessary since Xerces seems to corrupt
 // the exception handling when this method is called from
 // SourceFactory::readXml and the program simply aborts.
-      std::cout << "File not found: " << m_fitsFile << std::endl;
+      st_stream::StreamFormatter formatter("SpatialMap", "readFitsFile", 2);
+      formatter.err() << "File not found: " << m_fitsFile << std::endl;
       throw std::runtime_error("File not found: " + m_fitsFile);
    }
    m_wcsmap = new WcsMap(m_fitsFile, extension);
