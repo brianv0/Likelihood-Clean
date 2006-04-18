@@ -62,8 +62,6 @@
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/TrapQuad.h"
 
-#include "Verbosity.h"
-
 #include "SourceData.h"
 #include "XmlDiff.h"
 
@@ -180,7 +178,6 @@ void LikelihoodTests::setUp() {
                                    m_expMap,
                                    m_eventCont);
 
-   Verbosity::instance(0);
 
 // Get root path to test data.
    const char * root = std::getenv("LIKELIHOODROOT");

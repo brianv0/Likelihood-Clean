@@ -32,8 +32,6 @@
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/LogLike.h"
 
-//#include "Verbosity.h"
-
 using namespace Likelihood;
 
 /**

@@ -52,8 +52,6 @@
 #include "Likelihood/Source.h"
 #include "Likelihood/SourceMap.h"
 
-#include "Verbosity.h"
-
 namespace {
    class NormNames {
    public:
@@ -206,7 +204,6 @@ likelihood::likelihood()
 
 void likelihood::run() {
    promptForParameters();
-   Verbosity::instance(m_pars["chatter"]);
    std::string statistic = m_pars["statistic"];
    m_helper = new AppHelpers(&m_pars, statistic);
    std::string expcube_file = m_pars["exposure_cube_file"];

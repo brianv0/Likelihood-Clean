@@ -42,8 +42,6 @@
 #include "Likelihood/SourceMap.h"
 #include "Likelihood/RoiCuts.h"
 
-#include "Verbosity.h"
-
 using namespace Likelihood;
 
 class gtsrcmaps : public st_app::StApp {
@@ -97,7 +95,6 @@ void gtsrcmaps::banner() const {
 void gtsrcmaps::run() {
    m_pars.Prompt();
    m_pars.Save();
-   Likelihood::Verbosity::instance(m_pars["chatter"]);
    m_helper = new AppHelpers(&m_pars, "BINNED");
    m_helper->readScData();
    m_helper->checkOutputFile();

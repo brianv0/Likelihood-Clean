@@ -11,6 +11,8 @@
 #include <stdexcept>
 #include <vector>
 
+#include "st_stream/StreamFormatter.h"
+
 #include "irfInterface/IrfsFactory.h"
 
 #include "st_facilities/Util.h"
@@ -194,10 +196,12 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
 void AppHelpers::checkOutputFile(bool clobber, const std::string & file) {
    if (!clobber) {
       if (file != "none" && st_facilities::Util::fileExists(file)) {
-         std::cout << "Output file " << file 
-                   << " already exists and you have set 'clobber' to 'no'.\n"
-                   << "Please provide a different output file name."
-                   << std::endl;
+         st_stream::StreamFormatter formatter("AppHelpers", 
+                                              "checkOutputFile", 2);
+         formatter.info() << "Output file " << file << " already exists,\n" 
+                          << "and you have set 'clobber' to 'no'.\n"
+                          << "Please provide a different output file name."
+                          << std::endl;
          std::exit(1);
       }
    }

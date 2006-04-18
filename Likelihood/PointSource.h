@@ -19,6 +19,10 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Source.h"
 
+namespace st_stream {
+   class StreamFormatter;
+}
+
 namespace irfInterface {
    class AcceptanceCone;
 }
@@ -58,11 +62,9 @@ public:
    PointSource(double ra, double dec, const Observation & observation,
                bool verbose=false);
 
-   PointSource(const PointSource &rhs);
+   PointSource(const PointSource & rhs);
 
-   virtual ~PointSource() {
-      delete m_spectrum;
-   }
+   virtual ~PointSource();
 
    /// Returns photons/cm^2-s-sr-MeV having been convolved through
    /// the LAT instrument response
