@@ -201,7 +201,7 @@ diffuseSrcName(const std::string & srcName) const {
 void diffuseResponses::buildSourceModel() {
    std::string sourceModel = m_pars["source_model_file"];
    st_facilities::Util::file_ok(sourceModel);
-   m_srcModel->readXml(sourceModel, m_helper->funcFactory(), false);
+   m_srcModel->readXml(sourceModel, m_helper->funcFactory(), false, false);
 }
 
 void diffuseResponses::readEventData(std::string eventFile) {

@@ -289,7 +289,8 @@ void SourceModel::fetchDerivs(optimizers::Arg &x,
 
 void SourceModel::readXml(std::string xmlFile,
                           optimizers::FunctionFactory &funcFactory,
-                          bool requireExposure) {
+                          bool requireExposure,
+                          bool addPointSources) {
 
 // Expand any environment variables in the xmlFile name.
    facilities::Util::expandEnvVar(&xmlFile);
@@ -297,7 +298,8 @@ void SourceModel::readXml(std::string xmlFile,
 // Create a SourceFactory to read in the xml file.
    SourceFactory srcFactory(m_observation);
    try {
-      srcFactory.readXml(xmlFile, funcFactory, requireExposure);
+      srcFactory.readXml(xmlFile, funcFactory, requireExposure,
+                         addPointSources);
    } catch (xmlBase::DomException & eObj) {
       m_formatter->err() << "SourceModel::readXml:\n DomException: " 
                          << eObj.what() << std::endl;
