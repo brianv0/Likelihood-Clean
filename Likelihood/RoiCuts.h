@@ -122,6 +122,9 @@ public:
    /// Write DSS keywords to a FITS header
    void writeDssKeywords(tip::Header & header) const;
 
+   /// Write DSS time-related keywords to a FITS header
+   void writeDssTimeKeywords(tip::Header & header) const;
+
    /// Write the GTI extension to the FITS file
    void writeGtiExtension(const std::string & filename) const;
 
