@@ -75,6 +75,12 @@ void RoiCuts::writeDssKeywords(tip::Header & header) const {
    }
 }
 
+void RoiCuts::writeDssTimeKeywords(tip::Header & header) const {
+   if (m_cuts) {
+      m_cuts->writeDssTimeKeywords(header);
+   }
+}
+
 void RoiCuts::writeGtiExtension(const std::string & filename) const {
    if (m_cuts) {
       m_cuts->writeGtiExtension(filename);
