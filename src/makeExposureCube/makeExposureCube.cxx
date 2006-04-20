@@ -95,7 +95,7 @@ void ExposureCube::run() {
    m_exposure->write(output_file);
    std::auto_ptr<tip::Table> 
       table(tip::IFileSvc::instance().editTable(output_file, "Exposure"));
-   m_roiCuts->writeDssKeywords(table->getHeader());
+   m_roiCuts->writeDssTimeKeywords(table->getHeader());
    m_roiCuts->writeGtiExtension(output_file);
 }
 
