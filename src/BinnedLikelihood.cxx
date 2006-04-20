@@ -228,9 +228,8 @@ SourceMap * BinnedLikelihood::createSourceMap(const std::string & srcName) {
 void BinnedLikelihood::readSourceMaps(std::string filename) {
    if (filename == "") {
       if (m_srcMapsFile == "") {
-         throw std::runtime_error("BinnedLikelihood::readSourceMaps: " +
-                                  std::string("need to specify a SourceMaps ") 
-                                  + "file.");
+         throw std::runtime_error("BinnedLikelihood::readSourceMaps: " 
+                                  "need to specify a SourceMaps file.");
       }
       filename = m_srcMapsFile;
    }
