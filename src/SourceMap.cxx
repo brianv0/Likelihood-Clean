@@ -254,6 +254,7 @@ double SourceMap::maxPsfRadius(PointSource * src) const {
 SourceMap::SourceMap(const std::string & sourceMapsFile,
                      const std::string & srcName) 
    : m_name(srcName), m_dataMap(new CountsMap(sourceMapsFile)),
+     m_formatter(new st_stream::StreamFormatter("SourceMap", "", 2)),
      m_deleteDataMap(true) {
    s_refCount++;
    std::auto_ptr<const tip::Image> 

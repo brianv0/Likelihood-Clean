@@ -62,8 +62,10 @@ public:
 
    virtual void readXml(std::string xmlFile, 
                         optimizers::FunctionFactory & funcFactory,
-                        bool requireExposure=true) {
-      SourceModel::readXml(xmlFile, funcFactory, requireExposure);
+                        bool requireExposure=true, 
+                        bool addPointSources=true) {
+      SourceModel::readXml(xmlFile, funcFactory, requireExposure,
+                           addPointSources);
       if (m_srcMapsFile == "") {
          createSourceMaps();
       } else {
