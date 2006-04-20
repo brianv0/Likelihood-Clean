@@ -52,7 +52,7 @@ SourceModel::SourceModel(const Observation & observation, bool verbose)
 
 SourceModel::SourceModel(const SourceModel &rhs) : optimizers::Statistic(rhs),
    m_observation(rhs.m_observation), m_verbose(rhs.m_verbose) {
-//   delete m_formatter;
+   delete m_formatter;
    m_formatter = new st_stream::StreamFormatter("SourceModel", "", 2);
 }
 
