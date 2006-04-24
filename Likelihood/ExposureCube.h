@@ -31,7 +31,7 @@ class ExposureCube {
 
 public:
 
-   ExposureCube() : m_exposure(0), m_haveFile(false) {}
+   ExposureCube() : m_exposure(0), m_haveFile(false), m_fileName("") {}
 
    ~ExposureCube() {
       delete m_exposure;
@@ -39,6 +39,7 @@ public:
 
    void readExposureCube(std::string filename) {
       facilities::Util::expandEnvVar(&filename);
+      m_fileName = filename;
       m_exposure = new map_tools::Exposure(filename);
       m_haveFile = true;
    }
@@ -52,11 +53,17 @@ public:
       return m_haveFile;
    }
 
+   const std::string & fileName() const {
+      return m_fileName;
+   }
+
 private:
 
    map_tools::Exposure * m_exposure;
 
    bool m_haveFile;
+
+   std::string m_fileName;
 
 };
 

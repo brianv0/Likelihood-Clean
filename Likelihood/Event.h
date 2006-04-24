@@ -88,6 +88,11 @@ public:
                         const ResponseFunctions & respFuncs, 
                         double sr_radius=30., double sr_radius2=80);
 
+   /// Find the DiffuseSources that need to have diffuse response
+   /// values computed.
+   void getNewDiffuseSrcs(const std::vector<DiffuseSource *> & srcList,
+                          std::vector<DiffuseSource *> & srcs) const;
+
    /// Write the diffuse responses for each source to a file.
    void writeDiffuseResponses(const std::string & filename);
 
@@ -169,9 +174,6 @@ private:
    void prepareSrData(double sr_radius, double sr_radius2);
 
    void fillMuArray(double sr_radius, int nmu, std::vector<double> & mu) const;
-
-   void getNewDiffuseSrcs(const std::vector<DiffuseSource *> & srcList,
-                          std::vector<DiffuseSource *> & srcs) const;
 
 };
 
