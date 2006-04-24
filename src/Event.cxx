@@ -301,7 +301,7 @@ void Event::getNewDiffuseSrcs(const std::vector<DiffuseSource *> & srcList,
                               std::vector<DiffuseSource *> & srcs) const {
    for (std::vector<DiffuseSource *>::const_iterator it = srcList.begin();
         it != srcList.end(); ++it) {
-      std::string name = (*it)->getName();
+      std::string name((*it)->getName());
       name = diffuseSrcName(name);
       if (!m_respDiffuseSrcs.count(name)) {
          srcs.push_back(*it);
