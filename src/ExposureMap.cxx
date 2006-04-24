@@ -130,6 +130,12 @@ void ExposureMap::computeMap(std::string filename,
    st_stream::StreamFormatter formatter("ExposureMap", "computeMap", 2);
 
    formatter.info() << "Computing the ExposureMap";
+   if (observation.expCube().haveFile()) {
+      formatter.info() << " using " << observation.expCube().fileName()
+                       << std::endl;
+   } else {
+      formatter.info() << " (no expCube file given) " << std::endl;
+   }
 
    int ncount = 0;
    for (int j = 0; j < nlat; j++) {
