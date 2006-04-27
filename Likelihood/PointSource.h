@@ -54,7 +54,7 @@ public:
    /// that the ROI cuts have not been specified.
    // A later setDir(ra, dec, true) will force the exposure to
    // be computed.
-   PointSource();
+   PointSource(const Observation * observation=0);
 
    /// This constructor does ask for exposure to be computed and 
    /// therefore *requires* the spacecraft data to be available and the 

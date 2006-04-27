@@ -20,7 +20,6 @@
 #include "st_facilities/FitsImage.h"
 #include "st_facilities/Util.h"
 
-#include "Likelihood/EquinoxRotation.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"

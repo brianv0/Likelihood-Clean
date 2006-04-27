@@ -200,7 +200,8 @@ double WcsMap::operator()(const astro::SkyDir & dir) const {
 }
 
 WcsMap WcsMap::convolve(double energy, const MeanPsf & psf,
-                        const BinnedExposure & exposure) const {
+                        const BinnedExposure & exposure,
+                        bool performConvolution) const {
    ::Image counts;
    counts.resize(m_naxis2);
    ::Image psf_image;
@@ -232,7 +233,11 @@ WcsMap WcsMap::convolve(double energy, const MeanPsf & psf,
    psf_image.normalize();
 
    WcsMap my_image(*this);
-   my_image.m_image = Convolve::convolve2d(counts, psf_image);
+   if (performConvolution) {
+      my_image.m_image = Convolve::convolve2d(counts, psf_image);
+   } else {
+      my_image.m_image = counts;
+   }
 
    return my_image;
 }

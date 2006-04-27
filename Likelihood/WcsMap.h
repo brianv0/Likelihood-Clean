@@ -48,7 +48,8 @@ public:
    double operator()(const astro::SkyDir & dir) const;
 
    WcsMap convolve(double energy, const MeanPsf & psf,
-                   const BinnedExposure & exposure) const;
+                   const BinnedExposure & exposure,
+                   bool performConvolution=true) const;
 
    const std::vector< std::vector<double> > & image() const {
       return m_image;
