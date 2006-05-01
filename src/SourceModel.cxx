@@ -326,7 +326,6 @@ void SourceModel::reReadXml(std::string xmlFile) {
 
    facilities::Util::expandEnvVar(&xmlFile);
 
-//   xmlBase::XmlParser * parser = XmlParser::instance();
    xmlBase::XmlParser * parser = XmlParser_instance();
 
    DOMDocument * doc = parser->parse(xmlFile.c_str());
