@@ -173,7 +173,8 @@ void RoiCuts::sortCuts(bool strict) {
               << "one acceptance cone cut,\n"
               << "and at least one time range and/or GTI cut.\n"
               << "The event file contains the following DSS selections:\n\n";
-      m_cuts->writeCuts(message);
+      bool suppressGtis(true);
+      m_cuts->writeCuts(message, suppressGtis);
       throw std::runtime_error(message.str());
    }
 }
