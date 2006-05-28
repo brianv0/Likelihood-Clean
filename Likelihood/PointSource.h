@@ -176,6 +176,10 @@ public:
    /// Units are #/cm^2/s
    double flux() const;
 
+   /// @return Photon flux integrated over the given energy range.
+   /// Units are #/cm^2/s
+   double flux(double emin, double emax, size_t npts=100) const;
+
 private:
 
    /// location on the Celestial sphere 

@@ -311,6 +311,17 @@ double PointSource::flux() const {
    return fluxIntegral.integral(energies);
 }
 
+double PointSource::flux(double emin, double emax, size_t npts) const {
+   std::vector<double> energies;
+   energies.reserve(npts);
+   double estep(std::log(emax/emin)/float(npts-1));
+   for (size_t k=0; k < npts; k++) {
+      energies.push_back(emin*std::exp(estep*k));
+   }
+   TrapQuad fluxIntegral(m_spectrum);
+   return fluxIntegral.integral(energies);
+}
+
 void PointSource::
 computeExposureWithHyperCube(const astro::SkyDir & srcDir,
                              const std::vector<double> & energies, 
