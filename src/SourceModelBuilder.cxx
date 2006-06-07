@@ -47,7 +47,6 @@ void SourceModelBuilder::write(std::string xmlFile) {
    facilities::Util::expandEnvVar(&xmlFile);
    std::ofstream outFile(xmlFile.c_str());
    outFile << "<?xml version=\"1.0\" standalone=\"no\"?>\n";
-
    xmlBase::Dom::prettyPrintElement(m_srcLib, outFile, std::string(""));
 }
 
