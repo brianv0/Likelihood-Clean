@@ -16,6 +16,7 @@
 
 #include "optimizers/Dom.h"
 
+#include "Likelihood/FileFunction.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/Source.h"
@@ -64,6 +65,12 @@ DOMElement * SourceModelBuilder::spectralPart(Source & src) {
    DOMElement * specElt = optimizers::Dom::createElement(m_doc, "spectrum");
    xmlBase::Dom::addAttribute(specElt, "type",
                               srcFuncs["Spectrum"]->genericName());
+
+   FileFunction * fileFunc(dynamic_cast<FileFunction *>(srcFuncs["Spectrum"]));
+   if (fileFunc != 0) {
+      xmlBase::Dom::addAttribute(specElt, "file", fileFunc->filename());
+   }
+
    srcFuncs["Spectrum"]->appendParamDomElements(m_doc, specElt);
    return specElt;
 }
