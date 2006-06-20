@@ -49,7 +49,8 @@ derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
                                           "FileFunction::derivByParam");
    }
    double x(std::log(dynamic_cast<optimizers::dArg &>(xarg).getValue()));
-   return std::exp(st_facilities::Util::interpolate(m_x, m_y, x));
+   double scale(m_parameter[0].getScale());
+   return scale*std::exp(st_facilities::Util::interpolate(m_x, m_y, x));
 }
 
 void FileFunction::readFunction(const std::string & filename) {
