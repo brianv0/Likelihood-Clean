@@ -88,6 +88,9 @@ void BackFile::setup() {
    m_helper->observation().roiCuts().readCuts(expMap, "");
    std::string expCube = m_pars["exposure_cube_file"];
    m_helper->observation().expCube().readExposureCube(expCube);
+
+   std::string phafile = m_pars["pha_file"];
+   m_helper->checkCuts(phafile, "SPECTRUM", expMap, "");
 }
 
 void BackFile::run() {
@@ -111,7 +114,7 @@ void BackFile::run() {
       formatter.info() << "Source named '" << target << "' not found.\n"
                        << "Using all sources in input model for "
                        << "background estimate." << std::endl;
-   }         
+   }
 
    std::vector<double> emin;
    std::vector<double> emax;
