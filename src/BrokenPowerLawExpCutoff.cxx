@@ -1,6 +1,6 @@
 /**
  * @file ExpCutoff2.cxx
- * @brief Implementation for the ExpCutoff Function class
+ * @brief Implementation for the BrokenPowerLawExpCutoff Function class
  * @author Jennifer Carson
  *
  * $Header$
