@@ -22,6 +22,7 @@ use st_facilities v*
 use dataSubselector v*
 use hoops v*
 use st_app v*
+use st_graph v*
 
 #macro_append cppflags "" Linux " -pg "
 #macro_append Likelihood_linkopts "" Linux " -pg "
