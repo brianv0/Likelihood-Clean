@@ -23,7 +23,8 @@ class EasyPlot {
 
 public:
 
-   EasyPlot(const std::string &title,
+   EasyPlot(st_graph::IFrame * mainFrame, const std::string &title,
+            bool logX = false, bool logY = false,
             unsigned int xsize=400, unsigned int ysize=400);
 
    ~EasyPlot() throw();
@@ -50,6 +51,8 @@ public:
                   const std::vector<double> & y,
                   const std::vector<double> & xerr);
 
+   st_graph::IFrame * getPlotFrame();
+
    static void run();
 
 private:
@@ -57,9 +60,12 @@ private:
    st_graph::IFrame * m_mainFrame;
    st_graph::IFrame * m_plotFrame;
    std::vector<st_graph::IPlot *> m_plots;
+   bool m_logX;
+   bool m_logY;
 
    void scatterPlotErrorBars(const std::vector<double> & x,
                              std::vector<double> & xerr,
                              unsigned int nbins=100) const;
 
+   void setScale(st_graph::IPlot * plot);
 };
