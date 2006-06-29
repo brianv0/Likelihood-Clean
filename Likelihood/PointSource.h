@@ -95,7 +95,7 @@ public:
    virtual double NpredDeriv(const std::string &paramName);
 
    /// Predicted number of counts within a given energy range
-   virtual double Npred(double emin, double emax);
+   virtual double Npred(double emin, double emax) const;
 
    /// Set source location using J2000 coordinates
    void setDir(double ra, double dec, bool updateExposure=true, 
