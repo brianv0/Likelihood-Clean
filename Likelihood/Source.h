@@ -76,7 +76,7 @@ public:
    virtual double NpredDeriv(const std::string &paramName) = 0;
 
    /// Predicted number of counts within a specified energy range.
-   virtual double Npred(double emin, double emax) = 0;
+   virtual double Npred(double emin, double emax) const = 0;
 
    /// Set the Function used for modeling the source spectrum.
    virtual void setSpectrum(optimizers::Function *) = 0;
