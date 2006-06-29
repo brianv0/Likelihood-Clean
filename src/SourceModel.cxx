@@ -228,6 +228,16 @@ Source * SourceModel::getSource(const std::string &srcName) {
    return 0;
 }
 
+const Source & SourceModel::source(const std::string & srcName) const {
+   std::map<std::string, Source *>::const_iterator my_src =
+      m_sources.find(srcName);
+   if (my_src == m_sources.end()) {
+      throw std::runtime_error("SourceModel::source: Source " + 
+                               srcName + " not found.");
+   }
+   return *(my_src->second);
+}
+
 void SourceModel::getSrcNames(std::vector<std::string> &names) const {
    names.clear();
    std::map<std::string, Source *>::const_iterator it = m_sources.begin();

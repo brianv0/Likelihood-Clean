@@ -67,6 +67,14 @@ private:
 
    void check_ebounds() const;
 
+   void writeCounts(const std::string & outfile, 
+                    const std::vector<std::string> & sourceNames) const;
+
+   void writeFluxes(const std::string & outfile, 
+                    const std::vector<std::string> & sourceNames) const;
+
+   void writeEbounds(const std::string & outfile) const;
+
 };
 
 } // namespace Likelihood
