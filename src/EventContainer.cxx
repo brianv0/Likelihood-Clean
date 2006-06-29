@@ -164,8 +164,8 @@ std::vector<double>
 EventContainer::nobs(const std::vector<double> & ebounds) const {
    std::vector<double> my_nobs(ebounds.size()-1, 0);
    for (size_t i = 0; i < m_events.size(); i++) {
-      size_t k = std::upper_bound(ebounds.begin(), ebounds.end(),
-                                  m_events.at(i).getEnergy()) 
+      double energy = m_events.at(i).getEnergy();
+      size_t k = std::upper_bound(ebounds.begin(), ebounds.end(), energy)
          - ebounds.begin() - 1;
       my_nobs.at(k)++;
    }

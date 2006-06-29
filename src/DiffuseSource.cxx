@@ -161,7 +161,7 @@ double DiffuseSource::NpredDeriv(const std::string &paramName) {
    }
 }
 
-double DiffuseSource::Npred(double emin, double emax) {
+double DiffuseSource::Npred(double emin, double emax) const {
    const std::vector<double> & energies = m_observation->roiCuts().energies();
 
    if (emin < energies.front() || emax > energies.back()) {
@@ -194,7 +194,11 @@ double DiffuseSource::Npred(double emin, double emax) {
       + m_exposure.at(end_offset - 1);
    exposure.insert(exposure.begin(), begin_exposure);
    exposure.push_back(end_exposure);
-   optimizers::Function & specFunc = *m_functions["Spectrum"];
+   
+   FuncMap::const_iterator my_func = m_functions.find("Spectrum");
+   const optimizers::Function & specFunc = 
+      const_cast<optimizers::Function &>(*my_func->second);
+
    std::vector<double> integrand(my_energies.size());
    for (unsigned int k = 0; k < my_energies.size(); k++) {
       optimizers::dArg eArg(my_energies.at(k));
