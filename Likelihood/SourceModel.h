@@ -109,6 +109,9 @@ public:
    /// return a Source pointer by name
    Source * getSource(const std::string &srcName);
 
+   /// @return reference to the desired source
+   const Source & source(const std::string & srcName) const;
+
    /// @return reference to the Source map.
    const std::map<std::string, Source *> & sources() const {
       return m_sources;
