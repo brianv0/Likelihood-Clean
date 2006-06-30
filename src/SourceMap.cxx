@@ -63,6 +63,12 @@ namespace {
 
 namespace Likelihood {
 
+/// @bug Use of this function (by CountsSpectra.cxx) is necessitated by
+/// annoying linkage problems on Windows.
+void getNpreds(const SourceMap & srcMap, std::vector<double> & npreds) {
+   npreds = srcMap.npreds();
+}
+
 std::string SourceMap::s_expMapFileName;
 MeanPsf * SourceMap::s_meanPsf(0);
 BinnedExposure * SourceMap::s_binnedExposure(0);
