@@ -290,9 +290,7 @@ void likelihood::run() {
       writeSourceXml();
    } while (queryLoop && prompt("Refit? [y] "));
    writeFluxXml();
-   if (m_statistic != "BINNED") {
-      writeCountsSpectra();
-   }
+   writeCountsSpectra();
    if (m_pars["plot"]) {
       plotCountsSpectra();
    }
@@ -455,10 +453,12 @@ private:
 void likelihood::writeCountsSpectra() {
    CountsSpectra counts(*m_logLike);
 
-   const RoiCuts & roiCuts = m_helper->observation().roiCuts();
-   double emin(roiCuts.getEnergyCuts().first);
-   double emax(roiCuts.getEnergyCuts().second);
-   counts.setEbounds(emin, emax, 21);
+   if (m_statistic == "UNBINNED") {
+      const RoiCuts & roiCuts = m_helper->observation().roiCuts();
+      double emin(roiCuts.getEnergyCuts().first);
+      double emax(roiCuts.getEnergyCuts().second);
+      counts.setEbounds(emin, emax, 21);
+   }
 
    counts.writeTable("counts_spectra.fits");
 }
@@ -466,11 +466,13 @@ void likelihood::writeCountsSpectra() {
 void likelihood::plotCountsSpectra() {
    CountsSpectra counts(*m_logLike);
 
-   const RoiCuts & roiCuts = m_helper->observation().roiCuts();
-   double emin(roiCuts.getEnergyCuts().first);
-   double emax(roiCuts.getEnergyCuts().second);
-   counts.setEbounds(emin, emax, 21);
-
+   if (m_statistic == "UNBINNED") {
+      const RoiCuts & roiCuts = m_helper->observation().roiCuts();
+      double emin(roiCuts.getEnergyCuts().first);
+      double emax(roiCuts.getEnergyCuts().second);
+      counts.setEbounds(emin, emax, 21);
+   }
+   
    std::vector<double> nobs;
    counts.getObsCounts(nobs);
    std::vector<double> nobs_err;
