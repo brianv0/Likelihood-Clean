@@ -125,6 +125,8 @@ private:
    void computeExposureAndPsf(const Observation & observation);
 };
 
+void getNpreds(const SourceMap & srcMap, std::vector<double> & npreds);
+
 } // namespace Likelihood
 
 #endif // Likelihood_SourceMap_h
