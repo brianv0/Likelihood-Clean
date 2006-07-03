@@ -59,18 +59,6 @@ void EasyPlot::scatter(const std::vector<double> & x,
 void EasyPlot::scatter(const std::vector<double> & x,
                        const std::vector<double> & y,
                        const std::vector<double> & yerr) {
-// // It would be nice if one could work in plot frame coordinates or if
-// // one could specify the plotting symbols.  Instead we use data
-// // coordinates and are forced to guess-timate the proper symbol size
-// // assuming the plot x-scale is set using the x-axis min and max.
-// // These guess-timates will likely worsen as other data sets are added
-// // and the plot x-scale changes.
-//    if (x.size() == 0) {
-//       return;
-//    }
-//    std::vector<double> xerr;
-//    scatterPlotErrorBars(x, xerr);
-//    scatter(x, y, xerr, yerr);
    st_graph::Engine & engine(st_graph::Engine::instance());
    st_graph::IPlot * plot = 
       engine.createPlot(m_plotFrame, "scat", 
