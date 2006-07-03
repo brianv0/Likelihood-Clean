@@ -175,6 +175,10 @@ double WcsMap::operator()(const astro::SkyDir & dir) const {
    double x(pixel.first);
    double y(pixel.second);
 
+
+// The following code simply finds the pixel in which the sky location
+// lives and returns the value.
+#if 0
    int ix(static_cast<int>(std::floor(x - 0.5)));
    int iy(static_cast<int>(std::floor(y - 0.5)));
 
@@ -183,26 +187,31 @@ double WcsMap::operator()(const astro::SkyDir & dir) const {
    }
 
    return m_image.at(iy).at(ix);
+#else
+// This code tries to do a bilinear interpolation on the pixel values.
+   int ix(static_cast<int>(x));
+   int iy(static_cast<int>(y));
+   ix = std::min(std::max(1, ix), m_naxis1 - 1);
+   iy = std::min(std::max(1, iy), m_naxis2 - 1);
 
-//    ix = std::min(std::max(1, ix), m_naxis1 - 1);
-//    iy = std::min(std::max(1, iy), m_naxis2 - 1);
+   double uu(x - ix);
+   double tt(y - iy);
 
-//    double uu(x - ix);
-//    double tt(y - iy);
+   double y1(m_image.at(iy-1).at(ix-1));
+   double y2(m_image.at(iy).at(ix-1));
+   double y3(m_image.at(iy).at(ix));
+   double y4(m_image.at(iy-1).at(ix));
 
-//    double y1(m_image.at(iy-1).at(ix-1));
-//    double y2(m_image.at(iy).at(ix-1));
-//    double y3(m_image.at(iy).at(ix));
-//    double y4(m_image.at(iy-1).at(ix));
+   double value((1. - tt)*(1. - uu)*y1 + tt*(1. - uu)*y2 
+                + tt*uu*y3 + (1. - tt)*uu*y4);
 
-//    double value((1. - tt)*(1. - uu)*y1 + tt*(1. - uu)*y2 
-//                 + tt*uu*y3 + (1. - tt)*uu*y4);
+   if (value < 0) {
+//      throw std::runtime_error("WcsMap::operator(): value < 0");
+      value = 0;
+   }
 
-//    if (value < 0) {
-//       throw std::runtime_error("WcsMap::operator(): value < 0");
-//    }
-
-//    return value;
+   return value;
+#endif
 }
 
 WcsMap WcsMap::convolve(double energy, const MeanPsf & psf,
