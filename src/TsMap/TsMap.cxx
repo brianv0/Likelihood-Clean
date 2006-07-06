@@ -158,9 +158,12 @@ void TsMap::readEventData() {
 }
 
 void TsMap::readSrcModel() {
-   st_facilities::Util::file_ok(m_pars["source_model_file"]);
-   m_logLike->readXml(m_pars["source_model_file"], m_helper->funcFactory());
-   m_logLike->computeEventResponses();
+   std::string srcModelFile = m_pars["source_model_file"];
+   if (srcModelFile != "" && srcModelFile != "none") {
+      st_facilities::Util::file_ok(srcModelFile);
+      m_logLike->readXml(srcModelFile, m_helper->funcFactory());
+      m_logLike->computeEventResponses();
+   }
 }   
 
 void TsMap::selectOptimizer() {
