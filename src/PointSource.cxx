@@ -332,15 +332,14 @@ computeExposureWithHyperCube(const astro::SkyDir & srcDir,
                              const Observation & observation,
                              std::vector<double> & exposure, 
                              bool verbose) {
+   (void)(verbose);
    exposure.clear();
 
    st_stream::StreamFormatter formatter("PointSource",
-                                        "computeExposureWithHyperCube", 2);
-   if (verbose) {
-      formatter.info() << "Computing exposure at (" 
-                       << srcDir.ra() << ", " 
-                       << srcDir.dec() << ")";
-   }
+                                        "computeExposureWithHyperCube", 3);
+   formatter.info() << "Computing exposure at (" 
+                    << srcDir.ra() << ", " 
+                    << srcDir.dec() << ")";
    for (std::vector<double>::const_iterator it = energies.begin();
         it != energies.end(); it++) {
       if (verbose) {
@@ -351,9 +350,7 @@ computeExposureWithHyperCube(const astro::SkyDir & srcDir,
       double exposure_value = observation.expCube().value(srcDir, aeff);
       exposure.push_back(exposure_value);
    }
-   if (verbose) {
-      formatter.info() << "!" << std::endl;
-   }
+   formatter.info() << "!" << std::endl;
 }
 
 void PointSource::computeExposure(const astro::SkyDir & srcDir,
@@ -376,7 +373,7 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
    exposure.resize(energies.size());
 
    st_stream::StreamFormatter formatter("PointSource",
-                                        "computeExposureWithHyperCube", 2);
+                                        "computeExposure", 3);
    formatter.info() << "Computing exposure at (" 
                     << srcDir.ra() << ", " 
                     << srcDir.dec() << ")";
