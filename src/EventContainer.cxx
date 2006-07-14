@@ -142,6 +142,9 @@ void EventContainer::computeEventResponses(Source & src, double sr_radius) {
 
 void EventContainer::computeEventResponses(std::vector<DiffuseSource *> &srcs,
                                            double sr_radius) {
+   if (m_events.size() == 0) {
+      return;
+   }
    std::vector<DiffuseSource *> new_srcs;
    m_events[0].getNewDiffuseSrcs(srcs, new_srcs);
    if (new_srcs.size() > 0) {
