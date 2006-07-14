@@ -610,6 +610,7 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
          resultsFile << "'TS value': '" << TsValues[srcNames[i]] << "',\n";
       }
       resultsFile << "},\n";
+      resultsFile << "'-log(Likelihood)': '" << -m_logLike->value() << "',\n";
    }
    resultsFile << "}" << std::endl;
 
