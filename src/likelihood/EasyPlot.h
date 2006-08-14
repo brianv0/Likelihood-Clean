@@ -6,9 +6,10 @@
  * $Header$
  */
 
+#include "st_graph/IPlot.h"
+
 namespace st_graph {
    class IFrame;
-   class IPlot;
 }
 
 /**
@@ -25,6 +26,7 @@ public:
 
    EasyPlot(st_graph::IFrame * mainFrame, const std::string &title,
             bool logX = false, bool logY = false,
+            const std::string &xAxisTitle = "", const std::string &yAxisTitle = "",
             unsigned int xsize=400, unsigned int ysize=400);
 
    ~EasyPlot() throw();
@@ -32,24 +34,36 @@ public:
    void scatter(const std::vector<double> & x, 
                 const std::vector<double> & y,
                 const std::vector<double> & xerr, 
-                const std::vector<double> & yerr);
+                const std::vector<double> & yerr,
+                int color = st_graph::Color::eBlack,
+                const std::string & line_style = "none");
 
    void scatter(const std::vector<double> & x, 
                 const std::vector<double> & y,
-                const std::vector<double> & yerr);
+                const std::vector<double> & yerr,
+                int color = st_graph::Color::eBlack,
+                const std::string & line_style = "none");
 
    void scatter(const std::vector<double> & x, 
-                const std::vector<double> & y);
+                const std::vector<double> & y,
+                int color = st_graph::Color::eBlack,
+                const std::string & line_style = "none");
 
    void linePlot(const std::vector<double> & x,
-                 const std::vector<double> & y);
-
-   void histogram(const std::vector<double> & x,
-                  const std::vector<double> & y);
+                 const std::vector<double> & y,
+                 int color = st_graph::Color::eBlack,
+                 const std::string & line_style = "solid");
 
    void histogram(const std::vector<double> & x,
                   const std::vector<double> & y,
-                  const std::vector<double> & xerr);
+                  int color = st_graph::Color::eBlack,
+                  const std::string & line_style = "solid");
+
+   void histogram(const std::vector<double> & x,
+                  const std::vector<double> & y,
+                  const std::vector<double> & xerr,
+                  int color = st_graph::Color::eBlack,
+                  const std::string & line_style = "solid");
 
    st_graph::IFrame * getPlotFrame();
 
@@ -62,6 +76,8 @@ private:
    std::vector<st_graph::IPlot *> m_plots;
    bool m_logX;
    bool m_logY;
+   std::string m_xAxisTitle;
+   std::string m_yAxisTitle;
 
    void scatterPlotErrorBars(const std::vector<double> & x,
                              std::vector<double> & xerr,
