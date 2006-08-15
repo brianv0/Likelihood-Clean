@@ -13,8 +13,6 @@
 
 #include "st_stream/StreamFormatter.h"
 
-#include "irfInterface/IrfsFactory.h"
-
 #include "st_facilities/Util.h"
 
 #include "dataSubselector/CutBase.h"
@@ -37,8 +35,6 @@
 #include "Likelihood/ScData.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SpatialMap.h"
-
-using irfInterface::IrfsFactory;
 
 namespace Likelihood {
 
