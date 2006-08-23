@@ -316,7 +316,7 @@ void Event::toLower(std::string & name) {
 }
 
 std::string Event::diffuseSrcName(const std::string & srcName) const {
-   std::string name(*m_respName + "::" + srcName);
+   std::string name(*m_respName + "__" + srcName);
    toLower(name);
    return name;
 }
