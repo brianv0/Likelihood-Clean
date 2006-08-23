@@ -290,7 +290,9 @@ void likelihood::run() {
       writeSourceXml();
    } while (queryLoop && prompt("Refit? [y] "));
    writeFluxXml();
-   writeCountsSpectra();
+   if (m_pars["write_output_files"]) {
+      writeCountsSpectra();
+   }
    if (m_pars["plot"]) {
       plotCountsSpectra();
    }
@@ -335,6 +337,7 @@ void likelihood::promptForParameters() {
    m_pars.Prompt("rspfunc");
    m_pars.Prompt("use_energy_dispersion");
    m_pars.Prompt("optimizer");
+   m_pars.Prompt("write_output_files");
    m_pars.Prompt("query_for_refit");
 
    m_pars.Save();
@@ -608,6 +611,10 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    std::vector<double>::const_iterator errIt = errors.begin();
 
    std::ofstream resultsFile("results.dat");
+   if (!m_pars["write_output_files"]) {
+      resultsFile.clear(std::ios::failbit);
+   }
+
    resultsFile << "{";
 
    double totalNpred(0);
@@ -663,6 +670,10 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    }
    m_formatter->info() << std::endl;
    resultsFile.close();
+
+   if (!m_pars["write_output_files"]) {
+      std::remove("results.dat");
+   }
 
    m_formatter->info().precision(10);
    m_formatter->info() << "\n-log(Likelihood): "
