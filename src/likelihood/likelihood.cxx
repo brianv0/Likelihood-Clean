@@ -611,7 +611,8 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    std::vector<double>::const_iterator errIt = errors.begin();
 
    std::ofstream resultsFile("results.dat");
-   if (!m_pars["write_output_files"]) {
+   bool write_output_files = m_pars["write_output_files"];
+   if (!write_output_files) {
       resultsFile.clear(std::ios::failbit);
    }
 
@@ -671,7 +672,7 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    m_formatter->info() << std::endl;
    resultsFile.close();
 
-   if (!m_pars["write_output_files"]) {
+   if (!write_output_files) {
       std::remove("results.dat");
    }
 
