@@ -155,6 +155,10 @@ CountsMap * BinnedLikelihood::createCountsMap() const {
    return modelMap;
 }
 
+Source * BinnedLikelihood::deleteSource(const std::string & srcName) {
+   return SourceModel::deleteSource(srcName);
+}
+
 void BinnedLikelihood::computeModelMap(std::vector<float> & modelMap) const {
    modelMap.clear();
    modelMap.resize(m_pixels.size()*(m_energies.size()-1), 0);

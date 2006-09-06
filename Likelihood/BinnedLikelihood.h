@@ -103,6 +103,8 @@ public:
       return m_countsSpectrum;
    }
 
+   virtual Source * deleteSource(const std::string & srcName);
+
 protected:
 
    virtual BinnedLikelihood * clone() const {

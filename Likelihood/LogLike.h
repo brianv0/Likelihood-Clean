@@ -62,6 +62,8 @@ public:
       getFreeDerivs(dummy, freeDerivs);
    }
 
+   virtual Source * deleteSource(const std::string & srcName);
+
    void getEvents(std::string event_file);
 
    void computeEventResponses(double sr_radius=30.);
