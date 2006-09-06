@@ -49,11 +49,19 @@ double LogLike::value(optimizers::Arg&) const {
 
 double LogLike::logSourceModel(const Event & event) const {
    double my_value(0);
-   std::map<std::string, Source *>::const_iterator source = m_sources.begin();
-   for ( ; source != m_sources.end(); ++source) {
-      double fluxDens(source->second->fluxDensity(event));
-      my_value += fluxDens;
+//    std::map<std::string, Source *>::const_iterator source = m_sources.begin();
+//    for ( ; source != m_sources.end(); ++source) {
+//       const_cast<Event &>(event).updateModelSum(*(source->second));
+//    }
+   
+   for (size_t i = 0; i < m_modified.size(); i++) {
+      std::map<std::string, Source *>::const_iterator 
+         source(m_sources.find(m_modified.at(i)));
+      if (source != m_sources.end()) {
+         const_cast<Event &>(event).updateModelSum(*(source->second));
+      }
    }
+   my_value = event.modelSum();
    if (my_value > 0) {
       return std::log(my_value);
    }
@@ -115,6 +123,14 @@ void LogLike::getFreeDerivs(optimizers::Arg&,
    for (unsigned int i = 0; i < NpredDerivs.size(); i++) {
       freeDerivs.push_back(logSrcModelDerivs[i] - NpredDerivs[i]);
    }
+}
+
+Source * LogLike::deleteSource(const std::string & srcName) {
+   const std::vector<Event> & events = m_observation.eventCont().events();
+   for (size_t j = 0; j < events.size(); j++) {
+      const_cast<std::vector<Event> &>(events).at(j).deleteSource(srcName);
+   }
+   return SourceModel::deleteSource(srcName);
 }
 
 void LogLike::getEvents(std::string event_file) {
