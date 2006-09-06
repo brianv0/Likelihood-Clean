@@ -22,6 +22,7 @@ namespace Likelihood {
    class DiffuseSource;
    class EquinoxRotation;
    class ResponseFunctions;
+   class Source;
 
 /** 
  * @class Event
@@ -37,7 +38,7 @@ class Event {
     
 public:
 
-   Event() : m_respName(0) {}
+   Event();
 
    Event(double ra, double dec, double energy, double time, 
          const astro::SkyDir & scZAxis, const astro::SkyDir & scXAxis, 
@@ -126,6 +127,17 @@ public:
    /// @param srcName The source name.
    std::string diffuseSrcName(const std::string & srcName) const;
 
+   /// Add or subtract contribution from a given source to m_modelSum.
+   void updateModelSum(const Source & src);
+
+   void resetModelSum();
+
+   double modelSum() const {
+      return m_modelSum;
+   }
+
+   void deleteSource(const std::string & srcName);
+
 private:
 
    /// apparent direction, energy, arrival time, and cosine(zenith angle)
@@ -142,7 +154,11 @@ private:
    astro::SkyDir m_scXDir;
 
    bool m_useEdisp;
-   const std::string * m_respName;
+   std::string m_respName;
+
+   double m_modelSum;
+
+   std::map<std::string, double> m_fluxDensities;
    
    /// Vector of true energies.
    double m_estep;
