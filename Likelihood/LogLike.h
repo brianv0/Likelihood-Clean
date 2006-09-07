@@ -39,7 +39,7 @@ class LogLike : public SourceModel {
 public:
 
    LogLike(const Observation & observation) : SourceModel(observation),
-      m_nevals(0) {
+      m_nevals(0), m_modelIntegral(0) {
       deleteAllSources();
    }
 
@@ -78,7 +78,11 @@ protected:
 
 private:
 
+   mutable double m_modelIntegral;
+
    Npred m_Npred;
+
+   mutable std::map<std::string, double> m_npredValues;
 
    double logSourceModel(const Event & event) const;
 
