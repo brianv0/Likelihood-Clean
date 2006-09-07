@@ -254,7 +254,11 @@ void diffuseResponses::computeEventResponses() {
    getDiffuseSources();
    std::vector<Event>::iterator it = m_events.begin();
    for (int i = 0; it != m_events.end(); ++it, i++) {
-      if ((i % (m_events.size()/20)) == 0) {
+      int factor(m_events.size()/20);
+      if (factor == 0) {
+         factor = 1;
+      }
+      if ((i % factor) == 0) {
          m_formatter->info() << ".";
       }
       it->computeResponse(m_srcs, m_helper->observation().respFuncs(), 
@@ -286,6 +290,15 @@ void diffuseResponses::writeEventResponses(std::string eventFile) {
             } else {
 // Infinite energy response, so just add the single value.
                events->appendField(fieldName, "1D");
+            }
+// repair field by removing incorrect TNULL keyword that is added by tip:
+            int fieldIndex = events->getFieldIndex(fieldName) + 1;
+            std::ostringstream nullkeyword;
+            nullkeyword << "TNULL" << fieldIndex;
+            try {
+               events->getHeader().erase(nullkeyword.str());
+            } catch (...) {
+               // do nothing if tip fails us again here.
             }
          } catch (tip::TipException &eObj) {
             m_formatter->info() << eObj.what() << "\n"
