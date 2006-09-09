@@ -171,9 +171,6 @@ protected:
 
    std::map<std::string, Source *> m_sources;
 
-   /// A vector of Sources that have modified parameters.
-   std::vector<std::string> m_modified;
-
    /// disable this since parameters may no longer have unique names
    double derivByParam(optimizers::Arg &, const std::string &) 
       const {return 0;}
