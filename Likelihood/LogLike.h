@@ -59,6 +59,8 @@ public:
       getFreeDerivs(dummy, freeDerivs);
    }
 
+   virtual void addSource(Source * src);
+
    virtual Source * deleteSource(const std::string & srcName);
 
    void getEvents(std::string event_file);
@@ -73,9 +75,15 @@ protected:
 
    mutable unsigned long m_nevals;
 
+   mutable std::vector<Source *> m_freeSrcs;
+
+   void findFreeSrcs() const;
+
 private:
 
    Npred m_Npred;
+
+   std::map<std::string, double> m_npredValues;
 
    double logSourceModel(const Event & event) const;
 

@@ -103,6 +103,8 @@ public:
       return m_countsSpectrum;
    }
 
+   virtual void addSource(Source * src);
+
    virtual Source * deleteSource(const std::string & srcName);
 
 protected:

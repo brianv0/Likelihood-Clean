@@ -195,13 +195,13 @@ bool RoiCuts::accept(const Event &event) const {
       }
    }
 
-// Require the event to lie within all time range cuts.
-   for (unsigned int i = 0; i < m_timeCuts.size(); i++) {
-      if (event.getArrTime() < m_timeCuts[i].first ||
-          event.getArrTime() > m_timeCuts[i].second) {
-         acceptEvent = false;
-      }
-   }
+// // Require the event to lie within all time range cuts.
+//    for (unsigned int i = 0; i < m_timeCuts.size(); i++) {
+//       if (event.getArrTime() < m_timeCuts[i].first ||
+//           event.getArrTime() > m_timeCuts[i].second) {
+//          acceptEvent = false;
+//       }
+//    }
 
    if (event.getEnergy() < m_eMin || event.getEnergy() > m_eMax) { 
       acceptEvent = false;

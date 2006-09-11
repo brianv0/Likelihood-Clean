@@ -183,7 +183,7 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
    st_facilities::Util::resolve_fits_files(evfile, files);
    if (respBase == "DSS") {
       std::string respFuncs = responseFuncs(files.front(), "DC2");
-      m_respFuncs->load(respFuncs);
+      m_respFuncs->load(respFuncs, "DC2");
    } else {
       m_respFuncs->load(respBase);
    }      
