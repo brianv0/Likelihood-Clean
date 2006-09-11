@@ -98,7 +98,7 @@ public:
    }
 
    /// Add a source.
-   void addSource(Source *src);
+   virtual void addSource(Source *src);
 
    /// Delete a source by name and return a copy.
    virtual Source * deleteSource(const std::string &srcName);
