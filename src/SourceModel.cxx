@@ -59,7 +59,7 @@ SourceModel::SourceModel(const SourceModel &rhs) : optimizers::Statistic(rhs),
 SourceModel::~SourceModel() {
    std::map<std::string, Source *>::iterator it = m_sources.begin();
    for ( ; it != m_sources.end(); ++it) {
-      delete (*it).second;
+      delete it->second;
    }
    m_sources.clear();
    delete m_formatter;
@@ -97,17 +97,6 @@ SourceModel::setParamValues_(std::vector<double>::const_iterator it) {
 
 std::vector<double>::const_iterator 
 SourceModel::setFreeParamValues_(std::vector<double>::const_iterator it) {
-//    std::vector<double> currentParams;
-//    getFreeParamValues(currentParams);
-//    std::vector<double>::const_iterator newpars(it);
-//    int modified(0);
-//    for (size_t i = 0; i < currentParams.size(); i++, ++newpars) {
-//       std::cout << (currentParams.at(i) - *newpars) << std::endl;
-//       if (std::fabs(currentParams.at(i) - *newpars) > 1e-7) {
-//          modified++;
-//       }
-//    }
-//    std::cout << "number of modified params: " << modified << std::endl;
    std::map<std::string, Source *>::iterator srcIt = m_sources.begin();
    for (size_t i = 0 ; srcIt != m_sources.end(); ++srcIt, i++) {
       Source::FuncMap srcFuncs = srcIt->second->getSrcFuncs();

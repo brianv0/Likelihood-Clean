@@ -108,7 +108,7 @@ public:
       m_respName = respName;
    }
 
-   void load(const std::string & respFuncs);
+   void load(const std::string & respFuncs, const std::string & respBase="");
 
 private:
 

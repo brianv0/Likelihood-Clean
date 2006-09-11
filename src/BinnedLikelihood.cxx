@@ -155,6 +155,10 @@ CountsMap * BinnedLikelihood::createCountsMap() const {
    return modelMap;
 }
 
+void BinnedLikelihood::addSource(Source * src) {
+   SourceModel::addSource(src);
+}
+
 Source * BinnedLikelihood::deleteSource(const std::string & srcName) {
    return SourceModel::deleteSource(srcName);
 }
