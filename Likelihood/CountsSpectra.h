@@ -50,6 +50,8 @@ public:
    void getSrcFluxes(const std::string & ptSrcName, 
                      std::vector<double> & srcFluxes) const;
 
+   void getTotalSrcCounts(std::vector<double> & srcCounts) const;
+
    void getObsCounts(std::vector<double> & counts) const;
 
    void writeTable(const std::string & outfile) const;
