@@ -89,6 +89,25 @@ void CountsSpectra::getSrcFluxes(const std::string & srcName,
    }
 }
 
+void CountsSpectra::getTotalSrcCounts(std::vector<double> & srcCounts) const {
+   srcCounts.clear();
+   std::vector<std::string> sourceNames;
+   m_logLike.getSrcNames(sourceNames);
+   if (!sourceNames.empty()) {
+      // Get counts due to first source.
+      getSrcCounts(sourceNames.at(0), srcCounts);
+      for (size_t i = 1; i < sourceNames.size(); i++) {
+         std::vector<double> componentCounts(srcCounts.size(), 0.);
+         // Get counts due to ith component.
+         getSrcCounts(sourceNames.at(i), componentCounts);
+         // Add this component to the total.
+         for (size_t j = 0; j < componentCounts.size(); j++) {
+            srcCounts[j] += componentCounts[j];
+         }
+      }
+   }
+}
+
 void CountsSpectra::writeTable(const std::string & outfile) const {
    std::remove(outfile.c_str());
 
