@@ -491,16 +491,19 @@ void likelihood::plotCountsSpectra() {
       nobs_err.push_back(std::sqrt(nobs.at(k)));
    }
 
-   // Normalize counts by bin-width to get counts/energy.
+// Normalize counts by bin-width to get counts/energy.
    for (size_t k = 0; k < ewidth.size(); k++) {
       nobs[k] /= ewidth[k];
       nobs_err[k] /= ewidth[k];
    }
    
-   // Set up a finer spectrum, in order to plot the predicted counts with higher resolution.
+// Set up a finer spectrum, in order to plot the predicted counts
+// with higher resolution.
    CountsSpectra fine_counts(*m_logLike);
    std::vector<double>::size_type num_fine_points = ebounds.size() * 1;
-   fine_counts.setEbounds(ebounds.front(), ebounds.back(), num_fine_points);
+   if (m_statistic == "UNBINNED") {
+      fine_counts.setEbounds(ebounds.front(), ebounds.back(), num_fine_points);
+   }
 
    std::vector<double> fine_ebounds(fine_counts.ebounds());
    std::vector<double> fine_evals;
@@ -522,12 +525,13 @@ void likelihood::plotCountsSpectra() {
    std::vector<double> zero(fine_evals.size(), 1.);
 
    try {
-      // Create the main frame to hold all plot frames.
+// Create the main frame to hold all plot frames.
       st_graph::Engine & engine(st_graph::Engine::instance());
       std::auto_ptr<st_graph::IFrame> 
          mainFrame(engine.createMainFrame(0, 600, 600));
-      // Create the plot.
-      EasyPlot plot(mainFrame.get(), "", true, true, "Energy (MeV)", "counts/MeV", 600, 400);
+// Create the plot.
+      EasyPlot plot(mainFrame.get(), "", true, true, "Energy (MeV)", 
+                    "counts/MeV", 600, 400);
       plot.scatter(evals, nobs, nobs_err);
       std::vector<double> npred_tot(npred.at(0).size(), 0);
       std::vector<double> fine_npred_tot(fine_npred.at(0).size(), 0);
@@ -550,7 +554,8 @@ void likelihood::plotCountsSpectra() {
       }
       plot.linePlot(fine_evals, fine_npred_tot);
       
-      EasyPlot residuals_plot(mainFrame.get(), "", true, false, "Energy (MeV)", "(counts - model) / model",
+      EasyPlot residuals_plot(mainFrame.get(), "", true, false, 
+                              "Energy (MeV)", "(counts - model) / model",
                               600, 200);
       std::vector<double> zero(evals.size(), 0.);
 
