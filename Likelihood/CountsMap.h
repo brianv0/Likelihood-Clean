@@ -55,6 +55,15 @@ public:
              const std::string & ra_field, const std::string & dec_field,
              const std::vector<double> & energies);
 
+   CountsMap(const std::string & event_file, const std::string & ev_table,
+             const std::string & sc_file, const std::string & sc_table,
+             double ref_ra, double ref_dec, const std::string & proj,
+             unsigned long num_x_pix, unsigned long num_y_pix, 
+             double x_pix_scale, double y_pix_scale, 
+             double axis_rot, bool use_lb, 
+             const std::string & ra_field, const std::string & dec_field,
+             const std::vector<double> & energies);
+
    CountsMap(const std::string & countsMapFile);
 
    CountsMap(const CountsMap & counts_map);
@@ -115,7 +124,8 @@ private:
              const std::string & event_file, const std::string & ev_table,
              const std::string & sc_file, const std::string & sc_table,
              unsigned long num_x_pix, unsigned long num_y_pix, 
-             double ref_ra, double ref_dec, double pix_scale, double emin,
+             double ref_ra, double ref_dec, double x_pix_scale, 
+             double y_pix_scale, double emin,
              double emax, unsigned long nenergies, bool use_lb, 
              const std::string & proj);
 
