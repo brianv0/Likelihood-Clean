@@ -67,6 +67,8 @@ public:
 
    void computeEventResponses(double sr_radius=30.);
 
+   virtual void syncParams();
+
 protected:
 
    virtual LogLike * clone() const {
@@ -74,10 +76,6 @@ protected:
    }
 
    mutable unsigned long m_nevals;
-
-   mutable std::vector<Source *> m_freeSrcs;
-
-   void findFreeSrcs() const;
 
 private:
 
