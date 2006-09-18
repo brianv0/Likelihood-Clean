@@ -159,7 +159,7 @@ public:
 
    /// method to sync the m_parameter vector with those of the 
    /// m_sources' Functions
-   void syncParams();
+   virtual void syncParams();
 
 protected:
 
@@ -180,6 +180,12 @@ protected:
 
    void setParams_(std::vector<optimizers::Parameter> &, bool);
 
+   std::vector<Source *> m_freeSrcs;
+
+   bool m_useNewImp;
+
+   void findFreeSrcs();
+
    /// Although these member functions are required by being a
    /// Statistic subclass, they are not needed for any practical use
    /// of SourceModel objects themselves, so we implement them here in
@@ -192,6 +198,7 @@ protected:
    virtual void getFreeDerivs(std::vector<double> &derivs) const {
       derivs.clear();
    }
+
 
 private:
 
