@@ -110,11 +110,12 @@ void ExposureCube::readRoiCuts() {
 
 void ExposureCube::createDataCube() {
    std::vector<std::pair<double, double> > timeCuts;
+   std::vector<std::pair<double, double> > gtis;
    m_roiCuts->getTimeCuts(timeCuts);
+   m_roiCuts->getGtis(gtis);
    m_exposure = new Likelihood::LikeExposure(m_pars["pixel_size"], 
                                              m_pars["cos_theta_step"],
-                                             m_roiCuts->timeRangeCuts(),
-                                             m_roiCuts->gtis());
+                                             timeCuts, gtis);
    std::string scFile = m_pars["scfile"];
    st_facilities::Util::file_ok(scFile);
    std::vector<std::string> scFiles;
