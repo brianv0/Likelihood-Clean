@@ -392,9 +392,12 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
       double livetime(scData.vec.at(it).livetime);
       double fraction(0);
 
+      std::vector< std::pair<double, double> > timeRanges;
+      std::vector< std::pair<double, double> > gtis;
+      roiCuts.getTimeCuts(timeRanges);
+      roiCuts.getGtis(gtis);
       bool includeInterval = 
-         LikeExposure::acceptInterval(start, stop, roiCuts.timeRangeCuts(),
-                                      roiCuts.gtis(), fraction);
+         LikeExposure::acceptInterval(start, stop, timeRanges, gtis, fraction);
 
 // Compute the inclination and check if it's within response matrix
 // cut-off angle
