@@ -57,17 +57,9 @@ public:
 
    /// Access to the time range cut intervals.  An event time is valid
    /// only if it lies within the union of these intervals.
-   void getTimeCuts(std::vector< std::pair<double, double> > &timeCuts) const {
-      timeCuts = m_timeCuts;
-   }
+   void getTimeCuts(std::vector< std::pair<double, double> > &timeCuts) const;
 
-   const std::vector< std::pair<double, double> > & timeRangeCuts() const {
-      return m_timeCuts;
-   }
-
-   const std::vector< std::pair<double, double> > & gtis() const {
-      return m_gtis;
-   }
+   void getGtis(std::vector< std::pair<double, double> > & gtis) const;
 
    std::pair<double, double> getEnergyCuts() const {
       return std::make_pair(m_eMin, m_eMax);
@@ -146,14 +138,6 @@ private:
 
    dataSubselector::Cuts * m_cuts;
 
-   /// cuts on photon "MET" arrival times in seconds; 
-   /// this vector of pairs specify time intervals for event acceptance;
-   /// the *intersection* of these intervals will be used
-   typedef std::pair<double, double> timeInterval; // this will be generalized
-   std::vector<timeInterval> m_timeCuts;
-
-   std::vector<timeInterval> m_gtis;
-
    /// minimum and maximum energies in MeV,
    double m_eMin;
    double m_eMax;
@@ -179,9 +163,6 @@ private:
 
    /// Add a time range cut.
    void addTimeInterval(double tmin, double tmax);
-
-   /// Add a GTI.
-   void addGoodTimeInterval(double tmin, double tmax);
 
    /// Create the m_energies vector.
    void makeEnergyVector(int nee=100);
