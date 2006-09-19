@@ -44,6 +44,7 @@ void RoiCuts::setCuts(double ra, double dec, double roi_radius,
    m_maxTime = tmax;
 
    m_gtis.clear();
+   addGoodTimeInterval(tmin, tmax);
 
    m_eMin = emin;
    m_eMax = emax;
