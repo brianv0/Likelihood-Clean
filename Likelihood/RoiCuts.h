@@ -35,7 +35,7 @@ namespace Likelihood {
 /** 
  * @class RoiCuts
  *
- * @brief NTuple Singleton class to represent Region-of-interest cuts.
+ * @brief Class to represent Region-of-interest cuts.
  *
  * @author J. Chiang
  *    
