@@ -93,7 +93,7 @@ public:
                 double roi_radius = 20.,
                 double emin = 30., double emax = 3.1623e5,
                 double tmin = 0., double tmax = 1e12,
-                double muZenMax = -1.);
+                double muZenMax = -1., bool reset_tlims=false);
 
    /// Read from the DSS keywords in a single eventFile.
    void readCuts(const std::string & eventFile,

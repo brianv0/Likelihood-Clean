@@ -55,12 +55,14 @@ void RoiCuts::getGtis(std::vector< std::pair<double, double> > & gtis) const {
 void RoiCuts::setCuts(double ra, double dec, double roi_radius,
                       double emin, double emax,
                       double tmin, double tmax,
-                      double muZenMax) {
-   for (size_t i = 0; i < m_timeRangeCuts.size(); i++) {
-      delete m_timeRangeCuts.at(i);
+                      double muZenMax, bool reset_tlims) {
+   if (reset_tlims) {
+      for (size_t i = 0; i < m_timeRangeCuts.size(); i++) {
+         delete m_timeRangeCuts.at(i);
+      }
+      m_timeRangeCuts.clear();
+      addTimeInterval(tmin, tmax);
    }
-   m_timeRangeCuts.clear();
-   addTimeInterval(tmin, tmax);
    m_minTime = tmin;
    m_maxTime = tmax;
 
