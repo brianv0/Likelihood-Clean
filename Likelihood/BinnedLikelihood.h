@@ -107,6 +107,8 @@ public:
 
    virtual Source * deleteSource(const std::string & srcName);
 
+   virtual void syncParams();
+
 protected:
 
    virtual BinnedLikelihood * clone() const {
