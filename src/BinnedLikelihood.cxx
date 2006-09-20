@@ -375,4 +375,8 @@ void BinnedLikelihood::computeCountsSpectrum() {
    }
 }
 
+void BinnedLikelihood::syncParams() {
+   SourceModel::syncParams();
+}
+
 } // namespace Likelihood
