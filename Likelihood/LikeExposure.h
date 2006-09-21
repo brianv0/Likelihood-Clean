@@ -63,6 +63,12 @@ private:
    static bool overlaps(const std::pair<double, double> & interval1,
                         std::pair<double, double> & interval2);
 
+   /// Minimum time to be considered given GTIs (MET s)
+   double m_tmin;
+
+   /// Maximum time to be considered given GTIs (MET s)
+   double m_tmax;
+
 };
 
 } // namespace Likelihood
