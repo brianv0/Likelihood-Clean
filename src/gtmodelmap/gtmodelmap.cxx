@@ -33,6 +33,8 @@
 #include "optimizers/dArg.h"
 #include "optimizers/FunctionFactory.h"
 
+#include "dataSubselector/Cuts.h"
+
 #include "Likelihood/BandFunction.h"
 #include "Likelihood/BrokenPowerLaw2.h"
 #include "Likelihood/ExpCutoff.h"
@@ -166,6 +168,8 @@ void ModelMap::writeOutputMap() {
    dims.resize(2);
    output_image->setImageDimensions(dims);
    output_image->set(m_outmap);
+   dataSubselector::Cuts my_cuts(infile, "", false);
+   my_cuts.writeGtiExtension(outfile);
 }
 
 void ModelMap::trimExtensions() {
