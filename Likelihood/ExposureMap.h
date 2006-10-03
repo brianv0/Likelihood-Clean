@@ -101,11 +101,20 @@ public:
     * @param nenergies The number of energies, which are in MeV.
     * These are logarithmically spaced with upper and lower bounds
     * given by the RoiCuts.
+    * @param bool compute_submap If true, then compute just for the
+    * range of longitude and latitudes pixels given by the following
+    * parameters
+    * @param nlongmin
+    * @param nlongmax
+    * @param nlatmin
+    * @param nlatmax
     */
    void computeMap(std::string filename, 
                    const Observation & observation,
                    double sr_radius=30, int nlong=60, int nlat=60,
-                   int nenergies=10);
+                   int nenergies=10, bool compute_submap=false,
+                   int nlongmin=0, int nlongmax=0, int nlatmin=0, 
+                   int nlatmax=0);
 
    static void readEnergyExtension(const std::string & filename,
                                    std::vector<double> & energies);
