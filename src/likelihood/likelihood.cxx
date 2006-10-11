@@ -823,6 +823,9 @@ void likelihood::renormModel() {
    }
    double deficit(observedCounts() - totalNpred);
    double renormFactor(1. + deficit/freeNpred);
+   if (renormFactor < 1.) {
+      renormFactor = 1.;
+   }
    std::vector<std::string> srcNames;
    m_logLike->getSrcNames(srcNames);
    for (std::vector<std::string>::const_iterator srcName = srcNames.begin();
