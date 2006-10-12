@@ -792,6 +792,7 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
             } else {
                if (m_statistic != "BINNED") {
                   renormModel();
+                  m_logLike->syncParams();
                }
             }
             null_value = std::max(m_logLike->value(), null_value);
