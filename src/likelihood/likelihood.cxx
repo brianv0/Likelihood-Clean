@@ -290,13 +290,13 @@ void likelihood::run() {
       }
       printFitResults(errors);
       writeSourceXml();
+      if (m_pars["plot"]) {
+         plotCountsSpectra();
+      }
    } while (queryLoop && prompt("Refit? [y] "));
    writeFluxXml();
    if (m_pars["write_output_files"]) {
       writeCountsSpectra();
-   }
-   if (m_pars["plot"]) {
-      plotCountsSpectra();
    }
 //   writeCountsMap();
    m_formatter->info() << "Elapsed CPU time: " << cputime() << std::endl;
