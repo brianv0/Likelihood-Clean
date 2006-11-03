@@ -168,8 +168,8 @@ void RoiCuts::sortCuts(bool strict) {
    }
 /// @todo Sort out the correct way to handle multiple, and perhaps
 /// inconsistent, energy range and SkyCone cuts.
-//   if (strict && (nenergy != 1 || ncone != 1 || ntime == 0)) {
-   if (strict && (ncone != 1 || ntime == 0)) {
+   if (strict && (nenergy != 1 || ncone != 1 || ntime == 0)) {
+//   if (strict && (ncone != 1 || ntime == 0)) {
       std::ostringstream message;
       message << "RoiCuts::sortCuts:\n"
               << "There should be exactly "
