@@ -69,6 +69,8 @@ public:
 
    virtual void syncParams();
 
+   virtual void syncSrcParams(const std::string & srcName);
+
 protected:
 
    virtual LogLike * clone() const {
