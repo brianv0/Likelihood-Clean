@@ -448,8 +448,8 @@ checkExpMapCuts(const std::vector<std::string> & evFiles,
                 const std::string & expMap,
                 const std::string & evfileExt,
                 const std::string & expMapExt) {
-   dataSubselector::Cuts evCuts(evFiles, evfileExt);
-   dataSubselector::Cuts expMapCuts(expMap, expMapExt);
+   dataSubselector::Cuts evCuts(evFiles, evfileExt, false);
+   dataSubselector::Cuts expMapCuts(expMap, expMapExt, false);
 
    std::vector<dataSubselector::RangeCut *> evEnergyCuts;
    std::vector<dataSubselector::RangeCut *> expMapEnergyCuts;
