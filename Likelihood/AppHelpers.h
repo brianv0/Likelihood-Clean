@@ -120,6 +120,11 @@ public:
                              bool compareGtis=true,
                              bool gtiWarningOnly=true);
 
+   static void checkExpMapCuts(const std::vector<std::string> & evfiles,
+                               const std::string & expMap,
+                               const std::string & evfileExt="EVENTS",
+                               const std::string & expMapExt="");
+
    static std::string responseFuncs(const std::string & file,
                                     const std::string & respBase);
 
