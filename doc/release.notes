@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v11r11p1 12-Dec-06 JC  add option to disable fit checking in gtlikelihood
     v11r11  04-Dec-06 JC   ensure only that expMap energy bounds contain
                            evfile energy range
     v11r10  12-Nov-06 JC   add LogLike::syncSrcParams(...)
