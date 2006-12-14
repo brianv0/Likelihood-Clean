@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v11r11p2 14-Dec-06 JP  catch exception when warning code doesn't converge
     v11r11p1 12-Dec-06 JC  add option to disable fit checking in gtlikelihood
     v11r11  04-Dec-06 JC   ensure only that expMap energy bounds contain
                            evfile energy range
