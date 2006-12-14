@@ -8,7 +8,7 @@
 #include <math.h>
 #include <stdexcept>
 
-#define RAND_ITMAX      1000//before was 100
+#define RAND_ITMAX      10000//before was 1000
 #define RAND_EPS        3.0e-7
 
 double  MathUtil::gammln(double x){
