@@ -717,42 +717,47 @@ void likelihood::printFitQuality() const {
    std::vector<double> significance_val(lastEnergy, 0.);
    std::vector<double> threshold(lastEnergy, 0.);
 
-   for (int k = 0; k < lastEnergy; k++) {
-      if (counts[k]>0) {//counts>0
-         threshold[k]=0.05;
-         if (mean[k]>0) { //counts> 0 mean>0
-            significance_val[k]=MathUtil::poissonSig(counts[k],mean[k]);
-         } else {
-            significance_val[k]=MathUtil::poissonSig(counts[k],mean[k]);
-         }
-      } else {//counts=0    
-         if (mean[k]>0){
-            significance_val[k]=1./mean[k]; 
-            threshold[k]=0.5;//this number may change
-         } else {//counts=mean=0
-            significance_val[k]=1;//always >threshold
+   try {
+      for (int k = 0; k < lastEnergy; k++) {
+         if (counts[k]>0) {//counts>0
             threshold[k]=0.05;
+            if (mean[k]>0) { //counts> 0 mean>0
+               significance_val[k]=MathUtil::poissonSig(counts[k],mean[k]);
+            } else {
+               significance_val[k]=MathUtil::poissonSig(counts[k],mean[k]);
+            }
+         } else {//counts=0    
+            if (mean[k]>0){
+               significance_val[k]=1./mean[k]; 
+               threshold[k]=0.5;//this number may change
+            } else {//counts=mean=0
+               significance_val[k]=1;//always >threshold
+               threshold[k]=0.05;
+            }
          }
       }
-   }
-
-   bool aboveThreshold_sig = false;
-   for (int k = 0; k < lastEnergy; k++) {
-      if (significance_val[k] < threshold[k]) {
-         if (!aboveThreshold_sig) {
-            m_formatter->warn() << "WARNING: Fit may be bad in range [" 
-                                << ebounds.at(k) << ", ";
+   
+      bool aboveThreshold_sig = false;
+      for (int k = 0; k < lastEnergy; k++) {
+         if (significance_val[k] < threshold[k]) {
+            if (!aboveThreshold_sig) {
+               m_formatter->warn() << "WARNING: Fit may be bad in range [" 
+                                   << ebounds.at(k) << ", ";
+            }
+            aboveThreshold_sig = true;
+         } else if (aboveThreshold_sig) {
+            aboveThreshold_sig = false;
+            m_formatter->warn() << ebounds.at(k) << "] (MeV)" << std::endl;
          }
-         aboveThreshold_sig = true;
-      } else if (aboveThreshold_sig) {
-         aboveThreshold_sig = false;
-         m_formatter->warn() << ebounds.at(k) << "] (MeV)" << std::endl;
       }
-   }
 
-   // Print the rest of the warning if the last point was above the threshold.
-   if (aboveThreshold_sig)
-      m_formatter->warn() << ebounds.at(lastEnergy) << "] (MeV)" << std::endl;
+     // Print the rest of the warning if the last point was above the threshold.
+     if (aboveThreshold_sig)
+        m_formatter->warn() << ebounds.at(lastEnergy) << "] (MeV)" << std::endl;
+
+   } catch (const std::exception & x) {
+      m_formatter->warn() << "Failed to compute Poisson significance: " << x.what() << std::endl;
+   }
 }
 
 void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
