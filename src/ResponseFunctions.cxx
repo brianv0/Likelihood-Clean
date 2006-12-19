@@ -37,8 +37,11 @@ double ResponseFunctions::totalResponse(double energy, double appEnergy,
    double myResponse;
    irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
    if (!irfs) {
-      throw std::runtime_error("Could not find appropriate response functions "
-                               "for these event data.");
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
    } else {
       irfInterface::IPsf * psf(irfs->psf());
       irfInterface::IAeff * aeff(irfs->aeff());
@@ -62,8 +65,11 @@ double ResponseFunctions::totalResponse(double inclination, double phi,
    double myResponse;
    irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
    if (!irfs) {
-      throw std::runtime_error("Could not find appropriate response functions "
-                               "for these event data.");
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
    } else {
       irfInterface::IPsf * psf(irfs->psf());
       irfInterface::IAeff * aeff(irfs->aeff());

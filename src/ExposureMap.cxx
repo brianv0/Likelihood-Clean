@@ -151,14 +151,13 @@ void ExposureMap::computeMap(std::string filename,
       jmax = std::min(nlat, nlatmax);
    }
 
-//    for (int j = 0; j < nlat; j++) {
-//       for (int i = 0; i < nlon; i++) {
-//          if ((ncount % ((nlon*nlat)/20)) == 0) {
-//             formatter.info() << ".";
-//          }
    for (int j = jmin; j < jmax; j++) {
       for (int i = imin; i < imax; i++) {
-         if ((ncount % (((imax-imin)*(jmax-jmin))/20)) == 0) {
+         int step(((imax-imin)*(jmax-jmin))/20);
+         if (step == 0) {
+            step = 2;
+         }
+         if ((ncount % step) == 0) {
             formatter.info() << ".";
          }
 
