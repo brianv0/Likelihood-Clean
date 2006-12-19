@@ -188,7 +188,7 @@ double DiffuseSource::Npred(double emin, double emax) const {
       /(energies.at(begin_offset) - energies.at(begin_offset - 1))
       *(m_exposure.at(begin_offset) - m_exposure.at(begin_offset - 1))
       + m_exposure.at(begin_offset - 1);
-   double end_exposure = (emin - energies.at(end_offset - 1))
+   double end_exposure = (emax - energies.at(end_offset - 1))
       /(energies.at(end_offset) - energies.at(end_offset - 1))
       *(m_exposure.at(end_offset) - m_exposure.at(end_offset - 1))
       + m_exposure.at(end_offset - 1);
