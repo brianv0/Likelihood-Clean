@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v11r12   19-Dec-06 JC  refactor Source hierarchy, moving common member
+                           function implementations to base class
     v11r11p3 19-Dec-06 JC  bug fix in DiffuseSource::Npred(double, double)
     v11r11p2 14-Dec-06 JP  catch exception when warning code doesn't converge
     v11r11p1 12-Dec-06 JC  add option to disable fit checking in gtlikelihood
