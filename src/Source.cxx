@@ -6,6 +6,7 @@
  * $Header$
  */
 
+#include <algorithm>
 #include <stdexcept>
 
 #include "optimizers/dArg.h"
