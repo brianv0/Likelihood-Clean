@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v11r12p2 25-Dec-06 JC  uncomment apps in req file
     v11r12p1 24-Dec-06 JC  #include <algorithm> in Source.cxx
     v11r12   19-Dec-06 JC  refactor Source hierarchy, moving common member
                            function implementations to base class
