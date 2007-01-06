@@ -202,17 +202,13 @@ std::string EventContainer::sourceName(const std::string & name) const {
 // Strip the IRF name and use the underlying diffuse component name
 // in setDiffuseResponse.
    std::vector<std::string> tokens;
-   if (name.find("__") != std::string::npos) {
-      facilities::Util::stringTokenize(name, "__", tokens);
-   } else if (name.find("::") != std::string::npos) {
-      facilities::Util::stringTokenize(name, "::", tokens);
+   std::string::size_type pos;
+   if ((pos = name.find("__")) != std::string::npos) {
+      return name.substr(pos+2);
+   } else if ((pos = name.find("::")) != std::string::npos) {
+      return name.substr(pos+2);
    }
-   if (tokens.size() == 1) {
-      return tokens.at(0);
-   } else {
-      return tokens.at(1);
-   }
-   return std::string();
+   return name;
 }
 
 } // namespace Likelihood
