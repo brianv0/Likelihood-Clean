@@ -188,7 +188,7 @@ void LikelihoodTests::setUp() {
    }
 
 // Prepare the ResponseFunctions object.
-   dc1aResponse::loadIrfs();
+   dc1aResponse::load_irfs();
    irfInterface::IrfsFactory * myFactory 
       = irfInterface::IrfsFactory::instance();
    m_respFuncs->addRespPtr(0, myFactory->create("DC1A::Front"));
