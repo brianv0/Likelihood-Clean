@@ -246,8 +246,7 @@ void likelihood::run() {
                                    "Exposure", compareGtis);
       }
       m_helper->setRoi();
-      m_helper->readScData(m_helper->observation().roiCuts().minTime(),
-                           m_helper->observation().roiCuts().maxTime());
+      m_helper->readScData();
       m_helper->readExposureMap();
    }
    createStatistic();
