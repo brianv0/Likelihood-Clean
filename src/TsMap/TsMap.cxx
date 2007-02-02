@@ -186,7 +186,15 @@ void TsMap::setGrid() {
 }
 
 void TsMap::computeMap() {
-   PointSource testSrc(0, 0., m_helper->observation());
+   double ra(m_lonValues.front());
+   double dec(m_latValues.front());
+   bool use_lb = m_pars["use_lb"];
+   if (use_lb) {
+      astro::SkyDir my_dir(ra, dec, astro::SkyDir::GALACTIC);
+      ra = my_dir.ra();
+      dec = my_dir.dec();
+   }
+   PointSource testSrc(ra, dec, m_helper->observation());
    setPointSourceSpectrum(testSrc);
    testSrc.setName("testSource");
 
