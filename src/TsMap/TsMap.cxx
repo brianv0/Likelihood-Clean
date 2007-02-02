@@ -133,7 +133,9 @@ void TsMap::run() {
                             m_eventFiles[i], ev_table,
                             compareGtis, relyOnStreams, skipEventClassCuts);
    }
-   m_helper->setRoi(m_eventFiles[0]);
+/// @bug Ascertain why this was called with just the first event file.
+///   m_helper->setRoi(m_eventFiles[0]);
+   m_helper->setRoi();
    m_helper->readScData();
    m_helper->readExposureMap();
 

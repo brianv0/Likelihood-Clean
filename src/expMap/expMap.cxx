@@ -93,12 +93,13 @@ void ExpMap::run() {
                     << "Do not use them for binned analyses." << std::endl;
    promptForParameters();
    m_helper = new AppHelpers(&m_pars, "UNBINNED");
-   m_helper->readScData();
+//    m_helper->readScData();
    bool useEdisp = m_pars["use_energy_dispersion"];
    ResponseFunctions & respFuncs =
       const_cast<ResponseFunctions &>(m_helper->observation().respFuncs());
    respFuncs.setEdispFlag(useEdisp);
    m_helper->setRoi();
+   m_helper->readScData();
    setSourceRegion();
    createExposureMap();
 }
