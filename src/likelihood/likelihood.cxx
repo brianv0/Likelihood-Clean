@@ -232,7 +232,7 @@ void likelihood::run() {
       bool relyOnStreams(false);
       std::string respfunc = m_pars["rspfunc"];
       bool skipEventClassCuts(respfunc != "DSS");
-      for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
+      for (size_t i = 1; i < m_eventFiles.size(); i++) {
          AppHelpers::checkCuts(m_eventFiles[0], evtable, m_eventFiles[i],
                                evtable, compareGtis, relyOnStreams,
                                skipEventClassCuts);
@@ -246,7 +246,8 @@ void likelihood::run() {
                                    "Exposure", compareGtis);
       }
       m_helper->setRoi();
-      m_helper->readScData();
+      m_helper->readScData(m_helper->observation().roiCuts().minTime(),
+                           m_helper->observation().roiCuts().maxTime());
       m_helper->readExposureMap();
    }
    createStatistic();

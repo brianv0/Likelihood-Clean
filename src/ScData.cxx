@@ -71,7 +71,62 @@ void ScData::readData(std::string file, bool clear,
    }
 
    delete scData;
-}         
+}
+
+void ScData::readData(std::string file, double tstart, 
+                      double tstop, bool clear,
+                      const std::string & sctable) {
+   facilities::Util::expandEnvVar(&file);
+
+   m_scFile = file;
+
+   const tip::Table * scData = 
+      tip::IFileSvc::instance().readTable(file, sctable);
+
+   if (clear) {
+      vec.clear();
+   }
+
+   double raSCX, decSCX;
+   double raSCZ, decSCZ;
+   tip::Table::ConstIterator it = scData->begin();
+   tip::ConstTableRecord & scInterval = *it;
+   for ( ; it != scData->end(); ++it) {
+      ScNtuple tuple;
+      scInterval["start"].get(tuple.time);
+      if (tuple.time > tstop) {
+         break;
+      }
+      scInterval["stop"].get(tuple.stoptime);
+      if (tuple.stoptime < tstart) {
+         continue;
+      }
+      scInterval["livetime"].get(tuple.livetime);
+      scInterval["ra_scx"].get(raSCX);
+      scInterval["dec_scx"].get(decSCX);
+      tuple.xAxis = astro::SkyDir(raSCX, decSCX);
+      scInterval["ra_scz"].get(raSCZ);
+      scInterval["dec_scz"].get(decSCZ);
+      tuple.zAxis = astro::SkyDir(raSCZ, decSCZ);
+// Ensure that startTimes are contiguous.
+      if (vec.size() > 1 && tuple.time < vec[vec.size()-2].time) {
+         std::ostringstream message;
+         message << "Likelihood::ScData: "
+                 << "The start times in the spacecraft data are not "
+                 << "contiguous.\n"
+                 << "Previous time: " << vec[vec.size()-2].time << "\n"
+                 << "Current time: " << tuple.time << "\n"
+                 << "Current S/C file: " << m_scFile << "\n"
+                 << "Check the ordering of your S/C files." 
+                 << std::endl;
+         throw std::runtime_error(message.str());
+      }
+      tuple.inSaa = 0;
+      vec.push_back(tuple);
+   }
+
+   delete scData;
+}
 
 unsigned int ScData::time_index(double time) const {
    double tmin(vec.front().time);

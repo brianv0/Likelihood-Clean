@@ -60,6 +60,7 @@ public:
    optimizers::FunctionFactory & funcFactory();
 
    void readScData();
+   void readScData(double tstart, double tstop);
    void readExposureMap();
    void setRoi(const std::string & filename="",
                const std::string & ext="EVENTS",

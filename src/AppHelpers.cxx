@@ -171,6 +171,19 @@ void AppHelpers::readScData() {
    }
 }
 
+void AppHelpers::readScData(double tstart, double tstop) {
+   st_app::AppParGroup & pars(*m_pars);
+   std::string scFile = pars["scfile"];
+   std::string sctable = pars["sctable"];
+   st_facilities::Util::file_ok(scFile);
+   st_facilities::Util::resolve_fits_files(scFile, m_scFiles);
+   std::vector<std::string>::const_iterator scIt = m_scFiles.begin();
+   for ( ; scIt != m_scFiles.end(); scIt++) {
+      st_facilities::Util::file_ok(*scIt);
+      m_scData->readData(*scIt, tstart, tstop, false, sctable);
+   }
+}
+
 void AppHelpers::readExposureMap() {
    st_app::AppParGroup & pars(*m_pars);
    std::string exposureFile = pars["exposure_map_file"];
