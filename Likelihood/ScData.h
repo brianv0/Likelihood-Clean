@@ -37,6 +37,11 @@ public:
    void readData(std::string file, bool clear=false,
                  const std::string & sctable="SC_DATA");
    
+   /// Method to read in the spacecraft data with start and stop times
+   void readData(std::string file, double tstart, double tstop,
+                 bool clear=false,
+                 const std::string & sctable="SC_DATA");
+   
 #ifndef SWIG
 /** 
  * @class ScNtuple
