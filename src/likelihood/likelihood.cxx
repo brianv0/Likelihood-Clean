@@ -775,7 +775,7 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
    astro::SkyDir roiCenter 
       = m_helper->observation().roiCuts().extractionRegion().center();
    for (unsigned int i = 0; i < srcNames.size(); i++) {
-      m_formatter->info() << ".";
+      m_formatter->warn() << ".";
       Source * src = m_logLike->getSource(srcNames[i]);
       if (src->getType() == "Point" &&
           src->spectrum().getNumFreeParams() > 0) {
@@ -816,7 +816,7 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
          m_logLike->setFreeParamValues(fitParams);
       }
    }
-   m_formatter->info() << "!" << std::endl;
+   m_formatter->warn() << "!" << std::endl;
 // Reset parameter values.
    m_logLike->setFreeParamValues(fitParams);
 }

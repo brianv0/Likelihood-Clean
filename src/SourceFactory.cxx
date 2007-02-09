@@ -217,7 +217,14 @@ makePointSource(const DOMElement * spectrum,
       }
    }
 
-   Source * src = new PointSource(ra, dec, m_observation, m_verbose);
+   Source * src(0);
+   if (m_requireExposure) {
+      src = new PointSource(ra, dec, m_observation, m_verbose);
+   } else { // for BinnedLikelihood, skip the exposure calculation
+      src = new PointSource();
+      dynamic_cast<PointSource *>(src)->setDir(ra, dec, m_requireExposure,
+                                               m_verbose);
+   }
 
    try {
       setSpectrum(src, spectrum, funcFactory);
