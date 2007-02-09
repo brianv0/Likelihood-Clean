@@ -212,7 +212,7 @@ void TsMap::computeMap() {
 
    for (unsigned int jj = 0; jj < m_latValues.size(); jj++) {
       if ((jj % m_latValues.size()/20) == 0) {
-         m_formatter->info() << ".";
+         m_formatter->warn() << ".";
       }
       for (unsigned int ii = 0; ii < m_lonValues.size(); ii++) {
          if (m_coordSys == "CEL") {
@@ -242,7 +242,7 @@ void TsMap::computeMap() {
          m_logLike->deleteSource(testSrc.getName());
       }
    }
-   m_formatter->info() << "!" << std::endl;
+   m_formatter->warn() << "!" << std::endl;
 }
 
 void TsMap::makeDoubleVector(double xmin, double xmax, int nx,

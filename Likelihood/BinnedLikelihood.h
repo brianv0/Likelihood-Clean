@@ -64,7 +64,7 @@ public:
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true, 
                         bool addPointSources=true) {
-      SourceModel::readXml(xmlFile, funcFactory, requireExposure,
+      SourceModel::readXml(xmlFile, funcFactory, requireExposure=false,
                            addPointSources);
       if (m_srcMapsFile == "") {
          createSourceMaps();

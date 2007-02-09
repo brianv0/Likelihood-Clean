@@ -108,12 +108,12 @@ void BinnedExposure::computeMap() {
    m_exposureMap.resize(m_naxes.at(0)*m_naxes.at(1)*m_energies.size(), 0);
    int iter(0);
    st_stream::StreamFormatter formatter("BinnedExposure", "computeMap", 2);
-   formatter.info() << "Computing binned exposure map";
+   formatter.warn() << "Computing binned exposure map";
 
    for (int j = 0; j < m_naxes.at(1); j++) {
       for (int i = 0; i < m_naxes.at(0); i++) {
          if ((iter % ((m_naxes.at(1)*m_naxes.at(0))/20)) == 0) {
-            formatter.info() << ".";
+            formatter.warn() << ".";
          }
          std::pair<double, double> coord = m_proj->pix2sph(i + 1, j + 1);
          astro::SkyDir dir(coord.first, coord.second);
@@ -131,7 +131,7 @@ void BinnedExposure::computeMap() {
          iter++;
       }
    }
-   formatter.info() << "!" << std::endl;
+   formatter.warn() << "!" << std::endl;
 }
 
 double BinnedExposure::Aeff::s_phi(0);

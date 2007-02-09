@@ -158,7 +158,7 @@ void ExposureMap::computeMap(std::string filename,
             step = 2;
          }
          if ((ncount % step) == 0) {
-            formatter.info() << ".";
+            formatter.warn() << ".";
          }
 
 // NB: wcslib (via astro::SkyProj) starts indexing pixels at 1, not 0, 
@@ -182,7 +182,7 @@ void ExposureMap::computeMap(std::string filename,
          ncount++;
       }
    }
-   formatter.info() << "!" << std::endl;
+   formatter.warn() << "!" << std::endl;
 
    writeFitsFile(filename, naxes, crpix, crval, cdelt, energies, expMap);
 }
