@@ -4,6 +4,10 @@
     $Id$
 
     @verbatim
+    v11r12p6 09-Feb-07 JC  use StreamFormatter::warn() to get unbuffered
+                           screen output; skip unneeded exposure calculations
+                           in BinnedLikelihood; bug-fix for psf corrections
+                           in SourceMap
     v11r12p5 02-Feb-07 JC  read in just the part of the S/C data that
                            is needed for the event data time range;
                            set the initial position of the test source
