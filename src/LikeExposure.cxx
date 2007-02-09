@@ -87,7 +87,7 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
 
    for (long irow = 0; it != scData->end() && start < m_tmax; ++it, ++irow) {
       if (verbose && (irow % istep) == 0 ) {
-         formatter.info() << "."; 
+         formatter.warn() << "."; 
       }
       row["livetime"].get(livetime);
       row["start"].get(start);
@@ -101,7 +101,7 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
       }
    }
    if (verbose) {
-      formatter.info() << "!" << std::endl;
+      formatter.warn() << "!" << std::endl;
    }
 }
 

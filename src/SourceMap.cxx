@@ -96,7 +96,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
    std::vector<double> energies;
    dataMap->getAxisVector(2, energies);
 
-   m_formatter->info() << "Generating SourceMap for " << m_name;
+   m_formatter->warn() << "Generating SourceMap for " << m_name;
    long npts = energies.size()*pixels.size();
    m_model.resize(npts, 0);
    long icount(0);
@@ -130,7 +130,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
          for (pixel = pixels.begin(); pixel != pixels.end();
               ++pixel, indx++) {
             if ((indx % (npts/20)) == 0) {
-               m_formatter->info() << ".";
+               m_formatter->warn() << ".";
             }
             if (pixel->solidAngle() > 0) {
                m_model.at(indx) = (convolvedMap(pixel->dir())
@@ -160,7 +160,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
             for (int k = 0; energy != energies.end(); ++energy, k++) {
                unsigned long indx = k*pixels.size() + j;
                if ((icount % (npts/20)) == 0) {
-                  m_formatter->info() << ".";
+                  m_formatter->warn() << ".";
                }
                double value = (meanPsf(energies.at(k), 
                                        dir.difference(pixel->dir())*180./M_PI)
@@ -186,7 +186,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
          }
       }
    }
-   m_formatter->info() << "!" << std::endl;
+   m_formatter->warn() << "!" << std::endl;
 }
 
 SourceMap::~SourceMap() {
@@ -235,8 +235,13 @@ void SourceMap::getMapCorrections(PointSource * src, const MeanPsf & meanPsf,
          map_integral += pix.solidAngle()*
             meanPsf(energies.at(k), srcDir.difference(pix.dir())*180./M_PI);
       }
-      mapCorrections.push_back(meanPsf.integral(psfRadius, energies.at(k))
-                               /map_integral);
+      if (map_integral == 0) {
+// source effectively lies on map boundary, so apply no correction
+         mapCorrections.push_back(1);
+      } else {
+         mapCorrections.push_back(meanPsf.integral(psfRadius, energies.at(k))
+                                  /map_integral);
+      }
    }
    mapCorrections.push_back(mapCorrections.back());
 }
