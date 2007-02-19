@@ -11,6 +11,7 @@
 
 #include <map>
 
+#include "Likelihood/Accumulator.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/Event.h"
 #include "Likelihood/Npred.h"
@@ -82,6 +83,8 @@ protected:
 private:
 
    Npred m_Npred;
+
+   mutable Accumulator m_accumulator;
 
    std::map<std::string, double> m_npredValues;
 
