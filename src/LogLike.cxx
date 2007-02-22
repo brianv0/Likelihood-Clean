@@ -16,12 +16,11 @@
 
 #include "st_stream/StreamFormatter.h"
 
+#include "Likelihood/Accumulator.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/Npred.h"
 #include "Likelihood/SrcArg.h"
-
-#include "Likelihood/Accumulator.h"
 
 namespace Likelihood {
 
