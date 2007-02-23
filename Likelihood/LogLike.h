@@ -88,8 +88,6 @@ private:
 
    std::map<std::string, double> m_npredValues;
 
-   mutable Accumulator m_accumulator;
-
    double logSourceModel(const Event & event) const;
 
    void getLogSourceModelDerivs(const Event & event,
