@@ -291,7 +291,8 @@ double findSrc::fitPosition(double step) {
    st_stream::StreamFormatter formatter("findSrc", "fitPosition", 2);
    LikeFunc func(*m_opt, *m_logLike, *m_testSrc, formatter, coordSys, 
                  tol, reopt);
-   optimizers::Amoeba my_amoeba(func, coords, step);
+   bool addstep;
+   optimizers::Amoeba my_amoeba(func, coords, step, addstep=true);
    double pos_tol = m_pars["amoeba_tolerance"];
    double statValue = my_amoeba.findMin(coords, pos_tol);
    if (m_testSrc->getName() == "testSource") {
