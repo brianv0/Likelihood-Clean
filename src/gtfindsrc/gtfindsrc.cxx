@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cstring>
 
+#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <stdexcept>
