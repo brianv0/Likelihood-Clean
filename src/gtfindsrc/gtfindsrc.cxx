@@ -359,11 +359,13 @@ errEst(const std::vector< std::vector<double> > & testPoints) const {
          npts++;
       }
    }
-   double AA( (npts*Sxy - Sy*Sx)/(npts*Sxx - Sx*Sx) );
-   if (AA <= 0) {
+   double numerator(npts*Sxy - Sy*Sx);
+   double denominator(npts*Sxx - Sx*Sx);
+   if (denominator == 0 || numerator == 0 || numerator/denominator <= 0 ) {
       throw std::runtime_error("A reliable positional error estimate cannot "
                                "be made.\nPlease inspect the output file");
    }
+   double AA(numerator/denominator);
    return 180./M_PI/std::sqrt(2.*AA);
 }
 
