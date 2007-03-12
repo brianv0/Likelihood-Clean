@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v11r13p3 12-Mar-07 JC  more gtfindsrc error estimator fixes 
     v11r13p2 25-Feb-07 JC  #include <algorithm> in gtfindsrc.cxx
     v11r13p1 25-Feb-07 JC  sort results in gtfindsrc
     v11r13   23-Feb-07 JC  gtfindsrc bug fixes: initial likelihood evaluation
