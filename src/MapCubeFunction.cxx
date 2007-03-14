@@ -138,7 +138,8 @@ void MapCubeFunction::readFitsFile(const std::string & fits_file) {
       formatter.info() << "File not found: " << fitsFile << std::endl;
       throw std::runtime_error("File not found: " + fitsFile);
    }
-   m_fitsFile = fitsFile;
+//   m_fitsFile = fitsFile;
+   m_fitsFile = fits_file;
    m_proj = new astro::SkyProj(fitsFile);
 
    st_facilities::FitsImage fitsImage(fitsFile);
@@ -162,7 +163,9 @@ findIndex(const std::vector<double> & xx, double x) const {
 }
 
 double MapCubeFunction::mapIntegral() const {
-   st_facilities::FitsImage fitsImage(m_fitsFile);
+   std::string fitsFile(m_fitsFile);
+   facilities::Util::expandEnvVar(&fitsFile);
+   st_facilities::FitsImage fitsImage(fitsFile);
    std::vector<double> solidAngles;
 
    fitsImage.getSolidAngles(solidAngles);
