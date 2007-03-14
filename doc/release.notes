@@ -4,6 +4,10 @@
     $Id$
 
     @verbatim
+    v11r14   14-Mar-07 JC  subtract initial logLike as offset in gtfindsrc
+                           to approximate absolute fit tolerance in position
+                           estimate; preserve environment variables when
+                           writing xml model files
     v11r13p3 12-Mar-07 JC  more gtfindsrc error estimator fixes 
     v11r13p2 25-Feb-07 JC  #include <algorithm> in gtfindsrc.cxx
     v11r13p1 25-Feb-07 JC  sort results in gtfindsrc
