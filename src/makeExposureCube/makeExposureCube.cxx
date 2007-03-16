@@ -97,6 +97,10 @@ void ExposureCube::run() {
       table(tip::IFileSvc::instance().editTable(output_file, "Exposure"));
    m_roiCuts->writeDssTimeKeywords(table->getHeader());
    m_roiCuts->writeGtiExtension(output_file);
+   
+   tip::Header & header(table->getHeader());
+   header["TSTART"].set(m_roiCuts->minTime());
+   header["TSTOP"].set(m_roiCuts->maxTime());
 }
 
 void ExposureCube::readRoiCuts() {
