@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v11r14p1 16-Mar-07 JC  add TSTART, TSTOP keywords to gtlivetimecube
+                           Exposure extension header
     v11r14   14-Mar-07 JC  subtract initial logLike as offset in gtfindsrc
                            to approximate absolute fit tolerance in position
                            estimate; preserve environment variables when
