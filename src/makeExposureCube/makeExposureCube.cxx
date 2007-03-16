@@ -101,6 +101,7 @@ void ExposureCube::run() {
    tip::Header & header(table->getHeader());
    header["TSTART"].set(m_roiCuts->minTime());
    header["TSTOP"].set(m_roiCuts->maxTime());
+   header.erase("TNULL1");
 }
 
 void ExposureCube::readRoiCuts() {
