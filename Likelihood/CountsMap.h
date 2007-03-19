@@ -128,7 +128,7 @@ private:
 
    mutable std::vector<Pixel> m_pixels;
 
-   CountsMap & operator=(const CountsMap & rhs) {return *this;}
+   CountsMap & operator=(const CountsMap &) {return *this;}
 
    void init(std::vector<evtbin::Binner *> & binners, 
              const std::string & event_file, const std::string & ev_table,

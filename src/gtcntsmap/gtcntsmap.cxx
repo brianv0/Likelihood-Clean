@@ -191,6 +191,8 @@ void gtcntsmap::logArray(double xmin, double xmax, size_t nx,
       xmins.push_back(xmin*exp(i*xstep));
       xmaxs.push_back(xmin*exp((i+1)*xstep));
    }
+// Ensure endpoint matches specified exactly.
+   xmaxs.back() = xmax;
 }
 
 void gtcntsmap::checkEnergies(double emin, double emax) const {
