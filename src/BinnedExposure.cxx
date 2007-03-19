@@ -25,6 +25,32 @@
 #include "Likelihood/BinnedExposure.h"
 #include "Likelihood/Observation.h"
 
+namespace {
+   double fracDiff(double target, double result) {
+      return std::fabs((target - result)/target);
+   }
+   std::vector<double>::const_iterator 
+   findNearest(const std::vector<double> & xx, double x, double tol=1e-5) {
+      std::vector<double>::const_iterator ix = std::find(xx.begin(),
+                                                         xx.end(), x);
+      if (ix == xx.end()) { // no exact match, so look for nearest
+         for (ix = xx.begin(); ix != xx.end(); ++ix) {
+            if (fracDiff(x, *ix) < tol) {
+               return ix;
+            }
+         }
+         std::ostringstream what;
+         what << "BinnedExposure::operator(): The energy " << x
+              << " is not available.\nHere are the relevant energies:\n";
+         for (size_t i(0); i < xx.size(); i++) {
+            what << xx.at(i) << "\n";
+         }
+         throw std::runtime_error(what.str());
+      }
+      return ix;  // return the exact match
+   }
+}
+
 namespace Likelihood {
 
 BinnedExposure::BinnedExposure() : m_observation(0), m_proj(0) {}
@@ -65,18 +91,7 @@ BinnedExposure::~BinnedExposure() {
 }
 
 double BinnedExposure::operator()(double energy, double ra, double dec) const {
-   std::vector<double>::const_iterator ie = std::find(m_energies.begin(),
-                                                      m_energies.end(),
-                                                      energy);
-   if (ie == m_energies.end()) {
-      std::ostringstream what;
-      what << "BinnedExposure::operator(): The energy " << energy 
-           << " is not available.\nHere are the relevant energies:\n";
-      for (unsigned int i = 0; i < m_energies.size(); i++) {
-         what << m_energies.at(i) << "\n";
-      }
-      throw std::runtime_error(what.str());
-   }
+   std::vector<double>::const_iterator ie = ::findNearest(m_energies, energy);
    unsigned int k = ie - m_energies.begin();
 
    std::pair<double, double> pixel = m_proj->sph2pix(ra, dec);
