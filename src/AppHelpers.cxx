@@ -29,6 +29,7 @@
 #include "Likelihood/LogParabola.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
+#include "Likelihood/PowerLawSuperExpCutoff.h"
 #include "Likelihood/PowerLaw2.h"
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
@@ -102,6 +103,8 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("ExpCutoff", new ExpCutoff(), makeClone);
    m_funcFactory->addFunc("BPLExpCutoff", new BrokenPowerLawExpCutoff(),
                           makeClone);
+   m_funcFactory->addFunc("PowerLawSuperExpCutoff", 
+                          new PowerLawSuperExpCutoff(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
