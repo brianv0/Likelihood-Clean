@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v11r15   20-Mar-07 JC  add Damien Parent's PowerLawSuperExpCutoff for
+                           modeling pulsar spectra
     v11r14p2 19-Mar-07 JC  use relative tolerance of 1e-5 for finding desired 
                            energy level in binned exposure maps; ensure 
                            computed energy bounds match requested values 
