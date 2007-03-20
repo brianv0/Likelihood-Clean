@@ -80,6 +80,7 @@ namespace {
          m_normNames["Gaussian"] = "Prefactor";
          m_normNames["FileFunction"] = "Normalization";
          m_normNames["LogParabola"] = "norm";
+         m_normNames["PLSuperExpCutoff"] = "Prefactor";
       }
       std::map<std::string, std::string> m_normNames;
    };
