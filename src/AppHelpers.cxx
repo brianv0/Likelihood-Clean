@@ -103,7 +103,7 @@ void AppHelpers::prepareFunctionFactory() {
    m_funcFactory->addFunc("ExpCutoff", new ExpCutoff(), makeClone);
    m_funcFactory->addFunc("BPLExpCutoff", new BrokenPowerLawExpCutoff(),
                           makeClone);
-   m_funcFactory->addFunc("PowerLawSuperExpCutoff", 
+   m_funcFactory->addFunc("PLSuperExpCutoff", 
                           new PowerLawSuperExpCutoff(), makeClone);
 }
 
