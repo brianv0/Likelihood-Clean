@@ -80,8 +80,12 @@ void ScData::readData(std::string file, double tstart,
 
    m_scFile = file;
 
+   std::ostringstream filter;
+   filter << "(START >= " << tstart
+          << ") && (STOP <= " << tstop << ")";
+
    const tip::Table * scData = 
-      tip::IFileSvc::instance().readTable(file, sctable);
+      tip::IFileSvc::instance().readTable(file, sctable, filter.str());
 
    if (clear) {
       vec.clear();
