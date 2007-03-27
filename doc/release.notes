@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v11r15p1 27-Mar-07 JC  use filter string to limit part of FT2 data
+                           that is read in
     v11r15   20-Mar-07 JC  add Damien Parent's PowerLawSuperExpCutoff for
                            modeling pulsar spectra
     v11r14p2 19-Mar-07 JC  use relative tolerance of 1e-5 for finding desired 
