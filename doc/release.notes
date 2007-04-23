@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v11r15p3 23-Apr-07 JC  apply padding to start and stop times in 
+                           ScData::readData to ensure non-empty set
+                           of FT2 intervals is found.
     v11r15p2 08-Mar-07 JC  modify output of gtfindsrc so that initial
                            and final values are summarized in the output
                            file; add unity to objective function to 
