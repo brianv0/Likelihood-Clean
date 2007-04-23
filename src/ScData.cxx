@@ -77,6 +77,9 @@ void ScData::readData(std::string file, bool clear,
 void ScData::readData(std::string file, double tstart, 
                       double tstop, bool clear,
                       const std::string & sctable) {
+   static double maxIntervalSize(30);
+   tstart -= 2*maxIntervalSize;
+   tstop += 2*maxIntervalSize;
    facilities::Util::expandEnvVar(&file);
 
    m_scFile = file;
