@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v11r16   29-Apr-07 JC  enable livetimecube generation without FT1 file
     v11r15p3 23-Apr-07 JC  apply padding to start and stop times in 
                            ScData::readData to ensure non-empty set
                            of FT2 intervals is found.
