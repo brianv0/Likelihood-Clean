@@ -29,6 +29,20 @@ namespace Likelihood {
 void RoiCuts::addTimeInterval(double tmin, double tmax) {
    m_timeRangeCuts.push_back(new dataSubselector::RangeCut("TIME", "s",
                                                            tmin, tmax));
+   dataSubselector::Gti gti;
+   gti.insertInterval(tmin, tmax);
+   if (m_gtiCuts.size() != 0) {
+      dataSubselector::Gti old_gti(m_gtiCuts.at(0)->gti());
+      gti &= old_gti;
+      delete m_gtiCuts.at(0);
+      m_gtiCuts.at(0) = new dataSubselector::GtiCut(gti);
+   } else {
+      if (m_cuts == 0) {
+         m_cuts = new dataSubselector::Cuts();
+      }
+      m_gtiCuts.push_back(new dataSubselector::GtiCut(gti));
+      m_cuts->addCut(*m_gtiCuts.at(0));
+   }
 }
 
 void RoiCuts::
