@@ -152,6 +152,9 @@ void ExposureCube::readRoiCuts() {
 }
 
 void ExposureCube::createDataCube() {
+   st_stream::StreamFormatter formatter("gtlivetimecube", 
+                                        "createDataCube", 2);
+
    std::vector<std::pair<double, double> > timeCuts;
    std::vector<std::pair<double, double> > gtis;
    m_roiCuts->getTimeCuts(timeCuts);
@@ -165,7 +168,7 @@ void ExposureCube::createDataCube() {
    std::ostringstream filter;
    filter << std::setprecision(20);
    filter << "(START >= " << tmin << ") && (STOP <= " << tmax << ")";
-   std::cout << "applying filter: " << filter.str() << std::endl;
+   formatter.info(4) << "applying filter: " << filter.str() << std::endl;
 
    m_exposure = new Likelihood::LikeExposure(m_pars["pixel_size"], 
                                              m_pars["cos_theta_step"],
@@ -177,8 +180,6 @@ void ExposureCube::createDataCube() {
    std::vector<std::string>::const_iterator scIt = scFiles.begin();
    for ( ; scIt != scFiles.end(); scIt++) {
       st_facilities::Util::file_ok(*scIt);
-      st_stream::StreamFormatter formatter("gtlivetimecube", 
-                                           "createDataCube", 2);
       formatter.err() << "Working on file " << *scIt << std::endl;
       const tip::Table * scData = 
          tip::IFileSvc::instance().readTable(*scIt, m_pars["sctable"],
