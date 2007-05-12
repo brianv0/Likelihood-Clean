@@ -35,7 +35,7 @@ namespace Likelihood {
 #ifdef SWIG
 class SourceMap {
 #else
-class SCIENCETOOLS_API SourceMap {
+class  SCIENCETOOLS_API SourceMap {
 #endif
 
 public:
@@ -60,15 +60,9 @@ public:
    const std::string & srcType() const {
       return m_srcType;
    }
+   static void setBinnedExpMapName(const std::string & filename);
 
-   static void setBinnedExpMapName(const std::string & filename) {
-      s_expMapFileName = filename;
-   }
-
-   static const std::string & binnedExpMap() {
-      return s_expMapFileName;
-   }
-
+   static const std::string & binnedExpMap();
 private:
 
    std::string m_name;

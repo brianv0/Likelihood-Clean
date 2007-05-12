@@ -341,5 +341,11 @@ void SourceMap::prepareAngleArrays(int nmu, int nphi) {
       s_phi.push_back(phistep*i);
    }
 }
+   void SourceMap::setBinnedExpMapName(const std::string & filename) {
+      s_expMapFileName = filename;
+   }
 
+    const std::string & SourceMap::binnedExpMap() {
+      return s_expMapFileName;
+   }
 } // namespace Likelihood
