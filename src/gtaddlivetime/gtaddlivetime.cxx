@@ -103,6 +103,10 @@ void AddLivetime::addFiles() {
    for (size_t i=0; it != table->end(); ++it, i++) {
       row["COSBINS"].get(rows.at(i));
    }
+   const tip::Header & header(table->getHeader());
+   double tstart, tstop;
+   header["TSTART"].get(tstart);
+   header["TSTOP"].get(tstop);
    delete table;
 
    std::vector<dataSubselector::Cuts> my_cuts;
@@ -136,6 +140,15 @@ void AddLivetime::addFiles() {
             rows.at(i).at(j) += my_row.at(j);
          }
       }
+      double tvalue;
+      table->getHeader()["TSTART"].get(tvalue);
+      if (tvalue < tstart) {
+         tstart = tvalue;
+      }
+      table->getHeader()["TSTOP"].get(tvalue);
+      if (tvalue > tstop) {
+         tstop = tvalue;
+      }
       delete table;
       my_cuts.push_back(dataSubselector::Cuts(m_fileList.at(k), tableName,
                                               false, true));
@@ -151,6 +164,9 @@ void AddLivetime::addFiles() {
 
    dataSubselector::Cuts new_cuts = dataSubselector::Cuts::mergeGtis(my_cuts);
    new_cuts.writeDssKeywords(outtable->getHeader());
+
+   outtable->getHeader()["TSTART"].set(tstart);
+   outtable->getHeader()["TSTOP"].set(tstop);
 
    delete outtable;
 
