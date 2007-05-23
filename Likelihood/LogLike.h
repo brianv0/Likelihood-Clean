@@ -72,6 +72,8 @@ public:
 
    virtual void syncSrcParams(const std::string & srcName);
 
+   virtual double NpredValue(const std::string & srcName) const;
+
 protected:
 
    virtual LogLike * clone() const {

@@ -379,4 +379,15 @@ void BinnedLikelihood::syncParams() {
    SourceModel::syncParams();
 }
 
+double BinnedLikelihood::NpredValue(const std::string & srcName) const {
+   const std::vector<double> & npreds(sourceMap(srcName).npreds());
+   const Source * src(const_cast<BinnedLikelihood *>(this)->getSource(srcName));
+   double value(0);
+   for (size_t k(0); k < energies().size()-1; k++) {
+      value += src->pixelCounts(energies().at(k), energies().at(k+1),
+                                npreds.at(k), npreds.at(k+1));
+   }
+   return value;
+}
+
 } // namespace Likelihood
