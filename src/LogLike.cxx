@@ -225,4 +225,8 @@ void LogLike::syncSrcParams(const std::string & srcName) {
    }
 }
 
+double LogLike::NpredValue(const std::string & srcName) const {
+   return const_cast<Source &>(source(srcName)).Npred();
+}
+
 } // namespace Likelihood
