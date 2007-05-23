@@ -86,6 +86,10 @@ public:
       return *(srcMap->second);
    }
 
+   const CountsMap & countsMap() const {
+      return m_dataMap;
+   }
+
    SourceMap * createSourceMap(const std::string & srcName);
 
    void saveSourceMaps(const std::string & filename="");
@@ -108,6 +112,8 @@ public:
    virtual Source * deleteSource(const std::string & srcName);
 
    virtual void syncParams();
+
+   virtual double NpredValue(const std::string & srcName) const;
 
 protected:
 
