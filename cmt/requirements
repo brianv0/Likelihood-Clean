@@ -1,5 +1,5 @@
 package Likelihood
-version v11r19
+version v11r19p1
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
@@ -33,7 +33,7 @@ apply_pattern ST_app_withDir name=gtexpmap dir=expMap
 apply_pattern ST_app_withDir name=gttsmap dir=TsMap
 apply_pattern ST_app_withDir name=gtlivetimecube dir=makeExposureCube
 apply_pattern ST_app_withDir name=gtdiffresp dir=diffuseResponses
-#apply_pattern ST_app name=gtcntsmap
+apply_pattern ST_app name=gtcntsmap
 apply_pattern ST_app name=gtsrcmaps
 apply_pattern ST_app_withDir name=gtpsf dir=meanPsf
 apply_pattern ST_app_withDir name=gtbackfile dir=backfile

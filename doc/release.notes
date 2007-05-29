@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v11r19p1 29-May-07 JC  give default par file values for input files for
+                           gtlikelihood (needed for unused branch, binned
+                           vs unbinned); reinstate gtcntsmap for now
     v11r19   28-May-07 JC  change default rspfunc to HANDOFF; disable   
                            gtcntsmap in favor of gtbin
     v11r18   23-May-07 JC  add direct access to Npred calculation for
