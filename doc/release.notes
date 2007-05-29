@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v11r19   28-May-07 JC  change default rspfunc to HANDOFF; disable   
+                           gtcntsmap in favor of gtbin
     v11r18   23-May-07 JC  add direct access to Npred calculation for
                            binned likelihood
     v11r17p1 14-May-07 JC  update TSTART and TSTOP keywords in EXPOSURE
