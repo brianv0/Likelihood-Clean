@@ -1,5 +1,5 @@
 package Likelihood
-version v11r19p1
+version v12
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
@@ -28,15 +28,14 @@ apply_pattern ST_library option=" *.c "
 apply_pattern shared_st_library
 apply_pattern ST_pfiles
 
-apply_pattern ST_app_withDir name=gtlikelihood dir=likelihood
+apply_pattern ST_app_withDir name=gtlike dir=likelihood
 apply_pattern ST_app_withDir name=gtexpmap dir=expMap
 apply_pattern ST_app_withDir name=gttsmap dir=TsMap
-apply_pattern ST_app_withDir name=gtlivetimecube dir=makeExposureCube
-apply_pattern ST_app_withDir name=gtdiffresp dir=diffuseResponses
-apply_pattern ST_app name=gtcntsmap
+apply_pattern ST_app_withDir name=gtltcube dir=makeExposureCube
+apply_pattern ST_app_withDir name=gtdiffrsp dir=diffuseResponses
 apply_pattern ST_app name=gtsrcmaps
 apply_pattern ST_app_withDir name=gtpsf dir=meanPsf
-apply_pattern ST_app_withDir name=gtbackfile dir=backfile
-apply_pattern ST_app name=gtmodelmap
-apply_pattern ST_app name=gtaddlivetime
+apply_pattern ST_app_withDir name=gtbkg dir=backfile
+apply_pattern ST_app_withDir name=gtmodel dir=gtmodelmap
+apply_pattern ST_app_withDir name=gtltsum dir=gtaddlivetime
 apply_pattern ST_app name=gtfindsrc
