@@ -39,7 +39,7 @@
 class AddLivetime : public st_app::StApp {
 public:
    AddLivetime() : st_app::StApp(), 
-                   m_pars(st_app::StApp::getParGroup("gtaddlivetime")) {
+                   m_pars(st_app::StApp::getParGroup("gtltsum")) {
    setVersion(s_cvs_id);
 }
    virtual ~AddLivetime() throw() {
@@ -61,7 +61,7 @@ private:
    static std::string s_cvs_id;
 };
 
-st_app::StAppFactory<AddLivetime> myAppFactory("gtaddlivetime");
+st_app::StAppFactory<AddLivetime> myAppFactory("gtltsum");
 
 std::string AddLivetime::s_cvs_id("$Name$");
 
