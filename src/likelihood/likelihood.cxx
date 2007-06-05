@@ -177,7 +177,7 @@ private:
    static std::string s_cvs_id;
 };
 
-st_app::StAppFactory<likelihood> myAppFactory("gtlikelihood");
+st_app::StAppFactory<likelihood> myAppFactory("gtlike");
 
 std::string likelihood::s_cvs_id("$Name$");
 
@@ -190,9 +190,9 @@ void likelihood::banner() const {
 
 likelihood::likelihood() 
    : st_app::StApp(), m_helper(0), 
-     m_pars(st_app::StApp::getParGroup("gtlikelihood")),
+     m_pars(st_app::StApp::getParGroup("gtlike")),
      m_logLike(0), m_opt(0), m_dataMap(0), 
-     m_formatter(new st_stream::StreamFormatter("gtlikelihood", "", 2)),
+     m_formatter(new st_stream::StreamFormatter("gtlike", "", 2)),
      m_cpuStart(std::clock()),
      m_tsSrc(0), m_maxdist(20.) {
    setVersion(s_cvs_id);
