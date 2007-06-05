@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v12      04-Jun-07 JC  application name changes
     v11r19p1 29-May-07 JC  give default par file values for input files for
                            gtlikelihood (needed for unused branch, binned
                            vs unbinned); reinstate gtcntsmap for now
