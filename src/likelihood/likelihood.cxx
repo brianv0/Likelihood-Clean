@@ -797,10 +797,8 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
                   m_formatter->err() << eObj.what() << std::endl;
                }
             } else {
-               if (m_statistic != "BINNED") {
-                  renormModel();
-                  m_logLike->syncParams();
-               }
+               renormModel();
+               m_logLike->syncParams();
             }
             null_value = std::max(m_logLike->value(), null_value);
             TsValues[srcNames[i]] = 2.*(logLike_value - null_value);
@@ -868,7 +866,7 @@ void likelihood::npredValues(double & freeNpred, double & totalNpred) const {
    for (std::vector<std::string>::const_iterator srcName = srcNames.begin();
         srcName != srcNames.end(); ++srcName) {
       Source * src = m_logLike->getSource(*srcName);
-      double npred(src->Npred());
+      double npred(m_logLike->NpredValue(*srcName));
       totalNpred += npred;
       if (normPar(src).isFree() && isDiffuseOrNearby(src)) {
          freeNpred += npred;
