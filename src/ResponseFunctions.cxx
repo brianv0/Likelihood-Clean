@@ -67,7 +67,7 @@ double ResponseFunctions::totalResponse(double inclination, double phi,
    if (!irfs) {
       std::ostringstream message;
       message << "Could not find appropriate response functions "
-              << "for these event data."
+              << "for these event data." << std::endl
               << "Event class requested: " << type << std::endl;
       throw std::runtime_error(message.str());
    } else {
@@ -108,7 +108,8 @@ void ResponseFunctions::load(const std::string & respFuncs,
    if ( (it = responseIds.find(respFuncs)) != responseIds.end() ) {
       const std::vector<std::string> & resps = it->second;
       for (unsigned int i = 0; i < resps.size(); i++) {
-         addRespPtr(i, myFactory->create(resps[i]));
+         irfInterface::Irfs * irfs(myFactory->create(resps[i]));
+         addRespPtr(irfs->irfID(), irfs);
       }
       if (respBase == "") {
          setRespName(respFuncs);
