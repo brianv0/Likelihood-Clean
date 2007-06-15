@@ -81,6 +81,7 @@ namespace {
          m_normNames["FileFunction"] = "Normalization";
          m_normNames["LogParabola"] = "norm";
          m_normNames["PLSuperExpCutoff"] = "Prefactor";
+         m_normNames["ExpCutoff"] = "Prefactor";
       }
       std::map<std::string, std::string> m_normNames;
    };
