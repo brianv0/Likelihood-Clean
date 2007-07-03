@@ -170,8 +170,8 @@ void ExposureCube::createDataCube() {
    filter << "(START >= " << tmin << ") && (STOP <= " << tmax << ")";
    formatter.info(4) << "applying filter: " << filter.str() << std::endl;
 
-   m_exposure = new Likelihood::LikeExposure(m_pars["pixel_size"], 
-                                             m_pars["cos_theta_step"],
+   m_exposure = new Likelihood::LikeExposure(m_pars["binsize"], 
+                                             m_pars["dcostheta"],
                                              timeCuts, gtis);
    std::string scFile = m_pars["scfile"];
    st_facilities::Util::file_ok(scFile);

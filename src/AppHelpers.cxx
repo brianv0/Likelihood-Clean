@@ -178,7 +178,7 @@ void AppHelpers::readScData() {
 
 void AppHelpers::readExposureMap() {
    st_app::AppParGroup & pars(*m_pars);
-   std::string exposureFile = pars["exposure_map_file"];
+   std::string exposureFile = pars["expmap"];
    if (exposureFile != "none") {
       st_facilities::Util::file_ok(exposureFile);
       m_expMap->readExposureFile(exposureFile);
@@ -188,13 +188,13 @@ void AppHelpers::readExposureMap() {
 void AppHelpers::createResponseFuncs(const std::string & analysisType) {
    m_respFuncs = new ResponseFunctions();
    st_app::AppParGroup & pars(*m_pars);
-   std::string respBase = pars["rspfunc"];
+   std::string respBase = pars["irfs"];
    std::string evfile;
    if (analysisType == "UNBINNED") {
       std::string myfile = pars["evfile"];
       evfile = myfile;
    } else if (analysisType == "BINNED") {
-      std::string myfile = pars["counts_map_file"];
+      std::string myfile = pars["cmap"];
       evfile = myfile;
    } else {
       m_respFuncs->load(respBase);
