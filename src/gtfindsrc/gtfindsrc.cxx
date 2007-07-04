@@ -321,7 +321,7 @@ double findSrc::fitPosition(double step) {
    std::vector<double> coords(2);
    std::string coordSys = m_pars["coordsys"];
    bool use_lb(true);
-   if (coordsys != "GAL") {
+   if (coordSys != "GAL") {
       use_lb = false;
    }
    coords[0] = m_testSrc->getDir().ra();

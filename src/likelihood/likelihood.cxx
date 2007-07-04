@@ -333,7 +333,7 @@ void likelihood::promptForParameters() {
    m_pars.Prompt("sfile");
    AppHelpers::checkOutputFile(m_pars["clobber"], 
                                m_pars["sfile"]);
-   m_pars.Prompt("flux_style_model_file");
+   m_pars.Prompt("fluxmdl");
    AppHelpers::checkOutputFile(m_pars["clobber"], 
                                m_pars["fluxmdl"]);
    m_pars.Prompt("irfs");
