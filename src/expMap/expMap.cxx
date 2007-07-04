@@ -72,11 +72,11 @@ std::string ExpMap::s_cvs_id("$Name$");
 ExpMap::ExpMap() : st_app::StApp(), m_helper(0), 
                    m_pars(st_app::StApp::getParGroup("gtexpmap")) {
    setVersion(s_cvs_id);
-   m_pars.setSwitch("compute_submap");
-   m_pars.setCase("compute_submap", "yes", "nlongmin");
-   m_pars.setCase("compute_submap", "yes", "nlongmax");
-   m_pars.setCase("compute_submap", "yes", "nlatmin");
-   m_pars.setCase("compute_submap", "yes", "nlatmax");
+   m_pars.setSwitch("submap");
+   m_pars.setCase("submap", "yes", "nlongmin");
+   m_pars.setCase("submap", "yes", "nlongmax");
+   m_pars.setCase("submap", "yes", "nlatmin");
+   m_pars.setCase("submap", "yes", "nlatmax");
 }
 
 void ExpMap::banner() const {
