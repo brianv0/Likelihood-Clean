@@ -171,10 +171,10 @@ void TsMap::selectOptimizer() {
 }
 
 void TsMap::setGrid() {
-   int nlon = m_pars["nra"];
-   int nlat = m_pars["ndec"];
-   makeDoubleVector(m_pars["ra_min"], m_pars["ra_max"], nlon, m_lonValues);
-   makeDoubleVector(m_pars["dec_min"], m_pars["dec_max"], nlat, m_latValues);
+   int nlon = m_pars["nx"];
+   int nlat = m_pars["ny"];
+   makeDoubleVector(m_pars["xref_min"], m_pars["xref_max"], nlon, m_lonValues);
+   makeDoubleVector(m_pars["yref_min"], m_pars["yref_max"], nlat, m_latValues);
    m_tsMap.resize(nlat);
    for (int i = 0; i < nlat; i++) {
       m_tsMap.reserve(nlon);

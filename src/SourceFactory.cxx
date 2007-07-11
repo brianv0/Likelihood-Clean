@@ -148,6 +148,13 @@ void SourceFactory::readXml(const std::string & xmlFile,
       DOMElement * spectrum;
       try {
          xmlBase::Dom::getChildrenByTagName(*srcIt, "spectrum", child);
+         if (child.size() != 1) {
+            std::ostringstream message;
+            message << "Error parsing xml model file: \n"
+                    << xmlFile << "\n"
+                    << "for source " << srcName;
+            throw Exception(message.str());
+         }
          spectrum = child[0];
       } catch (optimizers::Exception &eObj) {
          m_formatter->err() << eObj.what() << std::endl;
@@ -155,6 +162,13 @@ void SourceFactory::readXml(const std::string & xmlFile,
       }
       
       xmlBase::Dom::getChildrenByTagName(*srcIt, "spatialModel", child);
+      if (child.size() != 1) {
+         std::ostringstream message;
+         message << "Error parsing xml model file: \n"
+                 << xmlFile << "\n"
+                 << "for source " << srcName;
+         throw Exception(message.str());
+      }
       DOMElement * spatialModel = child[0];
 
 // The processing logic for the spatialModel depends on the source
