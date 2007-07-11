@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v13r1    11-Jul-07 JC  adjust par names in gttsmap; pass time variable
+                           in calls to IRF functions from PointSource class;
+                           check for xml parsing in SourceFactory.
     v13      03-Jul-07 JC  parameter name changes
     v12      04-Jun-07 JC  application name changes
     v11r19p1 29-May-07 JC  give default par file values for input files for
