@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v13r1p1  13-Jul-07 JC  use Function::normPar member function to
+                           help set renormalization approx to Ts calc in
+                           gtlike.
     v13r1    11-Jul-07 JC  adjust par names in gttsmap; pass time variable
                            in calls to IRF functions from PointSource class;
                            check for xml parsing in SourceFactory.

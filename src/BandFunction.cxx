@@ -53,6 +53,7 @@ void BandFunction::init(double norm, double alpha, double beta, double Ep) {
    m_argType = "dArg";
 
    m_genericName = "BandFunction";
+   m_normParName = "norm";
 }
 
 double BandFunction::value(optimizers::Arg &xarg) const {
