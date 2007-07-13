@@ -40,6 +40,7 @@ PowerLaw2::PowerLaw2(double Integral, double Index,
    m_argType = "dArg";
 
    m_genericName = "PowerLaw2";
+   m_normParName = "Integral";
 }
 
 double PowerLaw2::value(optimizers::Arg & xarg) const {

@@ -44,6 +44,7 @@ namespace Likelihood {
     m_funcType = Addend;
     m_argType = "dArg";
     m_genericName = "PLSuperExpCutoff";
+    m_normParName = "Prefactor";
   } 
   // end of initialization
   

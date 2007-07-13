@@ -34,6 +34,7 @@ FileFunction::FileFunction(double Normalization) : m_filename("") {
    m_argType = "dArg";
 
    m_genericName = "FileFunction";
+   m_normParName = "Normalization";
 }
 
 double FileFunction::value(optimizers::Arg & xarg) const {

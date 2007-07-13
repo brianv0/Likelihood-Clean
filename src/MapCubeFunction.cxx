@@ -123,6 +123,7 @@ void MapCubeFunction::init() {
    m_funcType = Addend;
    m_argType = "";
    m_genericName = "MapCubeFunction";
+   m_normParName = "Normalization";
 }
 
 void MapCubeFunction::readFitsFile(const std::string & fits_file) {
