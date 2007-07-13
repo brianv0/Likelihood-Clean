@@ -67,6 +67,7 @@ void SpatialMap::init() {
    m_genericName = "SpatialMap";
    addParam("Prefactor", 1, false);
    setParamAlwaysFixed("Prefactor");
+   m_normParName = "Prefactor";
 }
 
 void SpatialMap::readFitsFile(const std::string & fitsFile,

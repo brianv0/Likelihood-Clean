@@ -43,6 +43,7 @@ BrokenPowerLaw2::BrokenPowerLaw2(double Integral, double Index1,
    m_argType = "dArg";
 
    m_genericName = "BrokenPowerLaw2";
+   m_normParName = "Integral";
 }
 
 double BrokenPowerLaw2::value(optimizers::Arg & xarg) const {

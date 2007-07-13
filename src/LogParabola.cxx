@@ -53,6 +53,7 @@ void LogParabola::init(double norm, double alpha, double beta, double Eb) {
    m_argType = "dArg";
 
    m_genericName = "LogParabola";
+   m_normParName = "norm";
 }
 
 double LogParabola::value(optimizers::Arg & xarg) const {
