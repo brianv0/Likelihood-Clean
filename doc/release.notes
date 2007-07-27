@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r2    27-Jul-07 JC  add DRMNFB and NEWMINUIT as optimizer options
+                           in gtlike
     v13r1p1  13-Jul-07 JC  use Function::normPar member function to
                            help set renormalization approx to Ts calc in
                            gtlike.
