@@ -70,6 +70,21 @@ namespace {
                                   "cfitsio error.");
       }
    }
+
+   void fitsResizeImage(const std::string & filename,
+                        int bitpix, int naxis, 
+                        std::vector<long> naxes) {
+      fitsfile * fptr;
+      int status(0);
+      fits_open_file(&fptr, filename.c_str(), READWRITE, &status);
+      fitsReportError(stderr, status);
+
+      fits_resize_img(fptr, bitpix, naxis, &naxes[0], &status);
+      fitsReportError(stderr, status);
+      
+      fits_close_file(fptr, &status);
+      fitsReportError(stderr, status);
+   }
 }
 
 /**
@@ -161,12 +176,20 @@ void ModelMap::writeOutputMap() {
    std::string outfile = m_pars["outfile"];
    bool clobber = m_pars["clobber"];
    tip::IFileSvc::instance().createFile(outfile, infile, clobber);
+   
+   std::vector<long> new_dims;
+   const tip::Image * my_image = 
+      tip::IFileSvc::instance().readImage(outfile, "");
+   typedef std::vector<tip::PixOrd_t> DimCont_t;
+   DimCont_t dims = my_image->getImageDimensions();
+   new_dims.push_back(dims.at(0));
+   new_dims.push_back(dims.at(1));
+   delete my_image;
+
+   fitsResizeImage(outfile, -32, 2, new_dims);
+
    std::auto_ptr<tip::Image>
       output_image(tip::IFileSvc::instance().editImage(outfile, ""));
-   typedef std::vector<tip::PixOrd_t> DimCont_t;
-   DimCont_t dims = output_image->getImageDimensions();
-   dims.resize(2);
-   output_image->setImageDimensions(dims);
    output_image->set(m_outmap);
    dataSubselector::Cuts my_cuts(infile, "", false);
    my_cuts.writeGtiExtension(outfile);
