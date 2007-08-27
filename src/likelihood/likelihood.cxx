@@ -177,7 +177,6 @@ likelihood::likelihood()
 }
 
 void likelihood::run() {
-   std::cout << "using new imp" << std::endl;
    promptForParameters();
    std::string statistic = m_pars["statistic"];
    m_helper = new AppHelpers(&m_pars, statistic);
