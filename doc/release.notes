@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v13p3    27-Aug-07 JC  temp fix for gtmodel output LK-35
     v13r2p1  28-Jul-07 JC  add documentation for PLSuperExpCutoff
     v13r2    27-Jul-07 JC  add DRMNFB and NEWMINUIT as optimizer options
                            in gtlike
