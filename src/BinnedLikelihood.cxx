@@ -70,6 +70,7 @@ double BinnedLikelihood::value(optimizers::Arg &dummy) const {
                     << my_value << std::endl;
    m_nevals++;
    
+   saveBestFit(my_value);
    return my_value;
 }
 

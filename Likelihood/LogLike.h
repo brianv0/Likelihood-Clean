@@ -74,6 +74,8 @@ public:
 
    virtual double NpredValue(const std::string & srcName) const;
 
+   void restoreBestFit();
+
 protected:
 
    virtual LogLike * clone() const {
@@ -81,6 +83,8 @@ protected:
    }
 
    mutable unsigned long m_nevals;
+
+   void saveBestFit(double logLikeValue) const;
 
 private:
 
@@ -94,6 +98,9 @@ private:
 
    void getLogSourceModelDerivs(const Event & event,
                                 std::vector<double> & derivs) const;
+
+   mutable double m_bestValueSoFar;
+   mutable std::vector<double> m_bestFitParsSoFar;
 
 };
 
