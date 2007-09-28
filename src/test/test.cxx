@@ -24,6 +24,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "facilities/Util.h"
+#include "facilities/commonUtilities.h"
 
 #include "st_facilities/Util.h"
 
@@ -188,7 +189,7 @@ void LikelihoodTests::setUp() {
 
 
 // Get root path to test data.
-   const char * root = std::getenv("LIKELIHOODROOT");
+   const char * root = facilities::commonUtilities::getPackagePath("Likelihood").c_str();
    if (!root) {  //use relative path from cmt directory
       m_rootPath = "..";
    } else {
