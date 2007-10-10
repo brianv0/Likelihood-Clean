@@ -84,6 +84,8 @@ protected:
 
    mutable unsigned long m_nevals;
 
+   mutable double m_bestValueSoFar;
+
    void saveBestFit(double logLikeValue) const;
 
 private:
@@ -99,7 +101,6 @@ private:
    void getLogSourceModelDerivs(const Event & event,
                                 std::vector<double> & derivs) const;
 
-   mutable double m_bestValueSoFar;
    mutable std::vector<double> m_bestFitParsSoFar;
 
 };
