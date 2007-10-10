@@ -157,10 +157,12 @@ CountsMap * BinnedLikelihood::createCountsMap() const {
 }
 
 void BinnedLikelihood::addSource(Source * src) {
+   m_bestValueSoFar = -1e38;
    SourceModel::addSource(src);
 }
 
 Source * BinnedLikelihood::deleteSource(const std::string & srcName) {
+   m_bestValueSoFar = -1e38;
    return SourceModel::deleteSource(srcName);
 }
 
