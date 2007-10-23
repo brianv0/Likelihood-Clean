@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v13r5p1  22-Oct-07 JC  get around bug in commonUtilities::getPackagePath
     v13r5    10-Oct-07 JC  set m_bestValueSoFar in LogLike.cxx and 
                            BinnedLikelihood.cxx so that 
                            LogLike::restoreBestFit() works after deleteSource
