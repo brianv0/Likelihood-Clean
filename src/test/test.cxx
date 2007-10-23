@@ -193,7 +193,7 @@ void LikelihoodTests::setUp() {
    if (!root) {  //use relative path from cmt directory
       m_rootPath = "..";
    } else {
-      m_rootPath = std::string(root);
+      m_rootPath = facilities::commonUtilities::getPackagePath("Likelihood");
    }
 
 // Prepare the ResponseFunctions object.
