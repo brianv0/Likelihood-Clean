@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v13r5p3  07-Nov-07 JC  initialize reference value m_logLike0 to zero
+                           in findSrc constructor so that gtfindsrc works
+                           properly with point-source only models
     v13r5p2  26-Oct-07 JC  check response function name when reading
                            in diffuse response columns
     v13r5p1  22-Oct-07 JC  get around bug in commonUtilities::getPackagePath
