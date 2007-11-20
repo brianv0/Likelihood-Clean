@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v13r6p1  19-Nov-07 JC  correct getenv branch test in PointSource
     v13r6    19-Nov-07 JC  assume underlying powerlaw for computing
                            pixelCounts integrals
     v13r5p3  07-Nov-07 JC  initialize reference value m_logLike0 to zero
