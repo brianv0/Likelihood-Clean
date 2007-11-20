@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r6    19-Nov-07 JC  assume underlying powerlaw for computing
+                           pixelCounts integrals
     v13r5p3  07-Nov-07 JC  initialize reference value m_logLike0 to zero
                            in findSrc constructor so that gtfindsrc works
                            properly with point-source only models
