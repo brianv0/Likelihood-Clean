@@ -172,6 +172,7 @@ ResponseFunctions * LikelihoodTests::m_respFuncs(0);
 EventContainer * LikelihoodTests::m_eventCont(0);
 
 void LikelihoodTests::setUp() {
+   facilities::commonUtilities::setupEnvironment();
    if (m_respFuncs == 0) m_respFuncs = new ResponseFunctions();
    if (m_scData == 0) m_scData = new ScData();
    if (m_roiCuts == 0) m_roiCuts = new RoiCuts();
