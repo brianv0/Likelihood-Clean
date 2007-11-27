@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r6p2  27-Nov-07 JC  env var changes in xml by Navid; changes in test.cxx
+                           to support
     v13r6p1  19-Nov-07 JC  correct getenv branch test in PointSource
     v13r6    19-Nov-07 JC  assume underlying powerlaw for computing
                            pixelCounts integrals
