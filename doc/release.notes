@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v13r6p4  03-Dec-07 JC  fix fencepost error in LikeExposure::load that
+                           caused zero livetimes for short (<30 s) 
+                           user-selected intervals
     v13r6p3  28-Nov-07 JC  bug fixes for pixelCounts integrals when spectrum
                            returns zero-values
     v13r6p2  27-Nov-07 JC  env var changes in xml by Navid; changes in test.cxx

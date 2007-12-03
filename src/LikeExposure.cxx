@@ -70,13 +70,18 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
       }
    }
 
+   double last_start;
    it = scData->begin();
    for ( ; it != scData->end(); ++it, nrows--) {
+      last_start = start;
       row["start"].get(start);
       if (start > m_tmin) {
          break;
       }
    }
+// Reset to the FT2 interval start time that precedes the
+// user-selected interval.
+   start = last_start; 
 
    long istep(nrows/20);
    if (istep == 0) {
