@@ -98,6 +98,10 @@ private:
                     optimizers::FunctionFactory & funcFactory);
 #endif
 
+   void checkRoiDist(double ra, double dec) const;
+
+   std::string m_currentSrcName;
+
 };
 
 } // namespace Likelihood
