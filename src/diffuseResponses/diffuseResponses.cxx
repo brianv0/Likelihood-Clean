@@ -261,8 +261,12 @@ void diffuseResponses::computeEventResponses() {
       if ((i % factor) == 0) {
          m_formatter->warn() << ".";
       }
-      it->computeResponse(m_srcs, m_helper->observation().respFuncs(), 
-                          m_srRadius);
+      if (::getenv("USE_NEW_DIFFRESP_CALC")) {
+         it->computeResponseGQ(m_srcs, m_helper->observation().respFuncs()); 
+      } else {
+         it->computeResponse(m_srcs, m_helper->observation().respFuncs(), 
+                             m_srRadius);
+      }
    }
    m_formatter->warn() << "!" << std::endl;
 }
