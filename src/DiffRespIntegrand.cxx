@@ -48,6 +48,10 @@ double DiffRespIntegrand::operator()(double mu) const {
    double err(1e-1);
    int ierr;
 
+//    std::cout << mu << "  "
+//              << ::my_acos(mu) << "  "
+//              << m_event.getEnergy() << std::endl;
+
    return st_facilities::GaussianQuadrature::dgaus8(phiIntegrand, phimin,
                                                     phimax, err, ierr);
 }
