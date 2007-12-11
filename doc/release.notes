@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v13r8    11-Dec-07 JC  New implementations for diffuse response
+                           calculations (LogNormalMuDist, DiffRespIntegrand)
+                           to improve TS values from unbinned analysis
     v13r7    05-Dec-07 JC  print warning message if point source is > 
                            roi_radius + 10 deg from roi center (LK-30)
     v13r6p4  03-Dec-07 JC  fix fencepost error in LikeExposure::load that
