@@ -68,6 +68,16 @@ namespace {
       }
       return ptsrc1->getDir().difference(ptsrc2->getDir())*180./M_PI;
    }
+   void strip_at_sign(std::string & input) {
+      if (input.find_first_of("@") == 0) {
+         std::string output = "";
+         std::string::iterator it = input.begin() + 1;
+         for ( ; it != input.end(); ++it) {
+            output += *it;
+         }
+         input = output;
+      }
+   }
 }
 
 using namespace Likelihood;
@@ -196,6 +206,7 @@ void likelihood::run() {
       std::string exposureFile = m_pars["expmap"];
       std::string eventFile = m_pars["evfile"];
       std::string evtable = m_pars["evtable"];
+      ::strip_at_sign(eventFile);
       st_facilities::Util::file_ok(eventFile);
       st_facilities::Util::resolve_fits_files(eventFile, m_eventFiles);
       bool compareGtis(false);
