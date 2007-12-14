@@ -22,6 +22,8 @@
 
 #include "astro/EarthCoordinate.h"
 
+#include "st_facilities/Util.h"
+
 #include "Likelihood/ScData.h"
 
 namespace Likelihood {
@@ -136,6 +138,21 @@ void ScData::readData(std::string file, double tstart,
    }
 
    delete scData;
+}
+
+void ScData::readData(const std::vector<std::string> & scFiles, 
+                      double tstart, double tstop,
+                      const std::string & sctable) {
+   vec.clear();
+   std::vector<std::string>::const_iterator scIt = scFiles.begin();
+   for ( ; scIt != scFiles.end(); scIt++) {
+      st_facilities::Util::file_ok(*scIt);
+      readData(*scIt, tstart, tstop, false, sctable);
+   }
+   if (vec.size() == 0) {
+      throw std::runtime_error("No spacecraft time intervals were read in "
+                               "for the desired range of FT1 data.");
+   }
 }
 
 unsigned int ScData::time_index(double time) const {

@@ -169,11 +169,7 @@ void AppHelpers::readScData() {
    std::string sctable = pars["sctable"];
    st_facilities::Util::file_ok(scFile);
    st_facilities::Util::resolve_fits_files(scFile, m_scFiles);
-   std::vector<std::string>::const_iterator scIt = m_scFiles.begin();
-   for ( ; scIt != m_scFiles.end(); scIt++) {
-      st_facilities::Util::file_ok(*scIt);
-      m_scData->readData(*scIt, tmin, tmax, false, sctable);
-   }
+   m_scData->readData(m_scFiles, tmin, tmax);
 }
 
 void AppHelpers::readExposureMap() {

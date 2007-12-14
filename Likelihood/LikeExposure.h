@@ -40,6 +40,10 @@ public:
 
    void load(const tip::Table * tuple, bool verbose=true);
 
+   size_t numIntervals() const {
+      return m_numIntervals;
+   }
+
    /// @param start MET start time of interval (seconds)
    /// @param stop MET stop time of interval (seconds)
    /// @param timeCuts Time range cuts
@@ -68,6 +72,9 @@ private:
 
    /// Maximum time to be considered given GTIs (MET s)
    double m_tmax;
+
+   /// Number of FT2 intervals that have been loaded.
+   size_t m_numIntervals;
 
 };
 
