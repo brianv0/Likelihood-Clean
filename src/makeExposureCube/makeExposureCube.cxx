@@ -192,4 +192,11 @@ void ExposureCube::createDataCube() {
       m_exposure->load(scData, print_output);
       delete scData;
    }
+
+   if (m_exposure->numIntervals() == 0) {
+      formatter.warn() << "WARNING: No intervals have been read in from "
+                       << "the FT2 files that correspond to the FT1 data.\n"
+                       << "All livetimes will be identically zero."
+                       << std::endl;
+   }
 }
