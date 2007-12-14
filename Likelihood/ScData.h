@@ -41,6 +41,12 @@ public:
    void readData(std::string file, double tstart, double tstop,
                  bool clear=false,
                  const std::string & sctable="SC_DATA");
+
+   /// Read in data from several input files and check to see if no
+   /// intervals are read in.
+   void readData(const std::vector<std::string> & scFiles, 
+                 double tstart, double tstop,
+                 const std::string & sctable="SC_DATA");
    
 #ifndef SWIG
 /** 
