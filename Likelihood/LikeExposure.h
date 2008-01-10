@@ -27,7 +27,6 @@ namespace Likelihood {
  *
  * @author J. Chiang
  *
- * $Header$
  */
 
 class LikeExposure : public map_tools::Exposure {
@@ -43,6 +42,13 @@ public:
    size_t numIntervals() const {
       return m_numIntervals;
    }
+
+   /// @brief Normally one would re-implement the
+   /// map_tools::Exposure::write(...) member function from the base
+   /// class, but it is not virtual, so we add this method instead to
+   /// avoid possible confusion if these classes are used
+   /// polymorphically.
+   void writeFile(const std::string & outfile) const;
 
    /// @param start MET start time of interval (seconds)
    /// @param stop MET stop time of interval (seconds)
@@ -61,11 +67,10 @@ public:
 
 private:
 
+   double m_costhetabin;
+
    const std::vector< std::pair<double, double> > & m_timeCuts;
    const std::vector< std::pair<double, double> > & m_gtis;
-
-   static bool overlaps(const std::pair<double, double> & interval1,
-                        std::pair<double, double> & interval2);
 
    /// Minimum time to be considered given GTIs (MET s)
    double m_tmin;
@@ -75,6 +80,19 @@ private:
 
    /// Number of FT2 intervals that have been loaded.
    size_t m_numIntervals;
+
+   static bool overlaps(const std::pair<double, double> & interval1,
+                        std::pair<double, double> & interval2);
+
+   void writeLivetimes(const std::string & outfile) const;
+
+   void writeCosbins(const std::string & outfile) const;
+
+   void setCosbinsFieldFormat(const std::string & outfile) const;
+
+   void fitsReportError(int status, const std::string & routine) const;
+
+   void computeCosbins(std::vector<double> & mubounds) const;
 
 };
 
