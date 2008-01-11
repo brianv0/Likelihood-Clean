@@ -102,9 +102,9 @@ void ResponseFunctions::load(const std::string & respFuncs,
    irfInterface::IrfsFactory * myFactory 
       = irfInterface::IrfsFactory::instance();
       
-   typedef std::map< std::string, std::vector<std::string> > respMap;
-   const respMap & responseIds = irfLoader::Loader_respIds();
-   respMap::const_iterator it;
+   typedef std::map< std::string, std::vector<std::string> > respMap_t;
+   const respMap_t & responseIds = irfLoader::Loader_respIds();
+   respMap_t::const_iterator it;
    if ( (it = responseIds.find(respFuncs)) != responseIds.end() ) {
       const std::vector<std::string> & resps = it->second;
       for (unsigned int i = 0; i < resps.size(); i++) {
@@ -120,7 +120,7 @@ void ResponseFunctions::load(const std::string & respFuncs,
       std::ostringstream message;
       message << "Invalid response function choice: " << respFuncs << "\n"
               << "Valid choices are \n";
-      for (respMap::const_iterator resp = responseIds.begin();
+      for (respMap_t::const_iterator resp = responseIds.begin();
            resp != responseIds.end(); ++resp) {
          message << resp->first << "\n";
       }
