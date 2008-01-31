@@ -27,7 +27,6 @@
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/SpatialMap.h"
-#include "Likelihood/SpectrumFactory.h"
 #include "Likelihood/SourceFactory.h"
 
 #include "XmlParser.h"

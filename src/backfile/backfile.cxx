@@ -21,10 +21,10 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
-#include "src/FitsTipFile.h"
 #include "tip/Header.h"
 #include "tip/IFileSvc.h"
 #include "tip/Table.h"
+#include "tip/TipFile.h"
 
 #include "st_facilities/FitsUtil.h"
 
@@ -140,7 +140,8 @@ void BackFile::run() {
    std::string infile = m_pars["phafile"];
    std::string outfile = m_pars["outfile"];
 
-   tip::FitsTipFile inputfile(infile);
+   tip::TipFile inputfile = tip::IFileSvc::instance().openFile(infile);
+
    inputfile.copyFile(outfile);
 
    writeBackFile(bg_counts);

@@ -1,7 +1,7 @@
 #
 # $Header$
 #
-expcube,fr,a,"",,,"Exposure hypercube file"
+expcube,fr,a,"",,,"Livetime cube file"
 outfile,f,a,"",,,"output file name"
 outtable,s,h,"PSF",,,"output file extension"
 irfs,s,a,"HANDOFF",,,"Response functions"
