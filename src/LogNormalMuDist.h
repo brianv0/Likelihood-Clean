@@ -35,7 +35,7 @@ protected:
 
    LogNormalMuDist(double muSlope=-0.4, double muIntercept=0.46,
                    double sigma=1.20, double emin=30, double emax=3e5,
-                   size_t numEnergies=30, size_t numMu=200);
+                   size_t numEnergies=30, size_t numMu=100);
 
 private:
 
