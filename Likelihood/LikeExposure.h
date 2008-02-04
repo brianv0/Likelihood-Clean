@@ -84,6 +84,8 @@ private:
    static bool overlaps(const std::pair<double, double> & interval1,
                         std::pair<double, double> & interval2);
 
+   void writeFilename(const std::string & outfile) const;
+
    void writeLivetimes(const std::string & outfile) const;
 
    void writeCosbins(const std::string & outfile) const;
