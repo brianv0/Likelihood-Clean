@@ -130,9 +130,18 @@ void LikeExposure::writeFile(const std::string & outfile) const {
    tip::IFileSvc & fileSvc(tip::IFileSvc::instance());
    fileSvc.createFile(outfile, templateFile);
 
+   writeFilename(outfile);
+
    writeLivetimes(outfile);
 
    writeCosbins(outfile);
+}
+
+void LikeExposure::writeFilename(const std::string & outfile) const {
+   tip::IFileSvc & fileSvc(tip::IFileSvc::instance());
+   tip::Image * phdu(fileSvc.editImage(outfile, ""));
+   phdu->getHeader()["FILENAME"].set(outfile);
+   delete phdu;
 }
 
 void LikeExposure::writeLivetimes(const std::string & outfile) const {
