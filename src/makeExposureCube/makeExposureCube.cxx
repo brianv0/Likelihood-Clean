@@ -209,6 +209,8 @@ void ExposureCube::createDataCube() {
       const tip::Table * scData = 
          tip::IFileSvc::instance().readTable(*scIt, m_pars["sctable"],
                                              filter.str());
+      formatter.info(4) << "read " << scData->getNumRecords() 
+                        << " rows" << std::endl;
       int chatter = m_pars["chatter"];
       bool print_output(true);
       if (chatter < 2) {
