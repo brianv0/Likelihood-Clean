@@ -156,6 +156,8 @@ void ExposureCube::writeDateKeywords(const std::string & outfile,
       st_facilities::Util::writeDateKeywords(hdu, tstart, tstop, *name!="");
       if (*name == "") {
          hdu->getHeader()["CREATOR"].set("gtltcube " + getVersion());
+         std::string file_version = m_pars["file_version"];
+         hdu->getHeader()["VERSION"].set(file_version);
       }
       delete hdu;
    }
