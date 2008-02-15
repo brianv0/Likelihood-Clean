@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v13r11p4 15-Feb-08 JC  Damien Parent bug fix for PowerLawSuperExpCutoff
     v13r11p3 14-Feb-08 JC  add file_version parameter to gtltcube
     v13r11p2 12-Feb-08 JC  bug fix in LikeExposure for reading in
                            scdata files with start times well after the
