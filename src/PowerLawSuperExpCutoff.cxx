@@ -61,7 +61,7 @@ namespace Likelihood {
     double prefactor = my_params[Prefactor].getTrueValue();
     double index1 = my_params[Index1].getTrueValue();
     double scale = my_params[Scale].getTrueValue();
-    double cutoff = my_params[Cutoff].getValue();
+    double cutoff = my_params[Cutoff].getTrueValue();
     double index2 = my_params[Index2].getTrueValue();
     
     // De Jager
@@ -81,7 +81,7 @@ namespace Likelihood {
     double prefactor = my_params[Prefactor].getTrueValue();
     double index1 = my_params[Index1].getTrueValue();
     double scale = my_params[Scale].getTrueValue();
-    double cutoff = my_params[Cutoff].getValue();
+    double cutoff = my_params[Cutoff].getTrueValue();
     double index2 = my_params[Index2].getTrueValue();
     
     int iparam = -1;
