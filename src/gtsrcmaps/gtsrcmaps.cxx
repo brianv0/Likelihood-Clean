@@ -96,7 +96,9 @@ void gtsrcmaps::run() {
    m_pars.Prompt();
    m_pars.Save();
    m_helper = new AppHelpers(&m_pars, "BINNED");
-   m_helper->readScData();
+/// @todo scData is not actually used by gtsrcmaps, so it should be removed
+/// from the parfile.
+//   m_helper->readScData();
    m_helper->checkOutputFile();
    m_helper->checkTimeCuts(m_pars["cmap"], "",
                            m_pars["expcube"], "Exposure");
