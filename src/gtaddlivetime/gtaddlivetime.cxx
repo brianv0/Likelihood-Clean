@@ -57,6 +57,8 @@ private:
 
    void promptForParameters();
    void addFiles();
+   void writeDateKeywords(const std::string & outfile,
+                          double tstart, double tstop) const;
 
    static std::string s_cvs_id;
 };
@@ -171,4 +173,24 @@ void AddLivetime::addFiles() {
    delete outtable;
 
    new_cuts.writeGtiExtension(outfile);
+   writeDateKeywords(outfile, tstart, tstop);
+}
+
+void AddLivetime::writeDateKeywords(const std::string & outfile,
+                                    double tstart, double tstop) const {
+   tip::IFileSvc & fileSvc(tip::IFileSvc::instance());
+   std::vector<std::string> extnames;
+   extnames.push_back("");
+   extnames.push_back("EXPOSURE");
+   extnames.push_back("CTHETABOUNDS");
+   extnames.push_back("GTI");
+   for (std::vector<std::string>::const_iterator name(extnames.begin());
+        name != extnames.end(); ++name) {
+      tip::Extension * hdu(fileSvc.editExtension(outfile, *name));
+      st_facilities::Util::writeDateKeywords(hdu, tstart, tstop, *name!="");
+      if (*name == "") {
+         hdu->getHeader()["CREATOR"].set("gtltsum " + getVersion());
+      }
+      delete hdu;
+   }
 }
