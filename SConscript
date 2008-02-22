@@ -13,7 +13,9 @@ LikelihoodLib = libEnv.StaticLibrary('Likelihood',
 
 progEnv.Tool('LikelihoodLib')
 
-test_LikelihoodBin = progEnv.Program('test_Likelihood',
+testEnv = progEnv.Clone()
+testEnv.Tool('addLibrary', library = baseEnv['cppunitLibs'])
+test_LikelihoodBin = testEnv.Program('test_Likelihood',
                                      listFiles(['src/test/*.cxx']))
 
 gtlikeBin = progEnv.Program('gtlike',listFiles(['src/likelihood/*.cxx']))
