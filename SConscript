@@ -2,12 +2,11 @@
 #
 # $Id$
 
-import glob, os
-
 Import('baseEnv', 'listFiles')
 progEnv = baseEnv.Clone()
 libEnv = baseEnv.Clone()
 
+libEnv.Tool('LikelihoodLib', depsOnly = 1)
 LikelihoodLib = libEnv.StaticLibrary('Likelihood', 
                                      listFiles(['src/*.c', 'src/*.cxx']))
 

@@ -1,6 +1,7 @@
 #$Id$
 def generate(env, **kw):
-    env.Tool('addLibrary', library=['Likelihood'])
+    if not kw.get('depsOnly',0):
+        env.Tool('addLibrary', library=['Likelihood'])
     env.Tool('astroLib')
     env.Tool('xmlBaseLib')
     env.Tool('tipLib')
