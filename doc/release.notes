@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r12p1 26-Feb-08 JC  strip directory from FILENAME in PHDU of gtltcube
+                           output
     v13r12   23-Feb-08 JC  use Gaussian quadrature calculation of
                            diffuse responses
     v13r11p5 20-Feb-08 JC  gtsrcmaps bug-fix for reading in scData;
