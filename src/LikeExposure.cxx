@@ -144,7 +144,7 @@ void LikeExposure::writeFile(const std::string & outfile) const {
 void LikeExposure::writeFilename(const std::string & outfile) const {
    tip::IFileSvc & fileSvc(tip::IFileSvc::instance());
    tip::Image * phdu(fileSvc.editImage(outfile, ""));
-   phdu->getHeader()["FILENAME"].set(outfile);
+   phdu->getHeader()["FILENAME"].set(facilities::Util::basename(outfile));
    delete phdu;
 }
 
