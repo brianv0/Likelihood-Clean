@@ -46,4 +46,5 @@ progEnv.Tool('registerObjects', package = 'Likelihood',
                          gtmodelBin, gtltsumBin, gtfindsrcBin],
              testApps = [test_LikelihoodBin],
              includes = listFiles(['Likelihood/*.h']), 
-             pfiles = listFiles(['pfiles/*.par']))
+             pfiles = listFiles(['pfiles/*.par']),
+             data = listFiles(['data/*'], recursive = True))
