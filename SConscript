@@ -47,4 +47,5 @@ progEnv.Tool('registerObjects', package = 'Likelihood',
              testApps = [test_LikelihoodBin],
              includes = listFiles(['Likelihood/*.h']), 
              pfiles = listFiles(['pfiles/*.par']),
-             data = listFiles(['data/*'], recursive = True))
+             data = listFiles(['data/*'], recursive = True),
+             xml = listFiles(['xml/*'], recursive = True))
