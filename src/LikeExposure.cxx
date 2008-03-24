@@ -171,8 +171,7 @@ void LikeExposure::writeLivetimes(const std::string & outfile) const {
    tip::Header & header(table->getHeader());
    header["PIXTYPE"].set("HEALPIX"); 
    header["ORDERING"].set("NESTED"); 
-//   header["HIER_CRD"].set(data().healpix().galactic()? "GAL" : "EQU");
-   header["COORDTYPE"].set(data().healpix().galactic()? "GAL" : "EQU");
+   header["COORDSYS"].set(data().healpix().galactic()? "GAL" : "EQU");
    header["NSIDE"].set(data().healpix().nside()); 
    header["FIRSTPIX"].set(0); 
    header["LASTPIX"].set(data().size()-1); 
