@@ -128,6 +128,9 @@ public:
    static std::string responseFuncs(const std::string & file,
                                     const std::string & respBase);
 
+   static void getSelectedEvtTypes(const std::string & evfile,
+                                   std::vector<size_t> & selectedEvtTypes);
+
 protected:
 
    st_app::AppParGroup * m_pars;
