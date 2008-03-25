@@ -129,6 +129,7 @@ public:
                                     const std::string & respBase);
 
    static void getSelectedEvtTypes(const std::string & evfile,
+                                   const std::string & analysisType,
                                    std::vector<size_t> & selectedEvtTypes);
 
 protected:
