@@ -204,7 +204,6 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
    } else {
       std::vector<size_t> selectedEvtTypes;
       getSelectedEvtTypes(files.front(), analysisType, selectedEvtTypes);
-//      m_respFuncs->load(respBase);
       m_respFuncs->load(respBase, "", selectedEvtTypes);
    }
 }
