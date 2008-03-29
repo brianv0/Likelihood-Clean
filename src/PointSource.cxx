@@ -323,17 +323,17 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
                     << srcDir.ra() << ", " 
                     << srcDir.dec() << ")";
    size_t npts;
-   if (roiCuts.maxTime() > scData.vec.back().time) {
+   if (roiCuts.maxTime() > scData.vec.back().stoptime) {
       npts = scData.vec.size() - 1;
    } else {
       npts = scData.time_index(roiCuts.maxTime()) + 1;
    }
-   for (unsigned int it = 0; it < npts && it < scData.vec.size()-1; it++) {
+   for (size_t it = 0; it < npts && it < scData.vec.size(); it++) {
       if (npts/20 > 0 && ((it % (npts/20)) == 0)) {
          formatter.warn() << ".";
       }
       double start(scData.vec.at(it).time);
-      double stop(scData.vec.at(it+1).time);
+      double stop(scData.vec.at(it).stoptime);
       double livetime(scData.vec.at(it).livetime);
       double fraction(0);
 
