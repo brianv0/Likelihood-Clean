@@ -236,6 +236,7 @@ getSelectedEvtTypes(const std::string & evfile,
          }
       }
    }
+// No DSS selections on EVENT_CLASS or CONVERSION_TYPE, so get everything.
    if (eventclasses.empty()) {
       for (size_t i(0); i < 11; i++) {
          eventclasses.push_back(i);

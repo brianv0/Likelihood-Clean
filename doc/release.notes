@@ -4,7 +4,11 @@
     $Id$
 
     @verbatim
-    v13r12p2 06-Mar-08 JC  switch to COORSYS in LiveTimeCubeTemplate
+    v13r13   29-Mar-08 JC  use ScData::ScNtuple::stoptime in 
+                           PointSource::computeExposure;
+                           add new event class handling code (retaining
+                           backwards compatibility with old files);
+                           switch to COORSYS in LiveTimeCubeTemplate
     v13r12p1 26-Feb-08 JC  strip directory from FILENAME in PHDU of gtltcube
                            output
     v13r12   23-Feb-08 JC  use Gaussian quadrature calculation of
