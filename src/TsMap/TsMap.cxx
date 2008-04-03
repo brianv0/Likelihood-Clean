@@ -172,7 +172,8 @@ void TsMap::setGrid() {
    double xref = m_pars["xref"];
    double yref = m_pars["yref"];
    double binsize = m_pars["binsz"];
-   bool is_galactic(m_pars["coordsys"] == "GAL");
+   std::string coordsys = m_pars["coordsys"];
+   bool is_galactic(coordsys == "GAL");
    std::string proj_name = m_pars["proj"];
 
    double crpix[] = {nxpix/2. + 0.5, nypix/2. + 0.5};
@@ -209,8 +210,13 @@ void TsMap::computeMap() {
    }
    bool computeExposure(true);
 
+   int step(m_dirs.size()/20);
+   if (step == 0) {
+      step = 2;
+   }
+
    for (size_t i(0); i < m_dirs.size(); i++) {
-      if ((i % (m_dirs.size()/20)) == 0) {
+      if ((i % step) == 0) {
          m_formatter->warn() << ".";
       }
       testSrc.setDir(m_dirs.at(i).ra(), m_dirs.at(i).dec(),
@@ -285,12 +291,13 @@ void TsMap::writeFitsFile() {
    header["CDELT1"].set(m_cdelt.at(0));
    header["CDELT2"].set(m_cdelt.at(1));
 
-   header["CROTA"].set(0);
+   header["CROTA2"].set(0);
 
-   header["CREATOR"].set("gttsmap");
+   header["CREATOR"].set("gttsmap " + getVersion());
 
    std::string proj = m_pars["proj"];
-   if (m_pars["coordsys"] == "GAL") {
+   std::string coordsys = m_pars["coordsys"];
+   if (coordsys == "GAL") {
       header["CTYPE1"].set("GLON-" + proj);
       header["CTYPE2"].set("GLAT-" + proj);
    } else {
@@ -298,5 +305,8 @@ void TsMap::writeFitsFile() {
       header["CTYPE2"].set("DEC--" + proj);
    }
    image->set(m_tsMap);
+   double tstart(m_helper->observation().roiCuts().minTime());
+   double tstop(m_helper->observation().roiCuts().maxTime());
+   st_facilities::Util::writeDateKeywords(image, tstart, tstop, false);
    delete image;
 }
