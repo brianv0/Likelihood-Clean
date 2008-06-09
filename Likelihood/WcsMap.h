@@ -33,11 +33,13 @@ class WcsMap {
 
 public:
 
-   WcsMap(const std::string & filename, const std::string & extension="");
+   WcsMap(const std::string & filename, const std::string & extension="",
+          bool interpolate=true);
 
    WcsMap(const DiffuseSource & diffuseSource, double ra, double dec,
           double radius, int npts, double energy=100.,
-          const std::string & proj_name="STG", bool use_lb=false);
+          const std::string & proj_name="STG", bool use_lb=false,
+          bool interpolate=false);
 
    ~WcsMap();
 
@@ -65,6 +67,8 @@ private:
    int m_naxis2;
 
    astro::SkyProj * m_proj;
+   
+   bool m_interpolate;
 
    WcsMap() : m_proj(0) {}
 

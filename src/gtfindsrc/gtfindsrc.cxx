@@ -268,7 +268,7 @@ public:
       size_t len(m_testPoints.size());
       if (len > 2 && separation(m_testPoints.at(len-2), m_testPoints.at(len-1))
           < m_accuracy) {
-         throw Exception("positional tolerance satified");
+         throw Exception("positional tolerance satisfied");
       }
       return test_value;
    }
