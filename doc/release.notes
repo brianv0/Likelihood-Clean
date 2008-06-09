@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v13r15   09-Jun-08 JC  fix gtsrcmaps offset bug
     v13e14   02-Apr-08 JC  use wcslib in gttsmap, standardize parfile interface
     v13r13   29-Mar-08 JC  use ScData::ScNtuple::stoptime in 
                            PointSource::computeExposure;
