@@ -432,7 +432,9 @@ double PointSource::Aeff::operator()(double cos_theta) const {
       //
       // Use irfID % 2 to determine if the psf is front(0) or back(1).
       // Assume the IRFs are in class order and use the psf associated
-      // with the lowest class number.
+      // with the lowest class number.  This should be backwards
+      // compatible with Pass 5 style IRFs where there is only one
+      // event class.
       //
       int id(respIt->second->irfID() % 2);
 
