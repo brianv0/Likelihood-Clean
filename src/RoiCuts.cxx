@@ -198,7 +198,7 @@ void RoiCuts::sortCuts(bool strict) {
 //   if (strict && (ncone != 1 || ntime == 0)) {
       std::ostringstream message;
       message << "RoiCuts::sortCuts:\n"
-              << "There should be exactly "
+              << "There should be exactly one energy range cut, "
               << "one acceptance cone cut,\n"
               << "and at least one time range and/or GTI cut.\n"
               << "The event file contains the following DSS selections:\n\n";
