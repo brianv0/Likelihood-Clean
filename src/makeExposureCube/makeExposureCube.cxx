@@ -197,9 +197,20 @@ void ExposureCube::createDataCube() {
    filter << "(START >= " << tmin << ") && (STOP <= " << tmax << ")";
    formatter.info(4) << "applying filter: " << filter.str() << std::endl;
 
+   double zmax = m_pars["zmax"];
+   if (zmax < 180.) {
+      formatter.info(2) << "WARNING: You have chosen to apply a zenith angle cut of "
+                        << zmax << " degrees." << std::endl
+                        << "Applying such a cut for this tool is not equivalent to \n"
+                        << "applying a zenith angle cut in gtselect." << std::endl
+                        << "If you don't understand this comment, " << std::endl
+                        << "then you probably shouldn't be applying this cut." 
+                        << std::endl;
+   }
+
    m_exposure = new Likelihood::LikeExposure(m_pars["binsize"], 
                                              m_pars["dcostheta"],
-                                             timeCuts, gtis);
+                                             timeCuts, gtis, zmax);
    std::string scFile = m_pars["scfile"];
    st_facilities::Util::file_ok(scFile);
    std::vector<std::string> scFiles;
