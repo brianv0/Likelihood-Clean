@@ -35,7 +35,8 @@ public:
 
    LikeExposure(double skybin, double costhetabin,
                 const std::vector< std::pair<double, double> > & timeCuts,
-                const std::vector< std::pair<double, double> > & gtis);
+                const std::vector< std::pair<double, double> > & gtis,
+                double zenmax=180.);
 
    void load(const tip::Table * tuple, bool verbose=true);
 
