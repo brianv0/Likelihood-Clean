@@ -20,6 +20,7 @@ namespace Likelihood {
    class BinnedLikelihood;
    class CountsMap;
    class Observation;
+   class Source;
    class SourceMap;
 }
 
@@ -43,6 +44,8 @@ public:
    ~SourceMapRegistry();
 
    const std::vector<float> & sourceMap(const std::string & srcName);
+
+   const Likelihood::Source & source(const std::string & srcName) const;
 
 private:
 
