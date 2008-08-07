@@ -5,8 +5,8 @@ srcmaps,fr,a,"",,,"Source maps (or counts map) file"
 srcmdl,fr,a,"",,,"Source model file"
 outfile,f,a,"",,,"Output file"
 
-irfs,s,a,HANDOFF,,,"Response functions"
-expcube,f,h,none,,,"Exposure cube"
+irfs,s,a,P6_V1_DIFFUSE,,,"Response functions"
+expcube,f,a,"",,,"Exposure cube"
 bexpmap,f,h,none,,,"Binned exposure map"
 convol,b,h,yes,,,"Perform convolution with psf"
 

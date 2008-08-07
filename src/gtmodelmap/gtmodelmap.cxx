@@ -395,6 +395,7 @@ void ModelMap::createRegistry() {
                                          binnedExpMap, *m_funcFactory,
                                          performConvolution);
    } else {
-      m_registry = 0;
+//      m_registry = 0;
+      throw std::runtime_error("You must specify a livetime cube file.");
    }
 }
