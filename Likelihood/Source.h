@@ -154,6 +154,10 @@ protected:
    /// RoiCuts::energies()
    std::vector<double> m_exposure;
 
+   static double powerlaw_integral_est(double x1, double x2, 
+                                       double y1, double y2, 
+                                       double wt1, double wt2);
+
 };
 
 } // namespace Likelihood
