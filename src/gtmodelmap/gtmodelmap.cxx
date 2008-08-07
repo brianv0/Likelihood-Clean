@@ -43,6 +43,7 @@
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/PowerLaw2.h"
 #include "Likelihood/SkyDirFunction.h"
+#include "Likelihood/Source.h"
 #include "Likelihood/SpatialMap.h"
 
 #include "SourceMapRegistry.h"
@@ -241,6 +242,36 @@ void ModelMap::trimExtensions() {
    st_facilities::FitsUtil::writeChecksums(outfile);
 }
 
+// void ModelMap::sumOutputMap() {
+//    std::map<std::string, optimizers::Function *>::iterator it;
+//    for (it = m_spectra.begin(); it != m_spectra.end(); ++it) {
+//       std::string srcName = it->first;
+//       st_stream::StreamFormatter formatter("gtmodel", "sumOutputMap", 2);
+//       try {
+//          getMap(srcName);
+//       } catch (tip::TipException &) {
+//          formatter.info() << "Cannot read source map for model component "
+//                           << srcName << ". Skipping it." << std::endl;
+//       }
+//       if (it == m_spectra.begin()) {
+//          m_outmap.resize(m_srcmap->size(), 0);
+//       }
+//       ::Spectrum spec(it->second);
+//       size_t image_size = m_outmap.size()/(m_emins.size() + 1);
+//       for (unsigned int k = 0; k < m_emins.size(); k++) {
+//          double & emin = m_emins.at(k);
+//          double & emax = m_emaxs.at(k);
+//          double de = (emax - emin)/2.;
+//          for (unsigned int i = 0; i < image_size; i++) {
+//             size_t j0 = k*image_size + i;
+//             size_t j1 = j0 + image_size;
+//             m_outmap.at(i) += (m_srcmap->at(j0)*spec(emin) +
+//                                m_srcmap->at(j1)*spec(emax))*de;
+//          }
+//       }
+//    }
+// }
+
 void ModelMap::sumOutputMap() {
    std::map<std::string, optimizers::Function *>::iterator it;
    for (it = m_spectra.begin(); it != m_spectra.end(); ++it) {
@@ -252,20 +283,21 @@ void ModelMap::sumOutputMap() {
          formatter.info() << "Cannot read source map for model component "
                           << srcName << ". Skipping it." << std::endl;
       }
+
+      const Likelihood::Source & source(m_registry->source(srcName));
+
       if (it == m_spectra.begin()) {
          m_outmap.resize(m_srcmap->size(), 0);
       }
-      ::Spectrum spec(it->second);
       size_t image_size = m_outmap.size()/(m_emins.size() + 1);
-      for (unsigned int k = 0; k < m_emins.size(); k++) {
+      for (size_t k(0); k < m_emins.size(); k++) {
          double & emin = m_emins.at(k);
          double & emax = m_emaxs.at(k);
-         double de = (emax - emin)/2.;
-         for (unsigned int i = 0; i < image_size; i++) {
+         for (size_t i(0); i < image_size; i++) {
             size_t j0 = k*image_size + i;
             size_t j1 = j0 + image_size;
-            m_outmap.at(i) += (m_srcmap->at(j0)*spec(emin) +
-                               m_srcmap->at(j1)*spec(emax))*de;
+            m_outmap.at(i) += source.pixelCounts(emin, emax, m_srcmap->at(j0),
+                                                 m_srcmap->at(j1));
          }
       }
    }
