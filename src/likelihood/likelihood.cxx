@@ -444,7 +444,8 @@ void likelihood::writeCountsSpectra() {
       counts.setEbounds(emin, emax, 21);
    }
 
-   counts.writeTable("counts_spectra.fits");
+   std::string outfile = m_pars["specfile"];
+   counts.writeTable(outfile);
 }
 
 void likelihood::plotCountsSpectra() {
@@ -596,7 +597,9 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    std::vector<optimizers::Parameter> parameters;
    std::vector<double>::const_iterator errIt = errors.begin();
 
-   std::ofstream resultsFile("results.dat");
+   std::string outfile = m_pars["results"];
+
+   std::ofstream resultsFile(outfile.c_str());
    bool write_output_files = m_pars["save"];
    if (!write_output_files) {
       resultsFile.clear(std::ios::failbit);
@@ -665,7 +668,7 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
    resultsFile.close();
 
    if (!write_output_files) {
-      std::remove("results.dat");
+      std::remove(outfile.c_str());
    }
 
    m_formatter->info().precision(10);
