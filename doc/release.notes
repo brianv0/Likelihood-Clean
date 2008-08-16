@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v13r17p3 16-Aug-08 JC  implement my_round for windows
     v13r17p2 16-Aug-08 JC  final (?) fixes to WcsMap, MapCubeFunction, 
                            and SourceMaps to use wcs coordinates correctly
     v13r17p1 13-Aug-08 JC  add gtlike.par file options to set the name of the
