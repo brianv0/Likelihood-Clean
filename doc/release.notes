@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r17p2 16-Aug-08 JC  final (?) fixes to WcsMap, MapCubeFunction, 
+                           and SourceMaps to use wcs coordinates correctly
     v13r17p1 13-Aug-08 JC  add gtlike.par file options to set the name of the
                            results.dat and counts_spectra.fits files.
     v13r17   07-Aug-08 JC  sync up counts model map implementation in gtmodel
