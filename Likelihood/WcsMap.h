@@ -70,7 +70,7 @@ private:
    
    bool m_interpolate;
 
-   WcsMap() : m_proj(0) {}
+   WcsMap();
 
 };
 

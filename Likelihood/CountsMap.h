@@ -110,6 +110,9 @@ public:
 
    const std::string & proj_name() const {return m_proj_name;}
 
+   double cdelt1() const {return m_cdelt[0];}
+   double cdelt2() const {return m_cdelt[1];}
+
 protected:
 
    HistND * m_hist;
