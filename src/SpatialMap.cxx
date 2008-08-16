@@ -87,7 +87,7 @@ void SpatialMap::readFitsFile(const std::string & fitsFile,
       formatter.err() << "File not found: " << expandedFileName << std::endl;
       throw std::runtime_error("File not found: " + expandedFileName);
    }
-   m_wcsmap = new WcsMap(expandedFileName, extension, false);
+   m_wcsmap = new WcsMap(expandedFileName, extension);
 }
 
 double SpatialMap::value(optimizers::Arg & arg) const {
