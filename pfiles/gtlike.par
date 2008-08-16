@@ -3,7 +3,7 @@
 #
 # parameters common to binned and unbinned
 #
-irfs,s,a,"HANDOFF",,,"Response functions to use"
+irfs,s,a,"",,,"Response functions to use"
 edisp,b,h,no,,,"Use energy dispersion?"
 expcube,f,a,"none",,,"Exposure hypercube file"
 srcmdl,fr,a,"",,,"Source model file"

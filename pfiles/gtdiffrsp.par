@@ -6,7 +6,7 @@ evtable,s,h,"EVENTS",,,"Event data extension"
 scfile,f,a,"",,,"Spacecraft data file"
 sctable,s,h,"SC_DATA",,,"Spacecraft data extension"
 srcmdl,fr,a,"",,,"Source model file"
-irfs,s,a,"HANDOFF",,,"Response functions to use"
+irfs,s,a,"",,,"Response functions to use"
 edisp,b,h,no,,,Use energy dispersion?
 
 chatter,i,h,2,0,4,Output verbosity
