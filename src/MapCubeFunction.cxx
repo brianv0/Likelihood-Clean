@@ -91,6 +91,9 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
    SkyDirArg & dir = dynamic_cast<SkyDirArg &>(x);
    double energy = dir.energy();
 
+   double ra = dir().ra();
+   double dec = dir().dec();
+
    size_t k = findIndex(m_energies, energy) - 1;
    k = std::min(k, m_energies.size() - 2);
 
