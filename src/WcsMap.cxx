@@ -204,8 +204,8 @@ double WcsMap::operator()(const astro::SkyDir & dir) const {
       return m_image.at(iy).at(ix);
    }
 // This code tries to do a bilinear interpolation on the pixel values.
-   int ix(static_cast<int>(::round(x)));
-   int iy(static_cast<int>(::round(y)));
+   int ix(static_cast<int>(::my_round(x)));
+   int iy(static_cast<int>(::my_round(y)));
    ix = std::min(std::max(1, ix), m_naxis1 - 1);
    iy = std::min(std::max(1, iy), m_naxis2 - 1);
    
