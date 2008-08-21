@@ -40,10 +40,11 @@ public:
                     const std::string & srcMapsFile="",
                     bool computePointSources=true,
                     bool applyPsfCorrections=true,
-                    bool performConvolution=true);
+                    bool performConvolution=true,
+                    bool resample=true,
+                    double resamp_factor=2,
+                    double pix_size=0.25);
 
-//   BinnedLikelihood(const std::string & dataMapFile);
-                 
    virtual ~BinnedLikelihood() throw();
 
    virtual double value(optimizers::Arg &) const;
@@ -144,6 +145,12 @@ private:
    bool m_applyPsfCorrections;
 
    bool m_performConvolution;
+
+   bool m_resample;
+   
+   double m_resamp_factor;
+   
+   double m_pix_size;
 
    void createSourceMaps();
 
