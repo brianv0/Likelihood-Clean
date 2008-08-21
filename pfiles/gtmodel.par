@@ -9,6 +9,9 @@ irfs,s,a,"",,,"Response functions"
 expcube,f,a,"",,,"Exposure cube"
 bexpmap,f,a,none,,,"Binned exposure map"
 convol,b,h,yes,,,"Perform convolution with psf"
+resample,b,h,yes,,,"Resample input counts map for convolution"
+rfactor,i,h,2,,,"Resampling factor"
+binsz,r,h,0.25,,,"Fixed pixel size of internal model map"
 
 chatter,i,h,2,0,4,Output verbosity
 clobber,        b, h, yes, , , "Overwrite existing output files"
