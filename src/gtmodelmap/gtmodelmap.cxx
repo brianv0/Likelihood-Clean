@@ -389,13 +389,17 @@ void ModelMap::createRegistry() {
    std::string expCube = m_pars["expcube"];
    std::string binnedExpMap = m_pars["bexpmap"];
    bool performConvolution = m_pars["convol"];
+   bool resample = m_pars["resample"];
+   int factor = m_pars["rfactor"];
+   double resamp_factor = static_cast<double>(factor);
+   double pix_size = m_pars["binsz"];
 
    if (expCube != "none") {
       m_registry = new SourceMapRegistry(countsMap, xmlFile, irfs, expCube,
                                          binnedExpMap, *m_funcFactory,
-                                         performConvolution);
+                                         performConvolution, resample, 
+                                         resamp_factor, pix_size);
    } else {
-//      m_registry = 0;
       throw std::runtime_error("You must specify a livetime cube file.");
    }
 }
