@@ -198,8 +198,8 @@ void LikeExposure::writeCosbins(const std::string & outfile) const {
    computeCosbins(mubounds);
 
    for (size_t i(0); i < mubounds.size() -1; i++, ++it) {
-      row["CTHETA_MIN"].set(mubounds.at(i));
-      row["CTHETA_MAX"].set(mubounds.at(i+1));
+      row["CTHETA_MIN"].set(mubounds.at(i+1));
+      row["CTHETA_MAX"].set(mubounds.at(i));
    }
    delete table;
 }
@@ -308,7 +308,8 @@ computeCosbins(std::vector<double> & mubounds) const {
    double cosmin(healpix::CosineBinner::cosmin());
    size_t nbins(healpix::CosineBinner::nbins());
    mubounds.clear();
-   for (int i(nbins); i >= 0; i--) {
+//   for (int i(nbins); i >= 0; i--) {
+   for (size_t i(0); i < nbins+1; i++) {
       double factor(static_cast<double>(i)/nbins);
       if (sqrtbins) {
          factor *= factor;
