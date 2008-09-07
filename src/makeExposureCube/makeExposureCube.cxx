@@ -126,7 +126,6 @@ void ExposureCube::run() {
       }
    }
    createDataCube();
-//   m_exposure->write(output_file);
    m_exposure->writeFile(output_file);
    std::auto_ptr<tip::Table> 
       table(tip::IFileSvc::instance().editTable(output_file, "Exposure"));
