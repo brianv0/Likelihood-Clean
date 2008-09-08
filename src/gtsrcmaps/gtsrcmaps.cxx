@@ -131,10 +131,16 @@ void gtsrcmaps::run() {
       AppHelpers::param(m_pars, "psfcorr", true);
    bool perform_convolution = 
       AppHelpers::param(m_pars, "convol", true);
+
+   bool resample = m_pars["resample"];
+   int resamp_factor = m_pars["rfactor"];
+   double pix_size = m_pars["binsz"];
+
    m_binnedLikelihood = 
       new BinnedLikelihood(dataMap, m_helper->observation(),
                            cntsMapFile, computePointSources, psf_corrections,
-                           perform_convolution);
+                           perform_convolution, resample, resamp_factor,
+                           pix_size);
 
    std::string srcModelFile = m_pars["srcmdl"];
    m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false);
