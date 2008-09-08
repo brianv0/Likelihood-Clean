@@ -4,6 +4,10 @@
     $Id$
 
     @verbatim
+    v13r17p6 07-Sep-08 JC  reverse order of CTHETABOUNDS in gtltcube output
+                           so that it matches convention in healpix/CosBinner;
+                           allow users to set resampling level in SourceMap
+                           generation for gtsrcmaps and gtmodel
     v13r17p5 18-Aug-08 JC  would be nice to be able to move tags and/or have
                            a real development environment on windows.
     v13r17p4 18-Aug-08 JC  use my_round in MapCubeFunction, also for windows
