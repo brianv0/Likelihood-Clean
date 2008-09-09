@@ -23,7 +23,9 @@ use dataSubselector v*
 use hoops v*
 use st_app v*
 use st_graph v*
+use f2c *
 
+macro_append lib_source "-s=dmfit *.cxx *.c" WIN32 "-s=dmfit *.h *.cxx *.c"
 apply_pattern ST_library option=" *.c "
 apply_pattern shared_st_library
 apply_pattern ST_pfiles
