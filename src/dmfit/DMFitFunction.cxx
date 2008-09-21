@@ -59,7 +59,7 @@ void DMFitFunction::init(double norm, double mass, double bratio,
    m_filename="$(LIKELIHOODROOT)/src/dmfit/gammamc_dif.dat";
    facilities::Util::expandEnvVar(&m_filename);
    st_facilities::Util::file_ok(m_filename);
-   std::cout<<"Loading file "<<m_filename<<std::endl; 
+//   std::cout<<"Loading file "<<m_filename<<std::endl; 
    dmfit_load__(m_filename.c_str(),m_filename.size());
 }
 
