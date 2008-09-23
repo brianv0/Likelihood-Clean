@@ -15,8 +15,11 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 #include "optimizers/Statistic.h"
+
+#include "Likelihood/LogLike.h"
 
 namespace Likelihood {
 
@@ -35,8 +38,8 @@ public:
    void addComponent(const std::string & srcName, LogLike & component);
 
    virtual double value() const;
-   virtual void getFreeParams(std::vector<Parameter> & params) const;
-   virtual void setFreeParamValues(std::vector<double> & values);
+   virtual void getFreeParams(std::vector<optimizers::Parameter> &params) const;
+   virtual void setFreeParamValues(const std::vector<double> & values);
    virtual unsigned int getNumFreeParams() const;
    virtual void getFreeDerivs(std::vector<double> & derivs) const;
 
