@@ -55,6 +55,9 @@ private:
 
    ComponentMap_t m_components;
 
+   std::string m_normParName;
+   std::string m_commonFuncName;
+
 };
 
 } // namespace Likelihood
