@@ -172,6 +172,22 @@ public:
    double fluxDeriv(const std::string & parName, 
                     double emin, double emax, size_t npts=100) const;
 
+   /// @return Energy flux integrated over the ROI energy bounds. 
+   /// Units are MeV/cm^2/s
+   double energyFlux() const;
+
+   /// @return Derivative of integrated energy flux wrt the named parameter
+   double energyFluxDeriv(const std::string & parName) const;
+
+   /// @return Energy flux integrated over the given energy range.
+   /// Units are MeV/cm^2/s
+   double energyFlux(double emin, double emax, size_t npts=100) const;
+
+   /// @return Derivative of integrated energy flux wrt the named parameter
+   /// over the given energy range.
+   double energyFluxDeriv(const std::string & parName, 
+                          double emin, double emax, size_t npts=100) const;
+
 private:
 
    /// location on the Celestial sphere 
