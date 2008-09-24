@@ -160,9 +160,17 @@ public:
    /// Units are #/cm^2/s
    double flux() const;
 
+   /// @return Derivative of integrated photon flux wrt the named parameter
+   double fluxDeriv(const std::string & parName) const;
+
    /// @return Photon flux integrated over the given energy range.
    /// Units are #/cm^2/s
    double flux(double emin, double emax, size_t npts=100) const;
+
+   /// @return Derivative of integrated photon flux wrt the named parameter
+   /// over the given energy range.
+   double fluxDeriv(const std::string & parName, 
+                    double emin, double emax, size_t npts=100) const;
 
 private:
 
