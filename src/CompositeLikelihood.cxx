@@ -30,7 +30,7 @@ void CompositeLikelihood::addComponent(const std::string & srcName,
    }
    Source * my_source(component.sources().find(srcName)->second);
    if (m_components.empty()) {
-      m_normParName = const_cast<optimizers::Function *>(my_source->spectrum())
+      m_normParName = const_cast<optimizers::Function &>(my_source->spectrum())
          .normPar().getName();
       m_commonFuncName = my_source->spectrum().genericName();
    } else {
@@ -231,7 +231,7 @@ void CompositeLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
       if (commonSrcTypeFlag.at(i) == 0) {
          derivs.push_back(freeDerivs.at(i));
       } else {
-         if (componentPars.at(i)->second == m_normParName) {
+         if (componentPars.at(i).second == m_normParName) {
             normDerivs.push_back(freeDerivs.at(i));
          } else {
             specParDerivs.at(ipar % npars) += freeDerivs.at(i);
