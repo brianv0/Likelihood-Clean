@@ -49,7 +49,7 @@ public:
 
 protected:
 
-   double value(optimizers::Arg&) const {return 0;}
+   double value(optimizers::Arg&) const {return value();}
 
    double derivByParam(optimizers::Arg&, const std::string&) const {return 0;}
 
