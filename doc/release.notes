@@ -4,7 +4,10 @@
     $Id$
 
     @verbatim
-    v13r18p2 26-Sep-08 JC  comment out DMFitFunction because of dm__load__ 
+    v13r18p3 29-Sep-08 JC  use character*(*) in filename declaration in
+                           dmfit_load.f to avoid hard-wired character array;
+                           re-enable DMFitFunction
+    v13r18p2 26-Sep-08 JC  comment out DMFitFunction because of dmfit_load__ 
                            problem in RM
     v13r18p1 25-Sep-08 JC  DMFitFunction fixes for VC8 and rh9_gcc32 builds
     v13r18   24-Sep-08 JC  implemented PointSource::[fluxDeriv, energyFlux,
