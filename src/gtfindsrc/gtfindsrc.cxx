@@ -124,9 +124,10 @@ void findSrc::run() {
    }
    compareGtis = true;
    if (exposureFile != "none" && exposureFile != "") {
-      AppHelpers::checkCuts(m_eventFiles, evtable, exposureFile, "",
-                            compareGtis, relyOnStreams,
-                            skipEventClassCuts);
+         AppHelpers::checkExpMapCuts(m_eventFiles, exposureFile, evtable, "");
+//       AppHelpers::checkCuts(m_eventFiles, evtable, exposureFile, "",
+//                             compareGtis, relyOnStreams,
+//                             skipEventClassCuts);
    }
    if (expcube_file != "none" && expcube_file != "") {
       AppHelpers::checkTimeCuts(m_eventFiles, evtable, expcube_file, 
