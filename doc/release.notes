@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r18p4 30-Sep-08 JC  bug-fix for WcsMap: do not extrapolate beyond
+                           map boundaries
     v13r18p3 29-Sep-08 JC  use character*(*) in filename declaration in
                            dmfit_load.f to avoid hard-wired character array;
                            re-enable DMFitFunction
