@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r18p6 10-Oct-08 JC  comment out DMFitFunction until it handles the
+                           input data file better
     v13r18p5 01-Oct-08 JC  fix error in the range checking code for 
                            preceeding tag
     v13r18p4 30-Sep-08 JC  bug-fix for WcsMap: do not extrapolate beyond
