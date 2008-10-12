@@ -106,7 +106,7 @@ void AppHelpers::prepareFunctionFactory() {
                           makeClone);
    m_funcFactory->addFunc("PLSuperExpCutoff", 
                           new PowerLawSuperExpCutoff(), makeClone);
-//   m_funcFactory->addFunc("DMFitFunction", new DMFitFunction(), makeClone);
+   m_funcFactory->addFunc("DMFitFunction", new DMFitFunction(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
