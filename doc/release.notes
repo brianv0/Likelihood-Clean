@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r18p7 12-Oct-08 JC  Johann's mods to have DMFitFunction read its
+                           data file via xml def attribute
     v13r18p6 10-Oct-08 JC  comment out DMFitFunction until it handles the
                            input data file better
     v13r18p5 01-Oct-08 JC  fix error in the range checking code for 
