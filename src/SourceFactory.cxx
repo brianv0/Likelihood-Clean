@@ -23,6 +23,7 @@
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/Exception.h"
 #include "Likelihood/FileFunction.h"
+#include "Likelihood/DMFitFunction.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"
@@ -319,6 +320,10 @@ void SourceFactory::setSpectrum(Source * src, const DOMElement * spectrum,
    if (type == "FileFunction") {
       std::string filename = xmlBase::Dom::getAttribute(spectrum, "file");
       dynamic_cast<FileFunction *>(spec)->readFunction(filename);
+   }
+   if (type == "DMFitFunction") {
+      std::string filename = xmlBase::Dom::getAttribute(spectrum, "file");
+      dynamic_cast<DMFitFunction *>(spec)->readFunction(filename);
    }
 
    src->setSpectrum(spec);
