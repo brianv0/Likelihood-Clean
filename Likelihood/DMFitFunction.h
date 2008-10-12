@@ -30,7 +30,7 @@ class DMFitFunction : public optimizers::Function {
 
 public:
 
-   DMFitFunction() {
+  DMFitFunction() : m_filename(""){
      init(1., 100., 1.0, 1, 1);
    }
 
@@ -40,7 +40,7 @@ public:
    /// @param channel0 : index of the first final state
    /// @param channel1 : index of the second final state   
    DMFitFunction(double norm, double mass, double bratio, 
-                 int channel0, int channel1) {
+                 int channel0, int channel1) : m_filename(""){
      init(norm, mass, bratio, channel0, channel1);
    }
 
@@ -50,6 +50,12 @@ public:
 
    virtual Function *clone() const {
       return new DMFitFunction(*this);
+   }
+
+   void readFunction(const std::string & filename);
+
+   const std::string & filename() const {
+      return m_filename;
    }
 
 protected:

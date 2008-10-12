@@ -56,11 +56,6 @@ void DMFitFunction::init(double norm, double mass, double bratio,
    m_genericName = "DMFitFunction";
    m_normParName = "norm";
 
-   m_filename="$(LIKELIHOODROOT)/src/dmfit/gammamc_dif.dat";
-   facilities::Util::expandEnvVar(&m_filename);
-   st_facilities::Util::file_ok(m_filename);
-//   std::cout<<"Loading file "<<m_filename<<std::endl; 
-   dmfit_load__(const_cast<char *>(m_filename.c_str()),m_filename.size());
 }
 
 double DMFitFunction::value(optimizers::Arg &xarg) const {
@@ -121,5 +116,13 @@ double DMFitFunction::derivByParam(optimizers::Arg & xarg,
    }
    return 0;
 }
+
+  void DMFitFunction::readFunction(const std::string & filename) {
+    m_filename = filename;
+    facilities::Util::expandEnvVar(&m_filename);
+    st_facilities::Util::file_ok(m_filename);
+    //std::cout<<"Loading file "<<m_filename<<std::endl; 
+    dmfit_load__(const_cast<char *>(m_filename.c_str()),m_filename.size());
+  }
 
 } // namespace Likelihood
