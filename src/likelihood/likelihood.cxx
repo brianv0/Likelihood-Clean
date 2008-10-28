@@ -127,6 +127,8 @@ private:
 
    std::clock_t m_cpuStart;
 
+   optimizers::TOLTYPE m_tolType;
+
    void promptForParameters();
    void createStatistic();
    void readEventData();
@@ -172,7 +174,7 @@ likelihood::likelihood()
      m_pars(st_app::StApp::getParGroup("gtlike")),
      m_logLike(0), m_opt(0), m_dataMap(0), 
      m_formatter(new st_stream::StreamFormatter("gtlike", "", 2)),
-     m_cpuStart(std::clock()),
+     m_cpuStart(std::clock()), m_tolType(optimizers::RELATIVE),
      m_tsSrc(0), m_maxdist(20.) {
    setVersion(s_cvs_id);
    m_pars.setSwitch("statistic");
@@ -189,6 +191,13 @@ likelihood::likelihood()
 void likelihood::run() {
    promptForParameters();
    std::string statistic = m_pars["statistic"];
+   std::string tolType = m_pars["toltype"];
+   if (tolType == "REL") {
+      m_tolType = optimizers::RELATIVE;
+   } else {
+      m_tolType = optimizers::ABSOLUTE;
+   }
+
    m_helper = new AppHelpers(&m_pars, statistic);
    std::string expcube_file = m_pars["expcube"];
    if (expcube_file != "none" && expcube_file != "") {
@@ -251,7 +260,7 @@ void likelihood::run() {
 /// @todo Allow the optimizer to be re-selected here by the user.    
       selectOptimizer();
       try {
-         m_opt->find_min(verbose, tol);
+         m_opt->find_min(verbose, tol, m_tolType);
          try {
             errors = m_opt->getUncertainty();
             setErrors(errors);
@@ -320,6 +329,7 @@ void likelihood::promptForParameters() {
    m_pars.Prompt("optimizer");
    m_pars.Prompt("save");
    m_pars.Prompt("refit");
+   m_pars.Prompt("toltype");
 
    m_pars.Save();
 }
@@ -775,7 +785,7 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
             double null_value(m_logLike->value());
             if (m_pars["tsmin"]) {
                try {
-                  m_opt->find_min(verbose, tol);
+                  m_opt->find_min(verbose, tol, m_tolType);
                } catch (std::exception & eObj) {
                   m_formatter->err() << eObj.what() << std::endl;
                }

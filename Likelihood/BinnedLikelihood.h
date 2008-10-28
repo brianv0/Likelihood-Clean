@@ -114,6 +114,8 @@ public:
 
    virtual void syncParams();
 
+   virtual void syncSrcParams(const std::string & srcName);
+
    virtual double NpredValue(const std::string & srcName) const;
 
 protected:
