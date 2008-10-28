@@ -4,6 +4,11 @@
     $Id$
 
     @verbatim
+    v13r19   28-Oct-08 JC  implement BinnedLikelihood::syncSrcParams;
+                           enable parfile option to choose relative or 
+                           absolute convergence tolerance in gtlike 
+                           (still need to propagate this to gttsmap,
+                           gtfindsrc)
     v13r18p7 12-Oct-08 JC  Johann's mods to have DMFitFunction read its
                            data file via xml def attribute
     v13r18p6 10-Oct-08 JC  comment out DMFitFunction until it handles the
