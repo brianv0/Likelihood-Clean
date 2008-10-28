@@ -387,6 +387,11 @@ void BinnedLikelihood::syncParams() {
    SourceModel::syncParams();
 }
 
+void BinnedLikelihood::syncSrcParams(const std::string & srcName) {
+   syncParams();
+   m_modelIsCurrent = false;
+}
+
 double BinnedLikelihood::NpredValue(const std::string & srcName) const {
 // This section is faster but assumes that the pixelCounts integral is
 // computed such that it preserves the interchange of order of the
