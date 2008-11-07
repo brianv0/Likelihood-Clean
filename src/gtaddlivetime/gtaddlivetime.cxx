@@ -12,6 +12,7 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "st_facilities/FitsUtil.h"
 #include "st_facilities/Util.h"
 
 #include "st_app/AppParGroup.h"
@@ -157,7 +158,11 @@ void AddLivetime::addFiles() {
    }
 
    std::string outfile = m_pars["outfile"];
-   fileSvc.createFile(outfile, m_fileList.front());
+
+   bool clobber = m_pars["clobber"];
+   st_facilities::FitsUtil::fcopy(m_fileList.front(), outfile, 
+                                  tableName, "", clobber);
+
    tip::Table * outtable(fileSvc.editTable(outfile, tableName));
    tip::Table::Iterator it2 = outtable->begin();
    for (size_t i=0; it2 != outtable->end(); ++it2, i++) {
