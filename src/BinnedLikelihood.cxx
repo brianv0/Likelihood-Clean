@@ -388,6 +388,7 @@ void BinnedLikelihood::syncParams() {
 }
 
 void BinnedLikelihood::syncSrcParams(const std::string & srcName) {
+   (void)(srcName);
    syncParams();
    m_modelIsCurrent = false;
 }
