@@ -222,6 +222,10 @@ void diffuseResponses::readEventData(std::string eventFile) {
    const tip::Table * events 
       = tip::IFileSvc::instance().readTable(eventFile, m_pars["evtable"]);
 
+   const std::vector<std::string> & colNames = events->getValidFields();
+
+   if (std:
+
    int evclsver(0); // version of event class definition
 
    const tip::Header & header(events->getHeader());
@@ -253,7 +257,11 @@ void diffuseResponses::readEventData(std::string eventFile) {
       event["zenith_angle"].get(zenAngle);
       event["event_class"].get(event_class);
       event["conversion_type"].get(conversion_type);
-      event["ctbclasslevel"].get(ctbclasslevel);
+      if (has_ctbclasslevel) {
+         event["ctbclasslevel"].get(ctbclasslevel);
+      } else {
+         ctbclasslevel = 0;
+      }
       if (evclsver == 0) {
          eventType = event_class;
       } else {
@@ -286,9 +294,9 @@ void diffuseResponses::computeEventResponses() {
 /// quadrature version for now.
 //       it->computeResponse(m_srcs, m_helper->observation().respFuncs(), 
 //                           m_srRadius);
-      if (it->ctbclasslevel() >= ctbclasslevel_min) {
-         it->computeResponseGQ(m_srcs, m_helper->observation().respFuncs()); 
-      }
+      bool useDummyValue(it->ctbclasslevel() < ctbclasslevel_min);
+      it->computeResponseGQ(m_srcs, m_helper->observation().respFuncs(),
+                            useDummyValue);
    }
    m_formatter->warn() << "!" << std::endl;
 }
