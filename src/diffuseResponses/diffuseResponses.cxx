@@ -223,8 +223,10 @@ void diffuseResponses::readEventData(std::string eventFile) {
       = tip::IFileSvc::instance().readTable(eventFile, m_pars["evtable"]);
 
    const std::vector<std::string> & colNames = events->getValidFields();
-
-   if (std:
+   bool has_ctbclasslevel(false);
+   if (std::count(colNames.begin(), colNames.end(), "ctbclasslevel") != 0) {
+      has_ctbclasslevel = true;
+   }
 
    int evclsver(0); // version of event class definition
 
