@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v13r20   11-Nov-08 JC  CTBCLASSLEVEL kludge in Event class and 
+                           gtdiffrsp.
     v13r19   28-Oct-08 JC  implement BinnedLikelihood::syncSrcParams;
                            enable parfile option to choose relative or 
                            absolute convergence tolerance in gtlike 
