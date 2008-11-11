@@ -129,7 +129,8 @@ Event::diffuseResponse(std::string name) const {
 }
 
 void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList, 
-                              const ResponseFunctions & respFuncs) {
+                              const ResponseFunctions & respFuncs,
+                              bool useDummyValue) {
    std::vector<DiffuseSource *> srcs;
    getNewDiffuseSrcs(srcList, srcs);
    if (srcs.size() == 0) {
@@ -143,11 +144,15 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
    EquinoxRotation eqRot(getDir().ra(), getDir().dec());
    for (size_t i(0); i < srcs.size(); i++) {
       std::string name(diffuseSrcName(srcs.at(i)->getName()));
-      DiffRespIntegrand muIntegrand(*this, respFuncs, *srcs.at(i), eqRot);
-      double respValue = 
-         st_facilities::GaussianQuadrature::dgaus8(muIntegrand, mumin,
-                                                   mumax, err, ierr);
-      m_respDiffuseSrcs[name].push_back(respValue);
+      if (useDummyValue) {
+         m_respDiffuseSrcs[name].push_back(0);
+      } else {
+         DiffRespIntegrand muIntegrand(*this, respFuncs, *srcs.at(i), eqRot);
+         double respValue = 
+            st_facilities::GaussianQuadrature::dgaus8(muIntegrand, mumin,
+                                                      mumax, err, ierr);
+         m_respDiffuseSrcs[name].push_back(respValue);
+      }
    }
 }
 
