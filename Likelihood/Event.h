@@ -141,6 +141,14 @@ public:
 
    void deleteSource(const std::string & srcName);
 
+   void set_ctbclasslevel(int ctbclasslevel) {
+      m_ctbclasslevel = ctbclasslevel;
+   }
+
+   int ctbclasslevel() const {
+      return m_ctbclasslevel;
+   }
+
 private:
 
    /// apparent direction, energy, arrival time, and cosine(zenith angle)
@@ -171,6 +179,9 @@ private:
    /// energy redistribution function for each diffuse source.
    typedef std::vector<double> diffuse_response;
    std::map<std::string, diffuse_response> m_respDiffuseSrcs;
+
+   /// Use this variable to keep track of Classification tree info.
+   int m_ctbclasslevel;
 
    /// Compute Celestial direction from (phi, mu) in Equinox-centered
    /// coordinates.
