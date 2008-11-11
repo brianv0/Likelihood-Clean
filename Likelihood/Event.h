@@ -69,7 +69,8 @@ public:
                           std::string diffuseComponent) const;
     
    void computeResponseGQ(std::vector<DiffuseSource *> & srcs, 
-                          const ResponseFunctions & respFuncs);
+                          const ResponseFunctions & respFuncs,
+                          bool useDummyValue=false);
 
    /// This method takes the spatial distribution of the emission for
    /// the DiffuseSource src and computes the event-specific response.
