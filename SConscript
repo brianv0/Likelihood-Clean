@@ -9,7 +9,8 @@ libEnv = baseEnv.Clone()
 
 libEnv.Tool('LikelihoodLib', depsOnly = 1)
 LikelihoodLib = libEnv.StaticLibrary('Likelihood', 
-                                     listFiles(['src/*.c', 'src/*.cxx']))
+                                     listFiles(['src/*.c', 'src/*.cxx',
+                                                'src/dmfit/*.cxx', 'src/dmfit/*.c']))
 
 progEnv.Tool('LikelihoodLib')
 
