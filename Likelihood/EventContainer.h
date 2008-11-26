@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "Likelihood/DiffRespNames.h"
 #include "Likelihood/Event.h"
 
 namespace st_stream {
@@ -84,6 +85,9 @@ private:
 
    void get_diffuse_names(tip::Table * events, 
                           std::vector<std::string> & names) const;
+
+   void get_diffuse_names(tip::Table * events, 
+                          DiffRespNames & diffRespNames) const;
 
    std::string sourceName(const std::string & name) const;
 
