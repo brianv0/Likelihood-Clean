@@ -48,6 +48,19 @@ double CompositeLikelihood::value() const {
    return my_value;
 }
 
+// void CompositeLikelihood::
+// getIndices(std::vector<std::vector<size_t> > & indices) const {
+//    size_t ncp(m_components.size());
+//    ComponentConstIterator_t it(m_components.begin());
+//    for ( ; it != m_components.end(); ++it) {
+//       std::map<std::string, Source *>::const_iterator src
+//          = it->second->sources().begin();
+//       if (src != it->first) {
+         
+//       }
+//    }
+// }
+
 void CompositeLikelihood::
 getFreeParams(std::vector<optimizers::Parameter> & params) const {
    if (m_components.empty()) {
