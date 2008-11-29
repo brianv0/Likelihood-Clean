@@ -19,6 +19,7 @@
 #include "tip/Header.h"
 
 #include "dataSubselector/Gti.h"
+#include "dataSubselector/RangeCut.h"
 
 #include "Likelihood/Exception.h"
 #include "Likelihood/Event.h"
@@ -177,6 +178,11 @@ void RoiCuts::sortCuts(bool strict) {
             if (nenergy == 0 || rangeCut.supercedes(*m_energyCut)) {
                nenergy++;
                m_energyCut = &rangeCut;
+            }
+            if (m_energyCut->intervalType() != 
+                dataSubselector::RangeCut::CLOSED) {
+               throw std::runtime_error("Energy range cut in FT1 file must "
+                                        "have both an upper and lower bound.");
             }
          } else if (colname == "TIME") {
             ntime++;
