@@ -1,5 +1,5 @@
 package Likelihood
-version v13r20
+version v14
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
@@ -28,7 +28,7 @@ use f2c *
 macro_append lib_source "-s=dmfit *.cxx *.c" WIN32 "-s=dmfit *.h *.cxx *.c"
 apply_pattern ST_library option=" *.c "
 apply_pattern shared_st_library
-#apply_pattern ST_pfiles
+apply_pattern ST_pfiles
 
 #macro_append cppflags " -pg "
 #macro_append cpplinkflags " -pg "
