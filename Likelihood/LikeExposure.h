@@ -11,6 +11,7 @@
 
 #include <utility>
 
+#include "tip/tip_types.h"
 #include "map_tools/Exposure.h"
 
 namespace tip {
@@ -40,7 +41,8 @@ public:
 
    void load(const tip::Table * tuple, bool verbose=true);
 
-   size_t numIntervals() const {
+   tip::Index_t numIntervals() const {
+//   size_t numIntervals() const {
       return m_numIntervals;
    }
 
@@ -80,7 +82,8 @@ private:
    double m_tmax;
 
    /// Number of FT2 intervals that have been loaded.
-   size_t m_numIntervals;
+//   size_t m_numIntervals;
+   tip::Index_t m_numIntervals;
 
    static bool overlaps(const std::pair<double, double> & interval1,
                         std::pair<double, double> & interval2);
