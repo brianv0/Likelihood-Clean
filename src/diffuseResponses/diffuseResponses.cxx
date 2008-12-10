@@ -184,14 +184,20 @@ void diffuseResponses::checkColumnVersion(const std::string & evfile) const {
    if (header.find("NDIFRSP") == header.end()) {
       delete events;
       if (!m_pars["convert"]) {
-         throw std::runtime_error("NDIFRSP keyword not found in EVENTS HDU of "
-                                  + evfile + " and convert=no.");
+         std::ostringstream message;
+         message <<"NDIFRSP keyword not found in EVENTS HDU of "
+                 << evfile
+                 << ", and convert=no.\n"
+                 << "gtdiffrsp cannot proceed unless you convert this file.";
+         throw std::runtime_error(message.str());
       }
       m_formatter->warn() << "Converting EVENTS header for "
                           << evfile
                           << std::endl;
-      convert_header(evfile);      
+      convert_header(evfile);
+      return;
    }
+   delete events;
 }
 
 void diffuseResponses::convert_header(const std::string & evfile) const {
