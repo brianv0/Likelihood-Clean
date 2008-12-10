@@ -183,7 +183,8 @@ void diffuseResponses::checkColumnVersion(const std::string & evfile) const {
    const tip::Header & header(events->getHeader());
    if (header.find("NDIFRSP") == header.end()) {
       delete events;
-      if (!m_pars["convert"]) {
+      bool convert = m_pars["convert"];
+      if (!convert) {
          std::ostringstream message;
          message <<"NDIFRSP keyword not found in EVENTS HDU of "
                  << evfile

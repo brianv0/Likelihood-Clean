@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v14r1p1  10-Dec-08 JC  use intermediate variable for m_pars["convert"]
+                           in diffuseResponses.cxx for Windows build
     v14r1    10-Dec-08 JC  bug-fix for coding inefficiency in LogLike (from
                            S. Fegan); conversion of old FT1 files in gtdiffrsp
     v14r0p2  03-Dec-08 JC  use tip::Index_t instead of long for references to
