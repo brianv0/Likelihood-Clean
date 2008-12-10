@@ -36,8 +36,9 @@ double LogLike::value(optimizers::Arg&) const {
    
 // The "data sum"
    for (size_t j = 0; j < events.size(); j++) {
-      my_value += logSourceModel(events.at(j));
-      m_accumulator.add(logSourceModel(events.at(j)));
+      double addend(logSourceModel(events.at(j)));
+      my_value += addend;
+      m_accumulator.add(addend);
    }
 
 // The "model integral", a sum over Npred for each source
@@ -52,8 +53,9 @@ double LogLike::value(optimizers::Arg&) const {
       std::map<std::string, Source *>::const_iterator srcIt(m_sources.begin());
       for ( ; srcIt != m_sources.end(); ++srcIt) {
          SrcArg sArg(srcIt->second);
-         my_value -= m_Npred(sArg);
-         m_accumulator.add(-m_Npred(sArg));
+         double addend(m_Npred(sArg));
+         my_value -= addend;
+         m_accumulator.add(-addend);
       }
    }
    double my_total(m_accumulator.total());
