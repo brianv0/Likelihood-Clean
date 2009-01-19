@@ -42,6 +42,7 @@
 #include "Likelihood/LogParabola.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/PowerLaw2.h"
+#include "Likelihood/PowerLawSuperExpCutoff.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Source.h"
 #include "Likelihood/SpatialMap.h"
@@ -350,6 +351,8 @@ void ModelMap::prepareFunctionFactory() {
    m_funcFactory->addFunc("FileFunction", new Likelihood::FileFunction(),
                           makeClone);
    m_funcFactory->addFunc("ExpCutoff", new Likelihood::ExpCutoff(), makeClone);
+   m_funcFactory->addFunc("PLSuperExpCutoff", 
+                          new Likelihood::PowerLawSuperExpCutoff(), makeClone);
 }
 
 void ModelMap::createRegistry() {
