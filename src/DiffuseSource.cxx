@@ -62,7 +62,9 @@ DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
    m_observation = rhs.m_observation;
 }
 
-double DiffuseSource::fluxDensity(const Event &evt) const {
+double DiffuseSource::fluxDensity(const Event &evt,
+				  CachedResponse* cResp) const {
+   (void)(cResp);
    double my_fluxDensity;
    if (m_useEdisp) {
       const std::vector<double> & trueEnergies = evt.trueEnergies();
@@ -86,7 +88,9 @@ double DiffuseSource::fluxDensity(const Event &evt) const {
 }
 
 double DiffuseSource::fluxDensityDeriv(const Event &evt, 
-                                       const std::string &paramName) const {
+                                       const std::string &paramName,
+				       CachedResponse* cResp) const {
+   (void)(cResp);
 // For now, just implement for spectral Parameters and neglect
 // the spatial ones, "longitude" and "latitude".
 //

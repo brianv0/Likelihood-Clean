@@ -367,7 +367,10 @@ void likelihood::readEventData() {
    std::vector<std::string>::const_iterator evIt = m_eventFiles.begin();
    for ( ; evIt != m_eventFiles.end(); evIt++) {
       st_facilities::Util::file_ok(*evIt);
-      m_helper->observation().eventCont().getEvents(*evIt);
+      if (m_statistic == "BINNED")
+	m_helper->observation().eventCont().getEvents(*evIt); // Why?
+      else if (m_statistic == "UNBINNED")
+	m_logLike->getEvents(*evIt);
    }
 }
 
