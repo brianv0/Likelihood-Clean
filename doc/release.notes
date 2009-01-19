@@ -4,6 +4,10 @@
     $Id$
 
     @verbatim
+    v14r2    19-Jan-08 JC  speed improvements from S. Fegan including
+                           caching of response function calculations (see
+                           ChangeLog); add PLSuperExpCutoff to gtmodel; save
+                           env vars in FileFunction filenames in xml file
     v14r1p1  10-Dec-08 JC  use intermediate variable for m_pars["convert"]
                            in diffuseResponses.cxx for Windows build
     v14r1    10-Dec-08 JC  bug-fix for coding inefficiency in LogLike (from
