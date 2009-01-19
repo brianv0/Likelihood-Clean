@@ -176,7 +176,7 @@ void findSrc::readEventData() {
    std::vector<std::string>::const_iterator evIt = eventFiles.begin();
    for ( ; evIt != eventFiles.end(); evIt++) {
       Util::file_ok(*evIt);
-      m_helper->observation().eventCont().getEvents(*evIt);
+      m_logLike->getEvents(*evIt);
    }
 }
 
