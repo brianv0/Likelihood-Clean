@@ -90,16 +90,22 @@ protected:
 
 private:
 
+   typedef Source::CachedResponse CachedResponse;
+
    Npred m_Npred;
 
    mutable Accumulator m_accumulator;
 
    std::map<std::string, double> m_npredValues;
+   mutable std::vector<std::map<std::string, CachedResponse> > m_evSrcRespCache;
 
-   double logSourceModel(const Event & event) const;
+   double logSourceModel(const Event & event, 
+			 std::map<std::string, CachedResponse>* srcRespCache=0)
+     const;
 
    void getLogSourceModelDerivs(const Event & event,
-                                std::vector<double> & derivs) const;
+                                std::vector<double> & derivs,
+				std::map<std::string, CachedResponse>* srcRespCache=0) const;
 
    mutable std::vector<double> m_bestFitParsSoFar;
 
