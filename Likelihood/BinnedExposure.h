@@ -87,12 +87,11 @@ private:
       Aeff(double energy, int evtType, const Observation & observation) 
          : m_energy(energy), m_evtType(evtType), m_observation(observation) {}
       virtual ~Aeff() {}
-      virtual double operator()(double cosTheta) const;
+      virtual double operator()(double cosTheta, double phi=0) const;
    private:
       double m_energy;
       int m_evtType;
       const Observation & m_observation;
-      static double s_phi;
    };
 
 };

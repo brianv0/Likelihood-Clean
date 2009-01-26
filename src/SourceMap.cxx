@@ -295,9 +295,8 @@ SourceMap::SourceMap(const std::string & sourceMapsFile,
    }
 }
 
-double SourceMap::Aeff::operator()(double costheta) const {
+double SourceMap::Aeff::operator()(double costheta, double phi) const {
    double inclination = acos(costheta)*180./M_PI;
-   static double phi(0);
    return m_observation.respFuncs().totalResponse(inclination, phi, m_energy,
                                                   m_energy, m_separation,
                                                   m_type);

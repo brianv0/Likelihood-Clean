@@ -94,7 +94,7 @@ private:
            double energy, int type, const Observation & observation)
          : Pixel::Aeff(src, appDir, energy, type),
            m_observation(observation) {}
-      virtual double operator()(double costheta) const;
+      virtual double operator()(double costheta, double phi=0) const;
    private:
       const Observation & m_observation;
    };

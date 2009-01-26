@@ -149,16 +149,14 @@ void BinnedExposure::computeMap() {
    formatter.warn() << "!" << std::endl;
 }
 
-double BinnedExposure::Aeff::s_phi(0);
-
-double BinnedExposure::Aeff::operator()(double cosTheta) const {
+double BinnedExposure::Aeff::operator()(double cosTheta, double phi) const {
    double inclination = acos(cosTheta)*180./M_PI;
    std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = m_observation.respFuncs().begin();
    for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
       if (respIt->second->irfID() == m_evtType) {
          irfInterface::IAeff * aeff = respIt->second->aeff();
-         double aeff_val = aeff->value(m_energy, inclination, s_phi);
+         double aeff_val = aeff->value(m_energy, inclination, phi);
          return aeff_val;
       }
    }
