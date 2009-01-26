@@ -81,7 +81,7 @@ public:
    public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
            double energy, int type);
-      virtual double operator()(double costheta) const;
+      virtual double operator()(double costheta, double phi=0) const;
    protected:
       Source * m_src;
       const astro::SkyDir & m_appDir;
@@ -95,7 +95,7 @@ public:
       AeffDeriv(Source * src, const std::string & paramName, 
                 const astro::SkyDir & appDir, double energy, int type);
       virtual ~AeffDeriv() {}
-      virtual double operator()(double costheta) const;
+      virtual double operator()(double costheta, double phi=0) const;
    protected:
       Source * m_src;
       std::string m_paramName;

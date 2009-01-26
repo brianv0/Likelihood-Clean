@@ -253,7 +253,7 @@ private:
 
       virtual ~Aeff() {}
 
-      virtual double operator()(double cos_theta) const;
+      virtual double operator()(double cos_theta, double phi=0) const;
 
    private:
 
