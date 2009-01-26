@@ -85,10 +85,9 @@ Pixel::Aeff::Aeff(Source * src, const astro::SkyDir & appDir,
    }
 }
 
-double Pixel::Aeff::operator()(double costheta) const {
+double Pixel::Aeff::operator()(double costheta, double phi) const {
    if (m_separation < 90.) {
       double inclination = acos(costheta)*180./M_PI;
-      static double phi(0);
       return m_src->fluxDensity(inclination, phi, m_energy, m_appDir,
                                 m_type);
    }
@@ -108,10 +107,9 @@ Pixel::AeffDeriv::AeffDeriv(Source * src, const std::string & paramName,
    }
 }
 
-double Pixel::AeffDeriv::operator()(double costheta) const {
+double Pixel::AeffDeriv::operator()(double costheta, double phi) const {
    if (m_separation < 90.) {
       double inclination = acos(costheta)*180./M_PI;
-      static double phi(0);
       return m_src->fluxDensityDeriv(inclination, phi, m_energy, m_appDir,
                                      m_type, m_paramName);
    }
