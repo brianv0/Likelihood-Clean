@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v14r2p2  27-Jan-09 JC  use typedefs from optimizers/f2c_types.h in 
+                           DMFitFunction.cxx
     v14r2p1  26-Jan-09 JC  add AppHelpers::addFunctionPrototypes; use in
                            gtmodel so that the available functions 
                            are consistent.
