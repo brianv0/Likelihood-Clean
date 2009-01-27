@@ -4,7 +4,10 @@
     $Id$
 
     @verbatim
-    v14r2    19-Jan-08 JC  speed improvements from S. Fegan including
+    v14r2p1  26-Jan-09 JC  add AppHelpers::addFunctionPrototypes; use in
+                           gtmodel so that the available functions 
+                           are consistent.
+    v14r2    19-Jan-09 JC  speed improvements from S. Fegan including
                            caching of response function calculations (see
                            ChangeLog); add PLSuperExpCutoff to gtmodel; save
                            env vars in FileFunction filenames in xml file
