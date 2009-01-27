@@ -132,6 +132,8 @@ public:
                                    const std::string & analysisType,
                                    std::vector<size_t> & selectedEvtTypes);
 
+   static void addFunctionPrototypes(optimizers::FunctionFactory * funcFactory);
+
 protected:
 
    st_app::AppParGroup * m_pars;
