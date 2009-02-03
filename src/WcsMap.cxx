@@ -221,7 +221,7 @@ double WcsMap::operator()(const astro::SkyDir & dir) const {
    int ix(static_cast<int>(x));
    int iy(static_cast<int>(y));
 
-   if (((ix  < 1 || ix >= m_naxis1) && !m_isPeriodic) 
+   if ((!m_isPeriodic && (ix < 1 || ix >= m_naxis1))
        || iy < 1 || iy >= m_naxis2) {
       return 0;
    }
