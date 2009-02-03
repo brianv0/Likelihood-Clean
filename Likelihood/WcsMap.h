@@ -70,6 +70,8 @@ private:
    
    bool m_interpolate;
 
+   bool m_isPeriodic;
+
    WcsMap();
 
 };
