@@ -57,6 +57,28 @@ public:
       return m_image;
    }
 
+   /// @return Solid angle of the (ilon, ilat) pixel
+   static double solidAngle(const astro::SkyProj & proj, 
+                            double ilon, double ilat);
+
+   double solidAngle(double ilon, double ilat) const;
+
+   /// @return Pixel value as a function index
+   double pixelValue(double ilon, double ilat) const;
+   
+   /// @return SkyDir corresponding to the pixel indices
+   astro::SkyDir skyDir(double ilon, double ilat) const;
+
+   int nxpix() const {
+      return m_naxis1;
+   }
+
+   int nypix() const {
+      return m_naxis2;
+   }
+
+   bool insideMap(const astro::SkyDir & dir) const;
+
 private:
 
    astro::SkyDir m_refDir;
@@ -71,6 +93,8 @@ private:
    bool m_interpolate;
 
    bool m_isPeriodic;
+
+   astro::SkyDir::CoordSystem m_coordSys;
 
    WcsMap();
 
