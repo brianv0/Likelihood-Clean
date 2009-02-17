@@ -18,6 +18,8 @@ namespace astro {
 
 namespace Likelihood {
 
+class Event;
+class ResponseFunctions;
 class WcsMap;
 
 /** 
@@ -64,6 +66,12 @@ public:
    const std::string & fitsFile() const {
       return m_fitsFile;
    }
+
+   double diffuseResponse(const ResponseFunctions & respFuncs,
+                          const Event & event) const;
+
+   /// @return Determine whether a given direction is inside the map
+   bool insideMap(const astro::SkyDir & dir) const;
 
 private:
 
