@@ -21,6 +21,7 @@
 #include "optimizers/FunctionFactory.h"
 
 #include "Likelihood/DiffuseSource.h"
+#include "Likelihood/Event.h"
 #include "Likelihood/Exception.h"
 #include "Likelihood/FileFunction.h"
 #include "Likelihood/DMFitFunction.h"
@@ -273,6 +274,13 @@ makeDiffuseSource(const DOMElement * spectrum,
       std::string name = xmlBase::Dom::getAttribute(*paramIt, "name");
       spatialDist->parameter(name).extractDomData(*paramIt);
    }
+   std::string isDiscrete("false");
+   try {
+      isDiscrete = xmlBase::Dom::getAttribute(spatialModel, "discrete");
+      Event::toLower(isDiscrete);
+   } catch (...) {
+      std::cout << "tried to read discrete attribute" << std::endl;
+   }
    if (type == "SpatialMap") {
       std::string fitsFile 
          = xmlBase::Dom::getAttribute(spatialModel, "file");
@@ -285,6 +293,9 @@ makeDiffuseSource(const DOMElement * spectrum,
    Source * src;
    try {
       src = new DiffuseSource(spatialDist, m_observation, m_requireExposure);
+      if (isDiscrete == "true") {
+         dynamic_cast<DiffuseSource *>(src)->setDiscrete();
+      }
       setSpectrum(src, spectrum, funcFactory);
       delete spatialDist;
       return src;
