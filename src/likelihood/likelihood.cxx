@@ -44,7 +44,6 @@
 #include "Likelihood/CountsSpectra.h"
 #include "Likelihood/ExposureCube.h"
 #include "Likelihood/LogLike.h"
-#include "Likelihood/MapShape.h"
 #include "Likelihood/OptEM.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/RoiCuts.h"
