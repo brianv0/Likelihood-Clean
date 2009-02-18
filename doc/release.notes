@@ -4,6 +4,11 @@
     $Id$
 
     @verbatim
+    v14r3    18-Jan-09 JC  some fixes to gtdiffrsp and gtfindsrc.par from
+                           Juergen; add MapBase superclass for SpatialMap
+                           and MapCubeFunction to enable refactoring of
+                           diffuse response calculations for FITS-image
+                           based models.
     v14r2p3  03-Jan-09 JC  Use periodic BCs for all sky maps to avoid
                            deficits near boundaries.  Bug-fixes for bilinear
                            interpolation in WcsMap.
