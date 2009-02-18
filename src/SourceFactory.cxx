@@ -266,20 +266,13 @@ makeDiffuseSource(const DOMElement * spectrum,
                   const DOMElement * spatialModel,
                   optimizers::FunctionFactory & funcFactory) {
    std::string type = xmlBase::Dom::getAttribute(spatialModel, "type");
-   optimizers::Function *spatialDist = funcFactory.create(type);
+   optimizers::Function * spatialDist = funcFactory.create(type);
    std::vector<DOMElement *> params;
    xmlBase::Dom::getChildrenByTagName(spatialModel, "parameter", params);
    std::vector<DOMElement *>::const_iterator paramIt = params.begin();
    for ( ; paramIt != params.end(); paramIt++) {
       std::string name = xmlBase::Dom::getAttribute(*paramIt, "name");
       spatialDist->parameter(name).extractDomData(*paramIt);
-   }
-   std::string isDiscrete("false");
-   try {
-      isDiscrete = xmlBase::Dom::getAttribute(spatialModel, "discrete");
-      Event::toLower(isDiscrete);
-   } catch (...) {
-      std::cout << "tried to read discrete attribute" << std::endl;
    }
    if (type == "SpatialMap") {
       std::string fitsFile 
@@ -293,9 +286,6 @@ makeDiffuseSource(const DOMElement * spectrum,
    Source * src;
    try {
       src = new DiffuseSource(spatialDist, m_observation, m_requireExposure);
-      if (isDiscrete == "true") {
-         dynamic_cast<DiffuseSource *>(src)->setDiscrete();
-      }
       setSpectrum(src, spectrum, funcFactory);
       delete spatialDist;
       return src;

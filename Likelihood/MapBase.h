@@ -18,6 +18,8 @@
 
 namespace Likelihood {
 
+class WcsMap;
+
 /**
  * @class MapBase
  * @brief Base class for FITS map objects.
@@ -37,10 +39,14 @@ public:
 
    virtual ~MapBase();
 
+   virtual void readFitsFile(const std::string & fitsFile,
+                             const std::string & extension="");
+
    virtual bool insideMap(const astro::SkyDir & dir) const;
 
-   virtual void getDiffRespLimits(double & mumin, double & mumax,
-                                  double & phimin, double phimax) const;
+   virtual void getDiffRespLimits(const astro::SkyDir & dir, 
+                                  double & mumin, double & mumax,
+                                  double & phimin, double & phimax) const;
 
 protected:
 

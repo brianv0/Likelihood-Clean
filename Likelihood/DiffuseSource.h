@@ -141,13 +141,13 @@ public:
       return * m_spectrum;
    }
 
-   bool discrete() const {
-      return m_discrete;
-   }
+//    bool discrete() const {
+//       return m_discrete;
+//    }
 
-   void setDiscrete(bool discrete=true) {
-      m_discrete = discrete;
-   }
+//    void setDiscrete(bool discrete=true) {
+//       m_discrete = discrete;
+//    }
 
 //    /// @return Photon flux integrated over the ROI energy bounds. 
 //    /// Units are #/cm^2/s
@@ -186,7 +186,7 @@ private:
    /// spatial model
    optimizers::Function * m_spatialDist;
 
-   bool m_discrete;
+//   bool m_discrete;
 
 };
 

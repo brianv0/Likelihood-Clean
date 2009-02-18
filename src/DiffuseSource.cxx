@@ -27,7 +27,7 @@ namespace Likelihood {
 DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
                              const Observation & observation,
                              bool requireExposure) 
-   : Source(&observation), m_discrete(false) {
+   : Source(&observation) {
    m_spatialDist = spatialDist->clone();
    m_functions["SpatialDist"] = m_spatialDist;
    m_useEdisp = observation.respFuncs().useEdisp();
@@ -60,7 +60,6 @@ DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
    m_exposure = rhs.m_exposure;
 
    m_observation = rhs.m_observation;
-   m_discrete = rhs.m_discrete;
 }
 
 double DiffuseSource::fluxDensity(const Event &evt,
