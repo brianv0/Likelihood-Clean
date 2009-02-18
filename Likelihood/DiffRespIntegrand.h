@@ -33,17 +33,25 @@ public:
    DiffRespIntegrand(const Event & event,
                      const ResponseFunctions & respFuncs,
                      const DiffuseSource & src,
-                     const EquinoxRotation & eqRot);
+                     const EquinoxRotation & eqRot,
+                     double phimin=0,
+                     double phimax=2*M_PI);
 
    double operator()(double mu) const;
 
+   static void getSrcDir(double mu, double phi, const EquinoxRotation & eqRot,
+                         astro::SkyDir & srcDir);
+
+   static double phiValue(double mu, const astro::SkyDir & srcDir,
+                          const EquinoxRotation & eqRot);
+
+#ifndef SWIG
    /**
     * @class DiffRespPhiIntegrand
     *
     * @brief Nested class for phi-integrand
     *
     */
-
    class DiffRespPhiIntegrand {
       
    public:
@@ -61,6 +69,7 @@ public:
       void getSrcDir(double phi, astro::SkyDir & srcDir) const;
 
    };
+#endif
 
 private:
 
@@ -68,6 +77,9 @@ private:
    const ResponseFunctions & m_respFuncs;
    const DiffuseSource & m_src;
    const EquinoxRotation & m_eqRot;
+
+   double m_phimin;
+   double m_phimax;
 
 };
 
