@@ -53,7 +53,7 @@ SpatialMap & SpatialMap::operator=(const SpatialMap & rhs) {
       if (rhs.m_wcsmap) {
          m_wcsmap = new WcsMap(*(rhs.m_wcsmap));
       }
-    }
+   }
    return *this;
 }
 
