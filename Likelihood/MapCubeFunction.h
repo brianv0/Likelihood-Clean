@@ -11,6 +11,8 @@
 
 #include "optimizers/Function.h"
 
+#include "Likelihood/MapBase.h"
+
 namespace astro {
    class SkyProj;
 }
@@ -27,21 +29,13 @@ namespace Likelihood {
  * $Header$
  */
 
-class MapCubeFunction : public optimizers::Function {
+class MapCubeFunction : public optimizers::Function, public MapBase {
 
 public:
    
-   MapCubeFunction() : m_fitsFile(""), m_proj(0), m_nlon(0), m_nlat(0),
-                       m_isPeriodic(false) {
-      init();
-   }
+   MapCubeFunction();
 
-   MapCubeFunction(const std::string & fitsFile) 
-      : m_fitsFile(fitsFile), m_proj(0), m_nlon(0), m_nlat(0),
-        m_isPeriodic(false)  {
-      init();
-      readFitsFile(fitsFile);
-   }
+   MapCubeFunction(const std::string & fitsFile);
 
    MapCubeFunction(const MapCubeFunction &);
 
@@ -61,7 +55,8 @@ public:
       return new MapCubeFunction(*this);
    }
 
-   void readFitsFile(const std::string & fitsFile);
+   virtual void readFitsFile(const std::string & fitsFile,
+                             const std::string & extension="");
 
    const std::string & fitsFile() const {
       return m_fitsFile;
