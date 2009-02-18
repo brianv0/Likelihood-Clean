@@ -10,6 +10,8 @@
 #ifndef Likelihood_SpatialMap_h
 #define Likelihood_SpatialMap_h
 
+#include <utility>
+
 #include "optimizers/Function.h"
 
 namespace astro {
@@ -72,6 +74,11 @@ public:
 
    /// @return Determine whether a given direction is inside the map
    bool insideMap(const astro::SkyDir & dir) const;
+   
+   std::pair<astro::SkyDir, astro::SkyDir> 
+   minMaxDistPixels(const astro::SkyDir &) const;
+
+   void getCorners(std::vector<astro::SkyDir> & corners) const;
 
 private:
 

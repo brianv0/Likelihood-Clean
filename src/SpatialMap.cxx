@@ -133,4 +133,13 @@ bool SpatialMap::insideMap(const astro::SkyDir & dir) const {
    return m_wcsmap->insideMap(dir);
 }
 
+std::pair<astro::SkyDir, astro::SkyDir> 
+SpatialMap::minMaxDistPixels(const astro::SkyDir & dir) const {
+   return m_wcsmap->minMaxDistPixels(dir);
+}
+
+void SpatialMap::getCorners(std::vector<astro::SkyDir> & corners) const {
+   m_wcsmap->getCorners(corners);
+}
+
 } // namespace Likelihood

@@ -11,6 +11,7 @@
 #define Likelihood_WcsMap_h
 
 #include <vector>
+#include <utility>
 
 #include "astro/SkyDir.h"
 
@@ -78,6 +79,11 @@ public:
    }
 
    bool insideMap(const astro::SkyDir & dir) const;
+
+   std::pair<astro::SkyDir, astro::SkyDir> 
+   minMaxDistPixels(const astro::SkyDir & dir) const;
+
+   void getCorners(std::vector<astro::SkyDir> & corners) const;
 
 private:
 
