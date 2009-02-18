@@ -14,6 +14,8 @@
 
 #include "optimizers/Function.h"
 
+#include "Likelihood/MapBase.h"
+
 namespace astro {
    class SkyDir;
 }
@@ -36,7 +38,7 @@ class WcsMap;
  *
  */
     
-class SpatialMap : public optimizers::Function {
+class SpatialMap : public optimizers::Function, public MapBase {
 
 public:
 
@@ -54,9 +56,6 @@ public:
 
    double value(const astro::SkyDir &) const;
 
-   void readFitsFile(const std::string & fitsFile,
-                     const std::string & extension="");
-
    double derivByParam(optimizers::Arg &, const std::string &) const {
       return 0;
    }
@@ -69,23 +68,7 @@ public:
       return m_fitsFile;
    }
 
-   double diffuseResponse(const ResponseFunctions & respFuncs,
-                          const Event & event) const;
-
-   /// @return Determine whether a given direction is inside the map
-   bool insideMap(const astro::SkyDir & dir) const;
-   
-   std::pair<astro::SkyDir, astro::SkyDir> 
-   minMaxDistPixels(const astro::SkyDir &) const;
-
-   void getCorners(std::vector<astro::SkyDir> & corners) const;
-
 private:
-
-   WcsMap * m_wcsmap;
-
-   std::string m_fitsFile;
-   std::string m_extension;
 
    void init();
 
