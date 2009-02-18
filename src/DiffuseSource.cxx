@@ -99,8 +99,8 @@ double DiffuseSource::fluxDensityDeriv(const Event &evt,
 // CompositeFunctions.
    double my_fluxDensityDeriv;
    double prefactor;
-      if (paramName == "Prefactor" && 
-          (prefactor = m_spectrum->getParamValue("Prefactor")) != 0) {
+   if (paramName == "Prefactor" && 
+       (prefactor = m_spectrum->getParamValue("Prefactor")) != 0) {
       my_fluxDensityDeriv = fluxDensity(evt)/prefactor;
    } else {
       if (m_useEdisp) {
@@ -182,8 +182,8 @@ double DiffuseSource::pixelCountsDeriv(double emin, double emax,
                                /(gam+1.)));
 }
 
-double DiffuseSource::flux() const {
+// double DiffuseSource::flux() const {
    
-}
+// }
 
 } // namespace Likelihood
