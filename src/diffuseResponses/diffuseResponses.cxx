@@ -129,7 +129,8 @@ diffuseResponses::diffuseResponses()
    : st_app::StApp(), m_helper(0), m_srcModel(0), 
      m_formatter(new st_stream::StreamFormatter("gtdiffrsp", "", 2)),
      m_srRadius(30.),
-     m_pars(st_app::StApp::getParGroup("gtdiffrsp")) {
+     m_pars(st_app::StApp::getParGroup("gtdiffrsp")),
+     m_ndifrsp(0) {
    setVersion(s_cvs_id);
 }
 
