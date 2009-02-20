@@ -181,8 +181,16 @@ double DiffuseSource::pixelCountsDeriv(double emin, double emax,
                                /(gam+1.)));
 }
 
-// double DiffuseSource::flux() const {
+double DiffuseSource::flux() const {
+   const std::vector<double> & energies = m_observation->roiCuts().energies();
+   std::vector<double> integrand;
+   for (size_t k(0); k < energies.size(); k++) {
+      
+   }
    
-// }
+   TrapQuad fluxIntegral(m_spectrum);
+   return fluxIntegral.integral(energies);
+   
+}
 
 } // namespace Likelihood
