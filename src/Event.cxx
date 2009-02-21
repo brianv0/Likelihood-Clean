@@ -26,7 +26,6 @@
 #include "Likelihood/ScData.h"
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/Source.h"
-//#include "Likelihood/SpatialMap.h"
 #include "Likelihood/TrapQuad.h"
 
 #include "st_facilities/GaussianQuadrature.h"

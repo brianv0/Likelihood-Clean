@@ -15,6 +15,7 @@
 #include "optimizers/Function.h"
 
 #include "Likelihood/MapBase.h"
+#include "Likelihood/WcsMap.h"
 
 namespace astro {
    class SkyDir;
@@ -66,6 +67,11 @@ public:
 
    const std::string & fitsFile() const {
       return m_fitsFile;
+   }
+
+   virtual double mapIntegral(double energy) const {
+      (void)(energy);
+      return m_wcsmap->mapIntegral();
    }
 
 private:

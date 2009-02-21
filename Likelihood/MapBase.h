@@ -39,6 +39,8 @@ public:
 
    virtual ~MapBase();
 
+   virtual double mapIntegral(double energy) const = 0;
+
    virtual void readFitsFile(const std::string & fitsFile,
                              const std::string & extension="");
 
