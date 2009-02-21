@@ -135,6 +135,8 @@ public:
 
    virtual const optimizers::Function & spectrum() const = 0;
 
+   virtual double flux() const = 0;
+
 protected:
 
    /// A unique source name.

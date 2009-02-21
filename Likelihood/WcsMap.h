@@ -85,6 +85,8 @@ public:
 
    void getCorners(std::vector<astro::SkyDir> & corners) const;
 
+   double mapIntegral() const;
+
 private:
 
    astro::SkyDir m_refDir;
@@ -102,7 +104,11 @@ private:
 
    astro::SkyDir::CoordSystem m_coordSys;
 
+   double m_mapIntegral;
+
    WcsMap();
+
+   void computeMapIntegral();
 
 };
 

@@ -65,6 +65,11 @@ public:
    /// @todo Consider moving this method to FitsImage class.
    double mapIntegral() const;
 
+   /// @return The angular integral of the differential flux as a
+   /// function of energy (implementation for
+   /// MapBase::mapIntegral(double) const)
+   virtual double mapIntegral(double energy) const;
+
 private:
 
    std::string m_fitsFile;
@@ -80,11 +85,15 @@ private:
 
    std::vector<float> m_image;
 
+   std::vector<double> m_mapIntegrals;
+
    void init();
 
    int findIndex(const std::vector<double> & xx, double x) const;
 
    double powerLawIntegral(double x1, double x2, double y1, double y2) const;
+
+   void computeMapIntegrals();
 };
 
 } // namespace Likelihood
