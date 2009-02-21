@@ -141,12 +141,12 @@ public:
       return * m_spectrum;
    }
 
-//    /// @return Photon flux integrated over the ROI energy bounds. 
-//    /// Units are #/cm^2/s
-//    double flux() const;
+   /// @return Photon flux integrated over the ROI energy bounds. 
+   /// Units are #/cm^2/s
+   double flux() const;
 
-//    /// @return Derivative of integrated photon flux wrt the named parameter
-//    double fluxDeriv(const std::string & parName) const;
+   /// @return Derivative of integrated photon flux wrt the named parameter
+   double fluxDeriv(const std::string & parName) const;
 
 //    /// @return Photon flux integrated over the given energy range.
 //    /// Units are #/cm^2/s
