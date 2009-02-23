@@ -4,7 +4,9 @@
     $Id$
 
     @verbatim
-    v14r3    18-Jan-09 JC  some fixes to gtdiffrsp and gtfindsrc.par from
+    v14r4    22-Feb-09 JC  enable flux calculations for isotropic and 
+                           map-based diffuse sources
+    v14r3    18-Feb-09 JC  some fixes to gtdiffrsp and gtfindsrc.par from
                            Juergen; add MapBase superclass for SpatialMap
                            and MapCubeFunction to enable refactoring of
                            diffuse response calculations for FITS-image
