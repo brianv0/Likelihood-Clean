@@ -67,6 +67,16 @@ private:
 
 };
 
+class MapBaseException : public std::exception {
+public:
+   MapBaseException() {}
+   MapBaseException(std::string errorString) : m_what(errorString) {}
+   virtual ~MapBaseException() throw() {}
+   virtual const char *what() const throw() {return m_what.c_str();}
+protected:
+   std::string m_what;
+};
+
 } // namespace Likelihood
 
 #endif // Likelihood_MapBase_h
