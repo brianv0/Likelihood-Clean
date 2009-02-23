@@ -154,12 +154,12 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
          mumax = 1;
          double phimin(0);
          double phimax(2.*M_PI);
-         optimizers::Function * foo = 
-            const_cast<optimizers::Function *>(srcs.at(i)->spatialDist());
-         const MapBase * mapBaseObject = dynamic_cast<MapBase *>(foo);
-         if (mapBaseObject != 0) {
-            mapBaseObject->getDiffRespLimits(getDir(), mumin, mumax,
-                                             phimin, phimax);
+         try {
+            srcs.at(i)->mapBaseObject()->getDiffRespLimits(getDir(), 
+                                                           mumin, mumax,
+                                                           phimin, phimax);
+         } catch (MapBaseException & eObj) {
+            // do nothing
          }
          DiffRespIntegrand muIntegrand(*this, respFuncs, *srcs.at(i), eqRot,
                                        phimin, phimax);

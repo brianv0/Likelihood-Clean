@@ -181,6 +181,8 @@ public:
 
    const MapBase * mapBaseObject() const;
 
+   double angularIntegral(double energy) const;
+
 private:
 
    /// spatial model
@@ -205,8 +207,7 @@ private:
       integrand.reserve(energies.size());
       for (size_t k(0); k < energies.size(); k++) {
          optimizers::dArg arg(energies.at(k));
-         integrand.push_back(func(arg)
-                             *mapBaseObject()->mapIntegral(energies.at(k)));
+         integrand.push_back(func(arg)*angularIntegral(energies.at(k)));
       }
       bool useLog;
       TrapQuad fluxIntegral(energies, integrand, useLog=true);
