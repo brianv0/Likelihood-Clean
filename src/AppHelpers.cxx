@@ -37,6 +37,7 @@
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/DMFitFunction.h"
+#include "Likelihood/DMFitFunction2.h"
 
 namespace {
    void getRangeBounds(const std::vector<dataSubselector::RangeCut *> & cuts,
@@ -112,6 +113,7 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
    funcFactory->addFunc("PLSuperExpCutoff", 
                         new PowerLawSuperExpCutoff(), makeClone);
    funcFactory->addFunc("DMFitFunction", new DMFitFunction(), makeClone);
+   funcFactory->addFunc("DMFitFunction2", new DMFitFunction2(), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
