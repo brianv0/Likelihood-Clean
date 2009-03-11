@@ -72,8 +72,6 @@ public:
 
 private:
 
-   std::string m_fitsFile;
-
    astro::SkyProj * m_proj;
 
    int m_nlon;
