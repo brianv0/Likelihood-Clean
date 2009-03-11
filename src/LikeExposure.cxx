@@ -65,7 +65,7 @@ LikeExposure(double skybin, double costhetabin,
 void LikeExposure::load(const tip::Table * scData, bool verbose) {
    st_stream::StreamFormatter formatter("LikeExposure", "load", 2);
    
-   double ra, dec, ra_zenith, dec_zenith, start, stop, livetime;
+   double ra, dec, rax, decx, ra_zenith, dec_zenith, start, stop, livetime;
 
    tip::Table::ConstIterator it(scData->end());
    tip::ConstTableRecord & row(*it);
@@ -118,10 +118,18 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
       if (acceptInterval(start, stop, m_timeCuts, m_gtis, fraction)) {
          row["ra_scz"].get(ra);
          row["dec_scz"].get(dec);
+         row["ra_scx"].get(rax);
+         row["dec_scx"].get(decx);
          row["ra_zenith"].get(ra_zenith);
          row["dec_zenith"].get(dec_zenith);
-         fill(astro::SkyDir(ra, dec), astro::SkyDir(ra_zenith, dec_zenith), 
-              deltat*fraction);
+         if (healpix::CosineBinner::nphibins() == 0) {
+            fill(astro::SkyDir(ra, dec), astro::SkyDir(ra_zenith, dec_zenith), 
+                 deltat*fraction);
+         } else {
+            fill_zenith(astro::SkyDir(ra, dec), astro::SkyDir(rax, decx),
+                        astro::SkyDir(ra_zenith, dec_zenith), 
+                        deltat*fraction);
+         }            
          m_numIntervals++;
       }
    }

@@ -24,6 +24,8 @@
 
 #include "st_facilities/Util.h"
 
+#include "healpix/CosineBinner.h"
+
 #include "Likelihood/LikeExposure.h"
 #include "Likelihood/RoiCuts.h"
 
@@ -205,6 +207,14 @@ void ExposureCube::createDataCube() {
                         << "If you don't understand this comment, " << std::endl
                         << "then you probably shouldn't be applying this cut." 
                         << std::endl;
+   }
+
+   // Set the number of phibins using the static function interface
+   // from healpix::CosineBinner (this is how
+   // map_tools/exposure_cube.cxx does it.)
+   double nphibins = m_pars["phibins"];
+   if (nphibins > 0) {
+      healpix::CosineBinner::setPhiBins(nphibins);
    }
 
    m_exposure = new Likelihood::LikeExposure(m_pars["binsize"], 
