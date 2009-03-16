@@ -42,7 +42,6 @@ public:
    void load(const tip::Table * tuple, bool verbose=true);
 
    tip::Index_t numIntervals() const {
-//   size_t numIntervals() const {
       return m_numIntervals;
    }
 
