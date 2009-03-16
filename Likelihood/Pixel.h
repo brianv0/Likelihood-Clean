@@ -82,6 +82,9 @@ public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
            double energy, int type);
       virtual double operator()(double costheta, double phi=0) const;
+      virtual double integral(double cosTheta, double phi=0) const {
+         return operator()(cosTheta, phi);
+      }
    protected:
       Source * m_src;
       const astro::SkyDir & m_appDir;
@@ -96,6 +99,9 @@ public:
                 const astro::SkyDir & appDir, double energy, int type);
       virtual ~AeffDeriv() {}
       virtual double operator()(double costheta, double phi=0) const;
+      virtual double integral(double cosTheta, double phi=0) const {
+         return operator()(cosTheta, phi);
+      }
    protected:
       Source * m_src;
       std::string m_paramName;

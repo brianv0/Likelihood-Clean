@@ -88,6 +88,9 @@ private:
          : m_energy(energy), m_evtType(evtType), m_observation(observation) {}
       virtual ~Aeff() {}
       virtual double operator()(double cosTheta, double phi=0) const;
+      virtual double integral(double cosTheta, double phi=0) const {
+         return operator()(cosTheta, phi);
+      }
    private:
       double m_energy;
       int m_evtType;

@@ -254,6 +254,9 @@ private:
       virtual ~Aeff() {}
 
       virtual double operator()(double cos_theta, double phi=0) const;
+      virtual double integral(double cosTheta, double phi=0) const {
+         return operator()(cosTheta, phi);
+      }
 
    private:
 

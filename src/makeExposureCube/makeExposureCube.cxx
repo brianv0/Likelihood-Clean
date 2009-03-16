@@ -212,7 +212,7 @@ void ExposureCube::createDataCube() {
    // Set the number of phibins using the static function interface
    // from healpix::CosineBinner (this is how
    // map_tools/exposure_cube.cxx does it.)
-   double nphibins = m_pars["phibins"];
+   long nphibins = m_pars["phibins"];
    if (nphibins > 0) {
       healpix::CosineBinner::setPhiBins(nphibins);
    }
