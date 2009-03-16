@@ -95,6 +95,9 @@ private:
          : Pixel::Aeff(src, appDir, energy, type),
            m_observation(observation) {}
       virtual double operator()(double costheta, double phi=0) const;
+      virtual double integral(double cosTheta, double phi=0) const {
+         return operator()(cosTheta, phi);
+      }
    private:
       const Observation & m_observation;
    };

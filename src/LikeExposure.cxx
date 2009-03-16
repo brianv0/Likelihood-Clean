@@ -190,6 +190,7 @@ void LikeExposure::writeLivetimes(const std::string & outfile) const {
    header["THETABIN"].set(healpix::CosineBinner::thetaBinning());
    header["NBRBINS"].set(healpix::CosineBinner::nbins());
    header["COSMIN"].set(healpix::CosineBinner::cosmin());
+   header["PHIBINS"].set(healpix::CosineBinner::nphibins());
 
    delete table;
 }

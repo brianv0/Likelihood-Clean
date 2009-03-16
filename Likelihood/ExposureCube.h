@@ -46,7 +46,8 @@ public:
 
    template<class T>
    double value(const astro::SkyDir & dir, const T & aeff) const {
-      return (*m_exposure)(dir, aeff);
+//      return (*m_exposure)(dir, aeff);
+      return m_exposure->integral(dir, aeff);
    }
 
    bool haveFile() const {
