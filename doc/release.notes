@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v14r4p1  16-Mar-09 JC  phi-dependence in livetime cube (requires map_tools
+                           v7r3p3)
     v14r4    22-Feb-09 JC  enable flux calculations for isotropic and 
                            map-based diffuse sources
     v14r3    18-Feb-09 JC  some fixes to gtdiffrsp and gtfindsrc.par from
