@@ -267,4 +267,10 @@ void LogLike::restoreBestFit() {
    syncParams();
 }
 
+void LogLike::saveCurrentFit() {
+   m_bestValueSoFar = -1e38;
+   optimizers::Arg dummy;
+   saveBestFit(value(dummy));
+}
+
 } // namespace Likelihood
