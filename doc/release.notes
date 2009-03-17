@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v14r4p2  17-Mar-09 JC  add LogLike::saveCurrentFit() for use by 
+                           pyLikelihood/UpperLimits.py
     v14r4p1  16-Mar-09 JC  phi-dependence in livetime cube (requires map_tools
                            v7r3p3)
     v14r4    22-Feb-09 JC  enable flux calculations for isotropic and 
