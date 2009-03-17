@@ -76,6 +76,8 @@ public:
 
    void restoreBestFit();
 
+   void saveCurrentFit();
+
 protected:
 
    virtual LogLike * clone() const {
