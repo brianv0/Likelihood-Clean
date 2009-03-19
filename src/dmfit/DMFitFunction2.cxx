@@ -24,7 +24,6 @@ typedef double doublereal;
 extern "C" {
 #endif
 
-//#include "f2c/f2c.h"
 doublereal yieldget_ (integer *zi, integer *mxi, integer *ch);
 doublereal llg_ (doublereal *x, doublereal *mx, doublereal *ml);
 integer dmfit_load__ (char *filename, ftnlen filename_len);
@@ -151,25 +150,17 @@ double DMFitFunction2::derivByParam(optimizers::Arg & xarg,
     dmfit_load__(const_cast<char *>(m_filename.c_str()),m_filename.size());
 
     //Check and enforce XML input non-degeneracy
-//    double bratio = m_parameter[2].getTrueValue();  // This isn't used.
     integer ch0 = static_cast<integer>(m_parameter[3].getTrueValue());
     integer ch1 = static_cast<integer>(m_parameter[4].getTrueValue());
     if((ch0==ch1) && getParam("bratio").isFree())
       {
         std::cout<<"bratio set fixed to 1, as channels 0 and 1 are identical"<<std::endl;
         setParam("bratio",1.);
-//        getParam("bratio").setFree(false);
         parameter("bratio").setFree(false);
       }
   }
 
 
-//   void DMFitFunction2::updateCache(const double x,
-//                                   const double m, 
-//                                   const double b,
-//                                   const int ch0,
-//                                   const int ch1,
-//                                   const double emin)     
   void DMFitFunction2::updateCache(double x,
                                   double m, 
                                   double b,

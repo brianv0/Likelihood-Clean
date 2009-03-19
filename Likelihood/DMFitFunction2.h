@@ -67,9 +67,6 @@ protected:
    }
 
 private:
-//    void updateCache(const double x, const double m, 
-//                     const double b, const int ch0,
-//                     const int ch1,  const double emin) const;
     
    void updateCache(double x, double m, 
                     double b, int ch0,
