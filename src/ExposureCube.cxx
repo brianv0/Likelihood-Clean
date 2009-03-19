@@ -21,7 +21,7 @@ bool ExposureCube::phiDependence(const std::string & filename) const {
    long nphibins;
    try {
       header["PHIBINS"].get(nphibins);
-   } catch (tip::TipException & eObj) {
+   } catch (tip::TipException &) {
       nphibins = 0;
    }
    return nphibins > 0;
