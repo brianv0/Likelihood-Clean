@@ -102,10 +102,14 @@ public:
    void writeDiffuseResponses(const std::string & filename);
 
    /// Set diffuse response for infinite energy resolution.
-   void setDiffuseResponse(const std::string& srcName, double value) {
-     const std::string & diffuseComponent = diffuseSrcName(srcName);
-      m_respDiffuseSrcs[diffuseComponent].clear();
-      m_respDiffuseSrcs[diffuseComponent].push_back(value);
+//    void setDiffuseResponse(const std::string& srcName, double value) {
+//      const std::string & diffuseComponent = diffuseSrcName(srcName);
+//       m_respDiffuseSrcs[diffuseComponent].clear();
+//       m_respDiffuseSrcs[diffuseComponent].push_back(value);
+//    }
+   void setDiffuseResponse(const std::string & componentName, double value) {
+      m_respDiffuseSrcs[componentName].clear();
+      m_respDiffuseSrcs[componentName].push_back(value);
    }
 
    /// Set diffuse response for finite energy resolution.

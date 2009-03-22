@@ -131,7 +131,8 @@ void EventContainer::getEvents(std::string event_file) {
                   colname = diffRespNames.key(*name);
                }
                event[colname].get(respValue);
-               m_events.back().setDiffuseResponse(srcName, respValue);
+//               m_events.back().setDiffuseResponse(srcName, respValue);
+               m_events.back().setDiffuseResponse(*name, respValue);
             }
          }
       } else {
