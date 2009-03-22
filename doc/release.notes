@@ -4,6 +4,9 @@
     $Id$
 
     @verbatim
+    v14r5    22-Mar-09 JC  set diffuse response name using column name from
+                           FT1 file to ensure that IRFs are included in 
+                           the label.
     v14r4p5  20-Mar-09 JC  DMFitFunction[2] cosmetic clean-up by Johann
     v14r4p4  19-Mar-09 JC  bug-fixes for windows build of DMFitFunction2
     v14r4p3  18-Mar-09 JC  bug-fix in WcsMap::solidAngle(...)
