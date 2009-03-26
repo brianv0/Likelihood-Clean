@@ -127,11 +127,11 @@ public:
    /// Integrate the product of the source spectrum with the given
    /// SourceMap pixel values.
    virtual double pixelCounts(double emin, double emax, 
-                              double wtMin, double wtMax) const = 0;
+                              double wtMin, double wtMax) const;
 
    virtual double pixelCountsDeriv(double emin, double emax, 
                                    double wtMin, double wtMax,
-                                   const std::string & paramName) const = 0;
+                                   const std::string & paramName) const;
 
    virtual const std::vector<double> & exposure() const = 0;
 
