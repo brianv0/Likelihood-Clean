@@ -132,13 +132,6 @@ public:
       return new DiffuseSource(*this);
    }
 
-   virtual double pixelCounts(double emin, double emax,
-                              double wtMin, double wtMax) const;
-
-   virtual double pixelCountsDeriv(double emin, double emax,
-                                   double wtMin, double wtMax,
-                                   const std::string & paramName) const;
-
    virtual const std::vector<double> & exposure() const {
       return m_exposure;
    }

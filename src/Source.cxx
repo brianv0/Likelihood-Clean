@@ -120,6 +120,62 @@ double Source::NpredDeriv(const std::string &paramName) {
    }
 }
 
+double Source::pixelCounts(double emin, double emax,
+                           double wtMin, double wtMax) const {
+   optimizers::Function & spectrum = *m_spectrum;
+   optimizers::dArg eminArg(emin);
+   optimizers::dArg emaxArg(emax);
+
+   double f1(spectrum(eminArg));
+   double f2(spectrum(emaxArg));
+
+   double y1(f1*wtMin);
+   double y2(f2*wtMax);
+   if (::getenv("USE_OLD_PIX_EST") || y1 == 0 || y2 == 0) {
+      return (y1 + y2)*(emax - emin)/2.;
+   }
+
+   double gam(std::log(y2/y1)/std::log(emax/emin));
+   if (gam == -1) {
+      double y0(y2/std::pow(emax, gam));
+      return y0*std::log(emax/emin);
+   }
+
+   return y2/(gam + 1.)*(emax - emin*std::pow(emin/emax, gam));
+}
+
+double Source::pixelCountsDeriv(double emin, double emax,
+                                double wtMin, double wtMax,
+                                const std::string & paramName) const {
+   optimizers::Function & spectrum = *m_spectrum;
+   optimizers::dArg eminArg(emin);
+   optimizers::dArg emaxArg(emax);
+   double y1(spectrum(eminArg)*wtMin);
+   double y2(spectrum(emaxArg)*wtMax);
+
+   double f1(spectrum.derivByParam(eminArg, paramName));
+   double f2(spectrum.derivByParam(emaxArg, paramName));
+
+   double dy1dp(f1*wtMin);
+   double dy2dp(f2*wtMax);
+   if (::getenv("USE_OLD_PIX_EST") || y1 == 0 || y2 == 0) {
+      return (dy1dp + dy2dp)*(emax - emin)/2.;
+   }
+
+   double gam(std::log(y2/y1)/std::log(emax/emin));
+   double dgamdp((dy2dp/y2 - dy1dp/y1)/std::log(emax/emin));
+   double dy0dp_numerator(dy2dp - y2*dgamdp*std::log(emax));
+   if (gam == -1) {
+      double dy0dp(dy0dp_numerator/std::pow(emax, gam));
+      return dy0dp*std::log(emax/emin);
+   }
+   return (dy0dp_numerator*(emax - std::pow(emin/emax, gam)*emin)/(gam+1.) +
+           y2*dgamdp/(gam+1.)*((emax*std::log(emax)
+                                - std::pow(emin/emax, gam)*emin*std::log(emin))
+                               - (emax - emin*std::pow(emin/emax, gam))
+                               /(gam+1.)));
+}
+
 double Source::powerlaw_integral_est(double x1, double x2, 
                                      double y1, double y2, 
                                      double wt1, double wt2) {

@@ -121,62 +121,6 @@ double DiffuseSource::fluxDensityDeriv(const Event &evt,
    }
    return my_fluxDensityDeriv;
 }
-   
-double DiffuseSource::pixelCounts(double emin, double emax,
-                                  double wtMin, double wtMax) const {
-   optimizers::Function & spectrum = *m_spectrum;
-   optimizers::dArg eminArg(emin);
-   optimizers::dArg emaxArg(emax);
-
-   double f1(spectrum(eminArg));
-   double f2(spectrum(emaxArg));
-
-   double y1(f1*wtMin);
-   double y2(f2*wtMax);
-   if (::getenv("USE_OLD_PIX_EST") || y1 == 0 || y2 == 0) {
-      return (y1 + y2)*(emax - emin)/2.;
-   }
-
-   double gam(std::log(y2/y1)/std::log(emax/emin));
-   double y0(y2/std::pow(emax, gam));
-   if (gam == -1) {
-      return y0*std::log(emax/emin);
-   }
-   return y0/(gam + 1.)*(std::pow(emax, gam + 1.) - std::pow(emin, gam + 1.));
-}
-
-double DiffuseSource::pixelCountsDeriv(double emin, double emax,
-                                       double wtMin, double wtMax,
-                                       const std::string & paramName) const {
-   optimizers::Function & spectrum = *m_spectrum;
-   optimizers::dArg eminArg(emin);
-   optimizers::dArg emaxArg(emax);
-
-   double y1(spectrum(eminArg)*wtMin);
-   double y2(spectrum(emaxArg)*wtMax);
-
-   double f1(spectrum.derivByParam(eminArg, paramName));
-   double f2(spectrum.derivByParam(emaxArg, paramName));
-
-   double dy1dp(f1*wtMin);
-   double dy2dp(f2*wtMax);
-   if (::getenv("USE_OLD_PIX_EST") || y1 == 0 || y2 == 0) {
-      return (dy1dp + dy2dp)*(emax - emin)/2.;
-   }
-
-   double gam(std::log(y2/y1)/std::log(emax/emin));
-   double y0(y2/std::pow(emax, gam));
-   double dgamdp((dy2dp/y2 - dy1dp/y1)/std::log(emax/emin));
-   double dy0dp((dy2dp - y2*dgamdp*std::log(emax))/std::pow(emax, gam));
-   if (gam == -1) {
-      return dy0dp*std::log(emax/emin);
-   }
-   return (dy0dp*(std::pow(emax, gam+1.) - std::pow(emin, gam+1.))/(gam+1.) +
-           y0*dgamdp/(gam+1.)*((std::pow(emax, gam+1.)*std::log(emax)
-                                - std::pow(emin, gam+1.)*std::log(emin))
-                               - (std::pow(emax,gam+1.)-std::pow(emin,gam+1.))
-                               /(gam+1.)));
-}
 
 const MapBase * DiffuseSource::mapBaseObject() const {
    optimizers::Function * foo = 

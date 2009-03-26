@@ -129,13 +129,6 @@ public:
       return new PointSource(*this);
    }
 
-   virtual double pixelCounts(double emin, double emax,
-                              double wtMin, double wtMax) const;
-
-   virtual double pixelCountsDeriv(double emin, double emax, 
-                                   double wtMin, double wtMax,
-                                   const std::string & paramName) const;
-
    /// Compute the integrated exposure using the provided 
    /// vector of energy values
    static void computeExposure(const astro::SkyDir & dir,
