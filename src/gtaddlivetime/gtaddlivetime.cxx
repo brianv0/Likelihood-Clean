@@ -179,6 +179,8 @@ void AddLivetime::addFiles() {
 
    new_cuts.writeGtiExtension(outfile);
    writeDateKeywords(outfile, tstart, tstop);
+
+   st_facilities::FitsUtil::writeFilename(outfile);
 }
 
 void AddLivetime::writeDateKeywords(const std::string & outfile,
