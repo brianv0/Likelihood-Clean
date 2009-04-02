@@ -126,6 +126,8 @@ private:
 
    std::clock_t m_cpuStart;
 
+   double m_tol;
+
    optimizers::TOLTYPE m_tolType;
 
    void promptForParameters();
@@ -246,6 +248,7 @@ void likelihood::run() {
 // we subtract 1.
    if (verbose > 1) verbose--;
    double tol = m_pars["ftol"];
+   m_tol = tol;
    std::vector<double> errors;
 
 // The fit loop.  If indicated, query the user at the end of each
@@ -259,7 +262,7 @@ void likelihood::run() {
 /// @todo Allow the optimizer to be re-selected here by the user.    
       selectOptimizer();
       try {
-         m_opt->find_min(verbose, tol, m_tolType);
+         m_opt->find_min(verbose, m_tol, m_tolType);
          try {
             errors = m_opt->getUncertainty();
             setErrors(errors);
@@ -765,7 +768,6 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
    double logLike_value = m_logLike->value();
 
    int verbose(0);
-   double tol(1e-4);
    m_formatter->info() << "Computing TS values for each source ("
                        << srcNames.size() << " total)\n";
    astro::SkyDir roiCenter 
@@ -787,7 +789,7 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
             double null_value(m_logLike->value());
             if (m_pars["tsmin"]) {
                try {
-                  m_opt->find_min(verbose, tol, m_tolType);
+                  m_opt->find_min(verbose, m_tol, m_tolType);
                } catch (std::exception & eObj) {
                   m_formatter->err() << eObj.what() << std::endl;
                }
