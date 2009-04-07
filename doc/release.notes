@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v14r7p2  07-Apr-09 JC  add protecting #ifndefs in ExposureCube for 
+                           SWIG build
     v14r7p1  06-Apr-09 JC  Use wrapper class to convert phi to degrees when 
                            calling map_tools::Exposure::integral
     v14r7    02-Apr-09 JC  ensure m_tol is used in TS calculation in likelihood;
