@@ -46,6 +46,7 @@ public:
       m_hasPhiDependence = phiDependence(filename);
    }
 
+#ifndef SWIG
    template<class T>
    double value(const astro::SkyDir & dir, const T & aeff) const {
       if (m_hasPhiDependence) {
@@ -54,6 +55,7 @@ public:
       }
       return (*m_exposure)(dir, aeff);
    }
+#endif
 
    bool haveFile() const {
       return m_haveFile;
@@ -75,6 +77,7 @@ private:
 
    bool phiDependence(const std::string & filename) const;
 
+#ifndef SWIG
    // healpix::CosineBinner::integral assumes that phi is in radians instead of
    // degrees, contrary to established conventions.  This class wraps the 
    // integral(costh, phi) method to do the conversion.
@@ -89,6 +92,7 @@ private:
    private:
       const Aeff & m_aeff;
    };
+#endif
 
 };
 
