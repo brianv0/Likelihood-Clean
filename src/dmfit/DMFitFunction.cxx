@@ -117,10 +117,14 @@ double DMFitFunction::derivByParam(optimizers::Arg & xarg,
 }
 
   void DMFitFunction::readFunction(const std::string & filename) {
-    m_filename = filename;
-    facilities::Util::expandEnvVar(&m_filename);
-    st_facilities::Util::file_ok(m_filename);
-    dmfit_load__(const_cast<char *>(m_filename.c_str()),m_filename.size());
+// Save data member version, preserving any environment variables.
+    m_filename = filename; 
+// Use expanded local copy for reading the data.
+    std::string expanded_filename = filename;
+    facilities::Util::expandEnvVar(&expanded_filename);
+    st_facilities::Util::file_ok(expanded_filename);
+    dmfit_load__(const_cast<char *>(expanded_filename.c_str()),
+                 expanded_filename.size());
   }
 
 } // namespace Likelihood
