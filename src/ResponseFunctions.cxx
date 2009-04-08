@@ -111,8 +111,9 @@ void ResponseFunctions::load(const std::string & respFuncs,
       const std::vector<std::string> & resps = it->second;
       for (unsigned int i = 0; i < resps.size(); i++) {
          irfInterface::Irfs * irfs(myFactory->create(resps[i]));
+         size_t irfId(irfs->irfID());
          if (evtTypes.empty() ||
-             std::count(evtTypes.begin(), evtTypes.end(), irfs->irfID()) > 0) {
+             std::count(evtTypes.begin(), evtTypes.end(), irfId) > 0) {
             addRespPtr(irfs->irfID(), irfs);
          } else {
             delete irfs;
