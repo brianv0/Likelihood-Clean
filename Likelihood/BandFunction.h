@@ -29,15 +29,17 @@ class BandFunction : public optimizers::Function {
 public:
 
    BandFunction() {
-      init(1., -1., -2., 0.1);
+      init(1., -1., -2., 0.1, 0.1);
    }
 
    /// @param norm Normalization of the function
    /// @param alpha The low energy photon index
    /// @param beta The high energy photon index
    /// @param Ep The energy of the nuFnu peak (MeV)
-   BandFunction(double norm, double alpha, double beta, double Ep) {
-      init(norm, alpha, beta, Ep);
+   /// @param Scale Energy scale for power-law components (MeV)
+   BandFunction(double norm, double alpha, double beta, double Ep,
+                double scale=0.1) {
+      init(norm, alpha, beta, Ep, scale);
    }
 
    double value(optimizers::Arg&) const;
@@ -56,7 +58,8 @@ protected:
 
 private:
 
-   void init(double norm, double alpha, double beta, double Ep);
+   void init(double norm, double alpha, double beta, double Ep,
+             double scale);
 
 };
 
