@@ -67,6 +67,24 @@ public:
 
 private:
 
+
+#ifndef SWIG
+// healpix::CosineBinner::integral assumes that phi is in radians instead of
+// degrees, contrary to established conventions.  This class wraps the 
+// integral(costh, phi) method to do the conversion.
+   template <class Aeff>
+   class AeffWrapper {
+   public:
+      AeffWrapper(const Aeff & aeff) : m_aeff(aeff) {}
+      double integral(double costh, double phi) const {
+         phi *= 180./M_PI;
+         return m_aeff.integral(costh, phi);
+      }
+   private:
+      const Aeff & m_aeff;
+   };
+#endif
+
    map_tools::Exposure * m_exposure;
 
    bool m_haveFile;
@@ -76,23 +94,6 @@ private:
    bool m_hasPhiDependence;
 
    bool phiDependence(const std::string & filename) const;
-
-#ifndef SWIG
-   // healpix::CosineBinner::integral assumes that phi is in radians instead of
-   // degrees, contrary to established conventions.  This class wraps the 
-   // integral(costh, phi) method to do the conversion.
-   template <class Aeff>
-   class AeffWrapper {
-   public:
-      AeffWrapper::AeffWrapper(const Aeff & aeff) : m_aeff(aeff) {}
-      double integral(double costh, double phi) const {
-         phi *= 180./M_PI;
-         return m_aeff.integral(costh, phi);
-      }
-   private:
-      const Aeff & m_aeff;
-   };
-#endif
 
 };
 
