@@ -4,6 +4,10 @@
     $Id$
 
     @verbatim
+    v14r8    14-May-09 JC  re-write BandFunction to use same functional form
+                           as Xspec version; remove unnecessary class qualifier
+                           from ExposureCube::AeffWrapper constructor that
+                           was confusing gcc 4.0
     v14r7p4  02-May-09 JC  test program fix to account for interface change
                            in optimizers::Optimizer::find_min (REL -> ABS tol)
     v14r7p3  08-Apr-09 JC  write out filename for DMFitFunction[2] models to
