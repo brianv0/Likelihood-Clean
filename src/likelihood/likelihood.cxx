@@ -791,7 +791,7 @@ void likelihood::computeTsValues(const std::vector<std::string> & srcNames,
             double null_value(m_logLike->value());
             if (m_pars["tsmin"]) {
                try {
-                  m_opt->find_min(verbose, m_tol, m_tolType);
+                  m_opt->find_min_only(verbose, m_tol, m_tolType);
                } catch (std::exception & eObj) {
                   m_formatter->err() << eObj.what() << std::endl;
                }
