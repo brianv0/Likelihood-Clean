@@ -24,7 +24,7 @@
 
 #include "st_facilities/Util.h"
 
-#include "irfInterface/EfficiencyFactor.h"
+//#include "irfInterface/EfficiencyFactor.h"
 
 #include "Likelihood/ScData.h"
 
@@ -99,9 +99,9 @@ void ScData::readData(std::string file, double tstart,
 
    if (clear) {
       vec.clear();
-      irfInterface::EfficiencyFactor::clearFt2Data();
+//      irfInterface::EfficiencyFactor::clearFt2Data();
    }
-   irfInterface::EfficiencyFactor::readFt2File(file);
+//   irfInterface::EfficiencyFactor::readFt2File(file);
 
    double raSCX, decSCX;
    double raSCZ, decSCZ;
