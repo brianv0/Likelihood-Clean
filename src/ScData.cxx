@@ -24,6 +24,8 @@
 
 #include "st_facilities/Util.h"
 
+#include "irfInterface/EfficiencyFactor.h"
+
 #include "Likelihood/ScData.h"
 
 namespace Likelihood {
@@ -97,7 +99,9 @@ void ScData::readData(std::string file, double tstart,
 
    if (clear) {
       vec.clear();
+      irfInterface::EfficiencyFactor::clearFt2Data();
    }
+   irfInterface::EfficiencyFactor::readFt2File(file);
 
    double raSCX, decSCX;
    double raSCZ, decSCZ;
@@ -106,13 +110,7 @@ void ScData::readData(std::string file, double tstart,
    for ( ; it != scData->end(); ++it) {
       ScNtuple tuple;
       scInterval["start"].get(tuple.time);
-//       if (tuple.time > tstop) {
-//          break;
-//       }
       scInterval["stop"].get(tuple.stoptime);
-//       if (tuple.stoptime <= tstart) {
-//          continue;
-//       }
       scInterval["livetime"].get(tuple.livetime);
       scInterval["ra_scx"].get(raSCX);
       scInterval["dec_scx"].get(decSCX);
@@ -152,6 +150,8 @@ void ScData::readData(const std::vector<std::string> & scFiles,
    if (vec.size() == 0) {
       throw std::runtime_error("No spacecraft time intervals were read in "
                                "for the desired range of FT1 data.");
+   }
+   for (size_t i(0); i < scFiles.size(); i++) {
    }
 }
 
