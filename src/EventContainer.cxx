@@ -98,7 +98,7 @@ void EventContainer::getEvents(std::string event_file) {
       event["conversion_type"].get(conversionType);
       event["event_class"].get(eventClass);
       if (evclsver == 0) {
-         eventType = eventClass;
+         eventType = conversionType;
       } else {
          eventType = conversionType + 2*eventClass;
       }
@@ -131,7 +131,6 @@ void EventContainer::getEvents(std::string event_file) {
                   colname = diffRespNames.key(*name);
                }
                event[colname].get(respValue);
-//               m_events.back().setDiffuseResponse(srcName, respValue);
                m_events.back().setDiffuseResponse(*name, respValue);
             }
          }
