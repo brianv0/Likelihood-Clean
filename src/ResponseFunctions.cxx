@@ -136,4 +136,38 @@ void ResponseFunctions::load(const std::string & respFuncs,
    }
 }
 
+double ResponseFunctions::edisp(double emeas, double etrue, 
+                                const astro::SkyDir & appDir,
+                                const astro::SkyDir & zAxis,
+                                const astro::SkyDir & xAxis,
+                                int type) const {
+   irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
+   if (!irfs) {
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
+   }
+   irfInterface::IEdisp * edisp(irfs->edisp());
+   return edisp->value(emeas, etrue, appDir, zAxis, xAxis);
+}
+
+double ResponseFunctions::aeff(double etrue, 
+                               const astro::SkyDir & appDir,
+                               const astro::SkyDir & zAxis,
+                               const astro::SkyDir & xAxis,
+                               int type) const {
+   irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
+   if (!irfs) {
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
+   }
+   irfInterface::IAeff * aeff(irfs->aeff());
+   return aeff->value(etrue, appDir, zAxis, xAxis);
+}
+
 } // namespace Likelihood

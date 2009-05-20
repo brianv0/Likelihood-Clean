@@ -113,6 +113,18 @@ public:
    void load(const std::string & respFuncs, const std::string & respBase="",
              const std::vector<size_t> &selectedEvtTypes=std::vector<size_t>());
 
+   double edisp(double emeas, double etrue, 
+                const astro::SkyDir & srcDir,
+                const astro::SkyDir & zAxis,
+                const astro::SkyDir & xAxis,
+                int type) const;
+
+   double aeff(double etrue, 
+               const astro::SkyDir & srcDir,
+               const astro::SkyDir & zAxis,
+               const astro::SkyDir & xAxis,
+               int type) const;
+
 private:
 
    std::map<unsigned int, irfInterface::Irfs *> m_respPtrs;
