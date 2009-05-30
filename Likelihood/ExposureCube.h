@@ -15,6 +15,8 @@
 
 #include "map_tools/Exposure.h"
 
+#include "latResponse/IrfLoader.h"
+
 namespace Likelihood {
 
 /**
@@ -63,6 +65,10 @@ public:
 
    const std::string & fileName() const {
       return m_fileName;
+   }
+
+   bool hasPhiDependence() const {
+      return m_hasPhiDependence;
    }
 
 private:

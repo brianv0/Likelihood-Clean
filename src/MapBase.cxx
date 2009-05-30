@@ -21,7 +21,6 @@
 #include "Likelihood/DiffRespIntegrand.h"
 #include "Likelihood/EquinoxRotation.h"
 #include "Likelihood/MapBase.h"
-#include "Likelihood/WcsMap.h"
 
 namespace Likelihood {
 

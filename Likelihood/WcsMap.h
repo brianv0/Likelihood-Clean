@@ -66,7 +66,7 @@ public:
 
    const std::vector< std::vector<double> > & solidAngles() const;
 
-   /// @return Pixel value as a function index
+   /// @return Pixel value as a function of index
    double pixelValue(double ilon, double ilat) const;
    
    /// @return SkyDir corresponding to the pixel indices

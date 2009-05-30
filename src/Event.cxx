@@ -138,8 +138,10 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
    if (srcs.size() == 0) {
       return;
    }
-   double mumin(-1);
-   double mumax(1);
+   double minusone(-1);
+   double one(1);
+   double mumin(minusone);
+   double mumax(one);
    double err(1e-2);
    int ierr;
 
@@ -150,8 +152,8 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
          m_respDiffuseSrcs[name].push_back(0);
       } else {
          double respValue(0);
-         mumin = -1;
-         mumax = 1;
+         mumin = minusone;
+         mumax = one;
          double phimin(0);
          double phimax(2.*M_PI);
          try {
@@ -161,11 +163,15 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
          } catch (MapBaseException &) {
             // do nothing
          }
-         DiffRespIntegrand muIntegrand(*this, respFuncs, *srcs.at(i), eqRot,
-                                       phimin, phimax);
-         respValue = 
-            st_facilities::GaussianQuadrature::dgaus8(muIntegrand, mumin,
-                                                      mumax, err, ierr);
+         if (::getenv("USE_MAP_EST") && (mumin != minusone || mumax != one)) {
+            respValue = srcs.at(i)->diffuseResponse(*this);
+         } else {
+            DiffRespIntegrand muIntegrand(*this, respFuncs, *srcs.at(i), eqRot,
+                                          phimin, phimax);
+            respValue = 
+               st_facilities::GaussianQuadrature::dgaus8(muIntegrand, mumin,
+                                                         mumax, err, ierr);
+         }
          m_respDiffuseSrcs[name].push_back(respValue);
       }
    }

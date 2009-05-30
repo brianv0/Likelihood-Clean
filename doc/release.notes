@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v14r11   30-May-09 JC  handle case where ltcube lacks phi-dependence
     v14r10   20-May-09 JC  pass 7 changes: use EVENT_CLASS as classlevel
                            variable in gtdiffrsp filtering
     v14r9    14-May-09 JC  use optimizers::Optimizer::find_min_only in 
