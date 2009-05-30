@@ -16,9 +16,9 @@
 
 #include "astro/SkyDir.h"
 
-namespace Likelihood {
+#include "Likelihood/WcsMap.h"
 
-class WcsMap;
+namespace Likelihood {
 
 /**
  * @class MapBase
@@ -49,6 +49,10 @@ public:
    virtual void getDiffRespLimits(const astro::SkyDir & dir, 
                                   double & mumin, double & mumax,
                                   double & phimin, double & phimax) const;
+
+   const WcsMap & wcsmap() const {
+      return *m_wcsmap;
+   }
 
 protected:
 

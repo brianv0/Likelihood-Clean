@@ -242,7 +242,7 @@ private:
 
       Aeff(double energy, const astro::SkyDir &srcDir,
            const RoiCuts & roiCuts, const ResponseFunctions & respFuncs,
-           double time=0);
+           double time=0, bool usePhiDependence=true);
 
       virtual ~Aeff() {}
 
@@ -259,6 +259,8 @@ private:
       const ResponseFunctions & m_respFuncs;
 
       double m_time;
+
+      bool m_usePhiDependence;
 
       std::vector<irfInterface::AcceptanceCone *> m_cones;
       double m_emin, m_emax;
