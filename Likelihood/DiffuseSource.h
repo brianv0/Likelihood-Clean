@@ -176,6 +176,8 @@ public:
 
    double angularIntegral(double energy) const;
 
+   double diffuseResponse(const Event & evt) const;
+
 private:
 
    /// spatial model
