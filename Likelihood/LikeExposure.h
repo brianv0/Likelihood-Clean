@@ -102,11 +102,15 @@ private:
 
    void writeFilename(const std::string & outfile) const;
 
-   void writeLivetimes(const std::string & outfile) const;
+   void writeLivetimes(const std::string & outfile,
+                       const map_tools::Exposure * self=0,
+                       const std::string & extname="EXPOSURE") const;
 
    void writeCosbins(const std::string & outfile) const;
 
-   void setCosbinsFieldFormat(const std::string & outfile) const;
+   void setCosbinsFieldFormat(const std::string & outfile,
+                              const map_tools::Exposure * self,
+                              const std::string & extname) const;
 
    void fitsReportError(int status, const std::string & routine) const;
 
