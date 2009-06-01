@@ -39,6 +39,12 @@ public:
                 const std::vector< std::pair<double, double> > & gtis,
                 double zenmax=180.);
 
+   ~LikeExposure() {
+      delete m_weightedExposure;
+   }
+
+   LikeExposure(const LikeExposure & other);
+
    void load(const tip::Table * tuple, bool verbose=true);
 
    tip::Index_t numIntervals() const {
@@ -67,6 +73,12 @@ public:
    static double overlap(const std::pair<double, double> & interval1,
                          const std::pair<double, double> & interval2);
 
+protected:
+
+   LikeExposure & operator=(const LikeExposure &) {
+      return *this;
+   }
+
 private:
 
    double m_costhetabin;
@@ -81,8 +93,9 @@ private:
    double m_tmax;
 
    /// Number of FT2 intervals that have been loaded.
-//   size_t m_numIntervals;
    tip::Index_t m_numIntervals;
+
+   map_tools::Exposure * m_weightedExposure;
 
    static bool overlaps(const std::pair<double, double> & interval1,
                         std::pair<double, double> & interval2);
