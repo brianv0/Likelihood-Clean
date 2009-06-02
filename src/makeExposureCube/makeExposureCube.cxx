@@ -217,7 +217,7 @@ void ExposureCube::createDataCube() {
       healpix::CosineBinner::setPhiBins(nphibins);
    }
 
-   m_exposure = new Likelihood::LikeExposure(m_pars["binsize"], 
+   m_exposure = new Likelihood::LikeExposure(m_pars["binsz"], 
                                              m_pars["dcostheta"],
                                              timeCuts, gtis, zmax);
    std::string scFile = m_pars["scfile"];

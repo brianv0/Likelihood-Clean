@@ -81,11 +81,13 @@ void BackFile::setup() {
    m_pars.Prompt();
    m_pars.Save();
    m_helper = new Likelihood::AppHelpers(&m_pars, "none");
-   std::string scfile = m_pars["scfile"];
-   m_helper->observation().scData().readData(scfile);
    std::string expMap = m_pars["expmap"];
    m_helper->observation().expMap().readExposureFile(expMap);
-   m_helper->observation().roiCuts().readCuts(expMap, "");
+//   m_helper->observation().roiCuts().readCuts(expMap, "");
+   m_helper->setRoi(expMap, "");
+   m_helper->readScData();
+//    std::string scfile = m_pars["scfile"];
+//    m_helper->observation().scData().readData(scfile);
    std::string expCube = m_pars["expcube"];
    m_helper->observation().expCube().readExposureCube(expCube);
 
