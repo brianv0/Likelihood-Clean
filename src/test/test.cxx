@@ -938,7 +938,7 @@ void LikelihoodTests::readEventData(const std::string &eventFile,
                                     const std::string &scDataFile,
                                     std::vector<Event> &events) {
    events.clear();
-   m_scData->readData(scDataFile, true);
+   m_scData->readData(scDataFile, 0, 86400, true);
 
    tip::Table * eventTable = 
       tip::IFileSvc::instance().editTable(eventFile, "events");
@@ -986,9 +986,9 @@ srcFactoryInstance(const std::string & scFile,
    if (m_srcFactory == 0) {
       m_roiCuts->setCuts(86.404, 28.936, 25., 30., 2e5, 0., 8.64e4, -1., true);
       if (scFile == "") {
-         m_scData->readData(m_scFile, true);
+         m_scData->readData(m_scFile, 0, 86400, true);
       } else {
-         m_scData->readData(scFile, true);
+         m_scData->readData(scFile, 0, 86400, true);
       }
 
       if (expMapFile == "") {
