@@ -37,8 +37,11 @@ public:
                     m_haveFile(false), m_fileName(""),
                     m_hasPhiDependence(false) {}
 
+   ExposureCube(const ExposureCube & other);
+
    ~ExposureCube() {
       delete m_exposure;
+      delete m_weightedExposure;
    }
 
    void readExposureCube(std::string filename);
@@ -49,12 +52,12 @@ public:
                 bool weighted_lt=false) const {
       if (m_hasPhiDependence) {
          AeffWrapper<T> myAeff(aeff);
-         if (!weighted_lt && m_weightedExposure) {
+         if (weighted_lt && m_weightedExposure) {
             return m_weightedExposure->integral(dir, myAeff);
          }
          return m_exposure->integral(dir, myAeff);
       }
-      if (!weighted_lt && m_weightedExposure) {
+      if (weighted_lt && m_weightedExposure) {
          return m_weightedExposure->operator()(dir, aeff);
       }
       return (*m_exposure)(dir, aeff);
@@ -74,7 +77,6 @@ public:
    }
 
 private:
-
 
 #ifndef SWIG
 // healpix::CosineBinner::integral assumes that phi is in radians instead of

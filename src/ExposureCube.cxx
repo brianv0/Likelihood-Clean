@@ -14,6 +14,16 @@
 
 namespace Likelihood {
 
+ExposureCube::ExposureCube(const ExposureCube & other) 
+   : m_exposure(new map_tools::Exposure(*(other.m_exposure))),
+     m_weightedExposure(0), m_haveFile(other.m_haveFile),
+     m_fileName(other.m_fileName), 
+     m_hasPhiDependence(other.m_hasPhiDependence) {
+   if (other.m_weightedExposure) {
+      m_weightedExposure = new map_tools::Exposure(*(other.m_weightedExposure));
+   }
+}
+
 void ExposureCube::readExposureCube(std::string filename) {
    facilities::Util::expandEnvVar(&filename);
    m_fileName = filename;
