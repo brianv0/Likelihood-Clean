@@ -34,10 +34,6 @@ public:
    ~ScData() {}
 
    /// Method to read in the spacecraft data.
-   void readData(std::string file, bool clear=false,
-                 const std::string & sctable="SC_DATA");
-   
-   /// Method to read in the spacecraft data with start and stop times
    void readData(std::string file, double tstart, double tstop,
                  bool clear=false,
                  const std::string & sctable="SC_DATA");
@@ -47,8 +43,37 @@ public:
    void readData(const std::vector<std::string> & scFiles, 
                  double tstart, double tstop,
                  const std::string & sctable="SC_DATA");
+
+   /// Return the spacecraft z-axis as a function of MET.
+   astro::SkyDir zAxis(double time) const;
+
+   /// Return the spacecraft x-axis as a function of MET.
+   astro::SkyDir xAxis(double time) const;
+
+   size_t numIntervals() const {
+      return vec.size();
+   }
+
+   double start(size_t i) const {
+      return vec.at(i).time;
+   }
+
+   double stop(size_t i) const {
+      return vec.at(i).stoptime;
+   }
+
+   double livetime(size_t i) const {
+      return vec.at(i).livetime;
+   }
+
+   const astro::SkyDir & zAxis(size_t i) const {
+      return vec.at(i).zAxis;
+   }
+
+   unsigned int time_index(double time) const;
+
+private:
    
-#ifndef SWIG
 /** 
  * @class ScNtuple
  * @brief Nested NTuple class to represent spacecraft data.
@@ -69,33 +94,8 @@ public:
    /// The spacecraft data itself. (This may be moved to the private 
    /// area and replaced here with access methods.)
    std::vector<ScNtuple> vec;
-#endif // SWIG
-
-   /// Return the spacecraft z-axis as a function of MET.
-   astro::SkyDir zAxis(double time) const;
-
-   /// Return the spacecraft x-axis as a function of MET.
-   astro::SkyDir xAxis(double time) const;
-
-#ifndef SWIG
-   /// Return a pair of iterators to the ScData intervals enclosing
-   /// the desired start and end times.
-   typedef std::vector<ScNtuple>::const_iterator Iterator;
-   std::pair<Iterator, Iterator> bracketInterval(double startTime,
-                                                 double stopTime) const;
-
-   std::pair<Iterator, Iterator> 
-   bracketInterval(const std::pair<double, double> & interval) const {
-      return bracketInterval(interval.first, interval.second);
-   }
-#endif // SWIG
-
-   unsigned int time_index(double time) const;
-
-private:
 
    std::string m_scFile;
-   int m_scHdu;
 
    static bool less_than_time(const ScNtuple & scDatum1,
                               const ScNtuple & scDatum2);
