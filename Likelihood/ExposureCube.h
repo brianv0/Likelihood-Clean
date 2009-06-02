@@ -13,9 +13,9 @@
 
 #include "astro/SkyDir.h"
 
-#include "map_tools/Exposure.h"
+#include "irfInterface/EfficiencyFactor.h"
 
-#include "latResponse/IrfLoader.h"
+#include "map_tools/Exposure.h"
 
 namespace Likelihood {
 
@@ -62,6 +62,20 @@ public:
       }
       return (*m_exposure)(dir, aeff);
    }
+
+   // Compute the exposure with trigger rate- and energy-dependent
+   // efficiency corrections.
+   template<class T>
+   double value(const astro::SkyDir & dir, const T & aeff, 
+                double energy) const {
+      double factor1, factor2;
+      m_efficiencyFactor.getLivetimeFactors(energy, factor1, factor2);
+      double exposure(factor1*value(dir, aeff));
+      if (factor2 != 0) {
+         exposure += factor2*value(dir, aeff, true);
+      }
+      return exposure;
+   }
 #endif
 
    bool haveFile() const {
@@ -97,6 +111,8 @@ private:
 
    map_tools::Exposure * m_exposure;
    map_tools::Exposure * m_weightedExposure;
+
+   irfInterface::EfficiencyFactor m_efficiencyFactor;
 
    bool m_haveFile;
 
