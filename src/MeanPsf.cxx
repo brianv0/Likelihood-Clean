@@ -41,7 +41,9 @@ void MeanPsf::init() {
          for (; resp != m_observation.respFuncs().end(); ++resp) {
             int evtType = resp->second->irfID();
             Aeff aeff(m_energies[k], evtType, m_observation);
-            expsr_val += m_observation.expCube().value(m_srcDir, aeff);
+//            expsr_val += m_observation.expCube().value(m_srcDir, aeff);
+            expsr_val += m_observation.expCube().value(m_srcDir, aeff,
+                                                       m_energies[k]);
             Psf psf(s_separations[j], m_energies[k], evtType, m_observation);
             psf_val += m_observation.expCube().value(m_srcDir, psf);
          }

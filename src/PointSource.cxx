@@ -349,7 +349,8 @@ computeExposureWithHyperCube(const astro::SkyDir & srcDir,
       PointSource::Aeff aeff(*it, srcDir, observation.roiCuts(),
                              observation.respFuncs(), 0,
                              observation.expCube().hasPhiDependence());
-      double exposure_value = observation.expCube().value(srcDir, aeff);
+//      double exposure_value = observation.expCube().value(srcDir, aeff);
+      double exposure_value = observation.expCube().value(srcDir, aeff, *it);
       exposure.push_back(exposure_value);
    }
    formatter.warn() << "!" << std::endl;
