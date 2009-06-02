@@ -33,34 +33,29 @@ class ExposureCube {
 
 public:
 
-   ExposureCube() : m_exposure(0), m_weightedExposure(0), m_haveFile(false), 
-                    m_fileName(""),
+   ExposureCube() : m_exposure(0), m_weightedExposure(0), 
+                    m_haveFile(false), m_fileName(""),
                     m_hasPhiDependence(false) {}
 
    ~ExposureCube() {
       delete m_exposure;
    }
 
-   void readExposureCube(std::string filename) {
-      facilities::Util::expandEnvVar(&filename);
-      m_fileName = filename;
-      m_exposure = new map_tools::Exposure(filename);
-      try {
-         m_weightedExposure = new map_tools::Exposure(filename,
-                                                      "WEIGHTED_EXPOSURE");
-      } catch(tip::TipException &) {
-         m_weightedExposure = 0;
-      }
-      m_haveFile = true;
-      m_hasPhiDependence = phiDependence(filename);
-   }
+   void readExposureCube(std::string filename);
 
 #ifndef SWIG
    template<class T>
-   double value(const astro::SkyDir & dir, const T & aeff) const {
+   double value(const astro::SkyDir & dir, const T & aeff,
+                bool weighted_lt=false) const {
       if (m_hasPhiDependence) {
          AeffWrapper<T> myAeff(aeff);
+         if (!weighted_lt && m_weightedExposure) {
+            return m_weightedExposure->integral(dir, myAeff);
+         }
          return m_exposure->integral(dir, myAeff);
+      }
+      if (!weighted_lt && m_weightedExposure) {
+         return m_weightedExposure->operator()(dir, aeff);
       }
       return (*m_exposure)(dir, aeff);
    }
