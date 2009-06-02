@@ -14,6 +14,20 @@
 
 namespace Likelihood {
 
+void ExposureCube::readExposureCube(std::string filename) {
+   facilities::Util::expandEnvVar(&filename);
+   m_fileName = filename;
+   m_exposure = new map_tools::Exposure(filename);
+   try {
+      m_weightedExposure = new map_tools::Exposure(filename,
+                                                   "WEIGHTED_EXPOSURE");
+   } catch(tip::TipException &) {
+      m_weightedExposure = 0;
+   }
+   m_haveFile = true;
+   m_hasPhiDependence = phiDependence(filename);
+}
+
 bool ExposureCube::phiDependence(const std::string & filename) const {
    const tip::Table * table 
       = tip::IFileSvc::instance().readTable(filename, "EXPOSURE");
