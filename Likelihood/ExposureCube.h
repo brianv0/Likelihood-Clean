@@ -33,7 +33,8 @@ class ExposureCube {
 
 public:
 
-   ExposureCube() : m_exposure(0), m_haveFile(false), m_fileName(""),
+   ExposureCube() : m_exposure(0), m_weightedExposure(0), m_haveFile(false), 
+                    m_fileName(""),
                     m_hasPhiDependence(false) {}
 
    ~ExposureCube() {
@@ -44,6 +45,12 @@ public:
       facilities::Util::expandEnvVar(&filename);
       m_fileName = filename;
       m_exposure = new map_tools::Exposure(filename);
+      try {
+         m_weightedExposure = new map_tools::Exposure(filename,
+                                                      "WEIGHTED_EXPOSURE");
+      } catch(tip::TipException &) {
+         m_weightedExposure = 0;
+      }
       m_haveFile = true;
       m_hasPhiDependence = phiDependence(filename);
    }
@@ -92,6 +99,7 @@ private:
 #endif
 
    map_tools::Exposure * m_exposure;
+   map_tools::Exposure * m_weightedExposure;
 
    bool m_haveFile;
 
