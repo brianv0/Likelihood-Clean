@@ -388,9 +388,6 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
       if (npts/20 > 0 && ((it % (npts/20)) == 0)) {
          formatter.warn() << ".";
       }
-//       double start(scData.vec.at(it).time);
-//       double stop(scData.vec.at(it).stoptime);
-//       double livetime(scData.vec.at(it).livetime);
       double start(scData.start(it));
       double stop(scData.stop(it));
       double livetime(scData.livetime(it));
