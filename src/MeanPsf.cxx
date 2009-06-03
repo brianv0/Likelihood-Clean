@@ -45,7 +45,9 @@ void MeanPsf::init() {
             expsr_val += m_observation.expCube().value(m_srcDir, aeff,
                                                        m_energies[k]);
             Psf psf(s_separations[j], m_energies[k], evtType, m_observation);
-            psf_val += m_observation.expCube().value(m_srcDir, psf);
+//            psf_val += m_observation.expCube().value(m_srcDir, psf);
+            psf_val += m_observation.expCube().value(m_srcDir, psf,
+                                                     m_energies[k]);
          }
          if (j == 0) {
             m_exposure.push_back(expsr_val);

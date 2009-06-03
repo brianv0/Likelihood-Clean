@@ -117,6 +117,11 @@ size_t ScData::time_index(double time) const {
    return indx;
 }
 
+double ScData::livetimefrac(double time) const {
+   size_t indx = time_index(time);
+   return m_livetime.at(indx)/(m_stop.at(indx) - m_start.at(indx));
+}
+
 astro::SkyDir ScData::xAxis(double time) const {
    size_t indx = time_index(time);
    indx = std::min(indx, m_xAxis.size() - 2);
