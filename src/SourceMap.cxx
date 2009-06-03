@@ -295,13 +295,6 @@ SourceMap::SourceMap(const std::string & sourceMapsFile,
    }
 }
 
-double SourceMap::Aeff::operator()(double costheta, double phi) const {
-   double inclination = acos(costheta)*180./M_PI;
-   return m_observation.respFuncs().totalResponse(inclination, phi, m_energy,
-                                                  m_energy, m_separation,
-                                                  m_type);
-}
-
 bool SourceMap::haveMapCubeFunction(DiffuseSource * src) const {
    Source::FuncMap & srcFuncs = src->getSrcFuncs();
    return srcFuncs["SpatialDist"]->genericName() == "MapCubeFunction";

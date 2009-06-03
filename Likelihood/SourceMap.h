@@ -66,6 +66,7 @@ public:
    static void setBinnedExpMapName(const std::string & filename);
 
    static const std::string & binnedExpMap();
+
 private:
 
    std::string m_name;
@@ -87,20 +88,6 @@ private:
 
    /// @brief Each entry is the angular integral over the energy plane.
    std::vector<double> m_npreds;
-
-   class Aeff : public Pixel::Aeff {
-   public:
-      Aeff(Source * src, const astro::SkyDir & appDir,
-           double energy, int type, const Observation & observation)
-         : Pixel::Aeff(src, appDir, energy, type),
-           m_observation(observation) {}
-      virtual double operator()(double costheta, double phi=0) const;
-      virtual double integral(double cosTheta, double phi=0) const {
-         return operator()(cosTheta, phi);
-      }
-   private:
-      const Observation & m_observation;
-   };
 
 /// @bug The binned exposure and mean psf handling is not thread safe.
    static std::string s_expMapFileName;

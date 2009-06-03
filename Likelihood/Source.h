@@ -52,8 +52,8 @@ public:
 
    /// @return photons/cm^2-s-sr-MeV having been convolved through
    /// the LAT instrument response
-     virtual double fluxDensity(const Event &evt, 
-				CachedResponse* cResp = 0) const = 0;
+   virtual double fluxDensity(const Event &evt, 
+                              CachedResponse* cResp = 0) const = 0;
 
    /// @return fluxDensity in instrument coordinates (photons/cm^2-s-sr-MeV)
    /// @param inclination angle of source direction wrt the instrument
