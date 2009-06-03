@@ -68,8 +68,8 @@ public:
 
    /// Returns photons/cm^2-s-sr-MeV having been convolved through
    /// the LAT instrument response
-     virtual double fluxDensity(const Event &evt,
-				CachedResponse* cResp = 0) const {
+   virtual double fluxDensity(const Event & evt,
+                              CachedResponse* cResp = 0) const {
       return fluxDensity(evt.getEnergy(), evt.zAxis(), evt.xAxis(), 
                          evt.getDir(), evt.getType(), cResp);
    }
@@ -89,8 +89,7 @@ public:
    virtual double fluxDensityDeriv(double inclination, double phi, 
                                    double energy, const astro::SkyDir & appDir,
                                    int evtType, const std::string & paramName,
-				   CachedResponse* cResp = 0)
-      const;
+				   CachedResponse* cResp = 0) const;
 
    /// Set source location using J2000 coordinates
    void setDir(double ra, double dec, bool updateExposure=true, 

@@ -43,7 +43,7 @@ public:
    Event(double ra, double dec, double energy, double time, 
          const astro::SkyDir & scZAxis, const astro::SkyDir & scXAxis, 
          double muZenith, bool useEdisp, const std::string & respName,
-         int type=2);
+         int type=2, double efficiency=1);
 
    ~Event() {}
 
@@ -157,6 +157,10 @@ public:
 
    void deleteSource(const std::string & srcName);
 
+   double efficiency() const {
+      return m_efficiency;
+   }
+
 private:
 
    /// apparent direction, energy, arrival time, and cosine(zenith angle)
@@ -187,6 +191,9 @@ private:
    std::vector<double> m_trueEnergies;
 
    std::vector<double> m_true_energies;
+
+   /// Efficiency correction at the time and energy of this event.
+   double m_efficiency;
 
    /// Response function data, unique to each event, and comprising an
    /// energy redistribution function for each diffuse source.

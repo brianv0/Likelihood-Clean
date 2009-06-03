@@ -18,6 +18,8 @@
 #include "tip/Table.h"
 #include "tip/TipException.h"
 
+#include "irfInterface/EfficiencyFactor.h"
+
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/EventContainer.h"
 #include "Likelihood/ResponseFunctions.h"
@@ -89,6 +91,8 @@ void EventContainer::getEvents(std::string event_file) {
       haveOldDiffRespCols = true;
    }
 
+   irfInterface::EfficiencyFactor eff_factor;
+
    for ( ; it != events->end(); ++it, nTotal++) {
       event["ra"].get(ra);
       event["dec"].get(dec);
@@ -102,10 +106,11 @@ void EventContainer::getEvents(std::string event_file) {
       } else {
          eventType = conversionType + 2*eventClass;
       }
+      double efficiency(eff_factor.value(energy, m_scData.livetimefrac(time)));
       Event thisEvent(ra, dec, energy, time, m_scData.zAxis(time),
                       m_scData.xAxis(time), cos(zenAngle*M_PI/180.), 
                       m_respFuncs.useEdisp(), m_respFuncs.respName(),
-                      eventType);
+                      eventType, efficiency);
       if (m_roiCuts.accept(thisEvent)) {
          m_events.push_back(thisEvent);
          for (std::vector<std::string>::iterator name = diffuseNames.begin();
