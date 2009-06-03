@@ -40,10 +40,13 @@ public:
                  double tstart, double tstop,
                  const std::string & sctable="SC_DATA");
 
-   /// Return the spacecraft z-axis as a function of MET.
+   /// Livetime fraction as a function of MET
+   double livetimefrac(double time) const;
+
+   /// Spacecraft z-axis as a function of MET.
    astro::SkyDir zAxis(double time) const;
 
-   /// Return the spacecraft x-axis as a function of MET.
+   /// Spacecraft x-axis as a function of MET.
    astro::SkyDir xAxis(double time) const;
 
    size_t numIntervals() const {

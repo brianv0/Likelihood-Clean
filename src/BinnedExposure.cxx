@@ -142,7 +142,7 @@ void BinnedExposure::computeMap() {
 //                m_exposureMap.at(indx)
 //                   += m_observation->expCube().value(dir, aeff);
                m_exposureMap.at(indx)
-                  += m_observation->expCube().value(dir, aeff,m_energies.at(k));
+                  +=m_observation->expCube().value(dir, aeff, m_energies.at(k));
             }
          }
          iter++;
