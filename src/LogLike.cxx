@@ -93,6 +93,7 @@ double LogLike::logSourceModel(const Event & event,
 	 CachedResponse* cResp=0;
 	 if(srcRespCache)cResp = &(*srcRespCache)[source->second->getName()];
          double fluxDens(source->second->fluxDensity(event, cResp));
+         fluxDens *= event.efficiency();
          my_value += fluxDens;
       }
    }
@@ -119,9 +120,10 @@ void LogLike::getLogSourceModelDerivs(const Event & event,
          std::vector<std::string> paramNames;
          (*func_it).second->getFreeParamNames(paramNames);
          for (size_t j = 0; j < paramNames.size(); j++) {
-            derivs.push_back(
-     source->second->fluxDensityDeriv(event, paramNames[j], cResp)/srcSum
-               );
+            double fluxDensDeriv = 
+               source->second->fluxDensityDeriv(event, paramNames[j], cResp);
+            fluxDensDeriv *= event.efficiency();
+            derivs.push_back(fluxDensDeriv/srcSum);
          }
       }
    }
