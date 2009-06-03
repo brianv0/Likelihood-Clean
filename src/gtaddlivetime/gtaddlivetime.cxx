@@ -82,8 +82,8 @@ void AddLivetime::run() {
    addTables(m_pars["table"]);
    try {
       addTables(m_pars["table2"], false);
-   } catch(tip::TipException &) {
-      // do nothing
+   } catch(tip::TipException & eObj) {
+      std::cout << eObj.what() << std::endl;
    }
 }
 
@@ -203,8 +203,8 @@ void AddLivetime::writeDateKeywords(const std::string & outfile,
             hdu->getHeader()["CREATOR"].set("gtltsum " + getVersion());
          }
          delete hdu;
-      } catch (tip::TipException &) {
-         // do nothing
+      } catch (tip::TipException & eObj) {
+         std::cout << eObj.what() << std::endl;
       }
    }
 }
