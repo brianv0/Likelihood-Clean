@@ -4,6 +4,10 @@
     $Id$
 
     @verbatim
+    v15      03-Jun-09 JC  trigger rate- and energy-dependent efficiency 
+                           corrections (based on David P.'s parametrization
+                           and using the decomposition of the livetime
+                           cube proposed by Seth.); refactoring of ScData class
     v14r11   30-May-09 JC  handle case where ltcube lacks phi-dependence
     v14r10   20-May-09 JC  pass 7 changes: use EVENT_CLASS as classlevel
                            variable in gtdiffrsp filtering
