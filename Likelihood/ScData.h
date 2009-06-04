@@ -83,8 +83,6 @@ private:
    std::vector<astro::SkyDir> m_zAxis;
    std::vector<astro::SkyDir> m_xAxis;
 
-   double m_dt;
-
    void clear_arrays();
 
 };
