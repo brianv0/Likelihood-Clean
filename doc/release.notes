@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v15r0p2  04-Jun-09 JC  check if requested time lies in valid FT2 interval
+                           in ScData
     v15r0p1  03-Jun-09 JC  bug fix for gtltcube: write time-related header
                            keywords for WEIGHTED_EXPOSURE extension
     v15      03-Jun-09 JC  trigger rate- and energy-dependent efficiency 
