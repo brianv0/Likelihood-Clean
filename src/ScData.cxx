@@ -82,11 +82,6 @@ void ScData::readData(std::string scfile, double tstart, double tstop,
       m_zAxis.push_back(astro::SkyDir(raSCZ, decSCZ));
    }
    delete scData;
-   if (m_start.size() > 1) {
-      m_dt = (m_start.back() - m_start.front())/(m_start.size()-1);
-   } else {
-      m_dt = m_stop.front() - m_start.front();
-   }
 }
 
 void ScData::readData(const std::vector<std::string> & scFiles, 
@@ -101,11 +96,6 @@ void ScData::readData(const std::vector<std::string> & scFiles,
    if (m_start.size() == 0) {
       throw std::runtime_error("No spacecraft time intervals were read in "
                                "for the desired range of FT1 data.");
-   }
-   if (m_start.size() > 1) {
-      m_dt = (m_start.back() - m_start.front())/(m_start.size()-1);
-   } else {
-      m_dt = m_stop.front() - m_start.front();
    }
 }
 
