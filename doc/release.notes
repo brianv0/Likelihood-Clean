@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v15r1    07-Jun-09 JC  add SmoothBrokenPowerLaw from Benoit
     v15r0p3  07-Jun-09 JC  disable event class cut filtering in AppHelpers
     v15r0p2  04-Jun-09 JC  check if requested time lies in valid FT2 interval
                            in ScData
