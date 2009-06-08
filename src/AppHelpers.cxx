@@ -35,6 +35,7 @@
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/SkyDirFunction.h"
+#include "Likelihood/SmoothBrokenPowerLaw.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/DMFitFunction.h"
 #include "Likelihood/DMFitFunction2.h"
@@ -106,6 +107,8 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
    funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
    funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
    funcFactory->addFunc("BrokenPowerLaw2", new BrokenPowerLaw2(), makeClone);
+   funcFactory->addFunc("SmoothBrokenPowerLaw", new SmoothBrokenPowerLaw(), 
+                        makeClone);
    funcFactory->addFunc("FileFunction", new FileFunction(), makeClone);
    funcFactory->addFunc("ExpCutoff", new ExpCutoff(), makeClone);
    funcFactory->addFunc("BPLExpCutoff", new BrokenPowerLawExpCutoff(),
