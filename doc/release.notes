@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v15r1p2  09-Jun-09 JC  more fixes to SmoothBrokenPowerLaw from Benoit
     v15r1p1  08-Jun-09 JC  fix to SmoothBrokenPowerLaw from Benoit
     v15r1    07-Jun-09 JC  add SmoothBrokenPowerLaw from Benoit
     v15r0p3  07-Jun-09 JC  disable event class cut filtering in AppHelpers
