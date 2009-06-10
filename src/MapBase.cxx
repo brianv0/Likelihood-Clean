@@ -75,7 +75,7 @@ void MapBase::readFitsFile(const std::string & fitsFile,
    }
 
    delete m_wcsmap;
-   m_wcsmap = new WcsMap(expandedFileName, extension);
+   m_wcsmap = new WcsMap(expandedFileName, extension, false);
 }
 
 bool MapBase::insideMap(const astro::SkyDir & dir) const {

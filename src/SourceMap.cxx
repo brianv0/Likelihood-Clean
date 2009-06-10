@@ -122,7 +122,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
          pix_size = std::min(std::abs(dataMap->cdelt1()), 
                              std::abs(dataMap->cdelt2()))/resamp_factor;
       }
-      unsigned int mapsize(static_cast<unsigned int>(2*radius/pix_size));
+      unsigned int mapsize(2*static_cast<unsigned int>(radius/pix_size));
       std::vector<double>::const_iterator energy = energies.begin();
       unsigned int indx(0);
       for (int k = 0; energy != energies.end(); ++energy, k++) {
