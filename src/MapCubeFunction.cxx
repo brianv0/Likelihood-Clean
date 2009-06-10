@@ -10,6 +10,7 @@
 #include <cmath>
 
 #include <algorithm>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -130,6 +131,10 @@ double MapCubeFunction::value(optimizers::Arg & x) const {
 // 1, not 0, so apply correction here to avoid off-by-one error.
    int i = static_cast<int>(::my_round(pixel.first)) - 1;
    int j = static_cast<int>(::my_round(pixel.second)) - 1;
+
+   if (m_isPeriodic && i >= m_nlon) {
+      i -= m_nlon;
+   }
 
    if ((!m_isPeriodic && (i < 0 || i >= m_nlon)) 
        || j < 0 || j >= m_nlat) {
