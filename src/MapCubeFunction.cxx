@@ -28,7 +28,6 @@
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/SkyDirArg.h"
-#include "Likelihood/WcsMap.h"
 
 namespace {
    bool reverse_cmp(double x, double y) {
