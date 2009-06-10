@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v15r1p3  10-Jun-09 JC  fix half-pix offset in psf map generation in
+                           WcsMap::convolve
     v15r1p2  09-Jun-09 JC  more fixes to SmoothBrokenPowerLaw from Benoit
     v15r1p1  08-Jun-09 JC  fix to SmoothBrokenPowerLaw from Benoit
     v15r1    07-Jun-09 JC  add SmoothBrokenPowerLaw from Benoit

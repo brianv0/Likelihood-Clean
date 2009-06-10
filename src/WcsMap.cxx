@@ -58,7 +58,6 @@ namespace Likelihood {
 
 WcsMap::WcsMap() : m_proj(0), m_interpolate(false), m_mapIntegral(0) {}
 
-
 WcsMap::WcsMap(const std::string & filename,
                const std::string & extension,
                bool interpolate) 

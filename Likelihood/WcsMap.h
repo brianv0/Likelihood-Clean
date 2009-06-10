@@ -106,6 +106,8 @@ private:
 
    bool m_isPeriodic;
 
+   double m_cdelt1, m_cdelt2;
+
    astro::SkyDir::CoordSystem m_coordSys;
 
    double m_mapIntegral;
