@@ -54,6 +54,20 @@ derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
    return scale*std::exp(st_facilities::Util::interpolate(m_x, m_y, x));
 }
 
+double FileFunction::interpolateFlux(double logEnergy) const {
+   double flux(0);
+   try {
+      flux = std::exp(st_facilities::Util::interpolate(m_x, m_y, logEnergy));
+   } catch (std::range_error & eObj) {
+      std::ostringstream message;
+      message << "Requested energy, " << std::exp(logEnergy) 
+              << ", lies outside the range of the input file, "
+              << std::exp(m_x.front()) << ", " << std::exp(m_x.back());
+      throw std::range_error(message.str());
+   }
+   return flux;
+}
+
 void FileFunction::readFunction(const std::string & filename) {
    m_filename = filename;
    std::string input_file(filename);
