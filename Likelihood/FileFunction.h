@@ -56,6 +56,8 @@ protected:
 
 private:
 
+   double interpolateFlux(double logEnergy) const;
+
    std::vector<double> m_x;
    std::vector<double> m_y;
 
