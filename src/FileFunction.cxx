@@ -9,6 +9,7 @@
 #include <cmath>
 
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -39,8 +40,8 @@ FileFunction::FileFunction(double Normalization) : m_filename("") {
 
 double FileFunction::value(optimizers::Arg & xarg) const {
    double x(std::log(dynamic_cast<optimizers::dArg &>(xarg).getValue()));
-   double norm = m_parameter[0].getTrueValue();
-   return norm*std::exp(st_facilities::Util::interpolate(m_x, m_y, x));
+   double norm(m_parameter[0].getTrueValue());
+   return norm*interpolateFlux(x);
 }
 
 double FileFunction::
@@ -51,7 +52,7 @@ derivByParam(optimizers::Arg & xarg, const std::string & paramName) const {
    }
    double x(std::log(dynamic_cast<optimizers::dArg &>(xarg).getValue()));
    double scale(m_parameter[0].getScale());
-   return scale*std::exp(st_facilities::Util::interpolate(m_x, m_y, x));
+   return scale*interpolateFlux(x);
 }
 
 double FileFunction::interpolateFlux(double logEnergy) const {
