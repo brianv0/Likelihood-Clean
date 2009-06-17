@@ -11,7 +11,7 @@ namespace Likelihood {
 
 class EblAtten : public optimizers::Function {
    
-   EblAtten(const optimizers::Function * spectrum);
+   EblAtten(const optimizers::Function & spectrum);
 
    EblAtten(const EblAtten & other);
 
@@ -26,9 +26,29 @@ class EblAtten : public optimizers::Function {
       return new EblAtten(*this);
    }
 
+   /// Set the Parameter value
+   virtual void setParam(const std::string & parName, double value);
+
+   /// Set a Parameter using a Parameter object.
+   virtual void setParam(const optimizers::Parameter &param);
+
+   /// Return the Parameter value by name.
+   virtual double getParamValue(const std::string & parName) const;
+
+   /// Return the Parameter object by name.
+   virtual const optimizers::Parameter & 
+   getParam(const std::string & parName) const;
+
+
 private:
    
    optimizers::Function * m_spectrum;
+
+   IRB::EblAtten * m_tau;
+
+   double attenuation(double energy) const;
+
+   bool is_ebl_param(const std::string & paramName) const;
 
 };
 
