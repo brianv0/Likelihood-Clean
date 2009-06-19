@@ -25,6 +25,8 @@ public:
 
    EblAtten(const EblAtten & other);
 
+   EblAtten & operator=(const EblAtten & rhs);
+
    ~EblAtten() throw();
 
    virtual double value(optimizers::Arg & x) const;
@@ -34,32 +36,9 @@ public:
       return new EblAtten(*this);
    }
 
-//    /// Set the Parameter value
-//    virtual void setParam(const std::string & parName, double value);
-
-   /// Set a Parameter using a Parameter object.
+   /// Set a Parameter using a Parameter object.  This version
+   /// preserves the references to the m_spectrum parameters.
    virtual void setParam(const optimizers::Parameter &param);
-
-//    /// Return the Parameter value by name.
-//    virtual double getParamValue(const std::string & parName) const;
-
-//    /// Return the Parameter object by name.
-//    virtual const optimizers::Parameter & 
-//    getParam(const std::string & parName) const;
-
-//    virtual optimizers::Parameter & parameter(const std::string & parName);
-
-//    virtual optimizers::Parameter & normPar();
-
-//    virtual void getFreeParams(std::vector<optimizers::Parameter> &) const;
-
-//    virtual std::vector<double>::const_iterator
-//    setParamValues_(std::vector<double>::const_iterator it);
-
-//    virtual void setParams(const std::vector<optimizers::Parameter> & pars);
-
-//    virtual std::vector<double>::const_iterator
-//    setFreeParamValues_(std::vector<double>::const_iterator it);
 
 private:
    
