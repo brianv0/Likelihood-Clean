@@ -20,6 +20,7 @@ use fftw v* IExternal
 use irfLoader v* irfs
 use st_facilities v*
 use dataSubselector v*
+use eblAtten v* celestialSources
 use hoops v*
 use st_app v*
 use st_graph v*
