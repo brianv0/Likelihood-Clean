@@ -83,24 +83,24 @@ class LikelihoodTests : public CppUnit::TestFixture {
 
    CPPUNIT_TEST_SUITE(LikelihoodTests);
 
-//    CPPUNIT_TEST(test_BandFunction);
-//    CPPUNIT_TEST(test_SmoothBrokenPowerLaw);
+   CPPUNIT_TEST(test_BandFunction);
+   CPPUNIT_TEST(test_SmoothBrokenPowerLaw);
    CPPUNIT_TEST(test_EblAtten);
-//    CPPUNIT_TEST(test_RoiCuts);
-//    CPPUNIT_TEST(test_SourceFactory);
-//    CPPUNIT_TEST(test_XmlBuilders);
-//    CPPUNIT_TEST(test_LikeExposure);
-//    CPPUNIT_TEST(test_SourceModel);
-//    CPPUNIT_TEST(test_SourceDerivs);
-//    CPPUNIT_TEST(test_PointSource);
-//    CPPUNIT_TEST(test_DiffuseSource);
-//    CPPUNIT_TEST(test_CountsMap);
-//    CPPUNIT_TEST(test_BinnedLikelihood);
-//    CPPUNIT_TEST(test_MeanPsf);
-//    CPPUNIT_TEST(test_BinnedExposure);
-//    CPPUNIT_TEST(test_SourceMap);
-//    CPPUNIT_TEST(test_rescaling);
-//    CPPUNIT_TEST(test_DiffRespNames);
+   CPPUNIT_TEST(test_RoiCuts);
+   CPPUNIT_TEST(test_SourceFactory);
+   CPPUNIT_TEST(test_XmlBuilders);
+   CPPUNIT_TEST(test_LikeExposure);
+   CPPUNIT_TEST(test_SourceModel);
+   CPPUNIT_TEST(test_SourceDerivs);
+   CPPUNIT_TEST(test_PointSource);
+   CPPUNIT_TEST(test_DiffuseSource);
+   CPPUNIT_TEST(test_CountsMap);
+   CPPUNIT_TEST(test_BinnedLikelihood);
+   CPPUNIT_TEST(test_MeanPsf);
+   CPPUNIT_TEST(test_BinnedExposure);
+   CPPUNIT_TEST(test_SourceMap);
+   CPPUNIT_TEST(test_rescaling);
+   CPPUNIT_TEST(test_DiffRespNames);
 
    CPPUNIT_TEST_SUITE_END();
 
