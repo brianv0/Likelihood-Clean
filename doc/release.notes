@@ -4,6 +4,8 @@
     $Id$
 
     @verbatim
+    v15r2    19-Jun-09 JC  add EblAtten class and various EblAtten::* 
+                           prototypes to AppHelpers::addFunctionPrototypes
     v15r1p6  12-Jun-09 JC  const correctness fix in SummedLikelihood.cxx
     v15r1p5  11-Jun-09 JC  improve error message for naive FileFunction users
     v15r1p4  10-Jun-09 JC  turn off interpolation for SpatialMap sources 
