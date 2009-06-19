@@ -8,6 +8,7 @@
  */
 
 #include <algorithm>
+#include <iostream>
 
 #include "optimizers/dArg.h"
 #include "optimizers/ParameterNotFound.h"
@@ -35,8 +36,8 @@ void EblAtten::init(double tau_norm, double redshift, size_t ebl_model) {
    m_spectrum->getParams(params);
    for (size_t i(0); i < params.size(); i++) {
       m_parameter.push_back(params.at(i));
-      m_parameter.back().setParRef(&m_spectrum->parameter(params.at(i).getName()));
    }
+   setParRefs();
 
    addParam("tau_norm", tau_norm, true);
    addParam("redshift", redshift, false);
@@ -51,10 +52,18 @@ void EblAtten::init(double tau_norm, double redshift, size_t ebl_model) {
    m_normParName = m_spectrum->normPar().getName();
 }
 
+void EblAtten::setParRefs() {
+   for (size_t i(0); i < m_spectrum->getNumParams(); i++) {
+      std::string name(m_parameter.at(i).getName());
+      m_parameter.at(i).setParRef(&m_spectrum->parameter(name));
+   }
+}
+
 EblAtten::EblAtten(const EblAtten & other) 
    : optimizers::Function(other),
      m_spectrum(other.m_spectrum->clone()),
      m_tau(new IRB::EblAtten(*other.m_tau)) {
+   setParRefs();
 }
 
 EblAtten::~EblAtten() throw() {
