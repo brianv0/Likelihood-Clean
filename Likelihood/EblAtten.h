@@ -69,7 +69,10 @@ private:
 
    void init(double tau_norm=1, double redshift=0, size_t ebl_model=0);
 
+   void setParRefs();
+
    double attenuation(double energy) const;
+
 };
 
 } // namespace Likelihood
