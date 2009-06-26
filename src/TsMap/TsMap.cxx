@@ -114,7 +114,6 @@ void TsMap::run() {
    if (expCubeFile != "" && expCubeFile != "none") {
       m_helper->observation().expCube().readExposureCube(expCubeFile);
    }
-   st_facilities::Util::file_ok(m_pars["evfile"]);
    st_facilities::Util::resolve_fits_files(m_pars["evfile"], m_eventFiles);
    std::string ev_table = m_pars["evtable"];
    bool compareGtis;
