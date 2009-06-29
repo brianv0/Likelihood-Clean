@@ -15,6 +15,7 @@ def generate(env, **kw):
     env.Tool('st_appLib')
     env.Tool('st_graphLib')
     env.Tool('healpixLib')
+    env.Tool('eblAttenLib')
     env.Tool('addLibrary', library=env['cfitsioLibs'])
     env.Tool('addLibrary', library=env['fftwLibs'])
     
