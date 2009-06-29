@@ -4,6 +4,7 @@
     $Id$
 
     @verbatim
+    v15r2p2  29-Jun-09 JC  add eblAttenLib for SCons build
     v15r2p1  26-Jun-09 JC  enable @-sign prepending for lists of files fed
                            to gttsmap
     v15r2    19-Jun-09 JC  add EblAtten class and various EblAtten::* 
