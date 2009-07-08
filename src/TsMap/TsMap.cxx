@@ -179,7 +179,7 @@ void TsMap::setGrid() {
    m_crpix = std::vector<double>(crpix, crpix+2);
    double crval[] = {xref, yref};
    m_crval = std::vector<double>(crval, crval+2);
-   double cdelt[] = {binsize, binsize};
+   double cdelt[] = {-binsize, binsize};
    m_cdelt = std::vector<double>(cdelt, cdelt+2);
    astro::SkyProj proj(proj_name, crpix, crval, cdelt, 0, is_galactic);
 
