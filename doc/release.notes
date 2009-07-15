@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
 
+   v15r3p1   15-Jul-09 jrb Update SConscript
     v15r3    08-Jul-09 JC  flip CDELT1 sign in gttsmap to conform to astronomy
                            conventions for sky images.
     v15r2p2  29-Jun-09 JC  add eblAttenLib for SCons build
