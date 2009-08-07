@@ -69,7 +69,7 @@ double DMFitFunction::value(optimizers::Arg &xarg) const {
    integer ch1 = static_cast<integer>(m_parameter[4].getTrueValue());
 
 
-   double my_value=n*(b*dmfit_de__(&m,&ch0,&x)
+   double my_value=n/m/m*(b*dmfit_de__(&m,&ch0,&x)
                       +(1.-b)*dmfit_de__(&m,&ch1,&x))/1000.;
    return my_value;
 }
@@ -96,20 +96,23 @@ double DMFitFunction::derivByParam(optimizers::Arg & xarg,
    double b=m_parameter[2].getTrueValue();
    integer ch0 = static_cast<integer>(m_parameter[3].getTrueValue());
    integer ch1 = static_cast<integer>(m_parameter[4].getTrueValue());
-
+   
+   double m2=m*m;
    double value(0);
    switch(iparam) {
    case norm:
-     return m_parameter[0].getScale()*
+     return m_parameter[0].getScale()/m2*
        (b*dmfit_de__(&m,&ch0,&x)+(1.-b)*dmfit_de__(&m,&ch1,&x))/1000.;
      break;
    case mass:
-     value= m_parameter[1].getScale()*
-       n*(b*dmfit_dm__(&m,&ch0,&x)+(1.-b)*dmfit_dm__(&m,&ch1,&x))/1000.;
+     value= m_parameter[1].getScale()* n/m2 
+       * ( b*dmfit_dm__(&m,&ch0,&x)+(1.-b)*dmfit_dm__(&m,&ch1,&x)
+          -2./m*(b*dmfit_de__(&m,&ch0,&x)+(1.-b)*dmfit_de__(&m,&ch1,&x)) 
+           )/1000.;
      return value;
      break;
    case bratio:
-     return m_parameter[2].getScale()*
+     return m_parameter[2].getScale()/m2 *
        n*(dmfit_de__(&m,&ch0,&x) - dmfit_de__(&m,&ch1,&x))/1000.;
      break;
    }
