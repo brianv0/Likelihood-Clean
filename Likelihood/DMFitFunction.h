@@ -31,7 +31,7 @@ class DMFitFunction : public optimizers::Function {
 public:
 
   DMFitFunction() : m_filename(""){
-     init(1., 100., 1.0, 1, 1);
+      init(1., 1., 100., 1.0, 1, 1);
    }
 
    /// @param norm Normalization of the function
@@ -39,9 +39,9 @@ public:
    /// @param bratio The branching ratio between the 2 allowed final states
    /// @param channel0 : index of the first final state
    /// @param channel1 : index of the second final state   
-   DMFitFunction(double norm, double mass, double bratio, 
+  DMFitFunction(double norm, double sigmav, double mass, double bratio, 
                  int channel0, int channel1) : m_filename(""){
-     init(norm, mass, bratio, channel0, channel1);
+      init(norm, sigmav, mass, bratio, channel0, channel1);
    }
 
    double value(optimizers::Arg&) const;
@@ -66,7 +66,7 @@ protected:
 
 private:
 
-   void init(double norm, double mass, double bratio, 
+   void init(double norm, double sigmav, double mass, double bratio, 
                  int channel0, int channel1);
 
    std::string m_filename;
