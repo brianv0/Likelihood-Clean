@@ -357,8 +357,6 @@ void likelihood::createStatistic() {
       std::string binnedMap = m_pars["bexpmap"];
       if (binnedMap != "none" && binnedMap != "") {
          SourceMap::setBinnedExposure(binnedMap);
-      } else {
-         throw std::runtime_error("Binned exposure map has not been provided");
       }
       return;
    } else if (m_statistic == "UNBINNED") {

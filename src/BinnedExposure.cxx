@@ -139,8 +139,6 @@ void BinnedExposure::computeMap() {
             for (; resp != m_observation->respFuncs().end(); ++resp) {
                int evtType = resp->second->irfID();
                Aeff aeff(m_energies[k], evtType, *m_observation);
-//                m_exposureMap.at(indx)
-//                   += m_observation->expCube().value(dir, aeff);
                m_exposureMap.at(indx)
                   +=m_observation->expCube().value(dir, aeff, m_energies.at(k));
             }

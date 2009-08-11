@@ -96,9 +96,6 @@ void gtsrcmaps::run() {
    m_pars.Prompt();
    m_pars.Save();
    m_helper = new AppHelpers(&m_pars, "BINNED");
-/// @todo scData is not actually used by gtsrcmaps, so it should be removed
-/// from the parfile.
-//   m_helper->readScData();
    m_helper->checkOutputFile();
    m_helper->checkTimeCuts(m_pars["cmap"], "",
                            m_pars["expcube"], "Exposure");
@@ -125,12 +122,9 @@ void gtsrcmaps::run() {
    if (st_facilities::Util::fileExists(binnedMap)) {
       SourceMap::setBinnedExposure(binnedMap);
    }
-   bool computePointSources =
-      AppHelpers::param(m_pars, "ptsrc", true);
-   bool psf_corrections =
-      AppHelpers::param(m_pars, "psfcorr", true);
-   bool perform_convolution = 
-      AppHelpers::param(m_pars, "convol", true);
+   bool computePointSources = AppHelpers::param(m_pars, "ptsrc", true);
+   bool psf_corrections = AppHelpers::param(m_pars, "psfcorr", true);
+   bool perform_convolution = AppHelpers::param(m_pars, "convol", true);
 
    bool resample = m_pars["resample"];
    int resamp_factor = m_pars["rfactor"];

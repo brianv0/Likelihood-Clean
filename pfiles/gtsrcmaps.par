@@ -1,7 +1,7 @@
 #
 # $Header$
 #
-scfile,f,a,"",,,"Spacecraft data file"
+scfile,f,h,"",,,"Spacecraft data file"
 sctable,s,h,"SC_DATA",,,Spacecraft data extension
 expcube,fr,a,"",,,"Exposure hypercube file"
 cmap,fr,a,"",,,"Counts map file"
