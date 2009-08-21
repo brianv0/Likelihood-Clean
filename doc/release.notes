@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-15-05-01 21-Aug-2009 jchiang apply Prefactor in SpatialMap
  Likelihood-15-05-00 11-Aug-2009 jchiang improve interative handling 
                                          of binned exposure map filename
  Likelihood-15-04-00 09-Aug-2009 jchiang tagging Johann's dmfit changes
