@@ -6,9 +6,11 @@
     @verbatim
     * EOH *
     
- Likelihood-15-05-00 11-Aug-2009 jchiang improve interative handling of binned exposure map filename
+ Likelihood-15-05-00 11-Aug-2009 jchiang improve interative handling 
+                                         of binned exposure map filename
  Likelihood-15-04-00 09-Aug-2009 jchiang tagging Johann's dmfit changes
- Likelihood-15-03-02 25-Jul-2009 jchiang protect against invalid START/STOP values in FT2 files
+ Likelihood-15-03-02 25-Jul-2009 jchiang protect against invalid START/STOP
+                                         values in FT2 files
     v15r3p1  15-Jul-09 jrb Update SConscript
     v15r3    08-Jul-09 JC  flip CDELT1 sign in gttsmap to conform to astronomy
                            conventions for sky images.
