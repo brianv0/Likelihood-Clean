@@ -68,7 +68,8 @@ double SpatialMap::value(optimizers::Arg & arg) const {
 }
 
 double SpatialMap::value(const astro::SkyDir & dir) const {
-   return m_wcsmap->operator()(dir);
+   double pref = m_parameter[0].getTrueValue();
+   return pref*m_wcsmap->operator()(dir);
 }
 
 } // namespace Likelihood
