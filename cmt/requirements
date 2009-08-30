@@ -45,3 +45,5 @@ apply_pattern ST_app_withDir name=gtbkg dir=backfile
 apply_pattern ST_app_withDir name=gtmodel dir=gtmodelmap
 apply_pattern ST_app_withDir name=gtltsum dir=gtaddlivetime
 apply_pattern ST_app name=gtfindsrc
+apply_pattern ST_app name=gtebl
+
