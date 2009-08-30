@@ -1,5 +1,5 @@
 package Likelihood
-version v15r5p1
+version v15r6
 
 author James Chiang <jchiang@slac.stanford.edu>
 author Pat Nolan <pln@razzle.stanford.edu>
