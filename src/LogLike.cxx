@@ -270,6 +270,7 @@ void LogLike::restoreBestFit() {
 }
 
 void LogLike::saveCurrentFit() {
+   syncParams();
    m_bestValueSoFar = -1e38;
    optimizers::Arg dummy;
    saveBestFit(value(dummy));
