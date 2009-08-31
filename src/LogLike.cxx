@@ -258,14 +258,17 @@ double LogLike::NpredValue(const std::string & srcName) const {
 }
 
 void LogLike::saveBestFit(double logLikeValue) const {
+   // This is called from value(...), so we must pass the current
+   // log-likelihood value as a parameter, i.e., we cannot evaluate it
+   // in this function.
    if (logLikeValue > m_bestValueSoFar) {
-      getFreeParamValues(m_bestFitParsSoFar);
+      getParamValues(m_bestFitParsSoFar);
       m_bestValueSoFar = logLikeValue;
    }
 }
 
 void LogLike::restoreBestFit() {
-   setFreeParamValues(m_bestFitParsSoFar);
+   setParamValues(m_bestFitParsSoFar);
    syncParams();
 }
 
