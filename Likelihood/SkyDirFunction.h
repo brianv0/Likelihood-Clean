@@ -41,7 +41,7 @@ public:
    double value(optimizers::Arg &) const {return 0;}
 
    void setParam(const std::string &paramName, double paramValue) {
-      setParam(paramName, paramValue);
+      optimizers::Function::setParam(paramName, paramValue);
       update_m_dir(paramName, paramValue);
    }
 
