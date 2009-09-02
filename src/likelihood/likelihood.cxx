@@ -136,7 +136,6 @@ private:
    void readSourceModel();
    void selectOptimizer(std::string optimizer="");
    void writeSourceXml();
-//   void writeFluxXml();
    void writeCountsSpectra();
    void plotCountsSpectra();
    void writeCountsMap();
@@ -284,7 +283,6 @@ void likelihood::run() {
          plotCountsSpectra();
       }
    } while (queryLoop && prompt("Refit? [y] "));
-//   writeFluxXml();
    if (m_pars["save"]) {
       writeCountsSpectra();
    }
@@ -422,15 +420,6 @@ void likelihood::writeSourceXml() {
       m_logLike->writeXml(xmlFile, funcFileName);
    }
 }
-
-// void likelihood::writeFluxXml() {
-//    std::string xml_fluxFile = m_pars["fluxmdl"];
-//    if (xml_fluxFile != "none") {
-//       m_formatter->info() << "Writing flux-style xml model file to "
-//                           << xml_fluxFile << std::endl;
-//       m_logLike->write_fluxXml(xml_fluxFile);
-//    }
-// }
 
 class EventData {
 public:
