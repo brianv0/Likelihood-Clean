@@ -8,7 +8,6 @@ sctable,s,h,"SC_DATA",,,"Spacecraft data extension"
 expcube,f,a,"",,,"Exposure hypercube file"
 outfile,f,a,"",,,"output file name"
 irfs,s,a,"",,,"Response functions"
-edisp,b,h,no,,,Use energy dispersion?
 srcrad,r,a,30,,,Radius of the source region (in degrees)
 nlong,i,a,120,2,1000,Number of longitude points
 nlat,i,a,120,2,1000,Number of latitude points
