@@ -7,7 +7,6 @@ scfile,f,a,"",,,"Spacecraft data file"
 sctable,s,h,"SC_DATA",,,"Spacecraft data extension"
 srcmdl,fr,a,"",,,"Source model file"
 irfs,s,a,"",,,"Response functions to use"
-edisp,b,h,no,,,Use energy dispersion?
 evclsmin,i,h,0,,,"Minimum event class level"
 convert,b,h,no,,,"convert header to new diffrsp format?"
 

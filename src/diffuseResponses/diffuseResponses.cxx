@@ -148,7 +148,8 @@ void diffuseResponses::run() {
    m_helper->setRoi("", "EVENTS", false);
    m_helper->readScData();
    m_srcModel = new SourceModel(m_helper->observation(), true);
-   m_useEdisp = m_pars["edisp"];
+//   m_useEdisp = m_pars["edisp"];
+   m_useEdisp = false;
    ResponseFunctions & respFuncs = 
       const_cast<ResponseFunctions &>(m_helper->observation().respFuncs());
    respFuncs.setEdispFlag(m_useEdisp);

@@ -205,7 +205,8 @@ void likelihood::run() {
          const_cast<ExposureCube &>(m_helper->observation().expCube());
       expCube.readExposureCube(expcube_file);
    }
-   bool useEdisp = m_pars["edisp"];
+//   bool useEdisp = m_pars["edisp"];
+   bool useEdisp = false;
    ResponseFunctions & respFuncs = 
       const_cast<ResponseFunctions &>(m_helper->observation().respFuncs());
    respFuncs.setEdispFlag(useEdisp);
@@ -325,7 +326,7 @@ void likelihood::promptForParameters() {
 //    AppHelpers::checkOutputFile(m_pars["clobber"], 
 //                                m_pars["fluxmdl"]);
    m_pars.Prompt("irfs");
-   m_pars.Prompt("edisp");
+//   m_pars.Prompt("edisp");
    m_pars.Prompt("optimizer");
    m_pars.Prompt("save");
    m_pars.Prompt("refit");
