@@ -318,12 +318,22 @@ void SourceModel::readXml(std::string xmlFile,
 
 // Create a SourceFactory to read in the xml file.
    SourceFactory srcFactory(m_observation);
+//    try {
+//       srcFactory.readXml(xmlFile, funcFactory, requireExposure,
+//                          addPointSources);
+//    } catch (xmlBase::DomException & eObj) {
+//       m_formatter->err() << "SourceModel::readXml:\n DomException: " 
+//                          << eObj.what() << std::endl;
+//    }
    try {
       srcFactory.readXml(xmlFile, funcFactory, requireExposure,
                          addPointSources);
-   } catch (xmlBase::DomException & eObj) {
-      m_formatter->err() << "SourceModel::readXml:\n DomException: " 
-                         << eObj.what() << std::endl;
+   } catch (...) {
+      std::ostringstream message;
+      message << "\nError reading in the xml model file.\n"
+              << "Please check that you are using the correct xml "
+              << "format for this tool." << std::endl;
+      throw Exception(message.str());
    }
 
 // Loop over the sources that are now contained in srcFactory and add
