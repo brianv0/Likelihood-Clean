@@ -689,6 +689,13 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
 
    resultsFile << "{";
 
+   const RoiCuts & roiCuts = m_helper->observation().roiCuts();
+   double emin(roiCuts.getEnergyCuts().first);
+   double emax(roiCuts.getEnergyCuts().second);
+
+   m_formatter->info() << "\nPhoton fluxes are computed for the energy range " 
+                       << emin << " to " << emax << " MeV" << std::endl;
+
    double totalNpred(0);
    for (unsigned int i = 0; i < srcNames.size(); i++) {
       Source * src = m_logLike->getSource(srcNames[i]);
