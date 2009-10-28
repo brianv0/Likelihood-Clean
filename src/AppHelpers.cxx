@@ -55,6 +55,16 @@ namespace {
          }
       }
    }
+   void strip_at_sign(std::string & input) {
+      if (input.find_first_of("@") == 0) {
+         std::string output = "";
+         std::string::iterator it = input.begin() + 1;
+         for ( ; it != input.end(); ++it) {
+            output += *it;
+         }
+         input = output;
+      }
+   }
 }
 
 namespace Likelihood {
@@ -198,6 +208,7 @@ void AppHelpers::readScData() {
    st_app::AppParGroup & pars(*m_pars);
    std::string scFile = pars["scfile"];
    std::string sctable = pars["sctable"];
+   ::strip_at_sign(scFile);
    st_facilities::Util::file_ok(scFile);
    st_facilities::Util::resolve_fits_files(scFile, m_scFiles);
    m_scData->readData(m_scFiles, tmin, tmax);
