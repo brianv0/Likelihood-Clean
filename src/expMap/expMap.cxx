@@ -93,7 +93,6 @@ void ExpMap::run() {
                     << "Do not use them for binned analyses." << std::endl;
    promptForParameters();
    m_helper = new AppHelpers(&m_pars, "UNBINNED");
-//   bool useEdisp = m_pars["edisp"];
    bool useEdisp = false;
    ResponseFunctions & respFuncs =
       const_cast<ResponseFunctions &>(m_helper->observation().respFuncs());
