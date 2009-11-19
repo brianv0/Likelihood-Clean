@@ -78,6 +78,7 @@ AppHelpers::AppHelpers(st_app::AppParGroup * pars,
    m_roiCuts = new RoiCuts();
    m_scData = new ScData();
    m_expCube = new ExposureCube();
+   m_expCube->setEfficiencyFactor(m_respFuncs->begin()->second->efficiencyFactor());
    m_expMap = new ExposureMap();
    m_eventCont = new EventContainer(*m_respFuncs, *m_roiCuts, *m_scData);
    m_observation = new Observation(m_respFuncs,
