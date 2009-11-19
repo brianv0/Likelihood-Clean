@@ -24,8 +24,6 @@
 
 #include "st_facilities/Util.h"
 
-#include "irfInterface/EfficiencyFactor.h"
-
 #include "Likelihood/ScData.h"
 
 namespace Likelihood {

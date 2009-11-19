@@ -108,8 +108,6 @@ public:
       m_respName = respName;
    }
 
-//   void load(const std::string & respFuncs, const std::string & respBase="");
-
    void load(const std::string & respFuncs, const std::string & respBase="",
              const std::vector<size_t> &selectedEvtTypes=std::vector<size_t>());
 
