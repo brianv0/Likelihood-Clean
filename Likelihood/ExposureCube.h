@@ -49,7 +49,9 @@ public:
    void readExposureCube(std::string filename);
 
    void setEfficiencyFactor(const irfInterface::IEfficiencyFactor * eff) {
-      m_efficiencyFactor = eff->clone();
+      if (eff) {
+         m_efficiencyFactor = eff->clone();
+      }
    }
 
 #ifndef SWIG
