@@ -7,6 +7,7 @@
  * $Header$
  */
 #include <algorithm>
+#include <memory>
 #include <utility>
 
 #include "st_stream/StreamFormatter.h"
