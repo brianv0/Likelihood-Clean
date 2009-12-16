@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <memory>
 #include <stdexcept>
 
 #include "st_stream/StreamFormatter.h"
