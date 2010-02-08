@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-15-11-01 08-Feb-2010 jchiang improve error messages for xml handling
  Likelihood-15-11-00 25-Jan-2010 jchiang FSSC includes; set default optimizer to Minuit in gtlike.par; use stringent emin, emax limits in Source::Npred(emin, emax)
  Likelihood-15-10-00 19-Nov-2009 jchiang use new irfInterface::IEfficiencyFactor interface
  Likelihood-15-09-00 19-Nov-2009 jchiang use new irfInterface::IEfficiencyFactor interface
