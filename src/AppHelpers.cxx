@@ -27,6 +27,7 @@
 #include "Likelihood/ExpCutoff.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/FileFunction.h"
+#include "Likelihood/LogNormal.h"
 #include "Likelihood/LogParabola.h"
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
@@ -116,6 +117,7 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
    funcFactory->addFunc("SpatialMap", new SpatialMap(), makeClone);
    funcFactory->addFunc("BandFunction", new BandFunction(), makeClone);
    funcFactory->addFunc("LogParabola", new LogParabola(), makeClone);
+   funcFactory->addFunc("LogNormal", new LogNormal(), makeClone);
    funcFactory->addFunc("MapCubeFunction", new MapCubeFunction(), makeClone);
    funcFactory->addFunc("PowerLaw2", new PowerLaw2(), makeClone);
    funcFactory->addFunc("BrokenPowerLaw2", new BrokenPowerLaw2(), makeClone);
