@@ -11,7 +11,7 @@
 #include "optimizers/dArg.h"
 #include "optimizers/ParameterNotFound.h"
 
-#include "LogNormal.h"
+#include "Likelihood/LogNormal.h"
 
 namespace Likelihood {
 
