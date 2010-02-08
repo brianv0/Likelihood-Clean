@@ -156,7 +156,8 @@ void SourceFactory::readXml(const std::string & xmlFile,
             std::ostringstream message;
             message << "Error parsing xml model file: \n"
                     << xmlFile << "\n"
-                    << "for source " << srcName;
+                    << "for source " << srcName << "\n"
+                    << "Missing spectral model component.";
             throw Exception(message.str());
          }
          spectrum = child[0];
@@ -170,7 +171,9 @@ void SourceFactory::readXml(const std::string & xmlFile,
          std::ostringstream message;
          message << "Error parsing xml model file: \n"
                  << xmlFile << "\n"
-                 << "for source " << srcName;
+                 << "for source " << srcName << ".\n"
+                 << "Missing spatial model component.\n"
+                 << "Please check that you are using the correct xml format.";
          throw Exception(message.str());
       }
       DOMElement * spatialModel = child[0];
