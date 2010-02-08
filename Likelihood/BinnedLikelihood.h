@@ -64,15 +64,7 @@ public:
    virtual void readXml(std::string xmlFile, 
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true, 
-                        bool addPointSources=true) {
-      SourceModel::readXml(xmlFile, funcFactory, requireExposure=false,
-                           addPointSources);
-      if (m_srcMapsFile == "") {
-         createSourceMaps();
-      } else {
-         readSourceMaps();
-      }
-   }
+                        bool addPointSources=true);
 
    virtual CountsMap * createCountsMap() const;
 
