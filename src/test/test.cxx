@@ -50,7 +50,7 @@
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/FluxBuilder.h"
 #include "Likelihood/LikeExposure.h"
-#include "LogNormal.h"
+#include "Likelihood/LogNormal.h"
 #include "Likelihood/MeanPsf.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"
