@@ -45,8 +45,7 @@ public:
              bool applyPsfCorrections=false,
              bool performConvolution=true,
              bool resample=true,
-             double resamp_factor=2,
-             double internal_pix_size=0.25);
+             double resamp_factor=2);
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
 
