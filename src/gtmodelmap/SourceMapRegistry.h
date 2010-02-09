@@ -41,8 +41,7 @@ public:
                      optimizers::FunctionFactory & funcFactory,
                      bool performConvolution=true,
                      bool resample=true,
-                     double resamp_factor=2,
-                     double pix_size=0.25);
+                     double resamp_factor=2);
 
    ~SourceMapRegistry();
 

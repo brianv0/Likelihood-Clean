@@ -35,8 +35,7 @@ SourceMapRegistry::SourceMapRegistry(const std::string & countsMap,
                                      optimizers::FunctionFactory & funcFactory,
                                      bool performConvolution, 
                                      bool resample,
-                                     double resamp_factor,
-                                     double pix_size)
+                                     double resamp_factor)
    : m_observation(0), m_countsMap(0), m_logLike(0), m_sourceMap(0) {
 
    Likelihood::ResponseFunctions * respFuncs = 
@@ -72,7 +71,7 @@ SourceMapRegistry::SourceMapRegistry(const std::string & countsMap,
                                                 countsMap, computePointSources,
                                                 applyPsfCorrections,
                                                 performConvolution, resample,
-                                                resamp_factor, pix_size);
+                                                resamp_factor);
    m_logLike->readXml(xmlFile, funcFactory, false);
 }
 
