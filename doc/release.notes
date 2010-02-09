@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-16-00-00 09-Feb-2010 jchiang enable interpolation of model maps for binned analysis convolution
  Likelihood-15-11-02 08-Feb-2010 jchiang bug-fix for LogNormal include in test.cxx
  Likelihood-15-11-01 08-Feb-2010 jchiang improve error messages for xml handling
  Likelihood-15-11-00 25-Jan-2010 jchiang FSSC includes; set default optimizer to Minuit in gtlike.par; use stringent emin, emax limits in Source::Npred(emin, emax)
