@@ -42,8 +42,7 @@ public:
                     bool applyPsfCorrections=true,
                     bool performConvolution=true,
                     bool resample=true,
-                    double resamp_factor=2,
-                    double pix_size=0.25);
+                    double resamp_factor=2);
 
    virtual ~BinnedLikelihood() throw();
 
@@ -144,8 +143,6 @@ private:
    
    double m_resamp_factor;
    
-   double m_pix_size;
-
    void createSourceMaps();
 
    void readSourceMaps(std::string filename="");
