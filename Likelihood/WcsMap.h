@@ -42,6 +42,12 @@ public:
           const std::string & proj_name="STG", bool use_lb=false,
           bool interpolate=false);
 
+   WcsMap(const DiffuseSource & diffuseSource, double ra, double dec,
+          double crpix1, double crpix2, double cdelt1, double cdelt2,
+          int naxis1, int naxis2, double energy=100.,
+          const std::string & proj_name="STG", bool use_lb=false,
+          bool interpolate=false);
+
    ~WcsMap();
 
    WcsMap(const WcsMap &);

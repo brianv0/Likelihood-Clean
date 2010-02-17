@@ -112,6 +112,10 @@ public:
 
    double cdelt1() const {return m_cdelt[0];}
    double cdelt2() const {return m_cdelt[1];}
+   double crpix1() const {return m_crpix[0];}
+   double crpix2() const {return m_crpix[1];}
+   long naxis1() const {return m_naxes[0];}
+   long naxis2() const {return m_naxes[1];}
 
 protected:
 
