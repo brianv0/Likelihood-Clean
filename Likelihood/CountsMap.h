@@ -117,6 +117,8 @@ public:
    long naxis1() const {return m_naxes[0];}
    long naxis2() const {return m_naxes[1];}
 
+   bool conformingMap() const {return m_conforms;}
+
 protected:
 
    HistND * m_hist;
@@ -134,6 +136,11 @@ private:
    astro::SkyDir m_refDir;
 
    mutable std::vector<Pixel> m_pixels;
+
+   // Flag to indicate that this counts map conforms to those created by
+   // gtbin, i.e., with the reference pixel in the center and 
+   // with cdelt1==cdelt2.
+   bool m_conforms;
 
    CountsMap & operator=(const CountsMap &) {return *this;}
 
@@ -164,6 +171,8 @@ private:
    void setDataDir();
 
    void deleteBinners(std::vector<evtbin::Binner *> & binners) const;
+
+   void checkMapConforms();
 };
 
 }

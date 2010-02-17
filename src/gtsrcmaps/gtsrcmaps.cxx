@@ -128,7 +128,6 @@ void gtsrcmaps::run() {
 
    bool resample = m_pars["resample"];
    int resamp_factor = m_pars["rfactor"];
-//   double pix_size = m_pars["binsz"];
 
    m_binnedLikelihood = 
       new BinnedLikelihood(dataMap, m_helper->observation(),
