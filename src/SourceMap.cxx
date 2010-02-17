@@ -113,10 +113,10 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
    if (haveDiffuseSource) {
       computeExposureAndPsf(observation);
       DiffuseSource * diffuseSrc = dynamic_cast<DiffuseSource *>(src);
-      const astro::SkyDir & map_center = dataMap->mapCenter();
+      const astro::SkyDir & mapRefDir = dataMap->refDir();
 /// @todo Replace this hard-wired value for radius extension (consider 
 /// psf energy dependence).
-//       double radius = std::min(180., ::maxRadius(pixels, map_center) + 10.);
+//       double radius = std::min(180., ::maxRadius(pixels, mapRefDir) + 10.);
       if (!resample) {
          resamp_factor = 1;
       }
@@ -133,10 +133,10 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
                     + static_cast<int>(20.*resamp_factor
                                        /std::fabs(dataMap->cdelt2())));
       for (int k = 0; energy != energies.end(); ++energy, k++) {
-//          WcsMap diffuseMap(*diffuseSrc, map_center.ra(), map_center.dec(),
+//          WcsMap diffuseMap(*diffuseSrc, mapRefDir.ra(), mapRefDir.dec(),
 //                            pix_size, mapsize, *energy, dataMap->proj_name(),
 //                            dataMap->projection().isGalactic(), true);
-         WcsMap diffuseMap(*diffuseSrc, map_center.ra(), map_center.dec(),
+         WcsMap diffuseMap(*diffuseSrc, mapRefDir.ra(), mapRefDir.dec(),
                            dataMap->crpix1(), dataMap->crpix2(),
                            dataMap->cdelt1(), dataMap->cdelt2(),
                            naxis1, naxis2,
@@ -317,8 +317,8 @@ void SourceMap::computeExposureAndPsf(const Observation & observation) {
    std::vector<double> energies;
    m_dataMap->getAxisVector(2, energies);
    if (s_meanPsf == 0) {
-      double ra = m_dataMap->mapCenter().ra();
-      double dec = m_dataMap->mapCenter().dec();
+      double ra = m_dataMap->refDir().ra();
+      double dec = m_dataMap->refDir().dec();
       s_meanPsf = new MeanPsf(ra, dec, energies, observation);
    }
    if (s_binnedExposure == 0) {
