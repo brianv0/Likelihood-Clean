@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-16-02-00 17-Feb-2010 jchiang handle counts maps with odd numbers of pixels when resampling is turned off (both ill-advised conditions)
  Likelihood-16-01-00 16-Feb-2010 jchiang use odd number of pixels for psf image; ensure source image has even number; kluge for non-standard counts map geometries
  Likelihood-16-00-00 09-Feb-2010 jchiang enable interpolation of model maps for binned analysis convolution
  Likelihood-15-11-02 08-Feb-2010 jchiang bug-fix for LogNormal include in test.cxx
