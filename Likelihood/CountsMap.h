@@ -104,7 +104,7 @@ public:
 
    void getBoundaryPixelDirs(std::vector<astro::SkyDir> & pixelDirs) const;
 
-   const astro::SkyDir & mapCenter() const {return m_center;}
+   const astro::SkyDir & refDir() const {return m_refDir;}
 
    bool withinBounds(const astro::SkyDir & dir, double energy) const;
 
@@ -131,7 +131,7 @@ protected:
 
 private:
 
-   astro::SkyDir m_center;
+   astro::SkyDir m_refDir;
 
    mutable std::vector<Pixel> m_pixels;
 
@@ -159,7 +159,7 @@ private:
    void readImageData(const std::string & countsMapfile,
                       std::vector<evtbin::Binner *> & binners);
 
-   void setCenter();
+   void setRefDir();
 
    void setDataDir();
 
