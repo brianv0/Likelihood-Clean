@@ -7,8 +7,7 @@ Import('baseEnv', 'listFiles')
 progEnv = baseEnv.Clone()
 libEnv = baseEnv.Clone()
 
-libEnv.Tool('LikelihoodLib', depsOnly = 1)
-LikelihoodLib = libEnv.StaticLibrary('Likelihood', 
+LikelihoodLib = libEnv.SharedLibrary('Likelihood', 
                                      listFiles(['src/*.c', 'src/*.cxx',
                                                 'src/dmfit/*.cxx', 'src/dmfit/*.c']))
 
@@ -42,7 +41,7 @@ gtltsumBin = progEnv.Program('gtltsum', listFiles(['src/gtaddlivetime/*.cxx']))
 gtfindsrcBin = progEnv.Program('gtfindsrc', listFiles(['src/gtfindsrc/*.cxx']))
 
 progEnv.Tool('registerTargets', package = 'Likelihood', 
-             staticLibraryCxts = [[LikelihoodLib,libEnv]], 
+             libraryCxts = [[LikelihoodLib,libEnv]], 
              binaryCxts = [[gtlikeBin,progEnv], [gtexpmapBin,progEnv], [gttsmapBin,progEnv],
                            [gtltcubeBin,progEnv], [gtdiffrspBin,progEnv], [gtsrcmapsBin,progEnv],
                            [gtpsfBin,progEnv], [gtbkgBin,progEnv], [gtmodelBin,progEnv],
