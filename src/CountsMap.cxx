@@ -622,7 +622,7 @@ void CountsMap::checkMapConforms() {
    m_conforms = false;
    if (static_cast<int>(2.*m_crpix[0]) == static_cast<int>(m_naxes[0] + 1.) &&
        static_cast<int>(2.*m_crpix[1]) == static_cast<int>(m_naxes[1] + 1.) &&
-       std::fabs(m_cdelt[0]) != std::fabs(m_cdelt[1])) {
+       std::fabs(m_cdelt[0]) == std::fabs(m_cdelt[1])) {
       m_conforms = true;
    }
 }
