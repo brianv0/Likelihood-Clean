@@ -7,6 +7,9 @@ Import('baseEnv', 'listFiles')
 progEnv = baseEnv.Clone()
 libEnv = baseEnv.Clone()
 
+if baseEnv['PLATFORM'] == "win32":
+    libEnv.Tool('LikelihoodLib', depsOnly = 1)
+
 LikelihoodLib = libEnv.SharedLibrary('Likelihood', 
                                      listFiles(['src/*.c', 'src/*.cxx',
                                                 'src/dmfit/*.cxx', 'src/dmfit/*.c']))
