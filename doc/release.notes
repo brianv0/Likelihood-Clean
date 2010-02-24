@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-16-02-05 24-Feb-2010 jchiang bug-fix for fencepost error in EventContainer::nobs
  Likelihood-16-02-04 24-Feb-2010    jrb fix linking for mac
  Likelihood-16-02-03 24-Feb-2010    jrb fix linking for mac
  Likelihood-16-02-02 22-Feb-2010    jrb correct use of xxLib for libEnv
