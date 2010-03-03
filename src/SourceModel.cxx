@@ -198,6 +198,7 @@ void SourceModel::setParams_(std::vector<optimizers::Parameter> &params,
 void SourceModel::addSource(Source *src) {
    if (!m_sources.count(src->getName())) {
       m_sources[src->getName()] = src->clone();
+      m_sources[src->getName()]->setObservation(&m_observation);
       syncParams();
    } else {
       throw Exception("Likelihood::SourceModel:\nSource named " 
