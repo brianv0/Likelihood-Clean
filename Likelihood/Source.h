@@ -166,6 +166,15 @@ public:
    /// over the given energy range.
    virtual double energyFluxDeriv(const std::string & parName, double emin,
                                   double emax, size_t npts=100) const = 0;
+
+   const Observation * observation() const {
+      return m_observation;
+   }
+
+   void setObservation(const Observation * observation) {
+      m_observation = observation;
+   }
+
 protected:
 
    /// A unique source name.
