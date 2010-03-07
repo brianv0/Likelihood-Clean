@@ -229,7 +229,7 @@ void SourceModel::deleteAllSources() {
    m_parameter.clear();
 }
 
-Source * SourceModel::getSource(const std::string &srcName) {
+Source * SourceModel::getSource(const std::string & srcName) {
    if (m_sources.count(srcName)) {
       return m_sources[srcName];
    }
