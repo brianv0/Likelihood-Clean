@@ -10,7 +10,9 @@
 #include <stdexcept>
 
 #include "optimizers/dArg.h"
+#include "optimizers/FunctionFactory.h"
 
+#include "Likelihood/AppHelpers.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/Source.h"
@@ -118,6 +120,26 @@ double Source::NpredDeriv(const std::string &paramName) {
       TrapQuad trapQuad(energies, myIntegrand);
       return trapQuad.integral();
    }
+}
+
+void Source::setSpectrum(const std::string & functionName) {
+   optimizers::FunctionFactory funcFactory;
+   AppHelpers::addFunctionPrototypes(&funcFactory);
+   try {
+      m_spectrum = funcFactory.create(functionName);
+      m_functions["Spectrum"] = m_spectrum;
+   } catch(optimizers::Exception & eObj) {
+      std::ostringstream message;
+      message << eObj.what() << "\n"
+              << "Available function names:\n";
+      std::vector<std::string> names;
+      funcFactory.getFunctionNames(names);
+      for (size_t i(0); i < names.size(); i++) {
+         message << "  " << names.at(i) << std::endl;
+      }
+      throw Exception(message.str());
+   }
+
 }
 
 double Source::pixelCounts(double emin, double emax,

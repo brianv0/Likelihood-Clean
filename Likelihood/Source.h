@@ -94,6 +94,9 @@ public:
       m_spectrum = spectrum->clone();
       m_functions["Spectrum"] = m_spectrum;
    }
+
+   /// Set the spectral model by name.
+   virtual void setSpectrum(const std::string & functionName);
                        
    virtual void setName(const std::string & name) {
       m_name = name;
