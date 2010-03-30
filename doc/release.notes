@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-16-04-00 30-Mar-2010 jchiang add gtsrcprob application
  Likelihood-16-03-00 07-Mar-2010 jchiang add Source::setSpectrum(std::string &)
  Likelihood-16-02-05 24-Feb-2010 jchiang bug-fix for fencepost error in EventContainer::nobs
  Likelihood-16-02-04 24-Feb-2010    jrb fix linking for mac
