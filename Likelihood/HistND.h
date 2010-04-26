@@ -9,6 +9,7 @@
 #ifndef Likelihood_HistND_h
 #define Likelihood_HistND_h
 
+#include <algorithm>
 #include <vector>
 
 #include "evtbin/Hist.h"
@@ -54,6 +55,10 @@ public:
    const std::vector<float> & data() const {return m_data;}
    
    void setData(const std::vector<float> & data) {m_data = data;}
+   void setData(const std::vector<double> & data) {
+      m_data.resize(data.size(), 0);
+      std::copy(data.begin(), data.end(), m_data.begin());
+   }
 
    HistND * clone() const {return new HistND(*this);}
 

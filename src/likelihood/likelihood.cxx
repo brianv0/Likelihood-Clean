@@ -158,6 +158,8 @@ private:
    double observedCounts();
    double sourceFlux(const std::string & srcName, double & fluxError);
 
+   void getElims(double & emin, double & emax) const;
+
    static std::string s_cvs_id;
 };
 
@@ -599,10 +601,21 @@ void likelihood::writeCountsMap() {
    }
 }
 
+void likelihood::getElims(double & emin, double & emax) const {
+   if (m_statistic == "UNBINNED") {
+      const RoiCuts & roiCuts = m_helper->observation().roiCuts();
+      emin = roiCuts.getEnergyCuts().first;
+      emax = roiCuts.getEnergyCuts().second;
+   } else {
+      CountsSpectra counts(*m_logLike);
+      emin = counts.ebounds().front();
+      emax = counts.ebounds().back();
+   }
+}
+
 double likelihood::sourceFlux(const std::string & srcName, double & fluxError) {
-   const RoiCuts & roiCuts = m_helper->observation().roiCuts();
-   double emin(roiCuts.getEnergyCuts().first);
-   double emax(roiCuts.getEnergyCuts().second);
+   double emin, emax;
+   getElims(emin, emax);
 
    Source * my_source(m_logLike->getSource(srcName));
 
@@ -689,9 +702,8 @@ void likelihood::printFitResults(const std::vector<double> &errors) {
 
    resultsFile << "{";
 
-   const RoiCuts & roiCuts = m_helper->observation().roiCuts();
-   double emin(roiCuts.getEnergyCuts().first);
-   double emax(roiCuts.getEnergyCuts().second);
+   double emin, emax;
+   getElims(emin, emax);
 
    m_formatter->info() << "\nPhoton fluxes are computed for the energy range " 
                        << emin << " to " << emax << " MeV" << std::endl;
