@@ -87,6 +87,7 @@ public:
                             const std::string & out_file) const;
 
    void setImage(const std::vector<float> & image);
+   void setImage(const std::vector<double> & image);
    
    long imageDimension(int idim) const;
 
