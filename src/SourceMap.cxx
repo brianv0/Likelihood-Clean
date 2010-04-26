@@ -147,8 +147,8 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
          // map geometry without adding padding for psf leakage since
          // this cannot be done in general without redefining the
          // reference pixel and reference direction.
-         naxis1 = dataMap->naxis1()*resamp_factor;
-         naxis2 = dataMap->naxis2()*resamp_factor;
+         naxis1 = static_cast<int>(dataMap->naxis1()*resamp_factor);
+         naxis2 = static_cast<int>(dataMap->naxis2()*resamp_factor);
          // Ensure an even number of pixels in each direction.
          if (naxis1 % 2 == 1) {
             naxis1 += 1;

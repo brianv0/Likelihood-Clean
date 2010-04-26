@@ -429,6 +429,9 @@ void CountsMap::writeOutput(const std::string & creator,
 void CountsMap::setImage(const std::vector<float> & image) {
    m_hist->setData(image);
 }
+void CountsMap::setImage(const std::vector<double> & image) {
+   m_hist->setData(image);
+}
 
 long CountsMap::imageDimension(int i) const {
    const evtbin::Hist::BinnerCont_t & binners = m_hist->getBinners();
