@@ -165,6 +165,9 @@ private:
                      const std::string & fitsFile) const;
 
    void computeCountsSpectrum();
+
+   double spectrum(const Source * src, double energy) const;
+   double pixelCounts(double emin, double emax, double y1, double y2) const;
 };
 
 }
