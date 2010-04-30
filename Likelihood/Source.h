@@ -102,6 +102,9 @@ public:
       m_name = name;
    }
 
+   /// @return true if all spectral parameters are fixed.
+   bool fixedSpectrum() const;
+
    /// Access a unique source identifier.
    virtual const std::string & getName() const {
       return m_name;
