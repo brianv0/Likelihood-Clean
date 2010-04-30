@@ -139,7 +139,10 @@ void Source::setSpectrum(const std::string & functionName) {
       }
       throw Exception(message.str());
    }
+}
 
+bool Source::fixedSpectrum() const {
+   return m_spectrum->getNumFreeParams() == 0;
 }
 
 double Source::pixelCounts(double emin, double emax,
