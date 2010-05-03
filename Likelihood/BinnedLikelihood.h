@@ -142,10 +142,16 @@ private:
    bool m_resample;
    
    double m_resamp_factor;
+
+   std::vector<std::string> m_fixedSources;
+
+   SourceMap * m_fixedMapSum;
    
    void createSourceMaps();
 
    void readSourceMaps(std::string filename="");
+
+   SourceMap * getSourceMap(const std::string & srcName) const;
 
    void computeModelMap(double & npred) const;
 
