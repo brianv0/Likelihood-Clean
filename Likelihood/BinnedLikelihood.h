@@ -65,7 +65,7 @@ public:
                         bool requireExposure=true, 
                         bool addPointSources=true);
 
-//   virtual CountsMap * createCountsMap() const;
+   virtual CountsMap * createCountsMap() const;
 
    double npred();
 
