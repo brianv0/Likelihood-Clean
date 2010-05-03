@@ -65,7 +65,7 @@ public:
                         bool requireExposure=true, 
                         bool addPointSources=true);
 
-   virtual CountsMap * createCountsMap() const;
+//   virtual CountsMap * createCountsMap() const;
 
    double npred();
 
@@ -163,7 +163,8 @@ private:
 
    void addSourceWts(std::vector<std::pair<double, double> > & modelWts,
                      const std::string & srcName,
-                     const SourceMap * srcMap=0) const;
+                     const SourceMap * srcMap=0, 
+                     bool subtract=false) const;
 
    void setImageDimensions(tip::Image * image, long * dims) const;
 
@@ -185,6 +186,8 @@ private:
    double pixelCounts(double emin, double emax, double y1, double y2) const;
 
    double NpredValue(const std::string & name, const SourceMap & srcMap) const;
+
+   void updateFixedModelWts();
 };
 
 }
