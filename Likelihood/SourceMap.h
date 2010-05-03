@@ -54,6 +54,8 @@ public:
    const std::vector<float> & model() const {return m_model;}
 
    const std::vector<double> & npreds() const {return m_npreds;}
+
+   void addMap(const std::vector<float> & other_model);
    
    static void setBinnedExposure(const std::string & filename);
 
@@ -62,6 +64,7 @@ public:
    const std::string & srcType() const {
       return m_srcType;
    }
+
    static void setBinnedExpMapName(const std::string & filename);
 
    static const std::string & binnedExpMap();
@@ -109,9 +112,11 @@ private:
                           std::vector<double> & mapCorrections) const;
 
    void computeExposureAndPsf(const Observation & observation);
+
+   void computeNpredArray();
 };
 
-void getNpreds(const SourceMap & srcMap, std::vector<double> & npreds);
+//void getNpreds(const SourceMap & srcMap, std::vector<double> & npreds);
 
 } // namespace Likelihood
 
