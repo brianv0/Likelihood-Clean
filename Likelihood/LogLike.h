@@ -17,6 +17,7 @@
 #include "Likelihood/Npred.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/SourceModel.h"
+#include "Likelihood/EventSourceCache.h"
 
 namespace tip {
    class Table;
@@ -92,22 +93,21 @@ protected:
 
 private:
 
-   typedef Source::CachedResponse CachedResponse;
-
    Npred m_Npred;
 
    mutable Accumulator m_accumulator;
 
    std::map<std::string, double> m_npredValues;
-   mutable std::vector<std::map<std::string, CachedResponse> > m_evSrcRespCache;
 
-   double logSourceModel(const Event & event, 
-			 std::map<std::string, CachedResponse>* srcRespCache=0)
-     const;
+   // Cache for instrument response to each event times source
+   mutable ResponseCache m_respCache;
+
+   double logSourceModel(const Event & event,
+                         ResponseCache::EventRef* srcRespCache=0) const;
 
    void getLogSourceModelDerivs(const Event & event,
                                 std::vector<double> & derivs,
-				std::map<std::string, CachedResponse>* srcRespCache=0) const;
+                                ResponseCache::EventRef* srcRespCache=0) const;
 
    mutable std::vector<double> m_bestFitParsSoFar;
 
