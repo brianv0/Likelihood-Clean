@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-16-06-01 10-May-2010 jchiang bug-fix for BinnedLikelihood: remove redundant calls to getSourceMap(...) in readSourceMaps
  Likelihood-16-06-00 09-May-2010 jchiang Stephen's refactoring of the response function caching to save memory
  Likelihood-16-05-02 06-May-2010 jchiang remove zmax!=180 warning from gtltcube
  Likelihood-16-05-01 04-May-2010 jchiang update summed fixed-source model if a free source becomes fixed in binned analysis; related updates for BinnedLikelihood::[add,delete]Source; added test code
