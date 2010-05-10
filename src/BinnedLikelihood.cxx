@@ -415,10 +415,13 @@ void BinnedLikelihood::readSourceMaps(std::string filename) {
          m_fixedModelNpreds[*name] = NpredValue(*name, *srcMap);
          delete srcMap;
       } else {
-         if (m_srcMaps.count(*name)) {
-            delete m_srcMaps[*name];
-         }
-         m_srcMaps[*name] = getSourceMap(*name);
+// The initial generation of the source maps is now performed when
+// readXml(...) is called, which calls addSource(...), which in turn
+// calls getSourceMap(...)
+         // if (m_srcMaps.count(*name)) {
+         //    delete m_srcMaps[*name];
+         // }
+         // m_srcMaps[*name] = getSourceMap(*name);
       }
    }
 }
