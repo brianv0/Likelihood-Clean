@@ -110,11 +110,12 @@ double LogLike::logSourceModel(const Event & event,
          fluxDens *= event.efficiency();
          my_value += fluxDens;
       }
-      if (my_value > 0 && std::fabs((my_value - event.modelSum())/my_value) > 1e-5) {
-         std::cout << event.getEnergy() << "  "
-                   << my_value << "  "
-                   << event.modelSum() << std::endl;
-      }
+//       if (my_value > 0 && 
+//           std::fabs((my_value - event.modelSum())/my_value) > 1e-5) {
+//          std::cout << event.getEnergy() << "  "
+//                    << my_value << "  "
+//                    << event.modelSum() << std::endl;
+//       }
    // }
    if (my_value > 0) {
       return std::log(my_value);
