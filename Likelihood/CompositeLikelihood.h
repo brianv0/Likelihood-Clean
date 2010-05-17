@@ -57,7 +57,9 @@ protected:
 
 private:
 
-   typedef std::map<std::string, LogLike *> ComponentMap_t;
+   /// Using the LogLike pointer as the map key allows for the same
+   /// source name to be used in different components.
+   typedef std::map<LogLike *, std::string> ComponentMap_t;
    typedef ComponentMap_t::iterator ComponentIterator_t;
    typedef ComponentMap_t::const_iterator ComponentConstIterator_t;
 
