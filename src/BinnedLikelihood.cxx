@@ -125,33 +125,55 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
             }
             const SourceMap & srcMap = sourceMap(srcName);
             const std::vector<float> & model = srcMap.model();
-// This implementation assumes that only the spectral part of each
-// Source has free parameters.
-            Source::FuncMap srcFuncs = src->second->getSrcFuncs();
-            Source::FuncMap::const_iterator func = srcFuncs.begin();
-            for ( ; func != srcFuncs.end(); ++func) {
-               std::vector<std::string> paramNames;
-               func->second->getFreeParamNames(paramNames);
-               for (size_t i(0); i < paramNames.size(); i++) {
-                  double my_deriv = 
-                     src->second->pixelCountsDeriv(emin, emax,
-                                                   model.at(jmin), 
-                                                   model.at(jmax),
-                                                   paramNames.at(i));
-                  derivs.at(iparam) += data.at(jmin)/m_model.at(j)*my_deriv;
-                  if (j == 0) {
-                     const std::vector<double> & npreds = srcMap.npreds();
-                     for (size_t kk(0); kk < m_energies.size()-1; kk++) {
-                        derivs.at(iparam) -= 
-                           src->second->pixelCountsDeriv(m_energies.at(kk), 
-                                                         m_energies.at(kk+1),
-                                                         npreds.at(kk), 
-                                                         npreds.at(kk+1),
-                                                         paramNames.at(i));
-                     }
+// // This implementation assumes that only the spectral part of each
+// // Source has free parameters.
+//             Source::FuncMap srcFuncs = src->second->getSrcFuncs();
+//             Source::FuncMap::const_iterator func = srcFuncs.begin();
+//             for ( ; func != srcFuncs.end(); ++func) {
+//                std::vector<std::string> paramNames;
+//                func->second->getFreeParamNames(paramNames);
+//                for (size_t i(0); i < paramNames.size(); i++) {
+//                   double my_deriv = 
+//                      src->second->pixelCountsDeriv(emin, emax,
+//                                                    model.at(jmin), 
+//                                                    model.at(jmax),
+//                                                    paramNames.at(i));
+//                   derivs.at(iparam) += data.at(jmin)/m_model.at(j)*my_deriv;
+//                   if (j == 0) {
+//                      const std::vector<double> & npreds = srcMap.npreds();
+//                      for (size_t kk(0); kk < m_energies.size()-1; kk++) {
+//                         derivs.at(iparam) -= 
+//                            src->second->pixelCountsDeriv(m_energies.at(kk), 
+//                                                          m_energies.at(kk+1),
+//                                                          npreds.at(kk), 
+//                                                          npreds.at(kk+1),
+//                                                          paramNames.at(i));
+//                      }
+//                   }
+//                   iparam++;
+//                }
+//            }
+            std::vector<std::string> paramNames;
+            src->second->spectrum().getFreeParamNames(paramNames);
+            for (size_t i(0); i < paramNames.size(); i++) {
+               double my_deriv = 
+                  src->second->pixelCountsDeriv(emin, emax,
+                                                model.at(jmin), 
+                                                model.at(jmax),
+                                                paramNames.at(i));
+               derivs.at(iparam) += data.at(jmin)/m_model.at(j)*my_deriv;
+               if (j == 0) {
+                  const std::vector<double> & npreds = srcMap.npreds();
+                  for (size_t kk(0); kk < m_energies.size()-1; kk++) {
+                     derivs.at(iparam) -= 
+                        src->second->pixelCountsDeriv(m_energies.at(kk), 
+                                                      m_energies.at(kk+1),
+                                                      npreds.at(kk), 
+                                                      npreds.at(kk+1),
+                                                      paramNames.at(i));
                   }
-                  iparam++;
                }
+               iparam++;
             }
          }
       }
