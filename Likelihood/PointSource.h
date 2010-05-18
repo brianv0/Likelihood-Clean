@@ -148,9 +148,13 @@ public:
       return m_exposure;
    }
 
-   virtual const optimizers::Function & spectrum() const {
-      return * m_spectrum;
-   }
+   // virtual const optimizers::Function & spectrum() const {
+   //    return * m_spectrum;
+   // }
+
+   // virtual optimizers::Function & spectrum() {
+   //    return *m_spectrum;
+   // }
 
    /// @return Photon flux integrated over the ROI energy bounds. 
    /// Units are #/cm^2/s

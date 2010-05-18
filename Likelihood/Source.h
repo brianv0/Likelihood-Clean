@@ -141,7 +141,13 @@ public:
 
    virtual const std::vector<double> & exposure() const = 0;
 
-   virtual const optimizers::Function & spectrum() const = 0;
+   virtual const optimizers::Function & spectrum() const {
+      return *m_spectrum;
+   }
+
+   virtual optimizers::Function & spectrum() {
+      return *m_spectrum;
+   }
 
    virtual double flux() const = 0;
 
