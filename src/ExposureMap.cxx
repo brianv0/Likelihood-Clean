@@ -6,8 +6,10 @@
  *
  * $Header$
  */
+
 #include <algorithm>
 #include <memory>
+#include <sstream>
 #include <utility>
 
 #include "st_stream/StreamFormatter.h"
@@ -230,6 +232,18 @@ void ExposureMap::writeFitsFile(const std::string & filename,
    tip::IFileSvc::instance().appendTable(filename, ext);
    tip::Table * table = tip::IFileSvc::instance().editTable(filename, ext);
    table->appendField("Energy", "1D");
+// Repair field by removing TNULL keyword that is added by tip. The
+// null value is usually ok for integers, but is inappropriate for
+// floats and is not needed by either, so we remove it in every case.
+   int fieldIndex = table->getFieldIndex("Energy") + 1;
+   std::ostringstream nullkeyword;
+   nullkeyword << "TNULL" << fieldIndex;
+   try {
+      table->getHeader().erase(nullkeyword.str());
+   } catch (...) {
+      // do nothing if tip fails us again
+   }
+
    table->setNumRecords(energies.size());
 
    tip::Table::Iterator row = table->begin();
