@@ -69,7 +69,7 @@ void EquinoxRotation::do_rotation(const astro::SkyDir & inDir,
          }
       }
    }
-   outDir = astro::SkyDir(Hep3Vector(outVec[0], outVec[1], outVec[2]));
+   outDir = astro::SkyDir(CLHEP::Hep3Vector(outVec[0], outVec[1], outVec[2]));
 }
 
 } // namespace Likelihood 
