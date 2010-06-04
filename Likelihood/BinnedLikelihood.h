@@ -150,6 +150,10 @@ private:
 
    std::vector<std::pair<double, double> > m_fixedModelWts;
    std::map<std::string, double> m_fixedModelNpreds;
+
+   /// Map of model parameters, to be used to determine if fixed
+   /// sources have changed parameter values.
+   std::map<std::string, std::vector<double> > m_modelPars;
    
    void createSourceMaps();
 
@@ -188,6 +192,11 @@ private:
    double NpredValue(const std::string & name, const SourceMap & srcMap) const;
 
    void updateFixedModelWts();
+
+   void buildFixedModelWts();
+
+   bool fixedModelUpdated() const;
+
 };
 
 }
