@@ -46,7 +46,7 @@ public:
              bool performConvolution=true,
              bool resample=true,
              double resamp_factor=2,
-             bool verbose=false);
+             bool verbose=true);
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
 
