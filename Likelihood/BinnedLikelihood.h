@@ -157,8 +157,6 @@ private:
    
    void createSourceMaps();
 
-   void readSourceMaps(std::string filename="");
-
    SourceMap * getSourceMap(const std::string & srcName) const;
 
    void computeModelMap(double & npred) const;
@@ -190,8 +188,6 @@ private:
    double pixelCounts(double emin, double emax, double y1, double y2) const;
 
    double NpredValue(const std::string & name, const SourceMap & srcMap) const;
-
-   void updateFixedModelWts();
 
    void buildFixedModelWts();
 
