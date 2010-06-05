@@ -1,7 +1,7 @@
 # -*- python -*-
 # $Id$
 # Authors: James Chiang <jchiang@slac.stanford.edu>, Pat Nolan <pln@razzle.stanford.edu>
-# Version: Likelihood-16-06-05
+# Version: Likelihood-16-06-06
 
 Import('baseEnv', 'listFiles')
 progEnv = baseEnv.Clone()
