@@ -54,6 +54,9 @@ protected:
 
    optimizers::Function * clone() const {return 0;}
 
+   virtual void fetchParamValues(std::vector<double> & values,
+                                 bool getFree) const;
+
 private:
 
    typedef std::vector<LogLike *> ComponentVector_t;
@@ -64,6 +67,8 @@ private:
 
    std::string m_normParName;
    std::string m_commonFuncName;
+
+   
 
 };
 
