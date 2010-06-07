@@ -63,6 +63,15 @@ unsigned int SummedLikelihood::getNumFreeParams() const {
    return m_components.front()->getNumFreeParams();
 }
 
+void SummedLikelihood::fetchParamValues(std::vector<double> & values,
+                                        bool getFree) const {
+   if (getFree) {
+      m_components.front()->getFreeParamValues(values);
+   } else {
+      m_components.front()->getParamValues(values);
+   }
+}
+
 void SummedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
 // Build vector of component parameter names.  This list should have
 // the same ordering as the derivatives wrt the free parameters.
