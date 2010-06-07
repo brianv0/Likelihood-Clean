@@ -91,6 +91,10 @@ public:
       return m_respPtrs.end();
    }
 
+   const irfInterface::IEfficiencyFactor * efficiencyFactor() const {
+      return begin()->second->efficiencyFactor();
+   }
+
    /// Whether or not energy dispersion is to be considered.
    const bool & useEdisp() const {
       return m_useEdisp;
