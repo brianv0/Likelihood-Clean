@@ -157,7 +157,8 @@ private:
    
    void createSourceMaps();
 
-   SourceMap * getSourceMap(const std::string & srcName) const;
+   SourceMap * getSourceMap(const std::string & srcName,
+                            bool verbose=true) const;
 
    void computeModelMap(double & npred) const;
 
