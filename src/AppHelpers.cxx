@@ -6,6 +6,8 @@
  * $Header$
  */
 
+#include <cstdlib>
+
 #include <map>
 #include <sstream>
 #include <stdexcept>
