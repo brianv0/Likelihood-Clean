@@ -6,6 +6,7 @@
  * $Header$
  */
 
+#include <cstdio>
 #include <fstream>
 
 #include "facilities/Util.h"
