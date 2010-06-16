@@ -7,6 +7,8 @@
  * $Header$
  */
 
+#include <cstdio>
+
 #include <algorithm>
 #include <memory>
 #include <sstream>

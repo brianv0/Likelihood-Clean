@@ -7,6 +7,8 @@
  */
 
 #include <cmath>
+#include <cstdio>
+
 #include <stdexcept>
 
 #include "tip/IFileSvc.h"

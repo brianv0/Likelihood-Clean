@@ -19,6 +19,7 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <memory>
 
 #include "st_stream/StreamFormatter.h"
 
