@@ -32,6 +32,8 @@ gtdiffrspBin = progEnv.Program('gtdiffrsp', listFiles(['src/diffuseResponses/*.c
 
 gtsrcmapsBin = progEnv.Program('gtsrcmaps', listFiles(['src/gtsrcmaps/*.cxx']))
 
+gteblBin = progEnv.Program('gtebl', listFiles(['src/gtebl/*.cxx']))
+
 gtsrcprobBin = progEnv.Program('gtsrcprob', listFiles(['src/gtsrcprob/*.cxx']))
 
 gtpsfBin = progEnv.Program('gtpsf', listFiles(['src/meanPsf/*.cxx']))
@@ -54,6 +56,7 @@ progEnv.Tool('registerTargets', package = 'Likelihood',
                            [gtsrcmapsBin, progEnv],
                            [gtsrcprobBin, progEnv],
                            [gtpsfBin, progEnv],
+                           [gteblBin, progEnv],
                            [gtbkgBin, progEnv],
                            [gtmodelBin, progEnv],
                            [gtltsumBin, progEnv],
