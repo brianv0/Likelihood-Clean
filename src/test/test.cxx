@@ -943,8 +943,8 @@ void LikelihoodTests::test_BinnedLikelihood_2() {
    anticenter_model = 
       facilities::commonUtilities::joinPath(m_rootPath,"anticenter_model_2.xml");
    like4.readXml(anticenter_model, *m_funcFactory);
-   like4.source("PKS 0528+134").spectrum().parameter("Prefactor").setFree(true);
-   like4.source("PKS 0528+134").spectrum().parameter("Index").setFree(true);
+   like4.getSource("PKS 0528+134")->spectrum().parameter("Prefactor").setFree(true);
+   like4.getSource("PKS 0528+134")->spectrum().parameter("Index").setFree(true);
    like4.syncParams();
 
    double fit_value4 = fit(like4);
