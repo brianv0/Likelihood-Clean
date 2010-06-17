@@ -126,6 +126,14 @@ void RoiCuts::writeGtiExtension(const std::string & filename) const {
 void RoiCuts::makeEnergyVector(int nee) {
    m_energies.clear();
    m_energies.reserve(nee);
+   if (m_eMin <= 0) {
+      std::ostringstream message;
+      message << "\nError for lower energy bound in input file.  "
+              << "The lower bound cannot be <= 0.\n"
+              << "Current value from DSS keywords: emin = "
+              << m_eMin;
+      throw std::runtime_error(message.str());
+   }
    double estep = std::log(m_eMax/m_eMin)/(nee - 1.);
    for (int i = 0; i < nee; i++) {
       m_energies.push_back(m_eMin*std::exp(estep*i));
