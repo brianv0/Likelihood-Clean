@@ -44,6 +44,8 @@ public:
    double derivByParam(optimizers::Arg & dir,
                        const std::string & parName) const;
 
+   void readTemplateFile(const std::string & template_file);
+
    void setCenter(double ra, double dec);
 
    virtual optimizers::Function * clone() const {
@@ -62,8 +64,6 @@ private:
    std::vector<double> m_profile;
 
    void init();
-
-   void readTemplateFile(const std::string & template_file);
 
 };
 
