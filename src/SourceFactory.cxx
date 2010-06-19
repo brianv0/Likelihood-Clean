@@ -29,6 +29,7 @@
 #include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"
+#include "Likelihood/RadialProfile.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/SourceFactory.h"
 
@@ -286,6 +287,9 @@ makeDiffuseSource(const DOMElement * spectrum,
       std::string fitsFile 
          = xmlBase::Dom::getAttribute(spatialModel, "file");
       dynamic_cast<MapCubeFunction *>(spatialDist)->readFitsFile(fitsFile);
+   } else if (type == "RadialProfile") {
+      std::string tpl_file(xmlBase::Dom::getAttribute(spatialModel, "file"));
+      dynamic_cast<RadialProfile *>(spatialDist)->readTemplateFile(tpl_file);
    }
    Source * src;
    try {
