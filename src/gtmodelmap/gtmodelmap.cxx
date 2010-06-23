@@ -36,6 +36,9 @@
 #include "dataSubselector/Cuts.h"
 
 #include "Likelihood/AppHelpers.h"
+#include "Likelihood/FileFunction.h"
+#include "Likelihood/DMFitFunction.h"
+#include "Likelihood/DMFitFunction2.h"
 #include "Likelihood/Source.h"
 
 #include "SourceMapRegistry.h"
@@ -356,6 +359,21 @@ void ModelMap::readSpectra() {
       optimizers::Function * func = m_funcFactory->create(type);
       func->setParams(spectrum);
       std::string name = xmlBase::Dom::getAttribute(sources.at(i), "name");
+
+// If FileFunction or DMFitFunction[2], read in the data:
+      if (type == "FileFunction") {
+         std::string filename = xmlBase::Dom::getAttribute(spectrum, "file");
+         dynamic_cast<Likelihood::FileFunction *>(func)->readFunction(filename);
+      }
+      if (type == "DMFitFunction") {
+         std::string filename = xmlBase::Dom::getAttribute(spectrum, "file");
+         dynamic_cast<Likelihood::DMFitFunction *>(func)->readFunction(filename);
+      }
+      if (type == "DMFitFunction2") {
+         std::string filename = xmlBase::Dom::getAttribute(spectrum, "file");
+         dynamic_cast<Likelihood::DMFitFunction2 *>(func)->readFunction(filename);
+      }
+
       m_spectra[name] = func;
    }
 }
