@@ -17,6 +17,7 @@
 #include "Likelihood/Event.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/MapBase.h"
+#include "Likelihood/RadialProfile.h"
 #include "Likelihood/Observation.h"
 
 namespace Likelihood {
@@ -137,6 +138,11 @@ double DiffuseSource::angularIntegral(double energy) const {
    if (spatialDist()->genericName() == "ConstantValue") { 
 // Here we have an isotropic source
       return 4*M_PI;
+   } else if (spatialDist()->genericName() == "RadialProfile") {
+      optimizers::Function * foo = 
+         const_cast<optimizers::Function *>(this->spatialDist());
+      const RadialProfile * profile = dynamic_cast<RadialProfile *>(foo);
+      return profile->angularIntegral();
    }
    return mapBaseObject()->mapIntegral(energy);
 }
