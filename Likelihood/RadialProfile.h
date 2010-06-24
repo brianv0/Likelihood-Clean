@@ -52,6 +52,8 @@ public:
       return new RadialProfile(*this);
    }
 
+   double angularIntegral() const;
+   
 private:
 
    // disable this
