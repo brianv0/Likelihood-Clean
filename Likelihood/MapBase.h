@@ -44,6 +44,8 @@ public:
    virtual void readFitsFile(const std::string & fitsFile,
                              const std::string & extension="");
 
+   virtual void readFitsFile();
+
    virtual bool insideMap(const astro::SkyDir & dir) const;
 
    virtual void getDiffRespLimits(const astro::SkyDir & dir, 
@@ -51,7 +53,15 @@ public:
                                   double & phimin, double & phimax) const;
 
    const WcsMap & wcsmap() const {
+      if (!m_wcsmap) {
+         const_cast<MapBase *>(this)->readFitsFile();
+      }
       return *m_wcsmap;
+   }
+
+   virtual void deleteMap() {
+      delete m_wcsmap;
+      m_wcsmap = 0;
    }
 
 protected:

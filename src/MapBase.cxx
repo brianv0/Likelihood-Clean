@@ -27,8 +27,8 @@ namespace Likelihood {
 MapBase::MapBase() : m_wcsmap(0), m_fitsFile(""), m_extension("") {}
 
 MapBase::MapBase(const std::string & fitsFile, const std::string & extension) 
-   : m_wcsmap(0) {
-   readFitsFile(fitsFile, extension);
+   : m_wcsmap(0), m_fitsFile(fitsFile), m_extension(extension) {
+   readFitsFile();
 }
 
 MapBase::~MapBase() {
@@ -60,8 +60,11 @@ void MapBase::readFitsFile(const std::string & fitsFile,
                            const std::string & extension) {
    m_fitsFile = fitsFile;
    m_extension = extension;
+   readFitsFile();
+}
 
-   std::string expandedFileName(fitsFile);
+void MapBase::readFitsFile() {
+   std::string expandedFileName(m_fitsFile);
 
    facilities::Util::expandEnvVar(&expandedFileName);
 
@@ -75,8 +78,7 @@ void MapBase::readFitsFile(const std::string & fitsFile,
    }
 
    delete m_wcsmap;
-//   m_wcsmap = new WcsMap(expandedFileName, extension, false);
-   m_wcsmap = new WcsMap(expandedFileName, extension, true);
+   m_wcsmap = new WcsMap(expandedFileName, m_extension, true);
 }
 
 bool MapBase::insideMap(const astro::SkyDir & dir) const {
