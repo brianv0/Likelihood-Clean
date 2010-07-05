@@ -30,7 +30,7 @@ namespace Likelihood {
       {}
     virtual ~Exception() throw() {}
     virtual const char *what() const throw() {return m_what.c_str();}
-    virtual const int code() const {return m_code;}
+    virtual int code() const {return m_code;}
   protected:
     std::string m_what;
     int m_code;
