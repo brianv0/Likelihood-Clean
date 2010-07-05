@@ -187,8 +187,13 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
       }
 // Delete model map for map-based diffuse sources to save memory.  The
 // map will be reloaded dynamically if it is needed again.
-      MapBase * mapBaseObj(const_cast<MapBase *>(diffuseSrc->mapBaseObject()));
-      mapBaseObj->deleteMap();
+      try {
+         MapBase * mapBaseObj = 
+            const_cast<MapBase *>(diffuseSrc->mapBaseObject());
+         mapBaseObj->deleteMap();
+      } catch (MapBaseException & eObj) {
+         // Not a map-based source, so do nothing.
+      }
    } else if (havePointSource) {
       PointSource * pointSrc = dynamic_cast<PointSource *>(src);
 
