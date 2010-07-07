@@ -63,7 +63,8 @@ public:
    virtual void readXml(std::string xmlFile, 
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true, 
-                        bool addPointSources=true);
+                        bool addPointSources=true,
+                        bool loadMaps=true);
 
    virtual CountsMap * createCountsMap() const;
 

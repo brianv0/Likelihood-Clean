@@ -69,7 +69,8 @@ public:
    void readXml(const std::string & xmlFile,
                 optimizers::FunctionFactory &,
                 bool requireExposure=true,
-                bool addPointSources=true);
+                bool addPointSources=true,
+                bool loadMaps=true);
 
    void fetchSrcNames(std::vector<std::string> & srcNames);
 
@@ -92,7 +93,8 @@ private:
 
    Source *makeDiffuseSource(const DOMElement * spectrum,
                              const DOMElement * spatialModel,
-                             optimizers::FunctionFactory & funcFactory);
+                             optimizers::FunctionFactory & funcFactory,
+                             bool loadMap=true);
 
    void setSpectrum(Source *src, const DOMElement *spectrum,
                     optimizers::FunctionFactory & funcFactory);

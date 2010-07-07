@@ -131,7 +131,8 @@ public:
    virtual void readXml(std::string xmlFile,
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true,
-                        bool addPointSources=true);
+                        bool addPointSources=true,
+                        bool loadMaps=true);
 
    /// Re-read an XML file, updating only the Parameters in the
    /// source model.
