@@ -56,7 +56,12 @@ public:
    }
 
    virtual void readFitsFile(const std::string & fitsFile,
-                             const std::string & extension="");
+                             const std::string & extension="",
+                             bool loadMap=true);
+
+   virtual void readFitsFile();
+
+   virtual void deleteMap();
 
    const std::string & fitsFile() const {
       return m_fitsFile;

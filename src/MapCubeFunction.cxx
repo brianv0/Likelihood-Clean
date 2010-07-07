@@ -169,22 +169,31 @@ void MapCubeFunction::init() {
 }
 
 void MapCubeFunction::readFitsFile(const std::string & fitsFile, 
-                                   const std::string & extension) {
-   MapBase::readFitsFile(fitsFile, extension);
+                                   const std::string & extension,
+                                   bool loadMap) {
+   MapBase::readFitsFile(fitsFile, extension, loadMap);
 
-   std::string expandedFileName(fitsFile);
+   std::string expandedFileName(m_fitsFile);
+   facilities::Util::expandEnvVar(&expandedFileName);
+   ExposureMap::readEnergyExtension(expandedFileName, m_energies);
+}
+
+void MapCubeFunction::readFitsFile() {
+   MapBase::readFitsFile();
+
+   std::string expandedFileName(m_fitsFile);
    facilities::Util::expandEnvVar(&expandedFileName);
 
    m_proj = new astro::SkyProj(expandedFileName);
 
    st_facilities::FitsImage fitsImage(expandedFileName);
    m_image = fitsImage.imageData();
-
+   
    std::vector<int> naxes;
    fitsImage.getAxisDims(naxes);
    m_nlon = naxes.at(0);
    m_nlat = naxes.at(1);
-
+   
    double cdelt1;
    const tip::Image * image =
       tip::IFileSvc::instance().readImage(expandedFileName, "");
@@ -194,8 +203,11 @@ void MapCubeFunction::readFitsFile(const std::string & fitsFile,
       m_isPeriodic = true;
    }
    delete image;
+}
 
-   ExposureMap::readEnergyExtension(expandedFileName, m_energies);
+void MapCubeFunction::deleteMap() {
+   MapBase::deleteMap();
+   m_image.clear();
 }
 
 int MapCubeFunction::
@@ -208,8 +220,10 @@ findIndex(const std::vector<double> & xx, double x) const {
 }
 
 double MapCubeFunction::mapIntegral() const {
+//    const std::vector< std::vector<double> > & solidAngles 
+//       = m_wcsmap->solidAngles();
    const std::vector< std::vector<double> > & solidAngles 
-      = m_wcsmap->solidAngles();
+      = wcsmap().solidAngles();
    double map_integral(0);
    for (int j = 0; j < m_nlat; j++) {
       for (int i = 0; i < m_nlon; i++) {
@@ -259,8 +273,10 @@ double MapCubeFunction::mapIntegral(double energy) const {
 }
 
 void MapCubeFunction::computeMapIntegrals() {
+//    const std::vector< std::vector<double> > & solidAngles
+//       = m_wcsmap->solidAngles();
    const std::vector< std::vector<double> > & solidAngles
-      = m_wcsmap->solidAngles();
+      = wcsmap().solidAngles();
    m_mapIntegrals.clear();
    for (size_t k(0); k < m_energies.size(); k++) {
       m_mapIntegrals.push_back(0);

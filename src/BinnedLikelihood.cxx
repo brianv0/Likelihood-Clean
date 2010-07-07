@@ -165,9 +165,10 @@ CountsMap * BinnedLikelihood::createCountsMap() const {
 void BinnedLikelihood::readXml(std::string xmlFile, 
                                optimizers::FunctionFactory & funcFactory,
                                bool requireExposure, 
-                               bool addPointSources) {
+                               bool addPointSources, 
+                               bool loadMaps) {
    SourceModel::readXml(xmlFile, funcFactory, requireExposure=false,
-                        addPointSources);
+                        addPointSources, loadMaps);
    if (m_srcMapsFile == "") {
       createSourceMaps();
    } else {
