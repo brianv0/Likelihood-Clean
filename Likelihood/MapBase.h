@@ -42,7 +42,8 @@ public:
    virtual double mapIntegral(double energy) const = 0;
 
    virtual void readFitsFile(const std::string & fitsFile,
-                             const std::string & extension="");
+                             const std::string & extension="",
+                             bool loadMap=true);
 
    virtual void readFitsFile();
 
@@ -70,6 +71,8 @@ protected:
 
    std::string m_fitsFile;
    std::string m_extension;
+
+   virtual WcsMap & wcsmap();
 
 private:
    

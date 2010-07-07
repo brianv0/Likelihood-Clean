@@ -39,6 +39,12 @@ DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
       if (observation.expMap().haveMap()) {
          observation.expMap().integrateSpatialDist(energies, spatialDist,
                                                    m_exposure);
+         try {
+            // Delete internal representation of the map to save memory.
+            mapBaseObject()->deleteMap();
+         } catch (MapBaseException & eObj) {
+            // do nothing
+         }
       } else {
          std::string what("DiffuseSource: An exposure map must be defined ");
          what += "if diffuse sources are in the model.";
