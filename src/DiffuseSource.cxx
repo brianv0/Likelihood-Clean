@@ -134,7 +134,18 @@ const MapBase * DiffuseSource::mapBaseObject() const {
       const_cast<optimizers::Function *>(this->spatialDist());
    const MapBase * mapBaseObject = dynamic_cast<MapBase *>(foo);
    if (!mapBaseObject) {
-      throw MapBaseException("Flux calculations are not available for this "
+      throw MapBaseException("MapBase object not found for this "
+                             + ("diffuse source: " + getName()));
+   }
+   return mapBaseObject;
+}
+
+MapBase * DiffuseSource::mapBaseObject() {
+   optimizers::Function * foo = 
+      const_cast<optimizers::Function *>(this->spatialDist());
+   MapBase * mapBaseObject = dynamic_cast<MapBase *>(foo);
+   if (!mapBaseObject) {
+      throw MapBaseException("MapBase object not found for this "
                              + ("diffuse source: " + getName()));
    }
    return mapBaseObject;

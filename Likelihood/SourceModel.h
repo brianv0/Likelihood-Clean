@@ -162,6 +162,14 @@ public:
    /// m_sources' Functions
    virtual void syncParams();
 
+   const std::vector<optimizers::Parameter> & parameters() const {
+      return m_parameter;
+   }
+
+   std::vector<optimizers::Parameter> & parameters() {
+      return m_parameter;
+   }
+
 protected:
 
    const Observation & m_observation;
