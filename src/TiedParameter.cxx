@@ -8,6 +8,8 @@
  * $Header$
  */
 
+#include <algorithm>
+
 #include "Likelihood/TiedParameter.h"
 
 namespace Likelihood {
