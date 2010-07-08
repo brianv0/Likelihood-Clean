@@ -178,6 +178,8 @@ public:
 
    const MapBase * mapBaseObject() const;
 
+   MapBase * mapBaseObject();
+
    double angularIntegral(double energy) const;
 
    double diffuseResponse(const Event & evt) const;
