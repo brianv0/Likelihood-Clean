@@ -38,6 +38,7 @@ void Composite2::tieParameters(const TiedParameter::ParVector_t & pars) {
    TiedParameter * tiedPar = new TiedParameter();
    for ( ; it != pars.end(); ++it) {
       tiedPar->addParam(*it->first, it->second);
+      m_components[it->first].push_back(it->second);
    }
    m_tiedPars.push_back(tiedPar);
 }
@@ -114,7 +115,14 @@ setFreeParamValues(const std::vector<double> & values) {
 void Composite2::syncParams() {
    for (ComponentIterator_t it(m_components.begin()); 
         it != m_components.end(); ++it) {
-      it->first->syncParams();
+      std::vector<optimizers::Parameter> freePars;
+      const std::vector<optimizers::Parameter> & pars(it->first->parameters());
+      for (size_t i(0); i < pars.size(); i++) {
+         if (pars.at(i).isFree()) {
+            freePars.push_back(pars.at(i));
+         }
+      }
+      it->first->setFreeParams(freePars);
    }
 }
 

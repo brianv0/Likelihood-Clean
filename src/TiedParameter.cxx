@@ -70,7 +70,8 @@ void TiedParameter::setName(const std::string name) {
 void TiedParameter::setValue(double value) {
    optimizers::Parameter::setValue(value);
    for (ParVectorIterator_t it(m_pars.begin()); it != m_pars.end(); ++it) {
-      it->first->parameters().at(it->second).setValue(value);
+      size_t indx = it->second;
+      it->first->parameters().at(indx).setValue(value);
    }
 }
 
