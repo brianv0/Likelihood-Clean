@@ -33,7 +33,7 @@ public:
 
    Composite2() : optimizers::Statistic() {}
 
-   virtual ~Composite2() throw() {}
+   virtual ~Composite2() throw();
 
    void addComponent(LogLike & component);
 

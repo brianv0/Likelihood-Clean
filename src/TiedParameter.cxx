@@ -33,8 +33,12 @@ TiedParameter & TiedParameter::operator=(const TiedParameter & rhs) {
 }
 
 void TiedParameter::addParam(LogLike & like, size_t i) {
+   if (m_pars.empty()) {
+      optimizers::Parameter::operator=(like.parameters().at(i));
+   }
    if (!has_member(like, i)) {
       m_pars.push_back(std::make_pair(&like, i));
+      like.parameters().at(i) = *this;
    }
 }
 
