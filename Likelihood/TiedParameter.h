@@ -63,6 +63,8 @@ public:
       return m_pars;
    }
 
+   bool containsIndex(const LogLike & like, size_t par_index) const;
+
 private:
 
    ParVector_t m_pars;

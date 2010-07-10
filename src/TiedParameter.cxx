@@ -117,4 +117,15 @@ void TiedParameter::setError(double error) {
    }
 }
 
+bool TiedParameter::
+containsIndex(const LogLike & like, size_t par_index) const {
+   ParVectorConstIterator_t it(m_pars.begin());
+   for ( ; it != m_pars.end(); ++it) {
+      if (it->first == &like && it->second == par_index) {
+         return true;
+      }
+   }
+   return false;
+}
+
 } //namespace Likelihood
