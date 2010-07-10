@@ -45,6 +45,9 @@ public:
    virtual unsigned int getNumFreeParams() const;
    virtual void getFreeDerivs(std::vector<double> & derivs) const;
 
+   /// Set the errors for the free parameters.
+   void setErrors(const std::vector<double> & errors);
+
    void syncParams();
 
    double NpredValue(const std::string &) const {return 0;}
