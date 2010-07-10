@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-16-10-00 10-Jul-2010 jchiang Composite2 and TiedParameter classes added for 'stacking' analysis with arbitrary tied parameters
  Likelihood-16-09-00 06-Jul-2010 jchiang avoid loading maps for binned analysis; delete maps after use in unbinned case
  Likelihood-16-08-03 05-Jul-2010 jchiang bug-fix for gtmodel
  Likelihood-16-08-02 05-Jul-2010 jchiang delete WcsMap instances after creating convolved map to save memory
