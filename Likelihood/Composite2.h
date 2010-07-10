@@ -48,6 +48,21 @@ public:
    /// Set the errors for the free parameters.
    void setErrors(const std::vector<double> & errors);
 
+   /// Find the parameter index (in the optimizer context, i.e., the
+   /// index number among the free parameters) in the composite model
+   /// for the specified parameter.  This is for use with the
+   /// minosError function in the python interface.
+   ///
+   /// @return The desired index.  -1 will be returned if the
+   /// parameter is fixed, or if the par_index does not exist in the 
+   /// specified LogLike object.
+   ///
+   /// @param like The LogLike object with the desired parameter.
+   /// @param par_index The "absolute" index (i.e., including the
+   /// fixed pars) of the parameter in the LogLike object.
+   ///
+   int findIndex(const LogLike & like, size_t par_index) const;
+
    void syncParams();
 
    double NpredValue(const std::string &) const {return 0;}
