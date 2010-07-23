@@ -387,19 +387,26 @@ void diffuseResponses::readEventData(std::string eventFile) {
 }
 
 void diffuseResponses::computeEventResponses() {
+   bool applyClassFilter(true);
    getDiffuseSources();
    std::vector<Event>::iterator it = m_events.begin();
    unsigned int classLevel_targ;
    if (m_passVer == "NONE") {
       classLevel_targ = m_pars["evclsmin"];
    } else {
-      unsigned int evtclass = m_pars["evclass"];
-      if (evtclass > 32) {
-         throw std::runtime_error("Invalid event class identifier. "
-                                  "Value must be < 32");
+      try {
+         unsigned int evtclass = m_pars["evclass"];
+         if (evtclass > 32) {
+            throw std::runtime_error("Invalid event class identifier. "
+                                     "Value must be < 32");
+         }
+         // Do the bit shift to get the mask.
+         classLevel_targ = 1 << evtclass;
+      } catch (const hoops::Hexception &) {
+         // In this case, we must have evclass=INDEF as parameter
+         // value, so disable class-based filtering.
+         applyClassFilter = false;
       }
-      /// Do the bit shift to get the mask.
-      classLevel_targ = 1 << evtclass;
    }
    for (int i = 0; it != m_events.end(); ++it, i++) {
       int factor(m_events.size()/20);
@@ -415,11 +422,13 @@ void diffuseResponses::computeEventResponses() {
 //                           m_srRadius);
       bool useDummyValue(false);
       if (m_passVer == "NONE") {
-         useDummyValue = (it->classLevel() < classLevel_targ);
+         useDummyValue = (applyClassFilter && 
+                          (it->classLevel() < classLevel_targ));
       } else {
          // Apply bit-wise "and" to see if this event is part of the
          // target class.
-         useDummyValue = ((it->classLevel() & classLevel_targ) == 0);
+         useDummyValue = (applyClassFilter &&
+                          (it->classLevel() & classLevel_targ) == 0);
       }
       it->computeResponseGQ(m_srcs, m_helper->observation().respFuncs(),
                             useDummyValue);
