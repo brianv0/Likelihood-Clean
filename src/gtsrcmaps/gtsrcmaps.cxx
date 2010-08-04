@@ -135,7 +135,8 @@ void gtsrcmaps::run() {
                            perform_convolution, resample, resamp_factor);
 
    std::string srcModelFile = m_pars["srcmdl"];
-   m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false);
+   m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false,
+                               computePointSources);
 
    std::string srcMapsFile = m_pars["outfile"];
 
