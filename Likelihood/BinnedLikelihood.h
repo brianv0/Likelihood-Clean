@@ -64,7 +64,8 @@ public:
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true, 
                         bool addPointSources=true,
-                        bool loadMaps=true);
+                        bool loadMaps=true,
+                        bool createAllMaps=false);
 
    virtual CountsMap * createCountsMap() const;
 
