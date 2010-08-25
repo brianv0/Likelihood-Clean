@@ -72,7 +72,9 @@ SourceMapRegistry::SourceMapRegistry(const std::string & countsMap,
                                                 applyPsfCorrections,
                                                 performConvolution, resample,
                                                 resamp_factor);
-   m_logLike->readXml(xmlFile, funcFactory, false);
+   bool loadMaps, createAllMaps;
+   m_logLike->readXml(xmlFile, funcFactory, false, computePointSources,
+                      loadMaps=true, createAllMaps=true);
 }
 
 SourceMapRegistry::~SourceMapRegistry() {
