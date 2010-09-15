@@ -183,7 +183,7 @@ void BinnedLikelihood::addSource(Source * src) {
    m_bestValueSoFar = -1e38;
    SourceModel::addSource(src);
    if (m_srcMaps.find(src->getName()) == m_srcMaps.end()) {
-      SourceMap * srcMap(getSourceMap(src->getName()));
+      SourceMap * srcMap(getSourceMap(src->getName(), true));
       if (srcMap) {
          m_srcMaps[src->getName()] = srcMap;
       }
@@ -302,11 +302,11 @@ void BinnedLikelihood::buildFixedModelWts() {
       } else { 
 // Process non-fixed sources.
 //
-// Ensure model map is avaiable.
+// Ensure model map is available.
          std::map<std::string, SourceMap *>::const_iterator srcMapIt
             = m_srcMaps.find(srcName);
          if (srcMapIt == m_srcMaps.end()) {
-            SourceMap * srcMap(getSourceMap(srcName));
+            SourceMap * srcMap(getSourceMap(srcName, false));
             if (srcMap) {
                m_srcMaps[srcName] = srcMap;
             }
@@ -615,7 +615,7 @@ void BinnedLikelihood::getNpreds(const std::string & srcName,
       npreds = sourceMap(srcName).npreds();
       return;
    } catch (std::runtime_error & eObj) {
-      SourceMap * srcMap(getSourceMap(srcName));
+      SourceMap * srcMap(getSourceMap(srcName, false));
       npreds = srcMap->npreds();
       delete srcMap;
    }
