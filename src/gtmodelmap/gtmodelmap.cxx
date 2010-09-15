@@ -281,16 +281,17 @@ void ModelMap::sumOutputMap() {
 
 double ModelMap::pixelCounts(double emin, double emax,
                              double y1, double y2) const {
-   if (::getenv("USE_OLD_PIX_EST")) {
-      return (y1 + y2)*(emax - emin)/2.;
-   }
-   double gam(std::log(y2/y1)/std::log(emax/emin));
-   if (gam == -1) {
-      double y0(y2/std::pow(emax, gam));
-      return y0*std::log(emax/emin);
-   }
+   return (y1 + y2)*(emax - emin)/2.;
+//    if (::getenv("USE_OLD_PIX_EST")) {
+//       return (y1 + y2)*(emax - emin)/2.;
+//    }
+//    double gam(std::log(y2/y1)/std::log(emax/emin));
+//    if (gam == -1) {
+//       double y0(y2/std::pow(emax, gam));
+//       return y0*std::log(emax/emin);
+//    }
 
-   return y2/(gam + 1.)*(emax - emin*std::pow(emin/emax, gam));
+//    return y2/(gam + 1.)*(emax - emin*std::pow(emin/emax, gam));
 }
 
 void ModelMap::sumOutputMap_old() {
