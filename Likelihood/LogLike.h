@@ -91,11 +91,13 @@ protected:
 
    void saveBestFit(double logLikeValue) const;
 
+protected:   
+
+   mutable Accumulator m_accumulator;
+
 private:
 
    Npred m_Npred;
-
-   mutable Accumulator m_accumulator;
 
    std::map<std::string, double> m_npredValues;
 

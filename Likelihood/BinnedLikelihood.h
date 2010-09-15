@@ -15,6 +15,7 @@
 
 #include "optimizers/dArg.h"
 
+#include "Likelihood/Accumulator.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/Pixel.h"
@@ -159,7 +160,11 @@ private:
    /// Map of model parameters, to be used to determine if fixed
    /// sources have changed parameter values.
    std::map<std::string, std::vector<double> > m_modelPars;
-   
+
+   /// Accumulators for derivatives.
+   mutable std::map<long, Accumulator> m_posDerivs;
+   mutable std::map<long, Accumulator> m_negDerivs;
+
    void createSourceMaps();
 
    void computeModelMap(double & npred) const;

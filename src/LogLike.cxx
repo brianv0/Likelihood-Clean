@@ -16,7 +16,6 @@
 
 #include "st_stream/StreamFormatter.h"
 
-#include "Likelihood/Accumulator.h"
 #include "Likelihood/Exception.h"
 #include "Likelihood/DiffuseSource.h"
 #include "Likelihood/LogLike.h"
