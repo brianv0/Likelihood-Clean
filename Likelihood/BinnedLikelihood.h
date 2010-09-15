@@ -80,6 +80,9 @@ public:
       return *(srcMap->second);
    }
 
+   SourceMap * getSourceMap(const std::string & srcName,
+                            bool verbose=true) const;
+
    const CountsMap & countsMap() const {
       return m_dataMap;
    }
@@ -158,9 +161,6 @@ private:
    std::map<std::string, std::vector<double> > m_modelPars;
    
    void createSourceMaps();
-
-   SourceMap * getSourceMap(const std::string & srcName,
-                            bool verbose=true) const;
 
    void computeModelMap(double & npred) const;
 

@@ -117,8 +117,6 @@ private:
    void computeNpredArray();
 };
 
-//void getNpreds(const SourceMap & srcMap, std::vector<double> & npreds);
-
 } // namespace Likelihood
 
 #endif // Likelihood_SourceMap_h

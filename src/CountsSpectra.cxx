@@ -44,16 +44,7 @@ void CountsSpectra::getSrcCounts(const std::string & srcName,
    srcCounts.clear();
    srcCounts.reserve(m_ebounds.size() - 1);
    if (m_binnedLike) {
-/// @todo reimplement LogLike::Npred for BinnedLikelihood
-
-/// @bug We cannot use the following const reference because of brain-dead
-/// linkage problems on Windows.
-///       const std::vector<double> & 
-///          npreds(m_binnedLike->sourceMap(srcName).npreds());
-/// so we are forced to use instead the getNpreds function that pollutes our
-/// namespace.
       std::vector<double> npreds;
-//      getNpreds(m_binnedLike->sourceMap(srcName), npreds);
       m_binnedLike->getNpreds(srcName, npreds);
       for (size_t k = 0; k < m_ebounds.size() - 1; k++) {
          srcCounts.push_back(src->pixelCounts(m_ebounds.at(k),
