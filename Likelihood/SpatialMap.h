@@ -71,7 +71,7 @@ public:
 
    virtual double mapIntegral(double energy) const {
       (void)(energy);
-      return m_wcsmap->mapIntegral();
+      return wcsmap().mapIntegral();
    }
 
 private:
