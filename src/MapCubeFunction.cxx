@@ -220,8 +220,6 @@ findIndex(const std::vector<double> & xx, double x) const {
 }
 
 double MapCubeFunction::mapIntegral() const {
-//    const std::vector< std::vector<double> > & solidAngles 
-//       = m_wcsmap->solidAngles();
    const std::vector< std::vector<double> > & solidAngles 
       = wcsmap().solidAngles();
    double map_integral(0);
@@ -273,8 +271,6 @@ double MapCubeFunction::mapIntegral(double energy) const {
 }
 
 void MapCubeFunction::computeMapIntegrals() {
-//    const std::vector< std::vector<double> > & solidAngles
-//       = m_wcsmap->solidAngles();
    const std::vector< std::vector<double> > & solidAngles
       = wcsmap().solidAngles();
    m_mapIntegrals.clear();
