@@ -813,7 +813,7 @@ void LikelihoodTests::test_BinnedLikelihood() {
    optimizers::Minuit my_optimizer(binnedLogLike);
    int verbose(0);
    double tol(1e-5);
-   my_optimizer.find_min(verbose, tol, optimizers::RELATIVE);
+   my_optimizer.find_min(verbose, tol, optimizers::ABSOLUTE);
 
     std::vector<double> params;
 //    binnedLogLike.getFreeParamValues(params);
