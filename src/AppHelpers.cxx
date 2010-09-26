@@ -172,8 +172,8 @@ void AppHelpers::setRoi(const std::string & filename,
 
 std::string AppHelpers::responseFuncs(const std::string & file,
                                       const std::string & respBase) {
-   static char * respcombos[] = {"DC2", "DC2FA", "DC2BA", "DC2FB", "DC2BB", 
-                                 "DC2_A"};
+   static const char * respcombos[] = {"DC2", "DC2FA", "DC2BA", 
+                                       "DC2FB", "DC2BB", "DC2_A"};
    if (respBase != "DC2") {
       return respBase;
    }
