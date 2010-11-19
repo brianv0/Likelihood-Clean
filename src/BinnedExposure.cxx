@@ -95,7 +95,13 @@ double BinnedExposure::operator()(double energy, double ra, double dec) const {
    std::vector<double>::const_iterator ie = ::findNearest(m_energies, energy);
    unsigned int k = ie - m_energies.begin();
 
-   std::pair<double, double> pixel = m_proj->sph2pix(ra, dec);
+   std::pair<double, double> pixel;
+   if (m_proj->isGalactic()) {
+      astro::SkyDir my_dir(ra, dec);
+      pixel = m_proj->sph2pix(my_dir.l(), my_dir.b());
+   } else {
+      pixel = m_proj->sph2pix(ra, dec);
+   }
 
    int i = static_cast<int>(pixel.first) - 1;
    int j = static_cast<int>(pixel.second) - 1;
