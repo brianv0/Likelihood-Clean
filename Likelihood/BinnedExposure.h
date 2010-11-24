@@ -20,6 +20,7 @@ namespace astro {
 
 namespace Likelihood {
 
+   class CountsMap;
    class Observation;
 
 /**
@@ -40,6 +41,8 @@ public:
                   const Observation & observation);
 
    BinnedExposure(const std::string & filename);
+
+   BinnedExposure(const CountsMap * cmap, const Observation & observation);
 
    ~BinnedExposure();
 
@@ -68,6 +71,8 @@ protected:
       return *this;
    }
 
+   void setMapGeometry(const CountsMap * cmap);
+
 private:
 
    const Observation * m_observation;
@@ -75,6 +80,16 @@ private:
    std::vector<float> m_exposureMap;
 
    std::vector<double> m_energies;
+
+   // Coordinate system parameters to be fed to SkyProj.  These are
+   // either set to all-sky values (CAR, CEL) or to match the geometry
+   // of the input counts map.
+   std::string m_proj_name;
+   double m_crpix[2];
+   double m_crval[2];
+   double m_cdelt[2];
+   double m_crota2(0);
+   bool m_isGalactic
 
    astro::SkyProj * m_proj;
 
