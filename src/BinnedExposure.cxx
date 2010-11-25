@@ -184,6 +184,11 @@ double BinnedExposure::Aeff::operator()(double cosTheta, double phi) const {
    for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
       if (respIt->second->irfID() == m_evtType) {
          irfInterface::IAeff * aeff = respIt->second->aeff();
+	 //turn off phi dependence if it is absent from
+	 //the livetime cube
+	 if (!m_observation.expCube().hasPhiDependence()){
+	   aeff->setPhiDependence(false);
+	 }
          double aeff_val = aeff->value(m_energy, inclination, phi);
          return aeff_val;
       }
