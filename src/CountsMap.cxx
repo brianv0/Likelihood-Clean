@@ -273,7 +273,10 @@ void CountsMap::readEbounds(const std::string & countsMapFile,
    }
    energies.back() = emax;
 
-   m_energies = energies;
+   m_energies.clear();
+   for (size_t k(0); k < energies.size(); k++) {
+      m_energies.push_back(energies[k]/1e3);
+   }
 
    std::vector<evtbin::Binner::Interval> energy_intervals;
 // Convert to MeV
