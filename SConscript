@@ -28,6 +28,8 @@ gttsmapBin = progEnv.Program('gttsmap', listFiles(['src/TsMap/*.cxx']))
 
 gtltcubeBin = progEnv.Program('gtltcube', listFiles(['src/makeExposureCube/*.cxx']))
 
+gtexpcube2Bin = progEnv.Program('gtexpcube2', listFiles(['src/gtexpcube2/*.cxx']))
+
 gtdiffrspBin = progEnv.Program('gtdiffrsp', listFiles(['src/diffuseResponses/*.cxx']))
 
 gtsrcmapsBin = progEnv.Program('gtsrcmaps', listFiles(['src/gtsrcmaps/*.cxx']))
@@ -52,6 +54,7 @@ progEnv.Tool('registerTargets', package = 'Likelihood',
                            [gtexpmapBin, progEnv],
                            [gttsmapBin, progEnv],
                            [gtltcubeBin, progEnv],
+                           [gtexpcube2Bin, progEnv],
                            [gtdiffrspBin, progEnv],
                            [gtsrcmapsBin, progEnv],
                            [gtsrcprobBin, progEnv],

@@ -11,6 +11,7 @@
 #include "tip/Table.h"
 
 #include "Likelihood/ExposureCube.h"
+#include "Likelihood/Observation.h"
 
 namespace Likelihood {
 
@@ -53,6 +54,39 @@ bool ExposureCube::phiDependence(const std::string & filename) const {
       nphibins = 0;
    }
    return nphibins > 0;
+}
+
+ExposureCube::Aeff::Aeff(double energy, int evtType, 
+                         const Observation & observation) 
+   : m_energy(energy), m_evtType(evtType), m_observation(observation) {
+// Turn off phi-dependence if omitted from livetime cube.
+   bool phi_dependence(m_observation.expCube().hasPhiDependence());
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
+      = m_observation.respFuncs().begin();
+   for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
+      if (respIt->second->irfID() == m_evtType) {
+         respIt->second->aeff()->setPhiDependence(phi_dependence);
+      }
+   }   
+}
+
+double ExposureCube::Aeff::operator()(double cosTheta, double phi) const {
+   double inclination = acos(cosTheta)*180./M_PI;
+// Check if we need to truncate the inclination past 70 deg as in 
+// MeanPsf::Aeff::operator()(...)
+   // if (inclination > 70.) {
+   //    return 0;
+   // }
+   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
+      = m_observation.respFuncs().begin();
+   for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
+      if (respIt->second->irfID() == m_evtType) {
+         irfInterface::IAeff * aeff = respIt->second->aeff();
+         double aeff_val = aeff->value(m_energy, inclination, phi);
+         return aeff_val;
+      }
+   }
+   return 0;
 }
 
 } // namespace Likelihood

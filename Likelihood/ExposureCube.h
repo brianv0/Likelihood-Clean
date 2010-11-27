@@ -19,6 +19,8 @@
 
 namespace Likelihood {
 
+   class Observation;
+
 /**
  * @class ExposureCube
  * @brief Exposure time as a function of sky position and inclination
@@ -86,7 +88,7 @@ public:
       }
       return exposure;
    }
-#endif
+#endif // SWIG
 
    bool haveFile() const {
       return m_haveFile;
@@ -99,6 +101,20 @@ public:
    bool hasPhiDependence() const {
       return m_hasPhiDependence;
    }
+
+   class Aeff {
+   public:
+      Aeff(double energy, int evtType, const Observation & observation); 
+      virtual ~Aeff() {}
+      virtual double operator()(double cosTheta, double phi=0) const;
+      virtual double integral(double cosTheta, double phi=0) const {
+         return operator()(cosTheta, phi);
+      }
+   private:
+      double m_energy;
+      int m_evtType;
+      const Observation & m_observation;
+   };
 
 private:
 
