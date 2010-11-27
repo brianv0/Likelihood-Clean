@@ -124,6 +124,10 @@ public:
    bool conformingMap() const {return m_conforms;}
    bool isGalactic() const {return m_use_lb;}
 
+   const std::vector<double> & energies() const {
+      return m_energies;
+   }
+
 protected:
 
    HistND * m_hist;
@@ -135,6 +139,8 @@ protected:
    double m_axis_rot;
    bool m_use_lb;
    astro::SkyProj * m_proj;
+
+   std::vector<double> m_energies;
 
 private:
 
