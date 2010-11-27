@@ -1018,7 +1018,7 @@ void LikelihoodTests::test_BinnedExposure() {
    for (unsigned int i = 0; i < npts; i++) {
       energies.push_back(emin*exp(i*estep));
    }
-   BinnedExposure binnedExposure(energies, *m_observation);
+   BinnedExposure binnedExposure(energies, "CAR", "CEL", *m_observation);
 
    std::string filename("binnedExposure.fits");
 

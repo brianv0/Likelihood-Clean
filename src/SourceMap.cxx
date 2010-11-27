@@ -387,7 +387,8 @@ void SourceMap::computeExposureAndPsf(const Observation & observation) {
       try {
          s_binnedExposure = new BinnedExposure(s_expMapFileName);
       } catch (tip::TipException &) {
-         s_binnedExposure = new BinnedExposure(energies, observation);
+         s_binnedExposure = new BinnedExposure(energies, "CAR", "CEL",
+                                               observation);
          s_binnedExposure->writeOutput(s_expMapFileName);
       }
    }
