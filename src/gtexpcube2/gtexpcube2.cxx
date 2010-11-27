@@ -94,7 +94,7 @@ void ExpCube::run() {
    }
    std::vector<double> energies;
    cmap.getAxisVector(2, energies);
-
+   
    BinnedExposure bexpmap(energies, m_pars["proj"], m_pars["coordsys"],
                           m_helper->observation());
    bexpmap.writeOutput(m_pars["outfile"]);
