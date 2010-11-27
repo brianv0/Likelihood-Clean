@@ -59,7 +59,8 @@ BinnedExposure::BinnedExposure() : m_observation(0), m_proj(0) {}
 
 BinnedExposure::BinnedExposure(const CountsMap & cmap,
                                const Observation & observation,
-                               bool useEbounds) {
+                               bool useEbounds) 
+   : m_observation(&observation), m_proj(0) {
    setMapGeometry(cmap);
    if (!useEbounds) {
       for (size_t k(0); k < m_energies.size()-1; k++) {
