@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-00-01 28-Nov-2010 jchiang unit test fixes
  Likelihood-17-00-00 27-Nov-2010 jchiang add gtexpcube2; implement phi-dependence flags
  Likelihood-16-15-00 19-Nov-2010 jchiang bug-fix in BinnedExposure.cxx: check if binned exposure map is in Galactic coordinates when returning map values
  Likelihood-16-14-00 03-Nov-2010 jchiang disable binned exposure map generation in gtsrcmaps
