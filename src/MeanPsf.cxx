@@ -40,8 +40,7 @@ void MeanPsf::init() {
             resp = m_observation.respFuncs().begin();
          for (; resp != m_observation.respFuncs().end(); ++resp) {
             int evtType = resp->second->irfID();
-//            Aeff aeff(m_energies[k], evtType, m_observation);
-            ExposureCube::Aeff aeff(m_energies[k], evtType, m_observation);
+            Aeff aeff(m_energies[k], evtType, m_observation);
             expsr_val += m_observation.expCube().value(m_srcDir, aeff,
                                                        m_energies[k]);
             Psf psf(s_separations[j], m_energies[k], evtType, m_observation);
@@ -201,6 +200,14 @@ double MeanPsf::Psf::operator()(double cosTheta, double phi) const {
       }
    }
    return 0;
+}
+
+double MeanPsf::Aeff::operator()(double cosTheta, double phi) const {
+   double inclination = acos(cosTheta)*180./M_PI;
+   if (inclination > 70.) {
+      return 0;
+   }
+   return ExposureCube::Aeff::operator()(cosTheta, phi);
 }
 
 } // namespace Likelihood
