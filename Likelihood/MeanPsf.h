@@ -120,6 +120,13 @@ private:
       const Observation & m_observation;
    };
 
+   class Aeff : public ExposureCube::Aeff {
+   public:
+      Aeff(double energy, int evtType, const Observation & observation) 
+         : ExposureCube::Aeff(energy, evtType, observation) {}
+      virtual double operator()(double cosTheta, double phi=0) const;
+   };
+
 };
 
 }
