@@ -64,9 +64,7 @@ ExposureCube::Aeff::Aeff(double energy, int evtType,
    std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = m_observation.respFuncs().begin();
    for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
-      if (respIt->second->irfID() == m_evtType) {
-         respIt->second->aeff()->setPhiDependence(phi_dependence);
-      }
+      respIt->second->aeff()->setPhiDependence(phi_dependence);
    }   
 }
 
