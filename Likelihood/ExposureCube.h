@@ -110,7 +110,7 @@ public:
       virtual double integral(double cosTheta, double phi=0) const {
          return operator()(cosTheta, phi);
       }
-   private:
+   protected:
       double m_energy;
       int m_evtType;
       const Observation & m_observation;
