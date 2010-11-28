@@ -61,11 +61,13 @@ ExposureCube::Aeff::Aeff(double energy, int evtType,
    : m_energy(energy), m_evtType(evtType), m_observation(observation) {
 // Turn off phi-dependence if omitted from livetime cube.
    bool phi_dependence(m_observation.expCube().hasPhiDependence());
-   std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
-      = m_observation.respFuncs().begin();
-   for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
-      respIt->second->aeff()->setPhiDependence(phi_dependence);
-   }   
+   if (!phi_dependence) {
+      std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
+         = m_observation.respFuncs().begin();
+      for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
+         respIt->second->aeff()->setPhiDependence(false);
+      }
+   }
 }
 
 double ExposureCube::Aeff::operator()(double cosTheta, double phi) const {
