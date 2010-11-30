@@ -14,6 +14,10 @@
 #include <string>
 #include <vector>
 
+namespace st_app {
+   class AppParGroup;
+}
+
 namespace astro {
    class SkyProj;
 }
@@ -42,9 +46,8 @@ public:
                   bool useEbounds=true);
 
    BinnedExposure(const std::vector<double> & energies,
-                  const std::string & proj,
-                  const std::string & coordsys,
-                  const Observation & observation);
+                  const Observation & observation,
+                  const st_app::AppParGroup * pars=0);
 
    BinnedExposure(const std::string & filename);
 
@@ -76,6 +79,8 @@ protected:
    }
 
    void setMapGeometry(const CountsMap & cmap);
+
+   void setMapGeometry(const st_app::AppParGroup & pars);
 
    void setMapGeometry();
 
