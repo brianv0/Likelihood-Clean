@@ -116,7 +116,7 @@ void ExpCube::run() {
 void ExpCube::generateEnergies(std::vector<double> & energies) const {
    double emin = m_pars["emin"];
    double emax = m_pars["emax"];
-   size_t enumbins = m_pars["enumbins"];
+   int enumbins = m_pars["enumbins"];
    double estep = std::log(emax/emin)/enumbins;
    energies.clear();
    for (size_t k(0); k < enumbins + 1; k++) {
