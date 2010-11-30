@@ -169,7 +169,8 @@ void BinnedExposure::setMapGeometry(const st_app::AppParGroup & pars) {
    m_proj_name = proj_name;
    m_crpix[0] = m_naxes[0]/2. + 0.5;
    m_crpix[1] = m_naxes[1]/2. + 0.5;
-   m_isGalactic = (pars["coordsys"] == "GAL");
+   std::string coordsys = pars["coordsys"];
+   m_isGalactic = (coordsys == "GAL");
 }
 
 void BinnedExposure::setMapGeometry() {
