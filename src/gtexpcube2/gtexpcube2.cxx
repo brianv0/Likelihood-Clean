@@ -76,7 +76,8 @@ void ExpCube::run() {
    std::string ltcube_file = m_pars["infile"];
 
    bool useEbounds(true);
-   if (m_pars["bincalc"] == "CENTER") {
+   std::string bincalc = m_pars["bincalc"];
+   if (bincalc == "CENTER") {
       useEbounds = false;
    }
    set_phi_status();
