@@ -80,13 +80,13 @@ void ExpCube::run() {
    if (bincalc == "CENTER") {
       useEbounds = false;
    }
-   set_phi_status();
 
    if (cmap_file != "none") {
       m_helper = new AppHelpers(&m_pars, "BINNED");
    } else {
       m_helper = new AppHelpers(&m_pars, "NONE");
    }
+   set_phi_status();
    m_helper->checkOutputFile();
    ExposureCube & ltcube = 
       const_cast<ExposureCube &>(m_helper->observation().expCube());
