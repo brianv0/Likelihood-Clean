@@ -14,6 +14,8 @@
 #include <string>
 #include <vector>
 
+#include "Likelihood/ExposureCube.h"
+
 namespace st_app {
    class AppParGroup;
 }
@@ -106,7 +108,21 @@ private:
 
    std::vector<long> m_naxes;
 
+   double m_costhmin;
+
    void computeMap();
+
+   class Aeff : public ExposureCube::Aeff {
+   public:
+      Aeff(double energy, int evtType, const Observation & observation,
+           double costhmin) 
+         : ExposureCube::Aeff(energy, evtType, observation),
+           m_costhmin(costhmin) {}
+      virtual double operator()(double cosTheta, double phi=0) const;
+   private:
+      double m_costhmin;
+   };
+   
 };
 
 } // namespace Likelihood
