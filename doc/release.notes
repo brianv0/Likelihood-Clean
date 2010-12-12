@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-01-00 12-Dec-2010 jchiang enable ccube output for gtmodel
  Likelihood-17-00-04 09-Dec-2010 jchiang add thmax parameter option for gtexpcube2
  Likelihood-17-00-03 08-Dec-2010 jchiang bug-fixes for bincalc and ignorephi options for gtexpcube2: bincalc=CENTER had no effect, and ignorephi=yes would cause a crash
  Likelihood-17-00-02 29-Nov-2010 jchiang allow user-specified geometry in gtexpcube2
