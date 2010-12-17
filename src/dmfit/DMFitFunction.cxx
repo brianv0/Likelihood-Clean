@@ -58,7 +58,7 @@ static  enum  {norm,sigmav,mass,bratio,channel0,channel1} ParamType;
    m_argType = "dArg";
 
    m_genericName = "DMFitFunction";
-   m_normParName = "norm";
+   m_normParName = "sigmav";
 
 }
 
