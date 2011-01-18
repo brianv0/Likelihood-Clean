@@ -455,6 +455,9 @@ double BinnedLikelihood::spectrum(const Source * src, double energy) const {
 
 double BinnedLikelihood::pixelCounts(double emin, double emax,
                                      double y1, double y2) const {
+   if (::getenv("USE_LOG_LOG_QUADRATURE")) {
+      return (y1*emin + y2*emax)/2.*std::log(emax/emin);
+   }
    return (y1 + y2)*(emax - emin)/2.;
 //    if (::getenv("USE_OLD_PIX_EST")) {
 //       return (y1 + y2)*(emax - emin)/2.;
