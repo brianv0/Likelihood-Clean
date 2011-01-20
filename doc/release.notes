@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-03-00 20-Jan-2011 jchiang make trapezoidal rule integration in log-log space the default behavior for the binned Npred calculations
  Likelihood-17-02-00 04-Jan-2011 jchiang enable ebinfile input to gtexpcube2
  Likelihood-17-01-01 12-Dec-2010 jchiang write EBOUNDS extension for ccubes from gtmodel
  Likelihood-17-01-00 12-Dec-2010 jchiang enable ccube output for gtmodel
