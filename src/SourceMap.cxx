@@ -64,12 +64,6 @@ namespace {
 
 namespace Likelihood {
 
-// /// @bug Use of this function (by CountsSpectra.cxx) is necessitated by
-// /// annoying linkage problems on Windows.
-// void getNpreds(const SourceMap & srcMap, std::vector<double> & npreds) {
-//    npreds = srcMap.npreds();
-// }
-
 std::string SourceMap::s_expMapFileName;
 MeanPsf * SourceMap::s_meanPsf(0);
 BinnedExposure * SourceMap::s_binnedExposure(0);
@@ -166,10 +160,12 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
       unsigned int indx(0);
       std::vector<double>::const_iterator energy = energies.begin();
       for (int k(0); energy != energies.end(); ++energy, k++) {
+         bool interpolate;
          WcsMap diffuseMap(*diffuseSrc, mapRefDir.ra(), mapRefDir.dec(),
                            crpix1, crpix2, cdelt1, cdelt2, naxis1, naxis2,
                            *energy, dataMap->proj_name(), 
-                           dataMap->projection().isGalactic(), true);
+                           dataMap->projection().isGalactic(), 
+                           interpolate=true);
          WcsMap convolvedMap(diffuseMap.convolve(*energy, *s_meanPsf, 
                                                  *s_binnedExposure,
                                                  performConvolution));
