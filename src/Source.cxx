@@ -156,10 +156,11 @@ double Source::pixelCounts(double emin, double emax,
 
    double y1(f1*wtMin);
    double y2(f2*wtMax);
-   if (::getenv("USE_LOG_LOG_QUADRATURE")) {
-      return (y1*emin + y2*emax)/2.*std::log(emax/emin);
+   if (::getenv("USE_LINEAR_QUADRATURE")) {
+      return (y1 + y2)*(emax - emin)/2.;
    }
-   return (y1 + y2)*(emax - emin)/2.;
+// Quadrature in log-log space, suggested by J. Ballet.   
+   return (y1*emin + y2*emax)/2.*std::log(emax/emin);
 //    if (::getenv("USE_OLD_PIX_EST") || y1 == 0 || y2 == 0) {
 //       return (y1 + y2)*(emax - emin)/2.;
 //    }
@@ -186,10 +187,11 @@ double Source::pixelCountsDeriv(double emin, double emax,
 
    double dy1dp(f1*wtMin);
    double dy2dp(f2*wtMax);
-   if (::getenv("USE_LOG_LOG_QUADRATURE")) {
-      return (dy1dp*emin + dy2dp*emax)/2.*std::log(emax/emin);
+   if (::getenv("USE_LINEAR_QUADRATURE")) {
+      return (dy1dp + dy2dp)*(emax - emin)/2.;
    }
-   return (dy1dp + dy2dp)*(emax - emin)/2.;
+// Quadrature in log-log space, suggested by J. Ballet.   
+   return (dy1dp*emin + dy2dp*emax)/2.*std::log(emax/emin);
 //    if (::getenv("USE_OLD_PIX_EST") || y1 == 0 || y2 == 0) {
 //       return (dy1dp + dy2dp)*(emax - emin)/2.;
 //    }
