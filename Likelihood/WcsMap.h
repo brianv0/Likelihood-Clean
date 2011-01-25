@@ -95,6 +95,14 @@ public:
 
    double mapIntegral() const;
 
+   double cdelt1() const {
+      return m_cdelt1;
+   }
+
+   double cdelt2() const {
+      return m_cdelt2;
+   }
+
 private:
 
    astro::SkyDir m_refDir;
