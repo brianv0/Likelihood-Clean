@@ -23,6 +23,7 @@ namespace st_stream {
 namespace Likelihood {
 
    class CountsMap;
+   class DiffuseSource;
    class PointSource;
    class Source;
 
@@ -115,6 +116,9 @@ private:
    void computeExposureAndPsf(const Observation & observation);
 
    void computeNpredArray();
+
+   double computeResampFactor(const DiffuseSource & src,
+                              const CountsMap & dataMap) const;
 };
 
 } // namespace Likelihood
