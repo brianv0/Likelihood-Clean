@@ -109,18 +109,20 @@ private:
    std::vector<long> m_naxes;
 
    double m_costhmin;
+   double m_costhmax;
 
    void computeMap();
 
    class Aeff : public ExposureCube::Aeff {
    public:
       Aeff(double energy, int evtType, const Observation & observation,
-           double costhmin) 
+           double costhmin, double costhmax) 
          : ExposureCube::Aeff(energy, evtType, observation),
-           m_costhmin(costhmin) {}
+           m_costhmin(costhmin), m_costhmax(costhmax) {}
       virtual double operator()(double cosTheta, double phi=0) const;
    private:
       double m_costhmin;
+      double m_costhmax;
    };
    
 };
