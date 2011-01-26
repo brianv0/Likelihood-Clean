@@ -118,6 +118,8 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
          resamp_factor = std::max(resamp_factor, 
                                   computeResampFactor(*diffuseSrc, *dataMap));
       }
+      m_formatter->info(4) << "resampling factor: " 
+                           << resamp_factor << std::endl;
       double crpix1, crpix2;
       int naxis1, naxis2;
       double cdelt1 = dataMap->cdelt1()/resamp_factor;
