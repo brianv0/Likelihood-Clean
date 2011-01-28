@@ -3,6 +3,7 @@
 # Authors: James Chiang <jchiang@slac.stanford.edu>, Pat Nolan <pln@razzle.stanford.edu>
 # Version: Likelihood-17-04-01
 
+import sys
 Import('baseEnv', 'listFiles')
 progEnv = baseEnv.Clone()
 libEnv = baseEnv.Clone()
@@ -17,6 +18,9 @@ progEnv.Tool('LikelihoodLib')
 
 testEnv = progEnv.Clone()
 testEnv.Tool('addLibrary', library = baseEnv['cppunitLibs'])
+
+if sys.platform == 'darwin':
+    testEnv.Append(CPPDEFINES = 'DARWIN')
 test_LikelihoodBin = testEnv.Program('test_Likelihood',
                                      listFiles(['src/test/*.cxx']))
 
