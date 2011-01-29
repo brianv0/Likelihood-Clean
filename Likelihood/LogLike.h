@@ -79,6 +79,10 @@ public:
 
    void saveCurrentFit();
 
+   virtual void addPrior(size_t index, 
+                         optimizers::Function & log_prior,
+                         optimizers::Function & log_prior_deriv);
+
 protected:
 
    virtual LogLike * clone() const {
