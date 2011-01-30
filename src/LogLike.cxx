@@ -78,7 +78,7 @@ double LogLike::value(optimizers::Arg&) const {
    std::vector<optimizers::Parameter>::const_iterator par(m_parameter.begin());
    for ( ; par != m_parameter.end(); ++par) {
       if (par->isFree()) {
-         my_total += par->log_prior();
+         my_total += par->log_prior_value();
       }
    }
 
@@ -353,9 +353,8 @@ void LogLike::saveCurrentFit() {
 }
 
 void LogLike::addPrior(size_t index,
-                       optimizers::Function & log_prior,
-                       optimizers::Function & log_prior_deriv) {
-   m_parameter[index].setPrior(log_prior, log_prior_deriv);
+                       optimizers::Function & log_prior) {
+   m_parameter[index].setPrior(log_prior);
 }
 
 } // namespace Likelihood
