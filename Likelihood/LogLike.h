@@ -79,9 +79,7 @@ public:
 
    void saveCurrentFit();
 
-   virtual void addPrior(size_t index, 
-                         optimizers::Function & log_prior,
-                         optimizers::Function & log_prior_deriv);
+   virtual void addPrior(size_t index, optimizers::Function & log_prior);
 
 protected:
 

@@ -37,7 +37,7 @@ public:
    double derivByParam(optimizers::Arg & x, 
                        const std::string & paramName) const;
 
-   double integral(optimizers::Arg & xmin, optimizers::Arg & xmax) const;
+   double derivative(optimizers::Arg & x) const;
    
    virtual Function * clone() const {
       return new LogGaussian(*this);
