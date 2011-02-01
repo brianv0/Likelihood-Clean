@@ -50,7 +50,7 @@ static  enum  {norm,sigmav,mass,bratio,channel0,channel1} ParamType;
    addParam("channel0", channel0, false);
    addParam("channel1", channel1, false);
 
-   setParamAlwaysFixed("norm");
+   //setParamAlwaysFixed("norm");
    setParamAlwaysFixed("channel0");
    setParamAlwaysFixed("channel1");
 
