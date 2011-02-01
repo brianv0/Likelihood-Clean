@@ -87,6 +87,15 @@ double BinnedLikelihood::value(optimizers::Arg & dummy) const {
    double my_total(m_accumulator.total());
 //    saveBestFit(my_value);
 //    return my_value;
+
+/// Add in contribution from priors.
+   std::vector<optimizers::Parameter>::const_iterator par(m_parameter.begin());
+   for ( ; par != m_parameter.end(); ++par) {
+      if (par->isFree()) {
+         my_total += par->log_prior_value();
+      }
+   }
+
    saveBestFit(my_total);
    return my_total;
 }
@@ -192,6 +201,16 @@ void BinnedLikelihood::getFreeDerivs(std::vector<double> & derivs) const {
    }
    for (size_t i(0); i < derivs.size(); i++) {
       derivs[i] = m_posDerivs[i].total() + m_negDerivs[i].total(); 
+   }
+
+   /// Derivatives from priors.
+   size_t i(0);
+   std::vector<optimizers::Parameter>::const_iterator par(m_parameter.begin());
+   for ( ; par != m_parameter.end(); ++par) {
+      if (par->isFree()) {
+         derivs[i] += par->log_prior_deriv();
+         i++;
+      }
    }
 }
 
