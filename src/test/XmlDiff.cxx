@@ -15,7 +15,9 @@
 
 #include "XmlDiff.h"
 
-XERCES_CPP_NAMESPACE_USE
+//XERCES_CPP_NAMESPACE_USE
+using XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument;
+using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
 
 XmlDiff::XmlDiff(std::string file1, std::string file2,
                  const std::string & tagName, const std::string & attribute) 

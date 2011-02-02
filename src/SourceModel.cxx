@@ -41,7 +41,9 @@
 
 namespace Likelihood {
 
-XERCES_CPP_NAMESPACE_USE
+//XERCES_CPP_NAMESPACE_USE
+using XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument;
+using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
 
 SourceModel::SourceModel(const Observation & observation, bool verbose) 
    : m_observation(observation), m_useNewImp(true), m_verbose(verbose), 
