@@ -91,9 +91,7 @@ double BinnedLikelihood::value(optimizers::Arg & dummy) const {
 /// Add in contribution from priors.
    std::vector<optimizers::Parameter>::const_iterator par(m_parameter.begin());
    for ( ; par != m_parameter.end(); ++par) {
-      if (par->isFree()) {
-         my_total += par->log_prior_value();
-      }
+      my_total += par->log_prior_value();
    }
 
    saveBestFit(my_total);
