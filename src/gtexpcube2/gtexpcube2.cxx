@@ -96,7 +96,8 @@ void ExpCube::run() {
 // Create map to match counts map.
       m_helper->checkTimeCuts(cmap_file, "", ltcube_file, "Exposure");
       CountsMap cmap(cmap_file);
-      BinnedExposure bexpmap(cmap, m_helper->observation(), useEbounds);
+      BinnedExposure bexpmap(cmap, m_helper->observation(), useEbounds, 
+                             &m_pars);
       bexpmap.writeOutput(m_pars["outfile"]);
       return;
    }
