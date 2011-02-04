@@ -41,11 +41,12 @@ class BinnedExposure {
 
 public:
 
-   BinnedExposure();
+   // BinnedExposure();
 
    BinnedExposure(const CountsMap & cmap, 
                   const Observation & observation, 
-                  bool useEbounds=true);
+                  bool useEbounds=true,
+                  const st_app::AppParGroup * pars=0);
 
    BinnedExposure(const std::vector<double> & energies,
                   const Observation & observation,
@@ -110,6 +111,8 @@ private:
 
    double m_costhmin;
    double m_costhmax;
+
+   void setCosThetaBounds(const st_app::AppParGroup & pars);
 
    void computeMap();
 
