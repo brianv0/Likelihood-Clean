@@ -41,7 +41,7 @@ class BinnedExposure {
 
 public:
 
-   // BinnedExposure();
+   BinnedExposure();
 
    BinnedExposure(const CountsMap & cmap, 
                   const Observation & observation, 
