@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-05-03 09-Feb-2011 jchiang fix offset in MapCubeFunction.cxx---same as fix previously applied in WscMap.cxx
  Likelihood-17-05-02 04-Feb-2011 jchiang enable thmin, thmax for ccube geometry input for gtexpcube2
  Likelihood-17-05-01 02-Feb-2011 jchiang bug-fix for including priors from fixed params in likelihood calculations
  Likelihood-17-05-00 01-Feb-2011 jchiang enable priors on individual parameters
