@@ -97,6 +97,9 @@ private:
    double powerLawIntegral(double x1, double x2, double y1, double y2) const;
 
    void computeMapIntegrals();
+
+   double bilinear_interpolation(size_t k, int ix, int iy,
+                                 double x, double y) const;
 };
 
 } // namespace Likelihood
