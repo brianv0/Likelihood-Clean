@@ -140,6 +140,20 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
          ny_offset = (mapsize - dataMap->naxis2()*resamp_factor)/2;
          nx_offset_upper = (mapsize - dataMap->naxis1()*resamp_factor)/2;
          ny_offset_upper = (mapsize - dataMap->naxis2()*resamp_factor)/2;
+         /// For cases where the resampling factor is an odd number, 
+         /// there may be a row or column of pixels not accounted for
+         /// by n[xy]_offset.  Here we add that row or column back in if
+         /// it is missing.
+         int xtest = static_cast<int>((naxis1 - nx_offset - nx_offset_upper) 
+                                      - dataMap->naxis1()*resamp_factor);
+         if (xtest != 0) {
+            nx_offset += 1;
+         }
+         int ytest = static_cast<int>((naxis2 - ny_offset - ny_offset_upper) 
+                                      - dataMap->naxis2()*resamp_factor);
+         if (ytest != 0) {
+            ny_offset += 1;
+         }
          if (!resample) { 
             // Use integer or half-integer reference pixel based on
             // input counts map, even though naxis1 and naxis2 both
