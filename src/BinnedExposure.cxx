@@ -276,7 +276,11 @@ void BinnedExposure::writeOutput(const std::string & filename) const {
    int nee = m_energies.size();
    header["CRVAL3"].set(log(m_energies.at(0)));
    header["CRPIX3"].set(1);
-   header["CDELT3"].set(log(m_energies.at(nee-1)/m_energies.at(0))/(nee-1));
+   if (nee == 1) {
+      header["CDELT3"].set(0);
+   } else {
+      header["CDELT3"].set(log(m_energies.at(nee-1)/m_energies.at(0))/(nee-1));
+   }
    header["CTYPE3"].set("log_Energy");
 
    delete image;
