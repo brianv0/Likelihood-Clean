@@ -41,6 +41,7 @@ public:
 
    virtual double value() const;
    virtual void getFreeParams(std::vector<optimizers::Parameter> &params) const;
+   virtual void fetchParamValues(std::vector<double> &values, bool getFree) const;
    virtual void setFreeParamValues(const std::vector<double> & values);
    virtual unsigned int getNumFreeParams() const;
    virtual void getFreeDerivs(std::vector<double> & derivs) const;
@@ -66,6 +67,8 @@ public:
    void syncParams();
 
    double NpredValue(const std::string &) const {return 0;}
+
+   TiedParameter* getTiedParam(const LogLike & like, size_t i);
 
 protected:
 
