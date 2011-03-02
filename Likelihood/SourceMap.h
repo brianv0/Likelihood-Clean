@@ -71,6 +71,10 @@ public:
 
    static const std::string & binnedExpMap();
 
+   static BinnedExposure & binnedExposure() {
+      return *s_binnedExposure;
+   }
+
 private:
 
    std::string m_name;

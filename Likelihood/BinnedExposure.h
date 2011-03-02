@@ -68,6 +68,10 @@ public:
       return m_energies;
    }
 
+   void setBoundaryFlag(bool enforce_boundaries) {
+      m_enforce_boundaries = enforce_boundaries;
+   }
+
 protected:
 
 // Disable copy constructor and copy assignment operator
@@ -111,6 +115,8 @@ private:
 
    double m_costhmin;
    double m_costhmax;
+
+   bool m_enforce_boundaries;
 
    void setCosThetaBounds(const st_app::AppParGroup & pars);
 
