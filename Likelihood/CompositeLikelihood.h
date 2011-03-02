@@ -42,7 +42,8 @@ public:
    virtual void setFreeParamValues(const std::vector<double> & values);
    virtual unsigned int getNumFreeParams() const;
    virtual void getFreeDerivs(std::vector<double> & derivs) const;
-   virtual void fetchParamValues(std::vector<double> &values, bool getFree) const;
+   virtual void fetchParamValues(std::vector<double> & values, 
+                                 bool getFree) const;
    void syncParams();
 
    double NpredValue(const std::string &) const {return 0;}
