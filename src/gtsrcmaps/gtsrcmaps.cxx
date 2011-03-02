@@ -119,6 +119,8 @@ void gtsrcmaps::run() {
    roiCuts.setCuts(ra, dec, 20., energies.front(), energies.back());
 
    std::string binnedMap = m_pars["bexpmap"];
+   AppHelpers::checkExposureMap(m_pars["cmap"], m_pars["bexpmap"]);
+
    if (!st_facilities::Util::fileExists(binnedMap)) {
       std::ostringstream message;
       message << "Binned exposure map file named "
@@ -127,6 +129,8 @@ void gtsrcmaps::run() {
    } else {
       SourceMap::setBinnedExpMapName(binnedMap);
       SourceMap::setBinnedExposure(binnedMap);
+      bool enforce_boundaries = m_pars["emapbnds"];
+      SourceMap::binnedExposure().setBoundaryFlag(enforce_boundaries);
    }
    bool computePointSources = AppHelpers::param(m_pars, "ptsrc", true);
    bool psf_corrections = AppHelpers::param(m_pars, "psfcorr", true);

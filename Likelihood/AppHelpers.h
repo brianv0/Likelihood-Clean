@@ -136,6 +136,12 @@ public:
 
    static void addFunctionPrototypes(optimizers::FunctionFactory * funcFactory);
 
+   /// Compare the geometry of a binned exposure map to the counts
+   /// (our source) map it is intended to serve.  Raise an exception
+   /// if the exposure map does not cover the counts map.
+   static void checkExposureMap(const std::string & cmapfile,
+                                const std::string & emapfile);
+
 protected:
 
    st_app::AppParGroup * m_pars;
