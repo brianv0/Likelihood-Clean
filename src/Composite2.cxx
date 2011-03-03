@@ -275,13 +275,13 @@ int Composite2::findIndex(const LogLike & like, size_t par_index) const {
    return -1;
 }
 
-  TiedParameter* Composite2::getTiedParam(const LogLike & like, size_t i) {
-    std::vector<TiedParameter *>::const_iterator tp 
-                  = m_tiedPars.begin();
-    for (; tp != m_tiedPars.end(); ++tp) {
-      if((*tp)->has_member(like,i))
-	return *tp;
-    }
-  }
+TiedParameter & Composite2::getTiedParam(const LogLike & like, size_t i) {
+   std::vector<TiedParameter *>::const_iterator tp(m_tiedPars.begin());
+   for (; tp != m_tiedPars.end(); ++tp) {
+      if ((*tp)->has_member(like, i)) {
+         return *(*tp);
+      }
+   }
+}
   
 } // namespace Likleihood
