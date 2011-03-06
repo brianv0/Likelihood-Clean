@@ -123,6 +123,13 @@ private:
 
    double computeResampFactor(const DiffuseSource & src,
                               const CountsMap & dataMap) const;
+   
+   void makePointSourceMap(Source * src, const CountsMap * dataMap,
+                           const Observation & observation,
+                           bool applyPsfCorrections, bool performConvolution,
+                           bool verbose,
+                           const std::vector<double> & energies);
+
 };
 
 } // namespace Likelihood
