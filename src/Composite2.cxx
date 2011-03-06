@@ -282,6 +282,7 @@ TiedParameter & Composite2::getTiedParam(const LogLike & like, size_t i) {
          return *(*tp);
       }
    }
+   throw std::runtime_error("Parameter not found.");
 }
   
 } // namespace Likleihood
