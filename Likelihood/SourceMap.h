@@ -124,11 +124,19 @@ private:
    double computeResampFactor(const DiffuseSource & src,
                               const CountsMap & dataMap) const;
    
+   void makeDiffuseMap(Source * src, 
+                       const CountsMap * dataMap,
+                       const Observation & observation,
+                       bool applyPsfCorrections,
+                       bool performConvolution,
+                       bool resample,
+                       double resamp_factor,
+                       bool verbose);
+
    void makePointSourceMap(Source * src, const CountsMap * dataMap,
                            const Observation & observation,
                            bool applyPsfCorrections, bool performConvolution,
-                           bool verbose,
-                           const std::vector<double> & energies);
+                           bool verbose);
 
 };
 
