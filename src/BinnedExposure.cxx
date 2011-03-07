@@ -140,13 +140,19 @@ double BinnedExposure::operator()(double energy, double ra, double dec) const {
 
    unsigned int indx = (k*m_naxes.at(1) + j)*m_naxes.at(0) + i;
 
+   bool within_bounds = (i >= 0 && i < m_naxes[0] &&
+                         j >= 0 && j < m_naxes[1] &&
+                         k >= 0 && k < m_energies.size());
+
+   if (m_enforce_boundaries && !within_bounds) {
+      throw std::runtime_error("Request for exposure at a sky position that "
+                               "is outside of the map boundaries.");
+   }
+
    try {
       return m_exposureMap.at(indx);
    } catch (std::out_of_range &) {
-      if (m_enforce_boundaries) {
-         throw std::runtime_error("Request for exposure at a sky position that "
-                                  "is outside of the map boundaries.");
-      }
+      // Range check performed already, so do nothing and return 0.
    }
    return 0;
 }
