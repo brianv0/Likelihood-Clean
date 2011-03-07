@@ -364,6 +364,7 @@ void likelihood::createStatistic() {
       m_logLike = new BinnedLikelihood(*m_dataMap, m_helper->observation(),
                                        countsMapFile, apply_psf_corrections);
       std::string binnedMap = m_pars["bexpmap"];
+      AppHelpers::checkExposureMap(m_pars["cmap"], m_pars["bexpmap"]);
       if (binnedMap != "none" && binnedMap != "") {
          SourceMap::setBinnedExposure(binnedMap);
       }

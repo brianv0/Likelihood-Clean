@@ -614,6 +614,7 @@ checkExposureMap(const std::string & cmapfile,
                  const std::string & emapfile) {
    CountsMap cmap(cmapfile);
    BinnedExposure emap(emapfile);
+   emap.setBoundaryFlag(true);
    
    double energy(emap.energies()[0]);
 
@@ -645,7 +646,8 @@ checkExposureMap(const std::string & cmapfile,
    }
    for (size_t indx(0); indx < ii.size(); indx++) {
       astro::SkyDir my_dir;
-      st_facilities::Util::pixel2SkyDir(cmap.projection(), ii[indx], jj[indx], my_dir);
+      st_facilities::Util::pixel2SkyDir(cmap.projection(), 
+                                        ii[indx], jj[indx], my_dir);
       try {
          emap(energy, my_dir.ra(), my_dir.dec());
       } catch (std::runtime_error & eObj) {
