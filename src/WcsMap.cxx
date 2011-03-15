@@ -91,7 +91,8 @@ WcsMap::WcsMap(const std::string & filename,
    header["CRVAL1"].get(m_crval1);
    header["CRVAL2"].get(m_crval2);
 
-   header["CROTA2"].get(m_crota2);
+//   header["CROTA2"].get(m_crota2);
+   m_crota2 = 0;
 
    if (m_proj->isGalactic()) {
       m_coordSys = astro::SkyDir::GALACTIC;
