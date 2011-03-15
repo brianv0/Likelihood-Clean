@@ -138,11 +138,13 @@ void gtsrcmaps::run() {
 
    bool resample = m_pars["resample"];
    int resamp_factor = m_pars["rfactor"];
+   double minbinsz = m_pars["minbinsz"];
 
    m_binnedLikelihood = 
       new BinnedLikelihood(dataMap, m_helper->observation(),
                            cntsMapFile, computePointSources, psf_corrections,
-                           perform_convolution, resample, resamp_factor);
+                           perform_convolution, resample, resamp_factor,
+                           minbinsz);
 
    std::string srcModelFile = m_pars["srcmdl"];
    bool loadMaps, createAllMaps;
