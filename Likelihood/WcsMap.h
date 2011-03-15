@@ -103,6 +103,15 @@ public:
       return m_cdelt2;
    }
 
+   /// Rebin the map data by the specified factor.  By default, this
+   /// will average over combined pixels, as would be appropriate for
+   /// intensity or exposure maps.  For counts maps, set
+   /// average=false, so that combined bins are summed.  Return a new
+   /// WcsMap object with the new geometry.  The reference direction
+   /// will be unchanged from the original (and so will not generally
+   /// point to the center of the map.)
+   WcsMap * rebin(unsigned int factor, bool average=true);
+   
 private:
 
    astro::SkyDir m_refDir;
@@ -115,12 +124,17 @@ private:
    int m_naxis2;
 
    astro::SkyProj * m_proj;
+
+   /// astro::SkyProj provides almost no introspection, so we store the
+   /// map projection locally.
+   double m_crpix1, m_crpix2;
+   double m_crval1, m_crval2;
+   double m_cdelt1, m_cdelt2;
+   double m_crota2;
    
    bool m_interpolate;
 
    bool m_isPeriodic;
-
-   double m_cdelt1, m_cdelt2;
 
    astro::SkyDir::CoordSystem m_coordSys;
 

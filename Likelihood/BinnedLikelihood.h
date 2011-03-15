@@ -43,7 +43,8 @@ public:
                     bool applyPsfCorrections=true,
                     bool performConvolution=true,
                     bool resample=true,
-                    double resamp_factor=2);
+                    double resamp_factor=2,
+                    double minbinsz=0.1);
 
    virtual ~BinnedLikelihood() throw();
 
@@ -158,6 +159,8 @@ private:
    bool m_resample;
    
    double m_resamp_factor;
+   
+   double m_minbinsz;
 
    std::vector<std::string> m_fixedSources;
 

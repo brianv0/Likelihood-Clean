@@ -47,6 +47,7 @@ public:
              bool performConvolution=true,
              bool resample=true,
              double resamp_factor=2,
+             double minbinsz=0.1,
              bool verbose=true);
 
    SourceMap(const std::string & sourceMapsFile, const std::string & srcName);
@@ -131,6 +132,7 @@ private:
                        bool performConvolution,
                        bool resample,
                        double resamp_factor,
+                       double minbinsiz,
                        bool verbose);
 
    void makePointSourceMap(Source * src, const CountsMap * dataMap,
