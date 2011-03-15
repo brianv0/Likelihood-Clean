@@ -60,10 +60,14 @@ public:
       return *m_wcsmap;
    }
 
+   virtual WcsMap & wcsmap();
+
    virtual void deleteMap() {
       delete m_wcsmap;
       m_wcsmap = 0;
    }
+
+   virtual void rebin(unsigned int factor, bool average=true);
 
 protected:
 
@@ -71,8 +75,6 @@ protected:
 
    std::string m_fitsFile;
    std::string m_extension;
-
-   virtual WcsMap & wcsmap();
 
 private:
    
