@@ -169,7 +169,7 @@ double MapCubeFunction::value(optimizers::Arg & xarg) const {
       return 0;
    }
    double value = ::interpolatePowerLaw(energy, m_energies.at(k),
-                                           m_energies.at(k+1), y1, y2);
+                                        m_energies.at(k+1), y1, y2);
    return value*getParam("Normalization").getTrueValue();
 }
 
