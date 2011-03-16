@@ -21,7 +21,7 @@
 #include "optimizers/Function.h"
 
 #include "Likelihood/FluxBuilder.h"
-#include "Likelihood/MapCubeFunction.h"
+#include "Likelihood/MapCubeFunction2.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/Source.h"
@@ -125,7 +125,7 @@ void FluxBuilder::getSourceType(Source &src, std::string & srcType) {
    } else if (srcFuncs.count("SpatialDist")
               && srcFuncs["SpatialDist"]->genericName() == "MapCubeFunction") {
       std::string fitsFile 
-         = dynamic_cast<MapCubeFunction*>(srcFuncs["SpatialDist"])->fitsFile();
+         = dynamic_cast<MapCubeFunction2*>(srcFuncs["SpatialDist"])->fitsFile();
       std::string basename = facilities::Util::basename(fitsFile.c_str());
       srcType = "MapCube";
    } else {
@@ -246,8 +246,8 @@ DOMElement * FluxBuilder::mapCubeSource(Source & src) {
    } else {
       double valueParam
          = srcFuncs["Spectrum"]->getParam("Value").getTrueValue();
-      MapCubeFunction * mapCube 
-         = dynamic_cast<MapCubeFunction *>(srcFuncs["SpatialDist"]);
+      MapCubeFunction2 * mapCube 
+         = dynamic_cast<MapCubeFunction2 *>(srcFuncs["SpatialDist"]);
       double normalization = valueParam/(1e-4/mapCube->mapIntegral());
       std::ostringstream params;
       params << normalization << ","

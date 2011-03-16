@@ -168,6 +168,7 @@ void gtsrcmaps::run() {
                      << "emapbnds=no option when \nrunning gtsrcmaps.";
          throw std::runtime_error(app_message.str());
       }
+      throw;
    }
 
    std::string srcMapsFile = m_pars["outfile"];

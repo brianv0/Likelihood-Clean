@@ -15,7 +15,6 @@
 #include "optimizers/Function.h"
 
 #include "Likelihood/MapBase.h"
-#include "Likelihood/WcsMap.h"
 
 namespace astro {
    class SkyDir;
@@ -25,7 +24,6 @@ namespace Likelihood {
 
 class Event;
 class ResponseFunctions;
-class WcsMap;
 
 /** 
  * @class SpatialMap
