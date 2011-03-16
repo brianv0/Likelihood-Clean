@@ -25,33 +25,27 @@
 namespace Likelihood {
 
 MapCubeFunction2::MapCubeFunction2() 
-   : m_wcsmap(0) {
+   : optimizers::Function(), MapBase() {
    init();
 }
 
 MapCubeFunction2::MapCubeFunction2(const std::string & fitsFile) 
-   : optimizers::Function(), MapBase(fitsFile), 
-     m_wcsmap(new WcsMap2(fitsFile)) {
+   : optimizers::Function(), MapBase(fitsFile) {
    init();
 }
 
 MapCubeFunction2::MapCubeFunction2(const MapCubeFunction2 & rhs)
-   : optimizers::Function(rhs), MapBase(rhs), 
-     m_wcsmap(new WcsMap2(*rhs.m_wcsmap)) {
-   init();
-}
+   : optimizers::Function(rhs), MapBase(rhs) {}
 
 MapCubeFunction2 & MapCubeFunction2::operator=(const MapCubeFunction2 & rhs) {
    if (this != &rhs) {
       optimizers::Function::operator=(rhs);
       MapBase::operator=(rhs);
-      m_wcsmap = new WcsMap2(*rhs.m_wcsmap);
    }
    return *this;
 }
 
 MapCubeFunction2::~MapCubeFunction2() {
-   delete m_wcsmap;
 }
 
 double MapCubeFunction2::value(optimizers::Arg & xarg) const {
