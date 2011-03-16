@@ -67,8 +67,6 @@ public:
 
 private:
 
-   WcsMap2 * m_wcsmap;
-
    void init();
 
 };

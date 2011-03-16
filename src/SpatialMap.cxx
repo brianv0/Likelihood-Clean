@@ -21,7 +21,6 @@
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/SkyDirArg.h"
 #include "Likelihood/SpatialMap.h"
-#include "Likelihood/WcsMap.h"
 
 namespace Likelihood {
 

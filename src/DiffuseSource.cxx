@@ -212,7 +212,7 @@ double DiffuseSource::energyFluxDeriv(const std::string & parName,
 double DiffuseSource::diffuseResponse(const Event & evt) const {
    double trueEnergy(evt.getEnergy());
    const ResponseFunctions & respFuncs(m_observation->respFuncs());
-   const WcsMap & wcsmap(mapBaseObject()->wcsmap());
+   const WcsMap2 & wcsmap(mapBaseObject()->wcsmap());
    const std::vector< std::vector<double> > & solidAngles(wcsmap.solidAngles());
    double my_value(0);
    for (size_t i(0); i < solidAngles.size(); i++) {
