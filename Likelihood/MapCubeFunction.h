@@ -21,12 +21,11 @@ namespace Likelihood {
 
 /**
  * @class MapCubeFunction
+ *
  * @brief Encapsulation of a 3D FITS image, e.g., with RA, Dec, energy
  * dimensions, for modeling diffuse sources with spectral variation as
  * a function of position on the sky.
- * @author J. Chiang
  *
- * $Header$
  */
 
 class MapCubeFunction : public optimizers::Function, public MapBase {
