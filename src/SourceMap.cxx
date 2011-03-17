@@ -125,10 +125,9 @@ void SourceMap::makeDiffuseMap(Source * src,
 // rebin according to the minimum bin size.
    try {
       MapBase & tmp(*diffuseSrc->mapBaseObject());
-      if (tmp.wcsmap().cdelt1() < minbinsz || 
-          tmp.wcsmap().cdelt2() < minbinsz) {
-         double cdelt1 = std::fabs(tmp.wcsmap().cdelt1());
-         double cdelt2 = std::fabs(tmp.wcsmap().cdelt2());
+      double cdelt1 = std::fabs(tmp.wcsmap().cdelt1());
+      double cdelt2 = std::fabs(tmp.wcsmap().cdelt2());
+      if (cdelt1 < minbinsz || cdelt2 < minbinsz) {
          unsigned int factor = 
             std::max(static_cast<unsigned int>(minbinsz/cdelt1),
                      static_cast<unsigned int>(minbinsz/cdelt2));
