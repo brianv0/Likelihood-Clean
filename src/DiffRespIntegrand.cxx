@@ -79,7 +79,15 @@ phiValue(double mu, const astro::SkyDir & srcDir,
    getSrcDir(mu, 0, eqRot, refDir);
 
    double cos_psi = refDir().dot(srcDir());
-   double phi0 = std::acos((cos_psi - mu*mu)/(1. - mu*mu));
+   double arg = (cos_psi - mu*mu)/(1. - mu*mu);
+   double phi0;
+   if (arg <= -1) {
+      phi0 = M_PI;
+   } else if (arg >= 1) {
+      phi0 = 0;
+   } else {
+      phi0 = std::acos(arg);
+   }
    double phi1 = -phi0;
 
    astro::SkyDir srcDir0, srcDir1;
