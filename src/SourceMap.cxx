@@ -158,7 +158,7 @@ void SourceMap::makeDiffuseMap(Source * src,
       resamp_factor = std::max(resamp_factor, 
                                computeResampFactor(*diffuseSrc, *dataMap));
    }
-   m_formatter->info(4) << "resampling factor: " 
+   m_formatter->info(4) << "\nresampling factor: " 
                         << resamp_factor << std::endl;
    double crpix1, crpix2;
    int naxis1, naxis2;

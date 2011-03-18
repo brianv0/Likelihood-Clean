@@ -63,13 +63,16 @@ void MapCubeFunction2::init() {
 
    m_funcType = Addend;
    m_argType = "";
-   m_genericName = "MapCubeFunction2";
+   m_genericName = "MapCubeFunction";
    m_normParName = "Normalization";
 }
 
-
 double MapCubeFunction2::mapIntegral() const {
-   return m_wcsmap->mapIntegral();
+   return wcsmap().mapIntegral();
+}
+
+double MapCubeFunction2::mapIntegral(double energy) const {
+   return wcsmap().mapIntegral(energy);
 }
 
 }
