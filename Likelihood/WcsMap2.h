@@ -100,6 +100,8 @@ public:
 
    double mapIntegral() const;
 
+   double mapIntegral(double energy) const;
+
    double cdelt1() const {
       return m_cdelt1;
    }
@@ -151,9 +153,11 @@ private:
 
    double m_mapIntegral;
 
+   std::vector<double> m_mapIntegrals;
+
    WcsMap2();
 
-   void computeMapIntegral();
+   void computeMapIntegrals();
 
    void check_energy_index(int k) const;
 

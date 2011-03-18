@@ -61,9 +61,7 @@ public:
    /// @return The angular integral of the differential flux as a
    /// function of energy (implementation for
    /// MapBase::mapIntegral(double) const)
-   virtual double mapIntegral(double energy) const {
-      return 0;
-   }
+   virtual double mapIntegral(double energy) const;
 
 private:
 
