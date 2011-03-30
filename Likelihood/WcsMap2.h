@@ -35,18 +35,18 @@ class WcsMap2 {
 public:
 
    WcsMap2(const std::string & filename, const std::string & extension="",
-           bool interpolate=true);
+           bool interpolate=true, bool enforceEnergyRange=false);
 
    WcsMap2(const DiffuseSource & diffuseSource, double ra, double dec,
            double pix_size, int npts, double energy=100.,
            const std::string & proj_name="STG", bool use_lb=false,
-           bool interpolate=false);
+           bool interpolate=false, bool enforceEnergyRange=false);
 
    WcsMap2(const DiffuseSource & diffuseSource, double ra, double dec,
            double crpix1, double crpix2, double cdelt1, double cdelt2,
            int naxis1, int naxis2, double energy=100.,
            const std::string & proj_name="STG", bool use_lb=false,
-           bool interpolate=false);
+           bool interpolate=false, bool enforceEnergyRange=false);
 
    ~WcsMap2();
 
@@ -118,7 +118,15 @@ public:
    /// will be unchanged from the original (and so will not generally
    /// point to the center of the map.)
    WcsMap2 * rebin(unsigned int factor, bool average=true);
-   
+
+   void setExtrapolation(bool enforceEnergyRange);
+
+   bool enforceEnergyRange() const;
+
+   unsigned long extrapolated() const {
+      return m_extrapolated;
+   }
+
 private:
 
    astro::SkyDir m_refDir;
@@ -155,11 +163,19 @@ private:
 
    std::vector<double> m_mapIntegrals;
 
+   bool m_enforceEnergyRange;
+
+   mutable unsigned long m_extrapolated;
+
+   std::string m_filename;
+
    WcsMap2();
 
    void computeMapIntegrals();
 
    void check_energy_index(int k) const;
+
+   void check_energy(double energy) const;
 
    double operator()(const astro::SkyDir & dir, int k) const;
 
