@@ -34,7 +34,7 @@
 #include "optimizers/dArg.h"
 #include "optimizers/FunctionFactory.h"
 #include "optimizers/FunctionTest.h"
-#ifdef DARWIN
+#ifdef DARWIN_F2C_FAILURE
 #include "optimizers/NewMinuit.h"
 #else
 #include "optimizers/Minuit.h"
@@ -829,7 +829,7 @@ void LikelihoodTests::test_BinnedLikelihood() {
 /// restrict bands to (5, 15) for derivative calculations
    for (size_t iter(0); iter < 2; iter++) {
 // Try to fit using binned model.
-#ifdef DARWIN
+#ifdef DARWIN_F2C_FAILURE
       optimizers::NewMinuit my_optimizer(binnedLogLike);
 #else
       optimizers::Minuit my_optimizer(binnedLogLike);
@@ -930,7 +930,7 @@ void LikelihoodTests::test_BinnedLikelihood() {
 }
 
 double fit(BinnedLikelihood & like, double tol=1e-5, int verbose=0) {
-#ifdef DARWIN
+#ifdef DARWIN_F2C_FAILURE
    optimizers::NewMinuit my_optimizer(like);
 #else
    optimizers::Minuit my_optimizer(like);
