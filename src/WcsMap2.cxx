@@ -295,9 +295,11 @@ WcsMap2::~WcsMap2() {
 // // resulting memory leak when this object is deleted.
 //   delete m_proj;
    st_stream::StreamFormatter formatter("WcsMap2", "", 2);
-   formatter.info(3) << "WcsMap2: extrapolated beyond the maximum "
-                     << "energy for map cube file " << m_filename << " "
-                     << m_extrapolated << " times.";
+   if (m_extrapolated > 0) {
+      formatter.info(3) << "WcsMap2: extrapolated beyond the maximum "
+                        << "energy for map cube file " << m_filename << " "
+                        << m_extrapolated << " times.\n";
+   }
 }
 
 WcsMap2::WcsMap2(const WcsMap2 & rhs) 
