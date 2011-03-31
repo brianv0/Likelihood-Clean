@@ -109,6 +109,8 @@ public:
       return m_countsSpectrum;
    }
 
+   std::vector<double> countsSpectrum(const std::string & srcName) const;
+
    virtual void addSource(Source * src);
 
    virtual Source * deleteSource(const std::string & srcName);
@@ -124,6 +126,10 @@ public:
       m_kmin = kmin;
       m_kmax = kmax;
       buildFixedModelWts();
+   }
+
+   std::pair<unsigned int, unsigned int> klims() const {
+      return std::make_pair(m_kmin, m_kmax);
    }
 
 protected:
