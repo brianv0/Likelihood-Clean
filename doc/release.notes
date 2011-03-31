@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-09-00 31-Mar-2011 jchiang add member functions to support source model-weighted counts spectra for BinnedAnalysis.py
  Likelihood-17-08-03 30-Mar-2011 jchiang disable f2c workaround for DARWIN
  Likelihood-17-08-02 30-Mar-2011 jchiang improve high chatter output for extrapolations beyond nominal map cube range in WcsMap2 (and therefore MapCubeFunction).
  Likelihood-17-08-01 30-Mar-2011 jchiang re-enable extrapolations for WcsMap2
