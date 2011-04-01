@@ -128,8 +128,8 @@ public:
       buildFixedModelWts();
    }
 
-   std::pair<unsigned int, unsigned int> klims() const {
-      return std::make_pair(m_kmin, m_kmax);
+   std::pair<int, int> klims() const {
+      return std::make_pair(static_cast<int>(m_kmin), static_cast<int>(m_kmax));
    }
 
 protected:
