@@ -109,7 +109,15 @@ public:
       return m_countsSpectrum;
    }
 
+   /// The source component model-weighted counts spectrum, i.e.,
+   /// based on the source model weights per pixel, this is the counts
+   /// spectrum weighted by the probability of attributing counts in
+   /// each pixel to this source.
    std::vector<double> countsSpectrum(const std::string & srcName) const;
+
+   /// Predicited counts spectrum for the fixed model components
+   /// summed together.
+   std::vector<double> fixedModelSpectrum() const;
 
    virtual void addSource(Source * src);
 
@@ -184,6 +192,9 @@ private:
    /// Minimum and maximum energy plane indexes to use in likelihood 
    /// calculations.
    size_t m_kmin, m_kmax;
+
+   /// Summed npred values at each energy boundary value for fixed sources.
+   std::vector<double> m_fixedNpreds;
 
    void createSourceMaps();
 
