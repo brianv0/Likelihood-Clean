@@ -535,12 +535,12 @@ void BinnedLikelihood::saveSourceMaps(const std::string & filename) {
    std::vector<std::string> srcNames;
    getSrcNames(srcNames);
    for (unsigned int i = 0; i < srcNames.size(); i++) {
-   st_stream::StreamFormatter formatter("BinnedLikelihood",
-                                        "saveSourceMaps", 4);
-   formatter.info() << srcNames.at(i) << std::endl;
+      st_stream::StreamFormatter formatter("BinnedLikelihood",
+                                           "saveSourceMaps", 4);
+      formatter.info() << srcNames.at(i) << std::endl;
       if (m_srcMaps.count(srcNames.at(i))) {
          if (fileHasSourceMap(srcNames.at(i), m_srcMapsFile)) {
-//             replaceSourceMap(srcNames.at(i), m_srcMapsFile);
+//            replaceSourceMap(srcNames.at(i), m_srcMapsFile);
          } else {
             formatter.info() << "appending map for " 
                              << srcNames.at(i) << std::endl;
