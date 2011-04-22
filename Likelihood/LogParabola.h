@@ -19,9 +19,6 @@ namespace Likelihood {
  *
  * @brief A log-parabolic function for modeling Blazar SED components.
  *
- * @author J. Chiang
- *    
- * $Header$
  */
     
 class LogParabola : public optimizers::Function {
