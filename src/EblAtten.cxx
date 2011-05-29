@@ -91,7 +91,7 @@ double EblAtten::value(optimizers::Arg & xarg) const {
 }
 
 double EblAtten::derivByParam(optimizers::Arg & xarg,
-                             const std::string & paramName) const {
+                              const std::string & paramName) const {
    double energy(dynamic_cast<optimizers::dArg &>(xarg).getValue());
    int iparam(-1);
    for (unsigned int i = 0; i < m_parameter.size(); i++) {
