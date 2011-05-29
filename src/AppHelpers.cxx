@@ -45,6 +45,7 @@
 #include "Likelihood/ResponseFunctions.h"
 #include "Likelihood/RoiCuts.h"
 #include "Likelihood/ScData.h"
+#include "Likelihood/ScaleFactor.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SmoothBrokenPowerLaw.h"
 #include "Likelihood/SpatialMap.h"
@@ -160,6 +161,11 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
                         new EblAtten(BrokenPowerLawExpCutoff()), makeClone);
    funcFactory->addFunc("EblAtten::PLSuperExpCutoff", 
                         new EblAtten(PowerLawSuperExpCutoff()), makeClone);
+
+   funcFactory->addFunc("ScaleFactor::FileFunction", 
+                        new ScaleFactor(FileFunction()), makeClone);
+   funcFactory->addFunc("ScaleFactor::PowerLaw2", 
+                        new ScaleFactor(PowerLaw2()), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
