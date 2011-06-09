@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-11-00 09-Jun-2011 jchiang Added EnergyBand decorator class
  Likelihood-17-10-00 29-May-2011 jchiang add ScaleFactor decorator class at DM group request
  Likelihood-17-09-05 04-May-2011 jchiang cp gammamc_dif.dat to Likelihood/data subdirectory so that it gets propagated to installer version
  Likelihood-17-09-04 13-Apr-2011 jchiang fencepost error in WcsMap2 for interpolation
