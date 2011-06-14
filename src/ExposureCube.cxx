@@ -44,7 +44,7 @@ void ExposureCube::readExposureCube(std::string filename) {
 }
 
 double ExposureCube::livetime(const astro::SkyDir & dir,
-                              double costheta) const {
+                              double costheta, double phi) const {
    return m_exposure->data()[dir](costheta, phi);
 }
 

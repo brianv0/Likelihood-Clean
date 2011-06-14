@@ -327,6 +327,16 @@ void CountsMap::init(std::vector<evtbin::Binner *> & binners,
    setDataDir();
 
    checkMapConforms();
+   
+   // Set energy bounds from energy binner.
+   evtbin::Binner & energy_binner(*binners.back());
+   m_energies.clear();
+   evtbin::Binner::Interval interval;
+   for (size_t k(0); k < energy_binner.getNumBins(); k++) {
+      interval = energy_binner.getInterval(k);
+      m_energies.push_back(interval.begin());
+   }
+   m_energies.push_back(interval.end());
 }
 
 CountsMap::CountsMap(const CountsMap & rhs) : DataProduct(rhs) {

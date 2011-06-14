@@ -121,7 +121,7 @@ public:
                 const astro::SkyDir & xAxis,
                 int type) const;
 
-   double edisp(doubel emeas, double etrue,
+   double edisp(double emeas, double etrue,
                 double theta, double phi, int type) const;
 
    double aeff(double etrue, 
