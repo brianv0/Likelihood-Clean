@@ -50,6 +50,8 @@ public:
 
    void readExposureCube(std::string filename);
 
+   double livetime(const astro::SkyDir & dir, double costheta) const;
+
    void setEfficiencyFactor(const irfInterface::IEfficiencyFactor * eff) {
       if (eff) {
          m_efficiencyFactor = eff->clone();
