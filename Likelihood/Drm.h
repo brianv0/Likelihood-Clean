@@ -14,6 +14,8 @@
 #include <deque>
 #include <vector>
 
+#include "astro/SkyDir.h"
+
 namespace Likelihood {
 
 class Observation;
@@ -30,6 +32,7 @@ public:
        
 private:
 
+   astro::SkyDir m_dir;
    Observation & m_observation;
    std::deque<double> m_ebounds;
    size_t m_npts;
