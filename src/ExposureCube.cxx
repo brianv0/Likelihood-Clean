@@ -43,6 +43,11 @@ void ExposureCube::readExposureCube(std::string filename) {
    m_hasPhiDependence = phiDependence(filename);
 }
 
+double ExposureCube::livetime(const astro::SkyDir & dir,
+                              double costheta) const {
+   return m_exposure->data()[dir](costheta, phi);
+}
+
 bool ExposureCube::phiDependence(const std::string & filename) const {
    const tip::Table * table 
       = tip::IFileSvc::instance().readTable(filename, "EXPOSURE");
