@@ -75,7 +75,8 @@ void FileFunction::readFunction(const std::string & filename) {
    facilities::Util::expandEnvVar(&input_file);
    st_facilities::Util::file_ok(input_file);
    std::vector<std::string> lines;
-   bool removeWindowsCRs(true);
+//   bool removeWindowsCRs(true);
+   bool removeWindowsCRs(false);
    st_facilities::Util::readLines(input_file, lines, "#", removeWindowsCRs);
    m_x.clear();
    m_y.clear();
