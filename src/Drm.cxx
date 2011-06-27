@@ -36,7 +36,7 @@ namespace {
 
 namespace Likelihood {
 
-Drm::Drm(double ra, double dec, Observation & observation, 
+Drm::Drm(double ra, double dec, const Observation & observation, 
          const std::vector<double> & ebounds, size_t npts) 
    : m_dir(ra, dec), m_observation(observation), m_npts(npts) {
    // Prepare the energy bounds array to be used for both true and
