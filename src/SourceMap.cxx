@@ -133,7 +133,9 @@ void SourceMap::makeDiffuseMap(Source * src,
                      static_cast<unsigned int>(minbinsz/cdelt2));
          m_formatter->info(4) << "\nrebinning factor: " 
                               << factor << std::endl;
-         tmp.rebin(factor);
+         if (factor > 1) {
+            tmp.rebin(factor);
+         }
       }
    } catch (MapBaseException &) {
       // do nothing
