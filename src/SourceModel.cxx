@@ -37,7 +37,7 @@
 #include "Likelihood/SourceModelBuilder.h"
 #include "Likelihood/SourceModel.h"
 
-#include "XmlParser.h"
+#include "Likelihood/XmlParser.h"
 
 namespace Likelihood {
 

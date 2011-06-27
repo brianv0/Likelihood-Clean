@@ -12,7 +12,7 @@
 
 #include "Likelihood/XmlBuilder.h"
 
-#include "XmlParser.h"
+#include "Likelihood/XmlParser.h"
 
 namespace Likelihood {
 
