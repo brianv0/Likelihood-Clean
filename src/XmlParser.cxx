@@ -7,7 +7,7 @@
  */
 
 #define ST_DLL_EXPORTS
-#include "XmlParser.h"
+#include "Likelihood/XmlParser.h"
 #undef ST_DLL_EXPORTS
 
 namespace Likelihood {

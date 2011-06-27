@@ -37,6 +37,7 @@
 #include "Likelihood/Event.h"
 #include "Likelihood/ScData.h"
 #include "Likelihood/SourceModel.h"
+#include "Likelihood/XmlParser.h"
 
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument;
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
@@ -178,6 +179,7 @@ void diffuseResponses::run() {
                              << std::endl;
       }
    }
+   XmlParser::delete_instance();
 }
 
 void diffuseResponses::promptForParameters() {
