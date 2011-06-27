@@ -1231,6 +1231,26 @@ void LikelihoodTests::test_WcsMap2() {
    double delta(std::fabs(pl_index + 2.1));
    CPPUNIT_ASSERT(mapcube.extrapolated() == 1);
    CPPUNIT_ASSERT(delta < 1e-5);
+
+   // Test rebinning
+   Likelihood::WcsMap2 mapcube0(dataPath("cena_lobes_parkes_south.fits"),
+                                extension="", 
+                                interpolate=true,
+                                enforceEnergyRange=false);
+   
+   Likelihood::WcsMap2 * rebinned_mapcube(0);
+
+   for (size_t i(1); i < 11; i++) {
+      rebinned_mapcube = mapcube0.rebin(i, true);
+//       std::cout << i << "  " 
+//                 << mapcube0.mapIntegral() << "  "
+//                 << rebinned_mapcube->mapIntegral() << std::endl;
+      delta = std::fabs(mapcube0.mapIntegral()-rebinned_mapcube->mapIntegral());
+//      std::cout << delta << std::endl;
+      CPPUNIT_ASSERT(delta < 2e-3);
+      delete rebinned_mapcube;
+   }
+
 }
 
 void LikelihoodTests::test_Drm() {
@@ -1354,6 +1374,10 @@ int main(int iargc, char * argv[]) {
    if (iargc > 1 && std::string(argv[1]) == "-d") { // debug mode
       LikelihoodTests testObj;
       testObj.setUp();
+      testObj.test_LogParabola();
+      testObj.tearDown();
+
+      testObj.setUp();
       testObj.test_LogNormal();
       testObj.tearDown();
 
@@ -1362,11 +1386,11 @@ int main(int iargc, char * argv[]) {
       testObj.tearDown();
 
       testObj.setUp();
-      testObj.test_EblAtten();
+      testObj.test_SmoothBrokenPowerLaw();
       testObj.tearDown();
 
       testObj.setUp();
-      testObj.test_ScaleFactor();
+      testObj.test_EblAtten();
       testObj.tearDown();
 
       testObj.setUp();
@@ -1427,6 +1451,18 @@ int main(int iargc, char * argv[]) {
 
       testObj.setUp();
       testObj.test_rescaling();
+      testObj.tearDown();
+
+      testObj.setUp();
+      testObj.test_DiffRespNames();
+      testObj.tearDown();
+
+      testObj.setUp();
+      testObj.test_WcsMap2();
+      testObj.tearDown();
+
+      testObj.setUp();
+      testObj.test_ScaleFactor();
       testObj.tearDown();
 
       testObj.setUp();
