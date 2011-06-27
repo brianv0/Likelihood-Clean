@@ -55,7 +55,7 @@ public:
 
    SourceFactory(const Observation & observation, bool verbose=false);
 
-   virtual ~SourceFactory();
+   ~SourceFactory();
 
    Source * create(const std::string & name);
 
