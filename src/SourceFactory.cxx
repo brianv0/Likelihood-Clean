@@ -33,8 +33,7 @@
 #include "Likelihood/RadialProfile.h"
 //#include "Likelihood/SpatialMap.h"
 #include "Likelihood/SourceFactory.h"
-
-#include "XmlParser.h"
+#include "Likelihood/XmlParser.h"
 
 namespace Likelihood {
 

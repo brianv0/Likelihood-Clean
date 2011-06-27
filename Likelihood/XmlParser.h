@@ -35,6 +35,11 @@ public:
       return s_instance;
    }
 
+   static void delete_instance() {
+      delete s_instance;
+      s_instance = 0;
+   }
+
 private:
 
    static xmlBase::XmlParser * s_instance;
