@@ -67,7 +67,8 @@ Event::Event(double ra, double dec, double energy, double time,
      m_muZenith(muZenith), m_type(type), m_classLevel(0), 
      m_scDir(scZAxis), m_scXDir(scXAxis),
      m_useEdisp(useEdisp), m_respName(respName), m_modelSum(0),
-     m_efficiency(efficiency) {
+     m_fluxDensities(), m_estep(0), m_trueEnergies(), m_true_energies(),
+     m_efficiency(efficiency), m_respDiffuseSrcs(), m_diffSrcNames() {
    if (m_useEdisp) {
 // For <15% energy resolution, consider true energies over the range
 // (0.55, 1.45)*m_energy, i.e., nominally a >3-sigma range about the
