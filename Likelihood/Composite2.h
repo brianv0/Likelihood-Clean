@@ -69,6 +69,7 @@ public:
    double NpredValue(const std::string &) const {return 0;}
 
    TiedParameter & getTiedParam(const LogLike & like, size_t i);
+   void setTiedParamValue(const LogLike & like, size_t i, double value);
 
 protected:
 
