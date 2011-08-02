@@ -265,6 +265,7 @@ void SourceMap::makeDiffuseMap(Source * src,
          }
       }
    }
+   computeNpredArray();
 // Delete model map for map-based diffuse sources to save memory.  The
 // map will be reloaded dynamically if it is needed again.
    try {
