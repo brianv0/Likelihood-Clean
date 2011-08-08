@@ -277,7 +277,7 @@ void BinnedExposure::writeOutput(const std::string & filename) const {
 
    header["CRVAL2"].set(m_crval[1]);
    double crpix2 = static_cast<double>(m_naxes[1] + 1)/2.;
-   header["CRPIX2"].set(crpix1);
+   header["CRPIX2"].set(crpix2);
    header["CDELT2"].set(m_cdelt[1]);
 
    if (m_isGalactic) {
