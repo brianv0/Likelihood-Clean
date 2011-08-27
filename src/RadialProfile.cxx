@@ -27,7 +27,7 @@ RadialProfile::RadialProfile() : m_center(0) {
 }
 
 RadialProfile::RadialProfile(const std::string & template_file) 
-  : m_center(0) {
+   : m_center(0), m_templateFile(template_file) {
    init();
    readTemplateFile(template_file);
 }
@@ -35,13 +35,14 @@ RadialProfile::RadialProfile(const std::string & template_file)
 RadialProfile::RadialProfile(const RadialProfile & other) 
    : optimizers::Function(other),
      m_center(0),
+     m_templateFile(other.m_templateFile),
      m_theta(other.m_theta), 
      m_profile(other.m_profile) {
    if (other.m_center) {
       m_center = new astro::SkyDir(*other.m_center);
    }
 }
-
+   
 RadialProfile::~RadialProfile() {
    delete m_center;
 }
@@ -52,6 +53,7 @@ RadialProfile & RadialProfile::operator=(const RadialProfile & rhs) {
       if (rhs.m_center) {
          m_center = new astro::SkyDir(*rhs.m_center);
       }
+      m_templateFile = rhs.m_templateFile;
       m_theta = rhs.m_theta;
       m_profile = rhs.m_profile;
    }
@@ -124,6 +126,7 @@ void RadialProfile::init() {
 }
 
 void RadialProfile::readTemplateFile(const std::string & template_file) {
+   m_templateFile = template_file;
    std::vector<std::string> lines;
    bool removeWindowsCRs;
    st_facilities::Util::readLines(template_file, lines, "#", 
@@ -141,6 +144,10 @@ void RadialProfile::readTemplateFile(const std::string & template_file) {
                                   "order.");
       }
    }
+}
+
+const std::string & RadialProfile::templateFile() const {
+   return m_templateFile;
 }
 
 } // namespace Likelihood
