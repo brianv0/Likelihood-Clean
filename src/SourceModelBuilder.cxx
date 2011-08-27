@@ -20,6 +20,7 @@
 #include "Likelihood/DMFitFunction2.h"
 #include "Likelihood/FileFunction.h"
 #include "Likelihood/MapCubeFunction2.h"
+#include "Likelihood/RadialProfile.h"
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/Source.h"
 #include "Likelihood/SourceModelBuilder.h"
@@ -111,6 +112,10 @@ void SourceModelBuilder::addSpatialPart(DOMElement * srcElt, Source & src) {
       } else if (type == "MapCubeFunction") {
          std::string file = 
            dynamic_cast<MapCubeFunction2*>(srcFuncs["SpatialDist"])->fitsFile();
+         xmlBase::Dom::addAttribute(spatialElt, "file", file);
+      } else if (type == "RadialProfile") {
+         std::string file = 
+            dynamic_cast<RadialProfile *>(srcFuncs["SpatialDist"])->templateFile();
          xmlBase::Dom::addAttribute(spatialElt, "file", file);
       }
       srcFuncs["SpatialDist"]->appendParamDomElements(m_doc, spatialElt);

@@ -46,6 +46,8 @@ public:
 
    void readTemplateFile(const std::string & template_file);
 
+   const std::string & templateFile() const;
+
    void setCenter(double ra, double dec);
 
    virtual optimizers::Function * clone() const {
@@ -60,6 +62,8 @@ private:
    double integral(optimizers::Arg &, optimizers::Arg &) const {return 0;}
 
    mutable astro::SkyDir * m_center;
+
+   std::string m_templateFile;
 
    std::vector<double> m_theta;
 
