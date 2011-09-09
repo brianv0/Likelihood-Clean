@@ -177,6 +177,8 @@ private:
 
    void check_energy(double energy) const;
 
+   void check_negative_pixels(const ImagePlane_t &) const;
+
    double operator()(const astro::SkyDir & dir, int k) const;
 
 };
