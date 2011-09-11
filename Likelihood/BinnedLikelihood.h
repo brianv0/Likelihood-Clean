@@ -122,6 +122,8 @@ public:
    virtual void addSource(Source * src);
 
    virtual Source * deleteSource(const std::string & srcName);
+   
+   void eraseSourceMap(const std::string & srcName);
 
    virtual void syncParams();
 
@@ -138,6 +140,10 @@ public:
 
    std::pair<int, int> klims() const {
       return std::make_pair(static_cast<int>(m_kmin), static_cast<int>(m_kmax));
+   }
+
+   void setVerbose(bool verbose) {
+      m_verbose = verbose;
    }
 
 protected:
@@ -175,6 +181,8 @@ private:
    double m_resamp_factor;
    
    double m_minbinsz;
+
+   bool m_verbose;
 
    std::vector<std::string> m_fixedSources;
 
