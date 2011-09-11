@@ -44,6 +44,7 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
      m_resample(resample), 
      m_resamp_factor(resamp_factor), 
      m_minbinsz(minbinsz),
+     m_verbose(true),
      m_kmin(0) {
    dataMap.getAxisVector(2, m_energies);
    m_kmax = m_energies.size() - 1;
@@ -269,6 +270,11 @@ Source * BinnedLikelihood::deleteSource(const std::string & srcName) {
    }
    Source * src(SourceModel::deleteSource(srcName));
    return src;
+}
+
+void BinnedLikelihood::eraseSourceMap(const std::string & srcName) {
+   delete m_srcMaps[srcName];
+   m_srcMaps.erase(srcName);
 }
 
 void BinnedLikelihood::computeModelMap(std::vector<float> & modelMap) const {
@@ -505,7 +511,7 @@ SourceMap * BinnedLikelihood::createSourceMap(const std::string & srcName) {
    Source * src = getSource(srcName);
    return new SourceMap(src, &m_dataMap, m_observation, m_applyPsfCorrections,
                         m_performConvolution, m_resample, m_resamp_factor,
-                        m_minbinsz);
+                        m_minbinsz, m_verbose);
 }
 
 SourceMap * BinnedLikelihood::getSourceMap(const std::string & srcName, 
@@ -520,7 +526,7 @@ SourceMap * BinnedLikelihood::getSourceMap(const std::string & srcName,
                            m_applyPsfCorrections,
                            m_performConvolution,
                            m_resample, m_resamp_factor,
-                           m_minbinsz, verbose);
+                           m_minbinsz, verbose && m_verbose);
    }
    return 0;
 }
