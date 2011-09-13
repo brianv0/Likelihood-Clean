@@ -30,10 +30,7 @@ namespace Likelihood {
  *
  * @brief Objective function for the log(likelihood) of a model comprising
  * multiple Sources.
- *
- * @author J. Chiang
  *    
- * $Header$
  */
 
 class LogLike : public SourceModel {
