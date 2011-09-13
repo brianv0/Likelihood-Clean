@@ -1135,7 +1135,8 @@ void LikelihoodTests::test_BinnedExposure() {
    double ra(180.);
    double dec(0.);
    for (unsigned int i = 0; i < npts; i++) {
-      ASSERT_EQUALS(binnedExposure(energies[i], ra, dec),
+      double bexpmap_value = binnedExposure(energies[i], ra, dec);
+      ASSERT_EQUALS(bexpmap_value,
                     map2(energies[i], ra, dec));
    }
 }
