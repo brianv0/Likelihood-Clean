@@ -452,7 +452,7 @@ long CountsMap::imageDimension(int i) const {
    const evtbin::Hist::BinnerCont_t & binners = m_hist->getBinners();
    if (i < 0 || i > 2) {
       throw std::invalid_argument("CountsMap::imageDimension:\n"
-                                  "Invalid image dimension value.";
+                                  "Invalid image dimension value.");
    }
    return binners[i]->getNumBins();
 }
