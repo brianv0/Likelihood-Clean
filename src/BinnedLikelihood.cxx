@@ -89,8 +89,6 @@ double BinnedLikelihood::value(optimizers::Arg & dummy) const {
    m_nevals++;
 
    double my_total(m_accumulator.total());
-//    saveBestFit(my_value);
-//    return my_value;
 
 /// Add in contribution from priors.
    std::vector<optimizers::Parameter>::const_iterator par(m_parameter.begin());
