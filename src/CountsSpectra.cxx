@@ -29,9 +29,10 @@ void CountsSpectra::setEbounds(double emin, double emax, size_t nbounds) {
    double estep(std::log(emax/emin)/(nbounds - 1.));
    m_ebounds.clear();
    m_ebounds.reserve(nbounds);
-   for (size_t k = 0; k < nbounds; k++) {
+   for (size_t k = 0; k < nbounds-1; k++) {
       m_ebounds.push_back(emin*std::exp(k*estep));
    }
+   m_ebounds.push_back(emax);
 }
 
 void CountsSpectra::getSrcCounts(const std::string & srcName,
