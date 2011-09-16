@@ -58,6 +58,7 @@ public:
    ~SourceFactory();
 
    Source * create(const std::string & name);
+   Source * releaseSource(const std::string & name);
 
    /// Clients should almost always have fromClone = true; otherwise,
    /// the destructor will delete their Source, rather than a clone.

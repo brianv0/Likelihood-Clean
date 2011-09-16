@@ -69,7 +69,7 @@ public:
    virtual std::vector<double>::const_iterator setFreeParamValues_(
       std::vector<double>::const_iterator);
 
-   virtual void addSource(Source * src);
+   virtual void addSource(Source * src, bool fromClone=true);
 
    virtual Source * deleteSource(const std::string & srcName);
 

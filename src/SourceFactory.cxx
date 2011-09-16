@@ -63,6 +63,17 @@ Source * SourceFactory::create(const std::string &name) {
    return m_prototypes[name]->clone();
 }
 
+Source * SourceFactory::releaseSource(const std::string &name) {
+   if (!m_prototypes.count(name)) {
+      std::string errorMessage 
+         = "SourceFactory::releaseSource:\nNo Source named " + name + ".";
+      throw Exception(errorMessage);
+   }
+   Source * src = m_prototypes[name];
+   m_prototypes.erase(name);
+   return src;
+}
+
 void SourceFactory::addSource(const std::string &name, Source* src, 
                               bool fromClone) {
    if (!m_prototypes.count(name)) {
