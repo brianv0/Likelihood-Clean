@@ -240,9 +240,9 @@ void BinnedLikelihood::readXml(std::string xmlFile,
    }
 }
 
-void BinnedLikelihood::addSource(Source * src) {
+void BinnedLikelihood::addSource(Source * src, bool fromClone) {
    m_bestValueSoFar = -1e38;
-   SourceModel::addSource(src);
+   SourceModel::addSource(src, fromClone);
    if (m_srcMaps.find(src->getName()) == m_srcMaps.end()) {
       SourceMap * srcMap(getSourceMap(src->getName(), true));
       if (srcMap) {

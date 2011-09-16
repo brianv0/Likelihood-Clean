@@ -234,9 +234,9 @@ BinnedLikelihood2::setFreeParamValues_(std::vector<double>::const_iterator it) {
    return SourceModel::setFreeParamValues_(it);
 }
 
-void BinnedLikelihood2::addSource(Source * src) {
+void BinnedLikelihood2::addSource(Source * src, bool fromClone) {
    m_bestValueSoFar = -1e38;
-   SourceModel::addSource(src);
+   SourceModel::addSource(src, fromClone);
    if (m_srcMaps.find(src->getName()) == m_srcMaps.end()) {
       SourceMap * srcMap(getSourceMap(src->getName(), true));
       if (srcMap) {

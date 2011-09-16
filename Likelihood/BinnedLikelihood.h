@@ -119,7 +119,7 @@ public:
    /// summed together.
    std::vector<double> fixedModelSpectrum() const;
 
-   virtual void addSource(Source * src);
+   virtual void addSource(Source * src, bool fromClone=true);
 
    virtual Source * deleteSource(const std::string & srcName);
    

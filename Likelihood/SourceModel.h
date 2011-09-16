@@ -44,7 +44,7 @@ namespace Likelihood {
  * $Header$ 
  */
 
-class SourceModel : public optimizers::Statistic {
+ class SourceModel : public optimizers::Statistic {
 
 public:
    
@@ -98,7 +98,7 @@ public:
    }
 
    /// Add a source.
-   virtual void addSource(Source *src);
+   virtual void addSource(Source *src, bool fromClone=true);
 
    /// Delete a source by name and return a copy.
    virtual Source * deleteSource(const std::string &srcName);
