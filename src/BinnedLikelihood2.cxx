@@ -535,4 +535,16 @@ bool BinnedLikelihood2::fileHasSourceMap(const std::string & srcName,
    return true;
 }
 
+void BinnedLikelihood2::getNpreds(const std::string & srcName,
+                                  std::vector<double> & npreds) const {
+   try {
+      npreds = sourceMap(srcName).npreds();
+      return;
+   } catch (std::runtime_error & eObj) {
+      SourceMap * srcMap(getSourceMap(srcName, false));
+      npreds = srcMap->npreds();
+      delete srcMap;
+   }
+}
+
 } // namespace Likelihood

@@ -22,17 +22,16 @@
 namespace Likelihood {
 
 void CountsSpectra::setEbounds(double emin, double emax, size_t nbounds) {
-   if (m_binnedLike) {
+   if (m_binnedLike || m_binnedLike2) {
       throw std::runtime_error("CountsSpectra: cannot set ebounds for "
                                "binned likelihood.");
    }
    double estep(std::log(emax/emin)/(nbounds - 1.));
    m_ebounds.clear();
    m_ebounds.reserve(nbounds);
-   for (size_t k = 0; k < nbounds-1; k++) {
+   for (size_t k = 0; k < nbounds; k++) {
       m_ebounds.push_back(emin*std::exp(k*estep));
    }
-   m_ebounds.push_back(emax);
 }
 
 void CountsSpectra::getSrcCounts(const std::string & srcName,
@@ -47,6 +46,15 @@ void CountsSpectra::getSrcCounts(const std::string & srcName,
    if (m_binnedLike) {
       std::vector<double> npreds;
       m_binnedLike->getNpreds(srcName, npreds);
+      for (size_t k = 0; k < m_ebounds.size() - 1; k++) {
+         srcCounts.push_back(src->pixelCounts(m_ebounds.at(k),
+                                              m_ebounds.at(k+1),
+                                              npreds.at(k), 
+                                              npreds.at(k+1)));
+      }
+   } else if (m_binnedLike2) {
+      std::vector<double> npreds;
+      m_binnedLike2->getNpreds(srcName, npreds);
       for (size_t k = 0; k < m_ebounds.size() - 1; k++) {
          srcCounts.push_back(src->pixelCounts(m_ebounds.at(k),
                                               m_ebounds.at(k+1),
@@ -208,6 +216,8 @@ writeEbounds(const std::string & outfile) const {
 void CountsSpectra::getObsCounts(std::vector<double> & counts) const {
    if (m_binnedLike) {
       counts = m_binnedLike->countsSpectrum();
+   } else if (m_binnedLike2) {
+      counts = m_binnedLike2->countsSpectrum();
    } else {
       check_ebounds();
       counts = m_observation.eventCont().nobs(m_ebounds);
