@@ -107,6 +107,9 @@ public:
       return m_cmap;
    }
 
+   void getNpreds(const std::string & srcName,
+                  std::vector<double> & npreds) const;
+
 protected:
 
    virtual BinnedLikelihood2 * clone() const {
