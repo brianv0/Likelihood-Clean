@@ -83,7 +83,8 @@ DOMElement * FluxBuilder::fluxSource(Source & src) {
    getSourceType(src, sourceType);
 
    Source::FuncMap & srcFuncs = src.getSrcFuncs();
-   TrapQuad fluxIntegral(srcFuncs["Spectrum"]);
+   bool useLog;
+   TrapQuad fluxIntegral(srcFuncs["Spectrum"], useLog=true);
    if (sourceType == "PointSource" || sourceType == "Isotropic") {
       xmlBase::Dom::addAttribute(srcElt, std::string("flux"),
                                  fluxIntegral.integral(m_energies)/1e-4);
