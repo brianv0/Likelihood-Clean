@@ -80,7 +80,8 @@ double DiffuseSource::fluxDensity(const Event &evt,
          optimizers::dArg energy_arg(trueEnergies[k]);
          my_integrand[k] = (*m_spectrum)(energy_arg)*diffuseResponses[k];
       }
-      TrapQuad trapQuad(trueEnergies, my_integrand);
+      bool useLog;
+      TrapQuad trapQuad(trueEnergies, my_integrand, useLog=true);
       my_fluxDensity = trapQuad.integral();
    } else {
       double trueEnergy = evt.getEnergy(); 
@@ -117,7 +118,8 @@ double DiffuseSource::fluxDensityDeriv(const Event &evt,
             my_integrand[k] = m_spectrum->derivByParam(energy_arg, paramName)
                *diffuseResponses[k];
          }
-         TrapQuad trapQuad(trueEnergies, my_integrand);
+         bool useLog;
+         TrapQuad trapQuad(trueEnergies, my_integrand, useLog=true);
          my_fluxDensityDeriv = trapQuad.integral();
       } else {
          double trueEnergy = evt.getEnergy(); 
