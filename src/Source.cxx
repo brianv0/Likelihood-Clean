@@ -46,7 +46,8 @@ double Source::Npred() {
       optimizers::dArg eArg(energies[k]);
       NpredIntegrand[k] = (*specFunc)(eArg)*m_exposure[k];
    }
-   TrapQuad trapQuad(energies, NpredIntegrand);
+   bool useLog;
+   TrapQuad trapQuad(energies, NpredIntegrand, useLog=true);
    double value(trapQuad.integral());
    return value;
 }
@@ -106,7 +107,8 @@ double Source::Npred(double emin, double emax) const {
       optimizers::dArg eArg(my_energies.at(k));
       integrand.at(k) = specFunc(eArg)*exposure.at(k);
    }
-   TrapQuad trapQuad(my_energies, integrand);
+   bool useLog;
+   TrapQuad trapQuad(my_energies, integrand, useLog=true);
    return trapQuad.integral();
 }
 
@@ -125,7 +127,8 @@ double Source::NpredDeriv(const std::string &paramName) {
          myIntegrand[k] = specFunc->derivByParam(eArg, paramName)
             *m_exposure[k];
       }
-      TrapQuad trapQuad(energies, myIntegrand);
+      bool useLog;
+      TrapQuad trapQuad(energies, myIntegrand, useLog=true);
       return trapQuad.integral();
    }
 }

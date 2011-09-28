@@ -31,7 +31,6 @@
 #include "Likelihood/SpatialMap.h"
 #include "Likelihood/SkyDirFunction.h"
 #include "Likelihood/SourceFactory.h"
-#include "Likelihood/TrapQuad.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/FluxBuilder.h"
 #include "Likelihood/SourceModelBuilder.h"
