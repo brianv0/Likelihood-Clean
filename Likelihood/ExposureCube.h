@@ -9,6 +9,8 @@
 #ifndef Likelihood_ExposureCube_h
 #define Likelihood_ExposureCube_h
 
+#include <stdexcept>
+
 #include "facilities/Util.h"
 
 #include "astro/SkyDir.h"
@@ -85,9 +87,15 @@ public:
       if (m_efficiencyFactor) {
          m_efficiencyFactor->getLivetimeFactors(energy, factor1, factor2);
       }
-      double exposure(factor1*value(dir, aeff));
+      double value1(value(dir, aeff));
+      double value2(0);
+      double exposure(factor1*value1);
       if (factor2 != 0) {
-         exposure += factor2*value(dir, aeff, true);
+         value2 = value(dir, aeff, true);
+         exposure += factor2*value2;
+      }
+      if (exposure < 0) {
+         throw std::runtime_error("ExposureCube::value: exposure < 0");
       }
       return exposure;
    }
