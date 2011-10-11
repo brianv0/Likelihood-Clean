@@ -22,6 +22,7 @@
 
 namespace Likelihood {
 
+   class Drm;
    class SourceMap;
 
 /*
@@ -204,6 +205,10 @@ private:
    /// Summed npred values at each energy boundary value for fixed sources.
    std::vector<double> m_fixedNpreds;
 
+   Drm * m_drm;
+
+   mutable std::map<std::string, std::vector<double> > m_edisp_factor;
+
    void createSourceMaps();
 
    void computeModelMap(double & npred) const;
@@ -240,6 +245,9 @@ private:
 
    bool fixedModelUpdated() const;
 
+   void edisp_correction_factors(const std::string & srcName,
+                                 const std::vector<double> & true_counts_spec,
+                                 std::vector<double> &);
 };
 
 }
