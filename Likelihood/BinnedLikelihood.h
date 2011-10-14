@@ -207,7 +207,10 @@ private:
 
    Drm * m_drm;
 
-   mutable std::map<std::string, std::vector<double> > m_edisp_factor;
+   mutable std::map<std::string, std::vector<double> > m_true_counts;
+   mutable std::map<std::string, std::vector<double> > m_meas_counts;
+
+   std::map<std::string, std::map<size_t, size_t> > m_krefs;
 
    void createSourceMaps();
 
