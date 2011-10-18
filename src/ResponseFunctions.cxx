@@ -104,7 +104,7 @@ void ResponseFunctions::load(const std::string & respFuncs,
                              const std::vector<size_t> & evtTypes) {
    // Turn of energy dispersion interpolation in
    // irfs/latResponse/Edisp2 for greater efficiency.
-   latResponse::IrfLoader::set_edisp_interpolation(false);
+   latResponse::IrfLoader::set_edisp_interpolation(true);
 
    irfLoader::Loader_go();
 
@@ -140,6 +140,18 @@ void ResponseFunctions::load(const std::string & respFuncs,
       }
       throw std::invalid_argument(message.str());
    }
+}
+
+irfInterface::IEdisp & ResponseFunctions::edisp(int type) const {
+   irfInterface::Irfs * irfs(const_cast<irfInterface::Irfs *>(respPtr(type)));
+   if (!irfs) {
+      std::ostringstream message;
+      message << "Could not find appropriate response functions "
+              << "for these event data."
+              << "Event class requested: " << type << std::endl;
+      throw std::runtime_error(message.str());
+   }
+   return *irfs->edisp();
 }
 
 double ResponseFunctions::edisp(double emeas, double etrue, 

@@ -115,6 +115,8 @@ public:
    void load(const std::string & respFuncs, const std::string & respBase="",
              const std::vector<size_t> &selectedEvtTypes=std::vector<size_t>());
 
+   irfInterface::IEdisp & edisp(int type) const;
+
    double edisp(double emeas, double etrue, 
                 const astro::SkyDir & srcDir,
                 const astro::SkyDir & zAxis,
