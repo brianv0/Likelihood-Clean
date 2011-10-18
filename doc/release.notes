@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-18-00 17-Oct-2011 jchiang alpha implementation of energy dispersion in BinnedLikelihood
  Likelihood-17-17-02 10-Oct-2011 jchiang some minor speed ups in BinnedLikelihood calculation; reference tag for energy dispersion calcs in BinnedLikelihood
  Likelihood-17-17-01 26-Sep-2011 jchiang bug-fix for test program on 32-bit machines
  Likelihood-17-17-00 25-Sep-2011 jchiang tagging Steve Fegan's memory handling optimizations for map cube diffuse sources
