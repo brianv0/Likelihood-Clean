@@ -29,6 +29,10 @@ public:
 
    void convolve(const std::vector<double> & true_counts,
                  std::vector<double> & meas_counts) const;
+
+   const std::vector<double> & row(size_t k) const {
+      return m_drm.at(k);
+   }
        
 private:
 
@@ -46,7 +50,9 @@ private:
    void get_disp(double etrue, const std::vector<double> & emeas,
                  std::vector<double> & disp) const;
       
-
+   double matrix_element(double etrue, double emeas_min, 
+                         double emeas_max) const;
+                         
 };
 
 } // namespace Likelihood
