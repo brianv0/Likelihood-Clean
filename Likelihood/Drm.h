@@ -44,11 +44,6 @@ private:
    std::vector< std::vector<double> > m_drm;
 
    void compute_drm();
-
-   void get_emeas(size_t kp, std::vector<double> & emeas) const;
-
-   void get_disp(double etrue, const std::vector<double> & emeas,
-                 std::vector<double> & disp) const;
       
    double matrix_element(double etrue, double emeas_min, 
                          double emeas_max) const;
