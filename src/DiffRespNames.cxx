@@ -20,7 +20,7 @@
 namespace Likelihood {
 
 DiffRespNames::DiffRespNames(const std::string & rootName) 
-      : m_rootName(rootName) {}
+   : m_rootName(rootName) {}
 
 size_t DiffRespNames::size() const {
    return m_colnames.size();
