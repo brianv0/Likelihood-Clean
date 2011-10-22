@@ -44,9 +44,18 @@ using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
 using namespace Likelihood;
 
 namespace {
-   std::string alt_diffuseSrcName(const std::string srcName,
+   std::string strip_front_back(std::string respName) {
+// Strip off ::FRONT or ::BACK qualifiers that naive users may supply.
+      size_t pos(respName.find("::"));
+      if (pos != std::string::npos) {
+         respName = respName.substr(0, pos);
+      }
+      return respName;
+   }
+   std::string alt_diffuseSrcName(const std::string & srcName,
                                   const Observation & obs) {
-      std::string name(obs.respFuncs().respName() + "::" + srcName);
+      std::string name(strip_front_back(obs.respFuncs().respName()) 
+                       + "::" + srcName);
       Event::toLower(name);
       return name;
    }
@@ -323,8 +332,10 @@ readDiffRespNames(std::auto_ptr<const tip::Table> events,
 
 std::string diffuseResponses::
 diffuseSrcName(const std::string & srcName) const {
-   std::string name(m_helper->observation().respFuncs().respName() +
-                    "__" + srcName);
+/// Strip off ::FRONT or ::BACK qualifiers that naive users may supply.
+   std::vector<std::string> tokens;
+   std::string respName(m_helper->observation().respFuncs().respName());
+   std::string name(::strip_front_back(respName) + "__" + srcName);
    Event::toLower(name);
    return name;
 }
