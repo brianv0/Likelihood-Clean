@@ -273,8 +273,13 @@ void AppHelpers::createResponseFuncs(const std::string & analysisType) {
       std::string myfile = pars["evfile"];
       evfile = myfile;
    } else if (analysisType == "BINNED") {
-      std::string myfile = pars["cmap"];
-      evfile = myfile;
+      try {
+         std::string myfile = pars["cmap"];
+         evfile = myfile;
+      } catch (hoops::Hexception &) {
+         std::string myfile = pars["srcmaps"];
+         evfile = myfile;
+      }
    } else {
       m_respFuncs->load(respBase);
       return;
