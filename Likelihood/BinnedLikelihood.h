@@ -147,6 +147,8 @@ public:
       m_verbose = verbose;
    }
 
+   void computeModelMap(std::vector<float> & modelMap) const;
+
 protected:
 
    virtual BinnedLikelihood * clone() const {
@@ -214,9 +216,7 @@ private:
 
    void createSourceMaps();
 
-   void computeModelMap(double & npred) const;
-
-   void computeModelMap(std::vector<float> & modelMap) const;
+   double computeModelMap() const;
 
    void addSourceWts(std::vector<std::pair<double, double> > & modelWts,
                      const std::string & srcName,
