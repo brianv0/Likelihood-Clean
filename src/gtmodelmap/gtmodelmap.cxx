@@ -39,9 +39,6 @@
 
 #include "fitsio.h"
 
-using XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument;
-using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
-
 namespace {
    void fitsReportError(FILE * stream, int status) {
       if (status != 0) {
