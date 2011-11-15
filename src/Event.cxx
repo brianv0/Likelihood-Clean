@@ -179,7 +179,7 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
 #else
 	    respValue = DiffRespIntegrand2::
 	      do2DIntegration(*this, respFuncs, *srcs.at(i), eqRot,
-			      mumin, mumax, phimin, phimax, 0.001, 0.001);
+			      mumin, mumax, phimin, phimax, 0.001, 0.01);
 #endif
 	 }
          m_respDiffuseSrcs[name].push_back(respValue);
