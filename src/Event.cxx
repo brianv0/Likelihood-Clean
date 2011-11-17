@@ -172,15 +172,20 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
 	 if (::getenv("USE_MAP_EST") && (mumin != minusone || mumax != one)) {
 	   respValue = srcs.at(i)->diffuseResponse(*this);
 	 } else {
-#if 0 // SET TO 1 TO USE OLD NESTED INTEGRATION METHOD
-	    respValue = DiffRespIntegrand::
-	      do2DIntegration(*this, respFuncs, *srcs.at(i), eqRot,
-			      mumin, mumax, phimin, phimax, 0.01, 0.1);
-#else
-	    respValue = DiffRespIntegrand2::
-	      do2DIntegration(*this, respFuncs, *srcs.at(i), eqRot,
-			      mumin, mumax, phimin, phimax, 0.001, 0.01);
-#endif
+            if (::getenv("USE_OLD_DIFFRSP")) {
+               /// Old integration scheme with the phi integral
+               /// evaluated inside the theta integral.
+               respValue = DiffRespIntegrand::
+                  do2DIntegration(*this, respFuncs, *srcs.at(i), eqRot,
+                                  mumin, mumax, phimin, phimax, 0.01, 0.1);
+            } else {
+               /// Steve's integration scheme with the theta integral
+               /// evaluated inside the phi integral.  The produces
+               /// much more accurate results.
+               respValue = DiffRespIntegrand2::
+                  do2DIntegration(*this, respFuncs, *srcs.at(i), eqRot,
+                                  mumin, mumax, phimin, phimax, 0.001, 0.01);
+            }
 	 }
          m_respDiffuseSrcs[name].push_back(respValue);
       }
