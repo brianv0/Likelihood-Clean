@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-20-00 17-Nov-2011 jchiang improved diffuse response integration from Steve F.
  Likelihood-17-19-00 01-Nov-2011 jchiang implement energy dispersion in gtmodel (clean up code considerably as well, unifying implementation with the model map calculations in BinnedLikelihood
  Likelihood-17-18-03 21-Oct-2011 jchiang strip ::FRONT, ::BACK qualifiers from irfs parameter value before building DIFRSP# keyword value. front/back info is in CONVERSION_TYPE column already for each event. 
  Likelihood-17-18-02 20-Oct-2011 jchiang bug-fix for CountsSpectra::setEbounds
