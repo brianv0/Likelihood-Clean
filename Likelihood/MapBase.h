@@ -66,21 +66,23 @@ public:
 
    virtual WcsMap2 & wcsmap();
 
-   virtual void deleteMap() {
-      delete m_wcsmap;
-      m_wcsmap = 0;
-   }
+   virtual void deleteMap();
+
+   // Update the status of the contained WcsMap2 pointer 
+   // (typically in response to WcsMapLibrary::notify())
+   virtual void update();
 
    virtual void rebin(unsigned int factor, bool average=true);
 
 protected:
 
-   WcsMap2 * m_wcsmap;
-
    std::string m_fitsFile;
+   std::string m_expandedFileName;
    std::string m_extension;
 
 private:
+
+   WcsMap2 * m_wcsmap;
    
    void getMinMaxDistPixels(const astro::SkyDir &,
                             astro::SkyDir & closestPixel, 
