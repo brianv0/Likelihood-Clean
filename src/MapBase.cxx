@@ -34,6 +34,7 @@ MapBase::MapBase(const std::string & fitsFile, const std::string & extension)
 }
 
 MapBase::~MapBase() {
+   WcsMapLibrary::instance()->remove_observer(this);
 }
 
 MapBase::MapBase(const MapBase & other) 
@@ -79,6 +80,7 @@ void MapBase::readFitsFile() {
 
    m_wcsmap = WcsMapLibrary::instance()->wcsmap(m_expandedFileName,
                                                 m_extension);
+   WcsMapLibrary::instance()->add_observer(this);
 }
 
 WcsMap2 & MapBase::wcsmap() {

@@ -36,8 +36,6 @@ WcsMap2 * WcsMapLibrary::wcsmap(const std::string & filename,
    std::string key(filename + "::" + extname);
    MapLibrary_t::const_iterator it(m_library.find(key));
    if (it != m_library.end()) {
-      // Entry for map exists and it has not been deleted 
-      // (via MapBase::deleteMap()).
       return it->second;
    }
    m_library[key] = new WcsMap2(filename, extname);
