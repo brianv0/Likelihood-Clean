@@ -51,7 +51,7 @@ MapCubeFunction2::~MapCubeFunction2() {
 double MapCubeFunction2::value(optimizers::Arg & xarg) const {
    SkyDirArg & dir = dynamic_cast<SkyDirArg &>(xarg);
    double energy = dir.energy();
-   double value = m_wcsmap->operator()(dir(), energy);
+   double value = wcsmap().operator()(dir(), energy);
    return value*getParam("Normalization").getTrueValue();
 }
 

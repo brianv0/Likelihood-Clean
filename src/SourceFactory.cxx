@@ -27,11 +27,9 @@
 #include "Likelihood/DMFitFunction.h"
 #include "Likelihood/DMFitFunction2.h"
 #include "Likelihood/MapBase.h"
-//#include "Likelihood/MapCubeFunction2.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PointSource.h"
 #include "Likelihood/RadialProfile.h"
-//#include "Likelihood/SpatialMap.h"
 #include "Likelihood/SourceFactory.h"
 #include "Likelihood/XmlParser.h"
 
@@ -295,16 +293,6 @@ makeDiffuseSource(const DOMElement * spectrum,
       std::string name = xmlBase::Dom::getAttribute(*paramIt, "name");
       spatialDist->parameter(name).extractDomData(*paramIt);
    }
-//    if (type == "SpatialMap") {
-//       std::string fitsFile 
-//          = xmlBase::Dom::getAttribute(spatialModel, "file");
-//       dynamic_cast<SpatialMap *>(spatialDist)->readFitsFile(fitsFile, "",
-//                                                             loadMap);
-//    } else if (type == "MapCubeFunction") {
-//       std::string fitsFile 
-//          = xmlBase::Dom::getAttribute(spatialModel, "file");
-//       dynamic_cast<MapCubeFunction2 *>(spatialDist)->readFitsFile(fitsFile, "",
-//                                                                   loadMap);
    if (type == "SpatialMap" || type == "MapCubeFunction") {
       std::string fitsFile 
          = xmlBase::Dom::getAttribute(spatialModel, "file");
