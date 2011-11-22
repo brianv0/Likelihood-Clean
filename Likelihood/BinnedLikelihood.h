@@ -149,6 +149,8 @@ public:
 
    void computeModelMap(std::vector<float> & modelMap) const;
 
+   void buildFixedModelWts();
+
 protected:
 
    virtual BinnedLikelihood * clone() const {
@@ -243,8 +245,6 @@ private:
    double pixelCounts(double emin, double emax, double y1, double y2) const;
 
    double NpredValue(const std::string & name, const SourceMap & srcMap) const;
-
-   void buildFixedModelWts();
 
    bool fixedModelUpdated() const;
 
