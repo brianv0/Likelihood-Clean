@@ -116,9 +116,9 @@ public:
    /// each pixel to this source.
    std::vector<double> countsSpectrum(const std::string & srcName) const;
 
-   /// Predicited counts spectrum for the fixed model components
+   /// Predicted counts spectrum for the fixed model components
    /// summed together.
-   std::vector<double> fixedModelSpectrum() const;
+   const std::vector<double> & fixedModelSpectrum() const;
 
    virtual void addSource(Source * src, bool fromClone=true);
 
@@ -150,6 +150,9 @@ public:
    void computeModelMap(std::vector<float> & modelMap) const;
 
    void buildFixedModelWts();
+
+   const std::vector<double> & 
+   modelCountsSpectrum(const std::string &srcname) const;
 
 protected:
 
@@ -214,6 +217,8 @@ private:
    mutable std::map<std::string, std::vector<double> > m_true_counts;
    mutable std::map<std::string, std::vector<double> > m_meas_counts;
 
+   mutable std::vector<double> m_fixed_counts_spec;
+
    std::map<std::string, std::map<size_t, size_t> > m_krefs;
 
    void createSourceMaps();
@@ -247,6 +252,8 @@ private:
    double NpredValue(const std::string & name, const SourceMap & srcMap) const;
 
    bool fixedModelUpdated() const;
+
+   void computeFixedCountsSpectrum();
 
    void edisp_correction_factors(const std::string & srcName,
                                  const std::vector<double> & true_counts_spec,
