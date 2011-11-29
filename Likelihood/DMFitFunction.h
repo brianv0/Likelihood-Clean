@@ -70,6 +70,7 @@ private:
                  int channel0, int channel1);
 
    std::string m_filename;
+   double m_8pi;
 };
 
 } // namespace Likelihood
