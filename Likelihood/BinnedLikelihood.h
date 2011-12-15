@@ -149,7 +149,7 @@ public:
 
    void computeModelMap(std::vector<float> & modelMap) const;
 
-   void buildFixedModelWts();
+   void buildFixedModelWts(bool process_all=false);
 
    const std::vector<double> & 
    modelCountsSpectrum(const std::string &srcname) const;
