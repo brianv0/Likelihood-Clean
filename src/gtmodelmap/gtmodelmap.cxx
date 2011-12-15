@@ -150,10 +150,10 @@ void ModelMap::computeModelMap() {
    if (bexpmap != "none" && bexpmap != "") {
       Likelihood::SourceMap::setBinnedExposure(bexpmap);
    }
-   bool requireExposure, addPointSources, loadMaps;
+   bool requireExposure, addPointSources, loadMaps, createAllMaps;
    m_logLike->readXml(m_pars["srcmdl"], m_helper->funcFactory(),
                       requireExposure=false, addPointSources=true,
-                      loadMaps=false);
+                      loadMaps=false, createAllMaps=true);
    m_logLike->computeModelMap(m_outmap);
 
    std::string outtype = m_pars["outtype"];

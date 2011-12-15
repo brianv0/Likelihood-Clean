@@ -232,8 +232,7 @@ void BinnedLikelihood::readXml(std::string xmlFile,
    SourceModel::readXml(xmlFile, funcFactory, requireExposure=false,
                         addPointSources, loadMaps);
    if (m_srcMapsFile == "" || createAllMaps) {
-// No need to do anything, since the maps are created in the the call to 
-// SourceModel::readXml via the overloaded addSource(...) call therein.
+      buildFixedModelWts(createAllMaps);
    } else {
       buildFixedModelWts();
    }
@@ -382,7 +381,7 @@ modelCountsSpectrum(const std::string & srcname) const {
    return it->second;
 }
 
-void BinnedLikelihood::buildFixedModelWts() {
+void BinnedLikelihood::buildFixedModelWts(bool process_all) {
    m_fixedSources.clear();
    m_fixedModelWts.clear();
    m_fixedModelWts.resize(m_filledPixels.size(), std::make_pair(0, 0));
@@ -391,7 +390,7 @@ void BinnedLikelihood::buildFixedModelWts() {
    std::map<std::string, Source *>::const_iterator srcIt(m_sources.begin());
    for ( ; srcIt != m_sources.end(); ++srcIt) {
       const std::string & srcName(srcIt->first);
-      if (srcIt->second->fixedSpectrum()) {
+      if (srcIt->second->fixedSpectrum() && !process_all) {
          m_fixedSources.push_back(srcName);
          SourceMap * srcMap(0);
          std::map<std::string, SourceMap *>::const_iterator srcMapIt
