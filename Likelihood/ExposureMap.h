@@ -14,9 +14,14 @@
 
 #include "optimizers/Function.h"
 
+namespace astro {
+   class SkyDir;
+}
+
 namespace Likelihood {
 
    class Observation;
+   class WcsMap2;
 
 /**
  * @class ExposureMap 
@@ -39,9 +44,9 @@ class ExposureMap {
 
 public:
 
-   ExposureMap() : m_haveExposureMap(false) {}
+   ExposureMap() : m_wcsmap(0), m_haveExposureMap(false) {}
 
-   ~ExposureMap() {}
+   ~ExposureMap();
 
    /// Read exposure map FITS file and compute the static data members.
    void readExposureFile(std::string exposureFile);
@@ -119,7 +124,15 @@ public:
    static void readEnergyExtension(const std::string & filename,
                                    std::vector<double> & energies);
 
+   double operator()(const astro::SkyDir & dir, double energy) const;
+
+   double operator()(const astro::SkyDir & dir, int k) const;
+
+   bool withinMapRadius(const astro::SkyDir & dir) const;
+
 private:
+
+   WcsMap2 * m_wcsmap;
 
    bool m_haveExposureMap;
 
@@ -128,6 +141,7 @@ private:
    /// of the image plane.
    std::vector<double> m_ra;
    std::vector<double> m_dec;
+   std::vector<double> m_solidAngles;
 
    /// True photon energies associated with each image plane.
    std::vector<double> m_energies;

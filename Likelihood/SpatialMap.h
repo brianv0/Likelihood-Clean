@@ -72,6 +72,10 @@ public:
       return wcsmap().mapIntegral();
    }
 
+   virtual void integrateSpatialDist(const std::vector<double> & energies,
+                                     const ExposureMap & expmap,
+                                     std::vector<double> & exposure) const;
+
 private:
 
    void init();

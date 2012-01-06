@@ -45,15 +45,6 @@ void Npred::buildParameterVector(optimizers::Arg & x) {
    m_parameter.clear();
    Source * src = dynamic_cast<SrcArg &>(x).getValue();
 
-//    Source::FuncMap srcFuncs = src->getSrcFuncs();
-//    Source::FuncMap::const_iterator func_it = srcFuncs.begin();
-//    for (; func_it != srcFuncs.end(); ++func_it) {
-//       std::vector<optimizers::Parameter> params;
-//       (*func_it).second->getParams(params);
-//       for (unsigned int i = 0; i < params.size(); i++) {
-//          m_parameter.push_back(params[i]);
-//       }
-//    }
    std::vector<optimizers::Parameter> params;
    src->spectrum().getParams(params);
    for (size_t i(0); i < params.size(); i++) {
