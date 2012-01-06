@@ -20,6 +20,8 @@
 
 namespace Likelihood {
 
+class ExposureMap;
+
 /**
  * @class MapBase
  * @brief Base class for FITS map objects.
@@ -74,11 +76,18 @@ public:
 
    virtual void rebin(unsigned int factor, bool average=true);
 
+   virtual void integrateSpatialDist(const std::vector<double> & energies,
+                                     const ExposureMap & expmap,
+                                     std::vector<double> & exposure) const = 0;
+
 protected:
 
    std::string m_fitsFile;
    std::string m_expandedFileName;
    std::string m_extension;
+
+   static double interpolatePowerLaw(double x, double x1, double x2,
+                                     double y1, double y2);
 
 private:
 
