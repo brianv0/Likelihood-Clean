@@ -74,6 +74,13 @@ public:
    /// MapBase::mapIntegral(double) const)
    virtual double mapIntegral(double energy) const;
 
+   virtual void integrateSpatialDist(const std::vector<double> & energies,
+                                     const ExposureMap & expmap,
+                                     std::vector<double> & exposure) const {
+      throw std::runtime_error("MapCubeFunction::integrateSpatialDist: "
+                               "not implemented.");
+   }
+
 private:
 
    astro::SkyProj * m_proj;

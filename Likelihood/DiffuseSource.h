@@ -207,6 +207,11 @@ private:
       return fluxIntegral.integral();
    }
 
+   // This function fills the Source::m_exposure array which contains
+   // the integral over the source region of the spatial distribution
+   // of the source times the unbinned exposure map.
+   void integrateSpatialDist();
+
 };
 
 } //namespace Likelihood

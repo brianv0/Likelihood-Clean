@@ -34,24 +34,47 @@ DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
 // available; furthermore, the ExposureMap object must have been
 // created.
    if (requireExposure) {
-      const RoiCuts & roiCuts = observation.roiCuts();
-      const std::vector<double> & energies = roiCuts.energies();
-      if (observation.expMap().haveMap()) {
-         observation.expMap().integrateSpatialDist(energies, spatialDist,
-                                                   m_exposure);
+      integrateSpatialDist();
+   }
+   m_srcType = "Diffuse";
+}
+
+void DiffuseSource::integrateSpatialDist() {
+   const Observation & obs(*observation());
+   const std::vector<double> & energies(obs.roiCuts().energies());
+   if (obs.expMap().haveMap()) {
+      if (::getenv("mapbasedintegral")) {
+         // try {
+            // Integrate using the map pixels for the quadrature
+            mapBaseObject()->integrateSpatialDist(energies, obs.expMap(),
+                                                  m_exposure);
+            // Delete internal representation of the map to save memory.
+            mapBaseObject()->deleteMap();
+         // } catch (MapBaseException & eObj) {
+         //    // We do not have a map representation of the sources so
+         //    // integrate using ExposureMap implementation.
+         //    obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
+         //                                      m_exposure);
+         // } catch (...) {
+         //    obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
+         //                                      m_exposure);
+         // }
+      } else {
+         obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
+                                           m_exposure);
          try {
             // Delete internal representation of the map to save memory.
             mapBaseObject()->deleteMap();
          } catch (MapBaseException & eObj) {
-            // do nothing
+            // We do not have a map representation of the sources so
+            // do nothing.
          }
-      } else {
-         std::string what("DiffuseSource: An exposure map must be defined ");
-         what += "if diffuse sources are in the model.";
-         throw std::runtime_error(what);
       }
+   } else {
+      std::string what("DiffuseSource: An exposure map must be defined "
+                       "if diffuse sources are in the model.");
+      throw std::runtime_error(what);
    }
-   m_srcType = "Diffuse";
 }
 
 DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
