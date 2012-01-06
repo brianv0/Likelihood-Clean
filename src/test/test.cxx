@@ -1388,10 +1388,8 @@ srcFactoryInstance(const std::string & scFile,
 
       m_srcFactory = new SourceFactory(*m_observation, verbose);
       if (sourceXmlFile == "") {
-         std::cout << m_sourceXmlFile << std::endl;
          m_srcFactory->readXml(m_sourceXmlFile, *funcFactory, requireExposure);
       } else {
-         std::cout << sourceXmlFile << std::endl;
          m_srcFactory->readXml(sourceXmlFile, *funcFactory, requireExposure);
       }
    }

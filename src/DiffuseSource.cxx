@@ -43,22 +43,19 @@ void DiffuseSource::integrateSpatialDist() {
    const Observation & obs(*observation());
    const std::vector<double> & energies(obs.roiCuts().energies());
    if (obs.expMap().haveMap()) {
-      if (::getenv("mapbasedintegral")) {
-         // try {
+      if (::getenv("MAP_BASED_NPRED")) {
+         try {
             // Integrate using the map pixels for the quadrature
             mapBaseObject()->integrateSpatialDist(energies, obs.expMap(),
                                                   m_exposure);
             // Delete internal representation of the map to save memory.
             mapBaseObject()->deleteMap();
-         // } catch (MapBaseException & eObj) {
-         //    // We do not have a map representation of the sources so
-         //    // integrate using ExposureMap implementation.
-         //    obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
-         //                                      m_exposure);
-         // } catch (...) {
-         //    obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
-         //                                      m_exposure);
-         // }
+         } catch (MapBaseException & eObj) {
+            // We do not have a map representation of the sources so
+            // integrate using ExposureMap implementation.
+            obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
+                                              m_exposure);
+         }
       } else {
          obs.expMap().integrateSpatialDist(energies, m_spatialDist, 
                                            m_exposure);
