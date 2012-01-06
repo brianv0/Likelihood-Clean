@@ -106,8 +106,8 @@ void SpatialMap::integrateSpatialDist(const std::vector<double> & energies,
       size_t indx;
       if (energies[k] <= map_energies.front()) {
          indx = 0;
-      } else if (energies[k] > map_energies.back()) {
-         indx = energies.size() - 2;
+      } else if (energies[k] >= map_energies.back()) {
+         indx = map_energies.size() - 2;
       } else {
          indx = std::upper_bound(map_energies.begin(), map_energies.end(),
                                  energies[k]) - map_energies.begin() - 1;
