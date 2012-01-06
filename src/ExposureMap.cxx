@@ -44,7 +44,7 @@ void ExposureMap::readExposureFile(std::string exposureFile) {
 
    std::string extension;
    bool interpolate, enforceEnergyRange;
-   m_wcsmap = new WcsMap2(exposureFile, extension="", interpolate=false,
+   m_wcsmap = new WcsMap2(exposureFile, extension="", interpolate=true,
                           enforceEnergyRange=true);
 
    st_facilities::FitsImage mapData(exposureFile);
