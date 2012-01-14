@@ -32,13 +32,13 @@
 #include "Likelihood/EnergyBand.h"
 #include "Likelihood/EventContainer.h"
 #include "Likelihood/ExpCutoff.h"
+#include "Likelihood/ExpCutoffSEDPeak.h"
 #include "Likelihood/ExposureMap.h"
 #include "Likelihood/FileFunction.h"
 #include "Likelihood/LogGaussian.h"
 #include "Likelihood/LogNormal.h"
 #include "Likelihood/LogNormalLog.h"
 #include "Likelihood/LogParabola.h"
-//#include "Likelihood/MapCubeFunction.h"
 #include "Likelihood/MapCubeFunction2.h"
 #include "Likelihood/Observation.h"
 #include "Likelihood/PowerLawSuperExpCutoff.h"
@@ -142,6 +142,7 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
                         new SmoothDoubleBrokenPowerLaw(), makeClone);
    funcFactory->addFunc("FileFunction", new FileFunction(), makeClone);
    funcFactory->addFunc("ExpCutoff", new ExpCutoff(), makeClone);
+   funcFactory->addFunc("ExpCutoffSEDPeak", new ExpCutoffSEDPeak(), makeClone);
    funcFactory->addFunc("BPLExpCutoff", new BrokenPowerLawExpCutoff(),
                         makeClone);
    funcFactory->addFunc("PLSuperExpCutoff", 
