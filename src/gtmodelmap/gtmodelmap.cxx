@@ -140,11 +140,17 @@ void ModelMap::computeModelMap() {
    std::string cmapfile = m_pars["srcmaps"];
    m_dataMap = new Likelihood::CountsMap(cmapfile);
    bool computePointSources, apply_psf_corrections;
+   bool performConvolution = m_pars["convol"];
+   bool resample = m_pars["resample"];
+   int resamp_factor = m_pars["rfactor"];
+   double rfactor = static_cast<double>(resamp_factor);
    m_logLike = new Likelihood::BinnedLikelihood(*m_dataMap,
                                                 m_helper->observation(),
                                                 cmapfile, 
                                                 computePointSources=true, 
-                                                apply_psf_corrections=false);
+                                                apply_psf_corrections=true,
+                                                performConvolution,
+                                                resample, rfactor);
    std::string bexpmap = m_pars["bexpmap"];
    Likelihood::AppHelpers::checkExposureMap(cmapfile, bexpmap);
    if (bexpmap != "none" && bexpmap != "") {
