@@ -66,7 +66,8 @@ public:
    ///        integrated.
    DiffuseSource(optimizers::Function * spatialDist,
                  const Observation & observation,
-                 bool requireExposure = true);
+                 bool requireExposure=true,
+                 bool mapBasedIntegral=false);
 
    DiffuseSource(const DiffuseSource &rhs);
 
@@ -176,10 +177,16 @@ public:
 
    double diffuseResponse(const Event & evt) const;
 
+   bool mapBasedIntegral() const {
+      return m_mapBasedIntegral;
+   }
+
 private:
 
    /// spatial model
    optimizers::Function * m_spatialDist;
+
+   bool m_mapBasedIntegral;
 
    template<typename Functor>
    double computeEnergyIntegral(const Functor & func, 
