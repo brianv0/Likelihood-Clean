@@ -177,9 +177,10 @@ void Event::computeResponseGQ(std::vector<DiffuseSource *> & srcList,
          } catch (MapBaseException &) {
             // do nothing
          }
-	 if (::getenv("MAP_BASED_DIFFRSP") 
-             && (mumin != minusone || mumax != one)) {
-	   respValue = srcs.at(i)->diffuseResponse(*this);
+	 if (srcs.at(i)->mapBasedIntegral() || 
+             (::getenv("MAP_BASED_DIFFRSP") 
+              && (mumin != minusone || mumax != one))) {
+            respValue = srcs.at(i)->diffuseResponse(*this);
 	 } else {
             if (::getenv("USE_OLD_DIFFRSP")) {
                /// Old integration scheme with the phi integral

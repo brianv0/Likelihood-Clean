@@ -24,9 +24,11 @@ namespace Likelihood {
 
 DiffuseSource::DiffuseSource(optimizers::Function * spatialDist,
                              const Observation & observation,
-                             bool requireExposure) 
-   : Source(&observation) {
-   m_spatialDist = spatialDist->clone();
+                             bool requireExposure,
+                             bool mapBasedIntegral)
+   : Source(&observation), 
+     m_spatialDist(spatialDist->clone()),
+     m_mapBasedIntegral(mapBasedIntegral) {
    m_functions["SpatialDist"] = m_spatialDist;
    m_useEdisp = observation.respFuncs().useEdisp();
 
@@ -43,7 +45,7 @@ void DiffuseSource::integrateSpatialDist() {
    const Observation & obs(*observation());
    const std::vector<double> & energies(obs.roiCuts().energies());
    if (obs.expMap().haveMap()) {
-      if (::getenv("MAP_BASED_NPRED")) {
+      if (m_mapBasedIntegral || ::getenv("MAP_BASED_NPRED")) {
          try {
             // Integrate using the map pixels for the quadrature
             mapBaseObject()->integrateSpatialDist(energies, obs.expMap(),
