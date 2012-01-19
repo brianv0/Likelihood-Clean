@@ -76,8 +76,10 @@ void DiffuseSource::integrateSpatialDist() {
    }
 }
 
-DiffuseSource::DiffuseSource(const DiffuseSource &rhs) : Source(rhs) {
-   m_spatialDist = rhs.m_spatialDist->clone();
+DiffuseSource::DiffuseSource(const DiffuseSource &rhs) 
+   : Source(rhs),
+     m_spatialDist(rhs.m_spatialDist->clone()),
+     m_mapBasedIntegral(rhs.m_mapBasedIntegral) {
    m_functions["SpatialDist"] = m_spatialDist;
 
    m_spectrum = rhs.m_spectrum->clone();
@@ -252,6 +254,10 @@ double DiffuseSource::diffuseResponse(const Event & evt) const {
       }
    }
    return my_value;
+}
+
+bool DiffuseSource::mapBasedIntegral() const {
+   return m_mapBasedIntegral;
 }
 
 } // namespace Likelihood
