@@ -35,12 +35,10 @@
 #include "Likelihood/FluxBuilder.h"
 #include "Likelihood/SourceModelBuilder.h"
 #include "Likelihood/SourceModel.h"
-
 #include "Likelihood/XmlParser.h"
 
 namespace Likelihood {
 
-//XERCES_CPP_NAMESPACE_USE
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument;
 using XERCES_CPP_NAMESPACE_QUALIFIER DOMElement;
 

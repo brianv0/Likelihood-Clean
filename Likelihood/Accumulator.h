@@ -34,6 +34,8 @@ private:
    double m_total;
 
    size_t m_npts;
+
+   double m_max_xrange;
    
    /**
     * @class SumByNumber
