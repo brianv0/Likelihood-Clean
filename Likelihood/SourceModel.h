@@ -39,9 +39,6 @@ namespace Likelihood {
  * allow for Sources to be added and deleted and for the Parameters
  * and derivatives describing those Sources to be accessed.
  *
- * @authors J. Chiang
- *    
- * $Header$ 
  */
 
  class SourceModel : public optimizers::Statistic {
