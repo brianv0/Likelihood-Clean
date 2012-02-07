@@ -150,6 +150,8 @@ public:
 
    void computeModelMap(std::vector<float> & modelMap) const;
 
+   bool fixedModelUpdated() const;
+
    void buildFixedModelWts(bool process_all=false);
 
    const std::vector<double> & 
@@ -255,8 +257,6 @@ private:
    double pixelCounts(double emin, double emax, double y1, double y2) const;
 
    double NpredValue(const std::string & name, const SourceMap & srcMap) const;
-
-   bool fixedModelUpdated() const;
 
    void computeFixedCountsSpectrum();
 
