@@ -59,16 +59,16 @@ bool WcsMapLibrary::has_map(const std::string & filename,
    return m_library.find(key) != m_library.end();
 }
 
-void WcsMapLibrary::add_observer(const MapBase * observer) {
+void WcsMapLibrary::add_observer(MapBase * observer) {
    m_observers.insert(std::make_pair(observer, 1));
 }
 
-void WcsMapLibrary::remove_observer(const MapBase * observer) {
+void WcsMapLibrary::remove_observer(MapBase * observer) {
    m_observers.erase(observer);
 }
 
 void WcsMapLibrary::notify() {
-   std::map<const MapBase *, int>::iterator it(m_observers.begin());
+   std::map<MapBase *, int>::iterator it(m_observers.begin());
    for ( ; it != m_observers.end(); ++it) {
       it->first->update();
    }
