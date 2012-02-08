@@ -52,8 +52,10 @@ BinnedLikelihood::BinnedLikelihood(const CountsMap & dataMap,
    m_kmax = m_energies.size() - 1;
    identifyFilledPixels();
    computeCountsSpectrum();
-   m_drm = new Drm(m_dataMap.refDir().ra(), m_dataMap.refDir().dec(), 
-                   observation, m_dataMap.energies());
+   if (::getenv("USE_BL_EDISP")) {
+      m_drm = new Drm(m_dataMap.refDir().ra(), m_dataMap.refDir().dec(), 
+                      observation, m_dataMap.energies());
+   }
 }
 
 BinnedLikelihood::
