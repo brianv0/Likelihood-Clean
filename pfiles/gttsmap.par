@@ -5,7 +5,7 @@
 #
 irfs,s,a,"P7SOURCE_V6",,,"Response functions to use"
 expcube,f,a,"none",,,"Exposure hypercube file"
-srcmdl,fr,a,"",,,"Source model file"
+srcmdl,f,a,"",,,"Source model file"
 statistic,s,a,"UNBINNED",BINNED|UNBINNED,,"Statistic to use"
 optimizer,s,a,"MINUIT",DRMNFB|NEWMINUIT|MINUIT|DRMNGB|LBFGS,,"Optimizer"
 ftol,r,h,1e-3,,,"Fit tolerance"
