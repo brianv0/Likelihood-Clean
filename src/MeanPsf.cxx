@@ -204,9 +204,9 @@ double MeanPsf::Psf::operator()(double cosTheta, double phi) const {
 
 double MeanPsf::Aeff::operator()(double cosTheta, double phi) const {
    double inclination = acos(cosTheta)*180./M_PI;
-   if (inclination > 70.) {
-      return 0;
-   }
+//    if (inclination > 70.) {
+//       return 0;
+//    }
    return ExposureCube::Aeff::operator()(cosTheta, phi);
 }
 
