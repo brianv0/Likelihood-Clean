@@ -132,6 +132,8 @@ private:
    private:
       double m_costhmin;
       double m_costhmax;
+
+      mutable std::map<std::pair<double, double>, double> m_cached_values;
    };
    
 };
