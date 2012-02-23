@@ -173,9 +173,9 @@ void MeanPsf::createLogArray(double xmin, double xmax, unsigned int npts,
 
 double MeanPsf::Psf::operator()(double cosTheta, double phi) const {
    double inclination = acos(cosTheta)*180./M_PI;
-   if (inclination > 70.) {
-      return 0;
-   }
+//    if (inclination > 70.) {
+//       return 0;
+//    }
    std::map<unsigned int, irfInterface::Irfs *>::const_iterator respIt 
       = m_observation.respFuncs().begin();
    for ( ; respIt != m_observation.respFuncs().end(); ++respIt) {
@@ -186,9 +186,9 @@ double MeanPsf::Psf::operator()(double cosTheta, double phi) const {
          double psfValue = psf->value(m_separation, m_energy, inclination, phi);
          double psf_val = aeffValue*psfValue;
          if (psf_val < 0) {
-            if (inclination > 69.) {  // ugly kluge
-               return 0;
-            }
+//             if (inclination > 69.) {  // ugly kluge
+//                return 0;
+//             }
             st_stream::StreamFormatter formatter("MeanPsf", "operator()", 4);
             formatter.info() << "separation: " << m_separation << "  "
                              << "energy: " << m_energy << "  "
