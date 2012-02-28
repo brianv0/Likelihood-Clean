@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-22-05 28-Feb-2012 jchiang various const fixes
  Likelihood-17-22-04 22-Feb-2012 jchiang include MeanPsf exposure at theta > 70
  Likelihood-17-22-03 22-Feb-2012 jchiang implement effective area caching suggestion from Guilli in LK-74
  Likelihood-17-22-02 08-Feb-2012 jchiang disable m_drm object construction if USE_BL_EDISP is not set
