@@ -428,7 +428,7 @@ void PointSource::computeExposure(const astro::SkyDir & srcDir,
             if (effArea < 0 || fraction < 0 || (stop-start) < 0) {
                formatter.warn() << effArea << std::endl;
             }
-            irfInterface::IEfficiencyFactor * efficiency_factor
+            const irfInterface::IEfficiencyFactor * efficiency_factor
                = respFuncs.efficiencyFactor();
             double efficiency(1);
             if (efficiency_factor) {

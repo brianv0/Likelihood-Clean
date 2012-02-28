@@ -181,7 +181,9 @@ double BackFile::NpredError(const Likelihood::LogLike & logLike,
       src.spectrum().getFreeParamNames(parnames);
       for (size_t j(0); j < parnames.size(); j++) {
          double dNpred_dpar(src.NpredDeriv(parnames[j], emin, emax));
-         double par_error(src.spectrum().parameter(parnames[j]).error());
+         const optimizers::Parameter & par(src.spectrum()
+                                           .getParam(parnames[j]));
+         double par_error(par.error());
          variance += dNpred_dpar*dNpred_dpar*par_error*par_error;
       }
    }

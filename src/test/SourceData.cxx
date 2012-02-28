@@ -10,11 +10,11 @@
 
 SourceData::SourceData() {
    char * srcNames[] = {"Extragalactic Diffuse", "Galactic Diffuse",
-                        "PKS 0528+134", "Crab Pulsar", "Geminga"};
-   char * srcTypes[] = {"Diffuse", "Diffuse", "Point", "Point", "Point"};
-   char * spatialModels[] = {"ConstantValue", "SpatialMap", 
-                             "SkyDirFunction", "SkyDirFunction", 
-                             "SkyDirFunction"};
+                              "PKS 0528+134", "Crab Pulsar", "Geminga"};
+   const char * srcTypes[] = {"Diffuse", "Diffuse", "Point", "Point", "Point"};
+   const char * spatialModels[] = {"ConstantValue", "SpatialMap", 
+                                   "SkyDirFunction", "SkyDirFunction", 
+                                   "SkyDirFunction"};
    for (unsigned int i = 0; i < 5; i++) {
       m_srcId[srcNames[i]] = i;
       m_srcTypes.push_back(srcTypes[i]);
