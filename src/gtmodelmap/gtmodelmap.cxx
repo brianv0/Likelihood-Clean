@@ -242,9 +242,10 @@ void ModelMap::trimExtensions() {
    }
 
 // Update creator keyword.
+   const char * keyname = "CREATOR";
    char * creator = "gtmodel";
-   fits_update_key(fptr, TSTRING, "CREATOR", creator,
-                   "Software creating file", &status);
+   char * description = "Software creating file";
+   fits_update_key(fptr, TSTRING, keyname, creator, description, &status);
    ::fitsReportError(stderr, status);
 
    fits_close_file(fptr, &status);
