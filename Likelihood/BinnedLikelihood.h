@@ -154,6 +154,9 @@ public:
 
    void buildFixedModelWts(bool process_all=false);
 
+   void addFixedSource(const std::string & srcName);
+   void deleteFixedSource(const std::string & srcName);
+
    const std::vector<double> & 
    modelCountsSpectrum(const std::string &srcname) const;
 
