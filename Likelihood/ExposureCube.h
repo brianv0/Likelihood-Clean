@@ -1,7 +1,7 @@
 /**
  * @file ExposureCube.h
  * @brief Exposure time hypercube.
- * @author J. Chiang <jchiang@slacs.stanford.edu>
+ * @author J. Chiang <jchiang@slac.stanford.edu>
  *
  * $Header$
  */

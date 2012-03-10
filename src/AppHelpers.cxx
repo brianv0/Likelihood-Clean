@@ -189,6 +189,8 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
                         new ScaleFactor(FileFunction()), makeClone);
    funcFactory->addFunc("ScaleFactor::PowerLaw2", 
                         new ScaleFactor(PowerLaw2()), makeClone);
+   funcFactory->addFunc("ScaleFactor::PLSuperExpCutoff", 
+                        new ScaleFactor(PowerLawSuperExpCutoff()), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
