@@ -480,6 +480,25 @@ void LikelihoodTests::test_ScaleFactor() {
    tester.parameters(params);
    tester.freeParameters(params);
    tester.derivatives(args, 1e-5);
+
+// Test complement functionality
+// Save value before taking complement of ScaleFactor.
+   double saved_value(foo(*args.at(0)));
+// This should throw an exception.
+   try {
+      foo.set_complement_flag(true);
+   } catch (std::runtime_error &) {
+   }
+// Set the value, bounds and scale for the ScaleFactor param to have
+// values valid for the complement functionality, then set the flag.
+   foo.parameter("ScaleFactor").setValue(1);
+   foo.parameter("ScaleFactor").setBounds(0, 1);
+   foo.parameter("ScaleFactor").setScale(1);
+   foo.set_complement_flag(true);
+// Check complement functionality
+   CPPUNIT_ASSERT(foo(*args.at(0)) == 0);
+   foo.parameter("ScaleFactor").setValue(0);
+   ASSERT_EQUALS(foo(*args.at(0)), saved_value);
 }
 
 void LikelihoodTests::test_RoiCuts() {
