@@ -266,6 +266,8 @@ private:
    void edisp_correction_factors(const std::string & srcName,
                                  const std::vector<double> & true_counts_spec,
                                  std::vector<double> &);
+
+   Drm & drm();
 };
 
 }
