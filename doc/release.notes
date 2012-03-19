@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-22-07 18-Mar-2012 jchiang create m_drm on-demand
  Likelihood-17-22-06 10-Mar-2012 jchiang add complement functionality to ScaleFactor class
  Likelihood-17-22-05 28-Feb-2012 jchiang various const fixes
  Likelihood-17-22-04 22-Feb-2012 jchiang include MeanPsf exposure at theta > 70
