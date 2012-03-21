@@ -45,14 +45,15 @@ void CountsSpectra::getSrcCounts(const std::string & srcName,
    srcCounts.clear();
    srcCounts.reserve(m_ebounds.size() - 1);
    if (m_binnedLike) {
-      std::vector<double> npreds;
-      m_binnedLike->getNpreds(srcName, npreds);
-      for (size_t k = 0; k < m_ebounds.size() - 1; k++) {
-         srcCounts.push_back(src->pixelCounts(m_ebounds.at(k),
-                                              m_ebounds.at(k+1),
-                                              npreds.at(k), 
-                                              npreds.at(k+1)));
-      }
+      srcCounts = m_binnedLike->modelCountsSpectrum(srcName);
+//       std::vector<double> npreds;
+//       m_binnedLike->getNpreds(srcName, npreds);
+//       for (size_t k = 0; k < m_ebounds.size() - 1; k++) {
+//          srcCounts.push_back(src->pixelCounts(m_ebounds.at(k),
+//                                               m_ebounds.at(k+1),
+//                                               npreds.at(k), 
+//                                               npreds.at(k+1)));
+//       }
    } else if (m_binnedLike2) {
       std::vector<double> npreds;
       m_binnedLike2->getNpreds(srcName, npreds);
