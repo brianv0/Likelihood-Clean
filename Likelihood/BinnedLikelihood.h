@@ -160,6 +160,10 @@ public:
    const std::vector<double> & 
    modelCountsSpectrum(const std::string &srcname) const;
 
+   void set_edisp_flag(bool use_edisp);
+
+   bool use_edisp() const;
+
 protected:
 
    BinnedLikelihood & operator=(const BinnedLikelihood & rhs) {
@@ -222,6 +226,7 @@ private:
    /// Summed npred values at each energy boundary value for fixed sources.
    std::vector<double> m_fixedNpreds;
 
+   bool m_use_edisp;
    Drm * m_drm;
 
    mutable std::map<std::string, std::vector<double> > m_true_counts;
