@@ -746,17 +746,26 @@ double WcsMap2::mapIntegral(double energy) const {
 }
 
 void WcsMap2::computeMapIntegrals() {
-   m_mapIntegral = 0;
    m_mapIntegrals.clear();
    for (int k(0); k < m_naxis3; k++) {
       m_mapIntegrals.push_back(0);
       for (int j(0); j < m_naxis2; j++) {
          for (int i(0); i < m_naxis1; i++) {
-            // NB: Indexing for solidAngles() is reversed from usual convention.
-            m_mapIntegral += solidAngles()[i][j]*m_image[k][j][i];
+            // NB: Indexing for solidAngles() is reversed from usual
+            // convention.
             m_mapIntegrals.back() += solidAngles()[i][j]*m_image[k][j][i];
          }
       }
+   }
+   if (m_naxis3 == 1) {
+      m_mapIntegral = m_mapIntegrals.at(0);
+      return;
+   }
+   m_mapIntegral = 0;
+   for (size_t k(0); k < m_naxis3-1; k++) {
+      m_mapIntegral += ( (m_mapIntegrals[k+1]*m_energies[k+1] +
+                          m_mapIntegrals[k]*m_energies[k])/2.
+                         *std::log(m_energies[k+1]/m_energies[k]) );
    }
 }
 
