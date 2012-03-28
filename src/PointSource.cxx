@@ -479,16 +479,16 @@ PointSource::Aeff::Aeff(double energy, const astro::SkyDir &srcDir,
                         const RoiCuts & roiCuts,
                         const ResponseFunctions & respFuncs, 
                         double time, bool usePhiDependence)
-   : m_energy(energy), m_srcDir(srcDir), m_respFuncs(respFuncs),
-     m_time(time), m_usePhiDependence(usePhiDependence) {
-   
+   : ExposureCube::AeffBase(), m_energy(energy), m_srcDir(srcDir),
+     m_respFuncs(respFuncs), m_time(time),
+     m_usePhiDependence(usePhiDependence) {
    m_cones.push_back(const_cast<irfInterface::AcceptanceCone *>
                      (&(roiCuts.extractionRegion())));
    m_emin = roiCuts.getEnergyCuts().first;
    m_emax = roiCuts.getEnergyCuts().second;
 }
 
-double PointSource::Aeff::operator()(double cos_theta, double phi) const {
+double PointSource::Aeff::value(double cos_theta, double phi) const {
    double theta = acos(cos_theta)*180./M_PI;
 
    double myEffArea = 0;
