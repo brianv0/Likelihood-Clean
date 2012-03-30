@@ -142,14 +142,18 @@ WcsMap2::WcsMap2(const std::string & filename,
    std::pair<double, double> coord = m_proj->pix2sph(m_crpix1, m_crpix2);
    m_refDir = astro::SkyDir(coord.first, coord.second, m_coordSys);
 
-   std::vector<astro::SkyDir> corners;
-   getCorners(corners);
-   m_mapRadius = corners[0].difference(m_refDir);
-   for (size_t i(1); i < corners.size(); i++) {
-      double sep(corners[i].difference(m_refDir));
-      if (sep > m_mapRadius) {
-         m_mapRadius = sep;
+   try {
+      std::vector<astro::SkyDir> corners;
+      getCorners(corners);
+      m_mapRadius = corners[0].difference(m_refDir);
+      for (size_t i(1); i < corners.size(); i++) {
+         double sep(corners[i].difference(m_refDir));
+         if (sep > m_mapRadius) {
+            m_mapRadius = sep;
+         }
       }
+   } catch(std::exception & eObj) {
+      m_mapRadius = 180.;
    }
 
    delete image;
@@ -590,7 +594,15 @@ double WcsMap2::solidAngle(const astro::SkyProj & proj,
 }
 
 double WcsMap2::solidAngle(double ilon, double ilat) const {
-   return solidAngle(*m_proj, ilon, ilat);
+   try {
+      return solidAngle(*m_proj, ilon, ilat);
+   } catch (std::exception & eObj) {
+      if (!st_facilities::Util::
+          expectedException(eObj, "SkyProj wcslib error")) {
+         throw;
+      }
+   }
+   return 0;
 }
 
 const std::vector< std::vector<double> > & WcsMap2::solidAngles() const {
