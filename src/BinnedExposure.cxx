@@ -215,7 +215,7 @@ void BinnedExposure::computeMap() {
                                &m_cdelt[0], m_crota2, m_isGalactic);
 
    m_exposureMap.resize(m_naxes.at(0)*m_naxes.at(1)*m_energies.size(), 0);
-   int iter(0);
+   long iter(0);
    st_stream::StreamFormatter formatter("BinnedExposure", "computeMap", 2);
    formatter.warn() << "Computing binned exposure map";
 
@@ -232,9 +232,10 @@ void BinnedExposure::computeMap() {
       }
    }
 
+   long npix(m_naxes[0]*m_naxes[1]);
    for (int j = 0; j < m_naxes.at(1); j++) {
       for (int i = 0; i < m_naxes.at(0); i++, iter++) {
-         if ((iter % ((m_naxes.at(1)*m_naxes.at(0))/20)) == 0) {
+         if (npix > 20 && (iter % (npix/20)) == 0) {
             formatter.warn() << ".";
          }
          // std::pair<double, double> coord = m_proj->pix2sph(i + 1, j + 1);
