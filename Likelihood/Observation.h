@@ -19,6 +19,10 @@
 
 namespace Likelihood {
 
+   class BinnedExposure;
+   class WcsMap2;
+   class MeanPsf;
+
 /**
  * @class Observation
  * @brief A container class composed of all of the data-related
@@ -30,26 +34,25 @@ namespace Likelihood {
  * allowing multiple observations to be considered within the same
  * program instance.
  *
- * @author J. Chiang
- *
- * $Header$
  */
 
 class Observation {
 
 public:
 
-//    Observation() : m_respFuncs(0), m_scData(0), m_roiCuts(0), m_expCube(0),
-//       m_expMap(0), m_eventCont(0) {}
-
-   Observation(ResponseFunctions * respFuncs, 
-               ScData * scData,
-               RoiCuts * roiCuts,
-               ExposureCube * expCube,
-               ExposureMap * expMap,
-               EventContainer * eventCont) :
+   Observation(ResponseFunctions * respFuncs=0, 
+               ScData * scData=0,
+               RoiCuts * roiCuts=0,
+               ExposureCube * expCube=0,
+               ExposureMap * expMap=0,
+               EventContainer * eventCont=0,
+               BinnedExposure * bexpmap=0,
+               WcsMap2 * phased_expmap=0) :
       m_respFuncs(respFuncs), m_scData(scData), m_roiCuts(roiCuts),
-      m_expCube(expCube), m_expMap(expMap), m_eventCont(eventCont) {}
+      m_expCube(expCube), m_expMap(expMap), m_eventCont(eventCont),
+      m_bexpmap(bexpmap), m_phased_expmap(phased_expmap),
+      m_meanpsf(0) {
+   }
 
    const ResponseFunctions & respFuncs() const {
       return *m_respFuncs;
@@ -99,15 +102,45 @@ public:
       return *m_eventCont;
    }
 
+   const BinnedExposure & bexpmap() const {
+      return *m_bexpmap;
+   }
+
+   BinnedExposure & bexpmap() {
+      return *m_bexpmap;
+   }
+   
+   const WcsMap2 & phased_expmap() const {
+      return *m_phased_expmap;
+   }
+
+   WcsMap2 & phased_expmap() {
+      return *m_phased_expmap;
+   }
+
+   void setMeanPsf(MeanPsf * meanpsf) {
+      m_meanpsf = meanpsf;
+   }
+
+   const MeanPsf & meanpsf() const {
+      return *m_meanpsf;
+   }
+
+   MeanPsf & meanpsf() {
+      return *m_meanpsf;
+   }
+
 private:
 
-   /// @todo Assert ownership of these pointers and delete in destructor.
    ResponseFunctions * m_respFuncs;
    ScData * m_scData;
    RoiCuts * m_roiCuts;
    ExposureCube * m_expCube;
    ExposureMap * m_expMap;
    EventContainer * m_eventCont;
+   BinnedExposure * m_bexpmap;
+   WcsMap2 * m_phased_expmap;
+   MeanPsf * m_meanpsf;
 
 };
 

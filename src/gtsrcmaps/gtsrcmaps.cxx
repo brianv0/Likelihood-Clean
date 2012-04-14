@@ -127,10 +127,8 @@ void gtsrcmaps::run() {
               << binnedMap << " does not exist.";
       throw std::runtime_error(message.str());
    } else {
-      SourceMap::setBinnedExpMapName(binnedMap);
-      SourceMap::setBinnedExposure(binnedMap);
       bool enforce_boundaries = m_pars["emapbnds"];
-      SourceMap::binnedExposure().setBoundaryFlag(enforce_boundaries);
+      m_helper->observation().bexpmap().setBoundaryFlag(enforce_boundaries);
    }
    bool computePointSources = AppHelpers::param(m_pars, "ptsrc", true);
    bool psf_corrections = AppHelpers::param(m_pars, "psfcorr", true);
