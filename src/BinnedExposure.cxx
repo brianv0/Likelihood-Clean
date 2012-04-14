@@ -125,7 +125,7 @@ BinnedExposure::BinnedExposure(const std::string & filename)
 }
 
 BinnedExposure::~BinnedExposure() {
-   delete m_proj;
+//   delete m_proj;
 }
 
 double BinnedExposure::operator()(double energy, double ra, double dec) const {
