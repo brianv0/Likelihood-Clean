@@ -89,8 +89,6 @@ using namespace Likelihood;
  * Likelihood analysis in ballistic fashion.
  *
  * @author J. Chiang
- *
- * $Header$
  */
 
 class likelihood : public st_app::StApp {
@@ -206,11 +204,11 @@ void likelihood::run() {
 
    m_helper = new AppHelpers(&m_pars, statistic);
    std::string expcube_file = m_pars["expcube"];
-   if (expcube_file != "none" && expcube_file != "") {
-      ExposureCube & expCube = 
-         const_cast<ExposureCube &>(m_helper->observation().expCube());
-      expCube.readExposureCube(expcube_file);
-   }
+   // if (expcube_file != "none" && expcube_file != "") {
+   //    ExposureCube & expCube = 
+   //       const_cast<ExposureCube &>(m_helper->observation().expCube());
+   //    expCube.readExposureCube(expcube_file);
+   // }
 //   bool useEdisp = m_pars["edisp"];
    bool useEdisp = false;
    ResponseFunctions & respFuncs = 
@@ -376,9 +374,6 @@ void likelihood::createStatistic() {
       }
       std::string binnedMap = m_pars["bexpmap"];
       AppHelpers::checkExposureMap(m_pars["cmap"], m_pars["bexpmap"]);
-      if (binnedMap != "none" && binnedMap != "") {
-         SourceMap::setBinnedExposure(binnedMap);
-      }
       return;
    } else if (m_statistic == "UNBINNED") {
       m_logLike = new LogLike(m_helper->observation());

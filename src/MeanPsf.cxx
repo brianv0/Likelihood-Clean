@@ -62,7 +62,7 @@ void MeanPsf::computeExposure() {
          int evtType = resp->second->irfID();
          ExposureCube::Aeff aeff(m_energies[k], evtType, m_observation);
          value += m_observation.expCube().value(m_srcDir, aeff,
-                                                    m_energies[k]);
+                                                m_energies[k]);
       }
       m_exposure.push_back(value);
    }

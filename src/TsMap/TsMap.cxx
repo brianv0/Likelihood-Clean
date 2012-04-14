@@ -193,9 +193,6 @@ void TsMap::run() {
                                        apply_psf_corrections);
       std::string bexpmap = m_pars["bexpmap"];
       AppHelpers::checkExposureMap(cmap, bexpmap);
-      if (bexpmap != "none" && bexpmap != "") {
-         SourceMap::setBinnedExposure(bexpmap);
-      }
       dynamic_cast<BinnedLikelihood *>(m_logLike)->setVerbose(false);
    }
    readSrcModel();

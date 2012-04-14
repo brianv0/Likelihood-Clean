@@ -682,7 +682,7 @@ SourceMap * BinnedLikelihood::createSourceMap(const std::string & srcName) {
 SourceMap * BinnedLikelihood::getSourceMap(const std::string & srcName, 
                                            bool verbose) const {
    if (fileHasSourceMap(srcName, m_srcMapsFile)) {
-      return new SourceMap(m_srcMapsFile, srcName);
+      return new SourceMap(m_srcMapsFile, srcName, m_observation);
    }
 // Generate the map if it is not in the file.   
    Source * src(const_cast<BinnedLikelihood *>(this)->getSource(srcName));
