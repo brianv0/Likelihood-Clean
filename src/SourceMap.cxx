@@ -78,7 +78,8 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
      m_formatter(new st_stream::StreamFormatter("SourceMap", "", 2)),
      m_deleteDataMap(false) {
    if (verbose) {
-      m_formatter->warn() << "Generating SourceMap for " << m_name;
+      m_formatter->warn() << "Generating SourceMap for " 
+                          << m_name << std::endl;
    }
 
    bool havePointSource = dynamic_cast<PointSource *>(src) != 0;
@@ -276,7 +277,11 @@ void SourceMap::makeDiffuseMap(Source * src,
       MapBase * mapBaseObj = 
          const_cast<MapBase *>(diffuseSrc->mapBaseObject());
       mapBaseObj->deleteMap();
+      m_formatter->info(4) << "SourceMap::makeDiffuseSource: "
+                           << "called mapBaseObj->deleteMap()"
+                           << std::endl;
    } catch (MapBaseException & eObj) {
+      std::cout << eObj.what() << std::endl;
       // Not a map-based source, so do nothing.
    }
 }

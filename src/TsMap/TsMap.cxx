@@ -215,11 +215,12 @@ void TsMap::readSrcModel() {
    if (srcModelFile != "" && srcModelFile != "none") {
       st_facilities::Util::file_ok(srcModelFile);
       bool requireExposure = (m_statistic != "BINNED");
-      bool loadMaps = (m_statistic != "BINNED");
+//      bool loadMaps = (m_statistic != "BINNED");
+      bool loadMaps;
       bool addPointSources;
       m_logLike->readXml(srcModelFile, m_helper->funcFactory(),
                          requireExposure, addPointSources=true,
-                         loadMaps);
+                         loadMaps=false);
       if (m_statistic == "UNBINNED") {
          m_logLike->computeEventResponses();
       }
