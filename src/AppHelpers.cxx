@@ -111,12 +111,14 @@ AppHelpers::AppHelpers(st_app::AppParGroup * pars,
          std::string bexpmap = my_pars["bexpmap"];
          m_bexpmap = new BinnedExposure(bexpmap);
       } catch (hoops::Hexception &) {
-       }
+      }
       try {
          std::string phased_expmap = my_pars["phased_expmap"];
-         m_phased_expmap = new WcsMap2(phased_expmap);
+         if (phased_expmap != "none" && phased_expmap != "") {
+            m_phased_expmap = new WcsMap2(phased_expmap);
+         }
       } catch (hoops::Hexception &) {
-       }
+      }
    }
    m_observation = new Observation(m_respFuncs,
                                    m_scData,
