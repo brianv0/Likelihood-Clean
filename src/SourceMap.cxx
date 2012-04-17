@@ -78,8 +78,7 @@ SourceMap::SourceMap(Source * src, const CountsMap * dataMap,
      m_formatter(new st_stream::StreamFormatter("SourceMap", "", 2)),
      m_deleteDataMap(false) {
    if (verbose) {
-      m_formatter->warn() << "Generating SourceMap for " 
-                          << m_name << std::endl;
+      m_formatter->warn() << "Generating SourceMap for " << m_name;
    }
 
    bool havePointSource = dynamic_cast<PointSource *>(src) != 0;
