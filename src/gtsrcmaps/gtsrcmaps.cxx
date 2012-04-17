@@ -147,8 +147,10 @@ void gtsrcmaps::run() {
    std::string srcModelFile = m_pars["srcmdl"];
    bool loadMaps, createAllMaps;
    try {
+/// Turn off loading of maps when xml file is read in.  Instead, read maps
+/// when they are first accessed by MapBase objects.
       m_binnedLikelihood->readXml(srcModelFile, m_helper->funcFactory(), false,
-                                  computePointSources, loadMaps=true,
+                                  computePointSources, loadMaps=false,
                                   createAllMaps=true);
    } catch(std::runtime_error & eObj) {
       std::string message("Request for exposure at a sky position "
