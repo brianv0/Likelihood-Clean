@@ -31,10 +31,6 @@ class ResponseFunctions;
  * @brief A Function object that returns the value of a FITS image
  * at a SkyDir location.
  *
- * @author J. Chiang
- *    
- * $Header$
- *
  */
     
 class SpatialMap : public optimizers::Function, public MapBase {

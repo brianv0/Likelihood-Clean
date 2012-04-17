@@ -405,7 +405,8 @@ void likelihood::readSourceModel() {
       st_facilities::Util::file_ok(sourceModel);
       m_logLike->readXml(sourceModel, m_helper->funcFactory(), 
                          requireExposure, addPointSources=true,
-                         loadMaps=(m_statistic!="BINNED"));
+                         loadMaps=false);
+//                         loadMaps=(m_statistic!="BINNED"));
       if (m_statistic != "BINNED") {
          m_logLike->computeEventResponses();
       }
