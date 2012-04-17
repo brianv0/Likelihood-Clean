@@ -131,9 +131,8 @@ AppHelpers::AppHelpers(st_app::AppParGroup * pars,
          my_pars["expcube"];
          std::string cmapfile = my_pars["cmap"];
          CountsMap cmap(cmapfile);
-         std::vector<double> energies;
-         cmap.getAxisVector(2, energies);
-         m_meanpsf = new MeanPsf(cmap.refDir(), energies, *m_observation);
+         m_meanpsf = new MeanPsf(cmap.refDir(), cmap.energies(),
+                                 *m_observation);
          m_observation->setMeanPsf(m_meanpsf);
       } catch (hoops::Hexception &) {
       }
