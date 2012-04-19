@@ -111,9 +111,8 @@ void SourceModelBuilder::addSpatialPart(DOMElement * srcElt, Source & src) {
             dynamic_cast<RadialProfile *>(srcFuncs["SpatialDist"])->templateFile();
          xmlBase::Dom::addAttribute(spatialElt, "file", file);
       }
-      DiffuseSource * diffuseSource
-         = dynamic_cast<DiffuseSource *>(srcFuncs["SpatialDist"]);
-      if (diffuseSource !=0 && diffuseSource->mapBasedIntegral()) {
+      DiffuseSource * diffuseSource(dynamic_cast<DiffuseSource *>(&src));
+      if (diffuseSource->mapBasedIntegral()) {
          xmlBase::Dom::addAttribute(spatialElt, "map_based_integral", "true");
       }
       srcFuncs["SpatialDist"]->appendParamDomElements(m_doc, spatialElt);
