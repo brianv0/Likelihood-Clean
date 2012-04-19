@@ -47,6 +47,10 @@ public:
       return m_use_complement;
    }
 
+   optimizers::Function * spectrum() {
+      return m_spectrum;
+   }
+
 private:
    
    optimizers::Function * m_spectrum;
