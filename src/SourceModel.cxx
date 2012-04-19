@@ -469,8 +469,8 @@ void SourceModel::reReadXml(std::string xmlFile) {
 }
 
 void SourceModel::writeXml(std::string xmlFile,
-                           const std::string &functionLibrary,
-                           const std::string &srcLibTitle) {
+                           const std::string & functionLibrary,
+                           const std::string & srcLibTitle) {
 
    SourceModelBuilder builder(functionLibrary, srcLibTitle);
 
