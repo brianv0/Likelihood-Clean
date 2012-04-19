@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-22-15 19-Apr-2012 jchiang ensure that an exisiting map_based_integral attribute is written when calling SourceModel::writeXml
  Likelihood-17-22-14 17-Apr-2012 jchiang retagging because of annoying stag failure
  Likelihood-17-22-13 17-Apr-2012 jchiang forestall reading of FITS maps until they are needed
  Likelihood-17-22-12 16-Apr-2012 jchiang phased_expmap option added for binned analysis
