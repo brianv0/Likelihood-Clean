@@ -16,6 +16,7 @@
 
 #include "optimizers/Dom.h"
 
+#include "Likelihood/DiffuseSource.h"
 #include "Likelihood/DMFitFunction.h"
 #include "Likelihood/FileFunction.h"
 #include "Likelihood/MapCubeFunction2.h"
@@ -78,7 +79,7 @@ DOMElement * SourceModelBuilder::spectralPart(Source & src) {
    if (dmFitFunc != 0) {
       xmlBase::Dom::addAttribute(specElt, "file", dmFitFunc->filename());
    }
-   
+
    srcFuncs["Spectrum"]->appendParamDomElements(m_doc, specElt);
    return specElt;
 }
@@ -109,6 +110,11 @@ void SourceModelBuilder::addSpatialPart(DOMElement * srcElt, Source & src) {
          std::string file = 
             dynamic_cast<RadialProfile *>(srcFuncs["SpatialDist"])->templateFile();
          xmlBase::Dom::addAttribute(spatialElt, "file", file);
+      }
+      DiffuseSource * diffuseSource
+         = dynamic_cast<DiffuseSource *>(srcFuncs["SpatialDist"]);
+      if (diffuseSource !=0 && diffuseSource->mapBasedIntegral()) {
+         xmlBase::Dom::addAttribute(spatialElt, "map_based_integral", "true");
       }
       srcFuncs["SpatialDist"]->appendParamDomElements(m_doc, spatialElt);
       optimizers::Dom::appendChild(srcElt, spatialElt);
