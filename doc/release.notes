@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-22-18 24-Apr-2012 jchiang add ScaleFactor::Gaussian
  Likelihood-17-22-17 20-Apr-2012 jchiang ensure that ScaleFactor::FileFunction model components have the file attribute written to the output xml model file
  Likelihood-17-22-16 19-Apr-2012 jchiang check for ScaleFactor::FileFunction in SourceFactory::setSpectrum
  Likelihood-17-22-15 19-Apr-2012 jchiang ensure that an exisiting map_based_integral attribute is written when calling SourceModel::writeXml
