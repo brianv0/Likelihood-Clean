@@ -22,6 +22,8 @@
 #include "dataSubselector/CutBase.h"
 #include "dataSubselector/Cuts.h"
 
+#include "optimizers/Gaussian.h"
+
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/BandFunction.h"
 #include "Likelihood/BinnedExposure.h"
@@ -233,6 +235,9 @@ addFunctionPrototypes(optimizers::FunctionFactory * funcFactory) {
                         new ScaleFactor(PowerLaw2()), makeClone);
    funcFactory->addFunc("ScaleFactor::PLSuperExpCutoff", 
                         new ScaleFactor(PowerLawSuperExpCutoff()), makeClone);
+   
+   funcFactory->addFunc("ScaleFactor::Gaussian",
+                        new ScaleFactor(optimizers::Gaussian()), makeClone);
 }
 
 void AppHelpers::setRoi(const std::string & filename,
