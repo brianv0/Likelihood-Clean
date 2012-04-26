@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-23-00 26-Apr-2012 jchiang ensure gtltsum fails if any of the input files do not have the expected extensions and verify that the CTHETABOUNDS extensions among all input files match
  Likelihood-17-22-18 24-Apr-2012 jchiang add ScaleFactor::Gaussian
  Likelihood-17-22-17 20-Apr-2012 jchiang ensure that ScaleFactor::FileFunction model components have the file attribute written to the output xml model file
  Likelihood-17-22-16 19-Apr-2012 jchiang check for ScaleFactor::FileFunction in SourceFactory::setSpectrum
