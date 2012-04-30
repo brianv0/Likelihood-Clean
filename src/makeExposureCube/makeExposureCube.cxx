@@ -153,6 +153,10 @@ void ExposureCube::writeTableKeywords(const std::string & outfile,
    tip::Header & header(table->getHeader());
    header["TSTART"].set(tstart);
    header["TSTOP"].set(tstop);
+   double zmax = m_pars["zmax"];
+   if (zmax < 180.) {
+      header["ZENMAX"].set(zmax);
+   }
 }
 
 void ExposureCube::writeDateKeywords(const std::string & outfile, 
