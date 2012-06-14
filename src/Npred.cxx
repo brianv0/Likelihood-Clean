@@ -19,21 +19,19 @@ double Npred::value(optimizers::Arg &x) const {
    Source * src = dynamic_cast<SrcArg &>(x).getValue();
 
    if (m_use_ebounds) {
-      return src->Npred();
-   } else {
       return src->Npred(m_emin, m_emax);
    }
+   return src->Npred();
 }
 
-double Npred::derivByParam(optimizers::Arg &x, 
-                           const std::string &paramName) const {
-   Source *src = dynamic_cast<SrcArg &>(x).getValue();
-
+double Npred::derivByParam(optimizers::Arg & x, 
+                           const std::string & paramName) const {
+   Source * src = dynamic_cast<SrcArg &>(x).getValue();
    double value(0);
    if (m_use_ebounds) {
-      value = src->NpredDeriv(paramName);
-   } else {
       value = src->NpredDeriv(paramName, m_emin, m_emax);
+   } else {
+      value = src->NpredDeriv(paramName);
    }
    return value;
 }
