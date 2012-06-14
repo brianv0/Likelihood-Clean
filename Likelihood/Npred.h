@@ -21,20 +21,25 @@ namespace Likelihood {
  * @brief This class encapsulates the Npred methods of Sources in a
  * Function context.
  *  
- * @author J. Chiang
- *    
- * $Header$
  */
 
 class Npred : public optimizers::Function {
     
 public:
 
-   Npred() {m_genericName = "Npred";}
+   Npred() : m_use_ebounds(false), m_emin(0), m_emax(0) {
+      m_genericName = "Npred";
+   }
+
    virtual ~Npred() {}
 
    double value(optimizers::Arg &) const;
+
    double derivByParam(optimizers::Arg &, const std::string &) const;
+
+   void set_ebounds(double emin, double emax);
+
+   void unset_ebounds();
 
 protected:
 
@@ -43,6 +48,10 @@ protected:
    }
 
 private:
+
+   bool m_use_ebounds;
+   double m_emin;
+   double m_emax;
 
    void fetchDerivs(optimizers::Arg &, std::vector<double> &derivs, 
                     bool getFree) const;
