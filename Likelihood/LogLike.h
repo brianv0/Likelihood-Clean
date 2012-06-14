@@ -78,6 +78,10 @@ public:
 
    virtual void addPrior(size_t index, optimizers::Function & log_prior);
 
+   virtual void set_ebounds(double emin, double emax);
+
+   virtual void unset_ebounds();
+
 protected:
 
    virtual LogLike * clone() const {
@@ -87,6 +91,10 @@ protected:
    mutable unsigned long m_nevals;
 
    mutable double m_bestValueSoFar;
+
+   bool m_use_ebounds;
+   double m_emin;
+   double m_emax;
 
    void saveBestFit(double logLikeValue) const;
 
