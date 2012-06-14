@@ -29,9 +29,6 @@ namespace Likelihood {
  *
  * @brief A gamma-ray event --- apparent direction, energy, arrival time, etc.
  *
- * @author J. Chiang
- *    
- * $Header$
  */
 
 class Event {

@@ -41,7 +41,7 @@ namespace Likelihood {
  *
  */
 
- class SourceModel : public optimizers::Statistic {
+class SourceModel : public optimizers::Statistic {
 
 public:
    
@@ -165,6 +165,16 @@ public:
 
    std::vector<optimizers::Parameter> & parameters() {
       return m_parameter;
+   }
+
+   /// Default methods to set energy bounds of the analysis.
+   /// These should be re-implement in derived classes 
+   virtual void set_ebounds(double emin, double emax) {
+      throw std::runtime_error("SourceModel::set_ebounds not implemented.");
+   }
+
+   virtual void unset_ebounds() {
+      throw std::runtime_error("SourceModel::unset_ebounds not implemented.");
    }
 
 protected:

@@ -164,6 +164,19 @@ public:
 
    bool use_edisp() const;
 
+   /// These are required since this inherits from LogLike rather than
+   /// for SourceModel.  The inheritance hierarchy for this class and
+   /// LogLike should be refactored.
+   virtual void set_ebounds(double emin, double emax) {
+      throw std::runtime_error("BinnedLikelihood::set_ebounds "
+                               "not implemented.");
+   }
+
+   virtual void unset_ebounds() {
+      throw std::runtime_error("BinnedLikelihood::unset_ebounds "
+                               "not implemented.");
+   }
+
 protected:
 
    BinnedLikelihood & operator=(const BinnedLikelihood & rhs) {
