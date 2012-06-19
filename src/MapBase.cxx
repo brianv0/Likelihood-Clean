@@ -199,8 +199,9 @@ double MapBase::interpolatePowerLaw(double x, double x1, double x2,
       throw std::runtime_error(message.str());
    }
    double gamma = std::log(y2/y1)/std::log(x2/x1);
-   double n0 = y1/std::pow(x1, gamma);
-   return n0*std::pow(x, gamma);
+   // double n0 = y1/std::pow(x1, gamma);
+   // return n0*std::pow(x, gamma);
+   return y1*std::pow(x/x1, gamma);
 }
 
 } // namespace Likelihood
