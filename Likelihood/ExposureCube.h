@@ -49,7 +49,7 @@ public:
    void readExposureCube(std::string filename);
 
    double livetime(const astro::SkyDir & dir, double costheta,
-                   double phi=1) const;
+                   double phi=-1) const;
 
    void setEfficiencyFactor(const irfInterface::IEfficiencyFactor * eff) {
       if (eff) {
