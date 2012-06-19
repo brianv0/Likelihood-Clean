@@ -47,13 +47,13 @@ void ExposureCube::readExposureCube(std::string filename) {
 
 double ExposureCube::livetime(const astro::SkyDir & dir,
                               double costheta, double phi) const {
-   size_t ci;
-   size_t index(healpix::CosineBinner::costh_phi_index(costheta, 
-                                                       phi*M_PI/180., ci));
+   size_t ci(healpix::CosineBinner::cosine_index(costheta));
    const healpix::CosineBinner & binner(m_exposure->data()[dir]);
    if (phi < 0) {
       return binner.at(ci);
    }
+   size_t index((healpix::CosineBinner::phi_index(phi*M_PI/180.) + 1)*
+                healpix::CosineBinner::nbins() + ci);
    return binner.at(index);
 }
 
