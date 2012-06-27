@@ -120,6 +120,8 @@ private:
 
    mutable std::vector<double> m_bestFitParsSoFar;
 
+   void update_npreds();
+
 };
 
 } // namespace Likelihood

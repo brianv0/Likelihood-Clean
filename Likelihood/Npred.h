@@ -37,10 +37,6 @@ public:
 
    double derivByParam(optimizers::Arg &, const std::string &) const;
 
-   void set_ebounds(double emin, double emax);
-
-   void unset_ebounds();
-
 protected:
 
    Npred * clone() const {
@@ -48,10 +44,6 @@ protected:
    }
 
 private:
-
-   bool m_use_ebounds;
-   double m_emin;
-   double m_emax;
 
    void fetchDerivs(optimizers::Arg &, std::vector<double> &derivs, 
                     bool getFree) const;

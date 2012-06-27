@@ -153,6 +153,9 @@ public:
    /// Units are MeV/cm^2/s
    virtual double energyFlux() const;
 
+   virtual void computeExposure(const std::vector<double> & energies,
+                                bool verbose=false);
+
    /// @return Derivative of integrated energy flux wrt the named parameter
    double energyFluxDeriv(const std::string & parName) const;
 

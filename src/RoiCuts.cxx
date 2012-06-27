@@ -138,6 +138,8 @@ void RoiCuts::makeEnergyVector(int nee) {
    for (int i = 0; i < nee; i++) {
       m_energies.push_back(m_eMin*std::exp(estep*i));
    }
+   // Ensure that last entry matches the value of m_eMax.
+   m_energies.back() = m_eMax;
 }
 
 void RoiCuts::setRoiData() {
