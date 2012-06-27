@@ -125,6 +125,9 @@ public:
       return new PointSource(*this);
    }
 
+   virtual void computeExposure(const std::vector<double> & energies,
+                                bool verbose=false);
+
    /// Compute the integrated exposure using the provided 
    /// vector of energy values
    static void computeExposure(const astro::SkyDir & dir,
