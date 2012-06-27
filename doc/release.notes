@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-24-04 27-Jun-2012 jchiang remove initialization of deleted data members in Npred constructor
  Likelihood-17-24-03 27-Jun-2012 jchiang improved energy range subselection handling in unbinned analysis
  Likelihood-17-24-02 19-Jun-2012 jchiang use existing CosineBinner member functions for ExposureCube::livetime
  Likelihood-17-24-01 18-Jun-2012 jchiang remove old MapCubeFunction; address LK-79; avoid incorrect healpix::CosineBinner::operator()(double, double) in ExposureCube::livetime
