@@ -27,7 +27,7 @@ class Npred : public optimizers::Function {
     
 public:
 
-   Npred() : m_use_ebounds(false), m_emin(0), m_emax(0) {
+   Npred() {
       m_genericName = "Npred";
    }
 
