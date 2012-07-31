@@ -842,6 +842,8 @@ double BinnedLikelihood::NpredValue(const std::string & srcName,
    }
    std::vector<double> meas_counts_spec;
    if (use_edisp()) {
+      std::vector<optimizers::Parameter> pars;
+      src->spectrum().getFreeParams(pars);
       const_cast<BinnedLikelihood *>(this)
          ->edisp_correction_factors(srcName, true_counts_spec,
                                     meas_counts_spec);
