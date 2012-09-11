@@ -115,7 +115,8 @@ public:
    /// based on the source model weights per pixel, this is the counts
    /// spectrum weighted by the probability of attributing counts in
    /// each pixel to this source.
-   std::vector<double> countsSpectrum(const std::string & srcName) const;
+   std::vector<double> countsSpectrum(const std::string & srcName, 
+                                      bool use_klims=true) const;
 
    /// Predicted counts spectrum for the fixed model components
    /// summed together.
