@@ -35,6 +35,15 @@ LogLike::LogLike(const Observation & observation)
 
 double LogLike::value(optimizers::Arg&) const {
    std::clock_t start = std::clock();
+   if (m_use_ebounds) {
+      std::pair<double, double> ebounds
+         = m_observation.roiCuts().getEnergyCuts();
+      if (m_emin >= ebounds.second || m_emax <= ebounds.first) {
+         // Updated energy range selection excludes all of the original 
+         // data so return zero for log-likelihood.
+         return 0;
+      }
+   }
    const std::vector<Event> & events = m_observation.eventCont().events();
    double my_value(0);
    
