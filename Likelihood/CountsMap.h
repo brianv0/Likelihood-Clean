@@ -128,6 +128,10 @@ public:
       return m_energies;
    }
 
+   const std::string & filename() const {
+      return m_event_file;
+   }
+
 protected:
 
    HistND * m_hist;
