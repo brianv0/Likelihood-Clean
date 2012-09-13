@@ -30,7 +30,7 @@ public:
    ModelMap(BinnedLikelihood & logLike);
 
    void writeOutputMap(const std::string & outfile,
-                       const std::string & outtype="CMAP");
+                       std::string outtype="CMAP");
 
 private:
 
