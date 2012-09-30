@@ -29,6 +29,8 @@
 
 #include "st_facilities/FitsUtil.h"
 
+#include "dataSubselector/Cuts.h"
+
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/LogLike.h"
 
@@ -83,18 +85,19 @@ void BackFile::banner() const {
 void BackFile::setup() {
    m_pars.Prompt();
    m_pars.Save();
+
+   std::string phafile = m_pars["phafile"];
+   std::string irfs = m_pars["irfs"];
+   dataSubselector::Cuts::checkIrfs(phafile, "SPECTRUM", irfs);
+
    m_helper = new Likelihood::AppHelpers(&m_pars, "none");
    std::string expMap = m_pars["expmap"];
    m_helper->observation().expMap().readExposureFile(expMap);
-//   m_helper->observation().roiCuts().readCuts(expMap, "");
    m_helper->setRoi(expMap, "");
    m_helper->readScData();
-//    std::string scfile = m_pars["scfile"];
-//    m_helper->observation().scData().readData(scfile);
    std::string expCube = m_pars["expcube"];
    m_helper->observation().expCube().readExposureCube(expCube);
 
-   std::string phafile = m_pars["phafile"];
    m_helper->checkCuts(phafile, "SPECTRUM", expMap, "");
 }
 
