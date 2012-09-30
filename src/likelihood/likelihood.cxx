@@ -219,7 +219,7 @@ void likelihood::run() {
    std::string irfs = m_pars["irfs"];
    if (m_statistic == "BINNED") {
       std::string cmap = m_pars["cmap"];
-      dataSubselector::Cuts::checkIrfs(cmap, "PRIMARY", irfs);
+      dataSubselector::Cuts::checkIrfs(cmap, "", irfs);
       m_helper->setRoi(cmap, "", false);
    } else {
       std::string exposureFile = m_pars["expmap"];

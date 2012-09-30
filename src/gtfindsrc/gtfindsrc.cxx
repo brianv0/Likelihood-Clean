@@ -24,6 +24,8 @@
 
 #include "st_facilities/Util.h"
 
+#include "dataSubselector/Cuts.h"
+
 #include "optimizers/Amoeba.h"
 #include "optimizers/dArg.h"
 #include "optimizers/Exception.h"
@@ -33,7 +35,6 @@
 #include "Likelihood/AppHelpers.h"
 #include "Likelihood/LogLike.h"
 #include "Likelihood/Util.h"
-
 
 using namespace Likelihood;
 
@@ -115,8 +116,11 @@ void findSrc::run() {
    st_facilities::Util::resolve_fits_files(eventFile, m_eventFiles);
    bool compareGtis(false);
    bool relyOnStreams(false);
-   std::string respfunc = m_pars["irfs"];
-   bool skipEventClassCuts(respfunc != "DSS");
+   std::string irfs = m_pars["irfs"];
+
+   dataSubselector::Cuts::checkIrfs(m_eventFiles.at(0), "EVENTS", irfs);
+
+   bool skipEventClassCuts(irfs != "DSS");
    for (unsigned int i = 1; i < m_eventFiles.size(); i++) {
       AppHelpers::checkCuts(m_eventFiles[0], evtable, m_eventFiles[i],
                             evtable, compareGtis, relyOnStreams,
