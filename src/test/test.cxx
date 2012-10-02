@@ -1390,6 +1390,25 @@ void LikelihoodTests::test_WcsMap2() {
       delete rebinned_mapcube;
    }
 
+   // Test interpolatePowerLaw.
+   double x, x1, x2;
+
+   // Test switch to linear interpolation
+   double value = Likelihood::WcsMap2::interpolatePowerLaw(x=1, x1=1, x2=2,
+                                                           y1=0, y2=1);
+   CPPUNIT_ASSERT(value == 0);
+   
+   // Test for extrapolation exception if linear interpolation is
+   // selected
+   try {
+      Likelihood::WcsMap2::interpolatePowerLaw(x=-1, x1=1, x2=2,
+                                               y1=0, y2=1);
+   } catch (std::runtime_error & eObj) {
+      if (!st_facilities::Util::expectedException(eObj,
+                                                  "linear extrapolation selected")) {
+         throw;
+      }
+   }
 }
 
 void LikelihoodTests::test_Drm() {
