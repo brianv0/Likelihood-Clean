@@ -37,7 +37,7 @@ public:
    LikeExposure(double skybin, double costhetabin,
                 const std::vector< std::pair<double, double> > & timeCuts,
                 const std::vector< std::pair<double, double> > & gtis,
-                double zenmax=180.);
+                double zenmax=180., double zenmin=0);
 
    ~LikeExposure() {
       delete m_weightedExposure;

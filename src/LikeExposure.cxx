@@ -45,12 +45,15 @@ LikeExposure::
 LikeExposure(double skybin, double costhetabin, 
              const std::vector< std::pair<double, double> > & timeCuts,
              const std::vector< std::pair<double, double> > & gtis,
-             double zenmax)
-   : map_tools::Exposure(skybin, costhetabin, std::cos(zenmax*M_PI/180.)), 
+             double zenmax, double zenmin)
+   : map_tools::Exposure(skybin, costhetabin, std::cos(zenmax*M_PI/180.),
+                         false, std::cos(zenmin*M_PI/180.)), 
      m_costhetabin(costhetabin), m_timeCuts(timeCuts), m_gtis(gtis),
      m_numIntervals(0), 
      m_weightedExposure(new map_tools::Exposure(skybin, costhetabin, 
-                                                std::cos(zenmax*M_PI/180.))) {
+                                                std::cos(zenmax*M_PI/180.),
+                                                false,
+                                                std::cos(zenmin*M_PI/180.))) {
    if (!gtis.empty()) {
       for (size_t i = 0; i < gtis.size(); i++) {
          if (i == 0 || gtis.at(i).first < m_tmin) {

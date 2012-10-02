@@ -68,8 +68,6 @@ namespace {
  * hypercube in (ra, dec, cos_theta) using the LikeExposure class.
  *
  * @author J. Chiang
- *
- * $Header$
  */
 class ExposureCube : public st_app::StApp {
 public:
@@ -154,8 +152,10 @@ void ExposureCube::writeTableKeywords(const std::string & outfile,
    header["TSTART"].set(tstart);
    header["TSTOP"].set(tstop);
    double zmax = m_pars["zmax"];
+   double zmin = m_pars["zmin"];
    if (zmax < 180.) {
       header["ZENMAX"].set(zmax);
+      header["ZENMIN"].set(zmin);
    }
 }
 
@@ -216,6 +216,7 @@ void ExposureCube::createDataCube() {
    formatter.info(4) << "applying filter: " << filter.str() << std::endl;
 
    double zmax = m_pars["zmax"];
+   double zmin = m_pars["zmin"];
 
    // Set the number of phibins using the static function interface
    // from healpix::CosineBinner (this is how
@@ -227,7 +228,7 @@ void ExposureCube::createDataCube() {
 
    m_exposure = new Likelihood::LikeExposure(m_pars["binsz"], 
                                              m_pars["dcostheta"],
-                                             timeCuts, gtis, zmax);
+                                             timeCuts, gtis, zmax, zmin);
    std::string scFile = m_pars["scfile"];
    st_facilities::Util::file_ok(scFile);
    std::vector<std::string> scFiles;
