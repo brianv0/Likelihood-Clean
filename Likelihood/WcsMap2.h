@@ -131,6 +131,9 @@ public:
       return m_extrapolated;
    }
 
+   static double interpolatePowerLaw(double x, double x1, double x2,
+                                     double y1, double y2);
+
 private:
 
    astro::SkyDir m_refDir;
