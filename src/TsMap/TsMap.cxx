@@ -26,6 +26,7 @@
 #include "st_app/StApp.h"
 #include "st_app/StAppFactory.h"
 
+#include "st_facilities/Environment.h"
 #include "st_facilities/Util.h"
 
 #include "dataSubselector/Cuts.h"
@@ -345,8 +346,7 @@ void TsMap::writeFitsFile() {
    if (st_facilities::Util::fileExists(outfile)) {
       std::remove(outfile.c_str());
    }
-   std::string dataPath = 
-      facilities::commonUtilities::getDataPath("Likelihood");
+   std::string dataPath(st_facilities::Environment::dataPath("Likelihood"));
    std::string templateFile = 
       facilities::commonUtilities::joinPath(dataPath, "TsMapTemplate");
 

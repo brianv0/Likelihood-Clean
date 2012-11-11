@@ -22,7 +22,7 @@
 #include "astro/SkyDir.h"
 #include "astro/SkyProj.h"
 
-#include "st_facilities/Env.h"
+#include "st_facilities/Environment.h"
 #include "st_facilities/FitsImage.h"
 #include "st_facilities/Util.h"
 
@@ -626,7 +626,7 @@ void CountsMap::setRefDir() {
 }
 
 void CountsMap::setDataDir() {
-   m_data_dir = facilities::commonUtilities::getDataPath("Likelihood");
+   m_data_dir = st_facilities::Environment::dataPath("Likelihood");
 }
 
 void CountsMap::deleteBinners(std::vector<evtbin::Binner *> & binners) const {
