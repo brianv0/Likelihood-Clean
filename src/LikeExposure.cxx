@@ -15,6 +15,8 @@
 #include "facilities/commonUtilities.h"
 #include "facilities/Util.h"
 
+#include "st_facilities/Environment.h"
+
 #include "st_stream/StreamFormatter.h"
 
 #include "fitsio.h"
@@ -162,8 +164,7 @@ void LikeExposure::load(const tip::Table * scData, bool verbose) {
 }
 
 void LikeExposure::writeFile(const std::string & outfile) const {
-   std::string dataPath = 
-      facilities::commonUtilities::getDataPath("Likelihood");
+   std::string dataPath(st_facilities::Environment::dataPath("Likelihood"));
    std::string templateFile = 
       facilities::commonUtilities::joinPath(dataPath, "LivetimeCubeTemplate");
    tip::IFileSvc & fileSvc(tip::IFileSvc::instance());
