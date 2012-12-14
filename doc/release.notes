@@ -6,6 +6,7 @@
     @verbatim
     * EOH *
     
+ Likelihood-17-27-00 14-Dec-2012  cohen Committing the new DMFIT
  Likelihood-17-26-02 16-Nov-2012 jchiang performance improvements in BinnedLikelihood::getFreeDerivs
  Likelihood-17-26-01 10-Nov-2012 jchiang ensure setupEnvironment() is called exactly once via st_facilities::Environment
  Likelihood-17-26-00 02-Oct-2012 jchiang add zmin parameter to gtlcube, STGEN-133@JIRA
