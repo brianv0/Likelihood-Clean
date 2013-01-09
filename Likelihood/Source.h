@@ -49,7 +49,7 @@ public:
 
    /// @return photons/cm^2-s-sr-MeV having been convolved through
    /// the LAT instrument response
-   virtual double fluxDensity(const Event &evt, 
+   virtual double fluxDensity(const Event & evt, 
                               CachedResponse* cResp = 0) const = 0;
 
    /// @return fluxDensity in instrument coordinates (photons/cm^2-s-sr-MeV)
@@ -61,18 +61,20 @@ public:
    /// @param appDir Apparent photon direction
    /// @param evtType Event type, i.e., front- vs back-converting event, 
    ///        0 vs 1
+   /// @param time Event arrival time
    virtual double fluxDensity(double inclination, double phi, double energy, 
                               const astro::SkyDir & appDir, 
-                              int evtType, CachedResponse* cResp = 0) const = 0;
+                              int evtType, double time, 
+                              CachedResponse* cResp = 0) const = 0;
 
    /// Derivatives of fluxDensity wrt model Parameters
-   virtual double fluxDensityDeriv(const Event &evt, 
-                                   const std::string &paramName,
+   virtual double fluxDensityDeriv(const Event & evt, 
+                                   const std::string & paramName,
 				   CachedResponse* cResp = 0) const = 0;
 
    virtual double fluxDensityDeriv(double inclination, double phi, 
                                    double energy, const astro::SkyDir & appDir,
-                                   int evtType, 
+                                   int evtType, double time, 
                                    const std::string & paramName,
 				   CachedResponse* cResp = 0) const = 0;
 
@@ -223,6 +225,9 @@ protected:
    void getExposureSubArrays(double emin, double emax,
                              std::vector<double> & energies,
                              std::vector<double> & exposures) const;
+
+   void getExposureValues(const std::vector<double> & energies,
+                          std::vector<double> & exposures) const;
 
 /// Nested classes for computing photon flux derivatives and energy
 /// fluxes and flux derivatives.

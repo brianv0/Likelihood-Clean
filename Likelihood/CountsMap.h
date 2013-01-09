@@ -132,6 +132,14 @@ public:
       return m_event_file;
    }
 
+   double tstart() const {
+      return m_tstart;
+   }
+
+   double tstop() const {
+      return m_tstop;
+   }
+
 protected:
 
    HistND * m_hist;
@@ -156,6 +164,9 @@ private:
    // gtbin, i.e., with the reference pixel in the center and 
    // with cdelt1==cdelt2.
    bool m_conforms;
+
+   double m_tstart;
+   double m_tstop;
 
    CountsMap & operator=(const CountsMap &) {return *this;}
 

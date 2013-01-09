@@ -250,7 +250,7 @@ void Event::computeResponse(std::vector<DiffuseSource *> &srcList,
                double totalResp = 
                   respFuncs.totalResponse(*trueEnergy, m_energy,
                                           m_scDir, m_scXDir, srcDir, m_appDir,
-                                          m_type);
+                                          m_type, m_arrTime);
                for (unsigned int k = 0; k < srcs.size(); k++) {
                   double srcDist_val 
                      = srcs[k]->spatialDist(SkyDirArg(srcDir, *trueEnergy));

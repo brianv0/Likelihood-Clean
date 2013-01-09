@@ -337,6 +337,14 @@ void CountsMap::init(std::vector<evtbin::Binner *> & binners,
       m_energies.push_back(interval.begin());
    }
    m_energies.push_back(interval.end());
+
+   // Read TSTART and TSTOP keywords from event file header.
+   const tip::Table * events = 
+      tip::IFileSvc::instance().readTable(event_file, "EVENTS");
+   const tip::Header & header(events->getHeader());
+   header["TSTART"].get(m_tstart);
+   header["TSTOP"].get(m_tstop);
+   delete events;
 }
 
 CountsMap::CountsMap(const CountsMap & rhs) : DataProduct(rhs) {
@@ -355,6 +363,8 @@ CountsMap::CountsMap(const CountsMap & rhs) : DataProduct(rhs) {
                                m_axis_rot, m_use_lb);
    m_refDir = rhs.m_refDir;
    m_conforms = rhs.m_conforms;
+   m_tstart = rhs.m_tstart;
+   m_tstop = rhs.m_tstop;
 }
 
 CountsMap::~CountsMap() throw() { 
