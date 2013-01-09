@@ -109,7 +109,8 @@ void EventContainer::getEvents(std::string event_file) {
 
       double efficiency(1);
       if (eff_factor) {
-         efficiency = eff_factor->value(energy, m_scData.livetimefrac(time));
+         efficiency = eff_factor->value(energy, m_scData.livetimefrac(time),
+                                        time);
       }
       Event thisEvent(ra, dec, energy, time, m_scData.zAxis(time),
                       m_scData.xAxis(time), cos(zenAngle*M_PI/180.), 
