@@ -91,7 +91,7 @@ DiffuseSource::DiffuseSource(const DiffuseSource & rhs)
    m_functions["Spectrum"] = m_spectrum;
 }
 
-double DiffuseSource::fluxDensity(const Event &evt,
+double DiffuseSource::fluxDensity(const Event & evt,
 				  CachedResponse* cResp) const {
    (void)(cResp);
    double my_fluxDensity;
@@ -246,7 +246,7 @@ double DiffuseSource::diffuseResponse(const Event & evt) const {
          my_value += (respFuncs.totalResponse(trueEnergy, evt.getEnergy(), 
                                               evt.zAxis(), evt.xAxis(),
                                               srcDir, evt.getDir(),
-                                              evt.getType())
+                                              evt.getType(), evt.getArrTime())
                       *mapValue*solidAngles.at(i).at(j));
       }
    }

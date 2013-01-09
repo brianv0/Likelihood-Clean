@@ -79,13 +79,14 @@ public:
    class Aeff : public ExposureCube::AeffBase {
    public:
       Aeff(Source * src, const astro::SkyDir & appDir, 
-           double energy, int type);
+           double energy, int type, double time);
    protected:
       Source * m_src;
       const astro::SkyDir & m_appDir;
       double m_energy;
       int m_type;
       double m_separation;
+      double m_time;
 
       virtual double value(double costheta, double phi=0) const;
    };
@@ -93,7 +94,8 @@ public:
    class AeffDeriv : public ExposureCube::AeffBase {
    public:
       AeffDeriv(Source * src, const std::string & paramName, 
-                const astro::SkyDir & appDir, double energy, int type);
+                const astro::SkyDir & appDir, double energy, int type,
+                double time);
       virtual ~AeffDeriv() {}
    protected:
       Source * m_src;
@@ -102,6 +104,7 @@ public:
       double m_energy;
       int m_type;
       double m_separation;
+      double m_time;
 
       virtual double value(double costheta, double phi=0) const;
    };

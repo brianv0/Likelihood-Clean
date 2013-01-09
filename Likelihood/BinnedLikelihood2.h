@@ -18,7 +18,6 @@
 #include "Likelihood/Accumulator.h"
 #include "Likelihood/CountsMap.h"
 #include "Likelihood/LogLike.h"
-#include "Likelihood/Pixel.h"
 
 namespace Likelihood {
 

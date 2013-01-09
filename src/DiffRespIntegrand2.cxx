@@ -133,7 +133,8 @@ operator()(double mu) const {
    double totalResp = 
       respFuncs.totalResponse(trueEnergy, event.getEnergy(), 
                               event.zAxis(), event.xAxis(), 
-                              srcDir, event.getDir(), event.getType());
+                              srcDir, event.getDir(), event.getType(),
+                              event.getArrTime());
    double srcDist_val(src.spatialDist(SkyDirArg(srcDir, trueEnergy)));
    
    return totalResp*srcDist_val;

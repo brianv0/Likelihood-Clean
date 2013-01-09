@@ -115,6 +115,7 @@ double Drm::
 matrix_element(double etrue, double emeas_min, double emeas_max) const {
    const ResponseFunctions & resps(m_observation.respFuncs());
    const ExposureCube & expcube(m_observation.expCube());
+   double met((expcube.tstart() + expcube.tstop())/2.);
 
    // Use phi-averged exposure
    double phi(-1);
@@ -145,9 +146,10 @@ matrix_element(double etrue, double emeas_min, double emeas_max) const {
       double theta(std::acos(*mu)*180./M_PI);
       double livetime(expcube.livetime(m_dir, *mu, phi));
       for (size_t i(0); i < evtTypes.size(); i++) {
-         double aeff(resps.aeff(etrue, theta, phi, evtTypes[i]));
+         double aeff(resps.aeff(etrue, theta, phi, evtTypes[i], met));
          double edisp(resps.edisp(evtTypes[i]).integral(emeas_min, emeas_max, 
-                                                        etrue, theta, phi));
+                                                        etrue, theta, phi,
+                                                        met));
          exposr[j] += aeff*livetime;
          top[j] += edisp*aeff*livetime;
       }
