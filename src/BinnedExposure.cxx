@@ -294,6 +294,8 @@ void BinnedExposure::writeOutput(const std::string & filename) const {
 
    header["TELESCOP"].set("GLAST");
    header["INSTRUME"].set("LAT");
+   astro::JulianDate current_time = st_facilities::Util::currentTime();
+   header["DATE"].set(current_time.getGregorianDate());
    header["DATE-OBS"].set("");
    header["DATE-END"].set("");
 
