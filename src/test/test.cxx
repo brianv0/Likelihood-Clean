@@ -954,7 +954,7 @@ void LikelihoodTests::generate_exposureHyperCube() {
                                                                    "SC_DATA");
    exposure.load(scData, false);
    std::string output_file = dataPath("/expcube_1_day.fits");
-   exposure.write(output_file);
+   exposure.writeFile(output_file);
 }
 
 CountsMap LikelihoodTests::singleSrcMap(unsigned int nee) const {
