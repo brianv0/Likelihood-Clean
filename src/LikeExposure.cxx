@@ -223,6 +223,9 @@ void LikeExposure::writeLivetimes(const std::string & outfile,
    header["COSMIN"].set(healpix::CosineBinner::cosmin());
    header["PHIBINS"].set(healpix::CosineBinner::nphibins());
 
+   header["TSTART"].set(m_tmin);
+   header["TSTOP"].set(m_tmax);
+
    delete table;
 }
 
