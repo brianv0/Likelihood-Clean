@@ -218,8 +218,7 @@ void BinnedLikelihood2::readXml(std::string xmlFile,
                                optimizers::FunctionFactory & funcFactory,
                                bool requireExposure, 
                                bool addPointSources, 
-                               bool loadMaps,
-                               bool createAllMaps) {
+                               bool loadMaps) {
    SourceModel::readXml(xmlFile, funcFactory, requireExposure=false,
                         addPointSources, loadMaps);
 }
