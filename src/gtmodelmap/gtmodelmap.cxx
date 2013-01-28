@@ -108,12 +108,14 @@ void ModelMap::computeModelMap() {
                                                 apply_psf_corrections=true,
                                                 performConvolution,
                                                 resample, rfactor);
+   m_logLike->set_use_single_fixed_map(false);
+
    std::string bexpmap = m_pars["bexpmap"];
    Likelihood::AppHelpers::checkExposureMap(cmapfile, bexpmap);
    bool requireExposure, addPointSources, loadMaps, createAllMaps;
    m_logLike->readXml(m_pars["srcmdl"], m_helper->funcFactory(),
                       requireExposure=false, addPointSources=true,
-                      loadMaps=false, createAllMaps=true);
+                      loadMaps=false);
 
    Likelihood::ModelMap modelMap(*m_logLike);
    

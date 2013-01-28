@@ -60,8 +60,7 @@ public:
                         optimizers::FunctionFactory & funcFactory,
                         bool requireExposure=true, 
                         bool addPointSources=true,
-                        bool loadMaps=true,
-                        bool createAllMaps=false);
+                        bool loadMaps=true);
 
    virtual std::vector<double>::const_iterator setParamValues_(
       std::vector<double>::const_iterator);
