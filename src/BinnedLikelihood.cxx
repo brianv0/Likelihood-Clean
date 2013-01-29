@@ -330,7 +330,6 @@ void BinnedLikelihood::readXml(std::string xmlFile,
 void BinnedLikelihood::addSource(Source * src, bool fromClone) {
    m_bestValueSoFar = -1e38;
    SourceModel::addSource(src, fromClone);
-   assert(m_srcMaps.find(src->getName()) == m_srcMaps.end());
    if(use_single_fixed_map() && src->fixedSpectrum()) {
        addFixedSource(src->getName());
    } else {
@@ -486,7 +485,16 @@ void BinnedLikelihood::addFixedSource(const std::string & srcName) {
               << "source " << srcName << " not found.";
       throw std::runtime_error(message.str());
    }
+
+   if(std::count(m_fixedSources.begin(), m_fixedSources.end(), srcName) != 0) {
+      std::ostringstream message;
+      message << "BinnedLikelihood::addFixedSource: "
+              << "source " << srcName << " already in fixed model.";
+      throw std::runtime_error(message.str());
+   }
+
    m_fixedSources.push_back(srcName);
+
    SourceMap * srcMap(0);
    std::map<std::string, SourceMap *>::const_iterator srcMapIt
       = m_srcMaps.find(srcName);
