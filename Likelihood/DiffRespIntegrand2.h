@@ -36,6 +36,7 @@ public:
 				 const ResponseFunctions & respFuncs,
 				 const DiffuseSource & src,
 				 const EquinoxRotation & eqRot,
+				 double trueEnergy, bool useEdisp,
 				 double mumin=-1.0,
 				 double mumax=1.0,
 				 double phimin=0,
@@ -47,6 +48,7 @@ public:
 		      const ResponseFunctions & respFuncs,
 		      const DiffuseSource & src,
 		      const EquinoxRotation & eqRot,
+		      double trueEnergy, bool useEdisp,
 		      double mumin=-1.0,
 		      double mumax=1.0,
 		      double err = 0.1);
@@ -92,6 +94,8 @@ private:
    const DiffuseSource & m_src;
    const EquinoxRotation & m_eqRot;
 
+   double m_trueEnergy;
+   bool   m_useEdisp;
    double m_mumin;
    double m_mumax;
    double m_err;
