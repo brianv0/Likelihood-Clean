@@ -17,6 +17,13 @@ LikelihoodBase::LikelihoodBase(const Observation & observation)
    : m_observation(observation), m_maxValue(-1e38) {
 }
 
+LikelihoodBase::~LikelihoodBase() {
+   for(std::map<std::string, Source *>::iterator it = m_sources.begin();
+       it != m_sources.end(); ++it) {
+      delete it->second;
+   }
+}
+
 double LikelihoodBase::value() const {
    optimizers::dArg dummy(0);
    double my_value(value(dummy));
@@ -37,6 +44,9 @@ void LikelihoodBase::syncParams() {
       for (size_t i(0); i < params.size(); i++) {
          m_parameter.push_back(params[i]);
       }
+   }
+   if(hasFixedSourceModelChanged()) {
+      rebuildFixedSourceCache();
    }
 }
 

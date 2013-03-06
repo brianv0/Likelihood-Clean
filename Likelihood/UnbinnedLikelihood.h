@@ -39,64 +39,36 @@ public:
 
 protected:   
 
-   typedef std::vector<Source::Response> EventResponses;
+   class EventResponseCache {
+   public:
+      EventResponses(Source::EDispMode edisp, unsigned nevent);
+      unsigned nevent() const;
+      void getResponse(Source::Response& resp, unsigned ievent) const;
+      void setResponse(const Source::Response& resp, unsigned ievent);
+   private:
+      std::vector<double>   m_resp;
+      std::vector<unsigned> m_resp_offset;
+      std::vector<unsigned> m_resp_count;
+      Source::EDispMode     m_edisp;
+   };
 
-   void computeSourceEventResponses(Source* src, EventResponses& resp) const;
-   void partialSourceEventResponses(Source* src, EventResponses& resp,
-				    unsigned ievent_begin, 
-				    unsigned ievent_end) const;
+   void computeSourceEventResponses(Source* src, 
+				    EventResponseCache* resp_cache) const;
 
    virtual void addFreeSource(Source* src, const Source* callers_src);
    virtual void removeFreeSource(Source* src);
 
    virtual void addFixedSource(Source* src, const Source* callers_src);
    
-   void partialDataSum(KahanAccumulator& acc, 
-		       unsigned ievent_begin, unsigned ievent_end) const;
    void modelDensity(KahanAccumulator & flux_acc, nsigned ievent) const;
-
-   void partialDataDerivs(std::vector<KahanAccumulator> & acc, 
-			  unsigned ievent_begin, unsigned ievent_end) const;
-
-#ifndef ST_LIKELIHOOD_NOTHREADS
-   struct PartialDataSumThreadArgs {
-      pthread_t thread_id;
-      UnbinnedLikelihood* like;
-      KahanAccumulator acc;
-      unsigned ievent_begin;
-      unsigned ievent_end;
-   };
-
-   static void startPartialDataSumThread(void * pds_args);
-
-   struct PartialDataDerivsThreadArgs {
-      pthread_t thread_id;
-      UnbinnedLikelihood* like;
-      std::vector<KahanAccumulator> acc;
-      unsigned ievent_begin;
-      unsigned ievent_end;
-   };
-
-   static void startPartialDataDerivsThread(void * pdd_args);
-
-   struct PartialSourceEventResponseThreadArgs {
-      pthread_t thread_id;
-      UnbinnedLikelihood* like;
-      Source * src;
-      EventResponses * resp;
-      unsigned ievent_begin;
-      unsigned ievent_end;
-   };
-   
-   static void startPartialSourceEventResponseThread(void * pesr_args);
-#endif
-
+   void modelLogDensityDerivs(std::vector<double> & log_flux_derivs,
+			      unsigned ievent) const;
 
    bool                                    m_use_ebounds;
    double                                  m_emin;
    double                                  m_emax;
 
-   std::vector<EventResponses *>           m_free_source_resp;
+   std::vector<EventResponseCache *>       m_free_source_resp;
    Source *                                m_last_removed_source;
    EventResponses *                        m_last_removed_source_resp;
 
