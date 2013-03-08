@@ -88,7 +88,8 @@ Event::Event(double ra, double dec, double energy, double time,
    m_estep = (emax - emin)/(npts-1.);
    m_trueEnergies.reserve(npts);
    for (int i = 0; i < npts; i++) {
-     m_trueEnergies.push_back(m_estep*i + emin);
+      m_trueEnergies.push_back(m_estep*i + emin);
+   }
 }
 
 double Event::diffuseResponse(double trueEnergy, 
